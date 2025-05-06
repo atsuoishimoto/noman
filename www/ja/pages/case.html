@@ -11,6 +11,13 @@
       
 
       
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://noman.sh/images/logo.png" />
+  <meta property="og:title" content="case command: noman - Man pages without the man" />
+  <meta property="og:url" content="https://noman.sh/ja/pages/case.html" />
+
+
+      
         <script src="/ja/summary.js"></script>
         <script src="/js/search.js"></script>
         <script src="/js/language-switcher.js"></script>
@@ -154,8 +161,8 @@
 <span style="color: #000; font-style: italic">テキストファイル</span>
 </pre></div>
 <h2>ヒント</h2>
-<h3>フォールスルーに ;&amp; または ;&amp;&amp; を使用する（Bash 4以降）</h3>
-<p>Bash 4以降では、<code>;&amp; </code>を使用して次のパターンをテストせずに続行するか、<code>;&amp;&amp; </code>を使用して次のパターンをテストできます：</p>
+<h3>フォールスルーに ;&amp; または ;;&amp; を使用する（Bash 4以降）</h3>
+<p>Bash 4以降では、<code>;&amp; </code>を使用して次のパターンをテストせずに続行するか、<code>;;&amp; </code>を使用して次のパターンをテストできます：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">case</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$var</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span>
 <span style="color: #F8F8F8">  </span>pattern1<span style="color: #CE5C00; font-weight: bold">)</span>
 <span style="color: #F8F8F8">    </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;pattern1に一致&quot;</span>

@@ -127,9 +127,9 @@ Text file
 
 ## Tips
 
-### Use Fall-Through with ;& or ;&& (Bash 4+)
+### Use Fall-Through with ;& or ;;& (Bash 4+)
 
-In Bash 4 and later, you can use `;& ` to continue to the next pattern without testing it, or `;&& ` to test the next pattern:
+In Bash 4 and later, you can use `;& ` to continue to the next pattern without testing it, or `;;& ` to test the next pattern:
 
 ```bash
 case "$var" in

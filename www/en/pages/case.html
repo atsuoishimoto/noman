@@ -11,6 +11,13 @@
       
 
       
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://noman.sh/images/logo.png" />
+  <meta property="og:title" content="case command: noman - Man pages without the man" />
+  <meta property="og:url" content="https://noman.sh/en/pages/case.html" />
+
+
+      
         <script src="/en/summary.js"></script>
         <script src="/js/search.js"></script>
         <script src="/js/language-switcher.js"></script>
@@ -154,8 +161,8 @@
 <span style="color: #000; font-style: italic">Text file</span>
 </pre></div>
 <h2>Tips</h2>
-<h3>Use Fall-Through with ;&amp; or ;&amp;&amp; (Bash 4+)</h3>
-<p>In Bash 4 and later, you can use <code>;&amp; </code> to continue to the next pattern without testing it, or <code>;&amp;&amp; </code> to test the next pattern:</p>
+<h3>Use Fall-Through with ;&amp; or ;;&amp; (Bash 4+)</h3>
+<p>In Bash 4 and later, you can use <code>;&amp; </code> to continue to the next pattern without testing it, or <code>;;&amp; </code> to test the next pattern:</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">case</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$var</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span>
 <span style="color: #F8F8F8">  </span>pattern1<span style="color: #CE5C00; font-weight: bold">)</span>
 <span style="color: #F8F8F8">    </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Matches pattern1&quot;</span>
