@@ -1,0 +1,20 @@
+{
+  "id": "msg_01Kxb7pwHao8rinmyd8wqCgG",
+  "content": [
+    {
+      "text": "# df コマンド\n\nファイルシステムのディスク容量使用状況を表示します。\n\n## 概要\n\n`df` コマンドはファイルシステムのディスク容量使用状況を報告し、マウントされたファイルシステムの合計サイズ、使用済み容量、利用可能な容量、マウントポイントなどの情報を表示します。ディスク容量を監視し、容量が不足しているファイルシステムを特定するために一般的に使用されます。\n\n## オプション\n\n### **-h, --human-readable**\n\nサイズを人間が読みやすい形式で表示します（例：1K、234M、2G）\n\n```console\n$ df -h\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/sda1        20G   15G  4.0G  79% /\ntmpfs           3.9G     0  3.9G   0% /dev/shm\n/dev/sda2       50G   20G   28G  42% /home\n```\n\n### **-T, --print-type**\n\nファイルシステムの種類を表示します\n\n```console\n$ df -T\nFilesystem     Type     1K-blocks    Used Available Use% Mounted on\n/dev/sda1      ext4      20971520 15728640   4194304  79% /\ntmpfs          tmpfs      4096000        0   4096000   0% /dev/shm\n/dev/sda2      ext4      52428800 20971520  29360128  42% /home\n```\n\n### **-i, --inodes**\n\nブロック使用量の代わりにiノード情報を表示します\n\n```console\n$ df -i\nFilesystem      Inodes  IUsed   IFree IUse% Mounted on\n/dev/sda1      1310720 354026  956694   27% /\ntmpfs           999037      1  999036    1% /dev/shm\n/dev/sda2      3276800 125892 3150908    4% /home\n```\n\n### **-a, --all**\n\nダミー、重複、またはアクセスできないファイルシステムも含めます\n\n```console\n$ df -a\nFilesystem     1K-blocks    Used Available Use% Mounted on\n/dev/sda1       20971520 15728640   4194304  79% /\nproc                   0        0         0    - /proc\nsysfs                  0        0         0    - /sys\ntmpfs            4096000        0   4096000   0% /dev/shm\n/dev/sda2       52428800 20971520  29360128  42% /home\n```\n\n### **-P, --portability**\n\nPOSIX出力形式を使用します\n\n```console\n$ df -P\nFilesystem     1024-blocks      Used  Available Capacity Mounted on\n/dev/sda1          20971520  15728640    4194304      79% /\ntmpfs               4096000         0    4096000       0% /dev/shm\n/dev/sda2          52428800  20971520   29360128      42% /home\n```\n\n## 使用例\n\n### 特定のファイルシステムの容量を確認する\n\n```console\n$ df -h /home\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/sda2        50G   20G   28G  42% /home\n```\n\n### オプションを組み合わせて詳細情報を表示する\n\n```console\n$ df -hT\nFilesystem     Type   Size  Used Avail Use% Mounted on\n/dev/sda1      ext4    20G   15G  4.0G  79% /\ntmpfs          tmpfs  3.9G     0  3.9G   0% /dev/shm\n/dev/sda2      ext4    50G   20G   28G  42% /home\n```\n\n### 特殊なものを含むすべてのファイルシステムの容量を確認する\n\n```console\n$ df -ha\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/sda1        20G   15G  4.0G  79% /\nproc               0     0     0    - /proc\nsysfs              0     0     0    - /sys\ntmpfs            3.9G     0  3.9G   0% /dev/shm\n/dev/sda2        50G   20G   28G  42% /home\n```\n\n## ヒント\n\n### 重要なファイルシステムに焦点を当てる\n\n`df -h | grep -v tmpfs` を使用して一時的なファイルシステムをフィルタリングし、物理ディスクに焦点を当てます。\n\n### 大きなファイルシステムを特定する\n\nソートと組み合わせて最大のファイルシステムを特定します：`df -h | sort -rh -k2`\n\n### 重要なしきい値を監視する\n\n使用率が高い（90％以上）ファイルシステムは、すぐに対応が必要になる可能性があるため注意してください。\n\n### 特定のマウントポイントを確認する\n\nトラブルシューティング時には、特定のマウントポイントを直接確認します：`df -h /var` で特定のディレクトリの容量不足を確認できます。\n\n## よくある質問\n\n#### Q1. \"Use%\"列は何を意味していますか？\nA. ファイルシステムの容量のうち、現在使用されている割合を示しています。\n\n#### Q2. より読みやすい形式でディスク容量を確認するにはどうすればよいですか？\nA. `df -h` を使用すると、人間が読みやすいサイズ（KB、MB、GB）で表示されます。\n\n#### Q3. 一部のファイルシステムがサイズ0と表示されるのはなぜですか？\nA. /procや/sysのような特殊なファイルシステムは仮想的なもので、実際のディスク容量を消費しません。\n\n#### Q4. iノードの使用状況を確認するにはどうすればよいですか？\nA. `df -i` を使用すると、ブロック使用量の代わりにiノード情報が表示されます。\n\n#### Q5. dfとduの違いは何ですか？\nA. `df` はファイルシステムレベルでディスク容量使用状況を報告し、`du` はファイルとディレクトリレベルでディスク使用量を報告します。\n\n## 参考資料\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1499,
+    "output_tokens": 1830
+  }
+}

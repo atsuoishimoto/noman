@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  cat - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>catコマンド</h1>
+<p>ファイルの内容を連結して標準出力に表示します。</p>
+<h2>概要</h2>
+<p><code>cat</code>コマンドはファイルを読み込み、その内容を出力します。主にファイルの内容を表示したり、複数のファイルを結合したり、新しいファイルを作成したりするために使用されます。「cat」という名前は「concatenate（連結する）」に由来しており、ファイルを結合する能力を反映しています。</p>
+<h2>オプション</h2>
+<h3><strong>-n, --number</strong></h3>
+<p>すべての出力行に1から始まる行番号を付けます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">     1  This is the first line</span>
+<span style="color: #000; font-style: italic">     2  This is the second line</span>
+<span style="color: #000; font-style: italic">     3  This is the third line</span>
+</pre></div>
+<h3><strong>-b, --number-nonblank</strong></h3>
+<p>空でない出力行にのみ1から始まる行番号を付けます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">     1  This is the first line</span>
+<span style="color: #000; font-style: italic">     </span>
+<span style="color: #000; font-style: italic">     2  This is the third line</span>
+</pre></div>
+<h3><strong>-s, --squeeze-blank</strong></h3>
+<p>連続する空の出力行を抑制し、複数の連続する空行の代わりに1つの空行のみを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>file_with_blanks.txt
+<span style="color: #000; font-style: italic">This is text.</span>
+
+<span style="color: #000; font-style: italic">This has only one blank line between paragraphs instead of multiple.</span>
+</pre></div>
+<h3><strong>-A, --show-all</strong></h3>
+<p>すべての制御文字と非表示文字を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">This is a line with a tab^I and a newline$</span>
+</pre></div>
+<h3><strong>-E, --show-ends</strong></h3>
+<p>各行の末尾に$を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-E<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">This is line one.$</span>
+<span style="color: #000; font-style: italic">This is line two.$</span>
+</pre></div>
+<h3><strong>-T, --show-tabs</strong></h3>
+<p>TAB文字を^Iとして表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-T<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">This is a^Itabbed line</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ファイルの内容を表示する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">This is the content of document.txt</span>
+<span style="color: #000; font-style: italic">It has multiple lines</span>
+<span style="color: #000; font-style: italic">that will be displayed.</span>
+</pre></div>
+<h3>複数のファイルを連結する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">Contents of file1.txt</span>
+<span style="color: #000; font-style: italic">Contents of file2.txt</span>
+</pre></div>
+<h3>新しいファイルを内容と共に作成する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>newfile.txt
+<span style="color: #000; font-style: italic">Type your content here</span>
+<span style="color: #000; font-style: italic">Press Ctrl+D when finished</span>
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>newfile.txt
+<span style="color: #000; font-style: italic">Type your content here</span>
+<span style="color: #000; font-style: italic">Press Ctrl+D when finished</span>
+</pre></div>
+<h3>既存のファイルに追加する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&gt;&gt;<span style="color: #F8F8F8"> </span>existing.txt
+<span style="color: #000; font-style: italic">This text will be added to the end of the file</span>
+<span style="color: #000; font-style: italic">Press Ctrl+D when finished</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>大きなファイルではcatを慎重に使用する</h3>
+<p>非常に大きなファイルの場合は、ターミナルに大量の出力が表示されるのを避けるため、<code>cat</code>の代わりに<code>less</code>や<code>more</code>などのツールを使用しましょう。</p>
+<h3>catとgrepを組み合わせて検索する</h3>
+<p><code>cat</code>の出力を<code>grep</code>にパイプして特定のパターンを検索できます：<code>cat file.txt | grep &quot;search term&quot;</code></p>
+<h3>ヒアドキュメントでファイルを素早く作成する</h3>
+<p>複数行のファイルを作成するにはヒアドキュメントを使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>script.sh<span style="color: #F8F8F8"> </span>&lt;&lt;<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;EOF&#39;</span>
+<span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #000; font-style: italic">echo &quot;Hello World&quot;</span>
+<span style="color: #000; font-style: italic">EOF</span>
+</pre></div>
+<h3>非表示文字を表示する</h3>
+<p>奇妙なフォーマットのファイルをトラブルシューティングする場合は、<code>cat -A</code>を使用してすべての制御文字を確認できます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. 「cat」は何の略ですか？</h4>
+<p>A. 「cat」は「concatenate（連結する）」の略で、一連のものを連結することを意味します。</p>
+<h4>Q2. ファイルを変更せずに表示するにはどうすればよいですか？</h4>
+<p>A. リダイレクト演算子なしで単に<code>cat filename</code>を使用します。</p>
+<h4>Q3. catでファイルを作成するにはどうすればよいですか？</h4>
+<p>A. <code>cat &gt; filename</code>を使用し、内容を入力して、終了したらCtrl+Dを押します。</p>
+<h4>Q4. ファイルを上書きせずに追加するにはどうすればよいですか？</h4>
+<p>A. <code>cat &gt;&gt; filename</code>を使用して、既存のファイルの末尾に内容を追加します。</p>
+<h4>Q5. catが時々奇妙な文字を表示するのはなぜですか？</h4>
+<p>A. バイナリファイルやテキスト以外の内容を含むファイルを表示すると、<code>cat</code>は表示できない文字を表示します。制御文字を確認するには<code>cat -A</code>を使用するか、バイナリファイル用の専用ツールを使用してください。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/cat-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

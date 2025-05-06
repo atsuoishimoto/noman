@@ -1,0 +1,150 @@
+.hero {
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.cta-buttons {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #1d2439;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #2c3e50;
+}
+
+.cta-button.secondary {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.cta-button.secondary:hover {
+  background-color: #e9ecef;
+}
+
+.screenshot {
+  margin-left:auto;
+  margin-right:auto;
+  width:80%;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.feature-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  color: #1d2439;
+  font-size: 1.3rem;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2c622c;
+}
+
+.example-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+.example-section h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.example-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .example-comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+.example-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.example-card h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.example-card pre {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+
+.search-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.search-container h2 {
+  margin-bottom: 1rem;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

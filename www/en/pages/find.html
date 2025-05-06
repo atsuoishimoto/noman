@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  find - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>find command</h1>
+<p>Search for files in a directory hierarchy.</p>
+<h2>Overview</h2>
+<p>The <code>find</code> command searches for files in a directory hierarchy based on various criteria such as name, type, size, or modification time. It's a powerful tool for locating files and executing operations on the matching results.</p>
+<h2>Options</h2>
+<h3><strong>-iname</strong></h3>
+<p>Performs a case-insensitive search for files matching the specified pattern. Similar to <code>-name</code> but ignores case differences.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-iname<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.txt&quot;</span>
+<span style="color: #000; font-style: italic">./notes.txt</span>
+<span style="color: #000; font-style: italic">./Documents/README.txt</span>
+<span style="color: #000; font-style: italic">./projects/readme.TXT</span>
+</pre></div>
+<h3><strong>-name</strong></h3>
+<p>Searches for files matching the specified pattern (case-sensitive).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.txt&quot;</span>
+<span style="color: #000; font-style: italic">./notes.txt</span>
+<span style="color: #000; font-style: italic">./Documents/README.txt</span>
+</pre></div>
+<h3><strong>-type</strong></h3>
+<p>Searches for files of a specific type. Common types include:</p>
+<ul>
+<li><code>f</code> (regular file)</li>
+<li><code>d</code> (directory)</li>
+<li><code>l</code> (symbolic link)</li>
+</ul>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-type<span style="color: #F8F8F8"> </span>f<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.jpg&quot;</span>
+<span style="color: #000; font-style: italic">./photos/vacation.jpg</span>
+<span style="color: #000; font-style: italic">./profile.jpg</span>
+</pre></div>
+<h3><strong>-size</strong></h3>
+<p>Searches for files based on their size.</p>
+<ul>
+<li><code>+n</code> (larger than n)</li>
+<li><code>-n</code> (smaller than n)</li>
+<li><code>n</code> (exactly n)</li>
+</ul>
+<p>Units: <code>c</code> (bytes), <code>k</code> (kilobytes), <code>M</code> (megabytes), <code>G</code> (gigabytes)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-size<span style="color: #F8F8F8"> </span>+10M
+<span style="color: #000; font-style: italic">./videos/tutorial.mp4</span>
+<span style="color: #000; font-style: italic">./backups/archive.zip</span>
+</pre></div>
+<h3><strong>-mtime</strong></h3>
+<p>Searches for files based on their modification time in days.</p>
+<ul>
+<li><code>+n</code> (more than n days ago)</li>
+<li><code>-n</code> (less than n days ago)</li>
+<li><code>n</code> (exactly n days ago)</li>
+</ul>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-mtime<span style="color: #F8F8F8"> </span>-7
+<span style="color: #000; font-style: italic">./documents/recent_report.pdf</span>
+<span style="color: #000; font-style: italic">./notes.txt</span>
+</pre></div>
+<h3><strong>-exec</strong></h3>
+<p>Executes a command on each matching file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.log&quot;</span><span style="color: #F8F8F8"> </span>-exec<span style="color: #F8F8F8"> </span>rm<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\;</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Finding files with a specific extension regardless of case</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>/home/user<span style="color: #F8F8F8"> </span>-iname<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.jpg&quot;</span>
+<span style="color: #000; font-style: italic">/home/user/Pictures/vacation.jpg</span>
+<span style="color: #000; font-style: italic">/home/user/Downloads/photo.JPG</span>
+<span style="color: #000; font-style: italic">/home/user/Documents/scan.Jpg</span>
+</pre></div>
+<h3>Finding and deleting temporary files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>/tmp<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;temp*&quot;</span><span style="color: #F8F8F8"> </span>-type<span style="color: #F8F8F8"> </span>f<span style="color: #F8F8F8"> </span>-exec<span style="color: #F8F8F8"> </span>rm<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\;</span>
+</pre></div>
+<h3>Finding large files modified in the last week</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>/home<span style="color: #F8F8F8"> </span>-type<span style="color: #F8F8F8"> </span>f<span style="color: #F8F8F8"> </span>-size<span style="color: #F8F8F8"> </span>+100M<span style="color: #F8F8F8"> </span>-mtime<span style="color: #F8F8F8"> </span>-7
+<span style="color: #000; font-style: italic">/home/user/Downloads/movie.mp4</span>
+<span style="color: #000; font-style: italic">/home/user/Documents/presentation.pptx</span>
+</pre></div>
+<h3>Finding empty directories</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>/var/log<span style="color: #F8F8F8"> </span>-type<span style="color: #F8F8F8"> </span>d<span style="color: #F8F8F8"> </span>-empty
+<span style="color: #000; font-style: italic">/var/log/old</span>
+<span style="color: #000; font-style: italic">/var/log/archive/2024</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Wildcards Carefully</h3>
+<p>When using patterns with <code>-name</code> or <code>-iname</code>, remember to quote the pattern to prevent shell expansion: <code>find . -name &quot;*.txt&quot;</code> not <code>find . -name *.txt</code>.</p>
+<h3>Limit Directory Depth</h3>
+<p>Use <code>-maxdepth</code> to limit how deep <code>find</code> will search, which can significantly improve performance: <code>find . -maxdepth 2 -name &quot;*.log&quot;</code>.</p>
+<h3>Combine Multiple Conditions</h3>
+<p>Use <code>-a</code> (AND, default), <code>-o</code> (OR), and <code>!</code> or <code>-not</code> (NOT) to create complex search criteria: <code>find . -name &quot;*.jpg&quot; -a -size +1M</code>.</p>
+<h3>Avoid Permission Denied Messages</h3>
+<p>Redirect error messages to <code>/dev/null</code> to suppress &quot;Permission denied&quot; errors: <code>find / -name &quot;file.txt&quot; 2&gt;/dev/null</code>.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I find files by name ignoring case?</h4>
+<p>A. Use the <code>-iname</code> option: <code>find . -iname &quot;pattern&quot;</code>.</p>
+<h4>Q2. How can I find files modified within the last 24 hours?</h4>
+<p>A. Use <code>-mtime -1</code>: <code>find . -mtime -1</code>.</p>
+<h4>Q3. How do I find and delete files in one command?</h4>
+<p>A. Use the <code>-exec</code> option: <code>find . -name &quot;pattern&quot; -exec rm {} \;</code>.</p>
+<h4>Q4. What's the difference between <code>-iname</code> and <code>-name</code>?</h4>
+<p>A. <code>-iname</code> performs a case-insensitive search, while <code>-name</code> is case-sensitive.</p>
+<h4>Q5. How can I make find search only the current directory without subdirectories?</h4>
+<p>A. Use <code>-maxdepth 1</code>: <code>find . -maxdepth 1 -name &quot;pattern&quot;</code>.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/findutils/manual/html_node/find_html/index.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

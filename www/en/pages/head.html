@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  head - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>head command</h1>
+<p>Display the first part of files.</p>
+<h2>Overview</h2>
+<p>The <code>head</code> command outputs the first part of files to standard output. By default, it prints the first 10 lines of each specified file. If multiple files are specified, it precedes each with a header identifying the file name.</p>
+<h2>Options</h2>
+<h3><strong>-n, --lines=N</strong></h3>
+<p>Print the first N lines instead of the default 10</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">Line 1</span>
+<span style="color: #000; font-style: italic">Line 2</span>
+<span style="color: #000; font-style: italic">Line 3</span>
+<span style="color: #000; font-style: italic">Line 4</span>
+<span style="color: #000; font-style: italic">Line 5</span>
+</pre></div>
+<h3><strong>-c, --bytes=N</strong></h3>
+<p>Print the first N bytes of each file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">This is the first 20</span>
+</pre></div>
+<h3><strong>-q, --quiet, --silent</strong></h3>
+<p>Never print headers giving file names</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #8F5902">(content of file1.txt)</span>
+<span style="color: #8F5902">(content of file2.txt)</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Always print headers giving file names</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">==&gt; file.txt &lt;==</span>
+<span style="color: #000; font-style: italic">Line 1</span>
+<span style="color: #000; font-style: italic">Line 2</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>View the beginning of a log file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>/var/log/syslog
+<span style="color: #000; font-style: italic">May  5 10:15:01 hostname CRON[12345]: (root) CMD (command -v debian-sa1 &gt; /dev/null &amp;&amp; debian-sa1 1 1)</span>
+<span style="color: #000; font-style: italic">May  5 10:17:01 hostname CRON[12346]: (root) CMD (/usr/local/bin/backup.sh)</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3>View the first few lines of multiple files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>*.conf
+<span style="color: #000; font-style: italic">==&gt; apache.conf &lt;==</span>
+<span style="color: #8F5902"># </span>Apache<span style="color: #F8F8F8"> </span>configuration
+<span style="color: #000; font-style: italic">ServerName localhost</span>
+<span style="color: #000; font-style: italic">Listen 80</span>
+
+<span style="color: #000; font-style: italic">==&gt; nginx.conf &lt;==</span>
+<span style="color: #8F5902"># </span>Nginx<span style="color: #F8F8F8"> </span>configuration
+<span style="color: #000; font-style: italic">worker_processes auto;</span>
+<span style="color: #000; font-style: italic">events {</span>
+</pre></div>
+<h3>Using head with pipes</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>aux<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-5
+<span style="color: #000; font-style: italic">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span>
+<span style="color: #000; font-style: italic">root         1  0.0  0.0 168940  9416 ?        Ss   May04   0:02 /sbin/init</span>
+<span style="color: #000; font-style: italic">root         2  0.0  0.0      0     0 ?        S    May04   0:00 [kthreadd]</span>
+<span style="color: #000; font-style: italic">root         3  0.0  0.0      0     0 ?        I&lt;   May04   0:00 [rcu_gp]</span>
+<span style="color: #000; font-style: italic">root         4  0.0  0.0      0     0 ?        I&lt;   May04   0:00 [rcu_par_gp]</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Combining with tail</h3>
+<p>Use <code>head</code> and <code>tail</code> together to extract specific line ranges:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tail<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>
+</pre></div>
+<p>This shows lines 11-20 of the file.</p>
+<h3>Using negative numbers</h3>
+<p>With GNU head, you can use <code>-n -N</code> to print all lines except the last N:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>-5<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<p>This shows all lines except the last 5.</p>
+<h3>Monitoring growing files</h3>
+<p>Unlike <code>tail -f</code>, <code>head</code> doesn't have a follow mode. Use <code>tail</code> with the <code>-f</code> option when you need to monitor files that are actively being written to.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between head and tail?</h4>
+<p>A. <code>head</code> shows the beginning of a file (first 10 lines by default), while <code>tail</code> shows the end of a file (last 10 lines by default).</p>
+<h4>Q2. How can I view a specific number of characters instead of lines?</h4>
+<p>A. Use the <code>-c</code> option: <code>head -c 100 file.txt</code> will show the first 100 bytes of the file.</p>
+<h4>Q3. How do I view the first few lines of multiple files without the filename headers?</h4>
+<p>A. Use the <code>-q</code> option: <code>head -q file1.txt file2.txt</code></p>
+<h4>Q4. Can head follow a file as it grows like tail -f?</h4>
+<p>A. No, <code>head</code> doesn't have a follow mode. Use <code>tail -f</code> for monitoring growing files.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/head-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

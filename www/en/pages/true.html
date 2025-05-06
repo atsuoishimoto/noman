@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  true - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>true command</h1>
+<p>Return a successful exit status (0).</p>
+<h2>Overview</h2>
+<p>The <code>true</code> command does nothing except return a successful exit status (0). It's primarily used in shell scripts for creating infinite loops, as a placeholder, or for testing conditional logic.</p>
+<h2>Options</h2>
+<p>The <code>true</code> command doesn't have any options as its sole purpose is to exit with a success status code.</p>
+<h2>Usage Examples</h2>
+<h3>Basic usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">true</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">0</span>
+</pre></div>
+<h3>Creating an infinite loop in a shell script</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span>true<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Press Ctrl+C to exit&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span>sleep<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">done</span>
+<span style="color: #000; font-style: italic">Press Ctrl+C to exit</span>
+<span style="color: #000; font-style: italic">Press Ctrl+C to exit</span>
+<span style="color: #000; font-style: italic">Press Ctrl+C to exit</span>
+<span style="color: #000; font-style: italic">^C</span>
+</pre></div>
+<h3>Using as a placeholder in conditional statements</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$DEBUG</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;yes&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Debugging info&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">else</span><span style="color: #F8F8F8"> </span>true<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">fi</span>
+</pre></div>
+<h3>Using in a logical OR operation</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">true</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This won&#39;t be printed&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">false</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This will be printed&quot;</span>
+<span style="color: #000; font-style: italic">This will be printed</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Difference Between <code>true</code> and <code>:</code></h3>
+<p>Both <code>true</code> and <code>:</code> (colon) commands do essentially the same thing - they return a successful exit status. The colon is a shell builtin that's slightly more efficient, but <code>true</code> is more readable and explicit.</p>
+<h3>Use in Conditional Execution</h3>
+<p><code>true</code> is useful in conditional execution with <code>&amp;&amp;</code> and <code>||</code> operators. For example, <code>command &amp;&amp; true</code> ensures the overall command succeeds regardless of whether the first command succeeds.</p>
+<h3>Creating Empty Files</h3>
+<p>While not its primary purpose, <code>true &gt; filename</code> can be used to create an empty file (similar to <code>touch</code>).</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>true</code> and <code>false</code> commands?</h4>
+<p>A. <code>true</code> always exits with status code 0 (success), while <code>false</code> always exits with status code 1 (failure).</p>
+<h4>Q2. Is <code>true</code> a shell builtin or an external command?</h4>
+<p>A. Most shells implement <code>true</code> as a builtin for efficiency, but there's also an external <code>/bin/true</code> command that does the same thing.</p>
+<h4>Q3. Why would I use <code>true</code> instead of just a comment?</h4>
+<p>A. Unlike comments, <code>true</code> is an actual command that executes, making it useful in places where syntax requires a command, like in loop constructs or as a placeholder in conditional branches.</p>
+<h4>Q4. Can <code>true</code> be used to suppress errors?</h4>
+<p>A. Yes, <code>command || true</code> will ensure the overall command returns success even if the first command fails.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/true-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

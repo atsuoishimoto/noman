@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-rebase - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git-rebase command</h1>
+<p>Reapply commits on top of another base tip, rewriting the commit history.</p>
+<h2>Overview</h2>
+<p><code>git rebase</code> is used to change the base of your branch from one commit to another, making it appear as if you created your branch from a different commit. It rewrites the commit history by creating new commits for each commit in the original branch, potentially resulting in a cleaner, linear project history.</p>
+<h2>Options</h2>
+<h3><strong>-i, --interactive</strong></h3>
+<p>Start an interactive rebase session, allowing you to edit, squash, reorder, or drop commits.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>HEAD~3
+<span style="color: #8F5902"># </span>Opens<span style="color: #F8F8F8"> </span>editor<span style="color: #F8F8F8"> </span>with<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>last<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>commits<span style="color: #F8F8F8"> </span>listed<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>modification
+</pre></div>
+<h3><strong>--onto &lt;newbase&gt;</strong></h3>
+<p>Specify the new base commit to reapply your changes onto.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--onto<span style="color: #F8F8F8"> </span>main<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #8F5902"># </span>Reapplies<span style="color: #F8F8F8"> </span>commits<span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>current<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>onto<span style="color: #F8F8F8"> </span>main,<span style="color: #F8F8F8"> </span>starting<span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>feature-branch
+</pre></div>
+<h3><strong>--continue</strong></h3>
+<p>Continue the rebase operation after resolving conflicts.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--continue
+<span style="color: #8F5902"># </span>Continues<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>after<span style="color: #F8F8F8"> </span>fixing<span style="color: #F8F8F8"> </span>conflicts
+</pre></div>
+<h3><strong>--abort</strong></h3>
+<p>Cancel the rebase operation and return to the pre-rebase state.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--abort
+<span style="color: #8F5902"># </span>Cancels<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>and<span style="color: #F8F8F8"> </span>restores<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>original<span style="color: #F8F8F8"> </span>state
+</pre></div>
+<h3><strong>--skip</strong></h3>
+<p>Skip the current patch and continue with the next one.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--skip
+<span style="color: #8F5902"># </span>Skips<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>current<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>and<span style="color: #F8F8F8"> </span>continues<span style="color: #F8F8F8"> </span>with<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>next<span style="color: #F8F8F8"> </span>one
+</pre></div>
+<h3><strong>-m, --merge</strong></h3>
+<p>Use merging strategies to rebase.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>main
+<span style="color: #8F5902"># </span>Uses<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>strategy<span style="color: #F8F8F8"> </span>when<span style="color: #F8F8F8"> </span>rebasing<span style="color: #F8F8F8"> </span>onto<span style="color: #F8F8F8"> </span>main
+</pre></div>
+<h3><strong>-s, --strategy=&lt;strategy&gt;</strong></h3>
+<p>Use the given merge strategy.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>recursive<span style="color: #F8F8F8"> </span>main
+<span style="color: #8F5902"># </span>Uses<span style="color: #F8F8F8"> </span>recursive<span style="color: #F8F8F8"> </span>strategy<span style="color: #F8F8F8"> </span>when<span style="color: #F8F8F8"> </span>rebasing<span style="color: #F8F8F8"> </span>onto<span style="color: #F8F8F8"> </span>main
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Rebasing</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>feature
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>main
+<span style="color: #8F5902"># </span>Reapplies<span style="color: #F8F8F8"> </span>commits<span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>feature<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>onto<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>tip<span style="color: #F8F8F8"> </span>of<span style="color: #F8F8F8"> </span>main
+</pre></div>
+<h3>Interactive Rebasing to Squash Commits</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>HEAD~5
+<span style="color: #8F5902"># </span>In<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>editor<span style="color: #F8F8F8"> </span>that<span style="color: #F8F8F8"> </span>opens:
+<span style="color: #8F5902"># </span>pick<span style="color: #F8F8F8"> </span>01ab234<span style="color: #F8F8F8"> </span>First<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>message
+<span style="color: #8F5902"># </span>squash<span style="color: #F8F8F8"> </span>56cd789<span style="color: #F8F8F8"> </span>Second<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>message
+<span style="color: #8F5902"># </span>squash<span style="color: #F8F8F8"> </span>89ef012<span style="color: #F8F8F8"> </span>Third<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>message
+<span style="color: #8F5902"># </span>pick<span style="color: #F8F8F8"> </span>34gh567<span style="color: #F8F8F8"> </span>Fourth<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>message
+<span style="color: #8F5902"># </span>pick<span style="color: #F8F8F8"> </span>78ij890<span style="color: #F8F8F8"> </span>Fifth<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>message
+</pre></div>
+<h3>Moving a Branch to a Different Base</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--onto<span style="color: #F8F8F8"> </span>main<span style="color: #F8F8F8"> </span>feature-base<span style="color: #F8F8F8"> </span>feature
+<span style="color: #8F5902"># </span>Reapplies<span style="color: #F8F8F8"> </span>commits<span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>feature-base<span style="color: #F8F8F8"> </span>to<span style="color: #F8F8F8"> </span>feature<span style="color: #F8F8F8"> </span>onto<span style="color: #F8F8F8"> </span>main
+</pre></div>
+<h2>Tips:</h2>
+<h3>Never Rebase Public Branches</h3>
+<p>Avoid rebasing commits that have been pushed to public repositories. Rebasing changes commit history, which can cause conflicts for others who have based work on those commits.</p>
+<h3>Resolve Conflicts Carefully</h3>
+<p>When conflicts occur during rebase, Git pauses the operation. Resolve conflicts in each file, then use <code>git add</code> to mark them as resolved before continuing with <code>git rebase --continue</code>.</p>
+<h3>Create a Backup Branch</h3>
+<p>Before performing a complex rebase, create a backup branch: <code>git branch backup-branch</code>. This provides a safety net if the rebase goes wrong.</p>
+<h3>Use Interactive Rebase for Cleanup</h3>
+<p>Interactive rebase (<code>-i</code>) is excellent for cleaning up your commit history before sharing your work. You can combine related commits, remove unnecessary ones, and rewrite commit messages.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between merge and rebase?</h4>
+<p>A. Merge preserves history and creates a merge commit, while rebase rewrites history by creating new commits, resulting in a linear history.</p>
+<h4>Q2. How do I undo a rebase?</h4>
+<p>A. If you haven't pushed the changes, use <code>git reflog</code> to find the commit before the rebase and then <code>git reset --hard &lt;commit-hash&gt;</code> to return to that state.</p>
+<h4>Q3. When should I use rebase instead of merge?</h4>
+<p>A. Use rebase for cleaning up your local, unpublished commits or maintaining a linear history. Use merge for integrating public branches.</p>
+<h4>Q4. How do I resolve conflicts during a rebase?</h4>
+<p>A. Edit the conflicted files to resolve the conflicts, then <code>git add</code> the resolved files and run <code>git rebase --continue</code>.</p>
+<h4>Q5. Can I rebase multiple branches at once?</h4>
+<p>A. No, you must rebase one branch at a time.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-rebase</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

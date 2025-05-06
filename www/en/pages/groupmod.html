@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  groupmod - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>groupmod command</h1>
+<p>Modify a group definition on the system.</p>
+<h2>Overview</h2>
+<p>The <code>groupmod</code> command is used to modify the attributes of an existing group on a Unix/Linux system. It can change a group's name (GID) or numeric ID (GID), allowing administrators to manage group accounts efficiently.</p>
+<h2>Options</h2>
+<h3><strong>-g, --gid GID</strong></h3>
+<p>Change the group ID to the specified value.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>groupmod<span style="color: #F8F8F8"> </span>-g<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1001</span><span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h3><strong>-n, --new-name NEW_GROUP</strong></h3>
+<p>Change the name of the group from GROUP to NEW_GROUP.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>groupmod<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>engineering<span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h3><strong>-o, --non-unique</strong></h3>
+<p>Allow using a non-unique GID (normally GIDs must be unique).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>groupmod<span style="color: #F8F8F8"> </span>-g<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1001</span><span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>marketing
+</pre></div>
+<h3><strong>-p, --password PASSWORD</strong></h3>
+<p>Change the password for the group to the encrypted PASSWORD.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>groupmod<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>encrypted_password<span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h3><strong>-R, --root CHROOT_DIR</strong></h3>
+<p>Apply changes in the CHROOT_DIR directory and use the configuration files from the CHROOT_DIR directory.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>groupmod<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>/mnt/system<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>engineering<span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Changing a group's name</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>groupmod<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>developers<span style="color: #F8F8F8"> </span>programmers
+</pre></div>
+<h3>Changing a group's GID</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>groupmod<span style="color: #F8F8F8"> </span>-g<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2000</span><span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h3>Changing both name and GID</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>groupmod<span style="color: #F8F8F8"> </span>-g<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2000</span><span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>engineering<span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h2>Tips:</h2>
+<h3>Verify Group Changes</h3>
+<p>After modifying a group, use the <code>getent group</code> command to verify the changes:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>group<span style="color: #F8F8F8"> </span>engineering
+</pre></div>
+<h3>Consider File Ownership</h3>
+<p>When changing a group's GID, files owned by the old GID won't automatically be updated. Use <code>find</code> and <code>chgrp</code> to update file ownerships:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>/path/to/directory<span style="color: #F8F8F8"> </span>-group<span style="color: #F8F8F8"> </span>old_gid<span style="color: #F8F8F8"> </span>-exec<span style="color: #F8F8F8"> </span>chgrp<span style="color: #F8F8F8"> </span>new_gid<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\;</span>
+</pre></div>
+<h3>Check for Running Processes</h3>
+<p>Before modifying a group that's used by running processes, check if any processes are using it:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>-eo<span style="color: #F8F8F8"> </span>group<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>groupname
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. Can I change a group's name and GID at the same time?</h4>
+<p>A. Yes, you can use both the <code>-n</code> and <code>-g</code> options together in a single command.</p>
+<h4>Q2. What happens to files owned by a group if I change its GID?</h4>
+<p>A. Files will still reference the old GID number. You'll need to manually update file ownerships using <code>chgrp</code> or similar commands.</p>
+<h4>Q3. Can I make a group's GID the same as another group's?</h4>
+<p>A. Yes, but only if you use the <code>-o</code> (non-unique) option. However, this is generally not recommended as it can cause confusion.</p>
+<h4>Q4. Will changing a group's name affect users who are members of that group?</h4>
+<p>A. No, changing a group's name doesn't affect its membership. Users who were members of the old group name will automatically be members of the new group name.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man8/groupmod.8.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

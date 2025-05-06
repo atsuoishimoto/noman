@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  mkfifo - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>mkfifo command</h1>
+<p>Create named pipes (FIFOs) with specified names.</p>
+<h2>Overview</h2>
+<p><code>mkfifo</code> creates special FIFO (First-In-First-Out) files, also known as named pipes, which allow communication between processes. Unlike regular pipes created with the <code>|</code> operator, named pipes persist in the filesystem until deleted, allowing unrelated processes to communicate through them.</p>
+<h2>Options</h2>
+<h3><strong>-m, --mode=MODE</strong></h3>
+<p>Set the permission mode (as in chmod) for the created FIFO, instead of using the default mode of 0666 (readable and writable by all, modified by umask).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">0600</span><span style="color: #F8F8F8"> </span>private_pipe
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>private_pipe
+<span style="color: #000; font-style: italic">prw-------  1 user  group  0 May  5 10:00 private_pipe</span>
+</pre></div>
+<h3><strong>-Z, --context=CTX</strong></h3>
+<p>Set the SELinux security context of each created FIFO to CTX.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>-Z<span style="color: #F8F8F8"> </span>user_u:object_r:user_fifo_t<span style="color: #F8F8F8"> </span>private_pipe
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>Display help information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: mkfifo [OPTION]... NAME...</span>
+<span style="color: #000; font-style: italic">Create named pipes (FIFOs) with the given NAMEs.</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>Output version information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">mkfifo (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating a basic named pipe</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #000; font-style: italic">prw-r--r--  1 user  group  0 May  5 10:00 mypipe</span>
+</pre></div>
+<h3>Using a named pipe for inter-process communication</h3>
+<p>Terminal 1:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #000; font-style: italic">Hello, world!</span>
+</pre></div>
+<p>Terminal 2:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&lt;<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #000; font-style: italic">Hello, world!</span>
+</pre></div>
+<h3>Creating multiple pipes at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>pipe1<span style="color: #F8F8F8"> </span>pipe2<span style="color: #F8F8F8"> </span>pipe3
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>pipe*
+<span style="color: #000; font-style: italic">prw-r--r--  1 user  group  0 May  5 10:00 pipe1</span>
+<span style="color: #000; font-style: italic">prw-r--r--  1 user  group  0 May  5 10:00 pipe2</span>
+<span style="color: #000; font-style: italic">prw-r--r--  1 user  group  0 May  5 10:00 pipe3</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Understanding Named Pipes</h3>
+<p>Named pipes block when opened for reading until someone opens them for writing (and vice versa). This behavior is essential to understand when working with FIFOs.</p>
+<h3>Cleaning Up</h3>
+<p>Named pipes persist in the filesystem until explicitly deleted with <code>rm</code>. Always clean up pipes when they're no longer needed to avoid confusion.</p>
+<h3>Avoiding Deadlocks</h3>
+<p>Be careful when reading from and writing to the same pipe in a single process, as this can lead to deadlocks. Generally, use separate processes for reading and writing.</p>
+<h3>Using with Redirection</h3>
+<p>Named pipes work well with standard input/output redirection, making them useful for connecting commands that wouldn't normally be connected in a pipeline.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between a named pipe and a regular pipe?</h4>
+<p>A. Regular pipes (created with <code>|</code>) exist only while the connected processes are running and cannot be accessed by unrelated processes. Named pipes exist as filesystem objects and can be used by any process that has appropriate permissions.</p>
+<h4>Q2. Can I use named pipes for bidirectional communication?</h4>
+<p>A. No, named pipes are unidirectional. For bidirectional communication, you need to create two separate pipes.</p>
+<h4>Q3. What happens if I try to read from a pipe with no writer?</h4>
+<p>A. The read operation will block until a writer opens the pipe. If all writers close the pipe, readers will receive EOF (end-of-file).</p>
+<h4>Q4. How do I remove a named pipe?</h4>
+<p>A. Use the <code>rm</code> command, just as you would for a regular file: <code>rm mypipe</code>.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/mkfifo-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

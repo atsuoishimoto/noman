@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  seq - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>seqコマンド</h1>
+<p>数値の連続を出力します。</p>
+<h2>概要</h2>
+<p><code>seq</code>コマンドは、開始点から終了点までの数値の連続を生成します。オプションで増分を指定することもできます。シェルスクリプトでループの作成、テストデータの生成、番号付きリストの作成などによく使用されます。</p>
+<h2>オプション</h2>
+<h3><strong>-f, --format=FORMAT</strong></h3>
+<p>printf形式の浮動小数点FORMATを使用します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Number: %.2f&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span>
+<span style="color: #000; font-style: italic">Number: 1.00</span>
+<span style="color: #000; font-style: italic">Number: 2.00</span>
+<span style="color: #000; font-style: italic">Number: 3.00</span>
+</pre></div>
+<h3><strong>-s, --separator=STRING</strong></h3>
+<p>数値の区切りにSTRINGを使用します（デフォルトは改行）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;, &quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">1, 2, 3, 4, 5</span>
+</pre></div>
+<h3><strong>-w, --equal-width</strong></h3>
+<p>先頭にゼロを埋めて幅を均等にします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">12</span>
+<span style="color: #000; font-style: italic">08</span>
+<span style="color: #000; font-style: italic">09</span>
+<span style="color: #000; font-style: italic">10</span>
+<span style="color: #000; font-style: italic">11</span>
+<span style="color: #000; font-style: italic">12</span>
+</pre></div>
+<h3><strong>-t, --format-separator=SEPARATOR</strong></h3>
+<p>出力の区切り文字としてSEPARATORを使用します（デフォルト: \n）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;,&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span>
+<span style="color: #000; font-style: italic">1,2,3,</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な連続生成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">1</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">3</span>
+<span style="color: #000; font-style: italic">4</span>
+<span style="color: #000; font-style: italic">5</span>
+</pre></div>
+<h3>開始、増分、終了の指定</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">4</span>
+<span style="color: #000; font-style: italic">6</span>
+<span style="color: #000; font-style: italic">8</span>
+<span style="color: #000; font-style: italic">10</span>
+</pre></div>
+<h3>カンマ区切りリストの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span>-s,<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">1,2,3,4,5</span>
+</pre></div>
+<h3>forループでのseqの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>i<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>seq<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #204A87; font-weight: bold">)</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Processing item </span><span style="color: #000">$i</span><span style="color: #4E9A06">&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">done</span>
+<span style="color: #000; font-style: italic">Processing item 1</span>
+<span style="color: #000; font-style: italic">Processing item 2</span>
+<span style="color: #000; font-style: italic">Processing item 3</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>カウントダウンにseqを使用する</h3>
+<p>降順の連続を生成するには、負の増分を指定します:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span>-1<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span>
+<span style="color: #000; font-style: italic">5</span>
+<span style="color: #000; font-style: italic">4</span>
+<span style="color: #000; font-style: italic">3</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">1</span>
+</pre></div>
+<h3>並列処理のためにxargsと組み合わせる</h3>
+<p>seqとxargsを使用して複数の並列プロセスを実行します:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-P4<span style="color: #F8F8F8"> </span>-I<span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Processing job {}&quot;</span>
+</pre></div>
+<h3>フォーマットされた連続を作成する</h3>
+<p>より複雑なフォーマットには、printfと組み合わせます:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>seq<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-I<span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Item %03d\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span>
+<span style="color: #000; font-style: italic">Item 001</span>
+<span style="color: #000; font-style: italic">Item 002</span>
+<span style="color: #000; font-style: italic">Item 003</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. 小数点を含む連続を生成するにはどうすればよいですか？</h4>
+<p>A. <code>-f</code>オプションを浮動小数点フォーマットで使用します: <code>seq -f &quot;%.1f&quot; 1 0.5 3</code>は1.0、1.5、2.0、2.5、3.0を生成します。</p>
+<h4>Q2. 先頭にゼロを付けた連続を作成するにはどうすればよいですか？</h4>
+<p>A. <code>-w</code>オプションを使用します: <code>seq -w 1 10</code>は数値に先頭ゼロを埋めて等幅にします。</p>
+<h4>Q3. IPアドレスの範囲を作成するためにseqを使用するにはどうすればよいですか？</h4>
+<p>A. seqを他のコマンドと組み合わせることができます: <code>for i in $(seq 1 5); do echo &quot;192.168.1.$i&quot;; done</code></p>
+<h4>Q4. seqは大きな数値を扱えますか？</h4>
+<p>A. はい、seqはシステムの数値制限内で大きな整数を扱うことができます。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/seq-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

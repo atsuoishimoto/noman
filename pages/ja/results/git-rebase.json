@@ -1,0 +1,20 @@
+{
+  "id": "msg_013zEJ3dmxKNu5CkCRZK3z4A",
+  "content": [
+    {
+      "text": "# git-rebase コマンド\n\n別のベースの先端に対してコミットを再適用し、コミット履歴を書き換えます。\n\n## 概要\n\n`git rebase` は、ブランチのベースを一つのコミットから別のコミットに変更するために使用され、あたかも異なるコミットからブランチを作成したかのように見せることができます。元のブランチの各コミットに対して新しいコミットを作成することで履歴を書き換え、より整理された直線的なプロジェクト履歴を実現できます。\n\n## オプション\n\n### **-i, --interactive**\n\n対話的なリベースセッションを開始し、コミットの編集、スカッシュ（統合）、並べ替え、または削除を行うことができます。\n\n```console\n$ git rebase -i HEAD~3\n# 最新の3つのコミットを修正するためのエディタが開く\n```\n\n### **--onto <newbase>**\n\n変更を再適用する新しいベースコミットを指定します。\n\n```console\n$ git rebase --onto main feature-branch\n# 現在のブランチからfeature-branchを起点としてmainに対してコミットを再適用する\n```\n\n### **--continue**\n\nコンフリクトを解決した後にリベース操作を続行します。\n\n```console\n$ git rebase --continue\n# コンフリクトを修正した後にリベースを続行する\n```\n\n### **--abort**\n\nリベース操作をキャンセルし、リベース前の状態に戻します。\n\n```console\n$ git rebase --abort\n# リベースをキャンセルして元の状態に戻す\n```\n\n### **--skip**\n\n現在のパッチをスキップして次のパッチに進みます。\n\n```console\n$ git rebase --skip\n# 現在のコミットをスキップして次のコミットに進む\n```\n\n### **-m, --merge**\n\nマージ戦略を使用してリベースします。\n\n```console\n$ git rebase -m main\n# mainにリベースする際にマージ戦略を使用する\n```\n\n### **-s, --strategy=<strategy>**\n\n指定されたマージ戦略を使用します。\n\n```console\n$ git rebase -s recursive main\n# mainにリベースする際に再帰的な戦略を使用する\n```\n\n## 使用例\n\n### 基本的なリベース\n\n```console\n$ git checkout feature\n$ git rebase main\n# featureブランチのコミットをmainの先端に再適用する\n```\n\n### コミットをスカッシュするための対話的リベース\n\n```console\n$ git rebase -i HEAD~5\n# 開いたエディタで:\n# pick 01ab234 最初のコミットメッセージ\n# squash 56cd789 2番目のコミットメッセージ\n# squash 89ef012 3番目のコミットメッセージ\n# pick 34gh567 4番目のコミットメッセージ\n# pick 78ij890 5番目のコミットメッセージ\n```\n\n### ブランチを異なるベースに移動する\n\n```console\n$ git rebase --onto main feature-base feature\n# feature-baseからfeatureまでのコミットをmainに再適用する\n```\n\n## ヒント:\n\n### 公開ブランチを絶対にリベースしない\n\n公開リポジトリにプッシュされたコミットのリベースは避けてください。リベースはコミット履歴を変更するため、それらのコミットに基づいて作業している他の人にコンフリクトを引き起こす可能性があります。\n\n### コンフリクトを慎重に解決する\n\nリベース中にコンフリクトが発生すると、Gitは操作を一時停止します。各ファイルのコンフリクトを解決し、`git add`で解決済みとマークしてから`git rebase --continue`で続行します。\n\n### バックアップブランチを作成する\n\n複雑なリベースを実行する前に、`git branch backup-branch`でバックアップブランチを作成しましょう。リベースがうまくいかない場合のセーフティネットになります。\n\n### クリーンアップには対話的リベースを使用する\n\n対話的リベース（`-i`）は、作業を共有する前にコミット履歴をクリーンアップするのに最適です。関連するコミットを結合したり、不要なコミットを削除したり、コミットメッセージを書き直したりできます。\n\n## よくある質問\n\n#### Q1. マージとリベースの違いは何ですか？\nA. マージは履歴を保持しマージコミットを作成しますが、リベースは新しいコミットを作成して履歴を書き換え、直線的な履歴を実現します。\n\n#### Q2. リベースを元に戻すにはどうすればよいですか？\nA. 変更をプッシュしていない場合は、`git reflog`を使用してリベース前のコミットを見つけ、`git reset --hard <commit-hash>`でその状態に戻ります。\n\n#### Q3. マージではなくリベースを使用すべき場合はいつですか？\nA. ローカルの未公開コミットをクリーンアップする場合や、直線的な履歴を維持する場合にリベースを使用します。公開ブランチを統合する場合はマージを使用します。\n\n#### Q4. リベース中のコンフリクトを解決するにはどうすればよいですか？\nA. コンフリクトしたファイルを編集して解決し、`git add`で解決済みファイルを追加してから`git rebase --continue`を実行します。\n\n#### Q5. 複数のブランチを一度にリベースできますか？\nA. いいえ、一度に一つのブランチしかリベースできません。\n\n## 参考文献\n\nhttps://git-scm.com/docs/git-rebase\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1193,
+    "output_tokens": 1733
+  }
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tree - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tree command</h1>
+<p>Display directory contents in a hierarchical tree structure.</p>
+<h2>Overview</h2>
+<p>The <code>tree</code> command recursively lists the contents of directories in a tree-like format, showing the relationships between files and directories. It provides a visual representation of directory structures, making it easier to understand the organization of files and subdirectories.</p>
+<h2>Options</h2>
+<h3><strong>-a</strong></h3>
+<p>Display all files, including hidden files (those starting with a dot)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── .git</span>
+<span style="color: #000; font-style: italic">│   ├── HEAD</span>
+<span style="color: #000; font-style: italic">│   ├── config</span>
+<span style="color: #000; font-style: italic">│   └── hooks</span>
+<span style="color: #000; font-style: italic">├── .gitignore</span>
+<span style="color: #000; font-style: italic">├── README.md</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── .env</span>
+<span style="color: #000; font-style: italic">    └── main.js</span>
+
+<span style="color: #000; font-style: italic">3 directories, 6 files</span>
+</pre></div>
+<h3><strong>-d</strong></h3>
+<p>List directories only, not files</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">├── node_modules</span>
+<span style="color: #000; font-style: italic">│   ├── express</span>
+<span style="color: #000; font-style: italic">│   └── lodash</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    └── components</span>
+
+<span style="color: #000; font-style: italic">5 directories</span>
+</pre></div>
+<h3><strong>-L, --level</strong></h3>
+<p>Limit the depth of directory recursion</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span>
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">│   ├── api.md</span>
+<span style="color: #000; font-style: italic">│   └── usage.md</span>
+<span style="color: #000; font-style: italic">├── node_modules</span>
+<span style="color: #000; font-style: italic">│   ├── express</span>
+<span style="color: #000; font-style: italic">│   └── lodash</span>
+<span style="color: #000; font-style: italic">├── package.json</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── components</span>
+<span style="color: #000; font-style: italic">    └── index.js</span>
+
+<span style="color: #000; font-style: italic">5 directories, 4 files</span>
+</pre></div>
+<h3><strong>-C</strong></h3>
+<p>Add colorization to the output</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-C
+<span style="color: #8F5902"># </span>Output<span style="color: #F8F8F8"> </span>will<span style="color: #F8F8F8"> </span>be<span style="color: #F8F8F8"> </span>colorized<span style="color: #F8F8F8"> </span>with<span style="color: #F8F8F8"> </span>directories,<span style="color: #F8F8F8"> </span>files,<span style="color: #F8F8F8"> </span>and<span style="color: #F8F8F8"> </span>executables<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>different<span style="color: #F8F8F8"> </span>colors
+</pre></div>
+<h3><strong>-p</strong></h3>
+<p>Print file type and permissions for each file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-p
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── [drwxr-xr-x]  docs</span>
+<span style="color: #000; font-style: italic">│   ├── [-rw-r--r--]  api.md</span>
+<span style="color: #000; font-style: italic">│   └── [-rw-r--r--]  usage.md</span>
+<span style="color: #000; font-style: italic">├── [-rw-r--r--]  package.json</span>
+<span style="color: #000; font-style: italic">└── [drwxr-xr-x]  src</span>
+<span style="color: #000; font-style: italic">    └── [-rwxr-xr-x]  index.js</span>
+
+<span style="color: #000; font-style: italic">2 directories, 4 files</span>
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>Print the size of each file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── [       4096]  docs</span>
+<span style="color: #000; font-style: italic">│   ├── [        450]  api.md</span>
+<span style="color: #000; font-style: italic">│   └── [        890]  usage.md</span>
+<span style="color: #000; font-style: italic">├── [        1240]  package.json</span>
+<span style="color: #000; font-style: italic">└── [       4096]  src</span>
+<span style="color: #000; font-style: italic">    └── [         320]  index.js</span>
+
+<span style="color: #000; font-style: italic">2 directories, 4 files</span>
+</pre></div>
+<h3><strong>-h</strong></h3>
+<p>Print the size in a more human-readable format</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-sh
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── [4.0K]  docs</span>
+<span style="color: #000; font-style: italic">│   ├── [450]   api.md</span>
+<span style="color: #000; font-style: italic">│   └── [890]   usage.md</span>
+<span style="color: #000; font-style: italic">├── [1.2K]  package.json</span>
+<span style="color: #000; font-style: italic">└── [4.0K]  src</span>
+<span style="color: #000; font-style: italic">    └── [320]   index.js</span>
+
+<span style="color: #000; font-style: italic">2 directories, 4 files</span>
+</pre></div>
+<h3><strong>--filelimit n</strong></h3>
+<p>Do not descend directories that contain more than n entries</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>--filelimit<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>
+<span style="color: #8F5902"># </span>Will<span style="color: #F8F8F8"> </span>not<span style="color: #F8F8F8"> </span>show<span style="color: #F8F8F8"> </span>contents<span style="color: #F8F8F8"> </span>of<span style="color: #F8F8F8"> </span>directories<span style="color: #F8F8F8"> </span>with<span style="color: #F8F8F8"> </span>more<span style="color: #F8F8F8"> </span>than<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span>files
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic directory listing</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">│   ├── api.md</span>
+<span style="color: #000; font-style: italic">│   └── usage.md</span>
+<span style="color: #000; font-style: italic">├── package.json</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── components</span>
+<span style="color: #000; font-style: italic">    │   ├── Button.js</span>
+<span style="color: #000; font-style: italic">    │   └── Input.js</span>
+<span style="color: #000; font-style: italic">    └── index.js</span>
+
+<span style="color: #000; font-style: italic">3 directories, 5 files</span>
+</pre></div>
+<h3>Limiting depth and showing file sizes</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>-sh
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── [4.0K]  docs</span>
+<span style="color: #000; font-style: italic">├── [1.2K]  package.json</span>
+<span style="color: #000; font-style: italic">└── [4.0K]  src</span>
+
+<span style="color: #000; font-style: italic">2 directories, 1 file</span>
+</pre></div>
+<h3>Filtering by pattern</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-P<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.js&quot;</span>
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">├── package.json</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── components</span>
+<span style="color: #000; font-style: italic">    │   ├── Button.js</span>
+<span style="color: #000; font-style: italic">    │   └── Input.js</span>
+<span style="color: #000; font-style: italic">    └── index.js</span>
+
+<span style="color: #000; font-style: italic">3 directories, 3 files</span>
+</pre></div>
+<h3>Output to a file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>directory_structure.txt
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>directory_structure.txt
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">│   ├── api.md</span>
+<span style="color: #000; font-style: italic">│   └── usage.md</span>
+<span style="color: #000; font-style: italic">├── package.json</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── components</span>
+<span style="color: #000; font-style: italic">    │   ├── Button.js</span>
+<span style="color: #000; font-style: italic">    │   └── Input.js</span>
+<span style="color: #000; font-style: italic">    └── index.js</span>
+
+<span style="color: #000; font-style: italic">3 directories, 5 files</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Exclude Version Control Directories</h3>
+<p>Use <code>tree -I &quot;node_modules|.git&quot;</code> to exclude specific directories like node_modules and .git from the output, making the tree more readable for project directories.</p>
+<h3>Create ASCII Output for Documentation</h3>
+<p>Use <code>tree -A</code> to ensure ASCII characters are used instead of graphic characters, which is useful when creating documentation that needs to be displayed in environments with limited character support.</p>
+<h3>Count Files and Directories</h3>
+<p>Use <code>tree --noreport</code> to suppress the file/directory report at the end if you just want the tree structure without the summary.</p>
+<h3>Customize Output Format</h3>
+<p>Combine options like <code>-pugh</code> to show permissions, usernames, group names, and human-readable sizes all at once for a comprehensive directory listing.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I install tree on macOS?</h4>
+<p>A. You can install tree using Homebrew with the command <code>brew install tree</code>.</p>
+<h4>Q2. How can I exclude certain directories from the output?</h4>
+<p>A. Use the <code>-I</code> option followed by a pattern, e.g., <code>tree -I &quot;node_modules|.git&quot;</code> to exclude node_modules and .git directories.</p>
+<h4>Q3. How do I limit the depth of directories shown?</h4>
+<p>A. Use the <code>-L</code> option followed by a number, e.g., <code>tree -L 2</code> to show only two levels of directories.</p>
+<h4>Q4. Can tree output to a file instead of the terminal?</h4>
+<p>A. Yes, use redirection: <code>tree &gt; output.txt</code> to save the output to a file.</p>
+<h4>Q5. How do I show hidden files?</h4>
+<p>A. Use the <code>-a</code> option: <code>tree -a</code> to show all files including hidden ones.</p>
+<h2>References</h2>
+<p>https://linux.die.net/man/1/tree</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

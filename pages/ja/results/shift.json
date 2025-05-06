@@ -1,0 +1,20 @@
+{
+  "id": "msg_017FUSYsz9zgQqyStQex5uxq",
+  "content": [
+    {
+      "text": "# shift コマンド\n\nシェルスクリプト内の位置パラメータをシフトし、最初のパラメータを削除して残りのパラメータの番号を振り直します。\n\n## 概要\n\n`shift`コマンドはシェル組み込みコマンドで、最初の位置パラメータ($1)を削除し、他のすべてのパラメータを1つ下の位置にシフトします（$2が$1に、$3が$2になるなど）。これは特に、コマンドライン引数を順番に処理する場合や、パラメータのリストを処理する必要がある場合のシェルスクリプトで非常に便利です。\n\n## オプション\n\n### **n**\n\nパラメータをn個の位置だけシフトします（nは正の整数）。nが位置パラメータの数より大きい場合、すべてのパラメータが削除されます。\n\n```console\n$ set -- a b c d e\n$ echo $1 $2 $3\na b c\n$ shift 2\n$ echo $1 $2 $3\nc d e\n```\n\n## 使用例\n\n### 基本的な使い方\n\n```console\n$ set -- apple banana cherry\n$ echo $1\napple\n$ shift\n$ echo $1\nbanana\n$ shift\n$ echo $1\ncherry\n```\n\n### スクリプト内でのコマンドライン引数の処理\n\n```console\n#!/bin/bash\n# process_args.sh\n\nwhile [ $# -gt 0 ]; do\n    echo \"Processing: $1\"\n    shift\ndone\n```\n\n実行すると：\n\n```console\n$ ./process_args.sh arg1 arg2 arg3\nProcessing: arg1\nProcessing: arg2\nProcessing: arg3\n```\n\n### フラグとオプションの処理\n\n```console\n#!/bin/bash\n# process_options.sh\n\nverbose=0\nwhile [ $# -gt 0 ]; do\n    case \"$1\" in\n        -v|--verbose)\n            verbose=1\n            shift\n            ;;\n        -f|--file)\n            filename=\"$2\"\n            shift 2\n            ;;\n        *)\n            echo \"Unknown option: $1\"\n            shift\n            ;;\n    esac\ndone\n\necho \"Verbose mode: $verbose\"\n[ -n \"$filename\" ] && echo \"Filename: $filename\"\n```\n\n## ヒント:\n\n### 残りのパラメータを確認する\n\n`$#`を使用して、残りのパラメータの数を確認します。これは十分な引数が提供されたことを検証するのに役立ちます。\n\n```console\nif [ $# -lt 2 ]; then\n    echo \"Error: Not enough arguments\"\n    exit 1\nfi\n```\n\n### 元の引数を保存する\n\n後で元の引数にアクセスする必要がある場合は、シフトする前に保存します：\n\n```console\nall_args=(\"$@\")\nwhile [ $# -gt 0 ]; do\n    # 引数を処理\n    shift\ndone\n# 後で元の引数に ${all_args[@]} でアクセス\n```\n\n### エラーチェック付きのシフト\n\n1つ以上シフトする場合は、十分なパラメータが存在することを確認します：\n\n```console\nif [ $# -ge 2 ]; then\n    shift 2\nelse\n    echo \"Not enough parameters to shift\"\n    exit 1\nfi\n```\n\n## よくある質問\n\n#### Q1. パラメータが残っていない時に`shift`を使うとどうなりますか？\nA. ほとんどのシェルでは、何も起こりません - エラーにはなりません。ただし、シフトする前に`$#`をチェックするのが良い習慣です。\n\n#### Q2. シェルスクリプト以外で`shift`を使用できますか？\nA. はい、対話型シェルセッションでも使用できますが、主にスクリプトで役立ちます。\n\n#### Q3. `shift`は環境変数に影響しますか？\nA. いいえ、位置パラメータ（$1、$2など）にのみ影響し、環境変数には影響しません。\n\n#### Q4. 1つ以上の位置をシフトするにはどうすればよいですか？\nA. `shift n`を使用します。nはシフトする位置の数です（例：`shift 2`）。\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html#index-shift\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1046,
+    "output_tokens": 1273
+  }
+}

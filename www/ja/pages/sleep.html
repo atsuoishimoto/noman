@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  sleep - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>sleepコマンド</h1>
+<p>指定された時間だけ実行を一時停止します。</p>
+<h2>概要</h2>
+<p><code>sleep</code>コマンドは、指定された時間間隔だけ実行を一時停止します。シェルスクリプトでコマンド間に遅延を導入したり、リソースが利用可能になるのを待ったり、簡単なタイミングメカニズムを実装したりするために一般的に使用されます。このコマンドは数値と、時間単位を示すオプションのサフィックスを受け付けます。</p>
+<h2>オプション</h2>
+<h3><strong>--help</strong></h3>
+<p>ヘルプ情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sleep<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: sleep NUMBER[SUFFIX]...</span>
+<span style="color: #000; font-style: italic">  or:  sleep OPTION</span>
+<span style="color: #000; font-style: italic">Pause for NUMBER seconds.  SUFFIX may be &#39;s&#39; for seconds (the default),</span>
+<span style="color: #000; font-style: italic">&#39;m&#39; for minutes, &#39;h&#39; for hours or &#39;d&#39; for days.  NUMBER need not be an</span>
+<span style="color: #000; font-style: italic">integer.  Given two or more arguments, pause for the amount of time</span>
+<span style="color: #000; font-style: italic">specified by the sum of their values.</span>
+
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>バージョン情報を出力して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sleep<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">sleep (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2020 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by Jim Meyering and Paul Eggert.</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な秒単位のスリープ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sleep<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #8F5902"># </span>コマンドは5秒間一時停止し、その後プロンプトに戻る
+</pre></div>
+<h3>時間単位を指定したスリープ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sleep<span style="color: #F8F8F8"> </span>1m
+<span style="color: #8F5902"># </span>コマンドは1分間一時停止する
+</pre></div>
+<h3>スクリプト内でのsleepの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Starting task...&quot;</span>
+<span style="color: #000; font-style: italic">Starting task...</span>
+<span style="color: #8F5902">$ </span>sleep<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Task completed after 2 seconds&quot;</span>
+<span style="color: #000; font-style: italic">Task completed after 2 seconds</span>
+</pre></div>
+<h3>複数の時間値</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sleep<span style="color: #F8F8F8"> </span>1m<span style="color: #F8F8F8"> </span>30s
+<span style="color: #8F5902"># </span>コマンドは1分30秒間一時停止する
+</pre></div>
+<h2>ヒント:</h2>
+<h3>利用可能な時間単位</h3>
+<ul>
+<li><code>s</code>: 秒（単位が指定されない場合のデフォルト）</li>
+<li><code>m</code>: 分</li>
+<li><code>h</code>: 時間</li>
+<li><code>d</code>: 日</li>
+</ul>
+<h3>小数値</h3>
+<p>より正確なタイミングのために、sleepは小数値を受け付けます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sleep<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">0</span>.5
+<span style="color: #8F5902"># </span><span style="color: #0000CF; font-weight: bold">0</span>.5秒間一時停止する
+</pre></div>
+<h3>他のコマンドとの組み合わせ</h3>
+<p><code>&amp;</code>演算子を使用してsleepをバックグラウンドで実行し、他のタスクを続行できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sleep<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This prints immediately&quot;</span>
+<span style="color: #000; font-style: italic">[1] 12345</span>
+<span style="color: #000; font-style: italic">This prints immediately</span>
+</pre></div>
+<h3>sleepの中断</h3>
+<p>フォアグラウンドで実行中のsleepコマンドを中断するには、Ctrl+Cを押します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. sleepをミリ秒単位で使用できますか？</h4>
+<p>A. 標準のsleepコマンドはミリ秒を直接サポートしていませんが、対応システムでは<code>sleep 0.001</code>のような小数値を使用して1ミリ秒を表現できます。</p>
+<h4>Q2. 異なる時間単位を組み合わせるにはどうすればよいですか？</h4>
+<p>A. sleepに複数の引数を提供できます：<code>sleep 1h 30m 45s</code>は1時間30分45秒間スリープします。</p>
+<h4>Q3. なぜスクリプトがsleepが終了する前に続行するのですか？</h4>
+<p>A. <code>sleep 10 &amp;</code>を使用した場合、アンパサンド（&amp;）はsleepをバックグラウンドで実行します。スクリプトがsleepの完了を待つようにするには、<code>&amp;</code>を削除してください。</p>
+<h4>Q4. sleepはCPUを多く使用しますか？</h4>
+<p>A. いいえ、sleepは非常に効率的です。システムタイマーを使用し、待機中にCPUリソースを消費しません。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/sleep-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

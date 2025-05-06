@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  mv - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>mvコマンド</h1>
+<p>ファイルとディレクトリの移動（名前変更）を行います。</p>
+<h2>概要</h2>
+<p><code>mv</code>コマンドはファイルやディレクトリをある場所から別の場所へ移動します。また、ファイルやディレクトリの名前を変更するためにも使用できます。ファイルシステムをまたいでファイルを移動する場合、<code>mv</code>はファイルをコピーして元のファイルを削除します。</p>
+<h2>オプション</h2>
+<h3><strong>-f, --force</strong></h3>
+<p>確認を求めずに既存のファイルを上書きします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>oldfile.txt<span style="color: #F8F8F8"> </span>newfile.txt
+</pre></div>
+<h3><strong>-i, --interactive</strong></h3>
+<p>既存のファイルを上書きする前に確認を求めます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>oldfile.txt<span style="color: #F8F8F8"> </span>newfile.txt
+<span style="color: #000; font-style: italic">mv: overwrite &#39;newfile.txt&#39;? y</span>
+</pre></div>
+<h3><strong>-n, --no-clobber</strong></h3>
+<p>既存のファイルを上書きしません。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>oldfile.txt<span style="color: #F8F8F8"> </span>newfile.txt
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>実行内容を説明します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>oldfile.txt<span style="color: #F8F8F8"> </span>newfile.txt
+<span style="color: #000; font-style: italic">&#39;oldfile.txt&#39; -&gt; &#39;newfile.txt&#39;</span>
+</pre></div>
+<h3><strong>-b, --backup</strong></h3>
+<p>既存の宛先ファイルごとにバックアップを作成します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>oldfile.txt<span style="color: #F8F8F8"> </span>newfile.txt
+</pre></div>
+<h2>使用例</h2>
+<h3>ファイルの名前変更</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>oldname.txt<span style="color: #F8F8F8"> </span>newname.txt
+</pre></div>
+<h3>ファイルを別のディレクトリに移動</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span>/path/to/directory/
+</pre></div>
+<h3>複数のファイルをディレクトリに移動</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>file3.txt<span style="color: #F8F8F8"> </span>/path/to/directory/
+</pre></div>
+<h3>ディレクトリの移動と名前変更</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>old_directory/<span style="color: #F8F8F8"> </span>new_directory/
+</pre></div>
+<h2>ヒント:</h2>
+<h3>誤った上書きを防止する</h3>
+<p><code>mv -i</code>を使用して対話モードを有効にすると、既存のファイルを上書きする前に確認を求めます。これはスクリプトや複数のファイルを移動する際に特に便利です。</p>
+<h3>自動的にバックアップを作成する</h3>
+<p>重要なファイルを上書きする場合は、<code>mv -b</code>を使用して元のファイルのバックアップを作成します。これによりファイル名にチルダ(~)が付いたバックアップが作成されます。</p>
+<h3>隠しファイルの移動</h3>
+<p>隠しファイル（ドットで始まるファイル）を移動する場合は、混乱を避けるためにファイル名を明示的に指定してください：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>.hidden_file<span style="color: #F8F8F8"> </span>/new/location/
+</pre></div>
+<h3>ワイルドカードを慎重に使用する</h3>
+<p>ワイルドカードを使用する場合は、まず同じパターンで<code>ls</code>を使用して、どのファイルが移動されるかを確認してください：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>*.txt
+<span style="color: #8F5902">$ </span>mv<span style="color: #F8F8F8"> </span>*.txt<span style="color: #F8F8F8"> </span>/destination/
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>mv</code>と<code>cp</code>の違いは何ですか？</h4>
+<p>A. <code>mv</code>はファイルを移動（元の場所から削除）しますが、<code>cp</code>はファイルをコピー（元のファイルはそのまま）します。</p>
+<h4>Q2. 既存のファイルを上書きせずにファイルを移動するにはどうすればよいですか？</h4>
+<p>A. <code>mv -n source destination</code>を使用して、既存のファイルの上書きを防止します。</p>
+<h4>Q3. 複数のファイルを一度に移動できますか？</h4>
+<p>A. はい、複数のソースファイルを指定し、その後に宛先ディレクトリを指定します：<code>mv file1 file2 file3 /destination/</code>。</p>
+<h4>Q4. ファイルの名前を変更するにはどうすればよいですか？</h4>
+<p>A. <code>mv oldname newname</code>を使用してファイルの名前を変更します。</p>
+<h4>Q5. 異なるファイルシステム間でファイルを移動するとどうなりますか？</h4>
+<p>A. ファイルシステム間で移動する場合、<code>mv</code>は新しい場所にファイルをコピーしてから元のファイルを削除します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/mv-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

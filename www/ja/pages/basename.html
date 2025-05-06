@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  basename - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>basename コマンド</h1>
+<p>パス名からファイル名またはディレクトリ名を抽出します。</p>
+<h2>概要</h2>
+<p><code>basename</code>はパスからディレクトリ部分と接尾辞を取り除き、ファイル名または最終ディレクトリ名だけを返します。シェルスクリプトでフルパスからファイル名を抽出したり、ファイル拡張子を削除したりする際によく使用されます。</p>
+<h2>オプション</h2>
+<h3><strong>basename NAME [SUFFIX]</strong></h3>
+<p>NAMEからディレクトリ部分と、オプションのSUFFIXを削除します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span>/usr/bin/sort
+<span style="color: #000; font-style: italic">sort</span>
+</pre></div>
+<h3><strong>basename OPTION... NAME...</strong></h3>
+<p>指定されたオプションに従って複数の名前を処理します。</p>
+<h3><strong>-a, --multiple</strong></h3>
+<p>複数の引数をサポートし、それぞれをNAMEとして扱います。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>/usr/bin/sort<span style="color: #F8F8F8"> </span>/usr/bin/cut
+<span style="color: #000; font-style: italic">sort</span>
+<span style="color: #000; font-style: italic">cut</span>
+</pre></div>
+<h3><strong>-s, --suffix=SUFFIX</strong></h3>
+<p>各NAMEから末尾のSUFFIXを削除します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>.txt<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">file</span>
+</pre></div>
+<h3><strong>-z, --zero</strong></h3>
+<p>各出力行を改行ではなくNUL文字で終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span>/usr/bin/sort<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hexdump<span style="color: #F8F8F8"> </span>-C
+<span style="color: #000; font-style: italic">00000000  73 6f 72 74 00                                    |sort.|</span>
+<span style="color: #000; font-style: italic">00000005</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ディレクトリ部分の削除</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span>/home/user/documents/report.pdf
+<span style="color: #000; font-style: italic">report.pdf</span>
+</pre></div>
+<h3>ファイル拡張子の削除</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span>/home/user/documents/report.pdf<span style="color: #F8F8F8"> </span>.pdf
+<span style="color: #000; font-style: italic">report</span>
+</pre></div>
+<h3>同じ接尾辞を持つ複数のファイルの処理</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>.txt<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>file3.txt
+<span style="color: #000; font-style: italic">file1</span>
+<span style="color: #000; font-style: italic">file2</span>
+<span style="color: #000; font-style: italic">file3</span>
+</pre></div>
+<h3>シェルスクリプトでの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">filename</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>basename<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$fullpath</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;The filename is: </span><span style="color: #000">$filename</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">The filename is: document.pdf</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3><code>dirname</code>との併用によるパス操作</h3>
+<p><code>basename</code>は<code>dirname</code>と組み合わせると、パスをコンポーネントに分割する際に便利です：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">path</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;/home/user/documents/report.pdf&quot;</span>
+<span style="color: #8F5902">$ </span>dirname<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$path</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">/home/user/documents</span>
+<span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$path</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">report.pdf</span>
+</pre></div>
+<h3>スペースを含むパスの処理</h3>
+<p>パスにスペースが含まれる可能性がある場合は、常に引数を引用符で囲みます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;/path/with spaces/file.txt&quot;</span>
+<span style="color: #000; font-style: italic">file.txt</span>
+</pre></div>
+<h3>複数の拡張子の削除</h3>
+<p>複数の拡張子（<code>.tar.gz</code>など）を削除するには、複数のコマンドや<code>sed</code>などの他のツールを使用する必要があります：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>basename<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;archive.tar.gz&quot;</span><span style="color: #F8F8F8"> </span>.gz<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>basename<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>.tar
+<span style="color: #000; font-style: italic">archive</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>basename</code>とbashのパラメータ展開を使用する違いは何ですか？</h4>
+<p>A. bashでの<code>${filename##*/}</code>は同様の機能を実行しますが、<code>basename</code>は異なるシェルでも動作し、接尾辞の削除などの追加オプションを提供します。</p>
+<h4>Q2. <code>basename</code>は一度に複数のファイルを処理できますか？</h4>
+<p>A. はい、<code>-a</code>または<code>--multiple</code>オプションを使用すると、1つのコマンドで複数のファイル名を処理できます。</p>
+<h4>Q3. <code>.tar.gz</code>のような複数の拡張子を削除するにはどうすればよいですか？</h4>
+<p>A. <code>basename</code>は一度に1つの接尾辞しか削除できません。複数の拡張子の場合は、<code>basename</code>を複数回実行するか、他のテキスト処理ツールを使用する必要があります。</p>
+<h4>Q4. <code>basename</code>は元のファイルを変更しますか？</h4>
+<p>A. いいえ、<code>basename</code>は変更された名前を標準出力に出力するだけです。ディスク上のファイルは変更しません。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/basename-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

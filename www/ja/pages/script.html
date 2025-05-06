@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  script - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>script コマンド</h1>
+<p>ターミナルセッションのタイプスクリプトを作成します。</p>
+<h2>概要</h2>
+<p><code>script</code> コマンドは、ターミナルセッションで表示されるすべての内容の記録（タイプスクリプト）を作成します。すべての入力と出力をキャプチャし、ターミナルでのやり取りをファイルに保存して、ドキュメント作成、共有、または後で確認するために使用できます。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --append</strong></h3>
+<p>指定したファイルまたはタイプスクリプトに出力を上書きではなく追加します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>script<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>session.log
+<span style="color: #000; font-style: italic">Script started, file is session.log</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This will be appended to the existing file&quot;</span>
+<span style="color: #000; font-style: italic">This will be appended to the existing file</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">exit</span>
+<span style="color: #000; font-style: italic">Script done, file is session.log</span>
+</pre></div>
+<h3><strong>-f, --flush</strong></h3>
+<p>各書き込み後に出力をフラッシュして、リアルタイムの記録を確保します。セッションがアクティブな間にタイプスクリプトファイルを監視する場合に便利です。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>script<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>realtime.log
+<span style="color: #000; font-style: italic">Script started, file is realtime.log</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This output is flushed immediately&quot;</span>
+<span style="color: #000; font-style: italic">This output is flushed immediately</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">exit</span>
+<span style="color: #000; font-style: italic">Script done, file is realtime.log</span>
+</pre></div>
+<h3><strong>-q, --quiet</strong></h3>
+<p>静かなモードで実行し、開始および終了メッセージを表示しません。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>script<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>quiet.log
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;No start/end messages displayed&quot;</span>
+<span style="color: #000; font-style: italic">No start/end messages displayed</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">exit</span>
+</pre></div>
+<h3><strong>-t, --timing=FILE</strong></h3>
+<p>タイミングデータをFILEに出力します。これは後で scriptreplay コマンドを使用して、元のスピードでセッションを再生するために使用できます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>script<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>timing.log<span style="color: #F8F8F8"> </span>typescript.log
+<span style="color: #000; font-style: italic">Script started, file is typescript.log</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This session can be replayed later&quot;</span>
+<span style="color: #000; font-style: italic">This session can be replayed later</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">exit</span>
+<span style="color: #000; font-style: italic">Script done, file is typescript.log</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な使い方</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>script<span style="color: #F8F8F8"> </span>my_session.log
+<span style="color: #000; font-style: italic">Script started, file is my_session.log</span>
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">Documents  Downloads  Pictures</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, world!&quot;</span>
+<span style="color: #000; font-style: italic">Hello, world!</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">exit</span>
+<span style="color: #000; font-style: italic">Script done, file is my_session.log</span>
+</pre></div>
+<h3>後で再生するためのセッション記録</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>script<span style="color: #F8F8F8"> </span>--timing<span style="color: #CE5C00; font-weight: bold">=</span>timing.log<span style="color: #F8F8F8"> </span>typescript.log
+<span style="color: #000; font-style: italic">Script started, file is typescript.log</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This is a demonstration&quot;</span>
+<span style="color: #000; font-style: italic">This is a demonstration</span>
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-la
+<span style="color: #000; font-style: italic">total 20</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  2 user user 4096 May  5 10:00 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x 20 user user 4096 May  5 09:55 ..</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user user  220 May  5 09:55 .bash_logout</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">exit</span>
+<span style="color: #000; font-style: italic">Script done, file is typescript.log</span>
+<span style="color: #8F5902">$ </span>scriptreplay<span style="color: #F8F8F8"> </span>timing.log<span style="color: #F8F8F8"> </span>typescript.log
+</pre></div>
+<h2>ヒント:</h2>
+<h3>記録したセッションの再生</h3>
+<p><code>scriptreplay</code> をタイミングファイルと共に使用して、記録したセッションを元のスピードで再生します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scriptreplay<span style="color: #F8F8F8"> </span>timing.log<span style="color: #F8F8F8"> </span>typescript.log
+</pre></div>
+<h3>機密情報のキャプチャを避ける</h3>
+<p>パスワードなどの機密情報が入力される可能性のあるセッションで <code>script</code> を使用する際は注意してください。タイプスクリプトには端末に表示されるすべての情報が含まれます。</p>
+<h3>SSHセッションでの使用</h3>
+<p>接続前に <code>script</code> を開始することで、リモートSSHセッションを記録できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>script<span style="color: #F8F8F8"> </span>ssh_session.log
+<span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>user@remote-server
+</pre></div>
+<h3>適切に終了する</h3>
+<p>タイプスクリプトファイルが適切に閉じられて保存されるように、常に <code>exit</code> または Ctrl+D でスクリプトセッションを終了してください。</p>
+<h2>よくある質問</h2>
+<h4>Q1. ファイル名を指定しない場合のデフォルトファイル名は何ですか？</h4>
+<p>A. ファイル名を指定しない場合、<code>script</code> はデフォルトの出力ファイルとして &quot;typescript&quot; を使用します。</p>
+<h4>Q2. セッションを記録して他の人と共有することはできますか？</h4>
+<p>A. はい、タイプスクリプトファイルにはすべての端末出力が含まれており、共有できます。よりインタラクティブな体験のためには、<code>-t</code> オプションを使用してタイミングファイルを作成し、両方のファイルを <code>scriptreplay</code> で再生するために共有してください。</p>
+<h4>Q3. タイプスクリプトファイルの内容を表示するにはどうすればよいですか？</h4>
+<p>A. テキストエディタや <code>less</code> や <code>more</code> などの端末ページャーで表示できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>less<span style="color: #F8F8F8"> </span>typescript
+</pre></div>
+<h4>Q4. scriptは表示されないコマンドも記録しますか？</h4>
+<p>A. いいえ、<code>script</code> は端末に表示されるものだけを記録します。エコーなしで入力されたコマンド（パスワードなど）はタイプスクリプトには表示されません。</p>
+<h2>参考資料</h2>
+<p>https://www.man7.org/linux/man-pages/man1/script.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tar - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tar command</h1>
+<p>Manipulate tape archives by creating, extracting, listing, or updating files in archive format.</p>
+<h2>Overview</h2>
+<p>The <code>tar</code> command creates, maintains, and extracts files from archive files known as tarballs. It's commonly used for packaging files together for distribution or backup, preserving file permissions, ownership, and directory structure. Originally designed for tape archives (hence the name), it's now primarily used for file archiving on disk.</p>
+<h2>Options</h2>
+<h3><strong>-c, --create</strong></h3>
+<p>Create a new archive</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>archive.tar<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+</pre></div>
+<h3><strong>-x, --extract</strong></h3>
+<p>Extract files from an archive</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>archive.tar
+</pre></div>
+<h3><strong>-t, --list</strong></h3>
+<p>List the contents of an archive</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>archive.tar
+<span style="color: #000; font-style: italic">file1.txt</span>
+<span style="color: #000; font-style: italic">file2.txt</span>
+</pre></div>
+<h3><strong>-f, --file=ARCHIVE</strong></h3>
+<p>Use archive file or device ARCHIVE (required for most operations)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>backup.tar<span style="color: #F8F8F8"> </span>documents/
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Verbosely list files processed</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-cvf<span style="color: #F8F8F8"> </span>archive.tar<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">file1.txt</span>
+<span style="color: #000; font-style: italic">file2.txt</span>
+</pre></div>
+<h3><strong>-z, --gzip</strong></h3>
+<p>Filter the archive through gzip (create/extract .tar.gz files)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-czf<span style="color: #F8F8F8"> </span>archive.tar.gz<span style="color: #F8F8F8"> </span>directory/
+</pre></div>
+<h3><strong>-j, --bzip2</strong></h3>
+<p>Filter the archive through bzip2 (create/extract .tar.bz2 files)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-cjf<span style="color: #F8F8F8"> </span>archive.tar.bz2<span style="color: #F8F8F8"> </span>directory/
+</pre></div>
+<h3><strong>-C, --directory=DIR</strong></h3>
+<p>Change to directory DIR before performing any operations</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-xf<span style="color: #F8F8F8"> </span>archive.tar<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span>/tmp/extract/
+</pre></div>
+<h3><strong>--exclude=PATTERN</strong></h3>
+<p>Exclude files matching PATTERN</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-cf<span style="color: #F8F8F8"> </span>backup.tar<span style="color: #F8F8F8"> </span>--exclude<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;*.log&quot;</span><span style="color: #F8F8F8"> </span>directory/
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating a compressed archive</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-czf<span style="color: #F8F8F8"> </span>project-backup.tar.gz<span style="color: #F8F8F8"> </span>project/
+</pre></div>
+<h3>Extracting a compressed archive</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-xzf<span style="color: #F8F8F8"> </span>project-backup.tar.gz
+</pre></div>
+<h3>Listing contents of a compressed archive</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-tzf<span style="color: #F8F8F8"> </span>project-backup.tar.gz
+<span style="color: #000; font-style: italic">project/</span>
+<span style="color: #000; font-style: italic">project/file1.txt</span>
+<span style="color: #000; font-style: italic">project/file2.txt</span>
+<span style="color: #000; font-style: italic">project/subdirectory/</span>
+<span style="color: #000; font-style: italic">project/subdirectory/file3.txt</span>
+</pre></div>
+<h3>Extracting specific files from an archive</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-xf<span style="color: #F8F8F8"> </span>archive.tar<span style="color: #F8F8F8"> </span>file1.txt
+</pre></div>
+<h3>Creating an archive with verbose output</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-cvf<span style="color: #F8F8F8"> </span>documents.tar<span style="color: #F8F8F8"> </span>Documents/
+<span style="color: #000; font-style: italic">Documents/</span>
+<span style="color: #000; font-style: italic">Documents/report.pdf</span>
+<span style="color: #000; font-style: italic">Documents/presentation.pptx</span>
+<span style="color: #000; font-style: italic">Documents/notes.txt</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Combine Options for Brevity</h3>
+<p>You can combine options without the hyphen, like <code>tar czf</code> instead of <code>tar -c -z -f</code>. This is a common shorthand used by experienced users.</p>
+<h3>Preserve Permissions and Ownership</h3>
+<p>By default, <code>tar</code> preserves file permissions and ownership. When extracting as root, be careful as this could create files with restricted permissions.</p>
+<h3>Use Progress Indicators for Large Archives</h3>
+<p>For large archives, add <code>--checkpoint=1000 --checkpoint-action=dot</code> to show progress dots during operation.</p>
+<h3>Verify Archive Integrity</h3>
+<p>Use <code>tar -tf archive.tar</code> to verify an archive's contents without extracting it. This helps ensure the archive isn't corrupted.</p>
+<h3>Remember Compression Type When Extracting</h3>
+<p>You must specify the same compression option when extracting as was used when creating the archive (e.g., <code>-z</code> for gzip, <code>-j</code> for bzip2).</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between .tar, .tar.gz, and .tar.bz2?</h4>
+<p>A. <code>.tar</code> is an uncompressed archive, <code>.tar.gz</code> is compressed with gzip (faster, less compression), and <code>.tar.bz2</code> is compressed with bzip2 (slower, better compression).</p>
+<h4>Q2. How do I extract a single file from a tar archive?</h4>
+<p>A. Use <code>tar -xf archive.tar path/to/specific/file</code> to extract just that file.</p>
+<h4>Q3. How can I see what's in a tar file without extracting it?</h4>
+<p>A. Use <code>tar -tf archive.tar</code> to list all files without extraction.</p>
+<h4>Q4. How do I create a tar archive that excludes certain files?</h4>
+<p>A. Use the <code>--exclude</code> option: <code>tar -cf archive.tar directory/ --exclude=&quot;*.tmp&quot;</code>.</p>
+<h4>Q5. How do I update files in an existing tar archive?</h4>
+<p>A. Use the <code>-u</code> or <code>--update</code> option: <code>tar -uf archive.tar newfile.txt</code>.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/tar/manual/tar.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

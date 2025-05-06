@@ -1,0 +1,20 @@
+{
+  "id": "msg_01SD3TPaJdnbsBnauemxuGMe",
+  "content": [
+    {
+      "text": "# function command\n\nDefine shell functions for later execution.\n\n## Overview\n\nThe `function` command creates a shell function that can be called like a regular command. Functions are useful for encapsulating a series of commands into a single named unit, allowing code reuse and organization in shell scripts. Functions can accept arguments and return exit status codes.\n\n## Options\n\nThe `function` command itself doesn't have traditional command-line options. Instead, it uses a specific syntax to define functions.\n\n## Usage Examples\n\n### Basic Function Definition\n\n```console\n$ function hello() {\n>   echo \"Hello, World!\"\n> }\n$ hello\nHello, World!\n```\n\n### Function with Arguments\n\n```console\n$ function greet() {\n>   echo \"Hello, $1!\"\n> }\n$ greet Alice\nHello, Alice!\n```\n\n### Function with Return Value\n\n```console\n$ function is_even() {\n>   if (( $1 % 2 == 0 )); then\n>     return 0  # Success (true in shell)\n>   else\n>     return 1  # Failure (false in shell)\n>   fi\n> }\n$ is_even 4 && echo \"Even\" || echo \"Odd\"\nEven\n$ is_even 5 && echo \"Even\" || echo \"Odd\"\nOdd\n```\n\n### Alternative Syntax\n\n```console\n$ hello() {\n>   echo \"Hello, World!\"\n> }\n$ hello\nHello, World!\n```\n\n### Function with Local Variables\n\n```console\n$ function calculate() {\n>   local result=$(( $1 + $2 ))\n>   echo \"The sum of $1 and $2 is $result\"\n> }\n$ calculate 5 7\nThe sum of 5 and 7 is 12\n```\n\n## Tips:\n\n### Use Local Variables\n\nAlways use `local` for variables inside functions to prevent them from affecting the global shell environment:\n\n```console\n$ function bad_example() {\n>   x=10  # Global variable\n> }\n$ function good_example() {\n>   local x=10  # Local variable\n> }\n```\n\n### Return Values\n\nFunctions can only return numeric exit codes (0-255). Use `echo` or similar commands to output strings or complex data:\n\n```console\n$ function get_sum() {\n>   echo $(( $1 + $2 ))\n> }\n$ result=$(get_sum 5 7)\n$ echo $result\n12\n```\n\n### Function Visibility\n\nFunctions are only available in the current shell session. To make them available in subshells, export them:\n\n```console\n$ function hello() { echo \"Hello!\"; }\n$ export -f hello\n```\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `function name() {}` and `name() {}`?\nA. Both syntaxes work in bash, but `name() {}` is more portable across different shells. The `function` keyword is specific to bash and ksh.\n\n#### Q2. How do I access function arguments?\nA. Use positional parameters: `$1`, `$2`, etc. for individual arguments, `$@` for all arguments, and `$#` for the number of arguments.\n\n#### Q3. How do I unset a function?\nA. Use the `unset -f function_name` command to remove a function definition.\n\n#### Q4. Can I define functions inside other functions?\nA. Yes, bash supports nested function definitions, but they're only visible within the parent function's scope.\n\n#### Q5. How do I see all defined functions?\nA. Use the `declare -f` command to list all function definitions, or `declare -F` to see just the function names.\n\n## References\n\nhttps://www.gnu.org/software/bash/manual/html_node/Shell-Functions.html\n\n## Revisions\n\n- 2025/05/06 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1632,
+    "output_tokens": 899
+  }
+}

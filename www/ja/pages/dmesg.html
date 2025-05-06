@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  dmesg - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>dmesgコマンド</h1>
+<p>カーネルリングバッファを表示または制御し、システムメッセージやハードウェア情報を表示します。</p>
+<h2>概要</h2>
+<p><code>dmesg</code>コマンドは、カーネルリングバッファを調査または制御します。このバッファには、ハードウェアデバイス、ドライバの初期化、システムイベントに関するカーネルからのメッセージが含まれています。特にハードウェアの問題のトラブルシューティング、起動メッセージの確認、システムイベントの監視に役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>-c, --clear</strong></h3>
+<p>内容を表示した後にリングバッファをクリアします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dmesg<span style="color: #F8F8F8"> </span>-c
+<span style="color: #000; font-style: italic">[    0.000000] Linux version 5.15.0-76-generic (buildd@lcy02-amd64-017) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #83-Ubuntu SMP</span>
+<span style="color: #000; font-style: italic">[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-76-generic root=UUID=1234abcd-1234-1234-1234-1234abcd5678 ro quiet splash</span>
+<span style="color: #000; font-style: italic">[... その他のカーネルメッセージ ...]</span>
+</pre></div>
+<h3><strong>-H, --human</strong></h3>
+<p>読みやすい形式のタイムスタンプを含む人間が読みやすい出力を有効にします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>-H
+<span style="color: #000; font-style: italic">[May  5 09:15:32] Linux version 5.15.0-76-generic (buildd@lcy02-amd64-017) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #83-Ubuntu SMP</span>
+<span style="color: #000; font-style: italic">[May  5 09:15:32] Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-76-generic root=UUID=1234abcd-1234-1234-1234-1234abcd5678 ro quiet splash</span>
+<span style="color: #000; font-style: italic">[... その他のカーネルメッセージ ...]</span>
+</pre></div>
+<h3><strong>-l, --level</strong></h3>
+<p>指定された優先度レベル（カンマ区切りリスト）に出力を制限します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>--level<span style="color: #CE5C00; font-weight: bold">=</span>err,warn
+<span style="color: #000; font-style: italic">[    5.123456] CPU: 0 PID: 123 Comm: systemd-udevd Not tainted 5.15.0-76-generic #83-Ubuntu</span>
+<span style="color: #000; font-style: italic">[    7.234567] usb 1-2: device descriptor read/64, error -110</span>
+<span style="color: #000; font-style: italic">[... その他のエラーと警告メッセージ ...]</span>
+</pre></div>
+<h3><strong>-f, --facility</strong></h3>
+<p>指定されたファシリティ（カンマ区切りリスト）に出力を制限します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>--facility<span style="color: #CE5C00; font-weight: bold">=</span>kern
+<span style="color: #000; font-style: italic">[    0.000000] Linux version 5.15.0-76-generic (buildd@lcy02-amd64-017) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #83-Ubuntu SMP</span>
+<span style="color: #000; font-style: italic">[... その他のカーネルメッセージ ...]</span>
+</pre></div>
+<h3><strong>-T, --ctime</strong></h3>
+<p>人間が読みやすいタイムスタンプを表示します（ctime形式を使用）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>-T
+<span style="color: #000; font-style: italic">[Mon May  5 09:15:32 2025] Linux version 5.15.0-76-generic (buildd@lcy02-amd64-017) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #83-Ubuntu SMP</span>
+<span style="color: #000; font-style: italic">[Mon May  5 09:15:32 2025] Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-76-generic root=UUID=1234abcd-1234-1234-1234-1234abcd5678 ro quiet splash</span>
+</pre></div>
+<h3><strong>-w, --follow</strong></h3>
+<p>新しいメッセージを待ちます（<code>tail -f</code>と同様）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>-w
+<span style="color: #000; font-style: italic">[    0.000000] Linux version 5.15.0-76-generic</span>
+<span style="color: #000; font-style: italic">[... 既存のメッセージ ...]</span>
+<span style="color: #000; font-style: italic">[  123.456789] usb 1-1: new high-speed USB device number 2 using xhci_hcd</span>
+<span style="color: #000; font-style: italic">[... 新しいメッセージが発生時に表示されます ...]</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>USB関連のメッセージをフィルタリングする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>usb
+<span style="color: #000; font-style: italic">[    2.123456] usb 1-1: new high-speed USB device number 2 using xhci_hcd</span>
+<span style="color: #000; font-style: italic">[    2.234567] usb 1-1: New USB device found, idVendor=abcd, idProduct=1234, bcdDevice= 1.00</span>
+<span style="color: #000; font-style: italic">[    2.345678] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3</span>
+</pre></div>
+<h3>ディスクやファイルシステムのエラーを確認する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;error\|fail\|warn&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;disk\|sda\|ext4\|fs&#39;</span>
+<span style="color: #000; font-style: italic">[   15.123456] EXT4-fs (sda1): mounted filesystem with ordered data mode</span>
+<span style="color: #000; font-style: italic">[  234.567890] Buffer I/O error on dev sda2, logical block 12345, async page read</span>
+</pre></div>
+<h3>カーネルメッセージをリアルタイムで監視する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dmesg<span style="color: #F8F8F8"> </span>-wH
+<span style="color: #000; font-style: italic">[May  5 09:20:15] Linux version 5.15.0-76-generic</span>
+<span style="color: #000; font-style: italic">[... 既存のメッセージ ...]</span>
+<span style="color: #000; font-style: italic">[May  5 09:25:32] usb 1-1: new high-speed USB device number 2 using xhci_hcd</span>
+<span style="color: #000; font-style: italic">[... 人間が読みやすいタイムスタンプ付きで新しいメッセージが発生時に表示されます ...]</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>完全なアクセスにはsudoを使用する</h3>
+<p>多くのシステムでは、一般ユーザーはカーネルメッセージへのアクセスが制限されている場合があります。すべてのメッセージを見るには、特にハードウェアの問題をトラブルシューティングする際に<code>sudo dmesg</code>を使用してください。</p>
+<h3>対象を絞ったトラブルシューティングにはgrepと組み合わせる</h3>
+<p>特定のハードウェアをトラブルシューティングする場合は、<code>dmesg</code>の出力を関連キーワードで<code>grep</code>にパイプします。例えば、無線の問題には<code>dmesg | grep -i wifi</code>、ディスクの問題には<code>dmesg | grep -i sda</code>などを使用します。</p>
+<h3>システム更新後に起動メッセージを確認する</h3>
+<p>カーネル更新やシステム変更の後は、<code>dmesg</code>の出力を確認して、すべてのハードウェアが適切に検出され、初期化中にエラーが発生していないことを確認してください。</p>
+<h3>新しい監視のためにバッファをクリアする</h3>
+<p>メッセージを確認した後、<code>sudo dmesg -c</code>を使用してバッファをクリアし、古いメッセージの混乱なしに新しい問題を監視します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. 一部のシステムでdmesgを実行するのになぜsudoが必要なのですか？</h4>
+<p>A. 多くの最新のLinuxディストリビューションでは、セキュリティ上の理由からカーネルメッセージへのアクセスが制限されています。<code>sudo</code>を使用することで、すべてのメッセージを表示するために必要な権限が提供されます。</p>
+<h4>Q2. 読みやすい形式でタイムスタンプを表示するにはどうすればよいですか？</h4>
+<p>A. ctime形式の人間が読みやすいタイムスタンプには<code>dmesg -T</code>を使用するか、相対タイムスタンプを含むよりコンパクトな人間が読みやすい出力には<code>dmesg -H</code>を使用します。</p>
+<h4>Q3. dmesgの出力を継続的に監視するにはどうすればよいですか？</h4>
+<p>A. <code>dmesg -w</code>または<code>dmesg --follow</code>を使用して、<code>tail -f</code>と同様にリアルタイムで新しいメッセージを監視します。</p>
+<h4>Q4. dmesgの出力をファイルに保存するにはどうすればよいですか？</h4>
+<p>A. リダイレクションを使用します：<code>dmesg &gt; dmesg_output.txt</code>または出力を表示して保存するには<code>dmesg | tee dmesg_output.txt</code>を使用します。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man1/dmesg.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "id": "msg_01GCJViFkRRJF7oHtvuYZMkk",
+  "content": [
+    {
+      "text": "# git add command\n\nAdd file contents to the index (staging area) for the next commit.\n\n## Overview\n\n`git add` updates the Git index (staging area) with the current content of files in the working directory. It marks modified files to be included in the next commit. This command is essential for the Git workflow as it allows you to selectively choose which changes to commit.\n\n## Options\n\n### **-A, --all**\n\nAdd changes from all tracked and untracked files.\n\n```console\n$ git add -A\n```\n\n### **-u, --update**\n\nUpdate the index just for files that are already tracked.\n\n```console\n$ git add -u\n```\n\n### **-p, --patch**\n\nInteractively choose hunks of patch between the index and the work tree and add them to the index.\n\n```console\n$ git add -p\ndiff --git a/file.txt b/file.txt\nindex 1234567..abcdefg 100644\n--- a/file.txt\n+++ b/file.txt\n@@ -1,4 +1,5 @@\n Line 1\n Line 2\n+New line added\n Line 3\n Line 4\nStage this hunk [y,n,q,a,d,j,J,g,/,e,?]? \n```\n\n### **-i, --interactive**\n\nAdd modified contents interactively.\n\n```console\n$ git add -i\n           staged     unstaged path\n  1:    unchanged        +2/-0 file1.txt\n  2:    unchanged        +1/-1 file2.txt\n\n*** Commands ***\n  1: status       2: update       3: revert       4: add untracked\n  5: patch        6: diff         7: quit         8: help\nWhat now> \n```\n\n### **-n, --dry-run**\n\nDon't actually add the files, just show what would happen.\n\n```console\n$ git add -n *.txt\nadd 'document.txt'\nadd 'notes.txt'\n```\n\n### **-f, --force**\n\nAllow adding otherwise ignored files.\n\n```console\n$ git add -f build/generated.js\n```\n\n### **-v, --verbose**\n\nBe verbose.\n\n```console\n$ git add -v *.js\nadd 'app.js'\nadd 'utils.js'\n```\n\n## Usage Examples\n\n### Adding specific files\n\n```console\n$ git add file1.txt file2.txt\n```\n\n### Adding all files in a directory\n\n```console\n$ git add src/\n```\n\n### Adding all files with a specific extension\n\n```console\n$ git add *.js\n```\n\n### Adding all changes in the working directory\n\n```console\n$ git add .\n```\n\n## Tips:\n\n### Use Patch Mode for Precise Control\n\nThe `-p` (patch) option allows you to review and selectively stage parts of a file. This is useful when you've made multiple changes to a file but want to commit them separately.\n\n### Verify What's Being Added\n\nBefore committing, use `git status` to verify what changes are staged. This helps prevent accidentally committing unwanted changes.\n\n### Undo Staging with Reset\n\nIf you accidentally stage a file, you can unstage it with `git reset HEAD <file>`.\n\n### Use Interactive Mode for Complex Changes\n\nFor repositories with many changed files, `-i` (interactive) mode provides a menu-driven interface to selectively stage changes.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `git add .` and `git add -A`?\nA. `git add .` adds all changes in the current directory and its subdirectories, while `git add -A` adds changes from the entire working tree, regardless of your current directory.\n\n#### Q2. How do I add only modified and deleted files but not untracked files?\nA. Use `git add -u` or `git add --update`.\n\n#### Q3. How can I see what changes I'm about to add?\nA. Use `git add -n` (dry run) to see what would be added without actually adding anything, or `git diff` to see the changes in detail.\n\n#### Q4. What happens if I add a file and then modify it again?\nA. Only the changes that were present when you ran `git add` will be staged. The newer changes will need to be added with another `git add` command.\n\n## References\n\nhttps://git-scm.com/docs/git-add\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1680,
+    "output_tokens": 1044
+  }
+}

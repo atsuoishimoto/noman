@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ssh-copy-id - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ssh-copy-id command</h1>
+<p>Installs your public key in a remote machine's authorized_keys file to enable passwordless SSH authentication.</p>
+<h2>Overview</h2>
+<p><code>ssh-copy-id</code> is a utility that copies your SSH public key to a remote server's <code>~/.ssh/authorized_keys</code> file. This enables passwordless SSH logins to the remote server, eliminating the need to enter your password each time you connect. It's a simple way to set up key-based authentication, which is both more convenient and more secure than password authentication.</p>
+<h2>Options</h2>
+<h3><strong>-i [identity_file]</strong></h3>
+<p>Specifies the identity file (private key) to use. By default, it uses <code>~/.ssh/id_rsa.pub</code>.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>~/.ssh/custom_key.pub<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h3><strong>-f</strong></h3>
+<p>Forces the installation, even if the key already exists on the remote server.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h3><strong>-n</strong></h3>
+<p>Dry run mode - shows what keys would be installed without actually installing them.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &quot;/home/user/.ssh/id_rsa.pub&quot;</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">Would have added the following key(s):</span>
+<span style="color: #000; font-style: italic">ssh-rsa AAAAB3NzaC1yc2EAAA...truncated...user@local-host</span>
+</pre></div>
+<h3><strong>-p [port]</strong></h3>
+<p>Specifies the port to connect to on the remote host.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2222</span><span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh -p 2222 &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h3>Using a Specific Identity File</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>~/.ssh/id_ed25519.pub<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h3>Connecting to a Non-Standard Port</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2222</span><span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh -p 2222 &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Generate SSH Keys First</h3>
+<p>Before using <code>ssh-copy-id</code>, make sure you have SSH keys generated. If not, create them with:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>rsa<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4096</span>
+</pre></div>
+<h3>Verify Key Installation</h3>
+<p>After running <code>ssh-copy-id</code>, verify that passwordless login works by attempting to SSH into the remote server:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>user@remote-host
+</pre></div>
+<h3>Multiple Keys</h3>
+<p>If you have multiple SSH keys, specify which one to use with the <code>-i</code> option. This is useful when you use different keys for different servers.</p>
+<h3>Remote Directory Structure</h3>
+<p><code>ssh-copy-id</code> will create the <code>~/.ssh</code> directory and <code>authorized_keys</code> file on the remote server if they don't exist, with appropriate permissions.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What if I don't have an SSH key yet?</h4>
+<p>A. Generate an SSH key pair first using <code>ssh-keygen -t rsa -b 4096</code> or <code>ssh-keygen -t ed25519</code>, then use <code>ssh-copy-id</code>.</p>
+<h4>Q2. Can I use <code>ssh-copy-id</code> with a custom SSH port?</h4>
+<p>A. Yes, use the <code>-p</code> option: <code>ssh-copy-id -p 2222 user@remote-host</code>.</p>
+<h4>Q3. How do I know if my key was successfully installed?</h4>
+<p>A. After running <code>ssh-copy-id</code>, try logging in with <code>ssh user@remote-host</code>. If you're not prompted for a password, the key was successfully installed.</p>
+<h4>Q4. Can I copy multiple keys at once?</h4>
+<p>A. Yes, <code>ssh-copy-id</code> will copy all public keys found in your <code>~/.ssh</code> directory by default. To specify a particular key, use the <code>-i</code> option.</p>
+<h4>Q5. What if the remote server doesn't have the <code>.ssh</code> directory?</h4>
+<p>A. <code>ssh-copy-id</code> will create the directory and set appropriate permissions automatically.</p>
+<h2>References</h2>
+<p>https://man.openbsd.org/ssh-copy-id</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

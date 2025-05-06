@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  sudo - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>sudo command</h1>
+<p>Execute a command as another user, typically with elevated privileges.</p>
+<h2>Overview</h2>
+<p><code>sudo</code> (superuser do) allows users to run programs with the security privileges of another user, by default the superuser (root). It provides a way to grant limited root privileges to users listed in the <code>/etc/sudoers</code> file without sharing the root password.</p>
+<h2>Options</h2>
+<h3><strong>-b, --background</strong></h3>
+<p>Run the command in the background.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>update
+<span style="color: #000; font-style: italic">[1] 12345</span>
+</pre></div>
+<h3><strong>-u, --user</strong></h3>
+<p>Run the command as a user other than the default target user (root).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>postgres<span style="color: #F8F8F8"> </span>psql
+<span style="color: #000; font-style: italic">psql (14.5)</span>
+<span style="color: #000; font-style: italic">Type &quot;help&quot; for help.</span>
+
+<span style="color: #000; font-style: italic">postgres=#</span>
+</pre></div>
+<h3><strong>-s, --shell</strong></h3>
+<p>Run the shell specified in the user's password database entry as a login shell.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-s
+<span style="color: #8F5902">root@hostname:~#</span>
+</pre></div>
+<h3><strong>-i, --login</strong></h3>
+<p>Run the shell specified in the target user's password database entry as a login shell.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-i
+<span style="color: #8F5902">root@hostname:~#</span>
+</pre></div>
+<h3><strong>-k, --reset-timestamp</strong></h3>
+<p>Invalidate the user's cached credentials.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-k
+<span style="color: #000; font-style: italic">[sudo] password for user:</span>
+</pre></div>
+<h3><strong>-v, --validate</strong></h3>
+<p>Update the user's cached credentials, extending the timeout.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">[sudo] password for user:</span>
+</pre></div>
+<h3><strong>-l, --list</strong></h3>
+<p>List the allowed (and forbidden) commands for the current user.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">User user may run the following commands on hostname:</span>
+<span style="color: #000; font-style: italic">    (ALL : ALL) ALL</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Installing software with elevated privileges</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">[sudo] password for user: </span>
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3>Editing a system configuration file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>nano<span style="color: #F8F8F8"> </span>/etc/hosts
+<span style="color: #000; font-style: italic">[sudo] password for user:</span>
+</pre></div>
+<h3>Running a command as a different user</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>www-data<span style="color: #F8F8F8"> </span>php<span style="color: #F8F8F8"> </span>/var/www/html/script.php
+<span style="color: #000; font-style: italic">[sudo] password for user:</span>
+<span style="color: #000; font-style: italic">Script output...</span>
+</pre></div>
+<h3>Getting a root shell</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic">[sudo] password for user:</span>
+<span style="color: #8F5902">root@hostname:~#</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use <code>sudo !!</code> to Repeat the Previous Command with sudo</h3>
+<p>If you forget to use sudo for a command that requires it, type <code>sudo !!</code> to repeat the previous command with sudo privileges.</p>
+<h3>Configure sudo Without Password</h3>
+<p>Edit the sudoers file with <code>sudo visudo</code> and add a line like <code>username ALL=(ALL) NOPASSWD: ALL</code> to allow a user to run sudo commands without entering a password.</p>
+<h3>Use <code>sudo -E</code> to Preserve Environment Variables</h3>
+<p>When you need to run a command with sudo but keep your current environment variables, use the <code>-E</code> flag.</p>
+<h3>Understand the Security Implications</h3>
+<p>Only grant sudo access to trusted users, and be careful about which commands they're allowed to run. A user with unrestricted sudo access effectively has full control of the system.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>sudo -s</code> and <code>sudo -i</code>?</h4>
+<p>A. <code>sudo -s</code> starts a shell with root privileges but keeps your current environment. <code>sudo -i</code> simulates a full login as root, with root's environment.</p>
+<h4>Q2. How long does sudo authentication last?</h4>
+<p>A. By default, sudo caches your credentials for 15 minutes. After that, you'll need to enter your password again.</p>
+<h4>Q3. How can I edit the sudo configuration safely?</h4>
+<p>A. Always use <code>sudo visudo</code> to edit the sudoers file. This command checks for syntax errors before saving, preventing you from locking yourself out.</p>
+<h4>Q4. Can I see what commands other users have run with sudo?</h4>
+<p>A. Yes, sudo logs all commands to the system log, typically in <code>/var/log/auth.log</code> or <code>/var/log/secure</code>.</p>
+<h4>Q5. How do I run a command as root without being prompted for a password?</h4>
+<p>A. You need to configure the sudoers file with NOPASSWD option for specific commands or all commands.</p>
+<h2>References</h2>
+<p>https://www.sudo.ws/docs/man/sudo.man/</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

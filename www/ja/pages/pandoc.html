@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  pandoc - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>pandocコマンド</h1>
+<p>マークアップ形式間でファイルを変換する汎用ドキュメントコンバーター。</p>
+<h2>概要</h2>
+<p>Pandocは、Markdown、HTML、LaTeX、Word、EPUBなど、多数のマークアップ形式間で変換できる強力なドキュメント変換ツールです。特に、フォーマット、引用、その他の要素を保持しながらドキュメントを変換する必要がある作家、学者、出版社にとって非常に便利です。</p>
+<h2>オプション</h2>
+<h3><strong>-f, --from=FORMAT</strong></h3>
+<p>入力形式を指定します。指定しない場合、Pandocは形式を推測しようとします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>markdown<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>html<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.html
+</pre></div>
+<h3><strong>-t, --to=FORMAT</strong></h3>
+<p>出力形式を指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>docx<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.docx
+</pre></div>
+<h3><strong>-o, --output=FILE</strong></h3>
+<p>標準出力ではなくFILEに出力を書き込みます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.html
+</pre></div>
+<h3><strong>--pdf-engine=PROGRAM</strong></h3>
+<p>PDF出力を作成する際に使用するプログラムを指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>--pdf-engine<span style="color: #CE5C00; font-weight: bold">=</span>xelatex<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.pdf
+</pre></div>
+<h3><strong>--toc, --table-of-contents</strong></h3>
+<p>出力ドキュメントに自動生成された目次を含めます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>--toc<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.html
+</pre></div>
+<h3><strong>-s, --standalone</strong></h3>
+<p>適切なヘッダーとフッターを含むスタンドアロンドキュメントを生成します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.html
+</pre></div>
+<h3><strong>-c, --css=URL</strong></h3>
+<p>HTML出力を作成する際にCSSファイルにリンクします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>style.css<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.html
+</pre></div>
+<h3><strong>--bibliography=FILE</strong></h3>
+<p>引用処理のための参考文献ファイルを指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>--bibliography<span style="color: #CE5C00; font-weight: bold">=</span>references.bib<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.pdf
+</pre></div>
+<h3><strong>--citeproc</strong></h3>
+<p>citeprocを使用して引用を処理します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>--citeproc<span style="color: #F8F8F8"> </span>--bibliography<span style="color: #CE5C00; font-weight: bold">=</span>references.bib<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.pdf
+</pre></div>
+<h3><strong>-V, --variable=KEY[:VALUE]</strong></h3>
+<p>テンプレートで使用するテンプレート変数を設定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>-V<span style="color: #F8F8F8"> </span><span style="color: #000">title</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;My Document&quot;</span><span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.pdf
+</pre></div>
+<h2>使用例</h2>
+<h3>MarkdownからHTMLへの変換</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.html
+</pre></div>
+<h3>カスタムテンプレートを使用したMarkdownからPDFへの変換</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span>--template<span style="color: #CE5C00; font-weight: bold">=</span>template.tex<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>document.pdf
+</pre></div>
+<h3>複数のファイルを単一の出力に変換</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>chapter1.md<span style="color: #F8F8F8"> </span>chapter2.md<span style="color: #F8F8F8"> </span>chapter3.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>book.docx
+</pre></div>
+<h3>Markdownからプレゼンテーションを作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>revealjs<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>presentation.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>presentation.html
+</pre></div>
+<h3>HTMLからMarkdownへの変換</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>html<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>markdown<span style="color: #F8F8F8"> </span>webpage.html<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>webpage.md
+</pre></div>
+<h2>ヒント:</h2>
+<h3>一貫した出力のためのテンプレートの使用</h3>
+<p>頻繁に使用する出力形式のカスタムテンプレートを作成して、ドキュメント間で一貫したスタイルを維持します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>--template<span style="color: #CE5C00; font-weight: bold">=</span>mythesis.tex<span style="color: #F8F8F8"> </span>thesis.md<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>thesis.pdf
+</pre></div>
+<h3>メタデータブロックの活用</h3>
+<p>Markdownファイルの先頭にYAMLメタデータブロックを含めて、ドキュメントのプロパティを制御します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>---
+title: &quot;Document Title&quot;
+author: &quot;Your Name&quot;
+<span style="color: #800080; font-weight: bold">date: &quot;2025-05-05&quot;</span>
+<span style="color: #800080; font-weight: bold">---</span>
+</pre></div>
+<h3>複数のファイルの一括変換</h3>
+<p>シェルループを使用して複数のファイルを一度に変換します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>file<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>*.md<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span><span style="color: #F8F8F8"> </span>pandoc<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$file</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;${</span><span style="color: #000">file</span><span style="color: #000; font-weight: bold">%.md</span><span style="color: #4E9A06">}.html&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">done</span>
+</pre></div>
+<h3>Markdownをリアルタイムでプレビュー</h3>
+<p>執筆中の素早いプレビューには、pandocとブラウザへのパイプを使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pandoc<span style="color: #F8F8F8"> </span>document.md<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>firefox<span style="color: #F8F8F8"> </span>-
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. pandocはどのような形式間で変換できますか？</h4>
+<p>A. PandocはMarkdown、HTML、LaTeX、DOCX、ODT、EPUB、PDFなど、多数の形式をサポートしています。サポートされているすべての形式を確認するには、<code>pandoc --list-input-formats</code>または<code>pandoc --list-output-formats</code>を実行してください。</p>
+<h4>Q2. pandocでPDFを作成するにはどうすればよいですか？</h4>
+<p>A. <code>pandoc document.md -o document.pdf</code>を使用します。これにはシステムにLaTeXエンジンがインストールされている必要があることに注意してください。</p>
+<h4>Q3. ドキュメントに引用を含めるにはどうすればよいですか？</h4>
+<p>A. <code>--citeproc</code>と<code>--bibliography=references.bib</code>を使用します：<code>pandoc --citeproc --bibliography=references.bib document.md -o document.pdf</code>。</p>
+<h4>Q4. pandocは表を適切に変換できますか？</h4>
+<p>A. はい、pandocはほとんどの形式で表をうまく処理します。複雑な表については、Markdownのパイプテーブルまたはグリッドテーブル構文の使用を検討してください。</p>
+<h4>Q5. 出力ドキュメントの外観をカスタマイズするにはどうすればよいですか？</h4>
+<p>A. テンプレート（<code>--template</code>）、HTMLのCSS（<code>-c</code>）、または変数（<code>-V</code>）を使用して外観をカスタマイズします。</p>
+<h2>参考文献</h2>
+<p>https://pandoc.org/MANUAL.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

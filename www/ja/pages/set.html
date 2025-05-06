@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  set - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>set コマンド</h1>
+<p>シェルオプションと位置パラメータを表示または設定します。</p>
+<h2>概要</h2>
+<p><code>set</code> コマンドは、シェルオプションと位置パラメータを表示または変更するために使用されます。引数なしで実行すると、すべてのシェル変数を表示します。オプションを指定すると、様々な機能を有効化または無効化することでシェルの動作を変更します。また、現在のシェルの位置パラメータ（$1, $2, など）を設定するためにも使用できます。</p>
+<h2>オプション</h2>
+<h3><strong>-e</strong></h3>
+<p>コマンドが非ゼロステータスで終了した場合、即座に終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-e
+<span style="color: #8F5902">$ </span>non_existent_command
+<span style="color: #000; font-style: italic">bash: non_existent_command: command not found</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;これは実行されません&quot;</span>
+<span style="color: #000; font-style: italic">[前のエラーによりシェルはすでに終了しています]</span>
+</pre></div>
+<h3><strong>-x</strong></h3>
+<p>コマンドとその引数が実行される際に表示します（トレースモード）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-x
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span>
+<span style="color: #000; font-style: italic">+ echo &#39;Hello World&#39;</span>
+<span style="color: #000; font-style: italic">Hello World</span>
+</pre></div>
+<h3><strong>-u</strong></h3>
+<p>未設定の変数を置換する際にエラーとして扱います。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-u
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$UNDEFINED_VARIABLE</span>
+<span style="color: #000; font-style: italic">bash: UNDEFINED_VARIABLE: unbound variable</span>
+</pre></div>
+<h3><strong>-o pipefail</strong></h3>
+<p>パイプラインの戻り値は、非ゼロステータスで終了した最後のコマンドのステータスになります。非ゼロステータスで終了したコマンドがない場合は0になります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>pipefail
+<span style="color: #8F5902">$ </span><span style="color: #204A87">false</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">true</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">1</span>
+</pre></div>
+<h3><strong>-</strong></h3>
+<p>-x および -v オプションをオフにします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># トレースを有効化</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;トレース付き&quot;</span>
+<span style="color: #000; font-style: italic">+ echo &#39;トレース付き&#39;</span>
+<span style="color: #000; font-style: italic">トレース付き</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8">    </span><span style="color: #8F5902; font-style: italic"># トレースを無効化</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;トレースなし&quot;</span>
+<span style="color: #000; font-style: italic">トレースなし</span>
+</pre></div>
+<h3><strong>--</strong></h3>
+<p>オプション処理を終了します。残りの引数は位置パラメータになります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>arg1<span style="color: #F8F8F8"> </span>arg2<span style="color: #F8F8F8"> </span>arg3
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span><span style="color: #F8F8F8"> </span><span style="color: #000">$2</span><span style="color: #F8F8F8"> </span><span style="color: #000">$3</span>
+<span style="color: #000; font-style: italic">arg1 arg2 arg3</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>位置パラメータの設定</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;最初の引数&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;2番目の引数&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;3番目の引数&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span>
+<span style="color: #000; font-style: italic">最初の引数</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$2</span>
+<span style="color: #000; font-style: italic">2番目の引数</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$3</span>
+<span style="color: #000; font-style: italic">3番目の引数</span>
+</pre></div>
+<h3>複数のオプションを一度に有効化</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-exu
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;このコマンドはトレースされ、スクリプトはエラーや未設定変数で終了します&quot;</span>
+<span style="color: #000; font-style: italic">+ echo &#39;このコマンドはトレースされ、スクリプトはエラーや未設定変数で終了します&#39;</span>
+<span style="color: #000; font-style: italic">このコマンドはトレースされ、スクリプトはエラーや未設定変数で終了します</span>
+</pre></div>
+<h3>すべてのシェル変数の表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-5
+<span style="color: #000; font-style: italic">BASH=/bin/bash</span>
+<span style="color: #000; font-style: italic">BASHOPTS=checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:force_fignore:histappend:interactive_comments:progcomp:promptvars:sourcepath</span>
+<span style="color: #000; font-style: italic">BASH_ALIASES=()</span>
+<span style="color: #000; font-style: italic">BASH_ARGC=()</span>
+<span style="color: #000; font-style: italic">BASH_ARGV=()</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>シェルスクリプトでの使用</h3>
+<p>シェルスクリプトの先頭に <code>set -e</code> を追加することは、エラーが発生した際に潜在的に不正な実行を続けるのではなく、スクリプトを早期に失敗させるための良い習慣です。</p>
+<h3>スクリプトのデバッグ</h3>
+<p>シェルスクリプトのトラブルシューティングでは、<code>set -x</code> が実行されているコマンドとその値を正確に確認するために非常に役立ちます。</p>
+<h3>より安全なスクリプト</h3>
+<p><code>set -euo pipefail</code> の組み合わせは、エラー、未設定変数、パイプライン失敗時に失敗することで、より堅牢なシェルスクリプトを作成するために一般的に使用されます。</p>
+<h3>オプションのリセット</h3>
+<p><code>set -x</code> で有効化されたトレースをオフにするには <code>set +x</code> を使用します。プラス記号はマイナス記号で有効化されたオプションを無効化します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>set</code> と <code>export</code> の違いは何ですか？</h4>
+<p>A. <code>set</code> はシェルオプションと位置パラメータを表示/変更するのに対し、<code>export</code> は変数を子プロセスで利用可能にします。</p>
+<h4>Q2. 設定したオプションをオフにするにはどうすればよいですか？</h4>
+<p>A. <code>-</code> の代わりに <code>+</code> 記号を使用します。例えば、<code>set +x</code> は <code>set -x</code> で有効化されたトレースをオフにします。</p>
+<h4>Q3. 現在のすべてのシェル変数を確認するにはどうすればよいですか？</h4>
+<p>A. 引数なしで <code>set</code> を実行するだけで、すべてのシェル変数が表示されます。</p>
+<h4>Q4. <code>set -e</code> は何をしますか？</h4>
+<p>A. 非ゼロステータス（エラーを示す）でコマンドが終了した場合、シェルを即座に終了させます。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

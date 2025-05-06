@@ -1,0 +1,20 @@
+{
+  "id": "msg_01A6nbGoBbZGPk9w7HrZvQEZ",
+  "content": [
+    {
+      "text": "# if command\n\nEvaluates conditional expressions and executes commands based on the result.\n\n## Overview\n\nThe `if` command is a shell construct that allows conditional execution of commands. It tests whether a condition is true and executes a block of code accordingly. It can include optional `elif` (else if) and `else` clauses to handle multiple conditions.\n\n## Options\n\nThe `if` command doesn't have traditional command-line options as it's a shell built-in construct rather than a standalone executable.\n\n## Usage Examples\n\n### Basic if statement\n\n```console\n$ if [ -f /etc/passwd ]; then\n>   echo \"The passwd file exists.\"\n> fi\nThe passwd file exists.\n```\n\n### if-else statement\n\n```console\n$ if [ $USER = \"root\" ]; then\n>   echo \"You are root.\"\n> else\n>   echo \"You are not root.\"\n> fi\nYou are not root.\n```\n\n### if-elif-else statement\n\n```console\n$ count=15\n$ if [ $count -lt 10 ]; then\n>   echo \"Count is less than 10.\"\n> elif [ $count -lt 20 ]; then\n>   echo \"Count is between 10 and 19.\"\n> else\n>   echo \"Count is 20 or greater.\"\n> fi\nCount is between 10 and 19.\n```\n\n### Using test operators\n\n```console\n$ file=\"example.txt\"\n$ if [ -e \"$file\" ] && [ -w \"$file\" ]; then\n>   echo \"File exists and is writable.\"\n> else\n>   echo \"File doesn't exist or isn't writable.\"\n> fi\nFile doesn't exist or isn't writable.\n```\n\n### Using command exit status\n\n```console\n$ if grep \"root\" /etc/passwd > /dev/null; then\n>   echo \"User root exists.\"\n> fi\nUser root exists.\n```\n\n## Tips:\n\n### Always Quote Variables\n\nAlways quote variables in test conditions to prevent word splitting and globbing issues:\n\n```console\n$ filename=\"my file.txt\"\n$ if [ -f \"$filename\" ]; then  # Quotes prevent issues with spaces\n>   echo \"File exists\"\n> fi\n```\n\n### Use Double Brackets in Bash\n\nIn Bash, `[[ ]]` provides more features than the traditional `[ ]` test command:\n\n```console\n$ if [[ \"$string\" == *txt ]]; then  # Pattern matching works in [[ ]]\n>   echo \"String ends with txt\"\n> fi\n```\n\n### Check Command Success\n\nYou can test if a command succeeded without using `[ ]`:\n\n```console\n$ if ping -c1 -W1 google.com &>/dev/null; then\n>   echo \"Network is up\"\n> else\n>   echo \"Network is down\"\n> fi\n```\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `[ ]` and `[[ ]]`?\nA. `[ ]` is the traditional test command available in most shells. `[[ ]]` is a Bash extension with additional features like pattern matching and logical operators. Use `[[ ]]` in Bash scripts when possible.\n\n#### Q2. How do I test if a file exists?\nA. Use `if [ -e filename ]` to check if a file exists, `if [ -f filename ]` to check if it's a regular file, or `if [ -d filename ]` to check if it's a directory.\n\n#### Q3. How do I compare strings?\nA. Use `if [ \"$string1\" = \"$string2\" ]` for equality or `if [ \"$string1\" != \"$string2\" ]` for inequality. Note the single `=` for string comparison.\n\n#### Q4. How do I compare numbers?\nA. Use `-eq` (equal), `-ne` (not equal), `-lt` (less than), `-le` (less than or equal), `-gt` (greater than), or `-ge` (greater than or equal): `if [ \"$num1\" -eq \"$num2\" ]`.\n\n## References\n\nhttps://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html\n\n## Revisions\n\n- 2025/05/06 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1632,
+    "output_tokens": 987
+  }
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  unlink - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>unlink command</h1>
+<p>Remove a single file.</p>
+<h2>Overview</h2>
+<p>The <code>unlink</code> command removes a single file by deleting its name from the filesystem. Unlike <code>rm</code>, it can only operate on one file at a time and doesn't accept options for recursive deletion or interactive prompting. It's a simple, focused command that performs the basic file deletion operation.</p>
+<h2>Options</h2>
+<p><code>unlink</code> is a simple command with minimal options:</p>
+<h3><strong>--help</strong></h3>
+<p>Display help information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unlink<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: unlink FILE</span>
+<span style="color: #000; font-style: italic">  or:  unlink OPTION</span>
+<span style="color: #000; font-style: italic">Call the unlink function to remove the specified FILE.</span>
+
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>Output version information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unlink<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">unlink (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2020 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by Michael Stone.</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Removing a file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>testfile.txt
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">testfile.txt</span>
+<span style="color: #8F5902">$ </span>unlink<span style="color: #F8F8F8"> </span>testfile.txt
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>Attempting to remove a directory (will fail)</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>testdir
+<span style="color: #8F5902">$ </span>unlink<span style="color: #F8F8F8"> </span>testdir
+<span style="color: #000; font-style: italic">unlink: cannot unlink &#39;testdir&#39;: Is a directory</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use <code>rm</code> for More Flexibility</h3>
+<p>While <code>unlink</code> is useful for simple file deletion, <code>rm</code> provides more options like recursive deletion (<code>-r</code>), force deletion (<code>-f</code>), and interactive prompting (<code>-i</code>).</p>
+<h3>Symbolic Links</h3>
+<p>When using <code>unlink</code> on a symbolic link, it removes the link itself, not the file it points to.</p>
+<h3>Error Handling</h3>
+<p><code>unlink</code> will fail with an error message if the file doesn't exist, is a directory, or if you don't have permission to remove it.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>unlink</code> and <code>rm</code>?</h4>
+<p>A. <code>unlink</code> can only remove a single file and has no options for modifying its behavior. <code>rm</code> can remove multiple files, directories (with <code>-r</code>), and has various options for controlling how deletion works.</p>
+<h4>Q2. Can <code>unlink</code> remove directories?</h4>
+<p>A. No, <code>unlink</code> cannot remove directories. Use <code>rmdir</code> for empty directories or <code>rm -r</code> for directories with contents.</p>
+<h4>Q3. What happens if I try to <code>unlink</code> a file that doesn't exist?</h4>
+<p>A. <code>unlink</code> will display an error message stating that the file doesn't exist.</p>
+<h4>Q4. Is there any way to recover a file after using <code>unlink</code>?</h4>
+<p>A. Generally no. Once a file is unlinked, it's removed from the filesystem. Recovery might be possible with specialized tools, but it's not guaranteed.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/unlink-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

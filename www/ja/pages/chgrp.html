@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  chgrp - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>chgrp コマンド</h1>
+<p>ファイルとディレクトリのグループ所有権を変更します。</p>
+<h2>概要</h2>
+<p><code>chgrp</code> コマンドはファイルとディレクトリのグループ所有権を変更します。適切な権限を持つユーザーが、特定のファイルやディレクトリにどのグループがアクセスできるかを変更できるようにします。これはマルチユーザー環境でのファイル権限とアクセス制御を管理するのに役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>-c, --changes</strong></h3>
+<p>変更が行われた場合のみ診断メッセージを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>staff<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">changed group of &#39;document.txt&#39; from &#39;users&#39; to &#39;staff&#39;</span>
+</pre></div>
+<h3><strong>-f, --silent, --quiet</strong></h3>
+<p>ほとんどのエラーメッセージを抑制します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>nonexistentgroup<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>処理されるすべてのファイルに対して診断メッセージを出力します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>developers<span style="color: #F8F8F8"> </span>scripts/
+<span style="color: #000; font-style: italic">changed group of &#39;scripts/&#39; from &#39;users&#39; to &#39;developers&#39;</span>
+</pre></div>
+<h3><strong>-R, --recursive</strong></h3>
+<p>ファイルとディレクトリに対して再帰的に操作します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>developers<span style="color: #F8F8F8"> </span>project/
+</pre></div>
+<h3><strong>-h, --no-dereference</strong></h3>
+<p>参照先のファイルではなくシンボリックリンク自体に影響を与えます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>staff<span style="color: #F8F8F8"> </span>symlink.txt
+</pre></div>
+<h3><strong>--reference=RFILE</strong></h3>
+<p>グループ名を指定する代わりに、RFILEのグループを使用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>--reference<span style="color: #CE5C00; font-weight: bold">=</span>template.txt<span style="color: #F8F8F8"> </span>newfile.txt
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なグループ変更</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  users  1024 May 5 10:30 document.txt</span>
+<span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>developers<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  developers  1024 May 5 10:30 document.txt</span>
+</pre></div>
+<h3>グループを再帰的に変更する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>webadmin<span style="color: #F8F8F8"> </span>/var/www/html
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/var/www/html
+<span style="color: #000; font-style: italic">total 16</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 www-data  webadmin  4096 May 4 14:22 css</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  2 www-data  webadmin  4096 May 4 14:22 js</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 www-data  webadmin  8192 May 5 09:15 index.html</span>
+</pre></div>
+<h3>数値グループIDの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1001</span><span style="color: #F8F8F8"> </span>config.ini
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>config.ini
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  1001  512 May 5 11:45 config.ini</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>一貫性のために数値グループIDを使用する</h3>
+<p>スクリプト作成や複数のシステム間で作業する場合、グループ名の代わりに数値グループID（GID）を使用すると、より信頼性が高くなります。グループ名はシステムによって異なる場合がありますが、GIDは一貫しています。</p>
+<h3>先にグループメンバーシップを確認する</h3>
+<p>ファイルのグループを変更する前に、所有者が対象グループのメンバーであることを確認してください。<code>groups</code>コマンドを使用して、ユーザーがどのグループに属しているかを確認できます。</p>
+<h3>完全な権限管理のためにchmodと組み合わせる</h3>
+<p>多くの場合、グループ所有権と権限の両方を変更したいでしょう。<code>chgrp</code>の後に<code>chmod g+rw</code>を使用して、新しいグループに読み取りと書き込みの権限を与えます。</p>
+<h3>ルートディレクトリの権限を保持する</h3>
+<p>システムディレクトリで<code>-R</code>を使用する場合は、重要なシステムファイルのグループを変更しないように注意してください。システムの安定性に影響を与える可能性があります。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>chgrp</code>と<code>chown</code>の違いは何ですか？</h4>
+<p>A. <code>chgrp</code>はファイルのグループ所有権のみを変更しますが、<code>chown</code>はユーザーとグループの両方の所有権を変更できます。</p>
+<h4>Q2. 誰でもファイルのグループを変更できますか？</h4>
+<p>A. いいえ。ファイル所有者またはroot権限を持つユーザーのみがファイルのグループを変更でき、所有者は自分が属しているグループにのみ割り当てることができます。</p>
+<h4>Q3. ファイルに割り当てられるグループを確認するにはどうすればよいですか？</h4>
+<p>A. <code>groups</code>コマンドを使用して、自分が属しているグループを確認できます。</p>
+<h4>Q4. ディレクトリのグループを変更すると、その中のファイルに影響しますか？</h4>
+<p>A. いいえ、<code>-R</code>（再帰的）オプションを使用しない限り、ディレクトリのグループを変更してもその中のファイルには影響しません。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/chgrp-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  passwd - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>passwd コマンド</h1>
+<p>ユーザーパスワードを変更します。</p>
+<h2>概要</h2>
+<p><code>passwd</code> コマンドを使用すると、ユーザーは自分自身のパスワードを変更したり、システム管理者の場合は他のユーザーのパスワードを変更または管理したりすることができます。このコマンドは、ユーザーアカウント情報と暗号化されたパスワードを保存する <code>/etc/passwd</code> および <code>/etc/shadow</code> ファイルを変更します。</p>
+<h2>オプション</h2>
+<h3><strong>-d</strong></h3>
+<p>ユーザーのパスワードを削除します（空にします）。このオプションはroot権限が必要です。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">passwd: password expiry information changed.</span>
+</pre></div>
+<h3><strong>-l</strong></h3>
+<p>暗号化されたパスワードの先頭に感嘆符を付けることで、指定されたアカウントをロックします。これによりユーザーはログインできなくなります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">passwd: password expiry information changed.</span>
+</pre></div>
+<h3><strong>-u</strong></h3>
+<p>感嘆符のプレフィックスを削除して、ロックされたパスワードをロック解除します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">passwd: password expiry information changed.</span>
+</pre></div>
+<h3><strong>-e</strong></h3>
+<p>ユーザーのパスワードを期限切れにし、次回ログイン時にパスワード変更を強制します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">passwd: password expiry information changed.</span>
+</pre></div>
+<h3><strong>-S</strong></h3>
+<p>アカウントのパスワードステータス情報を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>passwd<span style="color: #F8F8F8"> </span>-S<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">username PS 2025-04-01 0 99999 7 -1</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>自分自身のパスワードを変更する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>passwd
+<span style="color: #000; font-style: italic">Changing password for user.</span>
+<span style="color: #000; font-style: italic">Current password: </span>
+<span style="color: #000; font-style: italic">New password: </span>
+<span style="color: #000; font-style: italic">Retype new password: </span>
+<span style="color: #000; font-style: italic">passwd: all authentication tokens updated successfully.</span>
+</pre></div>
+<h3>他のユーザーのパスワードを変更する（root権限で）</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">New password: </span>
+<span style="color: #000; font-style: italic">Retype new password: </span>
+<span style="color: #000; font-style: italic">passwd: all authentication tokens updated successfully.</span>
+</pre></div>
+<h3>アカウントのロックとロック解除</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">passwd: password expiry information changed.</span>
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">passwd: password expiry information changed.</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>パスワードの複雑さの要件</h3>
+<p>ほとんどのシステムではパスワードの複雑さのルールが適用されています。強力なパスワードは通常、以下の条件を満たす必要があります：</p>
+<ul>
+<li>少なくとも8文字以上の長さ</li>
+<li>大文字と小文字を含む</li>
+<li>数字と特殊文字を含む</li>
+<li>辞書の単語や個人情報に基づいていない</li>
+</ul>
+<h3>パスワードステータスの確認</h3>
+<p><code>passwd -S username</code> を使用して、パスワードがロックされているか、期限切れになっているか、または最後に変更された日時を確認できます。</p>
+<h3>パスワードファイル</h3>
+<p>実際の暗号化されたパスワードは <code>/etc/passwd</code> ではなく <code>/etc/shadow</code> に保存されています。セキュリティ上の理由から、shadowファイルはrootのみが読み取り可能です。</p>
+<h2>よくある質問</h2>
+<h4>Q1. 自分のパスワードを変更するにはどうすればよいですか？</h4>
+<p>A. 単に <code>passwd</code> と入力し、現在のパスワードを入力し、その後新しいパスワードを2回入力するプロンプトに従ってください。</p>
+<h4>Q2. ユーザーに次回ログイン時にパスワードを変更させるにはどうすればよいですか？</h4>
+<p>A. <code>sudo passwd -e username</code> を使用してユーザーのパスワードを期限切れにします。</p>
+<h4>Q3. 「authentication token manipulation error」とはどういう意味ですか？</h4>
+<p>A. これは通常、パスワードファイルのシステム問題または権限不足を示しています。他のユーザーのパスワードを変更できるのはrootのみです。</p>
+<h4>Q4. パスワードなしでユーザーを作成するにはどうすればよいですか？</h4>
+<p>A. まず通常のパスワードでユーザーを作成し、その後 <code>sudo passwd -d username</code> を使用してパスワードを削除します。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man1/passwd.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  cp - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>cp command</h1>
+<p>Copy files and directories from source to destination.</p>
+<h2>Overview</h2>
+<p>The <code>cp</code> command copies files and directories. It can copy a single file to another file, multiple files to a directory, or entire directory structures. By default, <code>cp</code> will not overwrite existing files unless forced with options, and it preserves the original file's timestamps and permissions.</p>
+<h2>Options</h2>
+<h3><strong>-r, -R, --recursive</strong></h3>
+<p>Copy directories recursively, including all subdirectories and their contents.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>Documents/<span style="color: #F8F8F8"> </span>Backup/
+</pre></div>
+<h3><strong>-i, --interactive</strong></h3>
+<p>Prompt before overwriting existing files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span>destination/
+<span style="color: #000; font-style: italic">cp: overwrite &#39;destination/file.txt&#39;? y</span>
+</pre></div>
+<h3><strong>-f, --force</strong></h3>
+<p>Force the copy by removing the destination file if needed, without prompting.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>important.txt<span style="color: #F8F8F8"> </span>destination/
+</pre></div>
+<h3><strong>-p, --preserve</strong></h3>
+<p>Preserve file attributes like mode, ownership, and timestamps.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>config.ini<span style="color: #F8F8F8"> </span>backup/
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Display the name of each file being copied.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>*.txt<span style="color: #F8F8F8"> </span>Documents/
+<span style="color: #000; font-style: italic">&#39;file1.txt&#39; -&gt; &#39;Documents/file1.txt&#39;</span>
+<span style="color: #000; font-style: italic">&#39;file2.txt&#39; -&gt; &#39;Documents/file2.txt&#39;</span>
+</pre></div>
+<h3><strong>-u, --update</strong></h3>
+<p>Copy only when the source file is newer than the destination file or when the destination file is missing.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>*.log<span style="color: #F8F8F8"> </span>archive/
+</pre></div>
+<h3><strong>-a, --archive</strong></h3>
+<p>Preserve all file attributes and copy directories recursively (equivalent to -dR --preserve=all).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>source_dir/<span style="color: #F8F8F8"> </span>destination_dir/
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Copying a Single File</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>report.pdf<span style="color: #F8F8F8"> </span>~/Documents/
+</pre></div>
+<h3>Copying Multiple Files to a Directory</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>file3.txt<span style="color: #F8F8F8"> </span>~/Backup/
+</pre></div>
+<h3>Copying a Directory with All Contents</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>Projects/<span style="color: #F8F8F8"> </span>~/Backup/Projects/
+</pre></div>
+<h3>Copying with Verbose Output and Preservation</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-vp<span style="color: #F8F8F8"> </span>important.conf<span style="color: #F8F8F8"> </span>/etc/
+<span style="color: #000; font-style: italic">&#39;important.conf&#39; -&gt; &#39;/etc/important.conf&#39;</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Wildcards for Multiple Files</h3>
+<p>Use wildcards to copy multiple files matching a pattern:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>*.jpg<span style="color: #F8F8F8"> </span>~/Pictures/
+</pre></div>
+<h3>Backup Before Overwriting</h3>
+<p>Create backups of existing files by using the <code>-b</code> option:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>config.ini<span style="color: #F8F8F8"> </span>/etc/
+</pre></div>
+<p>This creates a backup file named <code>config.ini~</code> before overwriting.</p>
+<h3>Copy Only If Newer</h3>
+<p>Use <code>-u</code> to update files only if the source is newer than the destination:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>source_dir/<span style="color: #F8F8F8"> </span>destination_dir/
+</pre></div>
+<p>This is useful for synchronizing directories.</p>
+<h3>Preserve Symbolic Links</h3>
+<p>Use <code>-d</code> or <code>--no-dereference</code> to preserve symbolic links as links rather than copying the files they point to:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cp<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>link.txt<span style="color: #F8F8F8"> </span>destination/
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I copy a file without overwriting an existing file?</h4>
+<p>A. Use <code>cp -n source destination</code> where the <code>-n</code> option prevents overwriting existing files.</p>
+<h4>Q2. How do I copy hidden files?</h4>
+<p>A. Hidden files (starting with <code>.</code>) are copied normally. To copy all files including hidden ones, use wildcards like <code>cp -r source/. destination/</code>.</p>
+<h4>Q3. How do I copy a file and maintain its permissions?</h4>
+<p>A. Use <code>cp -p source destination</code> to preserve mode, ownership, and timestamps.</p>
+<h4>Q4. How do I copy a directory with all its contents?</h4>
+<p>A. Use <code>cp -r source_directory destination_directory</code> to recursively copy the directory and all its contents.</p>
+<h4>Q5. How do I copy only specific file types from a directory?</h4>
+<p>A. Use wildcards: <code>cp source_directory/*.txt destination_directory/</code> to copy only text files.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/cp-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

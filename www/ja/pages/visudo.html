@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  visudo - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>visudo コマンド</h1>
+<p>sudoersファイルを構文チェック付きで安全に編集します。</p>
+<h2>概要</h2>
+<p><code>visudo</code>は、sudoアクセス権限を制御するsudoers設定ファイルを安全に編集するためのコマンドラインユーティリティです。編集中にsudoersファイルをロックし、変更を保存する前に構文チェックを実行し、ファイルを破損する可能性のある複数の同時編集を防止します。</p>
+<h2>オプション</h2>
+<h3><strong>-c</strong></h3>
+<p>変更を加えずにsudoersファイルの構文エラーをチェックします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>visudo<span style="color: #F8F8F8"> </span>-c
+<span style="color: #000; font-style: italic">/etc/sudoers: parsed OK</span>
+<span style="color: #000; font-style: italic">/etc/sudoers.d/custom: parsed OK</span>
+</pre></div>
+<h3><strong>-f file</strong></h3>
+<p>デフォルトの代わりに編集する代替sudoersファイルの場所を指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>visudo<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/etc/sudoers.d/custom
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>sudoersファイルの厳格なチェックを有効にします。このオプションを使用すると、visudoは未知のデフォルト値やエイリアスを含むsudoersファイルを拒否します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>visudo<span style="color: #F8F8F8"> </span>-s
+</pre></div>
+<h3><strong>-q</strong></h3>
+<p>静かモードを有効にし、デフォルトの情報メッセージを抑制します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>visudo<span style="color: #F8F8F8"> </span>-q
+</pre></div>
+<h3><strong>-V</strong></h3>
+<p>バージョン情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>visudo<span style="color: #F8F8F8"> </span>-V
+<span style="color: #000; font-style: italic">visudo version 1.9.5p2</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な使用法</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>visudo
+</pre></div>
+<h3>カスタムSudoersファイルの構文チェック</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>visudo<span style="color: #F8F8F8"> </span>-cf<span style="color: #F8F8F8"> </span>/etc/sudoers.d/myconfig
+<span style="color: #000; font-style: italic">/etc/sudoers.d/myconfig: parsed OK</span>
+</pre></div>
+<h3>異なるエディタの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span><span style="color: #000">EDITOR</span><span style="color: #CE5C00; font-weight: bold">=</span>nano<span style="color: #F8F8F8"> </span>visudo
+</pre></div>
+<h2>ヒント:</h2>
+<h3>Sudoers構文の理解</h3>
+<p>sudoersファイルには特定の構文があります。一般的なエントリには以下が含まれます：</p>
+<ul>
+<li><code>user ALL=(ALL) ALL</code> - ユーザーが任意のユーザーとして任意のコマンドを実行できるようにします</li>
+<li><code>%group ALL=(ALL) ALL</code> - グループが任意のユーザーとして任意のコマンドを実行できるようにします</li>
+<li><code>user ALL=(ALL) NOPASSWD: ALL</code> - ユーザーがパスワードなしでコマンドを実行できるようにします</li>
+</ul>
+<h3>カスタム設定ファイルの作成</h3>
+<p>メインのsudoersファイルを編集する代わりに、<code>/etc/sudoers.d/</code>ディレクトリに別々のファイルを作成します。これにより、設定がよりモジュール化され、管理が容易になります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>visudo<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/etc/sudoers.d/custom_rules
+</pre></div>
+<h3>常にvisudoを使用する</h3>
+<p>テキストエディタで直接sudoersファイルを編集しないでください。常にvisudoを使用して、sudoの権限からロックアウトする可能性のある構文エラーを防止します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. sudoersファイルで構文エラーを作ってしまった場合はどうなりますか？</h4>
+<p>A. visudoは変更を保存する前に構文チェックを実行します。エラーが見つかった場合、ファイルを再編集するか、それでも書き込むか、変更を破棄するかのオプションが表示されます。</p>
+<h4>Q2. visudoで使用されるデフォルトのエディタを変更するにはどうすればよいですか？</h4>
+<p>A. visudoを実行する前にEDITORまたはVISUAL環境変数を設定します：<code>EDITOR=nano sudo visudo</code></p>
+<h4>Q3. 実際に編集せずにsudoersファイルをチェックできますか？</h4>
+<p>A. はい、<code>sudo visudo -c</code>を使用して現在のsudoersファイルの構文をチェックするか、<code>sudo visudo -cf /path/to/file</code>を使用して特定のファイルをチェックできます。</p>
+<h4>Q4. /etc/sudoersを直接編集することとvisudoを使用することの違いは何ですか？</h4>
+<p>A. visudoは編集中にsudoersファイルをロックし、構文検証を実行し、ファイルを破損する可能性のある複数の同時編集を防止します。</p>
+<h2>参考文献</h2>
+<p>https://www.sudo.ws/docs/man/1.8.27/visudo.man/</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

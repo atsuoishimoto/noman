@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  set - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>set command</h1>
+<p>Display or set shell options and positional parameters.</p>
+<h2>Overview</h2>
+<p>The <code>set</code> command is used to display or modify shell options and positional parameters. Without arguments, it displays all shell variables. With options, it changes shell behavior by enabling or disabling various features. It can also be used to set positional parameters ($1, $2, etc.) for the current shell.</p>
+<h2>Options</h2>
+<h3><strong>-e</strong></h3>
+<p>Exit immediately if a command exits with a non-zero status.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-e
+<span style="color: #8F5902">$ </span>non_existent_command
+<span style="color: #000; font-style: italic">bash: non_existent_command: command not found</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This won&#39;t be executed&quot;</span>
+<span style="color: #000; font-style: italic">[Shell has already exited due to the previous error]</span>
+</pre></div>
+<h3><strong>-x</strong></h3>
+<p>Print commands and their arguments as they are executed (trace mode).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-x
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span>
+<span style="color: #000; font-style: italic">+ echo &#39;Hello World&#39;</span>
+<span style="color: #000; font-style: italic">Hello World</span>
+</pre></div>
+<h3><strong>-u</strong></h3>
+<p>Treat unset variables as an error when substituting.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-u
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$UNDEFINED_VARIABLE</span>
+<span style="color: #000; font-style: italic">bash: UNDEFINED_VARIABLE: unbound variable</span>
+</pre></div>
+<h3><strong>-o pipefail</strong></h3>
+<p>Return value of a pipeline is the status of the last command to exit with a non-zero status, or zero if no command exited with a non-zero status.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>pipefail
+<span style="color: #8F5902">$ </span><span style="color: #204A87">false</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">true</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">1</span>
+</pre></div>
+<h3><strong>-</strong></h3>
+<p>Turn off the -x and -v options.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Enable tracing</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;With tracing&quot;</span>
+<span style="color: #000; font-style: italic">+ echo &#39;With tracing&#39;</span>
+<span style="color: #000; font-style: italic">With tracing</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8">    </span><span style="color: #8F5902; font-style: italic"># Disable tracing</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Without tracing&quot;</span>
+<span style="color: #000; font-style: italic">Without tracing</span>
+</pre></div>
+<h3><strong>--</strong></h3>
+<p>End option processing. Remaining arguments become positional parameters.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>arg1<span style="color: #F8F8F8"> </span>arg2<span style="color: #F8F8F8"> </span>arg3
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span><span style="color: #F8F8F8"> </span><span style="color: #000">$2</span><span style="color: #F8F8F8"> </span><span style="color: #000">$3</span>
+<span style="color: #000; font-style: italic">arg1 arg2 arg3</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Setting positional parameters</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;first argument&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;second argument&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;third argument&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span>
+<span style="color: #000; font-style: italic">first argument</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$2</span>
+<span style="color: #000; font-style: italic">second argument</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$3</span>
+<span style="color: #000; font-style: italic">third argument</span>
+</pre></div>
+<h3>Enabling multiple options at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>-exu
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This command is traced and the script will exit on errors or unset variables&quot;</span>
+<span style="color: #000; font-style: italic">+ echo &#39;This command is traced and the script will exit on errors or unset variables&#39;</span>
+<span style="color: #000; font-style: italic">This command is traced and the script will exit on errors or unset variables</span>
+</pre></div>
+<h3>Displaying all shell variables</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-5
+<span style="color: #000; font-style: italic">BASH=/bin/bash</span>
+<span style="color: #000; font-style: italic">BASHOPTS=checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:force_fignore:histappend:interactive_comments:progcomp:promptvars:sourcepath</span>
+<span style="color: #000; font-style: italic">BASH_ALIASES=()</span>
+<span style="color: #000; font-style: italic">BASH_ARGC=()</span>
+<span style="color: #000; font-style: italic">BASH_ARGV=()</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use in Shell Scripts</h3>
+<p>Adding <code>set -e</code> at the beginning of shell scripts is a good practice to make scripts fail fast when errors occur rather than continuing with potentially incorrect execution.</p>
+<h3>Debugging Scripts</h3>
+<p>When troubleshooting shell scripts, <code>set -x</code> is invaluable for seeing exactly what commands are being executed and with what values.</p>
+<h3>Safer Scripts</h3>
+<p>The combination <code>set -euo pipefail</code> is commonly used to create more robust shell scripts by failing on errors, unset variables, and pipeline failures.</p>
+<h3>Resetting Options</h3>
+<p>Use <code>set +x</code> to turn off tracing that was enabled with <code>set -x</code>. The plus sign disables options that were enabled with the minus sign.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>set</code> and <code>export</code>?</h4>
+<p>A. <code>set</code> displays/modifies shell options and positional parameters, while <code>export</code> makes variables available to child processes.</p>
+<h4>Q2. How do I turn off an option that I've set?</h4>
+<p>A. Use the <code>+</code> symbol instead of <code>-</code>. For example, <code>set +x</code> turns off tracing that was enabled with <code>set -x</code>.</p>
+<h4>Q3. How can I see all current shell variables?</h4>
+<p>A. Simply run <code>set</code> without any arguments to display all shell variables.</p>
+<h4>Q4. What does <code>set -e</code> do?</h4>
+<p>A. It makes the shell exit immediately if any command exits with a non-zero status (indicating an error).</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

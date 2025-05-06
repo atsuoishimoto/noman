@@ -1,0 +1,20 @@
+{
+  "id": "msg_0165dgnQSMs2MujrQ1BzQ3KP",
+  "content": [
+    {
+      "text": "# function コマンド\n\nシェル関数を後で実行するために定義します。\n\n## 概要\n\n`function` コマンドは、通常のコマンドのように呼び出せるシェル関数を作成します。関数は一連のコマンドを単一の名前付きユニットにカプセル化するのに役立ち、シェルスクリプトでのコードの再利用と整理を可能にします。関数は引数を受け取り、終了ステータスコードを返すことができます。\n\n## オプション\n\n`function` コマンド自体には従来のコマンドラインオプションはありません。代わりに、関数を定義するための特定の構文を使用します。\n\n## 使用例\n\n### 基本的な関数定義\n\n```console\n$ function hello() {\n>   echo \"Hello, World!\"\n> }\n$ hello\nHello, World!\n```\n\n### 引数を持つ関数\n\n```console\n$ function greet() {\n>   echo \"Hello, $1!\"\n> }\n$ greet Alice\nHello, Alice!\n```\n\n### 戻り値を持つ関数\n\n```console\n$ function is_even() {\n>   if (( $1 % 2 == 0 )); then\n>     return 0  # 成功（シェルではtrue）\n>   else\n>     return 1  # 失敗（シェルではfalse）\n>   fi\n> }\n$ is_even 4 && echo \"Even\" || echo \"Odd\"\nEven\n$ is_even 5 && echo \"Even\" || echo \"Odd\"\nOdd\n```\n\n### 代替構文\n\n```console\n$ hello() {\n>   echo \"Hello, World!\"\n> }\n$ hello\nHello, World!\n```\n\n### ローカル変数を持つ関数\n\n```console\n$ function calculate() {\n>   local result=$(( $1 + $2 ))\n>   echo \"The sum of $1 and $2 is $result\"\n> }\n$ calculate 5 7\nThe sum of 5 and 7 is 12\n```\n\n## ヒント:\n\n### ローカル変数を使用する\n\n関数内の変数には常に `local` を使用して、グローバルなシェル環境に影響を与えないようにしましょう：\n\n```console\n$ function bad_example() {\n>   x=10  # グローバル変数\n> }\n$ function good_example() {\n>   local x=10  # ローカル変数\n> }\n```\n\n### 戻り値\n\n関数は数値の終了コード（0-255）のみを返すことができます。文字列や複雑なデータを出力するには `echo` などのコマンドを使用します：\n\n```console\n$ function get_sum() {\n>   echo $(( $1 + $2 ))\n> }\n$ result=$(get_sum 5 7)\n$ echo $result\n12\n```\n\n### 関数の可視性\n\n関数は現在のシェルセッションでのみ利用可能です。サブシェルで利用できるようにするには、エクスポートします：\n\n```console\n$ function hello() { echo \"Hello!\"; }\n$ export -f hello\n```\n\n## よくある質問\n\n#### Q1. `function name() {}` と `name() {}` の違いは何ですか？\nA. どちらの構文もbashでは機能しますが、`name() {}` はさまざまなシェル間でより移植性があります。`function` キーワードはbashとkshに特有のものです。\n\n#### Q2. 関数の引数にアクセスするにはどうすればよいですか？\nA. 位置パラメータを使用します：個々の引数には `$1`、`$2` など、すべての引数には `$@`、引数の数には `$#` を使用します。\n\n#### Q3. 関数を解除するにはどうすればよいですか？\nA. `unset -f 関数名` コマンドを使用して関数定義を削除します。\n\n#### Q4. 他の関数内に関数を定義できますか？\nA. はい、bashはネストされた関数定義をサポートしていますが、それらは親関数のスコープ内でのみ可視です。\n\n#### Q5. 定義されたすべての関数を確認するにはどうすればよいですか？\nA. `declare -f` コマンドを使用してすべての関数定義を一覧表示するか、`declare -F` を使用して関数名のみを表示します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Shell-Functions.html\n\n## 改訂履歴\n\n- 2025/05/06 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1028,
+    "output_tokens": 1296
+  }
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  dpkg - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>dpkg command</h1>
+<p>Package management tool for Debian-based systems that handles installation, removal, and information about .deb packages.</p>
+<h2>Overview</h2>
+<p><code>dpkg</code> (Debian Package) is the core package management utility in Debian-based Linux distributions like Ubuntu. It directly handles .deb package files, allowing users to install, remove, configure, and query information about packages. Unlike higher-level tools like <code>apt</code>, <code>dpkg</code> works directly with package files and doesn't handle dependencies automatically.</p>
+<h2>Options</h2>
+<h3><strong>-i, --install</strong></h3>
+<p>Install a package from a .deb file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>package.deb
+<span style="color: #8F5902">(Reading database ... 200000 files and directories currently installed.)</span>
+<span style="color: #000; font-style: italic">Preparing to unpack package.deb ...</span>
+<span style="color: #000; font-style: italic">Unpacking package (1.0-1) ...</span>
+<span style="color: #000; font-style: italic">Setting up package (1.0-1) ...</span>
+</pre></div>
+<h3><strong>-r, --remove</strong></h3>
+<p>Remove an installed package, keeping configuration files</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>package
+<span style="color: #8F5902">(Reading database ... 200000 files and directories currently installed.)</span>
+<span style="color: #000; font-style: italic">Removing package (1.0-1) ...</span>
+</pre></div>
+<h3><strong>-P, --purge</strong></h3>
+<p>Remove an installed package including configuration files</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>-P<span style="color: #F8F8F8"> </span>package
+<span style="color: #8F5902">(Reading database ... 200000 files and directories currently installed.)</span>
+<span style="color: #000; font-style: italic">Purging configuration files for package (1.0-1) ...</span>
+</pre></div>
+<h3><strong>-l, --list</strong></h3>
+<p>List all installed packages matching a pattern</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dpkg<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>firefox*
+<span style="color: #000; font-style: italic">| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend</span>
+<span style="color: #000; font-style: italic">|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)</span>
+<span style="color: #000; font-style: italic">||/ Name           Version      Architecture Description</span>
+<span style="color: #000; font-style: italic">+++-==============-============-============-=================================</span>
+<span style="color: #000; font-style: italic">ii  firefox        115.0.2      amd64        Safe and easy web browser from Mozilla</span>
+</pre></div>
+<h3><strong>-L, --listfiles</strong></h3>
+<p>List files installed by a package</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dpkg<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span>firefox
+<span style="color: #000; font-style: italic">/usr/lib/firefox</span>
+<span style="color: #000; font-style: italic">/usr/lib/firefox/browser</span>
+<span style="color: #000; font-style: italic">/usr/lib/firefox/browser/chrome</span>
+<span style="color: #000; font-style: italic">/usr/lib/firefox/browser/chrome.manifest</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>-s, --status</strong></h3>
+<p>Display package status details</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dpkg<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>firefox
+<span style="color: #000; font-style: italic">Package: firefox</span>
+<span style="color: #000; font-style: italic">Status: install ok installed</span>
+<span style="color: #000; font-style: italic">Priority: optional</span>
+<span style="color: #000; font-style: italic">Section: web</span>
+<span style="color: #000; font-style: italic">Installed-Size: 256000</span>
+<span style="color: #000; font-style: italic">Maintainer: Ubuntu Mozilla Team &lt;ubuntu-mozillateam@lists.ubuntu.com&gt;</span>
+<span style="color: #000; font-style: italic">Architecture: amd64</span>
+<span style="color: #000; font-style: italic">Version: 115.0.2</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>-S, --search</strong></h3>
+<p>Search for packages that own a file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dpkg<span style="color: #F8F8F8"> </span>-S<span style="color: #F8F8F8"> </span>/usr/bin/firefox
+<span style="color: #000; font-style: italic">firefox: /usr/bin/firefox</span>
+</pre></div>
+<h3><strong>--configure</strong></h3>
+<p>Configure an unpacked package</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>--configure<span style="color: #F8F8F8"> </span>package
+<span style="color: #000; font-style: italic">Setting up package (1.0-1) ...</span>
+</pre></div>
+<h3><strong>--unpack</strong></h3>
+<p>Unpack a package without configuring it</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>--unpack<span style="color: #F8F8F8"> </span>package.deb
+<span style="color: #8F5902">(Reading database ... 200000 files and directories currently installed.)</span>
+<span style="color: #000; font-style: italic">Preparing to unpack package.deb ...</span>
+<span style="color: #000; font-style: italic">Unpacking package (1.0-1) over (1.0-0) ...</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Installing multiple packages at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>package1.deb<span style="color: #F8F8F8"> </span>package2.deb<span style="color: #F8F8F8"> </span>package3.deb
+<span style="color: #8F5902">(Reading database ... 200000 files and directories currently installed.)</span>
+<span style="color: #000; font-style: italic">Preparing to unpack package1.deb ...</span>
+<span style="color: #000; font-style: italic">Unpacking package1 (1.0-1) ...</span>
+<span style="color: #000; font-style: italic">Preparing to unpack package2.deb ...</span>
+<span style="color: #000; font-style: italic">Unpacking package2 (2.0-1) ...</span>
+<span style="color: #000; font-style: italic">Preparing to unpack package3.deb ...</span>
+<span style="color: #000; font-style: italic">Unpacking package3 (3.0-1) ...</span>
+<span style="color: #000; font-style: italic">Setting up package1 (1.0-1) ...</span>
+<span style="color: #000; font-style: italic">Setting up package2 (2.0-1) ...</span>
+<span style="color: #000; font-style: italic">Setting up package3 (3.0-1) ...</span>
+</pre></div>
+<h3>Listing all installed packages</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dpkg<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend</span>
+<span style="color: #000; font-style: italic">|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)</span>
+<span style="color: #000; font-style: italic">||/ Name           Version      Architecture Description</span>
+<span style="color: #000; font-style: italic">+++-==============-============-============-=================================</span>
+<span style="color: #000; font-style: italic">ii  accountsservice 0.6.55-0ubuntu12 amd64    query and manipulate user account information</span>
+<span style="color: #000; font-style: italic">ii  acl            2.2.53-6      amd64        access control list - utilities</span>
+<span style="color: #000; font-style: italic">ii  adduser        3.118ubuntu2  all          add and remove users and groups</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3>Fixing broken package installations</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>--configure<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">Setting up package1 (1.0-1) ...</span>
+<span style="color: #000; font-style: italic">Setting up package2 (2.0-1) ...</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Handling Dependencies</h3>
+<p><code>dpkg</code> doesn't resolve dependencies automatically. If you encounter dependency errors, use:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt-get<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>install
+</pre></div>
+<p>This will attempt to fix broken dependencies after a <code>dpkg</code> installation.</p>
+<h3>Preventing Configuration During Installation</h3>
+<p>Use <code>--unpack</code> instead of <code>-i</code> to unpack a package without configuring it, which is useful when you need to modify files before configuration:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>--unpack<span style="color: #F8F8F8"> </span>package.deb
+<span style="color: #8F5902">$ </span><span style="color: #8F5902; font-style: italic"># make changes to files</span>
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dpkg<span style="color: #F8F8F8"> </span>--configure<span style="color: #F8F8F8"> </span>package
+</pre></div>
+<h3>Finding Which Package Owns a Command</h3>
+<p>When you want to know which package provides a specific command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span><span style="color: #204A87">command</span>
+<span style="color: #000; font-style: italic">/usr/bin/command</span>
+<span style="color: #8F5902">$ </span>dpkg<span style="color: #F8F8F8"> </span>-S<span style="color: #F8F8F8"> </span>/usr/bin/command
+<span style="color: #000; font-style: italic">package: /usr/bin/command</span>
+</pre></div>
+<h3>Understanding Package Status Codes</h3>
+<p>In <code>dpkg -l</code> output, the first two characters indicate package status:</p>
+<ul>
+<li><code>ii</code>: package is installed and configured</li>
+<li><code>rc</code>: package was removed but config files remain</li>
+<li><code>un</code>: package is unknown/not installed</li>
+</ul>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How is dpkg different from apt?</h4>
+<p>A. <code>dpkg</code> is a low-level package manager that works directly with .deb files and doesn't handle dependencies automatically. <code>apt</code> is a higher-level tool that resolves dependencies and can download packages from repositories.</p>
+<h4>Q2. How do I fix &quot;dependency problems&quot; errors?</h4>
+<p>A. Run <code>sudo apt-get -f install</code> to attempt to resolve dependency issues after a <code>dpkg</code> installation.</p>
+<h4>Q3. How can I see what files a package will install before installing it?</h4>
+<p>A. Use <code>dpkg-deb --contents package.deb</code> to list the files contained in a package without installing it.</p>
+<h4>Q4. How do I reinstall a package with dpkg?</h4>
+<p>A. Use <code>sudo dpkg -i --force-reinstall package.deb</code> to reinstall a package even if it's already installed.</p>
+<h4>Q5. How do I prevent a package from being upgraded?</h4>
+<p>A. Use <code>sudo apt-mark hold package</code> to prevent a package from being automatically upgraded.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/dpkg.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

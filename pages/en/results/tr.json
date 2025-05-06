@@ -1,0 +1,20 @@
+{
+  "id": "msg_01ViFSirbyDk9toHbXwczs5U",
+  "content": [
+    {
+      "text": "# tr command\n\nTranslate or delete characters from standard input, writing to standard output.\n\n## Overview\n\nThe `tr` command is a text transformation utility that operates on a character-by-character basis. It reads from standard input, performs character substitution, deletion, or compression according to specified parameters, and writes the result to standard output. It's commonly used in shell scripts for tasks like case conversion, character removal, and basic text transformations.\n\n## Options\n\n### **-d**\n\nDelete characters in SET1, do not translate.\n\n```console\n$ echo \"Hello, World!\" | tr -d 'aeiou'\nHll, Wrld!\n```\n\n### **-s**\n\nReplace each sequence of a repeated character in SET1 with a single occurrence.\n\n```console\n$ echo \"Hello    World!\" | tr -s ' '\nHello World!\n```\n\n### **-c, --complement**\n\nUse the complement of SET1.\n\n```console\n$ echo \"Hello, World!\" | tr -cd 'a-zA-Z\\n'\nHelloWorld\n```\n\n### **-t, --truncate-set1**\n\nFirst truncate SET1 to length of SET2.\n\n```console\n$ echo \"Hello, World!\" | tr -t 'a-z' 'A-Z'\nHELLO, WORLD!\n```\n\n## Usage Examples\n\n### Converting lowercase to uppercase\n\n```console\n$ echo \"hello world\" | tr 'a-z' 'A-Z'\nHELLO WORLD\n```\n\n### Removing all digits from text\n\n```console\n$ echo \"Phone: 123-456-7890\" | tr -d '0-9'\nPhone: --\n```\n\n### Translating spaces to newlines\n\n```console\n$ echo \"one two three\" | tr ' ' '\\n'\none\ntwo\nthree\n```\n\n### Removing all non-printable characters\n\n```console\n$ cat binary_file | tr -cd '[:print:]\\n' > cleaned_file\n```\n\n### Squeezing multiple newlines into one\n\n```console\n$ cat file.txt | tr -s '\\n'\n```\n\n## Tips:\n\n### Use Character Classes\n\n`tr` supports POSIX character classes like `[:alnum:]`, `[:alpha:]`, `[:digit:]`, which make it easier to work with groups of characters.\n\n```console\n$ echo \"Hello123\" | tr '[:digit:]' 'x'\nHelloxxx\n```\n\n### Combine Options for Complex Transformations\n\nCombine options like `-d` and `-c` to perform more complex operations, such as keeping only specific characters.\n\n```console\n$ echo \"user@example.com\" | tr -cd '[:alnum:]@.\\n'\nuser@example.com\n```\n\n### Escape Special Characters\n\nRemember to escape special characters like newlines (`\\n`), tabs (`\\t`), or backslashes (`\\\\`) when using them in translation sets.\n\n### Pipe with Other Commands\n\n`tr` works best in pipelines with other commands like `grep`, `sed`, or `awk` for more complex text processing.\n\n## Frequently Asked Questions\n\n#### Q1. How do I convert a file to uppercase?\nA. Use `cat file.txt | tr 'a-z' 'A-Z'` or `tr 'a-z' 'A-Z' < file.txt`.\n\n#### Q2. How can I remove all whitespace from a file?\nA. Use `tr -d '[:space:]'` to remove all whitespace characters.\n\n#### Q3. Can tr replace strings or just single characters?\nA. `tr` only works on single characters, not strings. For string replacement, use `sed` instead.\n\n#### Q4. How do I translate multiple characters to a single character?\nA. Use `tr 'abc' 'x'` to translate a, b, and c all to x.\n\n#### Q5. How can I count unique characters in a file?\nA. Use `tr -d '\\n' < file.txt | fold -w1 | sort | uniq -c`.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/tr-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1632,
+    "output_tokens": 979
+  }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  echo - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>echo command</h1>
+<p>Display a line of text or variables to standard output.</p>
+<h2>Overview</h2>
+<p>The <code>echo</code> command prints its arguments to the standard output, followed by a newline. It's commonly used in shell scripts to display text, show variable values, or generate output for other commands.</p>
+<h2>Options</h2>
+<h3><strong>-n</strong></h3>
+<p>Suppresses the trailing newline that is normally added to the output.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span>
+<span style="color: #000; font-style: italic">Hello$</span>
+</pre></div>
+<h3><strong>-e</strong></h3>
+<p>Enables interpretation of backslash escape sequences.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello\nWorld&quot;</span>
+<span style="color: #000; font-style: italic">Hello</span>
+<span style="color: #000; font-style: italic">World</span>
+</pre></div>
+<h3><strong>-E</strong></h3>
+<p>Disables interpretation of backslash escape sequences (this is the default).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-E<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello\nWorld&quot;</span>
+<span style="color: #000; font-style: italic">Hello\nWorld</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Displaying text</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>Hello<span style="color: #F8F8F8"> </span>World
+<span style="color: #000; font-style: italic">Hello World</span>
+</pre></div>
+<h3>Displaying variable values</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">name</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;John&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;My name is </span><span style="color: #000">$name</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">My name is John</span>
+</pre></div>
+<h3>Using with command substitution</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Today&#39;s date is </span><span style="color: #204A87; font-weight: bold">$(</span>date<span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Today&#39;s date is Mon May 5 10:15:23 EDT 2025</span>
+</pre></div>
+<h3>Using escape sequences with -e</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Tab:\t| Newline:\n| Backslash:\\&quot;</span>
+<span style="color: #000; font-style: italic">Tab:	| Newline:</span>
+<span style="color: #000; font-style: italic">| Backslash:\</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Prevent variable expansion</h3>
+<p>Use single quotes to prevent variable expansion and interpretation:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;$HOME contains your home directory path&#39;</span>
+<span style="color: #8F5902">$</span>HOME<span style="color: #F8F8F8"> </span>contains<span style="color: #F8F8F8"> </span>your<span style="color: #F8F8F8"> </span>home<span style="color: #F8F8F8"> </span>directory<span style="color: #F8F8F8"> </span>path
+</pre></div>
+<h3>Redirect output to a file</h3>
+<p>Combine echo with redirection to create or append to files:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This is a new file&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>newfile.txt
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This is appended&quot;</span><span style="color: #F8F8F8"> </span>&gt;&gt;<span style="color: #F8F8F8"> </span>newfile.txt
+</pre></div>
+<h3>Generate multiline content</h3>
+<p>Use multiple echo commands or escape sequences to create multiline content:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Line 1\nLine 2\nLine 3&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>multiline.txt
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between single and double quotes with echo?</h4>
+<p>A. Double quotes (<code>&quot;</code>) allow variable expansion and some escape sequences, while single quotes (<code>'</code>) treat everything literally without expansion.</p>
+<h4>Q2. How do I echo without a newline at the end?</h4>
+<p>A. Use the <code>-n</code> option: <code>echo -n &quot;text&quot;</code>.</p>
+<h4>Q3. How can I include special characters like tabs or newlines?</h4>
+<p>A. Use the <code>-e</code> option with escape sequences: <code>echo -e &quot;Tab:\t Newline:\n&quot;</code>.</p>
+<h4>Q4. Can echo display the contents of a file?</h4>
+<p>A. No, that's what the <code>cat</code> command is for. Echo only displays its arguments.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/echo-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

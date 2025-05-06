@@ -1,0 +1,20 @@
+{
+  "id": "msg_01Goay4GBAtme4ejvy2mTfou",
+  "content": [
+    {
+      "text": "# wc command\n\nCount lines, words, and bytes in files.\n\n## Overview\n\nThe `wc` (word count) command counts and displays the number of lines, words, bytes, or characters in specified files. It's commonly used in text processing to analyze file content or as part of pipelines to count output from other commands.\n\n## Options\n\n### **-l, --lines**\n\nCount the number of lines in a file.\n\n```console\n$ wc -l file.txt\n      42 file.txt\n```\n\n### **-w, --words**\n\nCount the number of words in a file.\n\n```console\n$ wc -w file.txt\n     320 file.txt\n```\n\n### **-c, --bytes**\n\nCount the number of bytes in a file.\n\n```console\n$ wc -c file.txt\n    1872 file.txt\n```\n\n### **-m, --chars**\n\nCount the number of characters in a file (may differ from bytes in multibyte encodings).\n\n```console\n$ wc -m file.txt\n    1850 file.txt\n```\n\n### **-L, --max-line-length**\n\nDisplay the length of the longest line in a file.\n\n```console\n$ wc -L file.txt\n      78 file.txt\n```\n\n## Usage Examples\n\n### Basic Usage (Default Output)\n\n```console\n$ wc file.txt\n      42     320    1872 file.txt\n```\n\nThe output shows lines, words, and bytes (in that order).\n\n### Multiple Files\n\n```console\n$ wc file1.txt file2.txt\n      42     320    1872 file1.txt\n      10      85     492 file2.txt\n      52     405    2364 total\n```\n\n### Using wc in a Pipeline\n\n```console\n$ cat file.txt | grep \"error\" | wc -l\n       5\n```\n\nThis counts the number of lines containing \"error\" in file.txt.\n\n## Tips:\n\n### Counting Words in Multiple Files\n\nUse wildcards to count words across multiple files: `wc -w *.txt` will show word counts for all text files in the current directory.\n\n### Counting Files in a Directory\n\nCombine with `ls` to count files: `ls -1 | wc -l` counts the number of entries in the current directory.\n\n### Memory Usage\n\nFor very large files, `wc` is more memory-efficient than loading files into text editors to check size.\n\n### Ignoring Line Count Headers\n\nWhen using `wc -l` in scripts, use `awk` to extract just the number: `wc -l file.txt | awk '{print $1}'`\n\n## Frequently Asked Questions\n\n#### Q1. What does wc stand for?\nA. `wc` stands for \"word count.\"\n\n#### Q2. How do I count only the characters in a file?\nA. Use `wc -m` to count characters. For bytes, use `wc -c` (they're the same for ASCII files).\n\n#### Q3. Why are the line counts different from what I see in my text editor?\nA. `wc` counts newline characters, so the count may differ if the last line doesn't end with a newline or if your editor displays \"virtual lines\" for wrapped text.\n\n#### Q4. How can I get just the number without the filename?\nA. Either pipe the content: `cat file.txt | wc -l` or use awk: `wc -l file.txt | awk '{print $1}'`\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/wc-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 2501,
+    "output_tokens": 859
+  }
+}

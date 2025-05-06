@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  function - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>function command</h1>
+<p>Define shell functions for later execution.</p>
+<h2>Overview</h2>
+<p>The <code>function</code> command creates a shell function that can be called like a regular command. Functions are useful for encapsulating a series of commands into a single named unit, allowing code reuse and organization in shell scripts. Functions can accept arguments and return exit status codes.</p>
+<h2>Options</h2>
+<p>The <code>function</code> command itself doesn't have traditional command-line options. Instead, it uses a specific syntax to define functions.</p>
+<h2>Usage Examples</h2>
+<h3>Basic Function Definition</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>hello<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Hello, World!&quot;</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>hello
+<span style="color: #000; font-style: italic">Hello, World!</span>
+</pre></div>
+<h3>Function with Arguments</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>greet<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Hello, $1!&quot;</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>greet<span style="color: #F8F8F8"> </span>Alice
+<span style="color: #000; font-style: italic">Hello, Alice!</span>
+</pre></div>
+<h3>Function with Return Value</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>is_even<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   if (( $1 % 2 == 0 )); then</span>
+<span style="color: #000; font-style: italic">&gt;     return 0  # Success (true in shell)</span>
+<span style="color: #000; font-style: italic">&gt;   else</span>
+<span style="color: #000; font-style: italic">&gt;     return 1  # Failure (false in shell)</span>
+<span style="color: #000; font-style: italic">&gt;   fi</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>is_even<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Even&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Odd&quot;</span>
+<span style="color: #000; font-style: italic">Even</span>
+<span style="color: #8F5902">$ </span>is_even<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Even&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Odd&quot;</span>
+<span style="color: #000; font-style: italic">Odd</span>
+</pre></div>
+<h3>Alternative Syntax</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hello<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Hello, World!&quot;</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>hello
+<span style="color: #000; font-style: italic">Hello, World!</span>
+</pre></div>
+<h3>Function with Local Variables</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>calculate<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   local result=$(( $1 + $2 ))</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;The sum of $1 and $2 is $result&quot;</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>calculate<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">7</span>
+<span style="color: #000; font-style: italic">The sum of 5 and 7 is 12</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Local Variables</h3>
+<p>Always use <code>local</code> for variables inside functions to prevent them from affecting the global shell environment:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>bad_example<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   x=10  # Global variable</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>good_example<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   local x=10  # Local variable</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+</pre></div>
+<h3>Return Values</h3>
+<p>Functions can only return numeric exit codes (0-255). Use <code>echo</code> or similar commands to output strings or complex data:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>get_sum<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   echo $(( $1 + $2 ))</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">result</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>get_sum<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">7</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$result</span>
+<span style="color: #000; font-style: italic">12</span>
+</pre></div>
+<h3>Function Visibility</h3>
+<p>Functions are only available in the current shell session. To make them available in subshells, export them:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>hello<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello!&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">}</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">export</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>hello
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>function name() {}</code> and <code>name() {}</code>?</h4>
+<p>A. Both syntaxes work in bash, but <code>name() {}</code> is more portable across different shells. The <code>function</code> keyword is specific to bash and ksh.</p>
+<h4>Q2. How do I access function arguments?</h4>
+<p>A. Use positional parameters: <code>$1</code>, <code>$2</code>, etc. for individual arguments, <code>$@</code> for all arguments, and <code>$#</code> for the number of arguments.</p>
+<h4>Q3. How do I unset a function?</h4>
+<p>A. Use the <code>unset -f function_name</code> command to remove a function definition.</p>
+<h4>Q4. Can I define functions inside other functions?</h4>
+<p>A. Yes, bash supports nested function definitions, but they're only visible within the parent function's scope.</p>
+<h4>Q5. How do I see all defined functions?</h4>
+<p>A. Use the <code>declare -f</code> command to list all function definitions, or <code>declare -F</code> to see just the function names.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Shell-Functions.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

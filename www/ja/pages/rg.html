@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  rg - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>rg コマンド</h1>
+<p>正規表現を使用してファイル内のパターンを検索し、ディレクトリの再帰的な走査をサポートします。</p>
+<h2>概要</h2>
+<p><code>rg</code>（ripgrep）は、現在のディレクトリを再帰的に検索して正規表現パターンを見つける行指向の検索ツールです。デフォルトで.gitignoreルールを尊重し、grep、ag、ackなどの他の検索ツールよりも高速に動作するように設計されています。Ripgrepは明示的に指示されない限り、隠しファイル、バイナリファイル、.gitignoreにリストされているファイルを自動的にスキップします。</p>
+<h2>オプション</h2>
+<h3><strong>-i, --ignore-case</strong></h3>
+<p>検索で大文字と小文字を区別しなくなります。</p>
+<pre><code>$ rg -i &quot;function&quot;
+src/main.js:10:function calculateTotal(items) {
+src/utils.js:5:Function to handle API responses
+</code></pre><h3><strong>-v, --invert-match</strong></h3>
+<p>指定したパターンに一致しない行を表示します。</p>
+<pre><code>$ rg -v &quot;TODO&quot; todo.txt
+These items are completed
+Remember to check email
+</code></pre><h3><strong>-w, --word-regexp</strong></h3>
+<p>単語の境界で囲まれた一致のみを表示します。</p>
+<pre><code>$ rg -w &quot;log&quot;
+logger.js:15:  log(&quot;User logged in&quot;);
+logger.js:20:  log(&quot;Error occurred&quot;);
+</code></pre><h3><strong>-c, --count</strong></h3>
+<p>ファイルごとの一致する行数のみを表示します。</p>
+<pre><code>$ rg -c &quot;error&quot; *.log
+app.log:15
+system.log:3
+</code></pre><h3><strong>-l, --files-with-matches</strong></h3>
+<p>少なくとも1つの一致があるパスのみを表示します。</p>
+<pre><code>$ rg -l &quot;TODO&quot;
+src/main.js
+docs/roadmap.md
+</code></pre><h3><strong>-n, --line-number</strong></h3>
+<p>行番号を表示します（デフォルトで有効）。</p>
+<pre><code>$ rg -n &quot;function&quot;
+src/main.js:10:function calculateTotal(items) {
+src/utils.js:15:function formatDate(date) {
+</code></pre><h3><strong>--no-ignore</strong></h3>
+<p>無視ファイル（.gitignore、.ignoreなど）を尊重しません。このオプションは、.gitignoreファイルなどで通常無視されるファイルやディレクトリも検索するようripgrepに指示します。</p>
+<pre><code>$ rg --no-ignore &quot;password&quot;
+node_modules/config.js:5:  password: &quot;dummy_password&quot;,
+.git/config:10:  password = hunter2
+</code></pre><h3><strong>-A, --after-context NUM</strong></h3>
+<p>各一致の後にNUM行を表示します。</p>
+<pre><code>$ rg -A 2 &quot;class User&quot;
+src/models.js:10:class User {
+src/models.js:11:  constructor(name, email) {
+src/models.js:12:    this.name = name;
+</code></pre><h3><strong>-B, --before-context NUM</strong></h3>
+<p>各一致の前にNUM行を表示します。</p>
+<pre><code>$ rg -B 1 &quot;throw new Error&quot;
+src/api.js:24:  if (!response.ok) {
+src/api.js:25:    throw new Error('API request failed');
+</code></pre><h3><strong>-C, --context NUM</strong></h3>
+<p>各一致の前後にNUM行を表示します。</p>
+<pre><code>$ rg -C 1 &quot;TODO&quot;
+src/main.js:19:function processData(data) {
+src/main.js:20:  // TODO: Implement validation
+src/main.js:21:  return transform(data);
+</code></pre><h3><strong>-o, --only-matching</strong></h3>
+<p>一致した部分のみを表示します。</p>
+<pre><code>$ rg -o &quot;TODO.*&quot;
+src/main.js:TODO: Implement validation
+docs/roadmap.md:TODO: Add authentication
+</code></pre><h3><strong>-m, --max-count NUM</strong></h3>
+<p>各ファイルにつき最大NUM個の一致のみを表示します。</p>
+<pre><code>$ rg -m 2 &quot;error&quot; log.txt
+log.txt:15:error: connection failed
+log.txt:23:error: timeout occurred
+</code></pre><h3><strong>--max-depth NUM</strong></h3>
+<p>ディレクトリの走査の深さをNUMレベルに制限します。</p>
+<pre><code>$ rg --max-depth 1 &quot;TODO&quot;
+./main.js:20:  // TODO: Implement validation
+</code></pre><h2>使用例</h2>
+<h3>特定のファイルタイプで検索</h3>
+<pre><code>$ rg -t js &quot;useState&quot;
+src/components/Form.js:3:import { useState } from 'react';
+src/components/Counter.js:5:  const [count, setCount] = useState(0);
+</code></pre><h3>ripgrepとsedを使用した検索と置換</h3>
+<pre><code>$ rg -l &quot;oldFunction&quot; | xargs sed -i 's/oldFunction/newFunction/g'
+</code></pre><h3>グロブパターンでの検索</h3>
+<pre><code>$ rg &quot;error&quot; --glob &quot;*.{js,ts}&quot;
+src/utils.js:25:  console.error(&quot;Connection failed&quot;);
+src/api.ts:42:  throw new Error(&quot;Invalid response&quot;);
+</code></pre><h3>検索からディレクトリを除外</h3>
+<pre><code>$ rg &quot;TODO&quot; --glob &quot;!node_modules&quot;
+src/main.js:20:  // TODO: Implement validation
+docs/roadmap.md:15:TODO: Add authentication
+</code></pre><h3>一致するパターンを持つファイル名のみを表示</h3>
+<pre><code>$ rg -l &quot;password&quot;
+config.js
+auth.js
+</code></pre><h3>現在のディレクトリのみで検索（再帰なし）</h3>
+<pre><code>$ rg --max-depth 0 &quot;function&quot;
+main.js:10:function calculateTotal(items) {
+</code></pre><h2>ヒント:</h2>
+<h3>より高速な検索には固定文字列を使用</h3>
+<p>正規表現パターンではなく文字通りのテキストを検索する場合は、パフォーマンス向上のために <code>-F</code> または <code>--fixed-strings</code> を使用します：</p>
+<pre><code>$ rg -F &quot;React.useState&quot; src/
+</code></pre><h3>他のツールと組み合わせる</h3>
+<p>ripgrepの結果を他のコマンドにパイプして追加処理を行います：</p>
+<pre><code>$ rg -n &quot;TODO&quot; | sort -k1,1 | less
+</code></pre><h3>隠しファイルを検索</h3>
+<p>デフォルトでは、ripgrepは隠しファイルとディレクトリを無視します。それらを含めるには <code>-. または --hidden</code> を使用します：</p>
+<pre><code>$ rg --hidden &quot;password&quot; ~/
+</code></pre><h3>スマートケースを使用</h3>
+<p><code>-S</code> または <code>--smart-case</code> オプションを使用すると、パターンがすべて小文字の場合は大文字と小文字を区別しない検索になり、それ以外の場合は大文字と小文字を区別する検索になります：</p>
+<pre><code>$ rg -S &quot;function&quot; # 大文字小文字を区別しない
+$ rg -S &quot;Function&quot; # 大文字小文字を区別する
+</code></pre><h2>よくある質問</h2>
+<h4>Q1. ripgrepはgrepとどう違いますか？</h4>
+<p>A. ripgrepは一般的にgrepよりも高速で、デフォルトで.gitignoreファイルを尊重し、バイナリファイルを自動的にスキップし、より優れたUnicodeサポートを持っています。</p>
+<h4>Q2. 特殊な正規表現文字を含むパターンを検索するにはどうすればよいですか？</h4>
+<p>A. <code>-F</code> または <code>--fixed-strings</code> を使用して文字通りのテキストを検索するか、特殊文字をバックスラッシュでエスケープします。</p>
+<h4>Q3. パターンを含まないファイルを検索するにはどうすればよいですか？</h4>
+<p>A. <code>-L</code> または <code>--files-without-match</code> を使用して、パターンを含まないファイルを見つけます。</p>
+<h4>Q4. ripgrepでシンボリックリンクをたどるにはどうすればよいですか？</h4>
+<p>A. <code>-L</code> または <code>--follow</code> を使用して、検索時にシンボリックリンクをたどります。</p>
+<h4>Q5. --no-ignoreオプションは何をしますか？</h4>
+<p>A. <code>--no-ignore</code> オプションは、.gitignore、.ignore、または同様のファイルによって通常無視されるファイルやディレクトリも検索するようripgrepに指示します。これは、node_modulesや他の通常無視される場所で検索する必要がある場合に便利です。</p>
+<h4>Q6. サブディレクトリに再帰せずに現在のディレクトリのみを検索するにはどうすればよいですか？</h4>
+<p>A. <code>--max-depth 0</code> を使用して、サブディレクトリに再帰せずに現在のディレクトリのみに検索を制限します。</p>
+<h4>Q7. 一致するファイル名のみを表示するにはどうすればよいですか？</h4>
+<p>A. <code>-l</code> または <code>--files-with-matches</code> を使用して、一致を含むファイルのパスのみを表示します。</p>
+<h2>参考文献</h2>
+<p>https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/06 --max-depthと-mオプションを追加し、非再帰的検索を含む使用例を拡充し、ディレクトリの深さ制限とファイル名のみの表示に関する新しいFAQを追加しました。</li>
+<li>2025/05/06 -o, --only-matchingオプションを追加しました。</li>
+<li>2025/05/05 --no-ignoreオプションの説明を追加し、FAQを拡充しました。</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

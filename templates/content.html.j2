@@ -1,0 +1,36 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+  {{ lang }} index.html
+{% endblock %}
+
+{% block body %}
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="{% trans %}Search command...{% endtrans %}" />
+      </div>
+      <div class="nav-links">
+        <a href="/{{ lang }}/commandlist.html">{% trans %}Commands{% endtrans %}</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+{% endblock %}

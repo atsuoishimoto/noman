@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  free - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>free command</h1>
+<p>Display amount of free and used memory in the system.</p>
+<h2>Overview</h2>
+<p>The <code>free</code> command displays the total amount of free and used physical and swap memory in the system, as well as the buffers and caches used by the kernel. It provides a snapshot of memory usage, helping users monitor system resources and diagnose memory-related issues.</p>
+<h2>Options</h2>
+<h3><strong>-b</strong></h3>
+<p>Display the amount of memory in bytes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-b
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:    8273514496  3868327936  1535881216   602931200  2869305344  3459538944</span>
+<span style="color: #000; font-style: italic">Swap:   2147479552           0  2147479552</span>
+</pre></div>
+<h3><strong>-k</strong></h3>
+<p>Display the amount of memory in kilobytes (default).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-k
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:        8079604     3777664     1500860      588800     2801080     3378456</span>
+<span style="color: #000; font-style: italic">Swap:       2097148           0     2097148</span>
+</pre></div>
+<h3><strong>-m</strong></h3>
+<p>Display the amount of memory in megabytes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-m
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:           7889        3689        1465         574        2735        3299</span>
+<span style="color: #000; font-style: italic">Swap:          2047           0        2047</span>
+</pre></div>
+<h3><strong>-g</strong></h3>
+<p>Display the amount of memory in gigabytes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-g
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:              7           3           1           0           2           3</span>
+<span style="color: #000; font-style: italic">Swap:             1           0           1</span>
+</pre></div>
+<h3><strong>-h, --human</strong></h3>
+<p>Show all output fields automatically scaled to shortest three-digit unit and display units.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-h
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:          7.7Gi       3.6Gi       1.4Gi       574Mi       2.7Gi       3.2Gi</span>
+<span style="color: #000; font-style: italic">Swap:         2.0Gi          0B       2.0Gi</span>
+</pre></div>
+<h3><strong>-s, --seconds N</strong></h3>
+<p>Continuously display the result with N second delay between updates.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span>
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:        8079604     3777664     1500860      588800     2801080     3378456</span>
+<span style="color: #000; font-style: italic">Swap:       2097148           0     2097148</span>
+
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:        8079604     3778112     1500412      588800     2801080     3378008</span>
+<span style="color: #000; font-style: italic">Swap:       2097148           0     2097148</span>
+</pre></div>
+<h3><strong>-t, --total</strong></h3>
+<p>Display a line showing the column totals.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-t
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:        8079604     3777664     1500860      588800     2801080     3378456</span>
+<span style="color: #000; font-style: italic">Swap:       2097148           0     2097148</span>
+<span style="color: #000; font-style: italic">Total:     10176752     3777664     3598008</span>
+</pre></div>
+<h3><strong>-w, --wide</strong></h3>
+<p>Switch to the wide mode. The wide mode produces lines longer than 80 characters. In this mode buffers and cache are reported in two separate columns.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-w
+<span style="color: #000; font-style: italic">              total        used        free      shared     buffers       cache   available</span>
+<span style="color: #000; font-style: italic">Mem:        8079604     3777664     1500860      588800      245760     2555320     3378456</span>
+<span style="color: #000; font-style: italic">Swap:       2097148           0     2097148</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic memory information</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:        8079604     3777664     1500860      588800     2801080     3378456</span>
+<span style="color: #000; font-style: italic">Swap:       2097148           0     2097148</span>
+</pre></div>
+<h3>Human-readable output with totals</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-ht
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:          7.7Gi       3.6Gi       1.4Gi       574Mi       2.7Gi       3.2Gi</span>
+<span style="color: #000; font-style: italic">Swap:         2.0Gi          0B       2.0Gi</span>
+<span style="color: #000; font-style: italic">Total:        9.7Gi       3.6Gi       3.4Gi</span>
+</pre></div>
+<h3>Continuous monitoring with 5-second intervals</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>free<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">              total        used        free      shared  buff/cache   available</span>
+<span style="color: #000; font-style: italic">Mem:          7.7Gi       3.6Gi       1.4Gi       574Mi       2.7Gi       3.2Gi</span>
+<span style="color: #000; font-style: italic">Swap:         2.0Gi          0B       2.0Gi</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Understanding Memory Output</h3>
+<ul>
+<li><strong>total</strong>: Total installed memory</li>
+<li><strong>used</strong>: Memory currently in use</li>
+<li><strong>free</strong>: Unused memory</li>
+<li><strong>shared</strong>: Memory shared by multiple processes</li>
+<li><strong>buff/cache</strong>: Memory used by kernel buffers and page cache</li>
+<li><strong>available</strong>: Estimate of memory available for starting new applications without swapping</li>
+</ul>
+<h3>Interpreting &quot;Available&quot; vs &quot;Free&quot;</h3>
+<p>The &quot;available&quot; column is more important than &quot;free&quot; when assessing if your system has enough memory. It includes memory that can be freed and used by applications.</p>
+<h3>Monitoring Memory Over Time</h3>
+<p>Use <code>free -s N</code> to monitor memory usage over time, which helps identify memory leaks or usage patterns.</p>
+<h3>Clearing Cache Memory</h3>
+<p>System administrators can free pagecache, dentries, and inodes with:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>sh<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;sync; echo 3 &gt; /proc/sys/vm/drop_caches&quot;</span>
+</pre></div>
+<p>(Note: This should be done carefully and is rarely necessary in normal operation)</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What does it mean if my &quot;free&quot; memory is very low?</h4>
+<p>A. Low free memory isn't necessarily a problem. Linux uses available memory for disk caching to improve performance. Look at the &quot;available&quot; column for a better indication of memory that can be allocated to applications.</p>
+<h4>Q2. Why is my swap memory not being used?</h4>
+<p>A. Swap is only used when physical memory is nearly exhausted or for inactive memory pages. If your system has plenty of RAM, swap might remain unused.</p>
+<h4>Q3. How can I monitor memory usage continuously?</h4>
+<p>A. Use <code>free -s N</code> where N is the number of seconds between updates. For example, <code>free -s 5</code> will update every 5 seconds.</p>
+<h4>Q4. What's the difference between buffers and cache?</h4>
+<p>A. Buffers are used for block device I/O, while cache is used for file system pages. In the standard output, they're combined as &quot;buff/cache&quot;, but can be viewed separately with the <code>-w</code> option.</p>
+<h2>References</h2>
+<p>https://www.man7.org/linux/man-pages/man1/free.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

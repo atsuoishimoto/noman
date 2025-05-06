@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  mkdir - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>mkdir コマンド</h1>
+<p>指定した名前のディレクトリを作成します。</p>
+<h2>概要</h2>
+<p><code>mkdir</code> コマンドはファイルシステム内に新しいディレクトリを作成します。一度に単一または複数のディレクトリを作成でき、必要に応じて親ディレクトリを自動的に作成することもできます。デフォルトでは、ディレクトリはユーザーのumask設定に基づいた権限で作成されます。</p>
+<h2>オプション</h2>
+<h3><strong>-p, --parents</strong></h3>
+<p>必要に応じて親ディレクトリを作成します。既に存在する場合はエラーになりません。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>projects/website/css
+</pre></div>
+<h3><strong>-m, --mode=MODE</strong></h3>
+<p>作成するディレクトリのファイルモード（権限）を設定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">755</span><span style="color: #F8F8F8"> </span>secure_folder
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>作成した各ディレクトリについてメッセージを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>new_folder
+<span style="color: #000; font-style: italic">mkdir: created directory &#39;new_folder&#39;</span>
+</pre></div>
+<h3><strong>-Z, --context=CTX</strong></h3>
+<p>作成した各ディレクトリのSELinuxセキュリティコンテキストをCTXに設定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-Z<span style="color: #F8F8F8"> </span>new_folder
+</pre></div>
+<h2>使用例</h2>
+<h3>一度に複数のディレクトリを作成する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>docs<span style="color: #F8F8F8"> </span>images<span style="color: #F8F8F8"> </span>videos
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">docs  images  videos</span>
+</pre></div>
+<h3>親ディレクトリの作成を伴うネストしたディレクトリの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>projects/webapp/src/components
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>projects
+<span style="color: #000; font-style: italic">projects:</span>
+<span style="color: #000; font-style: italic">webapp</span>
+
+<span style="color: #000; font-style: italic">projects/webapp:</span>
+<span style="color: #000; font-style: italic">src</span>
+
+<span style="color: #000; font-style: italic">projects/webapp/src:</span>
+<span style="color: #000; font-style: italic">components</span>
+</pre></div>
+<h3>特定の権限を持つディレクトリの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">700</span><span style="color: #F8F8F8"> </span>private_data
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">total 4</span>
+<span style="color: #000; font-style: italic">drwx------  2 user  user  4096 May  5 10:30 private_data</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>ネストしたディレクトリには -p を使用する</h3>
+<p><code>-p</code> オプションはディレクトリ構造を作成する際に非常に便利です。必要な親ディレクトリをすべて作成し、ディレクトリが既に存在する場合もエラーになりません。</p>
+<h3>作成時に権限を設定する</h3>
+<p>ディレクトリを作成してから <code>chmod</code> で権限を変更するのではなく、<code>-m</code> オプションを使用して作成時に権限を設定しましょう。</p>
+<h3>複数のディレクトリを効率的に作成する</h3>
+<p>一つのコマンドで複数のディレクトリを作成できます: <code>mkdir dir1 dir2 dir3</code></p>
+<h3>関連ディレクトリにはブレース展開を使用する</h3>
+<p>bashのブレース展開と組み合わせて関連ディレクトリを作成できます: <code>mkdir -p project/{src,docs,tests}</code></p>
+<h2>よくある質問</h2>
+<h4>Q1. 特定の権限を持つディレクトリを作成するにはどうすればよいですか？</h4>
+<p>A. <code>mkdir -m MODE ディレクトリ名</code> を使用します。例えば、<code>mkdir -m 755 my_dir</code> は、所有者に読み取り、書き込み、実行権限を、グループとその他のユーザーには読み取りと実行権限を持つディレクトリを作成します。</p>
+<h4>Q2. 複数のネストしたディレクトリを一度に作成するにはどうすればよいですか？</h4>
+<p>A. <code>mkdir -p 親/子/孫</code> を使用します。<code>-p</code> オプションは必要なすべての親ディレクトリを作成します。</p>
+<h4>Q3. 既に存在するディレクトリを作成しようとするとどうなりますか？</h4>
+<p>A. <code>-p</code> オプションなしでは、<code>mkdir</code> はエラーを返します。<code>-p</code> オプションを付けると、エラーなく静かに続行します。</p>
+<h4>Q4. 作成されているディレクトリを確認することはできますか？</h4>
+<p>A. はい、<code>-v</code>（verbose）オプションを使用すると、作成された各ディレクトリについてのメッセージが表示されます。</p>
+<h2>参考資料</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/mkdir-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

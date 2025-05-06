@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  apt-file - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>apt-fileコマンド</h1>
+<p>APTパッケージ管理システム内のパッケージ内のファイルを検索します。</p>
+<h2>概要</h2>
+<p>apt-fileは、Debianベースのシステム向けのコマンドラインユーティリティで、インストールされていないパッケージ内のファイルも検索できます。特定のファイルを提供するパッケージを見つけたり、インストール前にパッケージの内容を調べたりするのに特に役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>search</strong></h3>
+<p>パターンに一致するファイルを含むパッケージを検索します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>/usr/bin/python3
+<span style="color: #000; font-style: italic">python3-minimal: /usr/bin/python3</span>
+</pre></div>
+<h3><strong>list</strong></h3>
+<p>指定したパッケージ内のファイルを一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>list<span style="color: #F8F8F8"> </span>python3-minimal
+<span style="color: #000; font-style: italic">python3-minimal: /usr/bin/python3</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/share/doc/python3-minimal/README.Debian</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/share/doc/python3-minimal/changelog.Debian.gz</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/share/doc/python3-minimal/copyright</span>
+</pre></div>
+<h3><strong>-a, --architecture</strong></h3>
+<p>検索するアーキテクチャを指定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>amd64<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>libssl.so
+<span style="color: #000; font-style: italic">libssl-dev: /usr/lib/x86_64-linux-gnu/libssl.so</span>
+</pre></div>
+<h3><strong>-F, --fixed-string</strong></h3>
+<p>パターンを正規表現として解釈しません</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-F<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;libssl.so.1.1&quot;</span>
+<span style="color: #000; font-style: italic">libssl1.1: /usr/lib/x86_64-linux-gnu/libssl.so.1.1</span>
+</pre></div>
+<h3><strong>-l, --package-only</strong></h3>
+<p>ファイルパスではなく、パッケージ名のみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>/usr/bin/python3
+<span style="color: #000; font-style: italic">python3-minimal</span>
+</pre></div>
+<h3><strong>-x, --regexp</strong></h3>
+<p>パターンを正規表現として解釈します（デフォルト）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;^/usr/bin/py.*3</span>$<span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/bin/python3</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>操作中により多くの情報を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>/usr/bin/python3
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/bin/python3</span>
+</pre></div>
+<h3><strong>update</strong></h3>
+<p>コンテンツデータベースを更新します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt-file<span style="color: #F8F8F8"> </span>update
+<span style="color: #000; font-style: italic">Downloading complete file https://deb.debian.org/debian/dists/bookworm/Contents-amd64.gz</span>
+<span style="color: #8F5902">  % </span>Total<span style="color: #F8F8F8">    </span>%<span style="color: #F8F8F8"> </span>Received<span style="color: #F8F8F8"> </span>%<span style="color: #F8F8F8"> </span>Xferd<span style="color: #F8F8F8">  </span>Average<span style="color: #F8F8F8"> </span>Speed<span style="color: #F8F8F8">   </span>Time<span style="color: #F8F8F8">    </span>Time<span style="color: #F8F8F8">     </span>Time<span style="color: #F8F8F8">  </span>Current
+<span style="color: #000; font-style: italic">                                 Dload  Upload   Total   Spent    Left  Speed</span>
+<span style="color: #000; font-style: italic">100 45.2M  100 45.2M    0     0  5215k      0  0:00:08  0:00:08 --:--:-- 6123k</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>特定のファイルを提供するパッケージを見つける</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>/usr/bin/convert
+<span style="color: #000; font-style: italic">imagemagick-6.q16: /usr/bin/convert</span>
+</pre></div>
+<h3>パッケージ内のすべてのファイルを一覧表示する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>list<span style="color: #F8F8F8"> </span>wget
+<span style="color: #000; font-style: italic">wget: /etc/wgetrc</span>
+<span style="color: #000; font-style: italic">wget: /usr/bin/wget</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/doc/wget/AUTHORS</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/doc/wget/COPYING</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/doc/wget/NEWS.gz</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/doc/wget/README</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/info/wget.info.gz</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/man/man1/wget.1.gz</span>
+</pre></div>
+<h3>開発用のヘッダーファイルを見つける</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;include/openssl/ssl.h&quot;</span>
+<span style="color: #000; font-style: italic">libssl-dev: /usr/include/openssl/ssl.h</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>最初にデータベースを更新する</h3>
+<p>apt-fileを使用する前、特にシステム更新後や最近使用していない場合は、常に<code>sudo apt-file update</code>を実行してください。これにより、最新のパッケージ情報が確保されます。</p>
+<h3>複雑なフィルタリングにはgrepと組み合わせる</h3>
+<p>より複雑なフィルタリングには、apt-fileとgrepを組み合わせてください：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>list<span style="color: #F8F8F8"> </span>python3<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;bin/&quot;</span>
+</pre></div>
+<h3>コンパイル用の依存関係を見つける</h3>
+<p>不足しているヘッダーファイルを報告するソフトウェアをコンパイルする場合、apt-fileを使用してインストールが必要な開発パッケージを見つけます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>missing_header.h
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. apt-fileとdpkg -Sの違いは何ですか？</h4>
+<p>A. dpkg -Sはインストール済みのパッケージのみを検索しますが、apt-fileはインストールされていないものも含め、利用可能なすべてのパッケージを検索できます。</p>
+<h4>Q2. apt-fileをインストールするにはどうすればよいですか？</h4>
+<p>A. <code>sudo apt install apt-file</code>を実行し、その後<code>sudo apt-file update</code>を実行してデータベースを初期化します。</p>
+<h4>Q3. なぜapt-file searchは遅いのですか？</h4>
+<p>A. apt-fileは大量のファイルデータベースを検索します。より具体的な検索パターンや-Fオプションを使用すると検索が速くなります。</p>
+<h4>Q4. apt-fileデータベースはどのくらいの頻度で更新すべきですか？</h4>
+<p>A. apt updateでパッケージリストを更新するたび、または少なくとも月に1回は更新してください。</p>
+<h2>参考文献</h2>
+<p>https://manpages.debian.org/bookworm/apt-file/apt-file.1.en.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

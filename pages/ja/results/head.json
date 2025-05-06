@@ -1,0 +1,20 @@
+{
+  "id": "msg_01Bq3qAmsPwL1vvB5SecZZCU",
+  "content": [
+    {
+      "text": "# headコマンド\n\nファイルの先頭部分を表示します。\n\n## 概要\n\n`head`コマンドはファイルの先頭部分を標準出力に出力します。デフォルトでは、指定された各ファイルの最初の10行を表示します。複数のファイルが指定された場合、各ファイルの前にファイル名を識別するヘッダーが付きます。\n\n## オプション\n\n### **-n, --lines=N**\n\nデフォルトの10行ではなく、最初のN行を表示します\n\n```console\n$ head -n 5 file.txt\nLine 1\nLine 2\nLine 3\nLine 4\nLine 5\n```\n\n### **-c, --bytes=N**\n\n各ファイルの最初のNバイトを表示します\n\n```console\n$ head -c 20 file.txt\nThis is the first 20\n```\n\n### **-q, --quiet, --silent**\n\nファイル名を示すヘッダーを表示しません\n\n```console\n$ head -q file1.txt file2.txt\n(file1.txtの内容)\n(file2.txtの内容)\n```\n\n### **-v, --verbose**\n\n常にファイル名を示すヘッダーを表示します\n\n```console\n$ head -v file.txt\n==> file.txt <==\nLine 1\nLine 2\n...\n```\n\n## 使用例\n\n### ログファイルの先頭を表示する\n\n```console\n$ head /var/log/syslog\nMay  5 10:15:01 hostname CRON[12345]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)\nMay  5 10:17:01 hostname CRON[12346]: (root) CMD (/usr/local/bin/backup.sh)\n...\n```\n\n### 複数ファイルの先頭数行を表示する\n\n```console\n$ head -n 3 *.conf\n==> apache.conf <==\n# Apache configuration\nServerName localhost\nListen 80\n\n==> nginx.conf <==\n# Nginx configuration\nworker_processes auto;\nevents {\n```\n\n### パイプとheadを組み合わせる\n\n```console\n$ ps aux | head -5\nUSER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.0 168940  9416 ?        Ss   May04   0:02 /sbin/init\nroot         2  0.0  0.0      0     0 ?        S    May04   0:00 [kthreadd]\nroot         3  0.0  0.0      0     0 ?        I<   May04   0:00 [rcu_gp]\nroot         4  0.0  0.0      0     0 ?        I<   May04   0:00 [rcu_par_gp]\n```\n\n## ヒント:\n\n### tailと組み合わせる\n\n`head`と`tail`を組み合わせて特定の行範囲を抽出できます：\n\n```console\n$ head -n 20 file.txt | tail -n 10\n```\nこれはファイルの11〜20行目を表示します。\n\n### 負の数を使用する\n\nGNU headでは、`-n -N`を使用して最後のN行を除くすべての行を表示できます：\n\n```console\n$ head -n -5 file.txt\n```\nこれは最後の5行を除くすべての行を表示します。\n\n### 成長するファイルの監視\n\n`tail -f`とは異なり、`head`にはフォローモードがありません。アクティブに書き込まれているファイルを監視する必要がある場合は、`-f`オプション付きの`tail`を使用してください。\n\n## よくある質問\n\n#### Q1. headとtailの違いは何ですか？\nA. `head`はファイルの先頭（デフォルトでは最初の10行）を表示し、`tail`はファイルの末尾（デフォルトでは最後の10行）を表示します。\n\n#### Q2. 行数ではなく特定の文字数を表示するにはどうすればよいですか？\nA. `-c`オプションを使用します：`head -c 100 file.txt`はファイルの最初の100バイトを表示します。\n\n#### Q3. ファイル名のヘッダーなしで複数ファイルの先頭数行を表示するにはどうすればよいですか？\nA. `-q`オプションを使用します：`head -q file1.txt file2.txt`\n\n#### Q4. headはtail -fのようにファイルの成長に合わせて追跡できますか？\nA. いいえ、`head`にはフォローモードがありません。成長するファイルを監視するには`tail -f`を使用してください。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/head-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1178,
+    "output_tokens": 1390
+  }
+}

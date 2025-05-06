@@ -1,0 +1,20 @@
+{
+  "id": "msg_01HvqLA1gWNxxhQq6UBCGvTf",
+  "content": [
+    {
+      "text": "# mkdir コマンド\n\n指定した名前のディレクトリを作成します。\n\n## 概要\n\n`mkdir` コマンドはファイルシステム内に新しいディレクトリを作成します。一度に単一または複数のディレクトリを作成でき、必要に応じて親ディレクトリを自動的に作成することもできます。デフォルトでは、ディレクトリはユーザーのumask設定に基づいた権限で作成されます。\n\n## オプション\n\n### **-p, --parents**\n\n必要に応じて親ディレクトリを作成します。既に存在する場合はエラーになりません。\n\n```console\n$ mkdir -p projects/website/css\n```\n\n### **-m, --mode=MODE**\n\n作成するディレクトリのファイルモード（権限）を設定します。\n\n```console\n$ mkdir -m 755 secure_folder\n```\n\n### **-v, --verbose**\n\n作成した各ディレクトリについてメッセージを表示します。\n\n```console\n$ mkdir -v new_folder\nmkdir: created directory 'new_folder'\n```\n\n### **-Z, --context=CTX**\n\n作成した各ディレクトリのSELinuxセキュリティコンテキストをCTXに設定します。\n\n```console\n$ mkdir -Z new_folder\n```\n\n## 使用例\n\n### 一度に複数のディレクトリを作成する\n\n```console\n$ mkdir docs images videos\n$ ls\ndocs  images  videos\n```\n\n### 親ディレクトリの作成を伴うネストしたディレクトリの作成\n\n```console\n$ mkdir -p projects/webapp/src/components\n$ ls -R projects\nprojects:\nwebapp\n\nprojects/webapp:\nsrc\n\nprojects/webapp/src:\ncomponents\n```\n\n### 特定の権限を持つディレクトリの作成\n\n```console\n$ mkdir -m 700 private_data\n$ ls -l\ntotal 4\ndrwx------  2 user  user  4096 May  5 10:30 private_data\n```\n\n## ヒント:\n\n### ネストしたディレクトリには -p を使用する\n\n`-p` オプションはディレクトリ構造を作成する際に非常に便利です。必要な親ディレクトリをすべて作成し、ディレクトリが既に存在する場合もエラーになりません。\n\n### 作成時に権限を設定する\n\nディレクトリを作成してから `chmod` で権限を変更するのではなく、`-m` オプションを使用して作成時に権限を設定しましょう。\n\n### 複数のディレクトリを効率的に作成する\n\n一つのコマンドで複数のディレクトリを作成できます: `mkdir dir1 dir2 dir3`\n\n### 関連ディレクトリにはブレース展開を使用する\n\nbashのブレース展開と組み合わせて関連ディレクトリを作成できます: `mkdir -p project/{src,docs,tests}`\n\n## よくある質問\n\n#### Q1. 特定の権限を持つディレクトリを作成するにはどうすればよいですか？\nA. `mkdir -m MODE ディレクトリ名` を使用します。例えば、`mkdir -m 755 my_dir` は、所有者に読み取り、書き込み、実行権限を、グループとその他のユーザーには読み取りと実行権限を持つディレクトリを作成します。\n\n#### Q2. 複数のネストしたディレクトリを一度に作成するにはどうすればよいですか？\nA. `mkdir -p 親/子/孫` を使用します。`-p` オプションは必要なすべての親ディレクトリを作成します。\n\n#### Q3. 既に存在するディレクトリを作成しようとするとどうなりますか？\nA. `-p` オプションなしでは、`mkdir` はエラーを返します。`-p` オプションを付けると、エラーなく静かに続行します。\n\n#### Q4. 作成されているディレクトリを確認することはできますか？\nA. はい、`-v`（verbose）オプションを使用すると、作成された各ディレクトリについてのメッセージが表示されます。\n\n## 参考資料\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/mkdir-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 893,
+    "output_tokens": 1255
+  }
+}

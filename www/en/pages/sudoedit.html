@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  sudoedit - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>sudoedit command</h1>
+<p>Edit files securely as another user, typically root.</p>
+<h2>Overview</h2>
+<p><code>sudoedit</code> (also accessible as <code>sudo -e</code>) allows users to edit files with elevated privileges while using their own editor preferences. Unlike directly using <code>sudo</code> with an editor, <code>sudoedit</code> creates a temporary copy of the file, lets you edit it with your preferred editor, then copies it back to the original location with proper permissions.</p>
+<h2>Options</h2>
+<h3><strong>-u, --user=user</strong></h3>
+<p>Specify which user to edit the file as (defaults to root)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>www-data<span style="color: #F8F8F8"> </span>/var/www/html/index.html
+</pre></div>
+<h3><strong>-H, --set-home</strong></h3>
+<p>Set HOME environment variable to target user's home directory</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-H<span style="color: #F8F8F8"> </span>/etc/ssh/sshd_config
+</pre></div>
+<h3><strong>-C, --close-from=num</strong></h3>
+<p>Close all file descriptors greater than or equal to num</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>/etc/hosts
+</pre></div>
+<h3><strong>-h, --help</strong></h3>
+<p>Display help message and exit</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-h
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Editing a system configuration file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>/etc/ssh/sshd_config
+<span style="color: #000; font-style: italic">[Your default editor opens with the file]</span>
+</pre></div>
+<h3>Editing multiple files at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>/etc/hosts<span style="color: #F8F8F8"> </span>/etc/resolv.conf
+<span style="color: #000; font-style: italic">[Your default editor opens with each file in sequence]</span>
+</pre></div>
+<h3>Editing as a specific user</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>postgres<span style="color: #F8F8F8"> </span>/etc/postgresql/13/main/postgresql.conf
+<span style="color: #000; font-style: italic">[Your default editor opens with the file, changes will be owned by postgres]</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Setting Your Preferred Editor</h3>
+<p><code>sudoedit</code> uses the EDITOR or VISUAL environment variable to determine which editor to use. Set these in your shell profile:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;export EDITOR=vim&#39;</span><span style="color: #F8F8F8"> </span>&gt;&gt;<span style="color: #F8F8F8"> </span>~/.bashrc
+<span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>~/.bashrc
+</pre></div>
+<h3>Security Benefits</h3>
+<p>Always use <code>sudoedit</code> instead of <code>sudo vim</code> when editing system files. This prevents potential security issues with editor plugins or configurations that might execute code with elevated privileges.</p>
+<h3>Temporary File Location</h3>
+<p><code>sudoedit</code> creates temporary files in /tmp by default. If you need to edit very large files, ensure your /tmp partition has sufficient space.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>sudoedit</code> and <code>sudo vim</code>?</h4>
+<p>A. <code>sudoedit</code> creates a temporary copy of the file that you edit with your normal user privileges, then copies it back with elevated privileges. <code>sudo vim</code> runs the entire editor with root privileges, which can be a security risk if your editor has plugins or configurations that might execute code.</p>
+<h4>Q2. How do I specify which editor to use?</h4>
+<p>A. Set the EDITOR or VISUAL environment variable in your shell profile (e.g., <code>export EDITOR=nano</code> in ~/.bashrc).</p>
+<h4>Q3. Can I use <code>sudoedit</code> to edit multiple files at once?</h4>
+<p>A. Yes, simply list all files you want to edit: <code>sudoedit file1 file2 file3</code>.</p>
+<h4>Q4. What happens if I don't have permission to view the original file?</h4>
+<p>A. <code>sudoedit</code> will still work as long as you have sudo privileges to edit the file, even if your normal user can't read it.</p>
+<h2>References</h2>
+<p>https://www.sudo.ws/docs/man/sudoedit.man/</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  apt - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>apt command</h1>
+<p>Package management tool for Debian-based Linux distributions.</p>
+<h2>Overview</h2>
+<p><code>apt</code> (Advanced Package Tool) is a command-line utility for installing, updating, removing, and managing software packages on Debian-based Linux distributions like Ubuntu. It simplifies package management by handling dependencies, configuration, and installation processes automatically.</p>
+<h2>Options</h2>
+<h3><strong>update</strong></h3>
+<p>Updates the package lists from repositories</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>update
+<span style="color: #000; font-style: italic">Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease</span>
+<span style="color: #000; font-style: italic">Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]</span>
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">All packages are up to date.</span>
+</pre></div>
+<h3><strong>upgrade</strong></h3>
+<p>Upgrades installed packages to their latest versions</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>upgrade
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">Calculating upgrade... Done</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>install</strong></h3>
+<p>Installs new packages</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">The following additional packages will be installed:</span>
+<span style="color: #000; font-style: italic">  nginx-common nginx-core</span>
+<span style="color: #000; font-style: italic">Suggested packages:</span>
+<span style="color: #000; font-style: italic">  fcgiwrap nginx-doc</span>
+<span style="color: #000; font-style: italic">The following NEW packages will be installed:</span>
+<span style="color: #000; font-style: italic">  nginx nginx-common nginx-core</span>
+<span style="color: #000; font-style: italic">0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>remove</strong></h3>
+<p>Removes packages but keeps configuration files</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>remove<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">The following packages will be REMOVED:</span>
+<span style="color: #000; font-style: italic">  nginx nginx-core</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 2 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>purge</strong></h3>
+<p>Removes packages along with their configuration files</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>purge<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">The following packages will be REMOVED:</span>
+<span style="color: #000; font-style: italic">  nginx* nginx-common* nginx-core*</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 3 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>autoremove</strong></h3>
+<p>Removes packages that were automatically installed to satisfy dependencies and are no longer needed</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>autoremove
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>search</strong></h3>
+<p>Searches for packages by name or description</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Sorting... Done</span>
+<span style="color: #000; font-style: italic">Full Text Search... Done</span>
+<span style="color: #000; font-style: italic">nginx/jammy-updates,jammy-security 1.18.0-6ubuntu14.4 all</span>
+<span style="color: #000; font-style: italic">  small, powerful, scalable web/proxy server</span>
+</pre></div>
+<h3><strong>show</strong></h3>
+<p>Shows detailed information about a package</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt<span style="color: #F8F8F8"> </span>show<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Package: nginx</span>
+<span style="color: #000; font-style: italic">Version: 1.18.0-6ubuntu14.4</span>
+<span style="color: #000; font-style: italic">Priority: optional</span>
+<span style="color: #000; font-style: italic">Section: web</span>
+<span style="color: #000; font-style: italic">Origin: Ubuntu</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>list --installed</strong></h3>
+<p>Lists all installed packages</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt<span style="color: #F8F8F8"> </span>list<span style="color: #F8F8F8"> </span>--installed
+<span style="color: #000; font-style: italic">Listing... Done</span>
+<span style="color: #000; font-style: italic">accountsservice/jammy,now 22.07.5-2ubuntu1.4 amd64 [installed]</span>
+<span style="color: #000; font-style: italic">acl/jammy,now 2.3.1-1 amd64 [installed]</span>
+<span style="color: #000; font-style: italic">acpi-support/jammy,now 0.144 amd64 [installed]</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Installing multiple packages at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>git<span style="color: #F8F8F8"> </span>curl<span style="color: #F8F8F8"> </span>wget
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">curl is already the newest version (7.81.0-1ubuntu1.14).</span>
+<span style="color: #000; font-style: italic">The following NEW packages will be installed:</span>
+<span style="color: #000; font-style: italic">  git wget</span>
+<span style="color: #000; font-style: italic">0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3>Upgrading the entire system</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>update<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>upgrade<span style="color: #F8F8F8"> </span>-y
+<span style="color: #000; font-style: italic">Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease</span>
+<span style="color: #000; font-style: italic">Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]</span>
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">Calculating upgrade... Done</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3>Installing a specific version of a package</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span><span style="color: #000">nginx</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1</span>.18.0-6ubuntu14.3
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">The following additional packages will be installed:</span>
+<span style="color: #000; font-style: italic">  nginx-common nginx-core</span>
+<span style="color: #000; font-style: italic">The following NEW packages will be installed:</span>
+<span style="color: #000; font-style: italic">  nginx nginx-common nginx-core</span>
+<span style="color: #000; font-style: italic">0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Use apt instead of apt-get</h3>
+<p><code>apt</code> provides a more user-friendly interface with progress bars and color output compared to the older <code>apt-get</code> command.</p>
+<h3>Clean up your system regularly</h3>
+<p>Run <code>sudo apt autoremove</code> and <code>sudo apt clean</code> periodically to free up disk space by removing unnecessary packages and clearing the local repository of retrieved package files.</p>
+<h3>Hold package versions</h3>
+<p>If you want to prevent a package from being upgraded, use <code>sudo apt-mark hold package_name</code>. To allow upgrades again, use <code>sudo apt-mark unhold package_name</code>.</p>
+<h3>Check for broken dependencies</h3>
+<p>Use <code>sudo apt --fix-broken install</code> to fix broken dependencies that might occur after failed installations.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between apt and apt-get?</h4>
+<p>A. <code>apt</code> is a newer, more user-friendly command that combines the most commonly used features of <code>apt-get</code> and <code>apt-cache</code> with improved output formatting and progress information.</p>
+<h4>Q2. How do I fix &quot;Could not get lock&quot; errors?</h4>
+<p>A. This usually means another package manager is running. Wait for it to finish or check for stuck processes with <code>ps aux | grep apt</code> and kill them if necessary with <code>sudo kill &lt;process_id&gt;</code>.</p>
+<h4>Q3. How can I install a package without being prompted?</h4>
+<p>A. Use the <code>-y</code> flag: <code>sudo apt install -y package_name</code> to automatically answer &quot;yes&quot; to prompts.</p>
+<h4>Q4. How do I update only security packages?</h4>
+<p>A. Use <code>sudo apt update &amp;&amp; sudo apt upgrade -s</code> to simulate an upgrade, then <code>sudo apt install package_name</code> for specific security packages you want to update.</p>
+<h4>Q5. How do I downgrade a package?</h4>
+<p>A. Use <code>sudo apt install package_name=version_number</code> to install a specific older version.</p>
+<h2>References</h2>
+<p>https://manpages.ubuntu.com/manpages/jammy/man8/apt.8.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

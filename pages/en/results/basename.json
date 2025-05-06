@@ -1,0 +1,20 @@
+{
+  "id": "msg_01MfVHwEqBbp3DWU2eBPEosV",
+  "content": [
+    {
+      "text": "# basename command\n\nExtract the filename or directory name from a pathname.\n\n## Overview\n\n`basename` strips directory components and suffixes from a given path, returning just the filename or the final directory name. It's commonly used in shell scripts to extract filenames from full paths or to remove file extensions.\n\n## Options\n\n### **basename NAME [SUFFIX]**\n\nRemoves directory components from NAME and an optional SUFFIX.\n\n```console\n$ basename /usr/bin/sort\nsort\n```\n\n### **basename OPTION... NAME...**\n\nProcess multiple names according to the specified options.\n\n### **-a, --multiple**\n\nSupport multiple arguments and treat each as a NAME.\n\n```console\n$ basename -a /usr/bin/sort /usr/bin/cut\nsort\ncut\n```\n\n### **-s, --suffix=SUFFIX**\n\nRemove a trailing SUFFIX from each NAME.\n\n```console\n$ basename -s .txt file.txt\nfile\n```\n\n### **-z, --zero**\n\nEnd each output line with NUL, not newline.\n\n```console\n$ basename -z /usr/bin/sort | hexdump -C\n00000000  73 6f 72 74 00                                    |sort.|\n00000005\n```\n\n## Usage Examples\n\n### Removing directory components\n\n```console\n$ basename /home/user/documents/report.pdf\nreport.pdf\n```\n\n### Removing file extension\n\n```console\n$ basename /home/user/documents/report.pdf .pdf\nreport\n```\n\n### Processing multiple files with the same suffix\n\n```console\n$ basename -a -s .txt file1.txt file2.txt file3.txt\nfile1\nfile2\nfile3\n```\n\n### Using in shell scripts\n\n```console\n$ filename=$(basename \"$fullpath\")\n$ echo \"The filename is: $filename\"\nThe filename is: document.pdf\n```\n\n## Tips:\n\n### Use with `dirname` for Path Manipulation\n\n`basename` pairs well with `dirname` when you need to separate a path into its components:\n```console\n$ path=\"/home/user/documents/report.pdf\"\n$ dirname \"$path\"\n/home/user/documents\n$ basename \"$path\"\nreport.pdf\n```\n\n### Handling Paths with Spaces\n\nAlways quote your arguments when paths might contain spaces:\n```console\n$ basename \"/path/with spaces/file.txt\"\nfile.txt\n```\n\n### Stripping Multiple Extensions\n\nTo remove multiple extensions (like `.tar.gz`), you'll need to use multiple commands or other tools like `sed`:\n```console\n$ basename \"archive.tar.gz\" .gz | basename -s .tar\narchive\n```\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `basename` and just using parameter expansion in bash?\nA. While `${filename##*/}` in bash performs a similar function, `basename` works across different shells and provides additional options like suffix removal.\n\n#### Q2. Can `basename` handle multiple files at once?\nA. Yes, with the `-a` or `--multiple` option, it can process multiple filenames in a single command.\n\n#### Q3. How do I remove multiple extensions like `.tar.gz`?\nA. `basename` can only remove one suffix at a time. For multiple extensions, you'll need to run `basename` multiple times or use other text processing tools.\n\n#### Q4. Does `basename` modify the original file?\nA. No, `basename` only outputs the modified name to standard output. It doesn't change any files on disk.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/basename-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 848
+  }
+}

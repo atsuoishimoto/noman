@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  source - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>source command</h1>
+<p>Execute commands from a file or script in the current shell environment.</p>
+<h2>Overview</h2>
+<p>The <code>source</code> command (also accessible via the <code>.</code> alias) reads and executes commands from a specified file in the current shell context. Unlike executing a script directly, which runs in a subshell, <code>source</code> runs commands in the current shell, allowing variables and functions defined in the sourced file to persist in the current session.</p>
+<h2>Options</h2>
+<p>The <code>source</code> command has minimal options as it's a shell builtin:</p>
+<h3><strong>-h</strong></h3>
+<p>Display help information (in some shells)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>-h
+<span style="color: #000; font-style: italic">.: usage: . filename [arguments]</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Sourcing a configuration file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>~/.bashrc
+</pre></div>
+<h3>Using the dot (.) alias</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>.<span style="color: #F8F8F8"> </span>~/.bash_profile
+</pre></div>
+<h3>Sourcing with arguments</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>script.sh<span style="color: #F8F8F8"> </span>arg1<span style="color: #F8F8F8"> </span>arg2
+</pre></div>
+<h3>Sourcing environment variables</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>env.sh
+<span style="color: #000; font-style: italic">export PROJECT_ROOT=&quot;/path/to/project&quot;</span>
+<span style="color: #000; font-style: italic">export API_KEY=&quot;abc123&quot;</span>
+
+<span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>env.sh
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$PROJECT_ROOT</span>
+<span style="color: #000; font-style: italic">/path/to/project</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Use source for environment setup</h3>
+<p>Source is ideal for loading environment variables, functions, and aliases that you want available in your current shell session.</p>
+<h3>Debugging scripts</h3>
+<p>You can use <code>source</code> with the <code>-x</code> option in bash to debug scripts by showing each command as it executes:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>script.sh
+</pre></div>
+<h3>Reload configuration without logging out</h3>
+<p>When you modify shell configuration files like <code>.bashrc</code> or <code>.zshrc</code>, use <code>source</code> to apply changes without restarting your terminal.</p>
+<h3>Script path considerations</h3>
+<p>When using <code>source</code>, the script path is relative to your current directory, not the location of the calling script.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>source</code> and executing a script directly?</h4>
+<p>A. When you execute a script directly (e.g., <code>./script.sh</code>), it runs in a subshell. Any variables or functions defined in that script are lost when the script finishes. Using <code>source</code> executes the commands in your current shell, so variables and functions persist after the script completes.</p>
+<h4>Q2. Can I use <code>source</code> with any type of file?</h4>
+<p>A. You can source any text file containing valid shell commands. Typically, it's used with shell scripts (<code>.sh</code>), configuration files, and environment setup files.</p>
+<h4>Q3. Is there a difference between <code>source</code> and the dot (<code>.</code>) command?</h4>
+<p>A. No functional difference. The dot (<code>.</code>) is the POSIX standard command, while <code>source</code> is a more readable alias available in bash and some other shells. Both do the same thing.</p>
+<h4>Q4. What happens if the sourced file doesn't exist?</h4>
+<p>A. You'll get an error message like &quot;No such file or directory&quot; and the command will return a non-zero exit status.</p>
+<h2>References</h2>
+<ul>
+<li>Bash Reference Manual: https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html</li>
+<li>POSIX specification: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#dot</li>
+</ul>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

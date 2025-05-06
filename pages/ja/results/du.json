@@ -1,0 +1,20 @@
+{
+  "id": "msg_0143SmTweAZRW4K4msbKcfRT",
+  "content": [
+    {
+      "text": "# du コマンド\n\nディレクトリとファイルのディスク使用量を推定します。\n\n## 概要\n\n`du`（disk usage）コマンドは、ファイルとディレクトリが使用するディスク容量を推定して表示します。システム上で最も多くの容量を消費しているディレクトリを見つけるのに特に役立ち、クリーンアップが必要な領域を特定するのに役立ちます。\n\n## オプション\n\n### **-h, --human-readable**\n\nサイズを人間が読みやすい形式で表示します（例：1K, 234M, 2G）\n\n```console\n$ du -h Documents\n4.0K    Documents/notes\n16K     Documents/projects/code\n24K     Documents/projects\n28K     Documents\n```\n\n### **-s, --summarize**\n\n各引数の合計のみを表示します\n\n```console\n$ du -s Documents\n28      Documents\n```\n\n### **-c, --total**\n\nすべての引数の総合計を生成します\n\n```console\n$ du -c Documents Downloads\n28      Documents\n156     Downloads\n184     total\n```\n\n### **-a, --all**\n\nディレクトリだけでなくファイルのサイズも表示します\n\n```console\n$ du -a Documents\n4       Documents/notes/todo.txt\n4       Documents/notes\n8       Documents/projects/code/script.py\n16      Documents/projects/code\n24      Documents/projects\n28      Documents\n```\n\n### **--max-depth=N**\n\nディレクトリの合計を、コマンドライン引数よりN以下のレベルにある場合のみ表示します\n\n```console\n$ du --max-depth=1 Documents\n4       Documents/notes\n24      Documents/projects\n28      Documents\n```\n\n### **-x, --one-file-system**\n\n異なるファイルシステム上のディレクトリをスキップします\n\n```console\n$ du -x /home\n```\n\n## 使用例\n\n### 最大のディレクトリを見つける\n\n```console\n$ du -h --max-depth=1 /home/user | sort -hr\n1.2G    /home/user\n650M    /home/user/Downloads\n320M    /home/user/Videos\n200M    /home/user/Documents\n45M     /home/user/.cache\n```\n\n### 特定のディレクトリのサイズを人間が読みやすい形式で確認する\n\n```console\n$ du -sh /var/log\n156M    /var/log\n```\n\n### 現在のディレクトリ内の大きなファイルを見つける\n\n```console\n$ du -ah . | sort -hr | head -n 10\n1.2G    .\n650M    ./Downloads\n320M    ./Videos\n200M    ./Documents\n150M    ./Downloads/ubuntu.iso\n100M    ./Videos/lecture.mp4\n45M     ./.cache\n25M     ./Documents/thesis.pdf\n20M     ./Pictures\n15M     ./Music\n```\n\n## ヒント:\n\n### より良い洞察を得るためにsortと組み合わせる\n\n`du`の出力を`sort -hr`にパイプして、サイズの降順でディレクトリを一覧表示します：\n```console\n$ du -h | sort -hr\n```\n\n### 特定のファイルタイプを対象にするためにfindと使用する\n\n特定のファイルタイプが使用する容量を分析するために`find`と組み合わせます：\n```console\n$ find . -name \"*.log\" -exec du -ch {} \\; | grep total$\n```\n\n### 特定のディレクトリを除外する\n\n`grep -v`と一緒に使用して、分析から特定のディレクトリを除外します：\n```console\n$ du -h | grep -v \"node_modules\"\n```\n\n### macOSでの使用\n\nmacOSのBSDバージョンの`du`は、オプションが若干異なります。`brew install coreutils`を使用してから`gdu`を使うと、GNU互換の動作が得られます。\n\n## よくある質問\n\n#### Q1. `du`と`df`の違いは何ですか？\nA. `du`はファイルとディレクトリのディスク使用量を表示しますが、`df`はマウントされたファイルシステム上の利用可能および使用済みディスク容量を表示します。\n\n#### Q2. なぜ`du`がファイルマネージャで見るサイズと異なるサイズを報告するのですか？\nA. `du`はディスク使用量（ファイルシステムのオーバーヘッドを含む）を測定しますが、ファイルマネージャは論理的なファイルサイズを表示することが多いです。\n\n#### Q3. 計算から特定のディレクトリを除外するにはどうすればよいですか？\nA. `--exclude=PATTERN`オプションを使用します：`du --exclude=node_modules`\n\n#### Q4. なぜ大きなディレクトリで`du`が遅いのですか？\nA. `du`はサイズを計算するためにディレクトリ構造全体をトラバースする必要があります。大きなディレクトリの場合は、要約のみを表示する`du -s`の使用を検討してください。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/du-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1158,
+    "output_tokens": 1515
+  }
+}

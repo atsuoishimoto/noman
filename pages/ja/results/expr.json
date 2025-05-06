@@ -1,0 +1,20 @@
+{
+  "id": "msg_018gRyuBRkUjSQbcUiVkzsf1",
+  "content": [
+    {
+      "text": "# expr コマンド\n\n式を評価して結果を出力します。\n\n## 概要\n\n`expr` はコマンドライン・ユーティリティで、式を評価して結果を出力します。算術演算、文字列操作、論理比較を実行します。このコマンドは主にシェルスクリプト内での計算や文字列操作に使用されます。\n\n## オプション\n\n### **--help**\n\nヘルプメッセージを表示して終了します。\n\n```\n$ expr --help\nUsage: expr EXPRESSION\n  or:  expr OPTION\n```\n\n### **--version**\n\nバージョン情報を出力して終了します。\n\n```\n$ expr --version\nexpr (GNU coreutils) 9.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n```\n\n## 使用例\n\n### 基本的な算術演算\n\n```\n$ expr 5 + 3\n8\n$ expr 10 - 4\n6\n$ expr 3 \\* 4\n12\n$ expr 20 / 5\n4\n$ expr 20 % 3\n2\n```\n\n### 文字列操作\n\n```\n$ expr length \"Hello World\"\n11\n$ expr substr \"Hello World\" 1 5\nHello\n$ expr index \"Hello World\" \"o\"\n5\n```\n\n### 論理比較\n\n```\n$ expr 5 \\> 3\n1\n$ expr 5 \\< 3\n0\n$ expr 5 = 5\n1\n$ expr 5 != 3\n1\n```\n\n### シェルスクリプトでの使用\n\n```\n$ a=5\n$ b=3\n$ c=$(expr $a + $b)\n$ echo $c\n8\n```\n\n## ヒント:\n\n### 特殊文字のエスケープ\n\n乗算(*)、除算(/)、その他の特殊文字は、シェルによる解釈を防ぐためにバックスラッシュでエスケープしてください。\n\n```\n$ expr 5 \\* 3\n15\n```\n\n### スペースが重要\n\n`expr` は演算子とオペランドの間にスペースが必要です。スペースがないと、コマンドは正しく動作しません。\n\n```\n$ expr 5+3     # 間違い\n5+3\n$ expr 5 + 3   # 正しい\n8\n```\n\n### 戻り値\n\n`expr` は、式がゼロ以外かつ空でない値に評価される場合は0を、式がゼロまたは空の場合は1を、式が無効な場合は2を返します。\n\n### 変数のインクリメントに使用\n\n`expr` はシェルスクリプトでカウンターをインクリメントするためによく使用されます：\n\n```\n$ i=1\n$ i=$(expr $i + 1)\n$ echo $i\n2\n```\n\n## よくある質問\n\n#### Q1. `expr` と bash の `$(())` の違いは何ですか？\nA. `expr` はすべてのPOSIXシェルで動作する外部コマンドですが、`$(())` はbashの組み込み算術展開で、より高速ですが移植性が低いです。\n\n#### Q2. `expr` で浮動小数点計算を行うにはどうすればよいですか？\nA. `expr` は整数演算のみを扱います。浮動小数点計算には、代わりに `bc` や `awk` を使用してください。\n\n#### Q3. なぜ `expr` での乗算が失敗するのですか？\nA. アスタリスク(*) は、シェルがワイルドカードとして解釈するのを防ぐためにバックスラッシュ (`\\*`) でエスケープする必要があります。\n\n#### Q4. `expr` は正規表現を扱えますか？\nA. いいえ、`expr` は完全な正規表現をサポートしていません。パターンマッチングには、`grep`、`sed`、`awk` などのツールを使用してください。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/expr-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1022,
+    "output_tokens": 1218
+  }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-commit - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git commit command</h1>
+<p>Record changes to the repository by saving staged content as a new commit.</p>
+<h2>Overview</h2>
+<p>The <code>git commit</code> command captures a snapshot of the project's currently staged changes. Committed snapshots are &quot;safe&quot; versions of a project that Git will never change unless explicitly asked to do so. Before running <code>git commit</code>, you need to use <code>git add</code> to stage the changes you want to include in the commit.</p>
+<h2>Options</h2>
+<h3><strong>-m, --message=&lt;msg&gt;</strong></h3>
+<p>Use the given message as the commit message instead of launching an editor.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Add new feature&quot;</span>
+<span style="color: #000; font-style: italic">[main 5d6e7f8] Add new feature</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 10 insertions(+), 2 deletions(-)</span>
+</pre></div>
+<h3><strong>-a, --all</strong></h3>
+<p>Automatically stage all modified and deleted files before committing (does not include untracked files).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Update existing files&quot;</span>
+<span style="color: #000; font-style: italic">[main 1a2b3c4] Update existing files</span>
+<span style="color: #000; font-style: italic"> 2 files changed, 15 insertions(+), 5 deletions(-)</span>
+</pre></div>
+<h3><strong>--amend</strong></h3>
+<p>Replace the tip of the current branch by creating a new commit, using the same log message as the previous commit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>--amend<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Fix previous commit message&quot;</span>
+<span style="color: #000; font-style: italic">[main 7f8e9d6] Fix previous commit message</span>
+<span style="color: #000; font-style: italic"> Date: Mon May 5 10:30:45 2025 -0700</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 10 insertions(+), 2 deletions(-)</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Show diff of changes to be committed in the commit message editor.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>-v
+<span style="color: #8F5902"># </span>Opens<span style="color: #F8F8F8"> </span>editor<span style="color: #F8F8F8"> </span>with<span style="color: #F8F8F8"> </span>diff<span style="color: #F8F8F8"> </span>included<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>template
+</pre></div>
+<h3><strong>--no-verify</strong></h3>
+<p>Bypass the pre-commit and commit-msg hooks.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>--no-verify<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Emergency fix&quot;</span>
+<span style="color: #000; font-style: italic">[main 3e4f5d6] Emergency fix</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 3 insertions(+)</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating a standard commit</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Add new files and update documentation&quot;</span>
+<span style="color: #000; font-style: italic">[main 1a2b3c4] Add new files and update documentation</span>
+<span style="color: #000; font-style: italic"> 2 files changed, 25 insertions(+), 0 deletions(-)</span>
+<span style="color: #000; font-style: italic"> create mode 100644 file1.txt</span>
+<span style="color: #000; font-style: italic"> create mode 100644 file2.txt</span>
+</pre></div>
+<h3>Amending the previous commit with new changes</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>forgotten_file.txt
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>--amend
+<span style="color: #000; font-style: italic">[main 1a2b3c4] Add new files and update documentation</span>
+<span style="color: #000; font-style: italic"> 3 files changed, 30 insertions(+), 0 deletions(-)</span>
+<span style="color: #000; font-style: italic"> create mode 100644 file1.txt</span>
+<span style="color: #000; font-style: italic"> create mode 100644 file2.txt</span>
+<span style="color: #000; font-style: italic"> create mode 100644 forgotten_file.txt</span>
+</pre></div>
+<h3>Creating an empty commit</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>--allow-empty<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Trigger CI build&quot;</span>
+<span style="color: #000; font-style: italic">[main 9d8c7b6] Trigger CI build</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Write Meaningful Commit Messages</h3>
+<p>Good commit messages should explain why a change was made, not just what was changed. Use the present tense (&quot;Add feature&quot; not &quot;Added feature&quot;) and keep the first line under 50 characters, followed by a blank line and more detailed explanation if needed.</p>
+<h3>Use Atomic Commits</h3>
+<p>Make each commit a logical unit of work that focuses on a single change. This makes it easier to understand, review, and potentially revert changes later.</p>
+<h3>Verify What You're Committing</h3>
+<p>Before committing, use <code>git status</code> to verify what files are staged and <code>git diff --staged</code> to review the exact changes that will be committed.</p>
+<h3>Sign Your Commits</h3>
+<p>For security-sensitive projects, consider using <code>git commit -S</code> to cryptographically sign your commits, verifying that you are the author.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I undo my last commit?</h4>
+<p>A. Use <code>git reset HEAD~1</code> to undo the commit but keep the changes staged, or <code>git reset --hard HEAD~1</code> to discard the changes completely.</p>
+<h4>Q2. How can I change my commit message after pushing?</h4>
+<p>A. Use <code>git commit --amend</code> to change the message, then <code>git push --force</code> to update the remote (use with caution on shared branches).</p>
+<h4>Q3. What's the difference between <code>git commit</code> and <code>git commit -a</code>?</h4>
+<p>A. <code>git commit</code> only commits changes that have been staged with <code>git add</code>, while <code>git commit -a</code> automatically stages and commits all modified and deleted tracked files.</p>
+<h4>Q4. Can I commit only part of a file's changes?</h4>
+<p>A. Yes, use <code>git add -p</code> to interactively select which changes to stage before committing.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-commit</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

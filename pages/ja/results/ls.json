@@ -1,0 +1,20 @@
+{
+  "id": "msg_01N73njy3CPdmt9nrXCJ1eB7",
+  "content": [
+    {
+      "text": "# ls コマンド\n\nディレクトリの内容を一覧表示します。\n\n## 概要\n\n`ls` コマンドは、指定した場所のファイルとディレクトリを表示します。デフォルトでは、現在の作業ディレクトリの内容をアルファベット順に表示し、隠しファイル（ドットで始まるファイル）は除外します。これはファイルシステムを操作・探索する際に最も頻繁に使用されるコマンドの一つです。\n\n## オプション\n\n### **-l**\n\n詳細情報を長いリスト形式で表示し、ファイルのパーミッション、リンク数、所有者、グループ、サイズ、更新時刻を表示します。\n\n```console\n$ ls -l\ntotal 16\n-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt\ndrwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects\n```\n\n### **-a, --all**\n\n隠しファイル（ドットで始まるファイル）を含むすべてのファイルを表示します。\n\n```console\n$ ls -a\n.  ..  .hidden  document.txt  projects\n```\n\n### **-d, --directory**\n\nディレクトリ自体をリスト表示し、その内容は表示しません。\n\n```console\n$ ls -d */\nprojects/  documents/  downloads/\n```\n\n### **-s, --size**\n\n各ファイルに割り当てられたブロックサイズを表示します。\n\n```console\n$ ls -s\ntotal 16\n8 document.txt  8 projects\n```\n\n### **-t**\n\n更新時刻順にソートし、最新のものを先に表示します。\n\n```console\n$ ls -lt\ntotal 16\n-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt\ndrwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects\n```\n\n### **-r, --reverse**\n\nソート順を逆にします。\n\n```console\n$ ls -ltr\ntotal 16\ndrwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects\n-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt\n```\n\n## 使用例\n\n### 人間が読みやすいサイズでファイルを一覧表示\n\n```console\n$ ls -lh\ntotal 16K\n-rw-r--r--  1 user  staff  1.0K Apr 10 15:30 document.txt\ndrwxr-xr-x  3 user  staff   96B Apr 9  14:22 projects\n```\n\n### ディレクトリのみを一覧表示\n\n```console\n$ ls -ld */\ndrwxr-xr-x 3 user staff 96 Apr 9 14:22 projects/\ndrwxr-xr-x 5 user staff 160 Apr 8 10:15 documents/\n```\n\n### ファイルタイプ別に一覧表示\n\n```console\n$ ls -F\ndocument.txt  projects/  script.sh*\n```\n\n### ディレクトリを再帰的に一覧表示\n\n```console\n$ ls -R\n.:\ndocument.txt  projects\n\n./projects:\nREADME.md  src\n\n./projects/src:\nmain.c  utils.h\n```\n\n## ヒント:\n\n### オプションを組み合わせて強力な一覧表示を実現\n\n`ls -lha` のようにオプションを組み合わせることで、詳細情報と人間が読みやすいサイズで隠しファイルを含むすべてのファイルを表示できます。\n\n### 色分けで視認性を向上\n\n多くのシステムでは `ls` が `ls --color=auto` としてエイリアス設定されており、ファイルタイプごとに色分けされます。設定されていない場合は、シェル設定に追加できます。\n\n### サイズでファイルをソート\n\n`ls -lS` を使用してファイルをサイズ順（大きいものから）にソートすると、容量を多く消費しているファイルを特定するのに役立ちます。\n\n### 出力形式をカスタマイズ\n\n`ls -l --time-style=long-iso` を使用すると、より標準化されたタイムスタンプ形式（YYYY-MM-DD HH:MM）で表示できます。\n\n## よくある質問\n\n#### Q1. ディレクトリのみを一覧表示するにはどうすればよいですか？\nA. 現在の場所のディレクトリのみを一覧表示するには `ls -d */` を使用します。\n\n#### Q2. ファイルサイズをKB、MB等で表示するにはどうすればよいですか？\nA. 人間が読みやすいサイズで表示するには `ls -lh` を使用します。\n\n#### Q3. ファイルを更新時刻順にソートするにはどうすればよいですか？\nA. 更新時刻順（最新のものから）にソートするには `ls -lt` を使用します。\n\n#### Q4. ファイルを再帰的に一覧表示するにはどうすればよいですか？\nA. すべてのファイルとサブディレクトリを再帰的に一覧表示するには `ls -R` を使用します。\n\n#### Q5. 隠しファイルを表示するにはどうすればよいですか？\nA. 隠しファイルを含むすべてのファイルを表示するには `ls -a` を使用します。\n\n## 参考資料\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1236,
+    "output_tokens": 1661
+  }
+}

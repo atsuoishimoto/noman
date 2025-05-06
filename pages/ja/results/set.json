@@ -1,0 +1,20 @@
+{
+  "id": "msg_017uFdoX1w3ZoND4dYzSUNYR",
+  "content": [
+    {
+      "text": "# set コマンド\n\nシェルオプションと位置パラメータを表示または設定します。\n\n## 概要\n\n`set` コマンドは、シェルオプションと位置パラメータを表示または変更するために使用されます。引数なしで実行すると、すべてのシェル変数を表示します。オプションを指定すると、様々な機能を有効化または無効化することでシェルの動作を変更します。また、現在のシェルの位置パラメータ（$1, $2, など）を設定するためにも使用できます。\n\n## オプション\n\n### **-e**\n\nコマンドが非ゼロステータスで終了した場合、即座に終了します。\n\n```console\n$ set -e\n$ non_existent_command\nbash: non_existent_command: command not found\n$ echo \"これは実行されません\"\n[前のエラーによりシェルはすでに終了しています]\n```\n\n### **-x**\n\nコマンドとその引数が実行される際に表示します（トレースモード）。\n\n```console\n$ set -x\n$ echo \"Hello World\"\n+ echo 'Hello World'\nHello World\n```\n\n### **-u**\n\n未設定の変数を置換する際にエラーとして扱います。\n\n```console\n$ set -u\n$ echo $UNDEFINED_VARIABLE\nbash: UNDEFINED_VARIABLE: unbound variable\n```\n\n### **-o pipefail**\n\nパイプラインの戻り値は、非ゼロステータスで終了した最後のコマンドのステータスになります。非ゼロステータスで終了したコマンドがない場合は0になります。\n\n```console\n$ set -o pipefail\n$ false | true\n$ echo $?\n1\n```\n\n### **-**\n\n-x および -v オプションをオフにします。\n\n```console\n$ set -x  # トレースを有効化\n$ echo \"トレース付き\"\n+ echo 'トレース付き'\nトレース付き\n$ set -    # トレースを無効化\n$ echo \"トレースなし\"\nトレースなし\n```\n\n### **--**\n\nオプション処理を終了します。残りの引数は位置パラメータになります。\n\n```console\n$ set -- arg1 arg2 arg3\n$ echo $1 $2 $3\narg1 arg2 arg3\n```\n\n## 使用例\n\n### 位置パラメータの設定\n\n```console\n$ set -- \"最初の引数\" \"2番目の引数\" \"3番目の引数\"\n$ echo $1\n最初の引数\n$ echo $2\n2番目の引数\n$ echo $3\n3番目の引数\n```\n\n### 複数のオプションを一度に有効化\n\n```console\n$ set -exu\n$ echo \"このコマンドはトレースされ、スクリプトはエラーや未設定変数で終了します\"\n+ echo 'このコマンドはトレースされ、スクリプトはエラーや未設定変数で終了します'\nこのコマンドはトレースされ、スクリプトはエラーや未設定変数で終了します\n```\n\n### すべてのシェル変数の表示\n\n```console\n$ set | head -5\nBASH=/bin/bash\nBASHOPTS=checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:force_fignore:histappend:interactive_comments:progcomp:promptvars:sourcepath\nBASH_ALIASES=()\nBASH_ARGC=()\nBASH_ARGV=()\n```\n\n## ヒント:\n\n### シェルスクリプトでの使用\n\nシェルスクリプトの先頭に `set -e` を追加することは、エラーが発生した際に潜在的に不正な実行を続けるのではなく、スクリプトを早期に失敗させるための良い習慣です。\n\n### スクリプトのデバッグ\n\nシェルスクリプトのトラブルシューティングでは、`set -x` が実行されているコマンドとその値を正確に確認するために非常に役立ちます。\n\n### より安全なスクリプト\n\n`set -euo pipefail` の組み合わせは、エラー、未設定変数、パイプライン失敗時に失敗することで、より堅牢なシェルスクリプトを作成するために一般的に使用されます。\n\n### オプションのリセット\n\n`set -x` で有効化されたトレースをオフにするには `set +x` を使用します。プラス記号はマイナス記号で有効化されたオプションを無効化します。\n\n## よくある質問\n\n#### Q1. `set` と `export` の違いは何ですか？\nA. `set` はシェルオプションと位置パラメータを表示/変更するのに対し、`export` は変数を子プロセスで利用可能にします。\n\n#### Q2. 設定したオプションをオフにするにはどうすればよいですか？\nA. `-` の代わりに `+` 記号を使用します。例えば、`set +x` は `set -x` で有効化されたトレースをオフにします。\n\n#### Q3. 現在のすべてのシェル変数を確認するにはどうすればよいですか？\nA. 引数なしで `set` を実行するだけで、すべてのシェル変数が表示されます。\n\n#### Q4. `set -e` は何をしますか？\nA. 非ゼロステータス（エラーを示す）でコマンドが終了した場合、シェルを即座に終了させます。\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1205,
+    "output_tokens": 1638
+  }
+}

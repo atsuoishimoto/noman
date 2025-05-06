@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  until - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>until command</h1>
+<p>Execute a command repeatedly until a condition is met.</p>
+<h2>Overview</h2>
+<p>The <code>until</code> command is a shell construct that repeatedly executes a command block until a specified condition becomes true. Unlike <code>while</code>, which runs while a condition is true, <code>until</code> runs until a condition becomes true. It's useful for creating loops that need to continue until a specific state is reached.</p>
+<h2>Options</h2>
+<p>The <code>until</code> command doesn't have traditional command-line options as it's a shell built-in construct rather than a standalone program.</p>
+<h2>Usage Examples</h2>
+<h3>Basic until loop</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">until</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$counter</span><span style="color: #F8F8F8"> </span>-ge<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Counter: $counter&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   ((counter++))</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Counter: 0</span>
+<span style="color: #000; font-style: italic">Counter: 1</span>
+<span style="color: #000; font-style: italic">Counter: 2</span>
+<span style="color: #000; font-style: italic">Counter: 3</span>
+<span style="color: #000; font-style: italic">Counter: 4</span>
+</pre></div>
+<h3>Waiting for a file to exist</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">until</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/tmp/signal_file<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Waiting for signal file...&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   sleep 5</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">&gt; echo &quot;Signal file found!&quot;</span>
+<span style="color: #000; font-style: italic">Waiting for signal file...</span>
+<span style="color: #000; font-style: italic">Waiting for signal file...</span>
+<span style="color: #000; font-style: italic">Signal file found!</span>
+</pre></div>
+<h3>Waiting for a process to complete</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">process_id</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #000">$!</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">until</span><span style="color: #F8F8F8"> </span>!<span style="color: #F8F8F8"> </span>ps<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #000">$process_id</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Process is still running...&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   sleep 2</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">&gt; echo &quot;Process has completed.&quot;</span>
+<span style="color: #000; font-style: italic">Process is still running...</span>
+<span style="color: #000; font-style: italic">Process is still running...</span>
+<span style="color: #000; font-style: italic">Process has completed.</span>
+</pre></div>
+<h3>Retrying a command until it succeeds</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">until</span><span style="color: #F8F8F8"> </span>ping<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Network not available, retrying in 5 seconds...&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   sleep 5</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">&gt; echo &quot;Network is up!&quot;</span>
+<span style="color: #000; font-style: italic">Network not available, retrying in 5 seconds...</span>
+<span style="color: #000; font-style: italic">Network is up!</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Always Include an Exit Condition</h3>
+<p>Make sure your <code>until</code> loop has a way to eventually satisfy its condition, or it will run indefinitely. Consider adding a maximum number of attempts or a timeout.</p>
+<h3>Use with Command Exit Status</h3>
+<p>The <code>until</code> loop works well with command exit statuses (0 for success, non-zero for failure). For example, <code>until command; do something; done</code> will keep running until <code>command</code> succeeds.</p>
+<h3>Combine with Sleep for Polling</h3>
+<p>When waiting for a condition to change, use <code>sleep</code> inside the loop to prevent excessive CPU usage. This is especially useful when checking for external events.</p>
+<h3>Break Out of Loops When Needed</h3>
+<p>You can use the <code>break</code> command inside an <code>until</code> loop to exit early if a different condition is met before the main condition.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>until</code> and <code>while</code>?</h4>
+<p>A. <code>while</code> executes commands as long as a condition is true, whereas <code>until</code> executes commands as long as a condition is false (until it becomes true).</p>
+<h4>Q2. Can I use <code>until</code> in all shells?</h4>
+<p>A. <code>until</code> is available in most modern shells including bash, zsh, and ksh, but may not be available in more minimal shells like dash or ash.</p>
+<h4>Q3. How do I prevent an infinite loop with <code>until</code>?</h4>
+<p>A. Ensure your condition will eventually become true, or include a counter with a maximum value and use <code>break</code> to exit the loop when the counter is reached.</p>
+<h4>Q4. Can I nest <code>until</code> loops?</h4>
+<p>A. Yes, you can nest <code>until</code> loops inside other loops, including other <code>until</code> loops, <code>while</code> loops, or <code>for</code> loops.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

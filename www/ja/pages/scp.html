@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  scp - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>scpコマンド</h1>
+<p>ネットワーク上のホスト間でSSHを使用してデータ転送を行い、ファイルを安全にコピーします。</p>
+<h2>概要</h2>
+<p><code>scp</code>（secure copy）はSSHの暗号化接続を介してホスト間でファイルを転送します。<code>cp</code>コマンドと同様に動作しますが、リモートシステムとの間でファイルをコピーすることができます。このコマンドは認証、暗号化、ファイル転送を一度の操作で処理するため、安全なファイル転送のための便利なツールです。</p>
+<h2>オプション</h2>
+<h3><strong>-r</strong></h3>
+<p>ディレクトリ全体を再帰的にコピーします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>documents/<span style="color: #F8F8F8"> </span>user@remote:/home/user/backup/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">file1.txt                                 100%  123     1.2KB/s   00:00    </span>
+<span style="color: #000; font-style: italic">file2.txt                                 100%  456     4.5KB/s   00:00</span>
+</pre></div>
+<h3><strong>-P</strong></h3>
+<p>SSH接続に異なるポートを指定します（注：sshが小文字のpを使用するのとは異なり、大文字のPを使用します）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-P<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2222</span><span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span>user@remote:/home/user/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">file.txt                                  100%  789     7.8KB/s   00:00</span>
+</pre></div>
+<h3><strong>-p</strong></h3>
+<p>元のファイルから更新時刻、アクセス時刻、モードを保持します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>important.conf<span style="color: #F8F8F8"> </span>user@remote:/etc/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">important.conf                            100%  321     3.2KB/s   00:00</span>
+</pre></div>
+<h3><strong>-C</strong></h3>
+<p>転送中に圧縮を有効にします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span>largefile.zip<span style="color: #F8F8F8"> </span>user@remote:/home/user/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">largefile.zip                             100%  10MB    5.0MB/s   00:02</span>
+</pre></div>
+<h3><strong>-q</strong></h3>
+<p>静かモード - 進捗メーターと警告/診断メッセージを無効にします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>confidential.pdf<span style="color: #F8F8F8"> </span>user@remote:/home/user/
+<span style="color: #000; font-style: italic">user@remote&#39;s password:</span>
+</pre></div>
+<h3><strong>-i</strong></h3>
+<p>公開鍵認証のためのアイデンティティファイル（秘密鍵）を指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>~/.ssh/mykey.pem<span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span>user@remote:/home/user/
+<span style="color: #000; font-style: italic">file.txt                                  100%  789     7.8KB/s   00:00</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>リモートサーバーにファイルをコピーする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>document.txt<span style="color: #F8F8F8"> </span>user@remote.server.com:/home/user/documents/
+<span style="color: #000; font-style: italic">user@remote.server.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">document.txt                              100%  1234     12.3KB/s   00:00</span>
+</pre></div>
+<h3>リモートサーバーからファイルをコピーする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>user@remote.server.com:/home/user/report.pdf<span style="color: #F8F8F8"> </span>./
+<span style="color: #000; font-style: italic">user@remote.server.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">report.pdf                                100%  5678     56.7KB/s   00:01</span>
+</pre></div>
+<h3>2つのリモートホスト間でコピーする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>user1@source.com:/files/data.txt<span style="color: #F8F8F8"> </span>user2@destination.com:/backup/
+<span style="color: #000; font-style: italic">user1@source.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">user2@destination.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">data.txt                                  100%  2345     23.4KB/s   00:00</span>
+</pre></div>
+<h3>複数のファイルを一度にコピーする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>user@remote:/destination/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">file1.txt                                 100%  123     1.2KB/s   00:00</span>
+<span style="color: #000; font-style: italic">file2.txt                                 100%  456     4.5KB/s   00:00</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>SSHの設定を使用してコマンドを簡略化する</h3>
+<p><code>~/.ssh/config</code>ファイルにホストが定義されている場合、完全なホスト名とユーザー名を入力する代わりにホストエイリアスを使用できます。</p>
+<h3>ファイル名の特殊文字をエスケープする</h3>
+<p>スペースや特殊文字を含むファイル名を指定する場合は、引用符を使用するかバックスラッシュでエスケープしてください。</p>
+<h3>公開鍵認証を使用する</h3>
+<p>SSHキーを設定して、転送ごとにパスワードを入力する必要をなくしましょう。これはより安全で便利です。</p>
+<h3>帯域幅制限</h3>
+<p>低速接続で大きなファイルを転送する場合は、<code>-l</code>オプションを使用して帯域幅の使用量（Kbit/s単位）を制限できます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. scpは通常のcpとどう違いますか？</h4>
+<p>A. <code>scp</code>はSSHを介して異なるホスト間でファイルを安全にコピーするのに対し、<code>cp</code>は同じシステム上でローカルにファイルをコピーするだけです。</p>
+<h4>Q2. 中断された転送を再開できますか？</h4>
+<p>A. いいえ、<code>scp</code>は中断された転送の再開をサポートしていません。その機能が必要な場合は、代わりに<code>rsync</code>の使用を検討してください。</p>
+<h4>Q3. ディレクトリ全体をコピーするにはどうすればよいですか？</h4>
+<p>A. <code>-r</code>（再帰的）オプションを使用します：<code>scp -r /source/directory user@remote:/destination/</code></p>
+<h4>Q4. scpは安全ですか？</h4>
+<p>A. はい、<code>scp</code>は認証と暗号化にSSHを使用するため、信頼されていないネットワーク上でファイルを転送するのに安全です。</p>
+<h4>Q5. なぜscpの転送が遅いのですか？</h4>
+<p>A. <code>-C</code>オプションを使用して圧縮を有効にするか、ネットワーク状態を確認してみてください。小さなファイルが多数ある大きなディレクトリの場合は、最初に<code>tar</code>を使用してアーカイブを作成することを検討してください。</p>
+<h2>参考文献</h2>
+<p>https://man.openbsd.org/scp.1</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

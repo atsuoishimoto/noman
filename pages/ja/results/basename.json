@@ -1,0 +1,20 @@
+{
+  "id": "msg_01GKivDgmtcbNv3nzaCyxUUS",
+  "content": [
+    {
+      "text": "# basename コマンド\n\nパス名からファイル名またはディレクトリ名を抽出します。\n\n## 概要\n\n`basename`はパスからディレクトリ部分と接尾辞を取り除き、ファイル名または最終ディレクトリ名だけを返します。シェルスクリプトでフルパスからファイル名を抽出したり、ファイル拡張子を削除したりする際によく使用されます。\n\n## オプション\n\n### **basename NAME [SUFFIX]**\n\nNAMEからディレクトリ部分と、オプションのSUFFIXを削除します。\n\n```console\n$ basename /usr/bin/sort\nsort\n```\n\n### **basename OPTION... NAME...**\n\n指定されたオプションに従って複数の名前を処理します。\n\n### **-a, --multiple**\n\n複数の引数をサポートし、それぞれをNAMEとして扱います。\n\n```console\n$ basename -a /usr/bin/sort /usr/bin/cut\nsort\ncut\n```\n\n### **-s, --suffix=SUFFIX**\n\n各NAMEから末尾のSUFFIXを削除します。\n\n```console\n$ basename -s .txt file.txt\nfile\n```\n\n### **-z, --zero**\n\n各出力行を改行ではなくNUL文字で終了します。\n\n```console\n$ basename -z /usr/bin/sort | hexdump -C\n00000000  73 6f 72 74 00                                    |sort.|\n00000005\n```\n\n## 使用例\n\n### ディレクトリ部分の削除\n\n```console\n$ basename /home/user/documents/report.pdf\nreport.pdf\n```\n\n### ファイル拡張子の削除\n\n```console\n$ basename /home/user/documents/report.pdf .pdf\nreport\n```\n\n### 同じ接尾辞を持つ複数のファイルの処理\n\n```console\n$ basename -a -s .txt file1.txt file2.txt file3.txt\nfile1\nfile2\nfile3\n```\n\n### シェルスクリプトでの使用\n\n```console\n$ filename=$(basename \"$fullpath\")\n$ echo \"The filename is: $filename\"\nThe filename is: document.pdf\n```\n\n## ヒント:\n\n### `dirname`との併用によるパス操作\n\n`basename`は`dirname`と組み合わせると、パスをコンポーネントに分割する際に便利です：\n```console\n$ path=\"/home/user/documents/report.pdf\"\n$ dirname \"$path\"\n/home/user/documents\n$ basename \"$path\"\nreport.pdf\n```\n\n### スペースを含むパスの処理\n\nパスにスペースが含まれる可能性がある場合は、常に引数を引用符で囲みます：\n```console\n$ basename \"/path/with spaces/file.txt\"\nfile.txt\n```\n\n### 複数の拡張子の削除\n\n複数の拡張子（`.tar.gz`など）を削除するには、複数のコマンドや`sed`などの他のツールを使用する必要があります：\n```console\n$ basename \"archive.tar.gz\" .gz | basename -s .tar\narchive\n```\n\n## よくある質問\n\n#### Q1. `basename`とbashのパラメータ展開を使用する違いは何ですか？\nA. bashでの`${filename##*/}`は同様の機能を実行しますが、`basename`は異なるシェルでも動作し、接尾辞の削除などの追加オプションを提供します。\n\n#### Q2. `basename`は一度に複数のファイルを処理できますか？\nA. はい、`-a`または`--multiple`オプションを使用すると、1つのコマンドで複数のファイル名を処理できます。\n\n#### Q3. `.tar.gz`のような複数の拡張子を削除するにはどうすればよいですか？\nA. `basename`は一度に1つの接尾辞しか削除できません。複数の拡張子の場合は、`basename`を複数回実行するか、他のテキスト処理ツールを使用する必要があります。\n\n#### Q4. `basename`は元のファイルを変更しますか？\nA. いいえ、`basename`は変更された名前を標準出力に出力するだけです。ディスク上のファイルは変更しません。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/basename-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 977,
+    "output_tokens": 1245
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "msg_01XGL4bLaUT4daiQ7Q4LxGEo",
+  "content": [
+    {
+      "text": "# git add コマンド\n\nファイルの内容をインデックス（ステージングエリア）に追加し、次のコミットに備えます。\n\n## 概要\n\n`git add` は、作業ディレクトリ内のファイルの現在の内容で Git インデックス（ステージングエリア）を更新します。変更されたファイルに次のコミットに含めるよう印をつけます。このコマンドは Git ワークフローにとって不可欠であり、どの変更をコミットするか選択的に選ぶことができます。\n\n## オプション\n\n### **-A, --all**\n\n追跡対象および未追跡のすべてのファイルの変更を追加します。\n\n```console\n$ git add -A\n```\n\n### **-u, --update**\n\nすでに追跡対象となっているファイルについてのみインデックスを更新します。\n\n```console\n$ git add -u\n```\n\n### **-p, --patch**\n\nインデックスと作業ツリーの間のパッチの塊（ハンク）を対話的に選択し、それらをインデックスに追加します。\n\n```console\n$ git add -p\ndiff --git a/file.txt b/file.txt\nindex 1234567..abcdefg 100644\n--- a/file.txt\n+++ b/file.txt\n@@ -1,4 +1,5 @@\n Line 1\n Line 2\n+New line added\n Line 3\n Line 4\nStage this hunk [y,n,q,a,d,j,J,g,/,e,?]? \n```\n\n### **-i, --interactive**\n\n変更された内容を対話的に追加します。\n\n```console\n$ git add -i\n           staged     unstaged path\n  1:    unchanged        +2/-0 file1.txt\n  2:    unchanged        +1/-1 file2.txt\n\n*** Commands ***\n  1: status       2: update       3: revert       4: add untracked\n  5: patch        6: diff         7: quit         8: help\nWhat now> \n```\n\n### **-n, --dry-run**\n\n実際にファイルを追加せず、何が起こるかを表示するだけです。\n\n```console\n$ git add -n *.txt\nadd 'document.txt'\nadd 'notes.txt'\n```\n\n### **-f, --force**\n\n通常は無視されるファイルの追加を許可します。\n\n```console\n$ git add -f build/generated.js\n```\n\n### **-v, --verbose**\n\n詳細な情報を表示します。\n\n```console\n$ git add -v *.js\nadd 'app.js'\nadd 'utils.js'\n```\n\n## 使用例\n\n### 特定のファイルを追加する\n\n```console\n$ git add file1.txt file2.txt\n```\n\n### ディレクトリ内のすべてのファイルを追加する\n\n```console\n$ git add src/\n```\n\n### 特定の拡張子を持つすべてのファイルを追加する\n\n```console\n$ git add *.js\n```\n\n### 作業ディレクトリ内のすべての変更を追加する\n\n```console\n$ git add .\n```\n\n## ヒント:\n\n### 正確な制御のためにパッチモードを使用する\n\n`-p`（パッチ）オプションを使用すると、ファイルの一部を確認して選択的にステージングできます。これは、ファイルに複数の変更を加えたが、それらを別々にコミットしたい場合に便利です。\n\n### 追加されるものを確認する\n\nコミットする前に、`git status` を使用してどの変更がステージングされているかを確認しましょう。これにより、意図しない変更を誤ってコミットするのを防ぐことができます。\n\n### リセットでステージングを取り消す\n\n誤ってファイルをステージングした場合は、`git reset HEAD <file>` でステージングを解除できます。\n\n### 複雑な変更には対話モードを使用する\n\n多くの変更ファイルがあるリポジトリでは、`-i`（対話）モードを使用すると、メニュー駆動のインターフェースで選択的に変更をステージングできます。\n\n## よくある質問\n\n#### Q1. `git add .` と `git add -A` の違いは何ですか？\nA. `git add .` は現在のディレクトリとそのサブディレクトリのすべての変更を追加しますが、`git add -A` は現在のディレクトリに関係なく、作業ツリー全体の変更を追加します。\n\n#### Q2. 未追跡のファイルではなく、変更されたファイルと削除されたファイルのみを追加するにはどうすればよいですか？\nA. `git add -u` または `git add --update` を使用します。\n\n#### Q3. 追加しようとしている変更を確認するにはどうすればよいですか？\nA. `git add -n`（ドライラン）を使用して実際に追加せずに何が追加されるかを確認するか、`git diff` を使用して変更の詳細を確認します。\n\n#### Q4. ファイルを追加した後、再び変更した場合はどうなりますか？\nA. `git add` を実行した時点で存在していた変更のみがステージングされます。新しい変更は別の `git add` コマンドで追加する必要があります。\n\n## 参考文献\n\nhttps://git-scm.com/docs/git-add\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1175,
+    "output_tokens": 1582
+  }
+}

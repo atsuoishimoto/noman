@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  egrep - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>egrep コマンド</h1>
+<p>拡張正規表現を使用してパターンを検索します。</p>
+<h2>概要</h2>
+<p><code>egrep</code> はファイル内のテキストパターンを拡張正規表現を使って検索するパターンマッチングツールです。機能的には <code>grep -E</code> と同等であり、標準の <code>grep</code> よりも強力なパターンマッチング機能を提供します。このコマンドは指定されたパターンに一致する行を出力します。</p>
+<h2>オプション</h2>
+<h3><strong>-i, --ignore-case</strong></h3>
+<p>パターンと入力データの大文字と小文字の区別を無視します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">Error: Connection refused</span>
+<span style="color: #000; font-style: italic">WARNING: error in line 42</span>
+<span style="color: #000; font-style: italic">System error detected</span>
+</pre></div>
+<h3><strong>-v, --invert-match</strong></h3>
+<p>一致しない行を選択します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">Connection established successfully</span>
+<span style="color: #000; font-style: italic">System started at 10:00 AM</span>
+<span style="color: #000; font-style: italic">All processes running normally</span>
+</pre></div>
+<h3><strong>-c, --count</strong></h3>
+<p>ファイルごとに一致する行数のみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">3</span>
+</pre></div>
+<h3><strong>-n, --line-number</strong></h3>
+<p>出力の各行の先頭に入力ファイル内の行番号を付けます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">5:error: file not found</span>
+<span style="color: #000; font-style: italic">12:system error occurred</span>
+<span style="color: #000; font-style: italic">27:error code: 404</span>
+</pre></div>
+<h3><strong>-l, --files-with-matches</strong></h3>
+<p>一致を含むファイル名のみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>*.log
+<span style="color: #000; font-style: italic">app.log</span>
+<span style="color: #000; font-style: italic">system.log</span>
+<span style="color: #000; font-style: italic">error.log</span>
+</pre></div>
+<h3><strong>-o, --only-matching</strong></h3>
+<p>パターンに一致する部分のみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error[0-9]+&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">error404</span>
+<span style="color: #000; font-style: italic">error500</span>
+</pre></div>
+<h3><strong>-r, --recursive</strong></h3>
+<p>各ディレクトリ下のすべてのファイルを再帰的に読み込みます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;password&quot;</span><span style="color: #F8F8F8"> </span>/home/user/
+<span style="color: #000; font-style: italic">/home/user/config.txt:password=123456</span>
+<span style="color: #000; font-style: italic">/home/user/notes/secret.txt:my password is qwerty</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なパターンマッチング</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;apple|orange&quot;</span><span style="color: #F8F8F8"> </span>fruits.txt
+<span style="color: #000; font-style: italic">apple</span>
+<span style="color: #000; font-style: italic">orange</span>
+<span style="color: #000; font-style: italic">mixed apple juice</span>
+<span style="color: #000; font-style: italic">fresh orange</span>
+</pre></div>
+<h3>文字クラスの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;[0-9]+&quot;</span><span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">42</span>
+<span style="color: #000; font-style: italic">123</span>
+<span style="color: #000; font-style: italic">7890</span>
+</pre></div>
+<h3>量指定子の使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;a{2,}&quot;</span><span style="color: #F8F8F8"> </span>words.txt
+<span style="color: #000; font-style: italic">aardvark</span>
+<span style="color: #000; font-style: italic">baaad</span>
+<span style="color: #000; font-style: italic">shaaa</span>
+</pre></div>
+<h3>複数のオプションの組み合わせ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-in<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error|warning&quot;</span><span style="color: #F8F8F8"> </span>--color<span style="color: #CE5C00; font-weight: bold">=</span>auto<span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">3:WARNING: disk space low</span>
+<span style="color: #000; font-style: italic">7:error: connection timeout</span>
+<span style="color: #000; font-style: italic">15:WARNING: memory usage high</span>
+<span style="color: #000; font-style: italic">22:error: invalid input</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>拡張正規表現を使用する</h3>
+<p><code>egrep</code> は <code>+</code>、<code>?</code>、<code>|</code>、<code>()</code>、<code>{}</code> などの強力な正規表現機能をエスケープせずにサポートしているため、複雑なパターンマッチングが容易になります。</p>
+<h3>一致箇所を色付けする</h3>
+<p><code>--color=auto</code> を使用して一致するテキストを色付けすることで、大量の出力の中で一致箇所を見つけやすくなります。</p>
+<h3>他のコマンドと組み合わせる</h3>
+<p>他のコマンドの出力を <code>egrep</code> にパイプして結果をフィルタリングできます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>aux<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;(firefox|chrome)&quot;</span>
+</pre></div>
+<h3>単語境界を使用する</h3>
+<p>完全な単語のみを一致させるには、単語境界 <code>\b</code> を使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;\berror\b&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>grep</code> と <code>egrep</code> の違いは何ですか？</h4>
+<p>A. <code>egrep</code> は <code>grep -E</code> と同等で、拡張正規表現を使用します。拡張正規表現では、バックスラッシュを必要とせずに <code>+</code>、<code>?</code>、<code>|</code> などの追加のメタ文字をサポートしています。</p>
+<h4>Q2. 複数のパターンを検索するにはどうすればよいですか？</h4>
+<p>A. パイプ記号（<code>|</code>）を使用して代替パターンを検索します：<code>egrep &quot;pattern1|pattern2&quot; file.txt</code></p>
+<h4>Q3. ディレクトリ内のすべてのファイルでパターンを検索するにはどうすればよいですか？</h4>
+<p>A. 再帰オプションを使用します：<code>egrep -r &quot;pattern&quot; directory/</code></p>
+<h4>Q4. 特定のファイルを検索から除外するにはどうすればよいですか？</h4>
+<p>A. <code>--exclude</code> または <code>--exclude-dir</code> オプションを使用します：<code>egrep -r &quot;pattern&quot; --exclude=&quot;*.log&quot; directory/</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/grep/manual/grep.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/06 -o, --only-matching オプションを追加</li>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

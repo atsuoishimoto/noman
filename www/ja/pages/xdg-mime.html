@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  xdg-mime - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>xdg-mime コマンド</h1>
+<p>デスクトップ環境でファイルタイプの関連付けを照会または設定します。</p>
+<h2>概要</h2>
+<p><code>xdg-mime</code> は、Linux デスクトップ環境でファイルタイプの関連付けを管理するためのコマンドラインツールです。特定のファイルタイプ（MIME タイプ）に関連付けられたアプリケーションの照会、ファイルタイプのデフォルトアプリケーションの設定、システムへの新しい MIME タイプ情報の追加などが可能です。</p>
+<h2>オプション</h2>
+<h3><strong>query default</strong></h3>
+<p>MIME タイプのデフォルトアプリケーションを照会します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>query<span style="color: #F8F8F8"> </span>default<span style="color: #F8F8F8"> </span>text/plain
+<span style="color: #000; font-style: italic">gedit.desktop</span>
+</pre></div>
+<h3><strong>query filetype</strong></h3>
+<p>ファイルの MIME タイプを判定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>query<span style="color: #F8F8F8"> </span>filetype<span style="color: #F8F8F8"> </span>document.pdf
+<span style="color: #000; font-style: italic">application/pdf</span>
+</pre></div>
+<h3><strong>default</strong></h3>
+<p>MIME タイプのデフォルトアプリケーションを設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>default<span style="color: #F8F8F8"> </span>firefox.desktop<span style="color: #F8F8F8"> </span>text/html
+</pre></div>
+<h3><strong>install</strong></h3>
+<p>XML ファイルから新しい MIME 情報をインストールします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>--mode<span style="color: #F8F8F8"> </span>user<span style="color: #F8F8F8"> </span>myapplication-mime.xml
+</pre></div>
+<h3><strong>uninstall</strong></h3>
+<p>MIME 情報を削除します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>uninstall<span style="color: #F8F8F8"> </span>--mode<span style="color: #F8F8F8"> </span>user<span style="color: #F8F8F8"> </span>myapplication-mime.xml
+</pre></div>
+<h2>使用例</h2>
+<h3>Firefox をデフォルトブラウザとして設定する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>default<span style="color: #F8F8F8"> </span>firefox.desktop<span style="color: #F8F8F8"> </span>x-scheme-handler/http
+<span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>default<span style="color: #F8F8F8"> </span>firefox.desktop<span style="color: #F8F8F8"> </span>x-scheme-handler/https
+</pre></div>
+<h3>PDF ファイルを開くアプリケーションを確認する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>query<span style="color: #F8F8F8"> </span>default<span style="color: #F8F8F8"> </span>application/pdf
+<span style="color: #000; font-style: italic">okular.desktop</span>
+</pre></div>
+<h3>ファイルの MIME タイプを確認する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-mime<span style="color: #F8F8F8"> </span>query<span style="color: #F8F8F8"> </span>filetype<span style="color: #F8F8F8"> </span>~/Downloads/presentation.pptx
+<span style="color: #000; font-style: italic">application/vnd.openxmlformats-officedocument.presentationml.presentation</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>デスクトップファイルの場所</h3>
+<p>デスクトップファイルは通常 <code>/usr/share/applications/</code> または <code>~/.local/share/applications/</code> にあります。デフォルトアプリケーションを設定する際にはこれらのファイルを参照する必要があります。</p>
+<h3>カスタム MIME タイプの作成</h3>
+<p>XML ファイルを作成し、<code>xdg-mime install</code> でインストールすることでカスタム MIME タイプを作成できます。これは特殊なファイル形式を扱うアプリケーションに役立ちます。</p>
+<h3>システム設定とユーザー設定</h3>
+<p><code>--mode user</code> を使用すると現在のユーザーのみに変更が適用され、<code>--mode system</code> を使用するとシステム全体に変更が適用されます（root 権限が必要です）。</p>
+<h2>よくある質問</h2>
+<h4>Q1. ファイルの MIME タイプを調べるにはどうすればよいですか？</h4>
+<p>A. <code>xdg-mime query filetype ファイル名</code> を使用して MIME タイプを判定できます。</p>
+<h4>Q2. ファイルタイプのデフォルトアプリケーションを設定するにはどうすればよいですか？</h4>
+<p>A. <code>xdg-mime default アプリケーション.desktop MIMEタイプ</code> を使用します。アプリケーション.desktop はデスクトップファイル、MIMEタイプは MIME タイプです。</p>
+<h4>Q3. MIME タイプの関連付けはどこに保存されますか？</h4>
+<p>A. ユーザー固有の関連付けは <code>~/.config/mimeapps.list</code> に、システム全体の関連付けは <code>/usr/share/applications/mimeapps.list</code> に保存されます。</p>
+<h4>Q4. ファイルの関連付けをシステムのデフォルトにリセットするにはどうすればよいですか？</h4>
+<p>A. <code>~/.config/mimeapps.list</code> ファイルから関連するエントリを削除します。</p>
+<h2>参考文献</h2>
+<p>https://portland.freedesktop.org/doc/xdg-mime.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

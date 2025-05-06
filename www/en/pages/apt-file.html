@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  apt-file - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>apt-file command</h1>
+<p>Search for files within packages in the APT package management system.</p>
+<h2>Overview</h2>
+<p>apt-file is a command-line utility for Debian-based systems that allows users to search for files in packages, even if they are not installed. It's particularly useful for finding which package provides a specific file, or for exploring the contents of packages before installation.</p>
+<h2>Options</h2>
+<h3><strong>search</strong></h3>
+<p>Search for packages containing files matching the pattern</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>/usr/bin/python3
+<span style="color: #000; font-style: italic">python3-minimal: /usr/bin/python3</span>
+</pre></div>
+<h3><strong>list</strong></h3>
+<p>List files in the specified package</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>list<span style="color: #F8F8F8"> </span>python3-minimal
+<span style="color: #000; font-style: italic">python3-minimal: /usr/bin/python3</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/share/doc/python3-minimal/README.Debian</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/share/doc/python3-minimal/changelog.Debian.gz</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/share/doc/python3-minimal/copyright</span>
+</pre></div>
+<h3><strong>-a, --architecture</strong></h3>
+<p>Specify the architecture to search</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>amd64<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>libssl.so
+<span style="color: #000; font-style: italic">libssl-dev: /usr/lib/x86_64-linux-gnu/libssl.so</span>
+</pre></div>
+<h3><strong>-F, --fixed-string</strong></h3>
+<p>Do not interpret pattern as a regular expression</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-F<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;libssl.so.1.1&quot;</span>
+<span style="color: #000; font-style: italic">libssl1.1: /usr/lib/x86_64-linux-gnu/libssl.so.1.1</span>
+</pre></div>
+<h3><strong>-l, --package-only</strong></h3>
+<p>Display only package names, not file paths</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>/usr/bin/python3
+<span style="color: #000; font-style: italic">python3-minimal</span>
+</pre></div>
+<h3><strong>-x, --regexp</strong></h3>
+<p>Interpret pattern as a regular expression (default)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;^/usr/bin/py.*3</span>$<span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/bin/python3</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Display more information during operation</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>/usr/bin/python3
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">python3-minimal: /usr/bin/python3</span>
+</pre></div>
+<h3><strong>update</strong></h3>
+<p>Update the contents database</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt-file<span style="color: #F8F8F8"> </span>update
+<span style="color: #000; font-style: italic">Downloading complete file https://deb.debian.org/debian/dists/bookworm/Contents-amd64.gz</span>
+<span style="color: #8F5902">  % </span>Total<span style="color: #F8F8F8">    </span>%<span style="color: #F8F8F8"> </span>Received<span style="color: #F8F8F8"> </span>%<span style="color: #F8F8F8"> </span>Xferd<span style="color: #F8F8F8">  </span>Average<span style="color: #F8F8F8"> </span>Speed<span style="color: #F8F8F8">   </span>Time<span style="color: #F8F8F8">    </span>Time<span style="color: #F8F8F8">     </span>Time<span style="color: #F8F8F8">  </span>Current
+<span style="color: #000; font-style: italic">                                 Dload  Upload   Total   Spent    Left  Speed</span>
+<span style="color: #000; font-style: italic">100 45.2M  100 45.2M    0     0  5215k      0  0:00:08  0:00:08 --:--:-- 6123k</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Finding which package provides a specific file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>/usr/bin/convert
+<span style="color: #000; font-style: italic">imagemagick-6.q16: /usr/bin/convert</span>
+</pre></div>
+<h3>Listing all files in a package</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>list<span style="color: #F8F8F8"> </span>wget
+<span style="color: #000; font-style: italic">wget: /etc/wgetrc</span>
+<span style="color: #000; font-style: italic">wget: /usr/bin/wget</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/doc/wget/AUTHORS</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/doc/wget/COPYING</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/doc/wget/NEWS.gz</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/doc/wget/README</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/info/wget.info.gz</span>
+<span style="color: #000; font-style: italic">wget: /usr/share/man/man1/wget.1.gz</span>
+</pre></div>
+<h3>Finding header files for development</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;include/openssl/ssl.h&quot;</span>
+<span style="color: #000; font-style: italic">libssl-dev: /usr/include/openssl/ssl.h</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Update the Database First</h3>
+<p>Always run <code>sudo apt-file update</code> before using apt-file, especially after system updates or if you haven't used it recently. This ensures you have the latest package information.</p>
+<h3>Use with grep for Complex Filtering</h3>
+<p>Combine apt-file with grep for more complex filtering:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>list<span style="color: #F8F8F8"> </span>python3<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;bin/&quot;</span>
+</pre></div>
+<h3>Find Dependencies for Compilation</h3>
+<p>When compiling software that reports missing header files, use apt-file to find which development packages you need to install:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt-file<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>missing_header.h
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between apt-file and dpkg -S?</h4>
+<p>A. dpkg -S only searches installed packages, while apt-file can search all available packages, even those not installed.</p>
+<h4>Q2. How do I install apt-file?</h4>
+<p>A. Run <code>sudo apt install apt-file</code> and then <code>sudo apt-file update</code> to initialize the database.</p>
+<h4>Q3. Why is apt-file search slow?</h4>
+<p>A. apt-file searches through a large database of files. Using more specific search patterns or the -F option can speed up searches.</p>
+<h4>Q4. How often should I update the apt-file database?</h4>
+<p>A. Update whenever you update your package lists with apt update, or at least once a month.</p>
+<h2>References</h2>
+<p>https://manpages.debian.org/bookworm/apt-file/apt-file.1.en.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

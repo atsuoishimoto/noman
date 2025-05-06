@@ -1,0 +1,20 @@
+{
+  "id": "msg_017p6FcLgbDM4xpWhnD7f2wg",
+  "content": [
+    {
+      "text": "# while コマンド\n\n条件が真である限り、コマンドを繰り返し実行します。\n\n## 概要\n\n`while` コマンドはシェルの構文で、指定された条件が真と評価される限り、一連のコマンドを繰り返し実行するループを作成します。固定回数の繰り返し、入力を1行ずつ処理する、または特定の条件が変わるまでコマンドを実行するなどの用途によく使われます。\n\n## オプション\n\n`while` コマンドは独立したプログラムではなくシェル組み込みの構文であるため、従来のコマンドラインオプションはありません。\n\n## 使用例\n\n### 基本的な while ループ\n\n```console\n$ i=1\n$ while [ $i -le 5 ]; do\n>   echo \"Count: $i\"\n>   i=$((i+1))\n> done\nCount: 1\nCount: 2\nCount: 3\nCount: 4\nCount: 5\n```\n\n### ファイルを1行ずつ読み込む\n\n```console\n$ while read line; do\n>   echo \"Line: $line\"\n> done < file.txt\nLine: This is the first line\nLine: This is the second line\nLine: This is the third line\n```\n\n### break 条件付きの無限ループ\n\n```console\n$ while true; do\n>   echo \"Enter a number (0 to exit):\"\n>   read num\n>   if [ \"$num\" -eq 0 ]; then\n>     break\n>   fi\n>   echo \"You entered: $num\"\n> done\nEnter a number (0 to exit):\n5\nYou entered: 5\nEnter a number (0 to exit):\n0\n```\n\n### コマンド出力の処理\n\n```console\n$ ls -1 *.txt | while read file; do\n>   echo \"Processing $file\"\n>   wc -l \"$file\"\n> done\nProcessing document.txt\n      10 document.txt\nProcessing notes.txt\n       5 notes.txt\n```\n\n## ヒント:\n\n### Control-C で無限ループを終了する\n\n無限ループ（`while true; do...`など）を作成し、終了する必要がある場合は、Control-C を押してループを終了します。\n\n### ポーリングのために sleep と組み合わせる\n\n`while` を `sleep` コマンドと一緒に使用して、定期的に条件をチェックします：\n\n```console\n$ while ! ping -c 1 server.example.com &>/dev/null; do\n>   echo \"Server not reachable, waiting...\"\n>   sleep 5\n> done\n```\n\n### 一般的な落とし穴を避ける\n\n決して偽にならない可能性のある条件には注意してください。無限ループが発生する可能性があります。常に条件が最終的に偽と評価される方法があることを確認してください。\n\n### continue を使用して反復をスキップする\n\n`continue` ステートメントは `while` ループ内で使用して、現在の反復の残りをスキップし、次の反復に移動することができます。\n\n## よくある質問\n\n#### Q1. `while` と `until` の違いは何ですか？\nA. `while` は条件が真である限りコマンドを実行しますが、`until` は条件が偽である限りコマンドを実行します。\n\n#### Q2. `while` を使って標準入力から読み込むことはできますか？\nA. はい、リダイレクションなしで `while read line; do ...; done` を使用すると、標準入力から読み込みます。\n\n#### Q3. `while` でカウントダウンタイマーを作るにはどうすればよいですか？\nA. 減少するカウンターを使用します：`count=10; while [ $count -gt 0 ]; do echo $count; count=$((count-1)); sleep 1; done; echo \"Done!\"`\n\n#### Q4. 各反復で複数の値を処理するにはどうすればよいですか？\nA. read コマンドで複数の変数を使用します：`while read name age; do echo \"$name is $age years old\"; done < data.txt`\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1019,
+    "output_tokens": 1205
+  }
+}

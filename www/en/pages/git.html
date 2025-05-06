@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git command</h1>
+<p>Distributed version control system for tracking changes in source code during software development.</p>
+<h2>Overview</h2>
+<p>Git is a distributed version control system that allows multiple developers to work on a project simultaneously. It tracks changes to files, maintains a history of modifications, and facilitates collaboration by enabling users to merge changes from different sources. Git operates primarily through a local repository, with the ability to synchronize with remote repositories.</p>
+<h2>Options</h2>
+<h3><strong>--version</strong></h3>
+<p>Display the version of Git installed.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">git version 2.39.2</span>
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>Display help information for Git or a specific Git command.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">usage: git [--version] [--help] [-C &lt;path&gt;] [-c &lt;name&gt;=&lt;value&gt;]</span>
+<span style="color: #000; font-style: italic">           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]</span>
+<span style="color: #000; font-style: italic">           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]</span>
+<span style="color: #000; font-style: italic">           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]</span>
+<span style="color: #000; font-style: italic">           [--super-prefix=&lt;path&gt;] [--config-env=&lt;name&gt;=&lt;envvar&gt;]</span>
+<span style="color: #000; font-style: italic">           &lt;command&gt; [&lt;args&gt;]</span>
+</pre></div>
+<h3><strong>-C &lt;path&gt;</strong></h3>
+<p>Run Git as if it was started in the specified path.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span>/path/to/repo<span style="color: #F8F8F8"> </span>status
+<span style="color: #000; font-style: italic">On branch main</span>
+<span style="color: #000; font-style: italic">Your branch is up to date with &#39;origin/main&#39;.</span>
+</pre></div>
+<h3><strong>-c &lt;name&gt;=&lt;value&gt;</strong></h3>
+<p>Set a configuration variable for the duration of the command.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>user.name<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;Temporary User&quot;</span><span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Temporary commit&quot;</span>
+<span style="color: #000; font-style: italic">[main 1a2b3c4] Temporary commit</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Initializing a Repository</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>init
+<span style="color: #000; font-style: italic">Initialized empty Git repository in /path/to/project/.git/</span>
+</pre></div>
+<h3>Cloning a Repository</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>clone<span style="color: #F8F8F8"> </span>https://github.com/username/repository.git
+<span style="color: #000; font-style: italic">Cloning into &#39;repository&#39;...</span>
+<span style="color: #000; font-style: italic">remote: Enumerating objects: 125, done.</span>
+<span style="color: #000; font-style: italic">remote: Counting objects: 100% (125/125), done.</span>
+<span style="color: #000; font-style: italic">remote: Compressing objects: 100% (80/80), done.</span>
+<span style="color: #000; font-style: italic">remote: Total 125 (delta 40), reused 120 (delta 35), pack-reused 0</span>
+<span style="color: #000; font-style: italic">Receiving objects: 100% (125/125), 2.01 MiB | 3.50 MiB/s, done.</span>
+<span style="color: #000; font-style: italic">Resolving deltas: 100% (40/40), done.</span>
+</pre></div>
+<h3>Basic Workflow</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Add new file&quot;</span>
+<span style="color: #000; font-style: italic">[main 1a2b3c4] Add new file</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 10 insertions(+)</span>
+<span style="color: #000; font-style: italic"> create mode 100644 file.txt</span>
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push<span style="color: #F8F8F8"> </span>origin<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Enumerating objects: 4, done.</span>
+<span style="color: #000; font-style: italic">Counting objects: 100% (4/4), done.</span>
+<span style="color: #000; font-style: italic">Delta compression using up to 8 threads</span>
+<span style="color: #000; font-style: italic">Compressing objects: 100% (2/2), done.</span>
+<span style="color: #000; font-style: italic">Writing objects: 100% (3/3), 294 bytes | 294.00 KiB/s, done.</span>
+<span style="color: #000; font-style: italic">Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span>
+<span style="color: #000; font-style: italic">To https://github.com/username/repository.git</span>
+<span style="color: #000; font-style: italic">   7f8d922..1a2b3c4  main -&gt; main</span>
+</pre></div>
+<h3>Checking Status and History</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>status
+<span style="color: #000; font-style: italic">On branch main</span>
+<span style="color: #000; font-style: italic">Your branch is up to date with &#39;origin/main&#39;.</span>
+
+<span style="color: #000; font-style: italic">Changes not staged for commit:</span>
+<span style="color: #000; font-style: italic">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span>
+<span style="color: #000; font-style: italic">  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)</span>
+<span style="color: #000; font-style: italic">        modified:   README.md</span>
+
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>log
+<span style="color: #000; font-style: italic">commit 1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0 (HEAD -&gt; main, origin/main)</span>
+<span style="color: #000; font-style: italic">Author: User Name &lt;user@example.com&gt;</span>
+<span style="color: #000; font-style: italic">Date:   Mon May 5 10:00:00 2025 -0700</span>
+
+<span style="color: #000; font-style: italic">    Add new file</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Use Aliases for Common Commands</h3>
+<p>Set up aliases for frequently used commands to save time:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>config<span style="color: #F8F8F8"> </span>--global<span style="color: #F8F8F8"> </span>alias.co<span style="color: #F8F8F8"> </span>checkout
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>config<span style="color: #F8F8F8"> </span>--global<span style="color: #F8F8F8"> </span>alias.br<span style="color: #F8F8F8"> </span>branch
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>config<span style="color: #F8F8F8"> </span>--global<span style="color: #F8F8F8"> </span>alias.ci<span style="color: #F8F8F8"> </span>commit
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>config<span style="color: #F8F8F8"> </span>--global<span style="color: #F8F8F8"> </span>alias.st<span style="color: #F8F8F8"> </span>status
+</pre></div>
+<h3>Stash Changes Temporarily</h3>
+<p>When you need to switch branches but aren't ready to commit:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>stash
+<span style="color: #000; font-style: italic">Saved working directory and index state WIP on main: 1a2b3c4 Latest commit</span>
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>stash<span style="color: #F8F8F8"> </span>pop
+<span style="color: #000; font-style: italic">On branch main</span>
+<span style="color: #000; font-style: italic">Changes not staged for commit:</span>
+<span style="color: #000; font-style: italic">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span>
+<span style="color: #000; font-style: italic">  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)</span>
+<span style="color: #000; font-style: italic">        modified:   file.txt</span>
+</pre></div>
+<h3>Use Interactive Rebase for Cleaning History</h3>
+<p>Combine, edit, or reorder commits before pushing:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>HEAD~3
+</pre></div>
+<h3>Create a .gitignore File</h3>
+<p>Prevent unwanted files from being tracked:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;node_modules/&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>.gitignore
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.log&quot;</span><span style="color: #F8F8F8"> </span>&gt;&gt;<span style="color: #F8F8F8"> </span>.gitignore
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>.gitignore
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Add gitignore file&quot;</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I undo the last commit?</h4>
+<p>A. Use <code>git reset HEAD~1</code> to undo the last commit but keep the changes, or <code>git reset --hard HEAD~1</code> to discard the changes completely.</p>
+<h4>Q2. How do I create a new branch?</h4>
+<p>A. Use <code>git branch branch-name</code> to create a branch and <code>git checkout branch-name</code> to switch to it, or use <code>git checkout -b branch-name</code> to do both in one command.</p>
+<h4>Q3. How do I merge branches?</h4>
+<p>A. First checkout the target branch with <code>git checkout main</code>, then use <code>git merge feature-branch</code> to merge changes from the feature branch.</p>
+<h4>Q4. How do I resolve merge conflicts?</h4>
+<p>A. When conflicts occur, edit the conflicted files to resolve the differences, then <code>git add</code> the resolved files and complete the merge with <code>git commit</code>.</p>
+<h4>Q5. How do I update my local repository with remote changes?</h4>
+<p>A. Use <code>git pull</code> to fetch and merge remote changes, or <code>git fetch</code> followed by <code>git merge</code> for more control.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

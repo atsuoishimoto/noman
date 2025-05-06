@@ -1,0 +1,20 @@
+{
+  "id": "msg_01E6ich7ujyCMEZ7ry2HaCJH",
+  "content": [
+    {
+      "text": "# date コマンド\n\nシステムの日付と時刻を表示または設定します。\n\n## 概要\n\n`date` コマンドは、現在の日付と時刻をさまざまな形式で表示します。スーパーユーザー権限で実行すると、システムの日付と時刻を設定することもできます。このコマンドは高度にカスタマイズ可能で、フォーマット指定子を通じてさまざまな形式での出力が可能です。\n\n## オプション\n\n### **-d, --date=STRING**\n\n'now'ではなく、STRINGで指定された時刻を表示します\n\n```console\n$ date -d \"next Thursday\"\nThu May 12 00:00:00 EDT 2025\n```\n\n### **-f, --file=DATEFILE**\n\n--dateと同様；DATEFILEの各行に対して一度ずつ実行します\n\n```console\n$ echo \"2025-01-01\" > dates.txt\n$ echo \"2025-12-25\" >> dates.txt\n$ date -f dates.txt\nWed Jan  1 00:00:00 EST 2025\nThu Dec 25 00:00:00 EST 2025\n```\n\n### **-I[TIMESPEC], --iso-8601[=TIMESPEC]**\n\nISO 8601形式で日付/時刻を出力します。TIMESPECは'date'（日付のみ）、'hours'、'minutes'、'seconds'、または'ns'を指定できます\n\n```console\n$ date -I\n2025-05-05\n$ date -Iseconds\n2025-05-05T10:30:45-04:00\n```\n\n### **-R, --rfc-email**\n\nRFC 5322形式で日付と時刻を出力します（例：Mon, 14 Aug 2006 02:34:56 -0600）\n\n```console\n$ date -R\nMon, 05 May 2025 10:30:45 -0400\n```\n\n### **-r, --reference=FILE**\n\nFILEの最終更新時刻を表示します\n\n```console\n$ date -r /etc/passwd\nMon May  5 08:15:30 EDT 2025\n```\n\n### **-u, --utc, --universal**\n\n協定世界時（UTC）で表示または設定します\n\n```console\n$ date -u\nMon May  5 14:30:45 UTC 2025\n```\n\n### **+FORMAT**\n\n指定したFORMAT文字列を使用して出力をフォーマットします\n\n```console\n$ date +\"%Y-%m-%d %H:%M:%S\"\n2025-05-05 10:30:45\n```\n\n## 使用例\n\n### カスタムフォーマットで日付を表示する\n\n```console\n$ date \"+Today is %A, %B %d, %Y\"\nToday is Monday, May 05, 2025\n```\n\n### 未来の日付を計算する\n\n```console\n$ date -d \"30 days\"\nWed Jun  4 10:30:45 EDT 2025\n```\n\n### Unixタイムスタンプ（エポックからの秒数）を表示する\n\n```console\n$ date +%s\n1746724245\n```\n\n### Unixタイムスタンプを人間が読める日付に変換する\n\n```console\n$ date -d @1609459200\nFri Jan  1 00:00:00 EST 2021\n```\n\n## ヒント:\n\n### 一般的なフォーマット指定子\n\n- `%Y`: 年（例：2025）\n- `%m`: 月（01-12）\n- `%d`: 月の日（01-31）\n- `%H`: 時（00-23）\n- `%M`: 分（00-59）\n- `%S`: 秒（00-60）\n- `%A`: 曜日の完全名（例：Monday）\n- `%B`: 月の完全名（例：January）\n\n### システム日付の設定\n\nシステム日付を設定するには（root権限が必要）：\n\n```console\n$ sudo date MMDDhhmm[[CC]YY][.ss]\n```\n\n例えば、2025年5月5日10時30分45秒に設定するには：\n\n```console\n$ sudo date 050510302025.45\n```\n\n### バックアップのタイムスタンプ\n\nバックアップファイルを作成する際に、ファイル名にタイムスタンプを含めます：\n\n```console\n$ cp important.txt important.txt.$(date +%Y%m%d_%H%M%S)\n```\n\n## よくある質問\n\n#### Q1. 現在の時刻だけを表示するにはどうすればよいですか？\nA. `date +%T` または `date +\"%H:%M:%S\"` を使用します。\n\n#### Q2. 昨日の日付を取得するにはどうすればよいですか？\nA. `date -d \"yesterday\"` または `date -d \"1 day ago\"` を使用します。\n\n#### Q3. UTC/GMTで日付を表示するにはどうすればよいですか？\nA. `date -u` を使用して現在の時刻をUTCで表示します。\n\n#### Q4. 今から X 日後の日付を計算するにはどうすればよいですか？\nA. `date -d \"+X days\"` を使用します。Xは日数です。\n\n#### Q5. Unixタイムスタンプ（エポック時間）を取得するにはどうすればよいですか？\nA. `date +%s` を使用して1970年1月1日からの秒数を表示します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/date-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1328,
+    "output_tokens": 1573
+  }
+}

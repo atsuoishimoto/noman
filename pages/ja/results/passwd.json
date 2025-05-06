@@ -1,0 +1,20 @@
+{
+  "id": "msg_01Q5GvGYfytSRsB56uQZfqPq",
+  "content": [
+    {
+      "text": "# passwd コマンド\n\nユーザーパスワードを変更します。\n\n## 概要\n\n`passwd` コマンドを使用すると、ユーザーは自分自身のパスワードを変更したり、システム管理者の場合は他のユーザーのパスワードを変更または管理したりすることができます。このコマンドは、ユーザーアカウント情報と暗号化されたパスワードを保存する `/etc/passwd` および `/etc/shadow` ファイルを変更します。\n\n## オプション\n\n### **-d**\n\nユーザーのパスワードを削除します（空にします）。このオプションはroot権限が必要です。\n\n```console\n$ sudo passwd -d username\npasswd: password expiry information changed.\n```\n\n### **-l**\n\n暗号化されたパスワードの先頭に感嘆符を付けることで、指定されたアカウントをロックします。これによりユーザーはログインできなくなります。\n\n```console\n$ sudo passwd -l username\npasswd: password expiry information changed.\n```\n\n### **-u**\n\n感嘆符のプレフィックスを削除して、ロックされたパスワードをロック解除します。\n\n```console\n$ sudo passwd -u username\npasswd: password expiry information changed.\n```\n\n### **-e**\n\nユーザーのパスワードを期限切れにし、次回ログイン時にパスワード変更を強制します。\n\n```console\n$ sudo passwd -e username\npasswd: password expiry information changed.\n```\n\n### **-S**\n\nアカウントのパスワードステータス情報を表示します。\n\n```console\n$ passwd -S username\nusername PS 2025-04-01 0 99999 7 -1\n```\n\n## 使用例\n\n### 自分自身のパスワードを変更する\n\n```console\n$ passwd\nChanging password for user.\nCurrent password: \nNew password: \nRetype new password: \npasswd: all authentication tokens updated successfully.\n```\n\n### 他のユーザーのパスワードを変更する（root権限で）\n\n```console\n$ sudo passwd username\nNew password: \nRetype new password: \npasswd: all authentication tokens updated successfully.\n```\n\n### アカウントのロックとロック解除\n\n```console\n$ sudo passwd -l username\npasswd: password expiry information changed.\n$ sudo passwd -u username\npasswd: password expiry information changed.\n```\n\n## ヒント:\n\n### パスワードの複雑さの要件\n\nほとんどのシステムではパスワードの複雑さのルールが適用されています。強力なパスワードは通常、以下の条件を満たす必要があります：\n- 少なくとも8文字以上の長さ\n- 大文字と小文字を含む\n- 数字と特殊文字を含む\n- 辞書の単語や個人情報に基づいていない\n\n### パスワードステータスの確認\n\n`passwd -S username` を使用して、パスワードがロックされているか、期限切れになっているか、または最後に変更された日時を確認できます。\n\n### パスワードファイル\n\n実際の暗号化されたパスワードは `/etc/passwd` ではなく `/etc/shadow` に保存されています。セキュリティ上の理由から、shadowファイルはrootのみが読み取り可能です。\n\n## よくある質問\n\n#### Q1. 自分のパスワードを変更するにはどうすればよいですか？\nA. 単に `passwd` と入力し、現在のパスワードを入力し、その後新しいパスワードを2回入力するプロンプトに従ってください。\n\n#### Q2. ユーザーに次回ログイン時にパスワードを変更させるにはどうすればよいですか？\nA. `sudo passwd -e username` を使用してユーザーのパスワードを期限切れにします。\n\n#### Q3. 「authentication token manipulation error」とはどういう意味ですか？\nA. これは通常、パスワードファイルのシステム問題または権限不足を示しています。他のユーザーのパスワードを変更できるのはrootのみです。\n\n#### Q4. パスワードなしでユーザーを作成するにはどうすればよいですか？\nA. まず通常のパスワードでユーザーを作成し、その後 `sudo passwd -d username` を使用してパスワードを削除します。\n\n## 参考文献\n\nhttps://man7.org/linux/man-pages/man1/passwd.1.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 906,
+    "output_tokens": 1286
+  }
+}

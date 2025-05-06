@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  lsof - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>lsof command</h1>
+<p>Lists open files and the processes that opened them.</p>
+<h2>Overview</h2>
+<p><code>lsof</code> (list open files) displays information about files that are currently open by processes running on the system. It can show which processes have a particular file open, which files a specific process has open, network connections, and more. This command is invaluable for system troubleshooting, security monitoring, and understanding system resource usage.</p>
+<h2>Options</h2>
+<h3><strong>-p PID</strong></h3>
+<p>Lists all files opened by the specified process ID.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+<span style="color: #000; font-style: italic">COMMAND   PID   USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME</span>
+<span style="color: #000; font-style: italic">bash     1234   user  cwd    DIR    8,1     4096 123456 /home/user</span>
+<span style="color: #000; font-style: italic">bash     1234   user  txt    REG    8,1   940336 789012 /usr/bin/bash</span>
+</pre></div>
+<h3><strong>-i</strong></h3>
+<p>Lists files associated with Internet connections (network files).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic">COMMAND   PID   USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span>
+<span style="color: #000; font-style: italic">chrome   1234   user   52u  IPv4  12345      0t0  TCP localhost:49152-&gt;localhost:http (ESTABLISHED)</span>
+<span style="color: #000; font-style: italic">sshd     5678   root    3u  IPv4  23456      0t0  TCP *:ssh (LISTEN)</span>
+</pre></div>
+<h3><strong>-i:[port]</strong></h3>
+<p>Lists files associated with the specified port.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>-i:22
+<span style="color: #000; font-style: italic">COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span>
+<span style="color: #000; font-style: italic">sshd    1234 root    3u  IPv4  12345      0t0  TCP *:ssh (LISTEN)</span>
+</pre></div>
+<h3><strong>-u username</strong></h3>
+<p>Lists files opened by a specific user.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">COMMAND  PID   USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME</span>
+<span style="color: #000; font-style: italic">bash    1234   john  cwd    DIR    8,1     4096 123456 /home/john</span>
+<span style="color: #000; font-style: italic">chrome  2345   john   10r   REG    8,1    12345 234567 /home/john/Downloads/file.pdf</span>
+</pre></div>
+<h3><strong>-c command</strong></h3>
+<p>Lists files opened by processes with the specified command name.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>chrome
+<span style="color: #000; font-style: italic">COMMAND   PID   USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME</span>
+<span style="color: #000; font-style: italic">chrome   1234   user  cwd    DIR    8,1     4096 123456 /home/user</span>
+<span style="color: #000; font-style: italic">chrome   1234   user  txt    REG    8,1 12345678 234567 /opt/google/chrome/chrome</span>
+</pre></div>
+<h3><strong>-t</strong></h3>
+<p>Displays only process IDs, useful for scripting.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>-i:80
+<span style="color: #000; font-style: italic">1234</span>
+<span style="color: #000; font-style: italic">5678</span>
+</pre></div>
+<h3><strong>+D directory</strong></h3>
+<p>Lists all open files in the specified directory and its subdirectories.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>+D<span style="color: #F8F8F8"> </span>/var/log
+<span style="color: #000; font-style: italic">COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME</span>
+<span style="color: #000; font-style: italic">rsyslogd 123 root    5w   REG    8,1    12345 123456 /var/log/syslog</span>
+<span style="color: #000; font-style: italic">nginx   1234 www     3w   REG    8,1     5678 234567 /var/log/nginx/access.log</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Finding which process is using a specific file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>/var/log/syslog
+<span style="color: #000; font-style: italic">COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME</span>
+<span style="color: #000; font-style: italic">rsyslogd 123 root    5w   REG    8,1    12345 123456 /var/log/syslog</span>
+</pre></div>
+<h3>Finding which process is listening on a specific port</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>TCP:80
+<span style="color: #000; font-style: italic">COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span>
+<span style="color: #000; font-style: italic">nginx   1234 root    6u  IPv4  12345      0t0  TCP *:http (LISTEN)</span>
+</pre></div>
+<h3>Combining multiple options</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>lsof<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>john<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>chrome<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>TCP
+<span style="color: #000; font-style: italic">COMMAND  PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span>
+<span style="color: #000; font-style: italic">chrome  1234  john   52u  IPv4  12345      0t0  TCP localhost:49152-&gt;server:https (ESTABLISHED)</span>
+<span style="color: #000; font-style: italic">chrome  1234  john   60u  IPv4  23456      0t0  TCP localhost:49153-&gt;cdn:https (ESTABLISHED)</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Finding Processes Using Deleted Files</h3>
+<p>When a process has a file open that has been deleted, you can find it with <code>lsof | grep deleted</code>. This is useful for reclaiming disk space by restarting processes holding onto deleted files.</p>
+<h3>Monitoring Network Connections</h3>
+<p>Use <code>lsof -i -P -n</code> to show all network connections with numeric ports and IP addresses. The <code>-P</code> prevents port number to service name conversion, and <code>-n</code> prevents hostname lookups.</p>
+<h3>Finding Memory-Mapped Files</h3>
+<p>Use <code>lsof -a -p PID -d mem</code> to see memory-mapped files for a specific process, which can help understand memory usage patterns.</p>
+<h3>Continuous Monitoring</h3>
+<p>Use <code>lsof -r 2</code> to repeat the listing every 2 seconds, which is useful for monitoring changing file usage patterns.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I find which process is using a specific port?</h4>
+<p>A. Use <code>lsof -i:PORT_NUMBER</code> (e.g., <code>lsof -i:80</code> for HTTP port).</p>
+<h4>Q2. How can I see all network connections?</h4>
+<p>A. Use <code>lsof -i</code> to see all network connections, or <code>lsof -i TCP</code> for TCP connections only.</p>
+<h4>Q3. How do I find all files opened by a specific user?</h4>
+<p>A. Use <code>lsof -u USERNAME</code> to list all files opened by a specific user.</p>
+<h4>Q4. How can I find which processes are accessing a specific directory?</h4>
+<p>A. Use <code>lsof +D /path/to/directory</code> to list all processes accessing files in that directory.</p>
+<h4>Q5. How do I find which process is using a specific file?</h4>
+<p>A. Simply run <code>lsof /path/to/file</code> to see which process has that file open.</p>
+<h2>macOS Considerations</h2>
+<p>On macOS, <code>lsof</code> behavior may differ slightly from Linux versions:</p>
+<ul>
+<li>The output format might have minor differences</li>
+<li>Some options like <code>+D</code> might be slower on macOS due to filesystem differences</li>
+<li>For network connections, consider using <code>lsof -i -P</code> as macOS tends to resolve service names by default</li>
+</ul>
+<h2>References</h2>
+<p>https://www.freebsd.org/cgi/man.cgi?query=lsof</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

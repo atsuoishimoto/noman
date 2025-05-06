@@ -1,0 +1,20 @@
+{
+  "id": "msg_01SNv37sidArFacsNQkZB1XX",
+  "content": [
+    {
+      "text": "# http command\n\nSend arbitrary HTTP requests and display responses.\n\n## Overview\n\nThe `http` command is a user-friendly command-line HTTP client for making HTTP requests. It's part of the HTTPie tool, designed to be more intuitive than curl with colorized output, JSON support, and simpler syntax. It allows testing APIs, debugging web services, and downloading content with minimal typing.\n\n## Options\n\n### **-j, --json**\n\nSubmit data as JSON. Sets the Content-Type header to application/json.\n\n```console\n$ http -j POST example.com name=John age:=30\n```\n\n### **-f, --form**\n\nSubmit data as form-encoded. Sets the Content-Type header to application/x-www-form-urlencoded.\n\n```console\n$ http -f POST example.com name=John age=30\n```\n\n### **-a, --auth**\n\nSpecify username and password for authentication.\n\n```console\n$ http -a username:password example.com\n```\n\n### **-h, --headers**\n\nPrint only the response headers.\n\n```console\n$ http -h example.com\nHTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\nDate: Mon, 05 May 2025 12:00:00 GMT\nServer: nginx\nContent-Length: 1256\n```\n\n### **-v, --verbose**\n\nPrint the whole HTTP exchange (request and response).\n\n```console\n$ http -v example.com\n```\n\n### **-d, --download**\n\nDownload the response body to a file.\n\n```console\n$ http -d example.com/file.pdf\n```\n\n### **--offline**\n\nBuild the request and print it but don't send it.\n\n```console\n$ http --offline POST example.com name=John\n```\n\n## Usage Examples\n\n### Basic GET request\n\n```console\n$ http example.com\nHTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n...\n\n<!doctype html>\n<html>\n...\n</html>\n```\n\n### POST with JSON data\n\n```console\n$ http POST api.example.com/users name=John age:=30 is_active:=true\nHTTP/1.1 201 Created\nContent-Type: application/json\n\n{\n    \"id\": 123,\n    \"name\": \"John\",\n    \"age\": 30,\n    \"is_active\": true\n}\n```\n\n### Using request headers\n\n```console\n$ http example.com User-Agent:MyApp X-API-Token:abc123\n```\n\n### File upload\n\n```console\n$ http POST example.com/upload file@/path/to/file.jpg\n```\n\n## Tips:\n\n### Use `:=` for Non-String JSON Values\n\nWhen sending JSON data, use `:=` for numbers, booleans, and null: `count:=42 active:=true data:=null`\n\n### Redirect Output to Files\n\nUse standard shell redirection to save responses: `http example.com > response.html`\n\n### Use Sessions for Persistent Cookies\n\nUse `--session=name` to maintain cookies between requests: `http --session=logged-in -a user:pass example.com`\n\n### Pretty-Print JSON by Default\n\nHTTPie automatically formats JSON responses for readability with syntax highlighting in the terminal.\n\n## Frequently Asked Questions\n\n#### Q1. How is `http` different from `curl`?\nA. `http` (HTTPie) offers a more intuitive syntax, automatic colorized output, JSON support by default, and generally requires less typing for common operations.\n\n#### Q2. How do I send query parameters?\nA. Add them to the URL with `?` and `&`: `http example.com/search?q=term&page=2` or use the `==` syntax: `http example.com q==term page==2`\n\n#### Q3. How do I send a custom HTTP method?\nA. Simply specify the method before the URL: `http PUT example.com`\n\n#### Q4. How do I follow redirects?\nA. Use the `--follow` option: `http --follow example.com/redirecting-url`\n\n## References\n\nhttps://httpie.io/docs/cli\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1632,
+    "output_tokens": 990
+  }
+}

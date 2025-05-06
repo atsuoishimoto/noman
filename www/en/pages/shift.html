@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  shift - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>shift command</h1>
+<p>Shifts positional parameters in shell scripts, removing the first parameter and renumbering the remaining ones.</p>
+<h2>Overview</h2>
+<p>The <code>shift</code> command is a shell built-in that removes the first positional parameter ($1) and shifts all other parameters down by one position ($2 becomes $1, $3 becomes $2, etc.). This is particularly useful in shell scripts when processing command-line arguments sequentially or when you need to work through a list of parameters.</p>
+<h2>Options</h2>
+<h3><strong>n</strong></h3>
+<p>Shifts parameters by n positions (where n is a positive integer). If n is greater than the number of positional parameters, all parameters are removed.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>a<span style="color: #F8F8F8"> </span>b<span style="color: #F8F8F8"> </span>c<span style="color: #F8F8F8"> </span>d<span style="color: #F8F8F8"> </span>e
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span><span style="color: #F8F8F8"> </span><span style="color: #000">$2</span><span style="color: #F8F8F8"> </span><span style="color: #000">$3</span>
+<span style="color: #000; font-style: italic">a b c</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">shift</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span><span style="color: #F8F8F8"> </span><span style="color: #000">$2</span><span style="color: #F8F8F8"> </span><span style="color: #000">$3</span>
+<span style="color: #000; font-style: italic">c d e</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>apple<span style="color: #F8F8F8"> </span>banana<span style="color: #F8F8F8"> </span>cherry
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span>
+<span style="color: #000; font-style: italic">apple</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">shift</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span>
+<span style="color: #000; font-style: italic">banana</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">shift</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$1</span>
+<span style="color: #000; font-style: italic">cherry</span>
+</pre></div>
+<h3>Processing Command-Line Arguments in a Script</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #8F5902"># </span>process_args.sh
+
+<span style="color: #000; font-style: italic">while [ $# -gt 0 ]; do</span>
+<span style="color: #000; font-style: italic">    echo &quot;Processing: $1&quot;</span>
+<span style="color: #000; font-style: italic">    shift</span>
+<span style="color: #000; font-style: italic">done</span>
+</pre></div>
+<p>When executed:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>./process_args.sh<span style="color: #F8F8F8"> </span>arg1<span style="color: #F8F8F8"> </span>arg2<span style="color: #F8F8F8"> </span>arg3
+<span style="color: #000; font-style: italic">Processing: arg1</span>
+<span style="color: #000; font-style: italic">Processing: arg2</span>
+<span style="color: #000; font-style: italic">Processing: arg3</span>
+</pre></div>
+<h3>Processing Flags and Options</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #8F5902"># </span>process_options.sh
+
+<span style="color: #000; font-style: italic">verbose=0</span>
+<span style="color: #000; font-style: italic">while [ $# -gt 0 ]; do</span>
+<span style="color: #000; font-style: italic">    case &quot;$1&quot; in</span>
+<span style="color: #000; font-style: italic">        -v|--verbose)</span>
+<span style="color: #000; font-style: italic">            verbose=1</span>
+<span style="color: #000; font-style: italic">            shift</span>
+<span style="color: #000; font-style: italic">            ;;</span>
+<span style="color: #000; font-style: italic">        -f|--file)</span>
+<span style="color: #000; font-style: italic">            filename=&quot;$2&quot;</span>
+<span style="color: #000; font-style: italic">            shift 2</span>
+<span style="color: #000; font-style: italic">            ;;</span>
+<span style="color: #000; font-style: italic">        *)</span>
+<span style="color: #000; font-style: italic">            echo &quot;Unknown option: $1&quot;</span>
+<span style="color: #000; font-style: italic">            shift</span>
+<span style="color: #000; font-style: italic">            ;;</span>
+<span style="color: #000; font-style: italic">    esac</span>
+<span style="color: #000; font-style: italic">done</span>
+
+<span style="color: #000; font-style: italic">echo &quot;Verbose mode: $verbose&quot;</span>
+<span style="color: #000; font-style: italic">[ -n &quot;$filename&quot; ] &amp;&amp; echo &quot;Filename: $filename&quot;</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Check Remaining Parameters</h3>
+<p>Use <code>$#</code> to check how many parameters remain. This is useful for validating that enough arguments were provided.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #000; font-style: italic">if [ $# -lt 2 ]; then</span>
+<span style="color: #000; font-style: italic">    echo &quot;Error: Not enough arguments&quot;</span>
+<span style="color: #000; font-style: italic">    exit 1</span>
+<span style="color: #000; font-style: italic">fi</span>
+</pre></div>
+<h3>Preserve Original Arguments</h3>
+<p>If you need to access the original arguments later, save them before shifting:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #000; font-style: italic">all_args=(&quot;$@&quot;)</span>
+<span style="color: #000; font-style: italic">while [ $# -gt 0 ]; do</span>
+<span style="color: #8F5902">    # </span>Process<span style="color: #F8F8F8"> </span>arguments
+<span style="color: #000; font-style: italic">    shift</span>
+<span style="color: #000; font-style: italic">done</span>
+<span style="color: #8F5902"># </span>Later<span style="color: #F8F8F8"> </span>access<span style="color: #F8F8F8"> </span>original<span style="color: #F8F8F8"> </span>args<span style="color: #F8F8F8"> </span>with<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">${</span><span style="color: #000">all_args</span><span style="color: #000; font-weight: bold">[@]</span><span style="color: #4E9A06">}</span>
+</pre></div>
+<h3>Shift with Error Checking</h3>
+<p>When shifting by more than 1, check that enough parameters exist:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #000; font-style: italic">if [ $# -ge 2 ]; then</span>
+<span style="color: #000; font-style: italic">    shift 2</span>
+<span style="color: #000; font-style: italic">else</span>
+<span style="color: #000; font-style: italic">    echo &quot;Not enough parameters to shift&quot;</span>
+<span style="color: #000; font-style: italic">    exit 1</span>
+<span style="color: #000; font-style: italic">fi</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What happens if I use <code>shift</code> when there are no parameters left?</h4>
+<p>A. In most shells, nothing happens - it's not an error. However, it's good practice to check <code>$#</code> before shifting.</p>
+<h4>Q2. Can I use <code>shift</code> outside of a shell script?</h4>
+<p>A. Yes, you can use it in interactive shell sessions, but it's primarily useful in scripts.</p>
+<h4>Q3. Does <code>shift</code> affect environment variables?</h4>
+<p>A. No, it only affects positional parameters ($1, $2, etc.), not environment variables.</p>
+<h4>Q4. How do I shift by more than one position?</h4>
+<p>A. Use <code>shift n</code> where n is the number of positions to shift (e.g., <code>shift 2</code>).</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html#index-shift</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "id": "msg_016aHds4ztYcwAMQEQ8tr2Cy",
+  "content": [
+    {
+      "text": "# pwd command\n\nPrint the full pathname of the current working directory.\n\n## Overview\n\nThe `pwd` command displays the absolute path of the directory you are currently in. This helps you understand your location within the filesystem hierarchy, which is especially useful when navigating between directories or writing scripts that need to reference the current location.\n\n## Options\n\n### **-L, --logical**\n\nPrint the logical current working directory, with symbolic links in the path resolved as encountered (default behavior).\n\n```console\n$ pwd -L\n/home/user/projects\n```\n\n### **-P, --physical**\n\nPrint the physical current working directory, with all symbolic links resolved.\n\n```console\n$ pwd -P\n/var/www/html/projects\n```\n\n## Usage Examples\n\n### Basic usage\n\n```console\n$ pwd\n/home/user/documents\n```\n\n### Using pwd in scripts\n\n```console\n$ echo \"Current directory: $(pwd)\"\nCurrent directory: /home/user/documents\n```\n\n### Comparing logical vs physical paths\n\n```console\n$ cd /home/user/symlink_to_projects\n$ pwd -L\n/home/user/symlink_to_projects\n$ pwd -P\n/home/user/actual/projects\n```\n\n## Tips:\n\n### Use in Shell Scripts\n\nStore the current directory in a variable to reference it later in your script:\n```bash\nCURRENT_DIR=$(pwd)\ncd /some/other/directory\n# Do some work\ncd \"$CURRENT_DIR\"  # Return to original directory\n```\n\n### Avoid Hardcoding Paths\n\nInstead of hardcoding paths in scripts, use `pwd` to make scripts more portable across different systems.\n\n### Troubleshooting Symbolic Links\n\nWhen working with symbolic links, use `pwd -P` to see where files are actually stored on disk, which can help troubleshoot permission issues.\n\n## Frequently Asked Questions\n\n#### Q1. What is the difference between `pwd` and `echo $PWD`?\nA. They typically show the same result, but `$PWD` is an environment variable that stores the current directory path. `pwd` is a command that actively determines the current directory.\n\n#### Q2. Why might `pwd -P` and `pwd -L` show different results?\nA. They differ when your current directory contains symbolic links. `-L` shows the path with symbolic links intact, while `-P` resolves all symbolic links to show the actual physical path.\n\n#### Q3. Does `pwd` work the same on all Unix-like systems?\nA. The basic functionality is the same, but there might be slight differences in available options between GNU/Linux, macOS, and other Unix variants.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/pwd-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 641
+  }
+}

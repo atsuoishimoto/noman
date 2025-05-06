@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ip - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ip コマンド</h1>
+<p>ネットワークインターフェース、ルーティング、アドレスを管理するためのネットワーク設定ツールです。</p>
+<h2>概要</h2>
+<p><code>ip</code> コマンドは、Linuxシステムでネットワークインターフェース、ルーティングテーブル、アドレスを設定・監視するための強力なユーティリティです。iproute2パッケージの一部であり、ifconfig、route、netstatなどの古いネットワークコマンドよりも多くの機能を提供します。このコマンドは、オブジェクト（link、address、routeなど）の後にコマンドとオプションが続く構造化された構文に従います。</p>
+<h2>オプション</h2>
+<h3><strong>help</strong></h3>
+<p>特定のオブジェクトのヘルプ情報を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span><span style="color: #204A87">help</span>
+<span style="color: #000; font-style: italic">Usage: ip [ OPTIONS ] OBJECT { COMMAND | help }</span>
+<span style="color: #000; font-style: italic">       ip [ -force ] -batch filename</span>
+<span style="color: #000; font-style: italic">where  OBJECT := { link | address | addrlabel | route | rule | neigh | ntable |</span>
+<span style="color: #000; font-style: italic">                   tunnel | tuntap | maddress | mroute | mrule | monitor | xfrm |</span>
+<span style="color: #000; font-style: italic">                   netns | l2tp | fou | macsec | tcp_metrics | token | netconf | ila |</span>
+<span style="color: #000; font-style: italic">                   vrf | sr | nexthop | mptcp }</span>
+<span style="color: #000; font-style: italic">       OPTIONS := { -V[ersion] | -s[tatistics] | -d[etails] | -r[esolve] |</span>
+<span style="color: #000; font-style: italic">                    -h[uman-readable] | -iec | -j[son] | -p[retty] |</span>
+<span style="color: #000; font-style: italic">                    -f[amily] { inet | inet6 | mpls | bridge | link } |</span>
+<span style="color: #000; font-style: italic">                    -4 | -6 | -I | -D | -M | -B | -0 |</span>
+<span style="color: #000; font-style: italic">                    -l[oops] { maximum-addr-flush-attempts } | -br[ief] |</span>
+<span style="color: #000; font-style: italic">                    -o[neline] | -t[imestamp] | -ts[hort] | -b[atch] [filename] |</span>
+<span style="color: #000; font-style: italic">                    -rc[vbuf] [size] | -n[etns] name | -N[umeric] | -a[ll] |</span>
+<span style="color: #000; font-style: italic">                    -c[olor]}</span>
+</pre></div>
+<h3><strong>-s, --stats, --statistics</strong></h3>
+<p>より多くの情報/統計を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>link<span style="color: #F8F8F8"> </span>show
+<span style="color: #000; font-style: italic">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000</span>
+<span style="color: #000; font-style: italic">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span style="color: #000; font-style: italic">    RX: bytes  packets  errors  dropped overrun mcast   </span>
+<span style="color: #000; font-style: italic">    3800       38       0       0       0       0       </span>
+<span style="color: #000; font-style: italic">    TX: bytes  packets  errors  dropped carrier collsns </span>
+<span style="color: #000; font-style: italic">    3800       38       0       0       0       0</span>
+</pre></div>
+<h3><strong>-d, --details</strong></h3>
+<p>詳細情報を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>link<span style="color: #F8F8F8"> </span>show
+<span style="color: #000; font-style: italic">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000</span>
+<span style="color: #000; font-style: italic">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00 promiscuity 0 minmtu 0 maxmtu 0 </span>
+<span style="color: #000; font-style: italic">    inet 127.0.0.1/8 scope host lo</span>
+<span style="color: #000; font-style: italic">       valid_lft forever preferred_lft forever</span>
+<span style="color: #000; font-style: italic">    inet6 ::1/128 scope host </span>
+<span style="color: #000; font-style: italic">       valid_lft forever preferred_lft forever</span>
+</pre></div>
+<h3><strong>-h, --human, --human-readable</strong></h3>
+<p>統計を人間が読みやすい形式で表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>link<span style="color: #F8F8F8"> </span>show
+<span style="color: #000; font-style: italic">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000</span>
+<span style="color: #000; font-style: italic">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span style="color: #000; font-style: italic">    RX: bytes  packets  errors  dropped overrun mcast   </span>
+<span style="color: #000; font-style: italic">    3.8K       38       0       0       0       0       </span>
+<span style="color: #000; font-style: italic">    TX: bytes  packets  errors  dropped carrier collsns </span>
+<span style="color: #000; font-style: italic">    3.8K       38       0       0       0       0</span>
+</pre></div>
+<h3><strong>-br, --brief</strong></h3>
+<p>簡潔な出力を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>-br<span style="color: #F8F8F8"> </span>address<span style="color: #F8F8F8"> </span>show
+<span style="color: #000; font-style: italic">lo               UNKNOWN        127.0.0.1/8 ::1/128 </span>
+<span style="color: #000; font-style: italic">eth0             UP             192.168.1.100/24 fe80::a00:27ff:fe74:ddaa/64</span>
+</pre></div>
+<h3><strong>-c, --color</strong></h3>
+<p>カラー出力を使用します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>link<span style="color: #F8F8F8"> </span>show
+<span style="color: #000; font-style: italic">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000</span>
+<span style="color: #000; font-style: italic">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ネットワークインターフェースの表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>link<span style="color: #F8F8F8"> </span>show
+<span style="color: #000; font-style: italic">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000</span>
+<span style="color: #000; font-style: italic">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span style="color: #000; font-style: italic">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000</span>
+<span style="color: #000; font-style: italic">    link/ether 08:00:27:74:dd:aa brd ff:ff:ff:ff:ff:ff</span>
+</pre></div>
+<h3>IPアドレスの表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>address<span style="color: #F8F8F8"> </span>show
+<span style="color: #000; font-style: italic">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span>
+<span style="color: #000; font-style: italic">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span style="color: #000; font-style: italic">    inet 127.0.0.1/8 scope host lo</span>
+<span style="color: #000; font-style: italic">       valid_lft forever preferred_lft forever</span>
+<span style="color: #000; font-style: italic">    inet6 ::1/128 scope host </span>
+<span style="color: #000; font-style: italic">       valid_lft forever preferred_lft forever</span>
+<span style="color: #000; font-style: italic">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span>
+<span style="color: #000; font-style: italic">    link/ether 08:00:27:74:dd:aa brd ff:ff:ff:ff:ff:ff</span>
+<span style="color: #000; font-style: italic">    inet 192.168.1.100/24 brd 192.168.1.255 scope global dynamic eth0</span>
+<span style="color: #000; font-style: italic">       valid_lft 86389sec preferred_lft 86389sec</span>
+<span style="color: #000; font-style: italic">    inet6 fe80::a00:27ff:fe74:ddaa/64 scope link </span>
+<span style="color: #000; font-style: italic">       valid_lft forever preferred_lft forever</span>
+</pre></div>
+<h3>インターフェースにIPアドレスを追加する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>ip<span style="color: #F8F8F8"> </span>address<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.200/24<span style="color: #F8F8F8"> </span>dev<span style="color: #F8F8F8"> </span>eth0
+</pre></div>
+<h3>インターフェースを有効化または無効化する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>ip<span style="color: #F8F8F8"> </span>link<span style="color: #F8F8F8"> </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>eth0<span style="color: #F8F8F8"> </span>up
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>ip<span style="color: #F8F8F8"> </span>link<span style="color: #F8F8F8"> </span><span style="color: #204A87">set</span><span style="color: #F8F8F8"> </span>eth0<span style="color: #F8F8F8"> </span>down
+</pre></div>
+<h3>ルーティングテーブルの表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>route<span style="color: #F8F8F8"> </span>show
+<span style="color: #000; font-style: italic">default via 192.168.1.1 dev eth0 proto dhcp metric 100 </span>
+<span style="color: #000; font-style: italic">192.168.1.0/24 dev eth0 proto kernel scope link src 192.168.1.100 metric 100</span>
+</pre></div>
+<h3>静的ルートの追加</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>ip<span style="color: #F8F8F8"> </span>route<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>.0.0.0/24<span style="color: #F8F8F8"> </span>via<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.254
+</pre></div>
+<h2>ヒント:</h2>
+<h3>簡潔な出力で素早く概要を確認する</h3>
+<p><code>-br</code> オプションを使用すると、ネットワーク情報が簡潔な表形式で表示され、複数のインターフェースを素早く確認できます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>-br<span style="color: #F8F8F8"> </span>link
+<span style="color: #000; font-style: italic">lo               UNKNOWN        00:00:00:00:00:00 &lt;LOOPBACK,UP,LOWER_UP&gt; </span>
+<span style="color: #000; font-style: italic">eth0             UP             08:00:27:74:dd:aa &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;</span>
+</pre></div>
+<h3>IP設定の保存と復元</h3>
+<p>現在のIP設定をファイルに保存し、後で復元することができます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>addr<span style="color: #F8F8F8"> </span>save<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>ip-config.txt
+<span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>addr<span style="color: #F8F8F8"> </span>restore<span style="color: #F8F8F8"> </span>&lt;<span style="color: #F8F8F8"> </span>ip-config.txt
+</pre></div>
+<h3>ネットワーク変更の監視</h3>
+<p><code>ip monitor</code> コマンドを使用して、ネットワークの変更をリアルタイムで監視できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ip<span style="color: #F8F8F8"> </span>monitor
+</pre></div>
+<h3>ネットワーク分離のための名前空間の使用</h3>
+<p>ネットワーク名前空間を使用すると、分離されたネットワーク環境を作成できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>ip<span style="color: #F8F8F8"> </span>netns<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>mynetwork
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>ip<span style="color: #F8F8F8"> </span>netns<span style="color: #F8F8F8"> </span><span style="color: #204A87">exec</span><span style="color: #F8F8F8"> </span>mynetwork<span style="color: #F8F8F8"> </span>ip<span style="color: #F8F8F8"> </span>link<span style="color: #F8F8F8"> </span>list
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>ip</code> と <code>ifconfig</code> の違いは何ですか？</h4>
+<p>A. <code>ip</code> はより新しく、強力で、<code>ifconfig</code> よりも多くの機能を提供します。一貫した構文でルーティングテーブル、ネットワークインターフェース、IPアドレスを管理できます。<code>ifconfig</code> は多くのLinuxディストリビューションで非推奨とされています。</p>
+<h4>Q2. 自分のIPアドレスを確認するにはどうすればよいですか？</h4>
+<p>A. <code>ip address show</code> または短縮形の <code>ip a</code> を使用して、すべてのIPアドレスを表示します。特定のインターフェースについては、<code>ip address show dev eth0</code> を使用します。</p>
+<h4>Q3. 一時的なIPアドレスを追加するにはどうすればよいですか？</h4>
+<p>A. <code>sudo ip address add 192.168.1.200/24 dev eth0</code> を使用して、eth0インターフェースにIPアドレスを追加します。このアドレスは、ネットワーク設定ファイルで設定されていない限り、再起動後に失われます。</p>
+<h4>Q4. インターフェースからすべてのIPアドレスを削除するにはどうすればよいですか？</h4>
+<p>A. <code>sudo ip address flush dev eth0</code> を使用して、eth0インターフェースからすべてのIPアドレスを削除します。</p>
+<h4>Q5. ルーティングテーブルを表示するにはどうすればよいですか？</h4>
+<p>A. <code>ip route show</code> または短縮形の <code>ip r</code> を使用して、ルーティングテーブルを表示します。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man8/ip.8.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

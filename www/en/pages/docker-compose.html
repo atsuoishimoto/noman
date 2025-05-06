@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  docker-compose - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>docker-compose command</h1>
+<p>Define and run multi-container Docker applications.</p>
+<h2>Overview</h2>
+<p>Docker Compose is a tool for defining and running multi-container Docker applications. With a YAML file, you configure your application's services, networks, and volumes, then create and start all services with a single command. It simplifies the process of managing complex applications that require multiple interconnected containers.</p>
+<h2>Options</h2>
+<h3><strong>up</strong></h3>
+<p>Create and start containers defined in the compose file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+<span style="color: #000; font-style: italic">Attaching to myapp_db_1, myapp_redis_1, myapp_web_1</span>
+</pre></div>
+<h3><strong>-d, --detach</strong></h3>
+<p>Run containers in the background</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+</pre></div>
+<h3><strong>down</strong></h3>
+<p>Stop and remove containers, networks, images, and volumes</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>down
+<span style="color: #000; font-style: italic">Stopping myapp_web_1   ... done</span>
+<span style="color: #000; font-style: italic">Stopping myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Stopping myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Removing myapp_web_1   ... done</span>
+<span style="color: #000; font-style: italic">Removing myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Removing myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Removing network myapp_default</span>
+</pre></div>
+<h3><strong>ps</strong></h3>
+<p>List containers</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>ps
+<span style="color: #000; font-style: italic">     Name                    Command               State           Ports         </span>
+<span style="color: #000; font-style: italic">--------------------------------------------------------------------------------</span>
+<span style="color: #000; font-style: italic">myapp_db_1      docker-entrypoint.sh mysqld      Up      3306/tcp, 33060/tcp</span>
+<span style="color: #000; font-style: italic">myapp_redis_1   docker-entrypoint.sh redis ...   Up      6379/tcp              </span>
+<span style="color: #000; font-style: italic">myapp_web_1     docker-entrypoint.sh npm start   Up      0.0.0.0:3000-&gt;3000/tcp</span>
+</pre></div>
+<h3><strong>logs</strong></h3>
+<p>View output from containers</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>logs
+<span style="color: #000; font-style: italic">Attaching to myapp_web_1, myapp_redis_1, myapp_db_1</span>
+<span style="color: #000; font-style: italic">web_1    | &gt; myapp@1.0.0 start</span>
+<span style="color: #000; font-style: italic">web_1    | &gt; node server.js</span>
+<span style="color: #000; font-style: italic">web_1    | Server listening on port 3000</span>
+<span style="color: #000; font-style: italic">db_1     | 2023-05-05T12:34:56.789Z 0 [Note] mysqld: ready for connections.</span>
+</pre></div>
+<h3><strong>-f, --follow</strong></h3>
+<p>Follow log output (with logs command)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>logs<span style="color: #F8F8F8"> </span>-f
+<span style="color: #000; font-style: italic">Attaching to myapp_web_1, myapp_redis_1, myapp_db_1</span>
+<span style="color: #000; font-style: italic">web_1    | &gt; myapp@1.0.0 start</span>
+<span style="color: #000; font-style: italic">web_1    | &gt; node server.js</span>
+<span style="color: #000; font-style: italic">web_1    | Server listening on port 3000</span>
+</pre></div>
+<h3><strong>build</strong></h3>
+<p>Build or rebuild services</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>build
+<span style="color: #000; font-style: italic">Building web</span>
+<span style="color: #000; font-style: italic">Step 1/10 : FROM node:14</span>
+<span style="color: #000; font-style: italic"> ---&gt; 1234567890ab</span>
+<span style="color: #000; font-style: italic">Step 2/10 : WORKDIR /app</span>
+<span style="color: #000; font-style: italic"> ---&gt; Using cache</span>
+<span style="color: #000; font-style: italic"> ---&gt; abcdef123456</span>
+<span style="color: #000; font-style: italic">...</span>
+<span style="color: #000; font-style: italic">Successfully built 0123456789ab</span>
+<span style="color: #000; font-style: italic">Successfully tagged myapp_web:latest</span>
+</pre></div>
+<h3><strong>exec</strong></h3>
+<p>Execute a command in a running container</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span><span style="color: #204A87">exec</span><span style="color: #F8F8F8"> </span>web<span style="color: #F8F8F8"> </span>npm<span style="color: #F8F8F8"> </span><span style="color: #204A87">test</span>
+<span style="color: #000; font-style: italic">&gt; myapp@1.0.0 test</span>
+<span style="color: #000; font-style: italic">&gt; jest</span>
+
+<span style="color: #000; font-style: italic">PASS  ./app.test.js</span>
+<span style="color: #000; font-style: italic">  ✓ should return 200 (32ms)</span>
+
+<span style="color: #000; font-style: italic">Test Suites: 1 passed, 1 total</span>
+<span style="color: #000; font-style: italic">Tests:       1 passed, 1 total</span>
+</pre></div>
+<h3><strong>-f, --file</strong></h3>
+<p>Specify an alternate compose file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>docker-compose.prod.yml<span style="color: #F8F8F8"> </span>up<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Starting a development environment</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+<span style="color: #000; font-style: italic">Attaching to myapp_db_1, myapp_redis_1, myapp_web_1</span>
+</pre></div>
+<h3>Rebuilding and starting services</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up<span style="color: #F8F8F8"> </span>--build
+<span style="color: #000; font-style: italic">Building web</span>
+<span style="color: #000; font-style: italic">Step 1/10 : FROM node:14</span>
+<span style="color: #000; font-style: italic">...</span>
+<span style="color: #000; font-style: italic">Successfully built 0123456789ab</span>
+<span style="color: #000; font-style: italic">Successfully tagged myapp_web:latest</span>
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+</pre></div>
+<h3>Running a one-off command in a service container</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>web<span style="color: #F8F8F8"> </span>npm<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>express
+<span style="color: #000; font-style: italic">Creating myapp_web_run ... done</span>
+<span style="color: #000; font-style: italic">+ express@4.18.2</span>
+<span style="color: #000; font-style: italic">added 57 packages in 2.5s</span>
+</pre></div>
+<h3>Scaling a service</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>--scale<span style="color: #F8F8F8"> </span><span style="color: #000">web</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">3</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_2 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_3 ... done</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Environment Variables</h3>
+<p>Store sensitive information like passwords and API keys in a <code>.env</code> file instead of hardcoding them in your compose file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>.env
+<span style="color: #000; font-style: italic">DB_PASSWORD=secretpassword</span>
+<span style="color: #000; font-style: italic">API_KEY=1234567890abcdef</span>
+</pre></div>
+<h3>Override Default Compose File</h3>
+<p>Create a <code>docker-compose.override.yml</code> file for development-specific settings that will automatically be used alongside the base <code>docker-compose.yml</code> file.</p>
+<h3>Use Named Volumes for Persistence</h3>
+<p>Named volumes preserve data between container restarts and rebuilds:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">volumes</span><span style="color: #000; font-weight: bold">:</span>
+<span style="color: #F8F8F8">  </span><span style="color: #204A87; font-weight: bold">db_data</span><span style="color: #000; font-weight: bold">:</span>
+
+<span style="color: #204A87; font-weight: bold">services</span><span style="color: #000; font-weight: bold">:</span>
+<span style="color: #F8F8F8">  </span><span style="color: #204A87; font-weight: bold">db</span><span style="color: #000; font-weight: bold">:</span>
+<span style="color: #F8F8F8">    </span><span style="color: #204A87; font-weight: bold">image</span><span style="color: #000; font-weight: bold">:</span><span style="color: #F8F8F8"> </span><span style="color: #000">postgres</span>
+<span style="color: #F8F8F8">    </span><span style="color: #204A87; font-weight: bold">volumes</span><span style="color: #000; font-weight: bold">:</span>
+<span style="color: #F8F8F8">      </span><span style="color: #000; font-weight: bold">-</span><span style="color: #F8F8F8"> </span><span style="color: #000">db_data:/var/lib/postgresql/data</span>
+</pre></div>
+<h3>Use Version Control for Compose Files</h3>
+<p>Keep your compose files in version control to track changes and collaborate with team members.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>docker-compose up</code> and <code>docker-compose run</code>?</h4>
+<p>A. <code>up</code> starts all services defined in the compose file, while <code>run</code> starts a specific service and runs a one-off command.</p>
+<h4>Q2. How do I update a single service?</h4>
+<p>A. Use <code>docker-compose up --build &lt;service_name&gt;</code> to rebuild and update a specific service.</p>
+<h4>Q3. How can I view logs for a specific service?</h4>
+<p>A. Use <code>docker-compose logs &lt;service_name&gt;</code> to view logs for a specific service.</p>
+<h4>Q4. How do I stop services without removing containers?</h4>
+<p>A. Use <code>docker-compose stop</code> to stop services without removing containers, networks, or volumes.</p>
+<h4>Q5. How can I run docker-compose in production?</h4>
+<p>A. While docker-compose can be used in production, Docker Swarm or Kubernetes are often better choices for production deployments. If using compose, create a production-specific compose file with appropriate settings.</p>
+<h2>References</h2>
+<p>https://docs.docker.com/compose/reference/</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

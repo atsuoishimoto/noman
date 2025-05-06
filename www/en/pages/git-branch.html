@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-branch - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git-branch command</h1>
+<p>List, create, or delete branches in a Git repository.</p>
+<h2>Overview</h2>
+<p>The <code>git branch</code> command manages branches in a Git repository. It allows you to create new branches, list existing ones, rename branches, and delete branches that are no longer needed. Branches are lightweight pointers to commits that enable parallel development workflows.</p>
+<h2>Options</h2>
+<h3><strong>-a, --all</strong></h3>
+<p>List both remote-tracking branches and local branches.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">* main</span>
+<span style="color: #000; font-style: italic">  feature-login</span>
+<span style="color: #000; font-style: italic">  remotes/origin/main</span>
+<span style="color: #000; font-style: italic">  remotes/origin/feature-login</span>
+</pre></div>
+<h3><strong>-d, --delete</strong></h3>
+<p>Delete a branch. The branch must be fully merged in its upstream branch, or in HEAD if no upstream was set.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>feature-done
+<span style="color: #000; font-style: italic">Deleted branch feature-done (was 3e563c4).</span>
+</pre></div>
+<h3><strong>-D</strong></h3>
+<p>Force delete a branch, even if it contains unmerged changes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-D<span style="color: #F8F8F8"> </span>feature-incomplete
+<span style="color: #000; font-style: italic">Deleted branch feature-incomplete (was 7d9f12a).</span>
+</pre></div>
+<h3><strong>-m, --move</strong></h3>
+<p>Move/rename a branch and its reflog.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>old-name<span style="color: #F8F8F8"> </span>new-name
+</pre></div>
+<h3><strong>-r, --remotes</strong></h3>
+<p>List remote-tracking branches only.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-r
+<span style="color: #000; font-style: italic">  origin/main</span>
+<span style="color: #000; font-style: italic">  origin/feature-login</span>
+<span style="color: #000; font-style: italic">  origin/dev</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Show SHA-1 and commit subject line for each branch.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">* main       a72f324 Update README.md</span>
+<span style="color: #000; font-style: italic">  feature-ui 8d3e5c1 Add new button component</span>
+</pre></div>
+<h3><strong>--merged</strong></h3>
+<p>List branches that have been merged into the current branch.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>--merged
+<span style="color: #000; font-style: italic">* main</span>
+<span style="color: #000; font-style: italic">  feature-complete</span>
+</pre></div>
+<h3><strong>--no-merged</strong></h3>
+<p>List branches that have not been merged into the current branch.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>--no-merged
+<span style="color: #000; font-style: italic">  feature-in-progress</span>
+<span style="color: #000; font-style: italic">  experimental</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating a new branch</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>new-feature
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch
+<span style="color: #000; font-style: italic">* main</span>
+<span style="color: #000; font-style: italic">  new-feature</span>
+</pre></div>
+<h3>Creating and switching to a new branch</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>feature-login
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>feature-login
+<span style="color: #000; font-style: italic">Switched to branch &#39;feature-login&#39;</span>
+
+<span style="color: #8F5902"># </span>Or<span style="color: #F8F8F8"> </span>more<span style="color: #F8F8F8"> </span>concisely<span style="color: #F8F8F8"> </span>with<span style="color: #F8F8F8"> </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>-b
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>feature-login
+<span style="color: #000; font-style: italic">Switched to a new branch &#39;feature-login&#39;</span>
+</pre></div>
+<h3>Deleting multiple branches</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>feature-1<span style="color: #F8F8F8"> </span>feature-2<span style="color: #F8F8F8"> </span>feature-3
+<span style="color: #000; font-style: italic">Deleted branch feature-1 (was 3e563c4).</span>
+<span style="color: #000; font-style: italic">Deleted branch feature-2 (was 7d9f12a).</span>
+<span style="color: #000; font-style: italic">Deleted branch feature-3 (was 2f5e8b9).</span>
+</pre></div>
+<h3>Listing branches with more information</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-vv
+<span style="color: #000; font-style: italic">* main            a72f324 [origin/main] Update README.md</span>
+<span style="color: #000; font-style: italic">  feature-ui      8d3e5c1 [origin/feature-ui: ahead 2] Add new button component</span>
+<span style="color: #000; font-style: italic">  feature-api     3f5d9a2 [origin/feature-api: behind 3] Implement API client</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Use Descriptive Branch Names</h3>
+<p>Use clear, descriptive branch names that indicate the purpose of the branch, such as <code>feature/login</code>, <code>bugfix/header</code>, or <code>refactor/auth-system</code>.</p>
+<h3>Clean Up Merged Branches</h3>
+<p>Regularly delete branches that have been merged to keep your repository clean:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>--merged<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;\*&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-d
+</pre></div>
+<h3>Track Remote Branches</h3>
+<p>When working with remote branches, use <code>git branch --track branch-name origin/branch-name</code> to set up tracking, or more simply <code>git checkout --track origin/branch-name</code>.</p>
+<h3>View Branch History</h3>
+<p>To see the commit history of a specific branch, use:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>log<span style="color: #F8F8F8"> </span>branch-name
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I create a new branch?</h4>
+<p>A. Use <code>git branch branch-name</code> to create a branch, then <code>git checkout branch-name</code> to switch to it. Alternatively, use <code>git checkout -b branch-name</code> to create and switch in one command.</p>
+<h4>Q2. How do I delete a branch?</h4>
+<p>A. Use <code>git branch -d branch-name</code> to delete a branch that has been merged, or <code>git branch -D branch-name</code> to force delete a branch regardless of its merge status.</p>
+<h4>Q3. How do I rename a branch?</h4>
+<p>A. Use <code>git branch -m old-name new-name</code> to rename a branch. If you're currently on the branch you want to rename, you can simply use <code>git branch -m new-name</code>.</p>
+<h4>Q4. How do I see which branches are merged?</h4>
+<p>A. Use <code>git branch --merged</code> to see branches that have been merged into the current branch, and <code>git branch --no-merged</code> to see branches that haven't been merged yet.</p>
+<h4>Q5. How do I push a new local branch to a remote repository?</h4>
+<p>A. Use <code>git push -u origin branch-name</code> to push a local branch to the remote repository and set up tracking.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-branch</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

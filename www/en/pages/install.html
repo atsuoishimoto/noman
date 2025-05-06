@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  install - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>install command</h1>
+<p>Copy files and set attributes.</p>
+<h2>Overview</h2>
+<p>The <code>install</code> command copies files to specified destinations while setting permissions, ownership, and timestamps. It's commonly used in scripts and makefiles to place files in their proper locations during software installation, combining the functionality of <code>cp</code>, <code>chmod</code>, <code>chown</code>, and <code>mkdir</code> into a single command.</p>
+<h2>Options</h2>
+<h3><strong>-d, --directory</strong></h3>
+<p>Create directories instead of copying files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>/tmp/new_directory
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-ld<span style="color: #F8F8F8"> </span>/tmp/new_directory
+<span style="color: #000; font-style: italic">drwxr-xr-x 2 user user 4096 May 5 10:00 /tmp/new_directory</span>
+</pre></div>
+<h3><strong>-m, --mode=MODE</strong></h3>
+<p>Set permission mode (as in chmod), instead of the default rwxr-xr-x.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/tmp/source.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user user 123 May 5 10:01 /tmp/source.txt</span>
+</pre></div>
+<h3><strong>-o, --owner=OWNER</strong></h3>
+<p>Set ownership (super-user only).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>root<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/tmp/source.txt
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 root user 123 May 5 10:02 /tmp/source.txt</span>
+</pre></div>
+<h3><strong>-g, --group=GROUP</strong></h3>
+<p>Set group ownership (super-user only).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>-g<span style="color: #F8F8F8"> </span>wheel<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/tmp/source.txt
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 user wheel 123 May 5 10:03 /tmp/source.txt</span>
+</pre></div>
+<h3><strong>-s, --strip</strong></h3>
+<p>Strip symbol tables from executables.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>executable<span style="color: #F8F8F8"> </span>/tmp/
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Print the name of each directory as it is created.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #000; font-style: italic">&#39;source.txt&#39; -&gt; &#39;/tmp/source.txt&#39;</span>
+</pre></div>
+<h3><strong>-b, --backup[=CONTROL]</strong></h3>
+<p>Make a backup of each existing destination file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 user user 123 May 5 10:04 source.txt</span>
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 user user 123 May 5 10:03 source.txt~</span>
+</pre></div>
+<h3><strong>-c, --compare</strong></h3>
+<p>Do not copy if the source and destination files are the same.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Installing a file with specific permissions</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">755</span><span style="color: #F8F8F8"> </span>myscript.sh<span style="color: #F8F8F8"> </span>/usr/local/bin/
+</pre></div>
+<h3>Creating multiple directories at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>/tmp/dir1<span style="color: #F8F8F8"> </span>/tmp/dir2<span style="color: #F8F8F8"> </span>/tmp/dir3
+</pre></div>
+<h3>Installing a file with specific owner and group</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>www-data<span style="color: #F8F8F8"> </span>-g<span style="color: #F8F8F8"> </span>www-data<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>config.php<span style="color: #F8F8F8"> </span>/var/www/html/
+</pre></div>
+<h3>Installing multiple files to a directory</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>*.txt<span style="color: #F8F8F8"> </span>/tmp/
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use for Deployment Scripts</h3>
+<p>The <code>install</code> command is ideal for deployment scripts because it handles permissions and ownership in one step, making it more efficient than separate <code>cp</code> and <code>chmod</code> commands.</p>
+<h3>Create Parent Directories</h3>
+<p>Unlike <code>mkdir -p</code>, <code>install -d</code> doesn't create parent directories. If you need to create a nested directory structure, create the parents first or use <code>mkdir -p</code> instead.</p>
+<h3>Preserve File Attributes</h3>
+<p>When you want to preserve the original file's attributes, use <code>install -p</code> which preserves the modification time, access time, and modes of the source files.</p>
+<h3>Backup Strategy</h3>
+<p>When using <code>-b</code> for backups, you can control the backup suffix with <code>--suffix=SUFFIX</code> or set the backup method with <code>--backup=CONTROL</code> (where CONTROL can be 'none', 'numbered', 'existing', or 'simple').</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>install</code> and <code>cp</code>?</h4>
+<p>A. <code>install</code> combines copying with setting permissions and ownership in one command, while <code>cp</code> only copies files. <code>install</code> is designed for software installation, while <code>cp</code> is a general-purpose copy command.</p>
+<h4>Q2. Can <code>install</code> create directories like <code>mkdir</code>?</h4>
+<p>A. Yes, with the <code>-d</code> option, <code>install</code> can create directories with specific permissions in one step.</p>
+<h4>Q3. Does <code>install</code> preserve file timestamps?</h4>
+<p>A. By default, <code>install</code> updates timestamps to the current time. Use the <code>-p</code> option to preserve the original timestamps.</p>
+<h4>Q4. Can I use <code>install</code> to copy directories recursively?</h4>
+<p>A. No, <code>install</code> doesn't have a recursive option like <code>cp -r</code>. You need to create the directory structure first and then install files into it.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

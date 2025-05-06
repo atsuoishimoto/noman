@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  diff3 - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>diff3 command</h1>
+<p>Compare three files line by line.</p>
+<h2>Overview</h2>
+<p><code>diff3</code> compares three files and identifies the differences between them. It's particularly useful for merging changes from two different versions of a file that both originated from a common ancestor, making it valuable for version control and collaborative editing.</p>
+<h2>Options</h2>
+<h3><strong>-A, --show-all</strong></h3>
+<p>Output all changes, including conflicts, with special markers.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">&lt;&lt;&lt;&lt;&lt;&lt;&lt; file1</span>
+<span style="color: #000; font-style: italic">Line from file1</span>
+<span style="color: #000; font-style: italic">||||||| file2</span>
+<span style="color: #000; font-style: italic">Line from file2</span>
+<span style="color: #000; font-style: italic">======= </span>
+<span style="color: #000; font-style: italic">Line from file3</span>
+<span style="color: #000; font-style: italic">&gt;&gt;&gt;&gt;&gt;&gt;&gt; file3</span>
+</pre></div>
+<h3><strong>-e, --ed</strong></h3>
+<p>Create an ed script that incorporates changes from the first to the third file into the second file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">w</span>
+<span style="color: #000; font-style: italic">q</span>
+</pre></div>
+<h3><strong>-m, --merge</strong></h3>
+<p>Output a merged file with conflicts marked.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">&lt;&lt;&lt;&lt;&lt;&lt;&lt; file1</span>
+<span style="color: #000; font-style: italic">Line from file1</span>
+<span style="color: #000; font-style: italic">||||||| file2</span>
+<span style="color: #000; font-style: italic">Line from file2</span>
+<span style="color: #000; font-style: italic">=======</span>
+<span style="color: #000; font-style: italic">Line from file3</span>
+<span style="color: #000; font-style: italic">&gt;&gt;&gt;&gt;&gt;&gt;&gt; file3</span>
+</pre></div>
+<h3><strong>-T, --initial-tab</strong></h3>
+<p>Make tabs line up by prefixing a tab to output lines.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-T<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">	&lt;&lt;&lt;&lt;&lt;&lt;&lt; file1</span>
+<span style="color: #000; font-style: italic">	Line from file1</span>
+<span style="color: #000; font-style: italic">	||||||| file2</span>
+<span style="color: #000; font-style: italic">	Line from file2</span>
+<span style="color: #000; font-style: italic">	=======</span>
+<span style="color: #000; font-style: italic">	Line from file3</span>
+<span style="color: #000; font-style: italic">	&gt;&gt;&gt;&gt;&gt;&gt;&gt; file3</span>
+</pre></div>
+<h3><strong>-x, --overlap-only</strong></h3>
+<p>Show only overlapping changes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">==== 1:1c 2:1c 3:1c</span>
+<span style="color: #000; font-style: italic">Line from file1</span>
+<span style="color: #000; font-style: italic">Line from file2</span>
+<span style="color: #000; font-style: italic">Line from file3</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Comparison</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>yours.txt<span style="color: #F8F8F8"> </span>theirs.txt
+<span style="color: #000; font-style: italic">====</span>
+<span style="color: #000; font-style: italic">1:1c</span>
+<span style="color: #000; font-style: italic">This is the original line.</span>
+<span style="color: #000; font-style: italic">2:1c</span>
+<span style="color: #000; font-style: italic">This is your modified line.</span>
+<span style="color: #000; font-style: italic">3:1c</span>
+<span style="color: #000; font-style: italic">This is their modified line.</span>
+</pre></div>
+<h3>Creating a Merged File</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>yours.txt<span style="color: #F8F8F8"> </span>theirs.txt<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>merged.txt
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>merged.txt
+<span style="color: #000; font-style: italic">&lt;&lt;&lt;&lt;&lt;&lt;&lt; yours.txt</span>
+<span style="color: #000; font-style: italic">This is your modified line.</span>
+<span style="color: #000; font-style: italic">||||||| original.txt</span>
+<span style="color: #000; font-style: italic">This is the original line.</span>
+<span style="color: #000; font-style: italic">=======</span>
+<span style="color: #000; font-style: italic">This is their modified line.</span>
+<span style="color: #000; font-style: italic">&gt;&gt;&gt;&gt;&gt;&gt;&gt; theirs.txt</span>
+</pre></div>
+<h3>Creating an Ed Script for Merging</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>yours.txt<span style="color: #F8F8F8"> </span>theirs.txt<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>merge.ed
+<span style="color: #8F5902">$ </span>ed<span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8"> </span>yours.txt<span style="color: #F8F8F8"> </span>&lt;<span style="color: #F8F8F8"> </span>merge.ed<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>merged.txt
+</pre></div>
+<h2>Tips:</h2>
+<h3>Understanding the Output Format</h3>
+<p>In the default output, each change is marked with <code>====</code> followed by line numbers and change types. For example, <code>1:1c 2:1c 3:1c</code> means line 1 in all three files is changed.</p>
+<h3>Using diff3 for Version Control</h3>
+<p>When merging changes from different branches, use the original file as the first argument, your modified version as the second, and their modified version as the third.</p>
+<h3>Resolving Merge Conflicts</h3>
+<p>When using <code>-m</code> option, look for conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>|||||||</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>) in the output file and manually edit them to resolve conflicts.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between diff and diff3?</h4>
+<p>A. <code>diff</code> compares two files, while <code>diff3</code> compares three files, making it useful for merging changes from two different versions that originated from a common ancestor.</p>
+<h4>Q2. How do I interpret the output of diff3?</h4>
+<p>A. The output shows sections where the files differ, with line numbers and content from each file. The format varies based on the options used.</p>
+<h4>Q3. Can diff3 automatically resolve conflicts?</h4>
+<p>A. No, diff3 can identify conflicts but cannot automatically resolve them. It marks conflicts in the output, which must be manually resolved.</p>
+<h4>Q4. How do I save the merged output to a file?</h4>
+<p>A. Use redirection: <code>diff3 -m file1 file2 file3 &gt; merged_file</code></p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/diffutils/manual/html_node/Invoking-diff3.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

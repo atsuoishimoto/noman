@@ -1,0 +1,20 @@
+{
+  "id": "msg_01BReno6XRN2KU8SYvRykgm5",
+  "content": [
+    {
+      "text": "# git-branch コマンド\n\nGitリポジトリ内のブランチを一覧表示、作成、または削除します。\n\n## 概要\n\n`git branch`コマンドはGitリポジトリ内のブランチを管理します。新しいブランチの作成、既存ブランチの一覧表示、ブランチの名前変更、不要になったブランチの削除が可能です。ブランチはコミットへの軽量なポインタであり、並行開発ワークフローを可能にします。\n\n## オプション\n\n### **-a, --all**\n\nリモート追跡ブランチとローカルブランチの両方を一覧表示します。\n\n```console\n$ git branch -a\n* main\n  feature-login\n  remotes/origin/main\n  remotes/origin/feature-login\n```\n\n### **-d, --delete**\n\nブランチを削除します。ブランチは上流ブランチ、または上流が設定されていない場合はHEADに完全にマージされている必要があります。\n\n```console\n$ git branch -d feature-done\nDeleted branch feature-done (was 3e563c4).\n```\n\n### **-D**\n\nマージされていない変更が含まれていても、ブランチを強制的に削除します。\n\n```console\n$ git branch -D feature-incomplete\nDeleted branch feature-incomplete (was 7d9f12a).\n```\n\n### **-m, --move**\n\nブランチとそのreflogを移動/名前変更します。\n\n```console\n$ git branch -m old-name new-name\n```\n\n### **-r, --remotes**\n\nリモート追跡ブランチのみを一覧表示します。\n\n```console\n$ git branch -r\n  origin/main\n  origin/feature-login\n  origin/dev\n```\n\n### **-v, --verbose**\n\n各ブランチのSHA-1とコミットの件名行を表示します。\n\n```console\n$ git branch -v\n* main       a72f324 Update README.md\n  feature-ui 8d3e5c1 Add new button component\n```\n\n### **--merged**\n\n現在のブランチにマージされたブランチを一覧表示します。\n\n```console\n$ git branch --merged\n* main\n  feature-complete\n```\n\n### **--no-merged**\n\n現在のブランチにマージされていないブランチを一覧表示します。\n\n```console\n$ git branch --no-merged\n  feature-in-progress\n  experimental\n```\n\n## 使用例\n\n### 新しいブランチの作成\n\n```console\n$ git branch new-feature\n$ git branch\n* main\n  new-feature\n```\n\n### 新しいブランチの作成と切り替え\n\n```console\n$ git branch feature-login\n$ git checkout feature-login\nSwitched to branch 'feature-login'\n\n# または git checkout -b でより簡潔に\n$ git checkout -b feature-login\nSwitched to a new branch 'feature-login'\n```\n\n### 複数のブランチの削除\n\n```console\n$ git branch -d feature-1 feature-2 feature-3\nDeleted branch feature-1 (was 3e563c4).\nDeleted branch feature-2 (was 7d9f12a).\nDeleted branch feature-3 (was 2f5e8b9).\n```\n\n### より詳細な情報付きでブランチを一覧表示\n\n```console\n$ git branch -vv\n* main            a72f324 [origin/main] Update README.md\n  feature-ui      8d3e5c1 [origin/feature-ui: ahead 2] Add new button component\n  feature-api     3f5d9a2 [origin/feature-api: behind 3] Implement API client\n```\n\n## ヒント\n\n### 説明的なブランチ名を使用する\n\nブランチの目的を示す明確で説明的なブランチ名を使用しましょう。例えば、`feature/login`、`bugfix/header`、`refactor/auth-system`などです。\n\n### マージされたブランチをクリーンアップする\n\nリポジトリをきれいに保つために、マージされたブランチを定期的に削除しましょう：\n```console\n$ git branch --merged | grep -v \"\\*\" | xargs git branch -d\n```\n\n### リモートブランチを追跡する\n\nリモートブランチを操作する場合は、`git branch --track branch-name origin/branch-name`を使用して追跡を設定するか、より簡単に`git checkout --track origin/branch-name`を使用します。\n\n### ブランチの履歴を表示する\n\n特定のブランチのコミット履歴を確認するには、以下を使用します：\n```console\n$ git log branch-name\n```\n\n## よくある質問\n\n#### Q1. 新しいブランチを作成するにはどうすればよいですか？\nA. `git branch ブランチ名`でブランチを作成し、`git checkout ブランチ名`で切り替えます。または、`git checkout -b ブランチ名`を使用して、一度に作成と切り替えを行うこともできます。\n\n#### Q2. ブランチを削除するにはどうすればよいですか？\nA. マージされたブランチを削除するには`git branch -d ブランチ名`を使用し、マージ状態に関係なくブランチを強制的に削除するには`git branch -D ブランチ名`を使用します。\n\n#### Q3. ブランチの名前を変更するにはどうすればよいですか？\nA. `git branch -m 古い名前 新しい名前`を使用してブランチの名前を変更します。名前を変更したいブランチに現在いる場合は、単に`git branch -m 新しい名前`を使用できます。\n\n#### Q4. マージされたブランチを確認するにはどうすればよいですか？\nA. 現在のブランチにマージされたブランチを確認するには`git branch --merged`を使用し、まだマージされていないブランチを確認するには`git branch --no-merged`を使用します。\n\n#### Q5. 新しいローカルブランチをリモートリポジトリにプッシュするにはどうすればよいですか？\nA. `git push -u origin ブランチ名`を使用して、ローカルブランチをリモートリポジトリにプッシュし、追跡を設定します。\n\n## 参考資料\n\nhttps://git-scm.com/docs/git-branch\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1390,
+    "output_tokens": 1814
+  }
+}

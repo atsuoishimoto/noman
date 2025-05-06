@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  scp - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>scp command</h1>
+<p>Securely copy files between hosts on a network using SSH for data transfer.</p>
+<h2>Overview</h2>
+<p><code>scp</code> (secure copy) transfers files between hosts over an encrypted SSH connection. It works similarly to the <code>cp</code> command but can copy files to or from remote systems. The command handles authentication, encryption, and file transfers in a single operation, making it a convenient tool for secure file transfers.</p>
+<h2>Options</h2>
+<h3><strong>-r</strong></h3>
+<p>Recursively copy entire directories.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>documents/<span style="color: #F8F8F8"> </span>user@remote:/home/user/backup/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">file1.txt                                 100%  123     1.2KB/s   00:00    </span>
+<span style="color: #000; font-style: italic">file2.txt                                 100%  456     4.5KB/s   00:00</span>
+</pre></div>
+<h3><strong>-P</strong></h3>
+<p>Specify a different port for the SSH connection (note: uppercase P, unlike ssh which uses lowercase p).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-P<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2222</span><span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span>user@remote:/home/user/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">file.txt                                  100%  789     7.8KB/s   00:00</span>
+</pre></div>
+<h3><strong>-p</strong></h3>
+<p>Preserve modification times, access times, and modes from the original file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>important.conf<span style="color: #F8F8F8"> </span>user@remote:/etc/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">important.conf                            100%  321     3.2KB/s   00:00</span>
+</pre></div>
+<h3><strong>-C</strong></h3>
+<p>Enable compression during the transfer.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span>largefile.zip<span style="color: #F8F8F8"> </span>user@remote:/home/user/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">largefile.zip                             100%  10MB    5.0MB/s   00:02</span>
+</pre></div>
+<h3><strong>-q</strong></h3>
+<p>Quiet mode - disables the progress meter and warning/diagnostic messages.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>confidential.pdf<span style="color: #F8F8F8"> </span>user@remote:/home/user/
+<span style="color: #000; font-style: italic">user@remote&#39;s password:</span>
+</pre></div>
+<h3><strong>-i</strong></h3>
+<p>Specify an identity file (private key) for public key authentication.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>~/.ssh/mykey.pem<span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span>user@remote:/home/user/
+<span style="color: #000; font-style: italic">file.txt                                  100%  789     7.8KB/s   00:00</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Copying a file to a remote server</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>document.txt<span style="color: #F8F8F8"> </span>user@remote.server.com:/home/user/documents/
+<span style="color: #000; font-style: italic">user@remote.server.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">document.txt                              100%  1234     12.3KB/s   00:00</span>
+</pre></div>
+<h3>Copying a file from a remote server</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>user@remote.server.com:/home/user/report.pdf<span style="color: #F8F8F8"> </span>./
+<span style="color: #000; font-style: italic">user@remote.server.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">report.pdf                                100%  5678     56.7KB/s   00:01</span>
+</pre></div>
+<h3>Copying between two remote hosts</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>user1@source.com:/files/data.txt<span style="color: #F8F8F8"> </span>user2@destination.com:/backup/
+<span style="color: #000; font-style: italic">user1@source.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">user2@destination.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">data.txt                                  100%  2345     23.4KB/s   00:00</span>
+</pre></div>
+<h3>Copying multiple files at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>scp<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>user@remote:/destination/
+<span style="color: #000; font-style: italic">user@remote&#39;s password: </span>
+<span style="color: #000; font-style: italic">file1.txt                                 100%  123     1.2KB/s   00:00</span>
+<span style="color: #000; font-style: italic">file2.txt                                 100%  456     4.5KB/s   00:00</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use SSH Config to Simplify Commands</h3>
+<p>If you have hosts defined in your <code>~/.ssh/config</code> file, you can use the host aliases instead of typing full hostnames and usernames.</p>
+<h3>Escape Special Characters in Filenames</h3>
+<p>When specifying filenames with spaces or special characters, use quotes or escape them with backslashes.</p>
+<h3>Use Public Key Authentication</h3>
+<p>Set up SSH keys to avoid typing passwords for each transfer. This is both more secure and more convenient.</p>
+<h3>Bandwidth Limiting</h3>
+<p>Use the <code>-l</code> option to limit bandwidth usage (in Kbit/s) when transferring large files over slow connections.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How does scp differ from regular cp?</h4>
+<p>A. <code>scp</code> works over SSH to copy files between different hosts securely, while <code>cp</code> only copies files locally on the same system.</p>
+<h4>Q2. Can I resume an interrupted transfer?</h4>
+<p>A. No, <code>scp</code> doesn't support resuming interrupted transfers. For that functionality, consider using <code>rsync</code> instead.</p>
+<h4>Q3. How can I copy an entire directory?</h4>
+<p>A. Use the <code>-r</code> (recursive) option: <code>scp -r /source/directory user@remote:/destination/</code></p>
+<h4>Q4. Is scp secure?</h4>
+<p>A. Yes, <code>scp</code> uses SSH for authentication and encryption, making it secure for transferring files over untrusted networks.</p>
+<h4>Q5. Why is my scp transfer slow?</h4>
+<p>A. Try using the <code>-C</code> option to enable compression, or check network conditions. For large directories with many small files, consider using <code>tar</code> to create an archive first.</p>
+<h2>References</h2>
+<p>https://man.openbsd.org/scp.1</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

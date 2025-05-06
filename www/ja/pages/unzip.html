@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  unzip - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>unzipコマンド</h1>
+<p>ZIPアーカイブからファイルを展開します。</p>
+<h2>概要</h2>
+<p><code>unzip</code>はZIPアーカイブからファイルとディレクトリを展開します。様々な圧縮方式をサポートし、パスワード保護されたアーカイブも処理できます。このコマンドはZIPファイルの内容の一覧表示、テスト、展開ができるため、圧縮データを扱う上で不可欠です。</p>
+<h2>オプション</h2>
+<h3><strong>-l</strong></h3>
+<p>展開せずにアーカイブの内容を一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  Length      Date    Time    Name</span>
+<span style="color: #000; font-style: italic">---------  ---------- -----   ----</span>
+<span style="color: #000; font-style: italic">     1024  2025-01-01 12:34   file1.txt</span>
+<span style="color: #000; font-style: italic">      512  2025-01-02 15:45   file2.txt</span>
+<span style="color: #000; font-style: italic">---------                     -------</span>
+<span style="color: #000; font-style: italic">     1536                     2 files</span>
+</pre></div>
+<h3><strong>-t</strong></h3>
+<p>展開せずにアーカイブの整合性をテストします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">    testing: file1.txt               OK</span>
+<span style="color: #000; font-style: italic">    testing: file2.txt               OK</span>
+<span style="color: #000; font-style: italic">No errors detected in compressed data of archive.zip.</span>
+</pre></div>
+<h3><strong>-o</strong></h3>
+<p>確認なしに既存のファイルを上書きします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  inflating: file1.txt</span>
+<span style="color: #000; font-style: italic">  inflating: file2.txt</span>
+</pre></div>
+<h3><strong>-d, --directory</strong></h3>
+<p>指定したディレクトリにファイルを展開します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>extracted_files
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">   creating: extracted_files/</span>
+<span style="color: #000; font-style: italic">  inflating: extracted_files/file1.txt</span>
+<span style="color: #000; font-style: italic">  inflating: extracted_files/file2.txt</span>
+</pre></div>
+<h3><strong>-P</strong></h3>
+<p>暗号化されたアーカイブにパスワードを使用します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-P<span style="color: #F8F8F8"> </span>secretpassword<span style="color: #F8F8F8"> </span>protected.zip
+<span style="color: #000; font-style: italic">Archive:  protected.zip</span>
+<span style="color: #000; font-style: italic">  inflating: confidential.txt</span>
+</pre></div>
+<h3><strong>-q</strong></h3>
+<p>静かモード（通常の出力を抑制します）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>archive.zip
+</pre></div>
+<h3><strong>-j</strong></h3>
+<p>パスを無視（ディレクトリを作成しません）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-j<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  inflating: file1.txt</span>
+<span style="color: #000; font-style: italic">  inflating: file2.txt</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>アーカイブから特定のファイルを展開する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>file1.txt
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  inflating: file1.txt</span>
+</pre></div>
+<h3>詳細情報付きで内容を一覧表示する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic"> Length   Method    Size  Cmpr    Date    Time   CRC-32   Name</span>
+<span style="color: #000; font-style: italic">--------  ------  ------- ---- ---------- ----- --------  ----</span>
+<span style="color: #000; font-style: italic">    1024  Defl:N      512  50% 2025-01-01 12:34 a1b2c3d4  file1.txt</span>
+<span style="color: #000; font-style: italic">     512  Defl:N      256  50% 2025-01-02 15:45 e5f6g7h8  file2.txt</span>
+<span style="color: #000; font-style: italic">--------          -------  ---                            -------</span>
+<span style="color: #000; font-style: italic">    1536              768  50%                            2 files</span>
+</pre></div>
+<h3>特定のファイルを除くすべてのファイルを展開する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  inflating: file1.txt</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>展開前にアーカイブの内容をプレビューする</h3>
+<p>展開前に常に<code>unzip -l archive.zip</code>を使用して内容をプレビューしましょう。これにより、既存のファイルを誤って上書きする可能性のあるファイルを展開することを避けられます。</p>
+<h3>パスワード保護されたアーカイブを扱う</h3>
+<p>暗号化されたアーカイブには、<code>unzip -P password archive.zip</code>を使用します。コマンド履歴にパスワードを残したくない場合は、-Pオプションを省略するとunzipがパスワードを要求します。</p>
+<h3>特定のディレクトリに展開する</h3>
+<p><code>unzip archive.zip -d target_directory</code>を使用して、現在のディレクトリではなく特定の場所にファイルを展開します。これによりワークスペースを整理できます。</p>
+<h3>パスの問題に対処する</h3>
+<p>ZIPファイルに絶対パスや<code>../</code>を含むパスがある場合は、<code>unzip -j</code>を使用してディレクトリ構造なしでファイルのみを展開し、潜在的なセキュリティ問題を防ぎます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. ZIPアーカイブから特定のファイルだけを展開するにはどうすればよいですか？</h4>
+<p>A. <code>unzip archive.zip filename1 filename2</code>を使用して、指定したファイルのみを展開します。</p>
+<h4>Q2. 既存のファイルを上書きせずにZIPファイルを展開するにはどうすればよいですか？</h4>
+<p>A. デフォルトでは、unzipは上書き前に確認を求めます。<code>unzip -n archive.zip</code>を使用すると、既存のファイルを上書きしません。</p>
+<h4>Q3. 非英語のファイル名を持つZIPファイルをどう扱えばよいですか？</h4>
+<p>A. 中国語のファイル名には<code>unzip -O CP936 archive.zip</code>を使用するか、異なる言語に適切な文字エンコーディングを使用します。</p>
+<h4>Q4. unzipはパスワード保護されたZIPファイルを扱えますか？</h4>
+<p>A. はい、<code>unzip -P password archive.zip</code>を使用するか、パスワードを省略して安全にプロンプトを表示させることができます。</p>
+<h4>Q5. ディレクトリ構造を作成せずにZIPファイルを展開するにはどうすればよいですか？</h4>
+<p>A. <code>unzip -j archive.zip</code>を使用してパスを「無視」し、すべてのファイルを単一のディレクトリに展開します。</p>
+<h2>参考文献</h2>
+<p>https://linux.die.net/man/1/unzip</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

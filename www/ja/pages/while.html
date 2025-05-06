@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  while - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>while コマンド</h1>
+<p>条件が真である限り、コマンドを繰り返し実行します。</p>
+<h2>概要</h2>
+<p><code>while</code> コマンドはシェルの構文で、指定された条件が真と評価される限り、一連のコマンドを繰り返し実行するループを作成します。固定回数の繰り返し、入力を1行ずつ処理する、または特定の条件が変わるまでコマンドを実行するなどの用途によく使われます。</p>
+<h2>オプション</h2>
+<p><code>while</code> コマンドは独立したプログラムではなくシェル組み込みの構文であるため、従来のコマンドラインオプションはありません。</p>
+<h2>使用例</h2>
+<h3>基本的な while ループ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">i</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$i</span><span style="color: #F8F8F8"> </span>-le<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Count: $i&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   i=$((i+1))</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Count: 1</span>
+<span style="color: #000; font-style: italic">Count: 2</span>
+<span style="color: #000; font-style: italic">Count: 3</span>
+<span style="color: #000; font-style: italic">Count: 4</span>
+<span style="color: #000; font-style: italic">Count: 5</span>
+</pre></div>
+<h3>ファイルを1行ずつ読み込む</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">read</span><span style="color: #F8F8F8"> </span>line<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Line: $line&quot;</span>
+<span style="color: #000; font-style: italic">&gt; done &lt; file.txt</span>
+<span style="color: #000; font-style: italic">Line: This is the first line</span>
+<span style="color: #000; font-style: italic">Line: This is the second line</span>
+<span style="color: #000; font-style: italic">Line: This is the third line</span>
+</pre></div>
+<h3>break 条件付きの無限ループ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span>true<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Enter a number (0 to exit):&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   read num</span>
+<span style="color: #000; font-style: italic">&gt;   if [ &quot;$num&quot; -eq 0 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;     break</span>
+<span style="color: #000; font-style: italic">&gt;   fi</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;You entered: $num&quot;</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Enter a number (0 to exit):</span>
+<span style="color: #000; font-style: italic">5</span>
+<span style="color: #000; font-style: italic">You entered: 5</span>
+<span style="color: #000; font-style: italic">Enter a number (0 to exit):</span>
+<span style="color: #000; font-style: italic">0</span>
+</pre></div>
+<h3>コマンド出力の処理</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-1<span style="color: #F8F8F8"> </span>*.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">read</span><span style="color: #F8F8F8"> </span>file<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Processing $file&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   wc -l &quot;$file&quot;</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Processing document.txt</span>
+<span style="color: #000; font-style: italic">      10 document.txt</span>
+<span style="color: #000; font-style: italic">Processing notes.txt</span>
+<span style="color: #000; font-style: italic">       5 notes.txt</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>Control-C で無限ループを終了する</h3>
+<p>無限ループ（<code>while true; do...</code>など）を作成し、終了する必要がある場合は、Control-C を押してループを終了します。</p>
+<h3>ポーリングのために sleep と組み合わせる</h3>
+<p><code>while</code> を <code>sleep</code> コマンドと一緒に使用して、定期的に条件をチェックします：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span>!<span style="color: #F8F8F8"> </span>ping<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>server.example.com<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">&amp;</span>&gt;/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Server not reachable, waiting...&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   sleep 5</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+</pre></div>
+<h3>一般的な落とし穴を避ける</h3>
+<p>決して偽にならない可能性のある条件には注意してください。無限ループが発生する可能性があります。常に条件が最終的に偽と評価される方法があることを確認してください。</p>
+<h3>continue を使用して反復をスキップする</h3>
+<p><code>continue</code> ステートメントは <code>while</code> ループ内で使用して、現在の反復の残りをスキップし、次の反復に移動することができます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>while</code> と <code>until</code> の違いは何ですか？</h4>
+<p>A. <code>while</code> は条件が真である限りコマンドを実行しますが、<code>until</code> は条件が偽である限りコマンドを実行します。</p>
+<h4>Q2. <code>while</code> を使って標準入力から読み込むことはできますか？</h4>
+<p>A. はい、リダイレクションなしで <code>while read line; do ...; done</code> を使用すると、標準入力から読み込みます。</p>
+<h4>Q3. <code>while</code> でカウントダウンタイマーを作るにはどうすればよいですか？</h4>
+<p>A. 減少するカウンターを使用します：<code>count=10; while [ $count -gt 0 ]; do echo $count; count=$((count-1)); sleep 1; done; echo &quot;Done!&quot;</code></p>
+<h4>Q4. 各反復で複数の値を処理するにはどうすればよいですか？</h4>
+<p>A. read コマンドで複数の変数を使用します：<code>while read name age; do echo &quot;$name is $age years old&quot;; done &lt; data.txt</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  readlink - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>readlink command</h1>
+<p>Print the resolved symbolic links or canonical file names.</p>
+<h2>Overview</h2>
+<p>The <code>readlink</code> command displays the target of a symbolic link or the canonical path of a file. It resolves symbolic links and returns the actual destination path. This is useful for scripts that need to determine where a symbolic link points to or to get the absolute path of a file.</p>
+<h2>Options</h2>
+<h3><strong>-f, --canonicalize</strong></h3>
+<p>Canonicalize by following every symlink in every component of the given name recursively; all but the last component must exist</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/etc/hosts<span style="color: #F8F8F8"> </span>mylink
+<span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>mylink
+<span style="color: #000; font-style: italic">/etc/hosts</span>
+</pre></div>
+<h3><strong>-e, --canonicalize-existing</strong></h3>
+<p>Canonicalize by following every symlink in every component of the given name recursively, all components must exist</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>mylink
+<span style="color: #000; font-style: italic">/etc/hosts</span>
+</pre></div>
+<h3><strong>-m, --canonicalize-missing</strong></h3>
+<p>Canonicalize by following every symlink in every component of the given name recursively, without requirements on components existence</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>/nonexistent/path
+<span style="color: #000; font-style: italic">/nonexistent/path</span>
+</pre></div>
+<h3><strong>-n, --no-newline</strong></h3>
+<p>Do not output the trailing delimiter (newline)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>mylink<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot; (this is the target)&quot;</span>
+<span style="color: #000; font-style: italic">/etc/hosts (this is the target)</span>
+</pre></div>
+<h3><strong>-z, --zero</strong></h3>
+<p>End each output line with NUL, not newline</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span>mylink<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hexdump<span style="color: #F8F8F8"> </span>-C
+<span style="color: #000; font-style: italic">00000000  2f 65 74 63 2f 68 6f 73  74 73 00                 |/etc/hosts.|</span>
+<span style="color: #000; font-style: italic">0000000b</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Report errors</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>nonexistent
+<span style="color: #000; font-style: italic">readlink: nonexistent: No such file or directory</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic usage to read a symbolic link</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/usr/bin<span style="color: #F8F8F8"> </span>bin_link
+<span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>bin_link
+<span style="color: #000; font-style: italic">/usr/bin</span>
+</pre></div>
+<h3>Getting the absolute path of a file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>../relative/path/to/file.txt
+<span style="color: #000; font-style: italic">/absolute/path/to/file.txt</span>
+</pre></div>
+<h3>Using readlink in a script</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">SCRIPT_PATH</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>readlink<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$0</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">SCRIPT_DIR</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>dirname<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$SCRIPT_PATH</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This script is located in: </span><span style="color: #000">$SCRIPT_DIR</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">This script is located in: /home/user/scripts</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Difference Between -f, -e, and -m</h3>
+<ul>
+<li><code>-f</code> follows all symlinks but requires only the final component to exist</li>
+<li><code>-e</code> follows all symlinks but requires all components to exist</li>
+<li><code>-m</code> follows all symlinks with no existence requirements (useful for nonexistent paths)</li>
+</ul>
+<h3>Use in Shell Scripts</h3>
+<p>When writing shell scripts, use <code>readlink -f &quot;$0&quot;</code> to get the absolute path of the script itself, regardless of where it's called from.</p>
+<h3>Handling Spaces in Filenames</h3>
+<p>Always quote variables when using readlink to handle filenames with spaces:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$my_file</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Correct</span>
+<span style="color: #8F5902">$ </span>readlink<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span><span style="color: #000">$my_file</span><span style="color: #F8F8F8">    </span><span style="color: #8F5902; font-style: italic"># Incorrect with spaces</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>readlink</code> and <code>realpath</code>?</h4>
+<p>A. Both commands resolve symbolic links, but <code>realpath</code> always provides the absolute path, while <code>readlink</code> without options simply shows the target of a symlink. With <code>-f</code>, <code>readlink</code> behaves similarly to <code>realpath</code>.</p>
+<h4>Q2. How do I get the directory containing a script?</h4>
+<p>A. Use <code>dirname &quot;$(readlink -f &quot;$0&quot;)&quot;</code> to get the directory containing the script, regardless of where it's called from.</p>
+<h4>Q3. Why does <code>readlink</code> without options fail on regular files?</h4>
+<p>A. Without options, <code>readlink</code> only works on symbolic links. Use <code>-f</code> to make it work on regular files too.</p>
+<h4>Q4. How can I use <code>readlink</code> to check if a file is a symbolic link?</h4>
+<p>A. If <code>readlink</code> without options returns output, the file is a symlink. If it returns an error, it's not a symlink.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/readlink-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

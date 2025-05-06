@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ls - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ls command</h1>
+<p>List directory contents.</p>
+<h2>Overview</h2>
+<p>The <code>ls</code> command displays files and directories in the specified location. By default, it shows the contents of the current working directory, sorted alphabetically, excluding hidden files (those starting with a dot). It's one of the most frequently used commands for navigating and exploring the filesystem.</p>
+<h2>Options</h2>
+<h3><strong>-l</strong></h3>
+<p>Display detailed information in a long listing format, showing file permissions, number of links, owner, group, size, and modification time.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">total 16</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects</span>
+</pre></div>
+<h3><strong>-a, --all</strong></h3>
+<p>Show all files, including hidden files (those starting with a dot).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">.  ..  .hidden  document.txt  projects</span>
+</pre></div>
+<h3><strong>-d, --directory</strong></h3>
+<p>List directories themselves, not their contents.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>*/
+<span style="color: #000; font-style: italic">projects/  documents/  downloads/</span>
+</pre></div>
+<h3><strong>-s, --size</strong></h3>
+<p>Print the allocated size of each file in blocks.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic">total 16</span>
+<span style="color: #000; font-style: italic">8 document.txt  8 projects</span>
+</pre></div>
+<h3><strong>-t</strong></h3>
+<p>Sort by modification time, newest first.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-lt
+<span style="color: #000; font-style: italic">total 16</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects</span>
+</pre></div>
+<h3><strong>-r, --reverse</strong></h3>
+<p>Reverse the order of the sort.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-ltr
+<span style="color: #000; font-style: italic">total 16</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Listing files with human-readable sizes</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-lh
+<span style="color: #000; font-style: italic">total 16K</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  1.0K Apr 10 15:30 document.txt</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 user  staff   96B Apr 9  14:22 projects</span>
+</pre></div>
+<h3>Listing only directories</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-ld<span style="color: #F8F8F8"> </span>*/
+<span style="color: #000; font-style: italic">drwxr-xr-x 3 user staff 96 Apr 9 14:22 projects/</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x 5 user staff 160 Apr 8 10:15 documents/</span>
+</pre></div>
+<h3>Listing files by file type</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-F
+<span style="color: #000; font-style: italic">document.txt  projects/  script.sh*</span>
+</pre></div>
+<h3>Recursive listing of directories</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-R
+<span style="color: #000; font-style: italic">.:</span>
+<span style="color: #000; font-style: italic">document.txt  projects</span>
+
+<span style="color: #000; font-style: italic">./projects:</span>
+<span style="color: #000; font-style: italic">README.md  src</span>
+
+<span style="color: #000; font-style: italic">./projects/src:</span>
+<span style="color: #000; font-style: italic">main.c  utils.h</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Combine Options for Powerful Listings</h3>
+<p>Combine options like <code>ls -lha</code> to show all files (including hidden ones) with detailed information and human-readable sizes.</p>
+<h3>Use Color Coding for Better Visibility</h3>
+<p>Many systems have <code>ls</code> aliased to <code>ls --color=auto</code>, which color-codes different file types. If not, you can add this to your shell configuration.</p>
+<h3>Sort Files by Size</h3>
+<p>Use <code>ls -lS</code> to sort files by size (largest first), which helps identify space-consuming files.</p>
+<h3>Customize the Output Format</h3>
+<p>Use <code>ls -l --time-style=long-iso</code> for a more standardized timestamp format (YYYY-MM-DD HH:MM).</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I list only directories?</h4>
+<p>A. Use <code>ls -d */</code> to list only directories in the current location.</p>
+<h4>Q2. How can I see file sizes in KB, MB, etc.?</h4>
+<p>A. Use <code>ls -lh</code> for human-readable sizes.</p>
+<h4>Q3. How do I sort files by modification time?</h4>
+<p>A. Use <code>ls -lt</code> to sort by modification time, newest first.</p>
+<h4>Q4. How do I list files recursively?</h4>
+<p>A. Use <code>ls -R</code> to list all files and subdirectories recursively.</p>
+<h4>Q5. How can I see hidden files?</h4>
+<p>A. Use <code>ls -a</code> to show all files, including hidden ones.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  until - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>until コマンド</h1>
+<p>条件が満たされるまでコマンドを繰り返し実行します。</p>
+<h2>概要</h2>
+<p><code>until</code> コマンドはシェルの構文で、指定された条件が真になるまでコマンドブロックを繰り返し実行します。条件が真である間実行される <code>while</code> とは異なり、<code>until</code> は条件が真になるまで実行されます。特定の状態に達するまで継続する必要があるループを作成するのに便利です。</p>
+<h2>オプション</h2>
+<p><code>until</code> コマンドは独立したプログラムではなくシェル組み込みの構文であるため、従来のコマンドラインオプションはありません。</p>
+<h2>使用例</h2>
+<h3>基本的な until ループ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">until</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$counter</span><span style="color: #F8F8F8"> </span>-ge<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Counter: $counter&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   ((counter++))</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Counter: 0</span>
+<span style="color: #000; font-style: italic">Counter: 1</span>
+<span style="color: #000; font-style: italic">Counter: 2</span>
+<span style="color: #000; font-style: italic">Counter: 3</span>
+<span style="color: #000; font-style: italic">Counter: 4</span>
+</pre></div>
+<h3>ファイルが存在するまで待機する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">until</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/tmp/signal_file<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Waiting for signal file...&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   sleep 5</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">&gt; echo &quot;Signal file found!&quot;</span>
+<span style="color: #000; font-style: italic">Waiting for signal file...</span>
+<span style="color: #000; font-style: italic">Waiting for signal file...</span>
+<span style="color: #000; font-style: italic">Signal file found!</span>
+</pre></div>
+<h3>プロセスが完了するまで待機する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">process_id</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #000">$!</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">until</span><span style="color: #F8F8F8"> </span>!<span style="color: #F8F8F8"> </span>ps<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #000">$process_id</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Process is still running...&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   sleep 2</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">&gt; echo &quot;Process has completed.&quot;</span>
+<span style="color: #000; font-style: italic">Process is still running...</span>
+<span style="color: #000; font-style: italic">Process is still running...</span>
+<span style="color: #000; font-style: italic">Process has completed.</span>
+</pre></div>
+<h3>コマンドが成功するまで再試行する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">until</span><span style="color: #F8F8F8"> </span>ping<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Network not available, retrying in 5 seconds...&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   sleep 5</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">&gt; echo &quot;Network is up!&quot;</span>
+<span style="color: #000; font-style: italic">Network not available, retrying in 5 seconds...</span>
+<span style="color: #000; font-style: italic">Network is up!</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>必ず終了条件を含める</h3>
+<p><code>until</code> ループには、最終的に条件を満たす方法があることを確認してください。そうしないと無限に実行されます。最大試行回数やタイムアウトを追加することを検討してください。</p>
+<h3>コマンド終了ステータスとの併用</h3>
+<p><code>until</code> ループはコマンド終了ステータス（成功は0、失敗は0以外）とうまく連携します。例えば、<code>until command; do something; done</code> は <code>command</code> が成功するまで実行し続けます。</p>
+<h3>ポーリングには sleep と組み合わせる</h3>
+<p>条件の変化を待つ場合は、ループ内で <code>sleep</code> を使用して過剰なCPU使用を防ぎます。これは外部イベントを確認する際に特に役立ちます。</p>
+<h3>必要に応じてループから抜け出す</h3>
+<p>メインの条件が満たされる前に別の条件が満たされた場合に早期に終了するために、<code>until</code> ループ内で <code>break</code> コマンドを使用できます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>until</code> と <code>while</code> の違いは何ですか？</h4>
+<p>A. <code>while</code> は条件が真である限りコマンドを実行しますが、<code>until</code> は条件が偽である限り（真になるまで）コマンドを実行します。</p>
+<h4>Q2. すべてのシェルで <code>until</code> を使用できますか？</h4>
+<p>A. <code>until</code> は bash、zsh、kshなどの多くの現代的なシェルで利用可能ですが、dashやashのようなよりミニマルなシェルでは利用できない場合があります。</p>
+<h4>Q3. <code>until</code> での無限ループを防ぐにはどうすればよいですか？</h4>
+<p>A. 条件が最終的に真になることを確認するか、最大値を持つカウンターを含め、カウンターが上限に達したときに <code>break</code> を使用してループを終了させます。</p>
+<h4>Q4. <code>until</code> ループをネストできますか？</h4>
+<p>A. はい、<code>until</code> ループを他のループ内にネストできます。これには他の <code>until</code> ループ、<code>while</code> ループ、または <code>for</code> ループが含まれます。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

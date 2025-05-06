@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  od - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>od コマンド</h1>
+<p>ファイルの内容を様々な形式で表示します。主に8進数、10進数、16進数形式で表示します。</p>
+<h2>概要</h2>
+<p><code>od</code>（octal dump）コマンドは、ファイルの内容を異なる形式で表示します。元々は8進数形式でデータを表示するために設計されましたが、現代のバージョンでは16進数、10進数、ASCII、その他多くの出力形式をサポートしています。特にバイナリファイルの調査、非表示文字の表示、またはファイルの内容をバイト単位で分析する際に便利です。</p>
+<h2>オプション</h2>
+<h3><strong>-t, --format=TYPE</strong></h3>
+<p>出力形式を指定します。一般的なTYPE値には以下があります：</p>
+<ul>
+<li><code>a</code> - 名前付き文字</li>
+<li><code>c</code> - ASCII文字またはバックスラッシュエスケープ</li>
+<li><code>d</code> - 符号付き10進数</li>
+<li><code>o</code> - 8進数（デフォルト）</li>
+<li><code>x</code> - 16進数</li>
+<li><code>f</code> - 浮動小数点</li>
+</ul>
+<pre><code>$ echo &quot;Hello&quot; | od -t c
+0000000   H   e   l   l   o  \n
+0000006
+</code></pre><h3><strong>-A, --address-radix=RADIX</strong></h3>
+<p>ファイルオフセットの形式を指定します。RADIXには以下があります：</p>
+<ul>
+<li><code>d</code> - 10進数</li>
+<li><code>o</code> - 8進数（デフォルト）</li>
+<li><code>x</code> - 16進数</li>
+<li><code>n</code> - なし（アドレスなし）</li>
+</ul>
+<pre><code>$ echo &quot;Hello&quot; | od -A x
+000000   48 65 6c 6c 6f 0a
+000006
+</code></pre><h3><strong>-j, --skip-bytes=BYTES</strong></h3>
+<p>フォーマットして書き込む前にBYTES分の入力バイトをスキップします。</p>
+<pre><code>$ echo &quot;Hello World&quot; | od -c -j 6
+0000006  W   o   r   l   d  \n
+0000014
+</code></pre><h3><strong>-N, --read-bytes=BYTES</strong></h3>
+<p>最大BYTES分の入力バイトをフォーマットして書き込みます。</p>
+<pre><code>$ echo &quot;Hello World&quot; | od -c -N 5
+0000000   H   e   l   l   o
+0000005
+</code></pre><h3><strong>-w, --width=BYTES</strong></h3>
+<p>1行あたりBYTES分のバイトを出力します。デフォルトは16です。</p>
+<pre><code>$ echo &quot;Hello World&quot; | od -c -w4
+0000000   H   e   l   l
+0000004   o       W   o
+0000010   r   l   d  \n
+0000014
+</code></pre><h3><strong>-v, --output-duplicates</strong></h3>
+<p>行の省略を示す<em>を使用しません（デフォルトでは、</em>は複数の同一行が折りたたまれていることを示します）。</p>
+<pre><code>$ dd if=/dev/zero bs=1 count=32 | od -v
+0000000 000000 000000 000000 000000 000000 000000 000000 000000
+0000020 000000 000000 000000 000000 000000 000000 000000 000000
+0000040
+</code></pre><h2>使用例</h2>
+<h3>ファイルを16進数形式で表示する</h3>
+<pre><code>$ od -t x1 sample.bin
+0000000 48 65 6c 6c 6f 20 57 6f 72 6c 64 0a
+0000014
+</code></pre><h3>ファイルを複数の形式で同時に表示する</h3>
+<pre><code>$ echo &quot;ABC123&quot; | od -t x1z -t c
+0000000 41 42 43 31 32 33 0a                              &gt;ABC123.&lt;
+0000007
+</code></pre><h3>16進数アドレスでバイナリデータを調査する</h3>
+<pre><code>$ head -c 16 /dev/urandom | od -A x -t x1z
+000000 ca f8 b1 35 94 55 29 45 9c 42 2a 8f 27 4a 0d 9e  &gt;...5.U)E.B*..'J..&lt;
+000010
+</code></pre><h3>ファイルの内容をASCII文字として表示する</h3>
+<pre><code>$ echo &quot;Hello\tWorld\nTest&quot; | od -c
+0000000   H   e   l   l   o  \t   W   o   r   l   d  \n   T   e   s   t
+0000020
+</code></pre><h2>ヒント</h2>
+<h3>より良い分析のために形式タイプを組み合わせる</h3>
+<p>複数の<code>-t</code>オプションを使用して、同じデータを異なる形式で同時に表示することで、バイナリデータの解釈が容易になります。</p>
+<pre><code>$ echo &quot;Hello&quot; | od -t x1 -t c
+0000000 48 65 6c 6c 6f 0a
+         H   e   l   l   o  \n
+0000006
+</code></pre><h3>パイプを使用して素早くデータを検査する</h3>
+<p>コマンド出力を<code>od</code>にパイプして、バイナリデータの素早い検査や隠れた文字を明らかにします。</p>
+<pre><code>$ cat /bin/ls | head -c 20 | od -t x1c
+</code></pre><h3>ファイルヘッダーを分析する</h3>
+<p><code>-N</code>と共に<code>od</code>を使用して、バイナリファイルのヘッダーバイトだけを調査します。これらには多くの場合、フォーマット情報が含まれています。</p>
+<pre><code>$ od -t x1 -N 16 image.jpg
+</code></pre><h3>非表示文字のデバッグ</h3>
+<p>予期しない動作のあるテキストファイルをトラブルシューティングする際、<code>od -c</code>を使用してキャリッジリターンやヌルバイトなどの非表示文字を明らかにします。</p>
+<h2>よくある質問</h2>
+<h4>Q1. &quot;od&quot;は何の略ですか？</h4>
+<p>A. &quot;od&quot;は&quot;octal dump&quot;（8進ダンプ）の略で、元々はファイルの内容を8進数形式で表示する目的を反映しています。</p>
+<h4>Q2. ファイルを16進数形式で表示するにはどうすればよいですか？</h4>
+<p>A. <code>od -t x1 ファイル名</code>を使用して、ファイルを16進数形式で表示します。各バイトは個別に表示されます。</p>
+<h4>Q3. ASCII文字だけを表示するにはどうすればよいですか？</h4>
+<p>A. <code>od -t c ファイル名</code>を使用して、ファイルの内容をASCII文字として表示します。非表示文字はエスケープシーケンスとして表示されます。</p>
+<h4>Q4. ファイルの最初の数バイトをスキップするにはどうすればよいですか？</h4>
+<p>A. <code>od -j N ファイル名</code>を使用します。Nは表示を開始する前にスキップするバイト数です。</p>
+<h4>Q5. 出力からアドレス列を削除するにはどうすればよいですか？</h4>
+<p>A. <code>od -A n ファイル名</code>を使用して、出力のアドレス列を抑制します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

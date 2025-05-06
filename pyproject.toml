@@ -1,0 +1,35 @@
+[project]
+name = "noman-project"
+version = "0.1.0"
+description = "Man pages without the man"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "babel>=2.17.0",
+    "jinja2>=3.1.6",
+    "noman",
+    "pyprod==0.10.1",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["noman-cli"]
+
+[tool.uv.sources]
+noman = { workspace = true}
+
+[dependency-groups]
+dev = [
+    "anthropic>=0.49.0",
+    "pycountry>=24.6.1",
+    "pyprod>=0.9.0",
+    "python-dotenv>=1.1.0",
+    "pyyaml>=6.0.2",
+    "ruff>=0.11.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

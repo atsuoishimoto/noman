@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  getent - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>getent コマンド</h1>
+<p>管理データベースからエントリを取得します。</p>
+<h2>概要</h2>
+<p><code>getent</code> は、アプリケーションが使用するのと同じライブラリ関数を使用して、管理データベース（<code>/etc/passwd</code>、<code>/etc/group</code> など）からエントリを表示する Unix コマンドです。情報がローカルファイル、NIS、LDAP、その他のソースから来るかどうかに関わらず、標準化された方法でシステムデータベースを照会するのに役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>database</strong></h3>
+<p>照会するデータベース（passwd、group、hosts、services、protocols、networks など）を指定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">root:x:0:0:root:/root:/bin/bash</span>
+</pre></div>
+<h3><strong>-s, --service=CONFIG</strong></h3>
+<p>使用するサービス設定を指定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>files<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">root:x:0:0:root:/root:/bin/bash</span>
+</pre></div>
+<h3><strong>-h, --help</strong></h3>
+<p>ヘルプ情報を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: getent [OPTION...] database [key ...]</span>
+<span style="color: #000; font-style: italic">Get entries from administrative database.</span>
+
+<span style="color: #000; font-style: italic">  -i, --no-idn               disable IDN encoding</span>
+<span style="color: #000; font-style: italic">  -s, --service=CONFIG       Service configuration to be used</span>
+<span style="color: #000; font-style: italic">  -?, --help                 Give this help list</span>
+<span style="color: #000; font-style: italic">      --usage                Give a short usage message</span>
+<span style="color: #000; font-style: italic">  -V, --version              Print program version</span>
+
+<span style="color: #000; font-style: italic">Mandatory or optional arguments to long options are also mandatory or optional</span>
+<span style="color: #000; font-style: italic">for any corresponding short options.</span>
+
+<span style="color: #000; font-style: italic">Supported databases:</span>
+<span style="color: #000; font-style: italic">ahosts ahostsv4 ahostsv6 aliases ethers group gshadow hosts netgroup networks</span>
+<span style="color: #000; font-style: italic">passwd protocols rpc services shadow</span>
+</pre></div>
+<h3><strong>-V, --version</strong></h3>
+<p>バージョン情報を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">getent (GNU libc) 2.31</span>
+</pre></div>
+<h3><strong>-i, --no-idn</strong></h3>
+<p>IDN（国際化ドメイン名）エンコーディングを無効にします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>hosts<span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">93.184.216.34   example.com</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ユーザー名でユーザーを検索する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">username:x:1000:1000:Full Name:/home/username:/bin/bash</span>
+</pre></div>
+<h3>ホスト名でホストを検索する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>hosts<span style="color: #F8F8F8"> </span>google.com
+<span style="color: #000; font-style: italic">142.250.190.78  google.com</span>
+</pre></div>
+<h3>すべてのグループを一覧表示する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>group
+<span style="color: #000; font-style: italic">root:x:0:</span>
+<span style="color: #000; font-style: italic">daemon:x:1:</span>
+<span style="color: #000; font-style: italic">bin:x:2:</span>
+<span style="color: #000; font-style: italic">sys:x:3:</span>
+<span style="color: #000; font-style: italic">[additional groups...]</span>
+</pre></div>
+<h3>サービスポートを検索する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>services<span style="color: #F8F8F8"> </span>ssh
+<span style="color: #000; font-style: italic">ssh                  22/tcp</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>grepと組み合わせてフィルタリングする</h3>
+<p><code>getent</code> と <code>grep</code> を組み合わせて、大きなデータベースから結果をフィルタリングします：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>username
+</pre></div>
+<h3>ユーザーが存在するかチェックする</h3>
+<p>終了コードを使用して、ユーザーがシステムに存在するかどうかを確認します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>username<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>/dev/null<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;User exists&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;User does not exist&quot;</span>
+</pre></div>
+<h3>グループのすべてのメンバーを見つける</h3>
+<p>グループデータベースを使用して、特定のグループのすべてのメンバーを確認します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>group<span style="color: #F8F8F8"> </span>sudo
+<span style="color: #000; font-style: italic">sudo:x:27:user1,user2,user3</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. getentで照会できるデータベースは何ですか？</h4>
+<p>A. 一般的なデータベースには、passwd、group、hosts、services、protocols、networks、shadow、aliasesなどがあります。利用可能なデータベースはシステムによって異なる場合があります。</p>
+<h4>Q2. ホスト名が解決されるかどうかを確認するにはどうすればよいですか？</h4>
+<p>A. <code>getent hosts ホスト名</code> を使用します。ホスト名が解決される場合、IPアドレスとホスト名が返されます。</p>
+<h4>Q3. getentはLDAPやその他のディレクトリサービスを照会できますか？</h4>
+<p>A. はい、getentはネームサービススイッチ（NSS）設定を使用するため、システムの <code>/etc/nsswitch.conf</code> ファイルで設定されているLDAP、NIS、DNS、ローカルファイルなど、あらゆるソースを照会できます。</p>
+<h4>Q4. getentと/etc/passwdなどのファイルを直接読み込むことの違いは何ですか？</h4>
+<p>A. getentはシステムのNSS設定を尊重するため、ローカルファイルだけでなく、設定されたすべてのソース（ローカルファイル、LDAP、NISなど）から情報を取得します。</p>
+<h2>参考資料</h2>
+<p>https://man7.org/linux/man-pages/man1/getent.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

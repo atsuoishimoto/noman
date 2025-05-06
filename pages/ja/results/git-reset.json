@@ -1,0 +1,20 @@
+{
+  "id": "msg_01VUssQ7oz1qDnWfyFFwZGbb",
+  "content": [
+    {
+      "text": "# git reset コマンド\n\n現在のHEADを指定した状態にリセットします。\n\n## 概要\n\n`git reset`は、HEADと現在のブランチを別のコミットに移動させることで変更を元に戻すために使用されます。また、ステージングエリア（インデックス）を変更し、オプションで作業ディレクトリも変更できるため、コミットの取り消し、ファイルのアンステージ、または変更の完全な破棄が可能です。\n\n## オプション\n\n### **--soft**\n\nHEADを指定したコミットにリセットしますが、ステージングエリアと作業ディレクトリは変更しません。\n\n```console\n$ git reset --soft HEAD~1\n```\n\n### **--mixed**\n\nデフォルトモード。HEADとステージングエリアをリセットしますが、作業ディレクトリは変更しません。\n\n```console\n$ git reset HEAD~1\n```\n\n### **--hard**\n\nHEAD、ステージングエリア、作業ディレクトリを指定したコミットに一致するようにリセットします。\n\n```console\n$ git reset --hard HEAD~1\n```\n\n### **-p, --patch**\n\nリセットする変更の塊を対話的に選択します。\n\n```console\n$ git reset -p\n```\n\n### **<commit>**\n\nリセット先のコミット。コミットハッシュ、ブランチ名、タグ、または相対参照が使用できます。\n\n```console\n$ git reset abc123f\n```\n\n## 使用例\n\n### ファイルのアンステージ\n\n```console\n$ git add file.txt\n$ git reset file.txt\nUnstaged changes after reset:\nM       file.txt\n```\n\n### 最後のコミットを取り消すが、変更はステージングされたままにする\n\n```console\n$ git reset --soft HEAD~1\n```\n\n### 最後の3つのコミットを完全に破棄する\n\n```console\n$ git reset --hard HEAD~3\nHEAD is now at 1a2b3c4 Previous commit message\n```\n\n### 特定のコミットにリセットする\n\n```console\n$ git reset --mixed 1a2b3c4\nUnstaged changes after reset:\nM       file1.txt\nM       file2.txt\n```\n\n## ヒント:\n\n### コミットの修正には `--soft` を使用する\n\n最後のコミットにさらに変更を追加したり、コミットメッセージを変更したりしたい場合は、`git reset --soft HEAD~1`を使用してコミットを取り消しつつ、すべての変更をステージングされたままにします。\n\n### ハードリセットからの復旧\n\n誤って`--hard`でリセットした場合、`git reflog`を使用してリセット元のコミットを見つけ、そのコミットハッシュに`git reset --hard`することで復旧できることが多いです。\n\n### 3つのリセットモードを理解する\n\n3つのリセットモードは影響レベルとして考えてください：\n- `--soft`：HEADのみを移動（最も安全）\n- `--mixed`：HEADを移動し、ステージングエリアを更新\n- `--hard`：HEAD、ステージングエリア、作業ディレクトリを更新（最も破壊的）\n\n### ブランチの切り替えには `git reset` ではなく `git checkout` を使用する\n\n別のブランチに切り替える場合は、`git reset`よりも`git switch`または`git checkout`を使用してください。リセットを使用してブランチを切り替えると、予期しない結果になる可能性があります。\n\n## よくある質問\n\n#### Q1. `git reset`と`git revert`の違いは何ですか？\nA. `git reset`はHEADを以前のコミットに移動させて履歴を変更しますが、`git revert`は以前のコミットの変更を元に戻す新しいコミットを作成し、履歴を保持します。\n\n#### Q2. `git reset --hard`を元に戻すにはどうすればよいですか？\nA. `git reflog`を使用してリセット前のコミットハッシュを見つけ、`git reset --hard <commit-hash>`を使用してその状態に戻ります。\n\n#### Q3. すべてのファイルをアンステージするにはどうすればよいですか？\nA. 引数なしで`git reset`を使用すると、すべてのファイルがアンステージされます。\n\n#### Q4. 特定のファイルだけをリセットできますか？\nA. はい、`git reset <filename>`を使用して特定のファイルをアンステージしたり、`git reset -p`を使用してアンステージするファイルの一部を対話的に選択したりできます。\n\n## 参考資料\n\nhttps://git-scm.com/docs/git-reset\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1007,
+    "output_tokens": 1411
+  }
+}

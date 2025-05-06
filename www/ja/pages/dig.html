@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  dig - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>digコマンド</h1>
+<p>DNSネームサーバーにドメイン情報を問い合わせます。</p>
+<h2>概要</h2>
+<p><code>dig</code>（Domain Information Groper）は柔軟なDNS検索ユーティリティで、DNSサーバーにホストアドレス、メール交換、ネームサーバー、および関連情報について問い合わせを行います。DNS問題のトラブルシューティングやDNSレコードの検証によく使用されます。</p>
+<h2>オプション</h2>
+<h3><strong>@server</strong></h3>
+<p>問い合わせるDNSサーバーを指定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>@8.8.8.8<span style="color: #F8F8F8"> </span>example.com
+</pre></div>
+<h3><strong>-t</strong></h3>
+<p>問い合わせるDNSレコードの種類を指定します（デフォルトはA）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>MX<span style="color: #F8F8F8"> </span>gmail.com
+</pre></div>
+<h3><strong>+short</strong></h3>
+<p>簡潔な回答を表示し、回答セクションのレコードデータのみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>+short<span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">93.184.216.34</span>
+</pre></div>
+<h3><strong>+noall, +answer</strong></h3>
+<p>レスポンスのどのセクションを表示するかを制御します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>+noall<span style="color: #F8F8F8"> </span>+answer<span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">example.com.		86400	IN	A	93.184.216.34</span>
+</pre></div>
+<h3><strong>-x</strong></h3>
+<p>逆引きDNS検索（IPからホスト名）を実行します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8</span>.8.8.8
+</pre></div>
+<h3><strong>+trace</strong></h3>
+<p>ルートネームサーバーからの委任パスをトレースします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>+trace<span style="color: #F8F8F8"> </span>example.com
+</pre></div>
+<h2>使用例</h2>
+<h3>Aレコードの検索（デフォルト）</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">; &lt;&lt;&gt;&gt; DiG 9.16.1-Ubuntu &lt;&lt;&gt;&gt; example.com</span>
+<span style="color: #000; font-style: italic">;; global options: +cmd</span>
+<span style="color: #000; font-style: italic">;; Got answer:</span>
+<span style="color: #000; font-style: italic">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 31892</span>
+<span style="color: #000; font-style: italic">;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1</span>
+
+<span style="color: #000; font-style: italic">;; OPT PSEUDOSECTION:</span>
+<span style="color: #000; font-style: italic">; EDNS: version: 0, flags:; udp: 65494</span>
+<span style="color: #000; font-style: italic">;; QUESTION SECTION:</span>
+<span style="color: #000; font-style: italic">;example.com.			IN	A</span>
+
+<span style="color: #000; font-style: italic">;; ANSWER SECTION:</span>
+<span style="color: #000; font-style: italic">example.com.		86400	IN	A	93.184.216.34</span>
+
+<span style="color: #000; font-style: italic">;; Query time: 28 msec</span>
+<span style="color: #000; font-style: italic">;; SERVER: 127.0.0.53#53(127.0.0.53)</span>
+<span style="color: #000; font-style: italic">;; WHEN: Mon May 05 12:00:00 UTC 2025</span>
+<span style="color: #000; font-style: italic">;; MSG SIZE  rcvd: 56</span>
+</pre></div>
+<h3>MXレコードの検索</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>MX<span style="color: #F8F8F8"> </span>gmail.com<span style="color: #F8F8F8"> </span>+short
+<span style="color: #000; font-style: italic">10 alt1.gmail-smtp-in.l.google.com.</span>
+<span style="color: #000; font-style: italic">20 alt2.gmail-smtp-in.l.google.com.</span>
+<span style="color: #000; font-style: italic">30 alt3.gmail-smtp-in.l.google.com.</span>
+<span style="color: #000; font-style: italic">40 alt4.gmail-smtp-in.l.google.com.</span>
+<span style="color: #000; font-style: italic">5 gmail-smtp-in.l.google.com.</span>
+</pre></div>
+<h3>特定のネームサーバーへの問い合わせ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>@1.1.1.1<span style="color: #F8F8F8"> </span>example.org
+</pre></div>
+<h3>ドメインのすべてのDNSレコードの確認</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dig<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span>ANY
+</pre></div>
+<h2>ヒント:</h2>
+<h3>素早い結果を得るには+shortを使用する</h3>
+<p>IPアドレスやレコード値だけが必要で余分な情報が不要な場合は、<code>dig +short domain.com</code>を使用すると、簡潔で最小限の出力が得られます。</p>
+<h3>複数のオプションを組み合わせる</h3>
+<p><code>dig +noall +answer +authority example.com</code>のように複数のオプションを組み合わせて、DNS応答の特定のセクションのみを表示することができます。</p>
+<h3>DNS伝播を確認する</h3>
+<p>DNS変更が伝播したかどうかを確認するには、複数のDNSサーバーに問い合わせます：<code>dig @8.8.8.8 example.com</code>と<code>dig @1.1.1.1 example.com</code>を実行して結果を比較します。</p>
+<h3>メール配信のトラブルシューティング</h3>
+<p>メール配信の問題をトラブルシューティングする際は、<code>dig -t MX domain.com</code>を使用してメール交換レコードを確認します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. digとnslookupの違いは何ですか？</h4>
+<p>A. <code>dig</code>はより詳細な情報を提供し、DNSトラブルシューティングにより柔軟性がありますが、<code>nslookup</code>はよりシンプルですが機能が少ないです。一般的にネットワーク管理者は<code>dig</code>を好みます。</p>
+<h4>Q2. DNS変更が伝播したかどうかを確認するにはどうすればよいですか？</h4>
+<p>A. <code>dig @server domain.com</code>を使用して複数のDNSサーバーに問い合わせ、結果を比較します。期待する値と一致していれば、伝播は完了しています。</p>
+<h4>Q3. ドメインの権威ネームサーバーを見つけるにはどうすればよいですか？</h4>
+<p>A. <code>dig -t NS domain.com</code>を使用して、ドメインを担当するネームサーバーを見つけます。</p>
+<h4>Q4. 逆引きDNS検索を実行するにはどうすればよいですか？</h4>
+<p>A. <code>dig -x IP_ADDRESS</code>を使用して、IPアドレスに関連付けられたホスト名を見つけます。</p>
+<h2>参考文献</h2>
+<p>https://linux.die.net/man/1/dig</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

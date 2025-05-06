@@ -1,0 +1,20 @@
+{
+  "id": "msg_01Cu9hYE6AukZsxwPXbiPh3y",
+  "content": [
+    {
+      "text": "# chsh command\n\nChange the login shell for a user.\n\n## Overview\n\nThe `chsh` command allows users to change their login shell - the command interpreter that starts when they log in. It modifies the user's entry in the password file to set which shell program runs when they log in to the system.\n\n## Options\n\n### **-s, --shell**\n\nSpecify the login shell to use. The shell must be listed in the /etc/shells file, unless the invoking user is the superuser.\n\n```console\n$ chsh -s /bin/zsh\nPassword: \nShell changed.\n```\n\n### **-l, --list-shells**\n\nDisplay the list of shells listed in the /etc/shells file.\n\n```console\n$ chsh -l\n/bin/sh\n/bin/bash\n/bin/zsh\n/bin/fish\n```\n\n### **-h, --help**\n\nDisplay help information and exit.\n\n```console\n$ chsh --help\nUsage: chsh [options] [LOGIN]\n\nOptions:\n  -s, --shell SHELL         specify login shell\n  -l, --list-shells         list shells and exit\n  -h, --help                display this help and exit\n  -v, --version             display version information and exit\n```\n\n### **-v, --version**\n\nDisplay version information and exit.\n\n```console\n$ chsh --version\nchsh from util-linux 2.38.1\n```\n\n## Usage Examples\n\n### Changing your own shell\n\n```console\n$ chsh -s /bin/zsh\nPassword: \nShell changed.\n```\n\n### Viewing your current shell\n\n```console\n$ grep \"^$(whoami):\" /etc/passwd\nusername:x:1000:1000:User Name:/home/username:/bin/zsh\n```\n\n### Changing another user's shell (requires root privileges)\n\n```console\n$ sudo chsh -s /bin/bash otheruser\nShell changed.\n```\n\n## Tips:\n\n### Check Available Shells First\n\nAlways use `chsh -l` or check `/etc/shells` to see what shells are available on your system before changing your shell.\n\n### Logout Required\n\nChanges to your login shell won't take effect until you log out and log back in.\n\n### Shell Must Be in /etc/shells\n\nThe shell you choose must be listed in the `/etc/shells` file, unless you're the superuser. This is a security measure to prevent users from setting arbitrary programs as their login shell.\n\n### Reverting Changes\n\nIf you change to a shell that doesn't work for you, you can always change back using the same command with your previous shell.\n\n## Frequently Asked Questions\n\n#### Q1. What is the difference between login shell and current shell?\nA. The login shell is the shell that starts when you log in to the system. The current shell is the shell you're currently using, which might be different if you've started another shell from your login shell.\n\n#### Q2. How do I know what my current shell is?\nA. Run `echo $SHELL` to see your login shell, or `ps -p $$` to see what shell you're currently using.\n\n#### Q3. Can I use any program as my shell?\nA. No, for security reasons, regular users can only use shells listed in `/etc/shells`. Only the superuser can set arbitrary programs as shells.\n\n#### Q4. What happens if I set an invalid shell?\nA. If you set a shell that doesn't exist or doesn't work properly, you might be unable to log in normally. In such cases, you would need to use recovery methods or ask a system administrator to fix it.\n\n## References\n\nhttps://man7.org/linux/man-pages/man1/chsh.1.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1679,
+    "output_tokens": 864
+  }
+}

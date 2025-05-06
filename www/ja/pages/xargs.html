@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  xargs - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>xargsコマンド</h1>
+<p>標準入力から引数を受け取ってコマンドを実行します。</p>
+<h2>概要</h2>
+<p><code>xargs</code>は標準入力からアイテムを読み取り、それらをコマンドの引数として実行します。他のコマンドの出力からコマンドラインを構築したり、大きな引数リストを処理したり、データをバッチで処理したりする場合に特に便利です。</p>
+<h2>オプション</h2>
+<h3><strong>-0, --null</strong></h3>
+<p>入力アイテムは空白ではなくnull文字で区切られます。入力にスペースや改行が含まれる可能性がある場合に便利です。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.txt&quot;</span><span style="color: #F8F8F8"> </span>-print0<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-0<span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;pattern&quot;</span>
+<span style="color: #000; font-style: italic">./file1.txt:pattern found here</span>
+<span style="color: #000; font-style: italic">./path with spaces/file2.txt:pattern also here</span>
+</pre></div>
+<h3><strong>-I, --replace[=R]</strong></h3>
+<p>初期引数内のR（デフォルトは{}）の出現を標準入力から読み取った名前に置き換えます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;file1.txt file2.txt&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-I<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span>cp<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span>backup/
+</pre></div>
+<h3><strong>-n, --max-args=MAX-ARGS</strong></h3>
+<p>コマンドラインごとに最大MAX-ARGS個の引数を使用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;1 2 3 4&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span>
+<span style="color: #000; font-style: italic">1 2</span>
+<span style="color: #000; font-style: italic">3 4</span>
+</pre></div>
+<h3><strong>-P, --max-procs=MAX-PROCS</strong></h3>
+<p>最大MAX-PROCSのプロセスを同時に実行します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.jpg&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-P<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4</span><span style="color: #F8F8F8"> </span>-I<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span>convert<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span>.png
+</pre></div>
+<h3><strong>-d, --delimiter=DELIM</strong></h3>
+<p>入力アイテムは空白ではなくDELIM文字で区切られます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;file1.txt:file2.txt:file3.txt&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;:&quot;</span><span style="color: #F8F8F8"> </span>ls<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 123 May 5 10:00 file1.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 456 May 5 10:01 file2.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 789 May 5 10:02 file3.txt</span>
+</pre></div>
+<h3><strong>-p, --interactive</strong></h3>
+<p>各コマンドを実行する前にユーザーに確認を求めます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;important_file.txt&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>rm
+<span style="color: #000; font-style: italic">rm important_file.txt ?...</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ファイルの検索と削除</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.tmp&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>rm
+</pre></div>
+<h3>複数の引数によるバッチ処理</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>file_list.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>tar<span style="color: #F8F8F8"> </span>-czf<span style="color: #F8F8F8"> </span>archive.tar.gz
+</pre></div>
+<h3>grepと組み合わせて複数のファイルを検索</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.py&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;import requests&quot;</span>
+<span style="color: #000; font-style: italic">./script1.py:import requests</span>
+<span style="color: #000; font-style: italic">./utils/http.py:import requests as req</span>
+</pre></div>
+<h3>スペースを含むファイル名の処理</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.jpg&quot;</span><span style="color: #F8F8F8"> </span>-print0<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>-0<span style="color: #F8F8F8"> </span>-I<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span>mv<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span>./images/
+</pre></div>
+<h2>ヒント:</h2>
+<h3>空の入力でのコマンド実行を防止する</h3>
+<p><code>xargs --no-run-if-empty</code>を使用すると、標準入力が空の場合にコマンドが実行されるのを防ぎ、予期しない動作を防止できます。</p>
+<h3>実行前にコマンドをプレビューする</h3>
+<p><code>xargs -t</code>を使用すると、実行前に各コマンドが表示されるため、対話モードを使用せずに何が実行されるかを確認できます。</p>
+<h3>特殊文字を含むファイル名の処理</h3>
+<p>スペース、改行、その他の特殊文字を含む可能性のあるファイル名を扱う場合は、常に<code>find</code>と一緒に<code>-print0</code>を、<code>xargs</code>と一緒に<code>-0</code>を使用してください。</p>
+<h3>大規模な操作のためのバッチサイズの制限</h3>
+<p>多数のファイルを処理する場合は、<code>-n</code>を使用してコマンド実行ごとの引数の数を制限し、「引数リストが長すぎる」エラーを回避します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. パイプでコマンドに送る方法とxargsを使用する方法の違いは何ですか？</h4>
+<p>A. パイプ（<code>|</code>）は出力を次のコマンドの標準入力として送りますが、<code>xargs</code>は入力をコマンドライン引数に変換します。<code>rm</code>や<code>cp</code>などの多くのコマンドは標準入力ではなく引数を期待しています。</p>
+<h4>Q2. ファイル名を途中に必要とするコマンドでxargsを使用するにはどうすればよいですか？</h4>
+<p>A. プレースホルダーと共に<code>-I</code>オプションを使用します：<code>find . -name &quot;*.txt&quot; | xargs -I {} mv {} {}.bak</code></p>
+<h4>Q3. 多数のファイルに対してxargsをより速く実行するにはどうすればよいですか？</h4>
+<p>A. 複数のプロセスを並行して実行するために<code>-P</code>オプションを使用します：<code>xargs -P 4</code>は最大4つのプロセスを同時に実行します。</p>
+<h4>Q4. xargsが時々入力を予期せず分割するのはなぜですか？</h4>
+<p>A. デフォルトでは、xargsは空白で分割します。異なる区切り文字を指定するには<code>-d</code>を使用するか、null終端の入力には<code>-0</code>を使用してください。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/findutils/manual/html_node/find_html/xargs-options.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

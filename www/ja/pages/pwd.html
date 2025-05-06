@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  pwd - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>pwd コマンド</h1>
+<p>現在の作業ディレクトリの完全なパス名を表示します。</p>
+<h2>概要</h2>
+<p><code>pwd</code> コマンドは、現在いるディレクトリの絶対パスを表示します。これにより、ファイルシステム階層内での自分の位置を把握できます。特にディレクトリ間を移動する際や、現在の場所を参照する必要があるスクリプトを作成する際に役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>-L, --logical</strong></h3>
+<p>論理的な現在の作業ディレクトリを表示します。パス内のシンボリックリンクは遭遇した時点で解決されます（デフォルトの動作）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span><span style="color: #F8F8F8"> </span>-L
+<span style="color: #000; font-style: italic">/home/user/projects</span>
+</pre></div>
+<h3><strong>-P, --physical</strong></h3>
+<p>物理的な現在の作業ディレクトリを表示します。すべてのシンボリックリンクが解決されます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span><span style="color: #F8F8F8"> </span>-P
+<span style="color: #000; font-style: italic">/var/www/html/projects</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な使い方</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span>
+<span style="color: #000; font-style: italic">/home/user/documents</span>
+</pre></div>
+<h3>スクリプト内での pwd の使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Current directory: </span><span style="color: #204A87; font-weight: bold">$(</span><span style="color: #204A87">pwd</span><span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Current directory: /home/user/documents</span>
+</pre></div>
+<h3>論理パスと物理パスの比較</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">cd</span><span style="color: #F8F8F8"> </span>/home/user/symlink_to_projects
+<span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span><span style="color: #F8F8F8"> </span>-L
+<span style="color: #000; font-style: italic">/home/user/symlink_to_projects</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span><span style="color: #F8F8F8"> </span>-P
+<span style="color: #000; font-style: italic">/home/user/actual/projects</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>シェルスクリプトでの使用</h3>
+<p>現在のディレクトリを変数に格納して、後でスクリプト内で参照できます:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #000">CURRENT_DIR</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span><span style="color: #204A87">pwd</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #204A87">cd</span><span style="color: #F8F8F8"> </span>/some/other/directory
+<span style="color: #8F5902; font-style: italic"># 何か作業をする</span>
+<span style="color: #204A87">cd</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$CURRENT_DIR</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># 元のディレクトリに戻る</span>
+</pre></div>
+<h3>パスのハードコーディングを避ける</h3>
+<p>スクリプト内でパスをハードコーディングする代わりに、<code>pwd</code> を使用することで、異なるシステム間でスクリプトの移植性を高めることができます。</p>
+<h3>シンボリックリンクのトラブルシューティング</h3>
+<p>シンボリックリンクを扱う場合、<code>pwd -P</code> を使用してファイルが実際にディスク上のどこに保存されているかを確認できます。これにより、権限の問題のトラブルシューティングに役立ちます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>pwd</code> と <code>echo $PWD</code> の違いは何ですか？</h4>
+<p>A. 通常は同じ結果を表示しますが、<code>$PWD</code> は現在のディレクトリパスを格納する環境変数です。<code>pwd</code> は現在のディレクトリを積極的に判断するコマンドです。</p>
+<h4>Q2. なぜ <code>pwd -P</code> と <code>pwd -L</code> が異なる結果を表示することがありますか？</h4>
+<p>A. 現在のディレクトリにシンボリックリンクが含まれている場合に違いが生じます。<code>-L</code> はシンボリックリンクをそのままにしたパスを表示し、<code>-P</code> はすべてのシンボリックリンクを解決して実際の物理パスを表示します。</p>
+<h4>Q3. <code>pwd</code> はすべてのUnix系システムで同じように動作しますか？</h4>
+<p>A. 基本的な機能は同じですが、GNU/Linux、macOS、その他のUnixバリアントの間で利用可能なオプションに若干の違いがある場合があります。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/pwd-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

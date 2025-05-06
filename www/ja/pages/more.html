@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  more - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>more コマンド</h1>
+<p>ファイルの内容を一度に1画面ずつ表示します。</p>
+<h2>概要</h2>
+<p><code>more</code>はテキストを1画面ずつページングするためのフィルターです。テキストファイルの内容を制御された方法で表示し、ユーザーがファイル内を前方に移動できるようにします。より高機能な<code>less</code>とは異なり、<code>more</code>は主に前方への移動のみを可能にします。</p>
+<h2>オプション</h2>
+<h3><strong>-d</strong></h3>
+<p>役立つプロンプトを表示し、よりユーザーフレンドリーなエラーメッセージを提供します。</p>
+<pre><code>$ more -d large_file.txt
+--More--(50%) [スペースキーで続行、'q'で終了。]
+</code></pre><h3><strong>-f</strong></h3>
+<p>画面行ではなく論理行をカウントします（折り返される長い行で便利）。</p>
+<pre><code>$ more -f wrapped_text.txt
+</code></pre><h3><strong>-p</strong></h3>
+<p>各ページを表示する前に画面をクリアします。</p>
+<pre><code>$ more -p document.txt
+</code></pre><h3><strong>-c</strong></h3>
+<p>表示前に画面をクリアしますが、上の行から描画することで行います。</p>
+<pre><code>$ more -c large_file.txt
+</code></pre><h3><strong>-s</strong></h3>
+<p>複数の空白行を1行に圧縮します。</p>
+<pre><code>$ more -s file_with_blanks.txt
+</code></pre><h3><strong>-u</strong></h3>
+<p>下線を抑制します（一部の端末タイプで便利）。</p>
+<pre><code>$ more -u formatted_text.txt
+</code></pre><h3><strong>-number</strong></h3>
+<p>1画面あたりの行数を設定します。</p>
+<pre><code>$ more -10 short_file.txt
+</code></pre><h3><strong>+number</strong></h3>
+<p>指定した行番号からファイルの表示を開始します。</p>
+<pre><code>$ more +100 large_file.txt
+</code></pre><h3><strong>+/pattern</strong></h3>
+<p>パターンを含む最初の行から表示を開始します。</p>
+<pre><code>$ more +/ERROR log_file.txt
+</code></pre><h2>使用例</h2>
+<h3>基本的な使用法</h3>
+<pre><code>$ more /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+--More--(28%)
+</code></pre><h3>複数ファイルの表示</h3>
+<pre><code>$ more file1.txt file2.txt
+::::::::::::::
+file1.txt
+::::::::::::::
+Contents of file1...
+--More--(75%)
+</code></pre><h3>コマンド出力をmoreにパイプする</h3>
+<pre><code>$ ls -la /usr/bin | more
+total 123456
+drwxr-xr-x  2 root root   69632 Apr 18 09:23 .
+drwxr-xr-x 14 root root    4096 Jan 15 12:34 ..
+-rwxr-xr-x  1 root root   35344 Feb  7  2022 [
+--More--(2%)
+</code></pre><h3>特定のパターンから開始</h3>
+<pre><code>$ more +/function script.js
+function calculateTotal() {
+  // Function implementation
+}
+--More--(45%)
+</code></pre><h2>ヒント</h2>
+<h3>ナビゲーションコマンド</h3>
+<p><code>more</code>でファイルを表示している間、以下のコマンドが使用できます：</p>
+<ul>
+<li><code>Space</code> - 1画面分前進</li>
+<li><code>Enter</code> - 1行前進</li>
+<li><code>b</code> - 1画面分後退（すべての実装で動作しない場合があります）</li>
+<li><code>q</code> - 終了</li>
+<li><code>/pattern</code> - パターンを検索</li>
+<li><code>n</code> - 前回の検索を繰り返す</li>
+</ul>
+<h3>大きなファイルでmoreを使用する</h3>
+<p>非常に大きなファイルの場合、<code>more</code>は読み込み時にファイルをロードするため、ファイル全体を一度にロードするよりもメモリ効率が良くなります。</p>
+<h3>lessを代わりに使用する場合</h3>
+<p>より柔軟にファイル内を前後に移動する必要がある場合は、より多くの機能を提供する<code>less</code>の使用を検討してください。</p>
+<h3>プロンプトのカスタマイズ</h3>
+<p><code>MORE</code>環境変数を設定してプロンプトと動作をカスタマイズできます：</p>
+<pre><code>$ export MORE=&quot;-d&quot;
+</code></pre><h2>よくある質問</h2>
+<h4>Q1. <code>more</code>と<code>less</code>の違いは何ですか？</h4>
+<p>A. <code>more</code>はファイル内を主に前方に移動できる古いユーティリティです。<code>less</code>はより機能が豊富で、前後の移動が可能で、追加の検索機能も備えています。</p>
+<h4>Q2. <code>more</code>を終了するにはどうすればよいですか？</h4>
+<p>A. <code>q</code>キーを押して終了します。</p>
+<h4>Q3. <code>more</code>でテキストを検索できますか？</h4>
+<p>A. はい、<code>/</code>に続けて検索パターンを入力し、Enterを押します。次の出現を見つけるには<code>n</code>を使用します。</p>
+<h4>Q4. <code>more</code>で行番号を表示するにはどうすればよいですか？</h4>
+<p>A. <code>more</code>には組み込みの行番号表示機能はありません。行番号を表示するには、<code>less -N</code>または<code>cat -n file.txt | more</code>の使用を検討してください。</p>
+<h4>Q5. <code>more</code>で一度に特定の行数を表示するにはどうすればよいですか？</h4>
+<p>A. <code>-number</code>オプションを使用します。例えば、<code>more -20 file.txt</code>で一度に20行表示します。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man1/more.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

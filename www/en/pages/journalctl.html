@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  journalctl - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>journalctl command</h1>
+<p>Query and display messages from the systemd journal.</p>
+<h2>Overview</h2>
+<p><code>journalctl</code> is a command-line utility for querying and displaying logs collected by the systemd journal system. It allows users to view system logs, filter entries by various criteria, and follow logs in real-time. The systemd journal stores log data in a structured, indexed format that makes it efficient to search and retrieve specific information.</p>
+<h2>Options</h2>
+<h3><strong>-f, --follow</strong></h3>
+<p>Follow the journal, displaying new entries as they are added.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-f
+<span style="color: #000; font-style: italic">May 06 14:32:10 hostname systemd[1]: Started Daily apt download activities.</span>
+<span style="color: #000; font-style: italic">May 06 14:32:15 hostname CRON[12345]: (root) CMD (command_from_crontab)</span>
+<span style="color: #000; font-style: italic">-- Logs begin at Mon 2025-05-06 14:32:10 UTC. --</span>
+</pre></div>
+<h3><strong>-n, --lines=</strong></h3>
+<p>Show the specified number of most recent journal entries.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">May 06 14:30:10 hostname systemd[1]: Started Session 42 of user username.</span>
+<span style="color: #000; font-style: italic">May 06 14:30:15 hostname sshd[12345]: Accepted publickey for username from 192.168.1.10</span>
+<span style="color: #000; font-style: italic">May 06 14:31:20 hostname sudo[12346]: username : TTY=pts/0 ; PWD=/home/username ; USER=root ; COMMAND=/usr/bin/apt update</span>
+<span style="color: #000; font-style: italic">May 06 14:31:45 hostname systemd[1]: Starting Daily apt upgrade and clean activities...</span>
+<span style="color: #000; font-style: italic">May 06 14:32:10 hostname systemd[1]: Started Daily apt download activities.</span>
+</pre></div>
+<h3><strong>-u, --unit=</strong></h3>
+<p>Show logs from the specified systemd unit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>ssh
+<span style="color: #000; font-style: italic">May 06 08:15:20 hostname sshd[1234]: Server listening on 0.0.0.0 port 22.</span>
+<span style="color: #000; font-style: italic">May 06 08:15:20 hostname sshd[1234]: Server listening on :: port 22.</span>
+<span style="color: #000; font-style: italic">May 06 14:30:15 hostname sshd[12345]: Accepted publickey for username from 192.168.1.10</span>
+</pre></div>
+<h3><strong>-b, --boot</strong></h3>
+<p>Show logs from the current boot. Use -b -1 for previous boot, -b -2 for the boot before that, etc.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-b
+<span style="color: #000; font-style: italic">May 06 08:00:01 hostname kernel: Linux version 5.15.0-generic</span>
+<span style="color: #000; font-style: italic">May 06 08:00:05 hostname systemd[1]: System Initialization.</span>
+<span style="color: #000; font-style: italic">May 06 08:00:10 hostname systemd[1]: Started Journal Service.</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>--since=, --until=</strong></h3>
+<p>Show entries newer or older than the specified date/time.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>--since<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;2025-05-06 10:00:00&quot;</span><span style="color: #F8F8F8"> </span>--until<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;2025-05-06 11:00:00&quot;</span>
+<span style="color: #000; font-style: italic">May 06 10:00:05 hostname systemd[1]: Started Scheduled task.</span>
+<span style="color: #000; font-style: italic">May 06 10:15:30 hostname nginx[1234]: 192.168.1.100 - - [06/May/2025:10:15:30 +0000] &quot;GET / HTTP/1.1&quot; 200 612</span>
+<span style="color: #000; font-style: italic">May 06 10:45:22 hostname kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:11:22:33:44:55 SRC=203.0.113.1</span>
+</pre></div>
+<p>Time specifications can be flexible:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>--since<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;1 hour ago&quot;</span>
+<span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>--since<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;yesterday&quot;</span><span style="color: #F8F8F8"> </span>--until<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;today&quot;</span>
+<span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>--since<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;2025-05-06&quot;</span><span style="color: #F8F8F8"> </span>--until<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;2025-05-06 12:00:00&quot;</span>
+<span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>--since<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;09:00&quot;</span><span style="color: #F8F8F8"> </span>--until<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;10:00&quot;</span>
+</pre></div>
+<h3><strong>-p, --priority=</strong></h3>
+<p>Filter output by message priority (0-7 or debug, info, notice, warning, err, crit, alert, emerg).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>err
+<span style="color: #000; font-style: italic">May 06 09:12:34 hostname application[1234]: Failed to connect to database: Connection refused</span>
+<span style="color: #000; font-style: italic">May 06 11:23:45 hostname kernel: CPU: 2 PID: 1234 Comm: process Tainted: G        W  O 5.15.0-generic</span>
+</pre></div>
+<h3><strong>-k, --dmesg</strong></h3>
+<p>Show only kernel messages, similar to the output of the <code>dmesg</code> command.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-k
+<span style="color: #000; font-style: italic">May 06 08:00:01 hostname kernel: Linux version 5.15.0-generic</span>
+<span style="color: #000; font-style: italic">May 06 08:00:02 hostname kernel: Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-generic</span>
+<span style="color: #000; font-style: italic">May 06 08:00:03 hostname kernel: Memory: 16384MB available</span>
+</pre></div>
+<h3><strong>-o, --output=</strong></h3>
+<p>Control the format of the output (short, short-precise, verbose, json, json-pretty, etc.).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>json-pretty
+<span style="color: #000; font-style: italic">{</span>
+<span style="color: #000; font-style: italic">    &quot;__CURSOR&quot; : &quot;s=6c081a8b9c4b4f91a4a5f5c9d8e7f6a5;i=1234;b=5a4b3c2d1e0f;m=9876543210;t=5e4d3c2b1a09;x=abcdef0123456789&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;__REALTIME_TIMESTAMP&quot; : &quot;1714924330000000&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;__MONOTONIC_TIMESTAMP&quot; : &quot;9876543210&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;_BOOT_ID&quot; : &quot;5a4b3c2d1e0f&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;PRIORITY&quot; : &quot;6&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;_MACHINE_ID&quot; : &quot;0123456789abcdef0123456789abcdef&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;_HOSTNAME&quot; : &quot;hostname&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;MESSAGE&quot; : &quot;Started Daily apt download activities.&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;_PID&quot; : &quot;1&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;_COMM&quot; : &quot;systemd&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;_EXE&quot; : &quot;/usr/lib/systemd/systemd&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;_SYSTEMD_CGROUP&quot; : &quot;/init.scope&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;_SYSTEMD_UNIT&quot; : &quot;init.scope&quot;</span>
+<span style="color: #000; font-style: italic">}</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Viewing logs for a specific service</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>nginx.service
+<span style="color: #000; font-style: italic">May 06 08:10:15 hostname systemd[1]: Started A high performance web server and a reverse proxy server.</span>
+<span style="color: #000; font-style: italic">May 06 08:10:16 hostname nginx[1234]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span>
+<span style="color: #000; font-style: italic">May 06 08:10:16 hostname nginx[1234]: nginx: configuration file /etc/nginx/nginx.conf test is successful</span>
+</pre></div>
+<h3>Filtering logs by time range</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>--since<span style="color: #F8F8F8"> </span>yesterday<span style="color: #F8F8F8"> </span>--until<span style="color: #F8F8F8"> </span>today
+<span style="color: #000; font-style: italic">May 05 00:00:10 hostname systemd[1]: Starting Daily Cleanup of Temporary Directories...</span>
+<span style="color: #000; font-style: italic">May 05 00:01:15 hostname systemd[1]: Finished Daily Cleanup of Temporary Directories.</span>
+<span style="color: #000; font-style: italic">...</span>
+<span style="color: #000; font-style: italic">May 05 23:59:45 hostname systemd[1]: Starting Daily apt upgrade and clean activities...</span>
+</pre></div>
+<h3>Viewing logs from a specific executable</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>/usr/bin/sshd
+<span style="color: #000; font-style: italic">May 06 08:15:20 hostname sshd[1234]: Server listening on 0.0.0.0 port 22.</span>
+<span style="color: #000; font-style: italic">May 06 08:15:20 hostname sshd[1234]: Server listening on :: port 22.</span>
+<span style="color: #000; font-style: italic">May 06 14:30:15 hostname sshd[12345]: Accepted publickey for username from 192.168.1.10</span>
+</pre></div>
+<h3>Combining multiple filters</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>apache2.service<span style="color: #F8F8F8"> </span>--since<span style="color: #F8F8F8"> </span>today<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>err
+<span style="color: #000; font-style: italic">May 06 09:45:12 hostname apache2[2345]: [error] [client 192.168.1.50] File does not exist: /var/www/html/favicon.ico</span>
+<span style="color: #000; font-style: italic">May 06 13:22:30 hostname apache2[2345]: [error] [client 192.168.1.60] PHP Fatal error: Uncaught Error: Call to undefined function in /var/www/html/index.php:42</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Persistent Storage</h3>
+<p>By default, journal logs may be lost after reboot. To make logs persistent across reboots, create the directory <code>/var/log/journal</code>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>mkdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>/var/log/journal
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemd-tmpfiles<span style="color: #F8F8F8"> </span>--create<span style="color: #F8F8F8"> </span>--prefix<span style="color: #F8F8F8"> </span>/var/log/journal
+</pre></div>
+<h3>Limit Journal Size</h3>
+<p>Control journal size with <code>journalctl --vacuum-size=1G</code> to limit storage to 1GB, or <code>journalctl --vacuum-time=1month</code> to remove entries older than one month.</p>
+<h3>Faster Searches with Field Filtering</h3>
+<p>Use field-specific searches for better performance:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span><span style="color: #000">_SYSTEMD_UNIT</span><span style="color: #CE5C00; font-weight: bold">=</span>ssh.service<span style="color: #F8F8F8"> </span><span style="color: #000">_PID</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3>Export Logs for Analysis</h3>
+<p>Export logs to a file for further analysis or sharing:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>nginx<span style="color: #F8F8F8"> </span>--since<span style="color: #F8F8F8"> </span>today<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>nginx-logs.txt
+</pre></div>
+<h3>Use Pagers Effectively</h3>
+<p>By default, journalctl pipes output through a pager like <code>less</code>. Press <code>/</code> to search, <code>n</code> for next match, and <code>q</code> to quit. Use <code>--no-pager</code> to disable the pager:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>journalctl<span style="color: #F8F8F8"> </span>--no-pager<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>recent-logs.txt
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I see logs from the current boot only?</h4>
+<p>A. Use <code>journalctl -b</code> to see logs from the current boot.</p>
+<h4>Q2. How can I see logs in real-time (like tail -f)?</h4>
+<p>A. Use <code>journalctl -f</code> to follow the journal and see new entries as they arrive.</p>
+<h4>Q3. How do I clear old journal entries?</h4>
+<p>A. Use <code>journalctl --vacuum-time=2d</code> to remove entries older than 2 days, or <code>journalctl --vacuum-size=500M</code> to limit the journal size to 500MB.</p>
+<h4>Q4. How can I see logs from a specific application?</h4>
+<p>A. Use <code>journalctl -u service-name.service</code> for systemd services or <code>journalctl /path/to/executable</code> for specific binaries.</p>
+<h4>Q5. How do I view kernel messages only?</h4>
+<p>A. Use <code>journalctl -k</code> or <code>journalctl --dmesg</code> to view only kernel messages.</p>
+<h4>Q6. How can I filter logs by a specific time period?</h4>
+<p>A. Use <code>journalctl --since=&quot;YYYY-MM-DD HH:MM:SS&quot; --until=&quot;YYYY-MM-DD HH:MM:SS&quot;</code> or more human-readable formats like <code>--since=&quot;1 hour ago&quot;</code> or <code>--since=&quot;yesterday&quot;</code>.</p>
+<h2>References</h2>
+<p>https://www.freedesktop.org/software/systemd/man/journalctl.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 Added more time specification examples and pager usage tip.</li>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

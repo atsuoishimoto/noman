@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  gunzip - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>gunzipコマンド</h1>
+<p>gzipで圧縮されたファイルを展開します。</p>
+<h2>概要</h2>
+<p><code>gunzip</code>はgzip圧縮で圧縮されたファイルを展開するユーティリティです。<code>.gz</code>拡張子を削除して元のファイルを復元します。デフォルトでは、<code>-k</code>オプションを使用しない限り、gunzipは元の圧縮ファイルを保持しません。</p>
+<h2>オプション</h2>
+<h3><strong>-c, --stdout, --to-stdout</strong></h3>
+<p>出力を標準出力に書き込み、元のファイルを変更しません。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>archive.gz<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>extracted_file
+</pre></div>
+<h3><strong>-f, --force</strong></h3>
+<p>ファイルに複数のリンクがある場合や、対応するファイルがすでに存在する場合でも、強制的に展開します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>already_exists.gz
+</pre></div>
+<h3><strong>-k, --keep</strong></h3>
+<p>展開中に入力ファイルを保持します（削除しません）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-k<span style="color: #F8F8F8"> </span>data.gz
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">data  data.gz</span>
+</pre></div>
+<h3><strong>-l, --list</strong></h3>
+<p>展開せずに圧縮ファイルの内容を一覧表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>archive.gz
+<span style="color: #000; font-style: italic">         compressed        uncompressed  ratio uncompressed_name</span>
+<span style="color: #000; font-style: italic">                 220                 356  38.2% archive</span>
+</pre></div>
+<h3><strong>-q, --quiet</strong></h3>
+<p>すべての警告を抑制します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>noisy.gz
+</pre></div>
+<h3><strong>-r, --recursive</strong></h3>
+<p>ディレクトリ内のファイルを再帰的に展開します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>./compressed_directory/
+</pre></div>
+<h3><strong>-t, --test</strong></h3>
+<p>展開せずに圧縮ファイルの整合性をテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>archive.gz
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>展開された各ファイルの名前と圧縮率を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>data.gz
+<span style="color: #000; font-style: italic">data.gz:	 65.3% -- replaced with data</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な展開</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>archive.gz
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">archive</span>
+</pre></div>
+<h3>複数ファイルの展開</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>file1.gz<span style="color: #F8F8F8"> </span>file2.gz<span style="color: #F8F8F8"> </span>file3.gz
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">file1 file2 file3</span>
+</pre></div>
+<h3>標準出力への展開</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>config.gz<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;setting&quot;</span>
+<span style="color: #000; font-style: italic">default_setting=true</span>
+<span style="color: #000; font-style: italic">advanced_setting=false</span>
+</pre></div>
+<h3>展開せずに圧縮ファイルをテスト</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gunzip<span style="color: #F8F8F8"> </span>-tv<span style="color: #F8F8F8"> </span>*.gz
+<span style="color: #000; font-style: italic">archive1.gz: OK</span>
+<span style="color: #000; font-style: italic">archive2.gz: OK</span>
+<span style="color: #000; font-style: italic">data.gz: OK</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>tarファイルとの使用</h3>
+<p>多くのtarアーカイブはgzipで圧縮されています（.tar.gzまたは.tgz拡張子）。最初にgunzipを使用する代わりに、<code>tar -xzf</code>を使用して一度に展開できます。</p>
+<h3>複数の圧縮形式の処理</h3>
+<p>圧縮形式が不明な場合は、様々な圧縮形式で動作する<code>zcat</code>の使用を検討するか、zipファイル用のより汎用性の高い<code>unzip</code>を試してみてください。</p>
+<h3>タイムスタンプの保持</h3>
+<p>gunzipはデフォルトで元のファイルのタイムスタンプを保持します。これによりファイル履歴情報を維持できます。</p>
+<h3>パイプの使用</h3>
+<p>大きなファイルを扱う場合は、<code>-c</code>オプションを使用して中間ファイルを作成せずに出力を別のコマンドに直接パイプすることができます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. gunzipとgzip -dの違いは何ですか？</h4>
+<p>A. 機能的に同等です。<code>gunzip file.gz</code>は<code>gzip -d file.gz</code>と同じです。</p>
+<h4>Q2. 元のファイルを削除せずにファイルを展開するにはどうすればよいですか？</h4>
+<p>A. <code>-k</code>または<code>--keep</code>オプションを使用します：<code>gunzip -k file.gz</code></p>
+<h4>Q3. gunzipは.zipファイルを処理できますか？</h4>
+<p>A. いいえ、gunzipはgzip圧縮ファイル（.gz）のみを処理します。.zipファイルの場合は、<code>unzip</code>コマンドを使用してください。</p>
+<h4>Q4. 複数のファイルを一度に展開するにはどうすればよいですか？</h4>
+<p>A. すべてのファイルをリストするだけです：<code>gunzip file1.gz file2.gz file3.gz</code>またはワイルドカードを使用します：<code>gunzip *.gz</code></p>
+<h4>Q5. 展開せずに.gzファイルの内容を確認するにはどうすればよいですか？</h4>
+<p>A. <code>gunzip -l file.gz</code>を使用して内容を一覧表示するか、<code>zcat file.gz | less</code>を使用して内容を表示します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/gzip/manual/gzip.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

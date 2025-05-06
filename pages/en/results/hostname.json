@@ -1,0 +1,20 @@
+{
+  "id": "msg_01CTg5svjWy9XwGoQoXQpFi9",
+  "content": [
+    {
+      "text": "# hostname command\n\nDisplay or set the system's hostname.\n\n## Overview\n\nThe `hostname` command displays or sets the current host, domain, or node name of the system. Without arguments, it prints the current hostname. With appropriate privileges, it can be used to set a new hostname.\n\n## Options\n\n### **-s, --short**\n\nDisplay the short hostname (the portion before the first dot) without the domain information.\n\n```console\n$ hostname -s\nmycomputer\n```\n\n### **-f, --fqdn, --long**\n\nDisplay the Fully Qualified Domain Name (FQDN).\n\n```console\n$ hostname -f\nmycomputer.example.com\n```\n\n### **-d, --domain**\n\nDisplay the domain name the system belongs to.\n\n```console\n$ hostname -d\nexample.com\n```\n\n### **-i, --ip-address**\n\nDisplay the IP address(es) of the host.\n\n```console\n$ hostname -i\n192.168.1.100\n```\n\n## Usage Examples\n\n### Displaying the current hostname\n\n```console\n$ hostname\nmycomputer.example.com\n```\n\n### Setting a new hostname (requires root privileges)\n\n```console\n$ sudo hostname newname\n$ hostname\nnewname\n```\n\n### Displaying all network addresses of the host\n\n```console\n$ hostname --all-ip-addresses\n192.168.1.100 10.0.0.1 127.0.0.1\n```\n\n## Tips:\n\n### Permanent Hostname Changes\n\nThe `hostname` command only changes the hostname temporarily until the next reboot. To make permanent changes:\n- On Linux: Edit `/etc/hostname` or use `hostnamectl set-hostname newname`\n- On macOS: Use System Preferences > Sharing > Computer Name or `scutil --set HostName newname`\n\n### Hostname vs. FQDN\n\nThe hostname is just the computer name (e.g., \"mycomputer\"), while the FQDN includes the domain (e.g., \"mycomputer.example.com\"). Use `-f` when you need the complete network identity.\n\n### Hostname Resolution\n\nThe hostname command doesn't update DNS or `/etc/hosts`. After changing a hostname, you may need to update these separately for proper network resolution.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between hostname and hostnamectl?\nA. `hostname` is a simple utility to display or temporarily set the system hostname, while `hostnamectl` (on systemd-based Linux systems) can permanently set various hostname parameters and is the preferred method on modern Linux distributions.\n\n#### Q2. Why does hostname -i sometimes return 127.0.1.1 instead of my actual IP?\nA. This happens when the hostname is mapped to 127.0.1.1 in `/etc/hosts`, which is common in some distributions. Use `hostname --all-ip-addresses` or `ip addr` for more accurate network information.\n\n#### Q3. How can I make hostname changes permanent?\nA. Edit `/etc/hostname` on Linux or use `hostnamectl set-hostname newname`. On macOS, use `scutil --set HostName newname`.\n\n## macOS Considerations\n\nOn macOS, there are three different hostname settings that can be configured:\n\n- HostName: The network hostname (FQDN)\n- LocalHostName: The Bonjour hostname (used for local network discovery)\n- ComputerName: The user-friendly name shown in the UI\n\nTo set these values, use:\n\n```console\n$ sudo scutil --set HostName \"hostname.domain.com\"\n$ sudo scutil --set LocalHostName \"hostname\"\n$ sudo scutil --set ComputerName \"My Computer\"\n```\n\n## References\n\nhttps://man7.org/linux/man-pages/man1/hostname.1.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 891
+  }
+}

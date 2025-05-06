@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  hd - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>hd コマンド</h1>
+<p>ファイルの内容を16進数、10進数、8進数、またはASCII形式で表示します。</p>
+<h2>概要</h2>
+<p><code>hd</code>コマンド（hexdump）は、ファイルの内容を様々な形式、主に16進数で表示します。バイナリファイルの検査、非表示文字の確認、ファイル構造の分析に役立ちます。このコマンドはファイルまたは標準入力からデータを読み取り、フォーマットされた表現を出力します。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --ascii</strong></h3>
+<p>16進ダンプと一緒にASCII文字を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">00000000  48 65 6c 6c 6f 0a                                 |Hello.|</span>
+<span style="color: #000; font-style: italic">00000006</span>
+</pre></div>
+<h3><strong>-c, --canonical</strong></h3>
+<p>標準的な16進数+ASCII表示形式を使用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-c
+<span style="color: #000; font-style: italic">00000000  48 65 6c 6c 6f 0a                                 |Hello.|</span>
+<span style="color: #000; font-style: italic">00000006</span>
+</pre></div>
+<h3><strong>-d, --decimal</strong></h3>
+<p>16進数の代わりに10進数形式で出力を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">0000000   072 101 108 108 111 012</span>
+<span style="color: #000; font-style: italic">0000006</span>
+</pre></div>
+<h3><strong>-o, --octal</strong></h3>
+<p>8進数形式で出力を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-o
+<span style="color: #000; font-style: italic">0000000 000110 000145 000154 000154 000157 000012</span>
+<span style="color: #000; font-style: italic">0000006</span>
+</pre></div>
+<h3><strong>-n, --length=N</strong></h3>
+<p>入力のN個のバイトのみを解釈します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">00000000  48 65 6c 6c 6f                                    |Hello|</span>
+<span style="color: #000; font-style: italic">00000005</span>
+</pre></div>
+<h3><strong>-s, --skip=N</strong></h3>
+<p>入力の先頭からNバイトをスキップします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">6</span>
+<span style="color: #000; font-style: italic">00000006  57 6f 72 6c 64 0a                                 |World.|</span>
+<span style="color: #000; font-style: italic">0000000c</span>
+</pre></div>
+<h3><strong>-v, --no-squeezing</strong></h3>
+<p>すべての入力データを表示します（重複行をアスタリスクで置き換えるデフォルトの動作を無効にします）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/zero<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">16</span><span style="color: #F8F8F8"> </span><span style="color: #000">count</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span>
+<span style="color: #000; font-style: italic">00000010  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span>
+<span style="color: #000; font-style: italic">00000020  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span>
+<span style="color: #000; font-style: italic">00000030</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>バイナリファイルの検査</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hd<span style="color: #F8F8F8"> </span>/bin/ls<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-3
+<span style="color: #000; font-style: italic">00000000  cf fa ed fe 07 00 00 01  03 00 00 80 02 00 00 00  |................|</span>
+<span style="color: #000; font-style: italic">00000010  10 00 00 00 18 07 00 00  85 00 20 00 00 00 00 00  |.......... .....|</span>
+<span style="color: #000; font-style: italic">00000020  19 00 00 00 48 00 00 00  5f 5f 50 41 47 45 5a 45  |....H...__PAGEZE|</span>
+</pre></div>
+<h3>ファイルヘッダーの表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hd<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">16</span><span style="color: #F8F8F8"> </span>image.jpg
+<span style="color: #000; font-style: italic">00000000  ff d8 ff e0 00 10 4a 46  49 46 00 01 01 01 00 48  |......JFIF.....H|</span>
+<span style="color: #000; font-style: italic">00000010</span>
+</pre></div>
+<h3>バイナリファイルの比較</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hd<span style="color: #F8F8F8"> </span>file1.bin<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>file1.hex
+<span style="color: #8F5902">$ </span>hd<span style="color: #F8F8F8"> </span>file2.bin<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>file2.hex
+<span style="color: #8F5902">$ </span>diff<span style="color: #F8F8F8"> </span>file1.hex<span style="color: #F8F8F8"> </span>file2.hex
+</pre></div>
+<h2>ヒント:</h2>
+<h3>他のコマンドと組み合わせる</h3>
+<p>他のコマンドの出力を<code>hd</code>にパイプして、バイナリデータを素早く検査できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>curl<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>https://example.com<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head
+</pre></div>
+<h3>非表示文字の検査</h3>
+<p><code>hd</code>を使用して、テキストファイルで問題を引き起こす可能性のあるキャリッジリターン、改行、ヌルバイトなどの隠れた文字を確認できます。</p>
+<h3>ファイル形式の分析</h3>
+<p><code>hd</code>はファイルタイプを識別したり、ファイル形式の問題をデバッグしたりするためのファイルヘッダーの検査に役立ちます。</p>
+<h3>メモリ効率</h3>
+<p>非常に大きなファイルの場合、<code>-s</code>と<code>-n</code>オプションを使用して、ファイル全体をロードせずに特定の部分を検査できます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>hd</code>と<code>hexdump</code>の違いは何ですか？</h4>
+<p>A. 多くのシステムでは、<code>hd</code>は実際には<code>hexdump</code>へのシンボリックリンクか、その簡略版です。基本的な目的は同じですが、<code>hexdump</code>はより多くのフォーマットオプションを提供する場合があります。</p>
+<h4>Q2. ASCII表現のみを表示するにはどうすればよいですか？</h4>
+<p>A. <code>hd</code>は常に16進表現を表示しますが、表示可能なASCII文字のみが必要な場合は、代わりに<code>strings</code>コマンドを使用できます。</p>
+<h4>Q3. <code>hd</code>を使用してファイルを変更できますか？</h4>
+<p>A. いいえ、<code>hd</code>はファイルの内容を表示するだけです。バイナリファイルを変更するには、<code>hexedit</code>や<code>dd</code>などのツールが必要です。</p>
+<h4>Q4. 出力形式はどのように解釈すればよいですか？</h4>
+<p>A. 左端の列は16進数でのバイトオフセット（位置）を示します。中央の列は各バイトの16進数/10進数/8進数の値を示します。右端の列（-aまたは-cを使用する場合）はASCII表現を示し、非表示文字はドットで表示されます。</p>
+<h2>参考文献</h2>
+<p>https://man.openbsd.org/hd.1</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

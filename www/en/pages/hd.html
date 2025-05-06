@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  hd - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>hd command</h1>
+<p>Display file contents in hexadecimal, decimal, octal, or ASCII format.</p>
+<h2>Overview</h2>
+<p>The <code>hd</code> command (hexdump) displays the contents of files in various formats, primarily hexadecimal. It's useful for examining binary files, viewing non-printable characters, and analyzing file structures. The command reads from files or standard input and outputs formatted representations of the data.</p>
+<h2>Options</h2>
+<h3><strong>-a, --ascii</strong></h3>
+<p>Display ASCII characters alongside the hex dump.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">00000000  48 65 6c 6c 6f 0a                                 |Hello.|</span>
+<span style="color: #000; font-style: italic">00000006</span>
+</pre></div>
+<h3><strong>-c, --canonical</strong></h3>
+<p>Use canonical hex+ASCII display format.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-c
+<span style="color: #000; font-style: italic">00000000  48 65 6c 6c 6f 0a                                 |Hello.|</span>
+<span style="color: #000; font-style: italic">00000006</span>
+</pre></div>
+<h3><strong>-d, --decimal</strong></h3>
+<p>Display output in decimal format instead of hexadecimal.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">0000000   072 101 108 108 111 012</span>
+<span style="color: #000; font-style: italic">0000006</span>
+</pre></div>
+<h3><strong>-o, --octal</strong></h3>
+<p>Display output in octal format.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-o
+<span style="color: #000; font-style: italic">0000000 000110 000145 000154 000154 000157 000012</span>
+<span style="color: #000; font-style: italic">0000006</span>
+</pre></div>
+<h3><strong>-n, --length=N</strong></h3>
+<p>Interpret only N bytes of input.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">00000000  48 65 6c 6c 6f                                    |Hello|</span>
+<span style="color: #000; font-style: italic">00000005</span>
+</pre></div>
+<h3><strong>-s, --skip=N</strong></h3>
+<p>Skip N bytes from the beginning of input.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">6</span>
+<span style="color: #000; font-style: italic">00000006  57 6f 72 6c 64 0a                                 |World.|</span>
+<span style="color: #000; font-style: italic">0000000c</span>
+</pre></div>
+<h3><strong>-v, --no-squeezing</strong></h3>
+<p>Display all input data (disable the default behavior of replacing duplicate lines with an asterisk).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/zero<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">16</span><span style="color: #F8F8F8"> </span><span style="color: #000">count</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span>
+<span style="color: #000; font-style: italic">00000010  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span>
+<span style="color: #000; font-style: italic">00000020  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span>
+<span style="color: #000; font-style: italic">00000030</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Examining a binary file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hd<span style="color: #F8F8F8"> </span>/bin/ls<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-3
+<span style="color: #000; font-style: italic">00000000  cf fa ed fe 07 00 00 01  03 00 00 80 02 00 00 00  |................|</span>
+<span style="color: #000; font-style: italic">00000010  10 00 00 00 18 07 00 00  85 00 20 00 00 00 00 00  |.......... .....|</span>
+<span style="color: #000; font-style: italic">00000020  19 00 00 00 48 00 00 00  5f 5f 50 41 47 45 5a 45  |....H...__PAGEZE|</span>
+</pre></div>
+<h3>Viewing file headers</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hd<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">16</span><span style="color: #F8F8F8"> </span>image.jpg
+<span style="color: #000; font-style: italic">00000000  ff d8 ff e0 00 10 4a 46  49 46 00 01 01 01 00 48  |......JFIF.....H|</span>
+<span style="color: #000; font-style: italic">00000010</span>
+</pre></div>
+<h3>Comparing binary files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hd<span style="color: #F8F8F8"> </span>file1.bin<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>file1.hex
+<span style="color: #8F5902">$ </span>hd<span style="color: #F8F8F8"> </span>file2.bin<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>file2.hex
+<span style="color: #8F5902">$ </span>diff<span style="color: #F8F8F8"> </span>file1.hex<span style="color: #F8F8F8"> </span>file2.hex
+</pre></div>
+<h2>Tips</h2>
+<h3>Combine with Other Commands</h3>
+<p>Pipe output from other commands to <code>hd</code> for quick inspection of binary data:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>curl<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>https://example.com<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>hd<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head
+</pre></div>
+<h3>Examine Non-Printable Characters</h3>
+<p>Use <code>hd</code> to see hidden characters like carriage returns, line feeds, and null bytes that might cause issues in text files.</p>
+<h3>Analyze File Formats</h3>
+<p><code>hd</code> is useful for examining file headers to identify file types or debugging file format issues.</p>
+<h3>Memory Efficiency</h3>
+<p>For very large files, use the <code>-s</code> and <code>-n</code> options to examine specific portions without loading the entire file.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>hd</code> and <code>hexdump</code>?</h4>
+<p>A. On many systems, <code>hd</code> is actually a symbolic link to <code>hexdump</code> or a simplified version of it. They serve the same basic purpose, but <code>hexdump</code> may offer more formatting options.</p>
+<h4>Q2. How can I view only the ASCII representation?</h4>
+<p>A. While <code>hd</code> always shows some hex representation, you can use <code>strings</code> command instead if you only want printable ASCII characters.</p>
+<h4>Q3. Can I use <code>hd</code> to modify files?</h4>
+<p>A. No, <code>hd</code> is only for viewing file contents. To modify binary files, you would need tools like <code>hexedit</code> or <code>dd</code>.</p>
+<h4>Q4. How do I interpret the output format?</h4>
+<p>A. The leftmost column shows the byte offset (position) in hexadecimal. The middle columns show the hex/decimal/octal values of each byte. The rightmost column (when using -a or -c) shows the ASCII representation, with dots for non-printable characters.</p>
+<h2>References</h2>
+<p>https://man.openbsd.org/hd.1</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

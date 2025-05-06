@@ -1,0 +1,20 @@
+{
+  "id": "msg_01SU4sBcu5mqontv5atcSrRs",
+  "content": [
+    {
+      "text": "# readlink コマンド\n\nシンボリックリンクの解決先やファイルの正規名を表示します。\n\n## 概要\n\n`readlink` コマンドは、シンボリックリンクの対象または、ファイルの正規パスを表示します。シンボリックリンクを解決し、実際の宛先パスを返します。これは、シンボリックリンクの指す先を判断したり、ファイルの絶対パスを取得したりする必要があるスクリプトに役立ちます。\n\n## オプション\n\n### **-f, --canonicalize**\n\n与えられた名前の各コンポーネントのすべてのシンボリックリンクを再帰的に辿って正規化します。最後のコンポーネント以外は存在する必要があります\n\n```console\n$ ln -s /etc/hosts mylink\n$ readlink -f mylink\n/etc/hosts\n```\n\n### **-e, --canonicalize-existing**\n\n与えられた名前の各コンポーネントのすべてのシンボリックリンクを再帰的に辿って正規化します。すべてのコンポーネントが存在する必要があります\n\n```console\n$ readlink -e mylink\n/etc/hosts\n```\n\n### **-m, --canonicalize-missing**\n\n与えられた名前の各コンポーネントのすべてのシンボリックリンクを再帰的に辿って正規化します。コンポーネントの存在に関する要件はありません\n\n```console\n$ readlink -m /nonexistent/path\n/nonexistent/path\n```\n\n### **-n, --no-newline**\n\n末尾の区切り文字（改行）を出力しません\n\n```console\n$ readlink -n mylink && echo \" (this is the target)\"\n/etc/hosts (this is the target)\n```\n\n### **-z, --zero**\n\n各出力行を改行ではなくNUL文字で終了します\n\n```console\n$ readlink -z mylink | hexdump -C\n00000000  2f 65 74 63 2f 68 6f 73  74 73 00                 |/etc/hosts.|\n0000000b\n```\n\n### **-v, --verbose**\n\nエラーを報告します\n\n```console\n$ readlink -v nonexistent\nreadlink: nonexistent: No such file or directory\n```\n\n## 使用例\n\n### シンボリックリンクを読み取る基本的な使用法\n\n```console\n$ ln -s /usr/bin bin_link\n$ readlink bin_link\n/usr/bin\n```\n\n### ファイルの絶対パスを取得する\n\n```console\n$ readlink -f ../relative/path/to/file.txt\n/absolute/path/to/file.txt\n```\n\n### スクリプト内でreadlinkを使用する\n\n```console\n$ SCRIPT_PATH=$(readlink -f \"$0\")\n$ SCRIPT_DIR=$(dirname \"$SCRIPT_PATH\")\n$ echo \"This script is located in: $SCRIPT_DIR\"\nThis script is located in: /home/user/scripts\n```\n\n## ヒント:\n\n### -f、-e、-mの違い\n\n- `-f` はすべてのシンボリックリンクを辿りますが、最終コンポーネントのみが存在する必要があります\n- `-e` はすべてのシンボリックリンクを辿りますが、すべてのコンポーネントが存在する必要があります\n- `-m` は存在要件なしですべてのシンボリックリンクを辿ります（存在しないパスに便利です）\n\n### シェルスクリプトでの使用\n\nシェルスクリプトを書く際、`readlink -f \"$0\"`を使用して、呼び出し元に関係なくスクリプト自体の絶対パスを取得できます。\n\n### ファイル名のスペース処理\n\nreadlinkを使用する際は、スペースを含むファイル名を処理するために常に変数を引用符で囲みます：\n\n```console\n$ readlink -f \"$my_file\"  # 正しい\n$ readlink -f $my_file    # スペースがある場合は不正確\n```\n\n## よくある質問\n\n#### Q1. `readlink`と`realpath`の違いは何ですか？\nA. どちらのコマンドもシンボリックリンクを解決しますが、`realpath`は常に絶対パスを提供するのに対し、オプションなしの`readlink`は単にシンボリックリンクの対象を表示します。`-f`オプションを使用すると、`readlink`は`realpath`と同様に動作します。\n\n#### Q2. スクリプトを含むディレクトリを取得するにはどうすればよいですか？\nA. `dirname \"$(readlink -f \"$0\")\"`を使用して、呼び出し元に関係なくスクリプトを含むディレクトリを取得できます。\n\n#### Q3. オプションなしの`readlink`が通常のファイルで失敗するのはなぜですか？\nA. オプションなしの`readlink`はシンボリックリンクでのみ機能します。通常のファイルでも機能させるには`-f`を使用してください。\n\n#### Q4. ファイルがシンボリックリンクかどうかを確認するために`readlink`を使用するにはどうすればよいですか？\nA. オプションなしの`readlink`が出力を返す場合、そのファイルはシンボリックリンクです。エラーを返す場合、シンボリックリンクではありません。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/readlink-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1177,
+    "output_tokens": 1617
+  }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  mkdir - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>mkdir command</h1>
+<p>Create directories with specified names.</p>
+<h2>Overview</h2>
+<p>The <code>mkdir</code> command creates new directories in the file system. It allows users to create single or multiple directories at once, and can create parent directories automatically when needed. By default, directories are created with permissions based on the user's umask setting.</p>
+<h2>Options</h2>
+<h3><strong>-p, --parents</strong></h3>
+<p>Create parent directories as needed. No error if existing.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>projects/website/css
+</pre></div>
+<h3><strong>-m, --mode=MODE</strong></h3>
+<p>Set file mode (permissions) for the created directories.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">755</span><span style="color: #F8F8F8"> </span>secure_folder
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Print a message for each created directory.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>new_folder
+<span style="color: #000; font-style: italic">mkdir: created directory &#39;new_folder&#39;</span>
+</pre></div>
+<h3><strong>-Z, --context=CTX</strong></h3>
+<p>Set the SELinux security context of each created directory to CTX.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-Z<span style="color: #F8F8F8"> </span>new_folder
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating multiple directories at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>docs<span style="color: #F8F8F8"> </span>images<span style="color: #F8F8F8"> </span>videos
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">docs  images  videos</span>
+</pre></div>
+<h3>Creating nested directories with parent creation</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>projects/webapp/src/components
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>projects
+<span style="color: #000; font-style: italic">projects:</span>
+<span style="color: #000; font-style: italic">webapp</span>
+
+<span style="color: #000; font-style: italic">projects/webapp:</span>
+<span style="color: #000; font-style: italic">src</span>
+
+<span style="color: #000; font-style: italic">projects/webapp/src:</span>
+<span style="color: #000; font-style: italic">components</span>
+</pre></div>
+<h3>Creating a directory with specific permissions</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">700</span><span style="color: #F8F8F8"> </span>private_data
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">total 4</span>
+<span style="color: #000; font-style: italic">drwx------  2 user  user  4096 May  5 10:30 private_data</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use -p for Nested Directories</h3>
+<p>The <code>-p</code> option is extremely useful when creating a directory structure. It creates all necessary parent directories and doesn't error if directories already exist.</p>
+<h3>Set Permissions During Creation</h3>
+<p>Instead of creating a directory and then changing its permissions with <code>chmod</code>, use the <code>-m</code> option to set permissions during creation.</p>
+<h3>Create Multiple Directories Efficiently</h3>
+<p>You can create multiple directories with a single command: <code>mkdir dir1 dir2 dir3</code>.</p>
+<h3>Use Brace Expansion for Related Directories</h3>
+<p>Combine with bash brace expansion for creating related directories: <code>mkdir -p project/{src,docs,tests}</code>.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I create a directory with specific permissions?</h4>
+<p>A. Use <code>mkdir -m MODE directory_name</code>. For example, <code>mkdir -m 755 my_dir</code> creates a directory with read, write, and execute permissions for the owner, and read and execute permissions for group and others.</p>
+<h4>Q2. How do I create multiple nested directories at once?</h4>
+<p>A. Use <code>mkdir -p parent/child/grandchild</code>. The <code>-p</code> option creates all necessary parent directories.</p>
+<h4>Q3. What happens if I try to create a directory that already exists?</h4>
+<p>A. Without the <code>-p</code> option, <code>mkdir</code> will return an error. With <code>-p</code>, it will silently continue without error.</p>
+<h4>Q4. Can I see what directories are being created?</h4>
+<p>A. Yes, use the <code>-v</code> (verbose) option to see a message for each directory created.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/mkdir-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

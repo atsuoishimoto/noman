@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ipcs - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ipcs コマンド</h1>
+<p>アクティブなIPCファシリティ（共有メモリセグメント、メッセージキュー、セマフォ）に関する情報を表示します。</p>
+<h2>概要</h2>
+<p><code>ipcs</code>コマンドは、システム上で現在アクティブなSystem V間プロセス通信（IPC）リソースに関する情報を表示します。共有メモリセグメント、メッセージキュー、セマフォ配列のID、所有者、権限、使用統計などの詳細を表示します。</p>
+<h2>オプション</h2>
+<h3><strong>-a</strong></h3>
+<p>3つのリソースすべてについてすべての情報を表示します（デフォルトの動作）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">------ Message Queues --------</span>
+<span style="color: #000; font-style: italic">key        msqid      owner      perms      used-bytes   messages    </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        0            0           </span>
+
+<span style="color: #000; font-style: italic">------ Shared Memory Segments --------</span>
+<span style="color: #000; font-style: italic">key        shmid      owner      perms      bytes      nattch     status      </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        80         2          dest         </span>
+
+<span style="color: #000; font-style: italic">------ Semaphore Arrays --------</span>
+<span style="color: #000; font-style: italic">key        semid      owner      perms      nsems     </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        1</span>
+</pre></div>
+<h3><strong>-q</strong></h3>
+<p>アクティブなメッセージキューに関する情報を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-q
+<span style="color: #000; font-style: italic">------ Message Queues --------</span>
+<span style="color: #000; font-style: italic">key        msqid      owner      perms      used-bytes   messages    </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        0            0</span>
+</pre></div>
+<h3><strong>-m</strong></h3>
+<p>アクティブな共有メモリセグメントに関する情報を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-m
+<span style="color: #000; font-style: italic">------ Shared Memory Segments --------</span>
+<span style="color: #000; font-style: italic">key        shmid      owner      perms      bytes      nattch     status      </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        80         2          dest</span>
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>アクティブなセマフォ配列に関する情報を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic">------ Semaphore Arrays --------</span>
+<span style="color: #000; font-style: italic">key        semid      owner      perms      nsems     </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        1</span>
+</pre></div>
+<h3><strong>-t</strong></h3>
+<p>IPCファシリティの時間情報を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>-m
+<span style="color: #000; font-style: italic">------ Shared Memory Operation/Change Times --------</span>
+<span style="color: #000; font-style: italic">shmid      last-op                    last-changed              </span>
+<span style="color: #000; font-style: italic">0          Wed May  5 10:15:35 2025   Wed May  5 10:15:35 2025</span>
+</pre></div>
+<h3><strong>-p</strong></h3>
+<p>IPCファシリティを使用または作成しているプロセスIDを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>-m
+<span style="color: #000; font-style: italic">------ Shared Memory Creator/Last-op PIDs --------</span>
+<span style="color: #000; font-style: italic">shmid      owner      cpid       lpid      </span>
+<span style="color: #000; font-style: italic">0          root       1234       5678</span>
+</pre></div>
+<h3><strong>-c</strong></h3>
+<p>作成者と所有者の情報を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-m
+<span style="color: #000; font-style: italic">------ Shared Memory Segment Creators/Owners --------</span>
+<span style="color: #000; font-style: italic">shmid      perms      cuid       cgid       uid        gid       </span>
+<span style="color: #000; font-style: italic">0          644        0          0          0          0</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>詳細情報を含むすべてのIPCリソースを表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">------ Message Queues --------</span>
+<span style="color: #000; font-style: italic">key        msqid      owner      perms      used-bytes   messages    </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        0            0           </span>
+
+<span style="color: #000; font-style: italic">------ Shared Memory Segments --------</span>
+<span style="color: #000; font-style: italic">key        shmid      owner      perms      bytes      nattch     status      </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        80         2          dest         </span>
+
+<span style="color: #000; font-style: italic">------ Semaphore Arrays --------</span>
+<span style="color: #000; font-style: italic">key        semid      owner      perms      nsems     </span>
+<span style="color: #000; font-style: italic">0x00000000 0          root       644        1</span>
+</pre></div>
+<h3>IPCリソースの制限を表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ipcs<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">------ Messages Limits --------</span>
+<span style="color: #000; font-style: italic">max queues system wide = 32000</span>
+<span style="color: #000; font-style: italic">max size of message (bytes) = 8192</span>
+<span style="color: #000; font-style: italic">default max size of queue (bytes) = 16384</span>
+
+<span style="color: #000; font-style: italic">------ Shared Memory Limits --------</span>
+<span style="color: #000; font-style: italic">max number of segments = 4096</span>
+<span style="color: #000; font-style: italic">max seg size (kbytes) = 18014398509465599</span>
+<span style="color: #000; font-style: italic">max total shared memory (kbytes) = 18014398509481980</span>
+<span style="color: #000; font-style: italic">min seg size (bytes) = 1</span>
+
+<span style="color: #000; font-style: italic">------ Semaphore Limits --------</span>
+<span style="color: #000; font-style: italic">max number of arrays = 32000</span>
+<span style="color: #000; font-style: italic">max semaphores per array = 32000</span>
+<span style="color: #000; font-style: italic">max semaphores system wide = 1024000000</span>
+<span style="color: #000; font-style: italic">max ops per semop call = 500</span>
+<span style="color: #000; font-style: italic">semaphore max value = 32767</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>リソースリークの特定</h3>
+<p><code>ipcs</code>を定期的に使用してIPCリソースを監視しましょう。アプリケーションが終了した後も残っているリソースがある場合、クリーンアップが必要なリソースリークを示している可能性があります。</p>
+<h3>古いIPCリソースのクリーンアップ</h3>
+<p><code>ipcrm</code>コマンドを使用して、<code>ipcs</code>で特定された未使用のIPCリソースを削除します。例えば、<code>ipcrm -m &lt;shmid&gt;</code>は共有メモリセグメントを削除します。</p>
+<h3>リソース制限の確認</h3>
+<p><code>ipcs -l</code>を使用して、IPCリソースのシステム全体の制限を確認します。これは、リソース制約に達している可能性のあるアプリケーションのトラブルシューティングに役立ちます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. 3つのIPCファシリティの違いは何ですか？</h4>
+<p>A. 共有メモリセグメントはプロセスが直接メモリを共有することを可能にし、メッセージキューはプロセスがメッセージを交換できるようにし、セマフォはプロセス間の同期メカニズムを提供します。</p>
+<h4>Q2. IPCリソースを削除するにはどうすればよいですか？</h4>
+<p>A. 適切なオプションとIDを指定して<code>ipcrm</code>コマンドを使用します。例えば、<code>ipcrm -m &lt;shmid&gt;</code>は共有メモリセグメントを削除し、<code>ipcrm -q &lt;msqid&gt;</code>はメッセージキューを削除し、<code>ipcrm -s &lt;semid&gt;</code>はセマフォ配列を削除します。</p>
+<h4>Q3. 実行中のプロセスに属さないIPCリソースが表示されるのはなぜですか？</h4>
+<p>A. これらは、適切にクリーンアップせずに終了したプロセスから残された孤立リソースである可能性が高いです。もう必要ない場合は<code>ipcrm</code>を使用して削除してください。</p>
+<h4>Q4. 特定のIPCリソースを使用しているプロセスを確認するにはどうすればよいですか？</h4>
+<p>A. <code>ipcs -p</code>を使用して、IPCリソースの作成者と最後の操作者のプロセスID（PID）を表示します。</p>
+<h2>参考資料</h2>
+<p>https://man7.org/linux/man-pages/man1/ipcs.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

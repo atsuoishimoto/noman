@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  docker - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>docker コマンド</h1>
+<p>Dockerコンテナ、イメージ、ネットワーク、ボリュームを管理します。</p>
+<h2>概要</h2>
+<p>Dockerは、コンテナ化を使用してアプリケーションとその依存関係を分離されたユニットにパッケージ化するプラットフォームです。<code>docker</code>コマンドは、コンテナ、イメージ、ネットワーク、ボリュームを構築、実行、管理するためのCLIを提供します。これにより、開発者は異なるマシン間で一貫した環境を作成できます。</p>
+<h2>オプション</h2>
+<h3><strong>--help</strong></h3>
+<p>Dockerコマンドのヘルプ情報を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage:  docker [OPTIONS] COMMAND</span>
+
+<span style="color: #000; font-style: italic">コンテナのための自己完結型ランタイム</span>
+
+<span style="color: #000; font-style: italic">一般的なコマンド:</span>
+<span style="color: #000; font-style: italic">  run         イメージから新しいコンテナを作成して実行する</span>
+<span style="color: #000; font-style: italic">  exec        実行中のコンテナでコマンドを実行する</span>
+<span style="color: #000; font-style: italic">  ps          コンテナを一覧表示する</span>
+<span style="color: #000; font-style: italic">  build       Dockerfileからイメージをビルドする</span>
+<span style="color: #000; font-style: italic">  pull        レジストリからイメージをダウンロードする</span>
+<span style="color: #000; font-style: italic">  push        イメージをレジストリにアップロードする</span>
+<span style="color: #000; font-style: italic">  images      イメージを一覧表示する</span>
+<span style="color: #000; font-style: italic">  login       レジストリにログインする</span>
+<span style="color: #000; font-style: italic">  logout      レジストリからログアウトする</span>
+<span style="color: #000; font-style: italic">  search      Docker Hubでイメージを検索する</span>
+<span style="color: #000; font-style: italic">  version     Dockerのバージョン情報を表示する</span>
+<span style="color: #000; font-style: italic">  info        システム全体の情報を表示する</span>
+
+<span style="color: #000; font-style: italic">管理コマンド:</span>
+<span style="color: #000; font-style: italic">  builder     ビルドを管理する</span>
+<span style="color: #000; font-style: italic">  buildx*     Docker Buildx (Docker Inc., v0.10.4)</span>
+<span style="color: #000; font-style: italic">  compose*    Docker Compose (Docker Inc., v2.17.2)</span>
+<span style="color: #000; font-style: italic">  container   コンテナを管理する</span>
+<span style="color: #000; font-style: italic">  context     コンテキストを管理する</span>
+<span style="color: #000; font-style: italic">  image       イメージを管理する</span>
+<span style="color: #000; font-style: italic">  manifest    Dockerイメージマニフェストとマニフェストリストを管理する</span>
+<span style="color: #000; font-style: italic">  network     ネットワークを管理する</span>
+<span style="color: #000; font-style: italic">  plugin      プラグインを管理する</span>
+<span style="color: #000; font-style: italic">  system      Dockerを管理する</span>
+<span style="color: #000; font-style: italic">  trust       Dockerイメージの信頼を管理する</span>
+<span style="color: #000; font-style: italic">  volume      ボリュームを管理する</span>
+
+<span style="color: #000; font-style: italic">[...]</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>コンテナの実行</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>:80<span style="color: #F8F8F8"> </span>--name<span style="color: #F8F8F8"> </span>webserver<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">e5d40ecd5de98d0bff8f57c4d7f1e2f132b95b5bd4c42d8f4e9f659d3e3950cd</span>
+</pre></div>
+<h3>実行中のコンテナの一覧表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>ps
+<span style="color: #000; font-style: italic">CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                               NAMES</span>
+<span style="color: #000; font-style: italic">e5d40ecd5de9   nginx     &quot;/docker-entrypoint.…&quot;   10 seconds ago   Up 9 seconds    0.0.0.0:80-&gt;80/tcp, :::80-&gt;80/tcp   webserver</span>
+</pre></div>
+<h3>Dockerfileからイメージをビルドする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>build<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>myapp:1.0<span style="color: #F8F8F8"> </span>.
+<span style="color: #000; font-style: italic">[+] Building 10.5s (10/10) FINISHED</span>
+<span style="color: #000; font-style: italic"> =&gt; [internal] load build definition from Dockerfile                                                 0.1s</span>
+<span style="color: #000; font-style: italic"> =&gt; =&gt; transferring dockerfile: 215B                                                                0.0s</span>
+<span style="color: #000; font-style: italic"> =&gt; [internal] load .dockerignore                                                                    0.0s</span>
+<span style="color: #000; font-style: italic"> =&gt; =&gt; transferring context: 2B                                                                      0.0s</span>
+<span style="color: #000; font-style: italic"> =&gt; [internal] load metadata for docker.io/library/node:14                                           1.2s</span>
+<span style="color: #000; font-style: italic"> =&gt; [1/5] FROM docker.io/library/node:14@sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d5dc65798060  0.0s</span>
+<span style="color: #000; font-style: italic"> =&gt; [internal] load build context                                                                    0.0s</span>
+<span style="color: #000; font-style: italic"> =&gt; =&gt; transferring context: 32B                                                                     0.0s</span>
+<span style="color: #000; font-style: italic"> =&gt; CACHED [2/5] WORKDIR /app                                                                        0.0s</span>
+<span style="color: #000; font-style: italic"> =&gt; [3/5] COPY package*.json ./                                                                      0.1s</span>
+<span style="color: #000; font-style: italic"> =&gt; [4/5] RUN npm install                                                                            8.5s</span>
+<span style="color: #000; font-style: italic"> =&gt; [5/5] COPY . .                                                                                   0.1s</span>
+<span style="color: #000; font-style: italic"> =&gt; exporting to image                                                                               0.4s</span>
+<span style="color: #000; font-style: italic"> =&gt; =&gt; exporting layers                                                                              0.4s</span>
+<span style="color: #000; font-style: italic"> =&gt; =&gt; writing image sha256:d64d6b95f5b7e8c3e92a6c2f5f154610e2aa0163d3c1a9c832b80ed4d5a0e21e       0.0s</span>
+<span style="color: #000; font-style: italic"> =&gt; =&gt; naming to docker.io/library/myapp:1.0                                                         0.0s</span>
+</pre></div>
+<h3>コンテナの停止</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>stop<span style="color: #F8F8F8"> </span>webserver
+<span style="color: #000; font-style: italic">webserver</span>
+</pre></div>
+<h3>コンテナの削除</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>rm<span style="color: #F8F8F8"> </span>webserver
+<span style="color: #000; font-style: italic">webserver</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>マルチコンテナアプリケーションにはDocker Composeを使用する</h3>
+<p>複数のサービスを持つアプリケーションでは、<code>docker run</code>コマンドで各コンテナを個別に管理するのではなく、<code>docker-compose.yml</code>ファイルを使用したDocker Composeを使用しましょう。</p>
+<h3>未使用のリソースをクリーンアップする</h3>
+<p><code>docker system prune</code>を使用して、停止したすべてのコンテナ、未使用のネットワーク、ダングリングイメージ、ビルドキャッシュを削除します。<code>-a</code>フラグを追加すると、未使用のイメージもすべて削除されます。</p>
+<h3>永続データには名前付きボリュームを使用する</h3>
+<p>バインドマウントを使用する代わりに、コンテナの再起動間で永続化する必要があるデータには名前付きボリュームを使用します：<code>docker run -v mydata:/app/data myapp</code></p>
+<h3>マルチステージビルドを使用する</h3>
+<p>より小さな本番用イメージを作成するには、Dockerfileでマルチステージビルドを使用して、ビルド依存関係とランタイム依存関係を分離します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>docker run</code>と<code>docker start</code>の違いは何ですか？</h4>
+<p>A. <code>docker run</code>はイメージから新しいコンテナを作成して起動しますが、<code>docker start</code>は既に存在する停止中のコンテナを再起動します。</p>
+<h4>Q2. 実行中のコンテナのシェルにアクセスするにはどうすればよいですか？</h4>
+<p>A. <code>docker exec -it コンテナ名 /bin/bash</code>または<code>/bin/sh</code>を使用して、実行中のコンテナ内でインタラクティブなシェルを取得します。</p>
+<h4>Q3. コンテナのログを表示するにはどうすればよいですか？</h4>
+<p>A. <code>docker logs コンテナ名</code>を使用してコンテナのログを表示します。リアルタイムでログ出力を追跡するには<code>-f</code>を追加します。</p>
+<h4>Q4. ホストとコンテナ間でファイルをコピーするにはどうすればよいですか？</h4>
+<p>A. ホストからコンテナにコピーするには<code>docker cp /ホスト/パス コンテナ名:/コンテナ/パス</code>を使用し、コンテナからホストにコピーするには<code>docker cp コンテナ名:/コンテナ/パス /ホスト/パス</code>を使用します。</p>
+<h4>Q5. 実行中のコンテナの設定を更新するにはどうすればよいですか？</h4>
+<p>A. 実行中のコンテナのほとんどの設定オプションは更新できません。代わりに、コンテナを停止し、削除して、更新された設定で新しいコンテナを作成します。</p>
+<h2>参考文献</h2>
+<p>https://docs.docker.com/engine/reference/commandline/docker/</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

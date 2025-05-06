@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  awk - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>awk コマンド</h1>
+<p>構造化されたデータを操作するためのパターンスキャンとテキスト処理言語です。</p>
+<h2>概要</h2>
+<p><code>awk</code> は強力なテキスト処理ツールで、入力の各行をレコードとして、各単語をフィールドとして扱います。CSV、ログ、テーブルなどの構造化されたテキストファイルからデータを抽出・操作するのに優れています。コマンドは次のパターンに従います: <code>awk 'パターン {アクション}' ファイル</code>。</p>
+<h2>オプション</h2>
+<h3><strong>-F, --field-separator</strong></h3>
+<p>フィールド区切り文字を指定します（デフォルトは空白）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;apple,orange,banana&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>awk<span style="color: #F8F8F8"> </span>-F,<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{print $2}&#39;</span>
+<span style="color: #000; font-style: italic">orange</span>
+</pre></div>
+<h3><strong>-f, --file</strong></h3>
+<p>コマンドラインではなくファイルからAWKプログラムを読み込みます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>script.awk
+<span style="color: #000; font-style: italic">{print $1}</span>
+<span style="color: #8F5902">$ </span>awk<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>script.awk<span style="color: #F8F8F8"> </span>data.txt
+<span style="color: #000; font-style: italic">First</span>
+<span style="color: #000; font-style: italic">Second</span>
+<span style="color: #000; font-style: italic">Third</span>
+</pre></div>
+<h3><strong>-v, --assign</strong></h3>
+<p>プログラム実行前に変数に値を割り当てます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>awk<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #000">name</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;John&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{print &quot;Hello, &quot; name}&#39;</span><span style="color: #F8F8F8"> </span>/dev/null
+<span style="color: #000; font-style: italic">Hello, John</span>
+</pre></div>
+<h3><strong>-W, --compat, --posix</strong></h3>
+<p>POSIX互換モードで実行します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>awk<span style="color: #F8F8F8"> </span>-W<span style="color: #F8F8F8"> </span>posix<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{print $1}&#39;</span><span style="color: #F8F8F8"> </span>data.txt
+<span style="color: #000; font-style: italic">First</span>
+<span style="color: #000; font-style: italic">Second</span>
+<span style="color: #000; font-style: italic">Third</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なフィールド表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>awk<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{print $1}&#39;</span>
+<span style="color: #000; font-style: italic">Hello</span>
+</pre></div>
+<h3>CSVデータの処理</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>data.csv
+<span style="color: #000; font-style: italic">John,25,Engineer</span>
+<span style="color: #000; font-style: italic">Mary,30,Doctor</span>
+<span style="color: #8F5902">$ </span>awk<span style="color: #F8F8F8"> </span>-F,<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{print &quot;Name: &quot; $1 &quot;, Job: &quot; $3}&#39;</span><span style="color: #F8F8F8"> </span>data.csv
+<span style="color: #000; font-style: italic">Name: John, Job: Engineer</span>
+<span style="color: #000; font-style: italic">Name: Mary, Job: Doctor</span>
+</pre></div>
+<h3>パターンマッチングによる行のフィルタリング</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>awk<span style="color: #F8F8F8"> </span>-F:<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;/root/ {print $1 &quot; has home directory &quot; $6}&#39;</span>
+<span style="color: #000; font-style: italic">root has home directory /root</span>
+</pre></div>
+<h3>合計の計算</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">10 20</span>
+<span style="color: #000; font-style: italic">30 40</span>
+<span style="color: #8F5902">$ </span>awk<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{sum += $1} END {print &quot;Sum:&quot;, sum}&#39;</span><span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">Sum: 40</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>組み込み変数</h3>
+<p>AWKには、<code>NR</code>（現在のレコード番号）、<code>NF</code>（現在のレコードのフィールド数）、<code>FS</code>（フィールド区切り文字）などの便利な組み込み変数があります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;a b c\nd e f&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>awk<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{print &quot;Line&quot;, NR, &quot;has&quot;, NF, &quot;fields&quot;}&#39;</span>
+<span style="color: #000; font-style: italic">Line 1 has 3 fields</span>
+<span style="color: #000; font-style: italic">Line 2 has 3 fields</span>
+</pre></div>
+<h3>条件付き処理</h3>
+<p>if-else文を使用して条件付き処理を行います：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>ages.txt
+<span style="color: #000; font-style: italic">John 25</span>
+<span style="color: #000; font-style: italic">Mary 17</span>
+<span style="color: #000; font-style: italic">Bob 32</span>
+<span style="color: #8F5902">$ </span>awk<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{if ($2 &gt;= 18) print $1, &quot;is an adult&quot;; else print $1, &quot;is a minor&quot;}&#39;</span><span style="color: #F8F8F8"> </span>ages.txt
+<span style="color: #000; font-style: italic">John is an adult</span>
+<span style="color: #000; font-style: italic">Mary is a minor</span>
+<span style="color: #000; font-style: italic">Bob is an adult</span>
+</pre></div>
+<h3>複数のコマンド</h3>
+<p>セミコロンで複数のコマンドを区切ります：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>awk<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{count=split($0,arr,&quot; &quot;); print &quot;Words:&quot;, count; print &quot;First word:&quot;, arr[1]}&#39;</span>
+<span style="color: #000; font-style: italic">Words: 2</span>
+<span style="color: #000; font-style: italic">First word: Hello</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. awk、sed、grepの違いは何ですか？</h4>
+<p>A. grepがパターンを検索し、sedがテキスト変換を実行するのに対し、awkは変数、関数、算術演算などのプログラミング機能を含む構造化データ処理用に設計されています。</p>
+<h4>Q2. awkで複数のファイルを処理するにはどうすればよいですか？</h4>
+<p>A. awkコマンドの後にファイルを列挙するだけです：<code>awk '{print $1}' file1.txt file2.txt</code></p>
+<h4>Q3. awkは複数行処理を扱えますか？</h4>
+<p>A. はい、<code>RS</code>（レコード区切り文字）変数を使用します：<code>awk 'BEGIN{RS=&quot;&quot;;FS=&quot;\n&quot;}{print $1}' file.txt</code> は段落で区切られたテキストを処理します。</p>
+<h4>Q4. awkで正規表現を使用するにはどうすればよいですか？</h4>
+<p>A. 正規表現はスラッシュの間に配置します：<code>awk '/pattern/ {print}' file.txt</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/gawk/manual/gawk.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

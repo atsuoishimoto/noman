@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  whoami - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>whoami command</h1>
+<p>Display the effective user ID of the current user.</p>
+<h2>Overview</h2>
+<p>The <code>whoami</code> command prints the username associated with the current effective user ID. It's a simple utility that helps identify which user account is currently being used in the terminal session, which is particularly useful in scripts or when switching between different user accounts.</p>
+<h2>Options</h2>
+<p>The <code>whoami</code> command has very few options as it performs a single, straightforward function.</p>
+<h3><strong>--help</strong></h3>
+<p>Display help information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>whoami<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: whoami [OPTION]...</span>
+<span style="color: #000; font-style: italic">Print the user name associated with the current effective user ID.</span>
+<span style="color: #000; font-style: italic">Same as id -un.</span>
+
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+
+<span style="color: #000; font-style: italic">GNU coreutils online help: &lt;https://www.gnu.org/software/coreutils/&gt;</span>
+<span style="color: #000; font-style: italic">Report whoami translation bugs to &lt;https://translationproject.org/team/&gt;</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>Output version information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>whoami<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">whoami (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2020 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by Richard Mlynarik.</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>whoami
+<span style="color: #000; font-style: italic">john</span>
+</pre></div>
+<h3>Using in a script to check current user</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Current user is </span><span style="color: #204A87; font-weight: bold">$(</span>whoami<span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Current user is john</span>
+</pre></div>
+<h3>Using after switching users with sudo</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>whoami
+<span style="color: #000; font-style: italic">john</span>
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>whoami
+<span style="color: #000; font-style: italic">root</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Difference from <code>id</code> command</h3>
+<p>The <code>whoami</code> command is equivalent to <code>id -un</code>. The <code>id</code> command provides more comprehensive user identity information, while <code>whoami</code> focuses only on the username.</p>
+<h3>Use in shell scripts</h3>
+<p><code>whoami</code> is particularly useful in shell scripts to check which user is running the script, allowing for conditional execution based on user identity.</p>
+<h3>Root user verification</h3>
+<p>Use <code>whoami</code> to verify if you're currently operating with root privileges after using commands like <code>sudo</code> or <code>su</code>.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>whoami</code> and <code>who am i</code>?</h4>
+<p>A. <code>whoami</code> shows the effective username (who you are currently running as), while <code>who am i</code> (or <code>who -m</code>) shows the original login name, which might be different if you've used <code>su</code> or <code>sudo</code>.</p>
+<h4>Q2. Can <code>whoami</code> show information about other users?</h4>
+<p>A. No, <code>whoami</code> only displays information about the current effective user. To get information about other users, use commands like <code>id username</code> or <code>finger username</code>.</p>
+<h4>Q3. Does <code>whoami</code> work the same on all Unix/Linux systems?</h4>
+<p>A. Yes, <code>whoami</code> is a standard command with consistent behavior across Unix-like operating systems, including Linux and macOS.</p>
+<h4>Q4. Why would I use <code>whoami</code> instead of <code>echo $USER</code>?</h4>
+<p>A. <code>whoami</code> shows the effective user (who you're running as), while <code>$USER</code> shows the login user. They differ when you use <code>sudo</code> or <code>su</code> to change users.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/whoami-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

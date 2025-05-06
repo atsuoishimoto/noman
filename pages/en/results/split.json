@@ -1,0 +1,20 @@
+{
+  "id": "msg_01LTsAZjy9Qek4hTfGZthQkH",
+  "content": [
+    {
+      "text": "# split command\n\nSplit a file into pieces.\n\n## Overview\n\nThe `split` command divides a file into multiple smaller files. It's useful for breaking up large files for easier handling, transferring across size-limited media, or processing in chunks. By default, it creates files named 'xaa', 'xab', etc., each containing a specified number of lines or bytes from the original file.\n\n## Options\n\n### **-b, --bytes=SIZE**\n\nSplit by bytes instead of lines. SIZE can be a number followed by a multiplier: k (1024), m (1024²), g (1024³), etc.\n\n```console\n$ split -b 1M largefile.dat chunk_\n$ ls chunk_*\nchunk_aa  chunk_ab  chunk_ac\n```\n\n### **-l, --lines=NUMBER**\n\nSplit file by NUMBER lines (default is 1000).\n\n```console\n$ split -l 100 data.csv part_\n$ ls part_*\npart_aa  part_ab  part_ac  part_ad\n```\n\n### **-d, --numeric-suffixes[=FROM]**\n\nUse numeric suffixes instead of alphabetic ones, starting at FROM (default 0).\n\n```console\n$ split -d -l 100 data.txt section_\n$ ls section_*\nsection_00  section_01  section_02\n```\n\n### **-a, --suffix-length=N**\n\nGenerate suffixes of length N (default 2).\n\n```console\n$ split -a 3 -l 100 data.txt part_\n$ ls part_*\npart_aaa  part_aab  part_aac\n```\n\n### **--additional-suffix=SUFFIX**\n\nAppend an additional SUFFIX to file names.\n\n```console\n$ split -l 100 --additional-suffix=.txt data.csv part_\n$ ls part_*\npart_aa.txt  part_ab.txt  part_ac.txt\n```\n\n### **-n, --number=CHUNKS**\n\nSplit into CHUNKS files based on size or count.\n\n```console\n$ split -n 3 largefile.dat chunk_\n$ ls chunk_*\nchunk_aa  chunk_ab  chunk_ac\n```\n\n## Usage Examples\n\n### Splitting a large log file by line count\n\n```console\n$ split -l 1000 server.log server_log_\n$ ls server_log_*\nserver_log_aa  server_log_ab  server_log_ac  server_log_ad\n```\n\n### Splitting a large file into equal-sized chunks\n\n```console\n$ split -n 5 backup.tar.gz backup_part_\n$ ls backup_part_*\nbackup_part_aa  backup_part_ab  backup_part_ac  backup_part_ad  backup_part_ae\n```\n\n### Creating chunks of specific byte size with numeric suffixes\n\n```console\n$ split -b 10M -d large_video.mp4 video_\n$ ls video_*\nvideo_00  video_01  video_02  video_03\n```\n\n## Tips\n\n### Reassembling Split Files\n\nTo recombine split files, use the `cat` command with the files in the correct order:\n```console\n$ cat chunk_* > original_file_restored\n```\n\n### Preserving File Extensions\n\nWhen splitting files with extensions, use `--additional-suffix` to maintain the extension for easier identification:\n```console\n$ split -b 5M --additional-suffix=.mp4 video.mp4 video_part_\n```\n\n### Splitting CSV Files with Headers\n\nWhen splitting CSV files, you might want to preserve the header in each file:\n```console\n$ head -1 data.csv > header\n$ tail -n +2 data.csv | split -l 1000 - part_\n$ for f in part_*; do cat header \"$f\" > \"${f}.csv\"; rm \"$f\"; done\n```\n\n## Frequently Asked Questions\n\n#### Q1. How do I split a file into equal-sized parts?\nA. Use `split -n NUMBER filename prefix` where NUMBER is the number of parts you want.\n\n#### Q2. How do I split a file by size?\nA. Use `split -b SIZE filename prefix` where SIZE can be specified in bytes, KB (k), MB (m), or GB (g).\n\n#### Q3. How do I recombine split files back into the original?\nA. Use `cat prefix* > original_filename` to concatenate all the split parts in order.\n\n#### Q4. Can I use numeric suffixes instead of alphabetic ones?\nA. Yes, use the `-d` option to get numeric suffixes (00, 01, 02, etc.) instead of alphabetic ones.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 1143
+  }
+}

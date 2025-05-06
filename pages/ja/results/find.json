@@ -1,0 +1,20 @@
+{
+  "id": "msg_018C5BUcQeNd6Sf3u2bSrAKm",
+  "content": [
+    {
+      "text": "# findコマンド\n\nディレクトリ階層内でファイルを検索します。\n\n## 概要\n\n`find`コマンドは、名前、タイプ、サイズ、更新時刻などのさまざまな条件に基づいて、ディレクトリ階層内のファイルを検索します。これは、ファイルを見つけて、一致した結果に対して操作を実行するための強力なツールです。\n\n## オプション\n\n### **-iname**\n\n指定したパターンに一致するファイルを大文字小文字を区別せずに検索します。`-name`に似ていますが、大文字小文字の違いを無視します。\n\n```console\n$ find . -iname \"*.txt\"\n./notes.txt\n./Documents/README.txt\n./projects/readme.TXT\n```\n\n### **-name**\n\n指定したパターンに一致するファイルを検索します（大文字小文字を区別）。\n\n```console\n$ find . -name \"*.txt\"\n./notes.txt\n./Documents/README.txt\n```\n\n### **-type**\n\n特定のタイプのファイルを検索します。一般的なタイプには以下があります：\n- `f`（通常ファイル）\n- `d`（ディレクトリ）\n- `l`（シンボリックリンク）\n\n```console\n$ find . -type f -name \"*.jpg\"\n./photos/vacation.jpg\n./profile.jpg\n```\n\n### **-size**\n\nファイルサイズに基づいて検索します。\n- `+n`（nより大きい）\n- `-n`（nより小さい）\n- `n`（ちょうどn）\n\n単位：`c`（バイト）、`k`（キロバイト）、`M`（メガバイト）、`G`（ギガバイト）\n\n```console\n$ find . -size +10M\n./videos/tutorial.mp4\n./backups/archive.zip\n```\n\n### **-mtime**\n\nファイルの更新時刻（日数）に基づいて検索します。\n- `+n`（n日より前）\n- `-n`（n日以内）\n- `n`（ちょうどn日前）\n\n```console\n$ find . -mtime -7\n./documents/recent_report.pdf\n./notes.txt\n```\n\n### **-exec**\n\n一致した各ファイルに対してコマンドを実行します。\n\n```console\n$ find . -name \"*.log\" -exec rm {} \\;\n```\n\n## 使用例\n\n### 大文字小文字を区別せず特定の拡張子を持つファイルを検索\n\n```console\n$ find /home/user -iname \"*.jpg\"\n/home/user/Pictures/vacation.jpg\n/home/user/Downloads/photo.JPG\n/home/user/Documents/scan.Jpg\n```\n\n### 一時ファイルを検索して削除\n\n```console\n$ find /tmp -name \"temp*\" -type f -exec rm {} \\;\n```\n\n### 過去1週間に更新された大きなファイルを検索\n\n```console\n$ find /home -type f -size +100M -mtime -7\n/home/user/Downloads/movie.mp4\n/home/user/Documents/presentation.pptx\n```\n\n### 空のディレクトリを検索\n\n```console\n$ find /var/log -type d -empty\n/var/log/old\n/var/log/archive/2024\n```\n\n## ヒント:\n\n### ワイルドカードを慎重に使用する\n\n`-name`や`-iname`でパターンを使用する場合、シェル展開を防ぐためにパターンを引用符で囲むことを忘れないでください：`find . -name \"*.txt\"`であり、`find . -name *.txt`ではありません。\n\n### ディレクトリの深さを制限する\n\n`-maxdepth`を使用して`find`が検索する深さを制限すると、パフォーマンスが大幅に向上します：`find . -maxdepth 2 -name \"*.log\"`。\n\n### 複数の条件を組み合わせる\n\n`-a`（AND、デフォルト）、`-o`（OR）、`!`または`-not`（NOT）を使用して、複雑な検索条件を作成します：`find . -name \"*.jpg\" -a -size +1M`。\n\n### 「Permission denied」メッセージを回避する\n\nエラーメッセージを`/dev/null`にリダイレクトして「Permission denied」エラーを抑制します：`find / -name \"file.txt\" 2>/dev/null`。\n\n## よくある質問\n\n#### Q1. 大文字小文字を区別せずにファイル名で検索するにはどうすればよいですか？\nA. `-iname`オプションを使用します：`find . -iname \"パターン\"`。\n\n#### Q2. 過去24時間以内に更新されたファイルを検索するにはどうすればよいですか？\nA. `-mtime -1`を使用します：`find . -mtime -1`。\n\n#### Q3. ファイルを検索して一つのコマンドで削除するにはどうすればよいですか？\nA. `-exec`オプションを使用します：`find . -name \"パターン\" -exec rm {} \\;`。\n\n#### Q4. `-iname`と`-name`の違いは何ですか？\nA. `-iname`は大文字小文字を区別しない検索を行い、`-name`は大文字小文字を区別します。\n\n#### Q5. サブディレクトリなしで現在のディレクトリのみを検索するにはどうすればよいですか？\nA. `-maxdepth 1`を使用します：`find . -maxdepth 1 -name \"パターン\"`。\n\n## 参考文献\n\nhttps://www.gnu.org/software/findutils/manual/html_node/find_html/index.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1287,
+    "output_tokens": 1659
+  }
+}

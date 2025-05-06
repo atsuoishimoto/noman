@@ -1,0 +1,20 @@
+{
+  "id": "msg_01Ebza253hjojBiKX6oPWKwm",
+  "content": [
+    {
+      "text": "# lessコマンド\n\nテキストファイルを検索機能付きのスクロール可能なインターフェースで表示します。\n\n## 概要\n\n`less`はターミナルページャープログラムで、テキストファイルを一度に1画面ずつ表示することができます。ファイル全体を一度に表示する`cat`とは異なり、`less`は前後の移動、テキスト検索などのナビゲーション機能を提供します。特に大きなファイルをターミナルに負担をかけずに表示するのに便利です。\n\n## オプション\n\n### **-N**\n\n各行の先頭に行番号を表示します。\n\n```console\n$ less -N file.txt\n      1 This is line 1\n      2 This is line 2\n      3 This is line 3\n```\n\n### **-i**\n\n大文字と小文字を区別しない検索を行います。このオプションを有効にすると、「text」を検索すると「text」、「Text」、「TEXT」などにマッチします。\n\n```console\n$ less -i file.txt\n```\n\n### **-S**\n\n行の折り返しを無効にします。長い行は次の行に折り返されるのではなく、切り詰められ、水平スクロールが可能になります。\n\n```console\n$ less -S file.txt\n```\n\n### **-F**\n\nファイル全体が最初の画面に表示できる場合、自動的に終了します。\n\n```console\n$ less -F short_file.txt\n```\n\n### **-R**\n\nANSIカラーエスケープシーケンスをそのままの形で表示し、色付きテキストを適切に表示できるようにします。\n\n```console\n$ less -R colored_output.txt\n```\n\n### **-X**\n\nlessを終了する際に画面をクリアせず、内容をターミナルに表示したままにします。\n\n```console\n$ less -X file.txt\n```\n\n## 使用例\n\n### 基本的なファイル表示\n\n```console\n$ less /var/log/syslog\n[スクロール可能なインターフェースでファイル内容が表示される]\n```\n\n### コマンド出力の表示\n\n```console\n$ ls -la | less\ntotal 112\ndrwxr-xr-x  18 user  staff   576 May  5 10:23 .\ndrwxr-xr-x   5 user  staff   160 Apr 29 14:12 ..\n-rw-r--r--   1 user  staff  8196 May  5 09:45 file1.txt\n-rw-r--r--   1 user  staff  5423 May  4 16:32 file2.txt\n```\n\n### 圧縮ファイルの表示\n\n```console\n$ zless compressed_file.gz\n[スクロール可能なインターフェースで解凍された内容が表示される]\n```\n\n## ナビゲーションコマンド\n\nless内では、以下のキーボードコマンドが使用できます：\n\n- **スペース/Page Down**：1画面進む\n- **b/Page Up**：1画面戻る\n- **下矢印/Enter**：1行進む\n- **上矢印**：1行戻る\n- **g**：最初の行に移動\n- **G**：最後の行に移動\n- **/パターン**：「パターン」を前方検索\n- **n**：最後の検索を前方に繰り返す\n- **N**：最後の検索を後方に繰り返す\n- **q**：lessを終了\n\n## ヒント：\n\n### クイックナビゲーション用の位置マーク\n\n`m`を押した後に任意の文字を押すと、現在の位置をマークできます。後で`'`（アポストロフィ）を押した後に同じ文字を押すと、その位置に戻ることができます。\n\n### 成長するファイルの追跡\n\n`less +F file.log`を使用して成長するファイルを追跡します（`tail -f`と同様）。Ctrl+Cを押すと追跡を停止し、通常のブラウジングモードに戻ります。`F`を押すと追跡を再開します。\n\n### 環境変数でエクスペリエンスをカスタマイズ\n\nシェル設定で`LESS=\"-R -i\"`を設定すると、それらのオプションを入力しなくても常に使用できます。\n\n### 複数ファイルのナビゲーション\n\n`less file1 file2 file3`で複数のファイルを開いた場合、`:n`で次のファイルに移動し、`:p`で前のファイルに移動します。\n\n## よくある質問\n\n#### Q1. `less`と`more`の違いは何ですか？\nA. `less`は`more`の改良版で、双方向スクロール、より優れた検索機能を持ち、表示前にファイル全体を読み込む必要がありません。\n\n#### Q2. ファイル内のテキストを検索するにはどうすればよいですか？\nA. `/`を押した後に検索語を入力してEnterを押します。`n`で次の出現箇所を、`N`で前の出現箇所を見つけます。\n\n#### Q3. 行番号を表示するにはどうすればよいですか？\nA. `less -N ファイル名`を使用するか、lessでファイルを表示中に`-N`を押します。\n\n#### Q4. lessを終了するにはどうすればよいですか？\nA. `q`を押して終了します。\n\n#### Q5. lessでバイナリファイルを表示できますか？\nA. lessはバイナリファイルを開くことができますが、テキスト用に設計されています。バイナリファイルの場合は、`hexdump`や`xxd`などの専用ツールの使用を検討してください。\n\n## 参考文献\n\nhttps://www.greenwoodsoftware.com/less/\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1252,
+    "output_tokens": 1718
+  }
+}

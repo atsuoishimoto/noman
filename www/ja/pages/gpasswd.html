@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  gpasswd - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>gpasswd コマンド</h1>
+<p>グループのメンバーシップとプロパティを変更することで、<code>/etc/group</code> と <code>/etc/gshadow</code> を管理します。</p>
+<h2>概要</h2>
+<p><code>gpasswd</code> は Linux グループアカウントを管理するためのユーティリティです。システム管理者がユーザーをグループに追加・削除したり、グループ管理者を設定したり、グループパスワードを管理したりすることができます。このコマンドは Linux システム上でグループ情報を保存する <code>/etc/group</code> と <code>/etc/gshadow</code> ファイルを変更します。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --add</strong> <em>ユーザー</em></h3>
+<p>指定したユーザーを指定したグループに追加します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>john<span style="color: #F8F8F8"> </span>developers
+<span style="color: #000; font-style: italic">Adding user john to group developers</span>
+</pre></div>
+<h3><strong>-d, --delete</strong> <em>ユーザー</em></h3>
+<p>指定したユーザーを指定したグループから削除します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>john<span style="color: #F8F8F8"> </span>developers
+<span style="color: #000; font-style: italic">Removing user john from group developers</span>
+</pre></div>
+<h3><strong>-A, --administrators</strong> <em>ユーザー1,ユーザー2,...</em></h3>
+<p>グループの管理者リストを設定します。これらのユーザーのみがグループにメンバーを追加または削除できます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span>jane,mike<span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h3><strong>-M, --members</strong> <em>ユーザー1,ユーザー2,...</em></h3>
+<p>グループのメンバーリストを設定し、現在のメンバーリストを置き換えます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>-M<span style="color: #F8F8F8"> </span>alice,bob,charlie<span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h3><strong>-r, --remove-password</strong></h3>
+<p>グループからパスワードを削除します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>developers
+</pre></div>
+<h2>使用例</h2>
+<h3>ユーザーを複数のグループに追加する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>user1<span style="color: #F8F8F8"> </span>developers
+<span style="color: #000; font-style: italic">Adding user user1 to group developers</span>
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>user1<span style="color: #F8F8F8"> </span>admins
+<span style="color: #000; font-style: italic">Adding user user1 to group admins</span>
+</pre></div>
+<h3>グループ管理者とメンバーを一度に設定する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span>admin1,admin2<span style="color: #F8F8F8"> </span>-M<span style="color: #F8F8F8"> </span>user1,user2,user3<span style="color: #F8F8F8"> </span>projectteam
+</pre></div>
+<h3>グループにパスワードを設定する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>gpasswd<span style="color: #F8F8F8"> </span>developers
+<span style="color: #000; font-style: italic">Changing the password for group developers</span>
+<span style="color: #000; font-style: italic">New Password: </span>
+<span style="color: #000; font-style: italic">Re-enter new password:</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>変更を確認するには groups コマンドを使用する</h3>
+<p><code>gpasswd</code> でグループメンバーシップを変更した後、<code>groups</code> コマンドを使用して変更が反映されたことを確認できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>groups<span style="color: #F8F8F8"> </span>username
+</pre></div>
+<h3>可能な限りグループパスワードを避ける</h3>
+<p>グループパスワードは一般的にユーザーベースのアクセス制御よりも安全性が低いと考えられています。最新のシステムでは通常、グループパスワードではなくユーザー権限と sudo に依存しています。</p>
+<h3>gpasswd と sudo を使用する</h3>
+<p>ほとんどの <code>gpasswd</code> 操作にはroot権限が必要です。すでにrootとしてログインしていない限り、<code>gpasswd</code> コマンドを実行する際は常に <code>sudo</code> を使用してください。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>gpasswd</code> と <code>usermod -G</code> の違いは何ですか？</h4>
+<p>A. <code>gpasswd</code> は特にグループ管理用に設計されており、他のグループメンバーに影響を与えずに単一ユーザーを追加/削除できます。<code>usermod -G</code> はユーザーの補助グループをすべて一度に置き換えるため、注意して使用しないと誤ってユーザーを他のグループから削除してしまう可能性があります。</p>
+<h4>Q2. グループに所属するユーザーを確認するにはどうすればよいですか？</h4>
+<p>A. <code>getent group グループ名</code> を使用して、特定のグループのすべてのメンバーを確認できます。</p>
+<h4>Q3. 一般ユーザーは <code>gpasswd</code> を使用できますか？</h4>
+<p>A. 一般ユーザーは、<code>-A</code> オプションを使用してグループの管理者に指定された場合のみ <code>gpasswd</code> を使用できますが、その場合でもroot と比較して機能が制限されています。</p>
+<h4>Q4. グループパスワードを設定するとどうなりますか？</h4>
+<p>A. グループパスワードを設定すると、ユーザーはパスワードを知っている場合に <code>newgrp</code> コマンドを使用して一時的にグループに参加できます。これは最新のシステムではほとんど使用されていません。</p>
+<h2>参考文献</h2>
+<p>https://linux.die.net/man/1/gpasswd</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

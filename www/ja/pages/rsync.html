@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  rsync - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>rsyncコマンド</h1>
+<p>ローカルシステムとリモートシステム間、またはローカルディレクトリ間でファイルとディレクトリを同期します。</p>
+<h2>概要</h2>
+<p><code>rsync</code>は、場所間でファイルを効率的に転送・同期する高速で多機能なファイルコピー・同期ツールです。ソースと宛先の間の差分のみをコピーするため、後続の転送では通常のコピーコマンドよりもはるかに高速です。セキュアなリモート転送のためにSSH経由で動作することも、ローカルディレクトリ間で動作することもできます。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --archive</strong></h3>
+<p>アーカイブモード。権限、所有権、タイムスタンプを保持し、ディレクトリを再帰的にコピーします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>/source/directory/<span style="color: #F8F8F8"> </span>/destination/directory/
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>詳細表示を増やし、転送されるファイルと最後に要約を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-av<span style="color: #F8F8F8"> </span>/source/directory/<span style="color: #F8F8F8"> </span>/destination/directory/
+<span style="color: #000; font-style: italic">sending incremental file list</span>
+<span style="color: #000; font-style: italic">file1.txt</span>
+<span style="color: #000; font-style: italic">file2.txt</span>
+<span style="color: #000; font-style: italic">directory/</span>
+<span style="color: #000; font-style: italic">directory/file3.txt</span>
+
+<span style="color: #000; font-style: italic">sent 1,234 bytes  received 42 bytes  2,552.00 bytes/sec</span>
+<span style="color: #000; font-style: italic">total size is 10,240  speedup is 8.04</span>
+</pre></div>
+<h3><strong>-z, --compress</strong></h3>
+<p>転送中にファイルデータを圧縮して、帯域幅の使用量を削減します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-az<span style="color: #F8F8F8"> </span>/source/directory/<span style="color: #F8F8F8"> </span>user@remote:/destination/directory/
+</pre></div>
+<h3><strong>-P, --partial --progress</strong></h3>
+<p>転送中の進捗状況を表示し、部分的に転送されたファイルを保持します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-avP<span style="color: #F8F8F8"> </span>large_file.iso<span style="color: #F8F8F8"> </span>user@remote:/destination/
+<span style="color: #000; font-style: italic">sending incremental file list</span>
+<span style="color: #000; font-style: italic">large_file.iso</span>
+<span style="color: #000; font-style: italic">    153,092,096  14%   15.23MB/s    0:01:12</span>
+</pre></div>
+<h3><strong>--delete</strong></h3>
+<p>ソースに存在しない宛先のファイルを削除し、宛先を正確なミラーにします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-av<span style="color: #F8F8F8"> </span>--delete<span style="color: #F8F8F8"> </span>/source/directory/<span style="color: #F8F8F8"> </span>/destination/directory/
+</pre></div>
+<h3><strong>-n, --dry-run</strong></h3>
+<p>変更を加えずに試験実行を行います。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-avn<span style="color: #F8F8F8"> </span>--delete<span style="color: #F8F8F8"> </span>/source/directory/<span style="color: #F8F8F8"> </span>/destination/directory/
+</pre></div>
+<h3><strong>-e, --rsh=COMMAND</strong></h3>
+<p>使用するリモートシェルを指定します（通常はオプション付きのssh）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-av<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;ssh -p 2222&quot;</span><span style="color: #F8F8F8"> </span>/source/directory/<span style="color: #F8F8F8"> </span>user@remote:/destination/
+</pre></div>
+<h3><strong>-u, --update</strong></h3>
+<p>宛先の方が新しいファイルをスキップします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-avu<span style="color: #F8F8F8"> </span>/source/directory/<span style="color: #F8F8F8"> </span>/destination/directory/
+</pre></div>
+<h3><strong>--exclude=PATTERN</strong></h3>
+<p>指定したパターンに一致するファイルを除外します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-av<span style="color: #F8F8F8"> </span>--exclude<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;*.log&quot;</span><span style="color: #F8F8F8"> </span>/source/directory/<span style="color: #F8F8F8"> </span>/destination/directory/
+</pre></div>
+<h2>使用例</h2>
+<h3>ローカルディレクトリの同期</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-av<span style="color: #F8F8F8"> </span>/home/user/documents/<span style="color: #F8F8F8"> </span>/media/backup/documents/
+<span style="color: #000; font-style: italic">sending incremental file list</span>
+<span style="color: #000; font-style: italic">report.docx</span>
+<span style="color: #000; font-style: italic">presentation.pptx</span>
+<span style="color: #000; font-style: italic">notes.txt</span>
+
+<span style="color: #000; font-style: italic">sent 15,234 bytes  received 85 bytes  30,638.00 bytes/sec</span>
+<span style="color: #000; font-style: italic">total size is 45,678  speedup is 2.98</span>
+</pre></div>
+<h3>リモートサーバーへのバックアップ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-avz<span style="color: #F8F8F8"> </span>--delete<span style="color: #F8F8F8"> </span>~/documents/<span style="color: #F8F8F8"> </span>user@remote.server:/backup/documents/
+<span style="color: #000; font-style: italic">sending incremental file list</span>
+<span style="color: #000; font-style: italic">./</span>
+<span style="color: #000; font-style: italic">report.docx</span>
+<span style="color: #000; font-style: italic">presentation.pptx</span>
+<span style="color: #000; font-style: italic">notes.txt</span>
+
+<span style="color: #000; font-style: italic">sent 45,678 bytes  received 612 bytes  9,258.00 bytes/sec</span>
+<span style="color: #000; font-style: italic">total size is 45,678  speedup is 0.99</span>
+</pre></div>
+<h3>リモートサーバーからのダウンロード</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-avz<span style="color: #F8F8F8"> </span>user@remote.server:/remote/directory/<span style="color: #F8F8F8"> </span>/local/directory/
+<span style="color: #000; font-style: italic">receiving incremental file list</span>
+<span style="color: #000; font-style: italic">./</span>
+<span style="color: #000; font-style: italic">file1.txt</span>
+<span style="color: #000; font-style: italic">file2.txt</span>
+<span style="color: #000; font-style: italic">directory/</span>
+<span style="color: #000; font-style: italic">directory/file3.txt</span>
+
+<span style="color: #000; font-style: italic">received 10,240 bytes  received 214 bytes  6,969.33 bytes/sec</span>
+<span style="color: #000; font-style: italic">total size is 10,240  speedup is 0.98</span>
+</pre></div>
+<h3>ウェブサイトのミラーリング（特定のファイルを除外）</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-avz<span style="color: #F8F8F8"> </span>--delete<span style="color: #F8F8F8"> </span>--exclude<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;*.tmp&quot;</span><span style="color: #F8F8F8"> </span>--exclude<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;.git/&quot;</span><span style="color: #F8F8F8"> </span>/local/website/<span style="color: #F8F8F8"> </span>user@server:/var/www/html/
+</pre></div>
+<h2>ヒント:</h2>
+<h3>末尾のスラッシュを慎重に使用する</h3>
+<p>ソースの末尾にスラッシュがあると「このディレクトリの内容をコピーする」という意味になり、スラッシュがないと「このディレクトリとその内容をコピーする」という意味になります。この微妙な違いによって、コピーされるものが大きく変わる可能性があります。</p>
+<h3>ハードリンクを保持する</h3>
+<p>転送されるファイル間のハードリンクを保持する必要がある場合は、<code>-H</code>または<code>--hard-links</code>オプションを使用します。</p>
+<h3>大きな転送には帯域制限を使用する</h3>
+<p>ネットワーク経由の大きな転送には、<code>--bwlimit=KBPS</code>を使用して帯域幅の使用量を制限します（例：<code>--bwlimit=1000</code>で1000KB/秒に制限）。</p>
+<h3>バックアップスナップショットの作成</h3>
+<p>rsyncと<code>--link-dest</code>オプションを組み合わせて、変更されていないファイルにハードリンクを使用する効率的なバックアップスナップショットを作成し、ディスク容量を節約します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rsync<span style="color: #F8F8F8"> </span>-av<span style="color: #F8F8F8"> </span>--link-dest<span style="color: #CE5C00; font-weight: bold">=</span>/backups/daily.1<span style="color: #F8F8F8"> </span>/source/<span style="color: #F8F8F8"> </span>/backups/daily.0/
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. rsyncはscpとどう違いますか？</h4>
+<p>A. rsyncはファイル間の差分のみを転送するため、後続の転送がはるかに高速です。また、同期、属性の保持のためのオプションが多く、中断された転送を再開することもできます。</p>
+<h4>Q2. 実際に実行する前にrsyncが何をするかをテストするにはどうすればよいですか？</h4>
+<p>A. <code>-n</code>または<code>--dry-run</code>オプションを使用して、変更を加えずに何が転送されるかを確認できます。</p>
+<h4>Q3. すべての属性を保持しながらファイルを同期するにはどうすればよいですか？</h4>
+<p>A. <code>-a</code>（アーカイブ）オプションを使用します。これは<code>-rlptgoD</code>（再帰的、リンク保持、権限、時間、グループ、所有者、特殊ファイル）と同等です。</p>
+<h4>Q4. rsyncはソースに存在しない宛先のファイルを削除できますか？</h4>
+<p>A. はい、<code>--delete</code>オプションを使用して、宛先をソースの正確なミラーにすることができます。</p>
+<h4>Q5. 特定のファイルやディレクトリを除外するにはどうすればよいですか？</h4>
+<p>A. 個々のパターンには<code>--exclude=PATTERN</code>を使用し、ファイルからパターンを読み込むには<code>--exclude-from=FILE</code>を使用します。</p>
+<h2>参考文献</h2>
+<p>https://download.samba.org/pub/rsync/rsync.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

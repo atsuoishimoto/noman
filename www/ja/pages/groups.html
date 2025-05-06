@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  groups - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>groups コマンド</h1>
+<p>ユーザーが所属するグループを表示します。</p>
+<h2>概要</h2>
+<p><code>groups</code> コマンドは、指定されたユーザーが所属するすべてのグループを表示します。ユーザーが指定されていない場合は、現在のユーザーのグループを表示します。このコマンドは、権限関連の問題に対するグループメンバーシップを確認するのに役立ちます。</p>
+<h2>オプション</h2>
+<p><code>groups</code> コマンドは、シンプルな目的のために設計されているため、オプションは最小限です。</p>
+<h3>オプションなし（デフォルトの使用法）</h3>
+<p>現在のユーザーのグループを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>groups
+<span style="color: #000; font-style: italic">staff wheel admin</span>
+</pre></div>
+<h3>ユーザー名の指定</h3>
+<p>指定されたユーザーのグループを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>groups<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">username : staff wheel admin</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>自分自身のグループメンバーシップの確認</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>groups
+<span style="color: #000; font-style: italic">user wheel admin staff</span>
+</pre></div>
+<h3>他のユーザーのグループメンバーシップの確認</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>groups<span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">root : wheel admin system</span>
+</pre></div>
+<h3>複数のユーザーのグループメンバーシップの確認</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>groups<span style="color: #F8F8F8"> </span>user1<span style="color: #F8F8F8"> </span>user2
+<span style="color: #000; font-style: italic">user1 : staff wheel</span>
+<span style="color: #000; font-style: italic">user2 : staff admin</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>グループメンバーシップの重要性を理解する</h3>
+<p>グループメンバーシップは、ユーザーがアクセスできるファイルやリソースを決定します。例えば、「wheel」グループのユーザーはsudo権限を持つことが多く、「admin」グループのユーザーは管理タスクを実行できます。</p>
+<h3>他のコマンドと組み合わせる</h3>
+<p>より包括的なユーザー情報を得るために、<code>groups</code>を<code>id</code>と一緒に使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>id
+<span style="color: #000; font-style: italic">uid=501(user) gid=20(staff) groups=20(staff),12(everyone),61(localaccounts)</span>
+</pre></div>
+<h3>プライマリグループの確認</h3>
+<p>リストされた最初のグループは通常、ユーザーのプライマリグループであり、新しいファイルを作成する際にデフォルトで使用されます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. プライマリグループとセカンダリグループの違いは何ですか？</h4>
+<p>A. プライマリグループ（ログイングループとも呼ばれる）は、ユーザーが作成したファイルにデフォルトで割り当てられるグループです。セカンダリグループは追加の権限を提供します。</p>
+<h4>Q2. ユーザーをグループに追加するにはどうすればよいですか？</h4>
+<p>A. Linuxでは<code>sudo usermod -aG グループ名 ユーザー名</code>を、macOSでは<code>sudo dseditgroup -o edit -a ユーザー名 -t user グループ名</code>を使用します。</p>
+<h4>Q3. なぜグループメンバーシップを知る必要があるのですか？</h4>
+<p>A. グループメンバーシップは、アクセスできるファイルやリソースを決定します。権限の問題のトラブルシューティングでは、グループメンバーシップの確認が必要になることがよくあります。</p>
+<h4>Q4. システム上のすべてのグループを見ることはできますか？</h4>
+<p>A. はい、Linuxでは<code>getent group</code>コマンドを、macOSでは<code>dscl . list /Groups</code>を使用してすべてのグループを確認できます。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/groups-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

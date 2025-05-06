@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  false - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>false コマンド</h1>
+<p>入力に関係なく失敗の終了ステータス（1）を返します。</p>
+<h2>概要</h2>
+<p><code>false</code> コマンドは、失敗の終了ステータス（1）を返す以外は何もしないシンプルなユーティリティです。シェルスクリプトで失敗条件を強制したり、条件文のプレースホルダーとして使われることがよくあります。</p>
+<h2>オプション</h2>
+<p><code>false</code> コマンドは通常、オプションを受け付けません。単に非ゼロの終了ステータスを返すだけです。</p>
+<h2>使用例</h2>
+<h3>基本的な使い方</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">false</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">1</span>
+</pre></div>
+<h3>条件文での使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span>false<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;これは表示されない&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">else</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;これは表示される&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">fi</span>
+<span style="color: #000; font-style: italic">これは表示される</span>
+</pre></div>
+<h3>ループでの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span>!<span style="color: #F8F8F8"> </span>false<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;これは実行されない&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">done</span>
+</pre></div>
+<h3>論理演算子との使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">false</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;falseが失敗したのでこれは実行される&quot;</span>
+<span style="color: #000; font-style: italic">falseが失敗したのでこれは実行される</span>
+
+<span style="color: #8F5902">$ </span><span style="color: #204A87">false</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;falseが失敗したのでこれは実行されない&quot;</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>エラー処理のテスト</h3>
+<p>スクリプトでエラー処理をテストするために、<code>false</code>を使ってコマンドを強制的に失敗させることができる。</p>
+<h3>無限ループの作成</h3>
+<p><code>while true; do ...; done</code>は無限ループを作成するが、<code>while false; do ...; done</code>は一度も実行されない。</p>
+<h3>論理否定</h3>
+<p><code>! false</code>は真と評価され、条件論理で役立つことがある。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>false</code>と<code>true</code>の違いは何ですか？</h4>
+<p>A. <code>false</code>は終了ステータス1（失敗）を返し、<code>true</code>は0（成功）を返します。</p>
+<h4>Q2. <code>false</code>は終了ステータスを返す以外に何かしますか？</h4>
+<p>A. いいえ、非ゼロの終了ステータスを返す以外は何もしないように設計されています。</p>
+<h4>Q3. なぜスクリプトで<code>false</code>を使うのですか？</h4>
+<p>A. エラー条件のテスト、条件論理の作成、または常に失敗するコマンドが必要な場合のプレースホルダーとして役立ちます。</p>
+<h4>Q4. <code>false</code>の終了ステータスを変更できますか？</h4>
+<p>A. いいえ、<code>false</code>は常に1を返すように設計されています。異なる終了ステータスが必要な場合は、シェルスクリプトで<code>exit N</code>を使用できます。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/false-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

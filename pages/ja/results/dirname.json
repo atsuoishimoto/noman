@@ -1,0 +1,20 @@
+{
+  "id": "msg_012gxMuDrHU74kMiQQ6FduGz",
+  "content": [
+    {
+      "text": "# dirname コマンド\n\nパス名からディレクトリ部分を出力します。\n\n## 概要\n\n`dirname` コマンドはパス名から最後のコンポーネントを削除し、ディレクトリパスのみを残します。シェルスクリプトでファイルパスからディレクトリ部分を抽出するために一般的に使用され、特定のディレクトリへの移動や同じ場所にあるファイルを処理する際に便利です。\n\n## オプション\n\n### **--zero, -z**\n\n各パス名の後に改行ではなくゼロバイト（ASCII NUL）を出力します。\n\n```console\n$ dirname -z /usr/bin/zip\n/usr/bin$\n```\n\n### **--help**\n\nヘルプ情報を表示して終了します。\n\n```console\n$ dirname --help\nUsage: dirname [OPTION] NAME...\nOutput each NAME with its last non-slash component and trailing slashes\nremoved; if NAME contains no /'s, output '.' (meaning the current directory).\n\n  -z, --zero     end each output line with NUL, not newline\n      --help     display this help and exit\n      --version  output version information and exit\n\nExamples:\n  dirname /usr/bin/          -> \"/usr\"\n  dirname dir1/str dir2/str  -> \"dir1\" followed by \"dir2\"\n  dirname stdio.h            -> \".\"\n```\n\n### **--version**\n\nバージョン情報を出力して終了します。\n\n```console\n$ dirname --version\ndirname (GNU coreutils) 9.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by David MacKenzie.\n```\n\n## 使用例\n\n### 基本的な使い方\n\n```console\n$ dirname /usr/bin/zip\n/usr/bin\n```\n\n### 複数の引数\n\n```console\n$ dirname /usr/bin/zip /etc/passwd /home/user/file.txt\n/usr/bin\n/etc\n/home/user\n```\n\n### カレントディレクトリ\n\n```console\n$ dirname file.txt\n.\n```\n\n### シェルスクリプトでの使用\n\n```console\n$ script_dir=$(dirname \"$0\")\n$ echo \"This script is located in: $script_dir\"\nThis script is located in: /path/to/script/directory\n```\n\n## ヒント:\n\n### basename と組み合わせる\n\n`dirname` と `basename` を一緒に使用して、パスをディレクトリとファイル名のコンポーネントに分割できます：\n\n```console\n$ path=\"/home/user/documents/report.pdf\"\n$ dir=$(dirname \"$path\")\n$ file=$(basename \"$path\")\n$ echo \"Directory: $dir, File: $file\"\nDirectory: /home/user/documents, File: report.pdf\n```\n\n### スペースを含むパスの処理\n\nスペースを含むパスを正しく処理するために、`dirname` を使用する際は常に変数を引用符で囲みます：\n\n```console\n$ path=\"/home/user/my documents/report.pdf\"\n$ dir=$(dirname \"$path\")  # 引用符が重要\n$ echo \"$dir\"\n/home/user/my documents\n```\n\n### cd と一緒に使用する\n\n`cd` と組み合わせてファイルのディレクトリに移動できます：\n\n```console\n$ cd \"$(dirname \"/path/to/file.txt\")\"\n```\n\n## よくある質問\n\n#### Q1. パスなしでファイル名を渡すと、`dirname` は何を返しますか？\nA. `.`（カレントディレクトリ）を返します。\n\n#### Q2. `dirname` は一度に複数のパスを処理できますか？\nA. はい、複数の引数を渡すことができ、それぞれを個別に処理します。\n\n#### Q3. `dirname` は末尾のスラッシュをどのように処理しますか？\nA. パスを処理する前に末尾のスラッシュを削除します。\n\n#### Q4. `dirname` と `basename` の違いは何ですか？\nA. `dirname` はパスのディレクトリ部分を返し、`basename` はファイル名部分を返します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/dirname-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1062,
+    "output_tokens": 1232
+  }
+}

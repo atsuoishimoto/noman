@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  break - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>break command</h1>
+<p>Exits from a for, while, until, or select loop in shell scripts.</p>
+<h2>Overview</h2>
+<p>The <code>break</code> command is used within shell scripts to exit from a loop before its normal completion. When executed, it immediately terminates the innermost enclosing loop and continues execution at the command following the terminated loop. When used with an optional numeric argument, it can break out of multiple nested loops.</p>
+<h2>Options</h2>
+<h3><strong>n</strong> (numeric argument)</h3>
+<p>Exits from the nth enclosing loop. If n is omitted, only the innermost loop is exited.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">break</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Exits from two levels of nested loops</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Breaking from a simple loop</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>i<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Processing $i&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   if [ $i -eq 3 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;     echo &quot;Found 3, breaking out of loop&quot;</span>
+<span style="color: #000; font-style: italic">&gt;     break</span>
+<span style="color: #000; font-style: italic">&gt;   fi</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">&gt; echo &quot;Loop completed&quot;</span>
+<span style="color: #000; font-style: italic">Processing 1</span>
+<span style="color: #000; font-style: italic">Processing 2</span>
+<span style="color: #000; font-style: italic">Processing 3</span>
+<span style="color: #000; font-style: italic">Found 3, breaking out of loop</span>
+<span style="color: #000; font-style: italic">Loop completed</span>
+</pre></div>
+<h3>Breaking from nested loops</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>i<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Outer loop: $i&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   for j in a b c; do</span>
+<span style="color: #000; font-style: italic">&gt;     echo &quot;  Inner loop: $j&quot;</span>
+<span style="color: #000; font-style: italic">&gt;     if [ $j = &quot;b&quot; ] &amp;&amp; [ $i -eq 2 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;       echo &quot;  Breaking from inner loop&quot;</span>
+<span style="color: #000; font-style: italic">&gt;       break</span>
+<span style="color: #000; font-style: italic">&gt;     fi</span>
+<span style="color: #000; font-style: italic">&gt;   done</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Outer loop: 1</span>
+<span style="color: #000; font-style: italic">  Inner loop: a</span>
+<span style="color: #000; font-style: italic">  Inner loop: b</span>
+<span style="color: #000; font-style: italic">  Inner loop: c</span>
+<span style="color: #000; font-style: italic">Outer loop: 2</span>
+<span style="color: #000; font-style: italic">  Inner loop: a</span>
+<span style="color: #000; font-style: italic">  Inner loop: b</span>
+<span style="color: #000; font-style: italic">  Breaking from inner loop</span>
+<span style="color: #000; font-style: italic">Outer loop: 3</span>
+<span style="color: #000; font-style: italic">  Inner loop: a</span>
+<span style="color: #000; font-style: italic">  Inner loop: b</span>
+<span style="color: #000; font-style: italic">  Inner loop: c</span>
+</pre></div>
+<h3>Breaking from multiple levels with numeric argument</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>i<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Outer loop: $i&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   for j in a b c; do</span>
+<span style="color: #000; font-style: italic">&gt;     echo &quot;  Inner loop: $j&quot;</span>
+<span style="color: #000; font-style: italic">&gt;     if [ $j = &quot;b&quot; ] &amp;&amp; [ $i -eq 2 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;       echo &quot;  Breaking from both loops&quot;</span>
+<span style="color: #000; font-style: italic">&gt;       break 2</span>
+<span style="color: #000; font-style: italic">&gt;     fi</span>
+<span style="color: #000; font-style: italic">&gt;   done</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">&gt; echo &quot;All loops completed&quot;</span>
+<span style="color: #000; font-style: italic">Outer loop: 1</span>
+<span style="color: #000; font-style: italic">  Inner loop: a</span>
+<span style="color: #000; font-style: italic">  Inner loop: b</span>
+<span style="color: #000; font-style: italic">  Inner loop: c</span>
+<span style="color: #000; font-style: italic">Outer loop: 2</span>
+<span style="color: #000; font-style: italic">  Inner loop: a</span>
+<span style="color: #000; font-style: italic">  Inner loop: b</span>
+<span style="color: #000; font-style: italic">  Breaking from both loops</span>
+<span style="color: #000; font-style: italic">All loops completed</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use break sparingly</h3>
+<p>Excessive use of <code>break</code> can make code harder to read and maintain. Consider restructuring your loop logic when possible.</p>
+<h3>Combine with conditional statements</h3>
+<p><code>break</code> is most effective when combined with <code>if</code> statements to exit loops based on specific conditions.</p>
+<h3>Remember the difference between break and continue</h3>
+<p>While <code>break</code> exits the loop entirely, <code>continue</code> skips the rest of the current iteration and moves to the next one.</p>
+<h3>Use numeric argument for nested loops</h3>
+<p>When working with nested loops, use <code>break n</code> to exit multiple levels at once instead of using multiple <code>break</code> statements.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>break</code> and <code>exit</code>?</h4>
+<p>A. <code>break</code> exits only from the current loop, while <code>exit</code> terminates the entire script.</p>
+<h4>Q2. Can I use <code>break</code> outside of a loop?</h4>
+<p>A. No, using <code>break</code> outside a loop will result in an error message like &quot;break: only meaningful in a 'for', 'while', or 'until' loop&quot;.</p>
+<h4>Q3. How do I break out of multiple nested loops?</h4>
+<p>A. Use <code>break n</code> where n is the number of nested loops you want to exit from.</p>
+<h4>Q4. Does <code>break</code> work in all shell types?</h4>
+<p>A. Yes, <code>break</code> is a standard feature in Bash, Zsh, Ksh, and other POSIX-compliant shells.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

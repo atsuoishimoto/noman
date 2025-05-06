@@ -1,0 +1,20 @@
+{
+  "id": "msg_01W959gvYjFLv3aapj6nxvu2",
+  "content": [
+    {
+      "text": "# tar コマンド\n\nテープアーカイブを操作し、アーカイブ形式でファイルの作成、抽出、一覧表示、または更新を行います。\n\n## 概要\n\n`tar` コマンドは、tarball として知られるアーカイブファイルの作成、管理、抽出を行います。配布やバックアップのためにファイルをまとめてパッケージ化するのによく使用され、ファイルのパーミッション、所有権、ディレクトリ構造を保持します。元々はテープアーカイブ（名前の由来）用に設計されましたが、現在は主にディスク上のファイルアーカイブに使用されています。\n\n## オプション\n\n### **-c, --create**\n\n新しいアーカイブを作成します\n\n```console\n$ tar -c -f archive.tar file1.txt file2.txt\n```\n\n### **-x, --extract**\n\nアーカイブからファイルを抽出します\n\n```console\n$ tar -x -f archive.tar\n```\n\n### **-t, --list**\n\nアーカイブの内容を一覧表示します\n\n```console\n$ tar -t -f archive.tar\nfile1.txt\nfile2.txt\n```\n\n### **-f, --file=ARCHIVE**\n\nアーカイブファイルまたはデバイス ARCHIVE を使用します（ほとんどの操作に必要）\n\n```console\n$ tar -c -f backup.tar documents/\n```\n\n### **-v, --verbose**\n\n処理されたファイルを詳細に一覧表示します\n\n```console\n$ tar -cvf archive.tar file1.txt file2.txt\nfile1.txt\nfile2.txt\n```\n\n### **-z, --gzip**\n\nアーカイブを gzip でフィルタリングします（.tar.gz ファイルの作成/抽出）\n\n```console\n$ tar -czf archive.tar.gz directory/\n```\n\n### **-j, --bzip2**\n\nアーカイブを bzip2 でフィルタリングします（.tar.bz2 ファイルの作成/抽出）\n\n```console\n$ tar -cjf archive.tar.bz2 directory/\n```\n\n### **-C, --directory=DIR**\n\n操作を実行する前にディレクトリ DIR に変更します\n\n```console\n$ tar -xf archive.tar -C /tmp/extract/\n```\n\n### **--exclude=PATTERN**\n\nPATTERN に一致するファイルを除外します\n\n```console\n$ tar -cf backup.tar --exclude=\"*.log\" directory/\n```\n\n## 使用例\n\n### 圧縮アーカイブの作成\n\n```console\n$ tar -czf project-backup.tar.gz project/\n```\n\n### 圧縮アーカイブの抽出\n\n```console\n$ tar -xzf project-backup.tar.gz\n```\n\n### 圧縮アーカイブの内容一覧表示\n\n```console\n$ tar -tzf project-backup.tar.gz\nproject/\nproject/file1.txt\nproject/file2.txt\nproject/subdirectory/\nproject/subdirectory/file3.txt\n```\n\n### アーカイブから特定のファイルを抽出\n\n```console\n$ tar -xf archive.tar file1.txt\n```\n\n### 詳細出力付きでアーカイブを作成\n\n```console\n$ tar -cvf documents.tar Documents/\nDocuments/\nDocuments/report.pdf\nDocuments/presentation.pptx\nDocuments/notes.txt\n```\n\n## ヒント:\n\n### オプションを簡潔に組み合わせる\n\nハイフンなしでオプションを組み合わせることができます。例えば `tar -c -z -f` の代わりに `tar czf` のように使えます。これは経験豊富なユーザーがよく使う省略形です。\n\n### パーミッションと所有権を保持する\n\nデフォルトでは、`tar` はファイルのパーミッションと所有権を保持します。root として抽出する場合は、制限されたパーミッションでファイルが作成される可能性があるため注意してください。\n\n### 大きなアーカイブには進行状況インジケーターを使用する\n\n大きなアーカイブの場合、`--checkpoint=1000 --checkpoint-action=dot` を追加して操作中に進行状況のドットを表示します。\n\n### アーカイブの整合性を確認する\n\n`tar -tf archive.tar` を使用して、アーカイブの内容を抽出せずに確認できます。これはアーカイブが破損していないことを確認するのに役立ちます。\n\n### 抽出時に圧縮タイプを覚えておく\n\nアーカイブを作成したときと同じ圧縮オプションを抽出時に指定する必要があります（例：gzip には `-z`、bzip2 には `-j`）。\n\n## よくある質問\n\n#### Q1. .tar、.tar.gz、.tar.bz2 の違いは何ですか？\nA. `.tar` は非圧縮アーカイブ、`.tar.gz` は gzip で圧縮（速いが圧縮率は低い）、`.tar.bz2` は bzip2 で圧縮（遅いが圧縮率は高い）です。\n\n#### Q2. tar アーカイブから単一のファイルを抽出するにはどうすればよいですか？\nA. `tar -xf archive.tar path/to/specific/file` を使用して、そのファイルだけを抽出します。\n\n#### Q3. 抽出せずに tar ファイルの中身を確認するにはどうすればよいですか？\nA. `tar -tf archive.tar` を使用して、抽出せずにすべてのファイルを一覧表示します。\n\n#### Q4. 特定のファイルを除外した tar アーカイブを作成するにはどうすればよいですか？\nA. `--exclude` オプションを使用します：`tar -cf archive.tar directory/ --exclude=\"*.tmp\"`\n\n#### Q5. 既存の tar アーカイブ内のファイルを更新するにはどうすればよいですか？\nA. `-u` または `--update` オプションを使用します：`tar -uf archive.tar newfile.txt`\n\n## 参考文献\n\nhttps://www.gnu.org/software/tar/manual/tar.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1307,
+    "output_tokens": 1787
+  }
+}

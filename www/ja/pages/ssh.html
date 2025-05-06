@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ssh - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>sshコマンド</h1>
+<p>暗号化されたネットワーク接続を介してリモートシステムに安全に接続します。</p>
+<h2>概要</h2>
+<p>SSH（Secure Shell）は、リモートコンピュータに安全にアクセスし、リモートでコマンドを実行するためのプロトコルです。安全でないネットワーク上で、二つの信頼されていないホスト間の暗号化された通信を提供し、telnetやrshなどの古いプロトコルに代わるものです。SSHは一般的に、リモートログイン、コマンド実行、ファイル転送、および他のアプリケーションのトンネリングに使用されます。</p>
+<h2>オプション</h2>
+<h3><strong>-p port</strong></h3>
+<p>リモートホストに接続するポートを指定します（デフォルトは22）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2222</span><span style="color: #F8F8F8"> </span>user@example.com
+<span style="color: #000; font-style: italic">user@example.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">Last login: Mon May 5 10:23:45 2025 from 192.168.1.100</span>
+<span style="color: #8F5902">user@example.com:~$</span>
+</pre></div>
+<h3><strong>-i identity_file</strong></h3>
+<p>公開鍵認証に使用するアイデンティティ（秘密鍵）を読み込むファイルを選択します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>~/.ssh/my_private_key<span style="color: #F8F8F8"> </span>user@example.com
+<span style="color: #000; font-style: italic">Last login: Mon May 5 09:15:30 2025 from 192.168.1.100</span>
+<span style="color: #8F5902">user@example.com:~$</span>
+</pre></div>
+<h3><strong>-v</strong></h3>
+<p>詳細モード、接続問題のデバッグに役立ちます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>user@example.com
+<span style="color: #000; font-style: italic">OpenSSH_8.9p1, LibreSSL 3.3.6</span>
+<span style="color: #000; font-style: italic">debug1: Reading configuration data /etc/ssh/ssh_config</span>
+<span style="color: #000; font-style: italic">debug1: Connecting to example.com port 22.</span>
+<span style="color: #000; font-style: italic">debug1: Connection established.</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>-L local_port:remote_host:remote_port</strong></h3>
+<p>ローカルポートをリモートホストのポートに転送します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span>:localhost:80<span style="color: #F8F8F8"> </span>user@example.com
+<span style="color: #000; font-style: italic">user@example.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">Last login: Mon May 5 11:30:22 2025 from 192.168.1.100</span>
+</pre></div>
+<h3><strong>-X</strong></h3>
+<p>X11転送を有効にし、グラフィカルアプリケーションをローカルに表示できるようにします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>-X<span style="color: #F8F8F8"> </span>user@example.com
+<span style="color: #000; font-style: italic">user@example.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">Last login: Mon May 5 14:45:10 2025 from 192.168.1.100</span>
+<span style="color: #8F5902">user@example.com:~$ </span>firefox
+</pre></div>
+<h3><strong>-t</strong></h3>
+<p>疑似端末の割り当てを強制します。リモートシステム上でインタラクティブなプログラムを実行する際に役立ちます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>user@example.com<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;sudo apt update&quot;</span>
+<span style="color: #000; font-style: italic">user@example.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">[sudo] password for user: </span>
+<span style="color: #000; font-style: italic">Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なSSH接続</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>user@example.com
+<span style="color: #000; font-style: italic">user@example.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">Last login: Mon May 5 08:30:15 2025 from 192.168.1.100</span>
+<span style="color: #8F5902">user@example.com:~$</span>
+</pre></div>
+<h3>リモートホストでのコマンド実行</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>user@example.com<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;ls -la&quot;</span>
+<span style="color: #000; font-style: italic">total 32</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x 5 user user 4096 May  5 08:30 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x 3 root root 4096 Jan  1 00:00 ..</span>
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user user  220 Jan  1 00:00 .bash_logout</span>
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user user 3771 Jan  1 00:00 .bashrc</span>
+<span style="color: #000; font-style: italic">drwx------ 2 user user 4096 May  5 08:30 .ssh</span>
+</pre></div>
+<h3>鍵ベースの認証を使用したSSH</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa<span style="color: #F8F8F8"> </span>user@example.com
+<span style="color: #000; font-style: italic">Last login: Mon May 5 12:15:30 2025 from 192.168.1.100</span>
+<span style="color: #8F5902">user@example.com:~$</span>
+</pre></div>
+<h3>ポート転送（ローカルからリモートへ）</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span>:localhost:80<span style="color: #F8F8F8"> </span>user@example.com
+<span style="color: #000; font-style: italic">user@example.com&#39;s password: </span>
+<span style="color: #000; font-style: italic">Last login: Mon May 5 15:20:45 2025 from 192.168.1.100</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>パスワードなしログイン用のSSH鍵の設定</h3>
+<p><code>ssh-keygen</code>でSSH鍵ペアを生成し、<code>ssh-copy-id user@example.com</code>で公開鍵をリモートサーバーにコピーします。これにより、接続ごとにパスワードを入力する必要がなくなります。</p>
+<h3>SSH設定ファイルの使用</h3>
+<p>頻繁にアクセスするサーバーの接続設定を保存するために、<code>~/.ssh/config</code>ファイルを作成します：</p>
+<pre><code>Host myserver
+    HostName example.com
+    User username
+    Port 2222
+    IdentityFile ~/.ssh/special_key
+</code></pre><p>その後、単に<code>ssh myserver</code>で接続できます。</p>
+<h3>SSH接続を維持する</h3>
+<p>タイムアウトを防ぐために、<code>~/.ssh/config</code>ファイルに以下の行を追加します：</p>
+<pre><code>Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+</code></pre><h3>鍵管理にSSHエージェントを使用する</h3>
+<p><code>ssh-agent</code>を起動し、<code>ssh-add</code>で鍵を追加すると、セッション中にパスフレーズを繰り返し入力する必要がなくなります。</p>
+<h2>よくある質問</h2>
+<h4>Q1. SSH鍵を生成するにはどうすればよいですか？</h4>
+<p>A. <code>ssh-keygen</code>コマンドを使用します。デフォルトは<code>ssh-keygen -t rsa -b 4096</code>で、4096ビットのRSA鍵ペアを作成します。</p>
+<h4>Q2. SSH公開鍵をサーバーにコピーするにはどうすればよいですか？</h4>
+<p>A. <code>ssh-copy-id user@example.com</code>を使用して、公開鍵をリモートサーバーのauthorized_keysファイルにコピーします。</p>
+<h4>Q3. SSHを使用してファイルを転送するにはどうすればよいですか？</h4>
+<p>A. SSHプロトコルを使用する関連コマンドの<code>scp</code>（セキュアコピー）または<code>sftp</code>（セキュアファイル転送プロトコル）を使用します。</p>
+<h4>Q4. SSH接続がタイムアウトしないようにするにはどうすればよいですか？</h4>
+<p>A. SSH設定ファイルで<code>ServerAliveInterval</code>と<code>ServerAliveCountMax</code>を設定するか、<code>-o</code>オプションを使用します：<code>ssh -o ServerAliveInterval=60 user@example.com</code>。</p>
+<h4>Q5. SSH接続の問題をトラブルシューティングするにはどうすればよいですか？</h4>
+<p>A. <code>-v</code>（詳細）オプションを使用し、より詳細な情報を得るには追加のv（<code>-vv</code>または<code>-vvv</code>）を使用します。</p>
+<h2>参考文献</h2>
+<p>https://man.openbsd.org/ssh.1</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

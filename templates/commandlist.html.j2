@@ -1,0 +1,111 @@
+{% extends 'content.html.j2' %}
+
+{% block styles %}
+  {{ super() }}
+  <style>
+    .commands-container {
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+    
+    .commands-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .commands-header h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .commands-header p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .commands-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .command-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .command-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .command-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #1d2439;
+    }
+    
+    .command-summary {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      /* 3行で省略 */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .search-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    
+    .search-container h2 {
+      margin-bottom: 1rem;
+    }
+    
+    .search-container input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-size: 1.1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+{% endblock %}
+
+{% block title %}
+  Command list - noman
+{% endblock %}
+
+{% block content %}
+  <section class="commands-container">
+    <div class="commands-header">
+      <h1>{% trans %}Command List{% endtrans %}</h1>
+      <p>{% trans %}Explain Linux/Unix commands{% endtrans %}</p>
+    </div>
+
+    <section class="search-container">
+      <h2>{% trans %}Search Commands{% endtrans %}</h2>
+      <input id="searchbox-2" type="text" placeholder="{% trans %}Enter command name (e.g., ls, cd, grep)...{% endtrans %}" />
+    </section>
+
+    <div class="commands-list" id="commands-list">
+      {% for filename, item in commands %}
+        <div class="command-card">
+          <a href="/{{ lang }}/pages/{{ filename }}.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">{{ item.get('command', filename) }}</div>
+            <div class="command-summary">{{ item.summary }}</div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ssh-add - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ssh-add command</h1>
+<p>Adds private key identities to the OpenSSH authentication agent.</p>
+<h2>Overview</h2>
+<p><code>ssh-add</code> manages the private keys used for SSH authentication. It adds keys to the SSH agent, which holds private keys in memory so you don't need to type passphrases repeatedly when connecting to remote servers. The SSH agent must be running before using ssh-add.</p>
+<h2>Options</h2>
+<h3><strong>-l</strong></h3>
+<p>Lists fingerprints of all identities currently represented by the agent.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">2048 SHA256:abcdefghijklmnopqrstuvwxyz1234567890ABCD user@hostname (RSA)</span>
+</pre></div>
+<h3><strong>-L</strong></h3>
+<p>Lists public key parameters of all identities currently represented by the agent.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>-L
+<span style="color: #000; font-style: italic">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... user@hostname</span>
+</pre></div>
+<h3><strong>-d</strong></h3>
+<p>Removes the specified private key identity from the agent.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa
+<span style="color: #000; font-style: italic">Identity removed: /home/user/.ssh/id_rsa (user@hostname)</span>
+</pre></div>
+<h3><strong>-D</strong></h3>
+<p>Deletes all identities from the agent.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>-D
+<span style="color: #000; font-style: italic">All identities removed.</span>
+</pre></div>
+<h3><strong>-t life</strong></h3>
+<p>Sets a maximum lifetime when adding identities to an agent. The lifetime may be specified in seconds or in a time format specified in sshd_config(5).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3600</span><span style="color: #F8F8F8"> </span>~/.ssh/id_rsa
+<span style="color: #000; font-style: italic">Identity added: /home/user/.ssh/id_rsa (user@hostname)</span>
+<span style="color: #000; font-style: italic">Lifetime set to 3600 seconds</span>
+</pre></div>
+<h3><strong>-x</strong></h3>
+<p>Locks the agent with a password.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>-x
+<span style="color: #000; font-style: italic">Enter lock password: </span>
+<span style="color: #000; font-style: italic">Again: </span>
+<span style="color: #000; font-style: italic">Agent locked.</span>
+</pre></div>
+<h3><strong>-X</strong></h3>
+<p>Unlocks the agent.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>-X
+<span style="color: #000; font-style: italic">Enter unlock password: </span>
+<span style="color: #000; font-style: italic">Agent unlocked.</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Adding a key to the agent</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa
+<span style="color: #000; font-style: italic">Enter passphrase for /home/user/.ssh/id_rsa: </span>
+<span style="color: #000; font-style: italic">Identity added: /home/user/.ssh/id_rsa (user@hostname)</span>
+</pre></div>
+<h3>Adding multiple keys at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa<span style="color: #F8F8F8"> </span>~/.ssh/id_ed25519
+<span style="color: #000; font-style: italic">Enter passphrase for /home/user/.ssh/id_rsa: </span>
+<span style="color: #000; font-style: italic">Identity added: /home/user/.ssh/id_rsa (user@hostname)</span>
+<span style="color: #000; font-style: italic">Enter passphrase for /home/user/.ssh/id_ed25519: </span>
+<span style="color: #000; font-style: italic">Identity added: /home/user/.ssh/id_ed25519 (user@hostname)</span>
+</pre></div>
+<h3>Adding all default keys</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-add
+<span style="color: #000; font-style: italic">Identity added: /home/user/.ssh/id_rsa (user@hostname)</span>
+<span style="color: #000; font-style: italic">Identity added: /home/user/.ssh/id_ed25519 (user@hostname)</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Start SSH Agent Automatically</h3>
+<p>On most systems, you can ensure the SSH agent starts automatically by adding these lines to your <code>~/.bashrc</code> or <code>~/.bash_profile</code>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$SSH_AUTH_SOCK</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #F8F8F8">   </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>ssh-agent<span style="color: #F8F8F8"> </span>-s<span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #204A87; font-weight: bold">fi</span>
+</pre></div>
+<h3>Use SSH Config for Key Management</h3>
+<p>Instead of manually adding keys, you can specify which key to use for specific hosts in your <code>~/.ssh/config</code> file:</p>
+<pre><code>Host example.com
+    IdentityFile ~/.ssh/special_key
+</code></pre><h3>Check If Keys Are Already Added</h3>
+<p>Before adding keys, check if they're already loaded with <code>ssh-add -l</code> to avoid duplicate entries.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. Why do I need to use ssh-add?</h4>
+<p>A. <code>ssh-add</code> lets you store your private key passphrases in the SSH agent, so you don't need to type them each time you connect to a server.</p>
+<h4>Q2. How do I make ssh-add remember my keys after reboot?</h4>
+<p>A. SSH agent doesn't persist across reboots by default. You can use tools like <code>keychain</code> or configure your login manager to start the SSH agent and add keys automatically.</p>
+<h4>Q3. What's the difference between ssh-add -l and ssh-add -L?</h4>
+<p>A. <code>-l</code> shows fingerprints of loaded keys (shorter output), while <code>-L</code> shows the complete public key data (longer, more detailed output).</p>
+<h4>Q4. How can I limit how long a key stays in the agent?</h4>
+<p>A. Use <code>ssh-add -t &lt;seconds&gt;</code> to set a time limit, after which the key will be automatically removed.</p>
+<h2>macOS Specifics</h2>
+<p>On macOS, the SSH agent is integrated with Keychain, so keys added with <code>ssh-add -K</code> are stored persistently across reboots. In newer macOS versions (Monterey and later), use <code>ssh-add --apple-use-keychain</code> instead of the deprecated <code>-K</code> option.</p>
+<h2>References</h2>
+<p>https://man.openbsd.org/ssh-add.1</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

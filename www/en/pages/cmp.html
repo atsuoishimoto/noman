@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  cmp - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>cmp command</h1>
+<p>Compare two files byte by byte.</p>
+<h2>Overview</h2>
+<p>The <code>cmp</code> command compares two files of any type and reports the location of the first difference. Unlike <code>diff</code>, which shows all differences between text files, <code>cmp</code> simply identifies the first byte or line where files differ, making it useful for quick binary file comparisons.</p>
+<h2>Options</h2>
+<h3><strong>-b, --print-bytes</strong></h3>
+<p>Print differing bytes as octal values.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">file1.txt file2.txt differ: byte 5, line 1 is 141 a 142 b</span>
+</pre></div>
+<h3><strong>-i, --ignore-initial=SKIP</strong></h3>
+<p>Skip the first SKIP bytes of both input files before comparing.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span>file1.bin<span style="color: #F8F8F8"> </span>file2.bin
+<span style="color: #000; font-style: italic">file1.bin file2.bin differ: byte 11, line 1</span>
+</pre></div>
+<h3><strong>-l, --verbose</strong></h3>
+<p>Print the byte number and the differing byte values for each difference.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">5 141 142</span>
+<span style="color: #000; font-style: italic">8 144 145</span>
+<span style="color: #000; font-style: italic">12 150 151</span>
+</pre></div>
+<h3><strong>-n, --bytes=LIMIT</strong></h3>
+<p>Compare at most LIMIT bytes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>largefile1.bin<span style="color: #F8F8F8"> </span>largefile2.bin
+<span style="color: #000; font-style: italic">largefile1.bin largefile2.bin differ: byte 64, line 1</span>
+</pre></div>
+<h3><strong>-s, --quiet, --silent</strong></h3>
+<p>Suppress all normal output; only return exit status.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">1</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic comparison</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">file1.txt file2.txt differ: byte 5, line 1</span>
+</pre></div>
+<h3>Comparing specific portions of files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1000</span><span style="color: #F8F8F8"> </span>bigfile1.dat<span style="color: #F8F8F8"> </span>bigfile2.dat
+<span style="color: #000; font-style: italic">bigfile1.dat bigfile2.dat differ: byte 340, line 3</span>
+</pre></div>
+<h3>Silent comparison in scripts</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span>cmp<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Files are identical&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Files are different&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">Files are different</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Exit Status in Scripts</h3>
+<p>The <code>cmp</code> command returns 0 if files are identical, 1 if they differ, and 2 if an error occurs. This makes it perfect for conditional logic in shell scripts.</p>
+<h3>Combine with Other Commands</h3>
+<p>Pipe the output of commands to <code>cmp</code> using process substitution to compare command outputs:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>cmp<span style="color: #F8F8F8"> </span>&lt;<span style="color: #CE5C00; font-weight: bold">(</span>command1<span style="color: #CE5C00; font-weight: bold">)</span><span style="color: #F8F8F8"> </span>&lt;<span style="color: #CE5C00; font-weight: bold">(</span>command2<span style="color: #CE5C00; font-weight: bold">)</span>
+</pre></div>
+<h3>Binary File Comparison</h3>
+<p>While <code>diff</code> is better for text files, <code>cmp</code> excels at comparing binary files where you only need to know if and where they differ.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>cmp</code> and <code>diff</code>?</h4>
+<p>A. <code>cmp</code> reports only the first difference between files and works well with binary files. <code>diff</code> shows all differences and is designed primarily for text files.</p>
+<h4>Q2. How can I check if two files are identical without seeing any output?</h4>
+<p>A. Use <code>cmp -s file1 file2</code> and check the exit status with <code>echo $?</code>. A return value of 0 means the files are identical.</p>
+<h4>Q3. Can <code>cmp</code> compare directories?</h4>
+<p>A. No, <code>cmp</code> only compares files. For directory comparison, use <code>diff -r</code> instead.</p>
+<h4>Q4. How do I compare large files efficiently?</h4>
+<p>A. Use <code>cmp</code> with the <code>-s</code> option for a quick check if files differ, or use <code>-i</code> and <code>-n</code> to compare specific portions of large files.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/diffutils/manual/html_node/Invoking-cmp.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

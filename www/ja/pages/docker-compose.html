@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  docker-compose - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>docker-compose コマンド</h1>
+<p>複数コンテナのDockerアプリケーションを定義して実行します。</p>
+<h2>概要</h2>
+<p>Docker Composeは、複数コンテナのDockerアプリケーションを定義・実行するためのツールです。YAMLファイルを使用してアプリケーションのサービス、ネットワーク、ボリュームを設定し、単一のコマンドですべてのサービスを作成・起動できます。複数の相互接続されたコンテナを必要とする複雑なアプリケーションの管理プロセスを簡素化します。</p>
+<h2>オプション</h2>
+<h3><strong>up</strong></h3>
+<p>Composeファイルで定義されたコンテナを作成して起動します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+<span style="color: #000; font-style: italic">Attaching to myapp_db_1, myapp_redis_1, myapp_web_1</span>
+</pre></div>
+<h3><strong>-d, --detach</strong></h3>
+<p>コンテナをバックグラウンドで実行します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+</pre></div>
+<h3><strong>down</strong></h3>
+<p>コンテナ、ネットワーク、イメージ、ボリュームを停止して削除します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>down
+<span style="color: #000; font-style: italic">Stopping myapp_web_1   ... done</span>
+<span style="color: #000; font-style: italic">Stopping myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Stopping myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Removing myapp_web_1   ... done</span>
+<span style="color: #000; font-style: italic">Removing myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Removing myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Removing network myapp_default</span>
+</pre></div>
+<h3><strong>ps</strong></h3>
+<p>コンテナを一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>ps
+<span style="color: #000; font-style: italic">     Name                    Command               State           Ports         </span>
+<span style="color: #000; font-style: italic">--------------------------------------------------------------------------------</span>
+<span style="color: #000; font-style: italic">myapp_db_1      docker-entrypoint.sh mysqld      Up      3306/tcp, 33060/tcp</span>
+<span style="color: #000; font-style: italic">myapp_redis_1   docker-entrypoint.sh redis ...   Up      6379/tcp              </span>
+<span style="color: #000; font-style: italic">myapp_web_1     docker-entrypoint.sh npm start   Up      0.0.0.0:3000-&gt;3000/tcp</span>
+</pre></div>
+<h3><strong>logs</strong></h3>
+<p>コンテナからの出力を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>logs
+<span style="color: #000; font-style: italic">Attaching to myapp_web_1, myapp_redis_1, myapp_db_1</span>
+<span style="color: #000; font-style: italic">web_1    | &gt; myapp@1.0.0 start</span>
+<span style="color: #000; font-style: italic">web_1    | &gt; node server.js</span>
+<span style="color: #000; font-style: italic">web_1    | Server listening on port 3000</span>
+<span style="color: #000; font-style: italic">db_1     | 2023-05-05T12:34:56.789Z 0 [Note] mysqld: ready for connections.</span>
+</pre></div>
+<h3><strong>-f, --follow</strong></h3>
+<p>ログ出力をフォローします（logsコマンドと共に使用）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>logs<span style="color: #F8F8F8"> </span>-f
+<span style="color: #000; font-style: italic">Attaching to myapp_web_1, myapp_redis_1, myapp_db_1</span>
+<span style="color: #000; font-style: italic">web_1    | &gt; myapp@1.0.0 start</span>
+<span style="color: #000; font-style: italic">web_1    | &gt; node server.js</span>
+<span style="color: #000; font-style: italic">web_1    | Server listening on port 3000</span>
+</pre></div>
+<h3><strong>build</strong></h3>
+<p>サービスをビルドまたは再ビルドします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>build
+<span style="color: #000; font-style: italic">Building web</span>
+<span style="color: #000; font-style: italic">Step 1/10 : FROM node:14</span>
+<span style="color: #000; font-style: italic"> ---&gt; 1234567890ab</span>
+<span style="color: #000; font-style: italic">Step 2/10 : WORKDIR /app</span>
+<span style="color: #000; font-style: italic"> ---&gt; Using cache</span>
+<span style="color: #000; font-style: italic"> ---&gt; abcdef123456</span>
+<span style="color: #000; font-style: italic">...</span>
+<span style="color: #000; font-style: italic">Successfully built 0123456789ab</span>
+<span style="color: #000; font-style: italic">Successfully tagged myapp_web:latest</span>
+</pre></div>
+<h3><strong>exec</strong></h3>
+<p>実行中のコンテナでコマンドを実行します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span><span style="color: #204A87">exec</span><span style="color: #F8F8F8"> </span>web<span style="color: #F8F8F8"> </span>npm<span style="color: #F8F8F8"> </span><span style="color: #204A87">test</span>
+<span style="color: #000; font-style: italic">&gt; myapp@1.0.0 test</span>
+<span style="color: #000; font-style: italic">&gt; jest</span>
+
+<span style="color: #000; font-style: italic">PASS  ./app.test.js</span>
+<span style="color: #000; font-style: italic">  ✓ should return 200 (32ms)</span>
+
+<span style="color: #000; font-style: italic">Test Suites: 1 passed, 1 total</span>
+<span style="color: #000; font-style: italic">Tests:       1 passed, 1 total</span>
+</pre></div>
+<h3><strong>-f, --file</strong></h3>
+<p>別のComposeファイルを指定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>docker-compose.prod.yml<span style="color: #F8F8F8"> </span>up<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>開発環境の起動</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+<span style="color: #000; font-style: italic">Attaching to myapp_db_1, myapp_redis_1, myapp_web_1</span>
+</pre></div>
+<h3>サービスの再ビルドと起動</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up<span style="color: #F8F8F8"> </span>--build
+<span style="color: #000; font-style: italic">Building web</span>
+<span style="color: #000; font-style: italic">Step 1/10 : FROM node:14</span>
+<span style="color: #000; font-style: italic">...</span>
+<span style="color: #000; font-style: italic">Successfully built 0123456789ab</span>
+<span style="color: #000; font-style: italic">Successfully tagged myapp_web:latest</span>
+<span style="color: #000; font-style: italic">Creating network &quot;myapp_default&quot; with the default driver</span>
+<span style="color: #000; font-style: italic">Creating myapp_db_1    ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_redis_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1   ... done</span>
+</pre></div>
+<h3>サービスコンテナでの一回限りのコマンド実行</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>web<span style="color: #F8F8F8"> </span>npm<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>express
+<span style="color: #000; font-style: italic">Creating myapp_web_run ... done</span>
+<span style="color: #000; font-style: italic">+ express@4.18.2</span>
+<span style="color: #000; font-style: italic">added 57 packages in 2.5s</span>
+</pre></div>
+<h3>サービスのスケーリング</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker-compose<span style="color: #F8F8F8"> </span>up<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>--scale<span style="color: #F8F8F8"> </span><span style="color: #000">web</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">3</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_1 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_2 ... done</span>
+<span style="color: #000; font-style: italic">Creating myapp_web_3 ... done</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>環境変数を使用する</h3>
+<p>パスワードやAPIキーなどの機密情報は、Composeファイルにハードコーディングする代わりに<code>.env</code>ファイルに保存しましょう。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>.env
+<span style="color: #000; font-style: italic">DB_PASSWORD=secretpassword</span>
+<span style="color: #000; font-style: italic">API_KEY=1234567890abcdef</span>
+</pre></div>
+<h3>デフォルトのComposeファイルをオーバーライドする</h3>
+<p>開発固有の設定のために<code>docker-compose.override.yml</code>ファイルを作成すると、基本の<code>docker-compose.yml</code>ファイルと一緒に自動的に使用されます。</p>
+<h3>永続化のために名前付きボリュームを使用する</h3>
+<p>名前付きボリュームはコンテナの再起動や再ビルド間でデータを保持します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">volumes</span><span style="color: #000; font-weight: bold">:</span>
+<span style="color: #F8F8F8">  </span><span style="color: #204A87; font-weight: bold">db_data</span><span style="color: #000; font-weight: bold">:</span>
+
+<span style="color: #204A87; font-weight: bold">services</span><span style="color: #000; font-weight: bold">:</span>
+<span style="color: #F8F8F8">  </span><span style="color: #204A87; font-weight: bold">db</span><span style="color: #000; font-weight: bold">:</span>
+<span style="color: #F8F8F8">    </span><span style="color: #204A87; font-weight: bold">image</span><span style="color: #000; font-weight: bold">:</span><span style="color: #F8F8F8"> </span><span style="color: #000">postgres</span>
+<span style="color: #F8F8F8">    </span><span style="color: #204A87; font-weight: bold">volumes</span><span style="color: #000; font-weight: bold">:</span>
+<span style="color: #F8F8F8">      </span><span style="color: #000; font-weight: bold">-</span><span style="color: #F8F8F8"> </span><span style="color: #000">db_data:/var/lib/postgresql/data</span>
+</pre></div>
+<h3>Composeファイルにバージョン管理を使用する</h3>
+<p>変更を追跡し、チームメンバーとコラボレーションするために、Composeファイルをバージョン管理下に置きましょう。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>docker-compose up</code>と<code>docker-compose run</code>の違いは何ですか？</h4>
+<p>A. <code>up</code>はComposeファイルで定義されたすべてのサービスを起動しますが、<code>run</code>は特定のサービスを起動して一回限りのコマンドを実行します。</p>
+<h4>Q2. 単一のサービスを更新するにはどうすればよいですか？</h4>
+<p>A. <code>docker-compose up --build &lt;サービス名&gt;</code>を使用して、特定のサービスを再ビルドして更新します。</p>
+<h4>Q3. 特定のサービスのログを表示するにはどうすればよいですか？</h4>
+<p>A. <code>docker-compose logs &lt;サービス名&gt;</code>を使用して、特定のサービスのログを表示します。</p>
+<h4>Q4. コンテナを削除せずにサービスを停止するにはどうすればよいですか？</h4>
+<p>A. <code>docker-compose stop</code>を使用して、コンテナ、ネットワーク、ボリュームを削除せずにサービスを停止します。</p>
+<h4>Q5. 本番環境でdocker-composeを実行するにはどうすればよいですか？</h4>
+<p>A. docker-composeは本番環境でも使用できますが、本番デプロイメントにはDocker SwarmやKubernetesがより適している場合が多いです。Composeを使用する場合は、適切な設定を持つ本番環境専用のComposeファイルを作成してください。</p>
+<h2>参考文献</h2>
+<p>https://docs.docker.com/compose/reference/</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

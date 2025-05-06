@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  gdb - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>gdbコマンド</h1>
+<p>GNUデバッガを使用してプログラムを対話的にデバッグします。</p>
+<h2>概要</h2>
+<p>GDB（GNU Debugger）は、プログラムの実行を監視および制御できる強力なデバッグツールです。実行を一時停止し、メモリを調査し、ブレークポイントを設定し、コードをステップ実行し、実行時に変数を検査することで、バグを見つけて修正するのに役立ちます。GDBはC、C++、Objective-C、Fortranなど多くのプログラミング言語で動作します。</p>
+<h2>オプション</h2>
+<h3><strong>-q, --quiet, --silent</strong></h3>
+<p>紹介文と著作権メッセージを表示せずにGDBを起動します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>./program
+<span style="color: #8F5902">(gdb)</span>
+</pre></div>
+<h3><strong>-c FILE</strong></h3>
+<p>FILEをコアダンプとして使用して調査します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>core<span style="color: #F8F8F8"> </span>./program
+</pre></div>
+<h3><strong>-p PID</strong></h3>
+<p>指定されたプロセスIDを持つ実行中のプロセスにアタッチします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3><strong>-x FILE</strong></h3>
+<p>FILEからGDBコマンドを実行します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>commands.gdb<span style="color: #F8F8F8"> </span>./program
+</pre></div>
+<h3><strong>--args</strong></h3>
+<p>プログラム名の後の引数をデバッグ対象のプログラムに渡します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>--args<span style="color: #F8F8F8"> </span>./program<span style="color: #F8F8F8"> </span>arg1<span style="color: #F8F8F8"> </span>arg2
+</pre></div>
+<h3><strong>-d DIRECTORY</strong></h3>
+<p>ソースファイルを検索するパスにDIRECTORYを追加します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>/path/to/source<span style="color: #F8F8F8"> </span>./program
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なデバッグセッション</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>./program
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">break main</span>
+<span style="color: #000; font-style: italic">Breakpoint 1 at 0x1149: file main.c, line 5.</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">run</span>
+<span style="color: #000; font-style: italic">Starting program: /path/to/program </span>
+
+<span style="color: #000; font-style: italic">Breakpoint 1, main () at main.c:5</span>
+<span style="color: #000; font-style: italic">5       int x = 10;</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">next</span>
+<span style="color: #000; font-style: italic">6       printf(&quot;x = %d\n&quot;, x);</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">print x</span>
+<span style="color: #8F5902">$</span><span style="color: #000">1</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">continue</span>
+<span style="color: #000; font-style: italic">Continuing.</span>
+<span style="color: #000; font-style: italic">x = 10</span>
+<span style="color: #000; font-style: italic">[Inferior 1 (process 12345) exited normally]</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">quit</span>
+</pre></div>
+<h3>引数付きプログラムのデバッグ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>--args<span style="color: #F8F8F8"> </span>./program<span style="color: #F8F8F8"> </span>input.txt<span style="color: #F8F8F8"> </span>output.txt
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">run</span>
+<span style="color: #000; font-style: italic">Starting program: /path/to/program input.txt output.txt</span>
+<span style="color: #000; font-style: italic">[Program execution...]</span>
+</pre></div>
+<h3>コアダンプの調査</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>./program<span style="color: #F8F8F8"> </span>core
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">bt</span>
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">0</span><span style="color: #F8F8F8">  </span>0x00007f8b4c5e32a3<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>__GI_raise<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">(</span><span style="color: #000">sig</span><span style="color: #CE5C00; font-weight: bold">=</span>sig@entry<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">6</span><span style="color: #CE5C00; font-weight: bold">)</span><span style="color: #F8F8F8"> </span>at<span style="color: #F8F8F8"> </span>../sysdeps/unix/sysv/linux/raise.c:50
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8">  </span>0x00007f8b4c5e4921<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>__GI_abort<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>at<span style="color: #F8F8F8"> </span>abort.c:79
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8">  </span>0x0000555555555160<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>main<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>at<span style="color: #F8F8F8"> </span>crash.c:5
+</pre></div>
+<h2>ヒント:</h2>
+<h3>一般的なGDBコマンド</h3>
+<ul>
+<li><code>break</code>（または<code>b</code>）：行または関数にブレークポイントを設定</li>
+<li><code>run</code>（または<code>r</code>）：プログラムを開始</li>
+<li><code>continue</code>（または<code>c</code>）：停止後に実行を継続</li>
+<li><code>next</code>（または<code>n</code>）：関数内に入らずに次の行を実行</li>
+<li><code>step</code>（または<code>s</code>）：関数内に入りながら次の行を実行</li>
+<li><code>print</code>（または<code>p</code>）：変数または式の値を表示</li>
+<li><code>backtrace</code>（または<code>bt</code>）：コールスタックを表示</li>
+<li><code>info breakpoints</code>：すべてのブレークポイントを一覧表示</li>
+<li><code>watch</code>：変数が変更されたときに停止するウォッチポイントを設定</li>
+</ul>
+<h3>TUIモードの使用</h3>
+<p><code>Ctrl+X+A</code>でテキストユーザーインターフェースモードを有効にすると、ソースコードとGDBコマンドを同時に表示する分割ビューが表示されます。</p>
+<h3>ブレークポイントの保存</h3>
+<p><code>save breakpoints file.txt</code>を使用してブレークポイントをファイルに保存し、将来のセッションで<code>source file.txt</code>を使用して読み込むことができます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. プログラムのデバッグを開始するにはどうすればよいですか？</h4>
+<p>A. <code>gdb ./program</code>を実行し、<code>break main</code>でメイン関数にブレークポイントを設定し、<code>run</code>で実行を開始します。</p>
+<h4>Q2. セグメンテーション違反の原因を調査するにはどうすればよいですか？</h4>
+<p>A. クラッシュ後、<code>backtrace</code>（または<code>bt</code>）を使用してコールスタックを確認し、クラッシュが発生した場所を特定します。次に<code>frame N</code>を使用して特定のフレームを選択し、変数を調査します。</p>
+<h4>Q3. 実行中のプロセスをデバッグするにはどうすればよいですか？</h4>
+<p>A. <code>gdb -p PID</code>を使用して、指定されたプロセスIDを持つ実行中のプロセスにアタッチします。</p>
+<h4>Q4. 条件付きブレークポイントを設定するにはどうすればよいですか？</h4>
+<p>A. <code>break location if condition</code>を使用します。例：<code>break main.c:25 if x &gt; 10</code></p>
+<h4>Q5. 配列のすべての要素を表示するにはどうすればよいですか？</h4>
+<p>A. <code>print *array@length</code>を使用します。ここで<code>length</code>は表示する要素の数です。</p>
+<h2>参考文献</h2>
+<p>https://sourceware.org/gdb/current/onlinedocs/gdb/</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

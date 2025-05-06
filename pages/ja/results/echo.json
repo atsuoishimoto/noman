@@ -1,0 +1,20 @@
+{
+  "id": "msg_01LzAqA6M9qW2mkdDgv5ACF9",
+  "content": [
+    {
+      "text": "# echo コマンド\n\nテキストや変数を標準出力に表示します。\n\n## 概要\n\n`echo` コマンドは、引数を標準出力に表示し、最後に改行を追加します。シェルスクリプトでテキストを表示したり、変数の値を表示したり、他のコマンドへの出力を生成したりするために一般的に使用されます。\n\n## オプション\n\n### **-n**\n\n通常出力の最後に追加される改行を抑制します。\n\n```console\n$ echo -n \"Hello\"\nHello$\n```\n\n### **-e**\n\nバックスラッシュエスケープシーケンスの解釈を有効にします。\n\n```console\n$ echo -e \"Hello\\nWorld\"\nHello\nWorld\n```\n\n### **-E**\n\nバックスラッシュエスケープシーケンスの解釈を無効にします（これがデフォルトです）。\n\n```console\n$ echo -E \"Hello\\nWorld\"\nHello\\nWorld\n```\n\n## 使用例\n\n### テキストの表示\n\n```console\n$ echo Hello World\nHello World\n```\n\n### 変数値の表示\n\n```console\n$ name=\"John\"\n$ echo \"My name is $name\"\nMy name is John\n```\n\n### コマンド置換との併用\n\n```console\n$ echo \"Today's date is $(date)\"\nToday's date is Mon May 5 10:15:23 EDT 2025\n```\n\n### -e オプションでエスケープシーケンスを使用\n\n```console\n$ echo -e \"Tab:\\t| Newline:\\n| Backslash:\\\\\"\nTab:\t| Newline:\n| Backslash:\\\n```\n\n## ヒント:\n\n### 変数展開を防ぐ\n\nシングルクォートを使用して変数展開と解釈を防ぎます：\n\n```console\n$ echo '$HOME contains your home directory path'\n$HOME contains your home directory path\n```\n\n### 出力をファイルにリダイレクト\n\necho とリダイレクションを組み合わせて、ファイルを作成または追加します：\n\n```console\n$ echo \"This is a new file\" > newfile.txt\n$ echo \"This is appended\" >> newfile.txt\n```\n\n### 複数行のコンテンツを生成\n\n複数の echo コマンドまたはエスケープシーケンスを使用して、複数行のコンテンツを作成します：\n\n```console\n$ echo -e \"Line 1\\nLine 2\\nLine 3\" > multiline.txt\n```\n\n## よくある質問\n\n#### Q1. echo でシングルクォートとダブルクォートの違いは何ですか？\nA. ダブルクォート（`\"`）は変数展開と一部のエスケープシーケンスを許可しますが、シングルクォート（`'`）は展開せずにすべてを文字通りに扱います。\n\n#### Q2. 最後に改行なしで echo するにはどうすればよいですか？\nA. `-n` オプションを使用します：`echo -n \"text\"`。\n\n#### Q3. タブや改行などの特殊文字を含めるにはどうすればよいですか？\nA. `-e` オプションとエスケープシーケンスを使用します：`echo -e \"Tab:\\t Newline:\\n\"`。\n\n#### Q4. echo でファイルの内容を表示できますか？\nA. いいえ、それは `cat` コマンドの役割です。Echo は引数のみを表示します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/echo-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 827,
+    "output_tokens": 1020
+  }
+}

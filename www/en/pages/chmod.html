@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  chmod - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>chmod command</h1>
+<p>Change file mode bits (permissions) for files and directories.</p>
+<h2>Overview</h2>
+<p>The <code>chmod</code> command modifies file and directory permissions on Unix-like systems. It allows users to control who can read, write, or execute files by changing the access mode. Permissions can be specified using either symbolic notation (letters) or octal notation (numbers).</p>
+<h2>Options</h2>
+<h3><strong>-R, --recursive</strong></h3>
+<p>Change permissions recursively, affecting all files and directories within the specified directory.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">755</span><span style="color: #F8F8F8"> </span>projects/
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Display a diagnostic message for every file processed, showing the changes made.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">mode of &#39;file.txt&#39; changed from 0755 (rwxr-xr-x) to 0644 (rw-r--r--)</span>
+</pre></div>
+<h3><strong>-c, --changes</strong></h3>
+<p>Like verbose, but only reports when a change is actually made.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">mode of &#39;file.txt&#39; changed from 0755 (rwxr-xr-x) to 0644 (rw-r--r--)</span>
+</pre></div>
+<h3><strong>-f, --silent, --quiet</strong></h3>
+<p>Suppress most error messages.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>nonexistent.txt
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Using Octal Notation</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">755</span><span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 user group 1024 May 5 10:00 script.sh</span>
+</pre></div>
+<h3>Using Symbolic Notation</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>u+x<span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #000; font-style: italic">-rwxr--r-- 1 user group 1024 May 5 10:00 script.sh</span>
+</pre></div>
+<h3>Adding Multiple Permissions</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>u+rwx,g+rx,o+r<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">-rwxr-xr-- 1 user group 1024 May 5 10:00 file.txt</span>
+</pre></div>
+<h3>Removing Permissions</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>go-w<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 1024 May 5 10:00 file.txt</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Understanding Octal Notation</h3>
+<p>The three digits in octal notation represent permissions for owner, group, and others:</p>
+<ul>
+<li>4 = read (r)</li>
+<li>2 = write (w)</li>
+<li>1 = execute (x)</li>
+</ul>
+<p>Common combinations:</p>
+<ul>
+<li>755 (rwxr-xr-x): Owner can read/write/execute, others can read/execute</li>
+<li>644 (rw-r--r--): Owner can read/write, others can only read</li>
+<li>700 (rwx------): Owner can read/write/execute, no permissions for others</li>
+</ul>
+<h3>Using Symbolic Notation Effectively</h3>
+<ul>
+<li><code>u</code> (user/owner), <code>g</code> (group), <code>o</code> (others), <code>a</code> (all)</li>
+<li><code>+</code> (add permission), <code>-</code> (remove permission), <code>=</code> (set exact permission)</li>
+<li><code>r</code> (read), <code>w</code> (write), <code>x</code> (execute)</li>
+</ul>
+<h3>Setting Default Permissions</h3>
+<p>Use <code>umask</code> to control default permissions for newly created files and directories.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between octal and symbolic notation?</h4>
+<p>A. Octal notation (like 755) uses numbers to set exact permissions, while symbolic notation (like u+x) allows adding or removing specific permissions without changing others.</p>
+<h4>Q2. How do I make a file executable?</h4>
+<p>A. Use <code>chmod +x filename</code> or <code>chmod u+x filename</code> to make it executable for the owner.</p>
+<h4>Q3. What permissions should I use for sensitive files?</h4>
+<p>A. For sensitive files, use restrictive permissions like 600 (rw-------) so only the owner can read and write.</p>
+<h4>Q4. How do I change permissions for all files in a directory?</h4>
+<p>A. Use the recursive option: <code>chmod -R permissions directory/</code></p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/chmod-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

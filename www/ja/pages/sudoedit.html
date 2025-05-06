@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  sudoedit - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>sudoeditコマンド</h1>
+<p>別のユーザー（通常はroot）として安全にファイルを編集します。</p>
+<h2>概要</h2>
+<p><code>sudoedit</code>（<code>sudo -e</code>としても使用可能）は、ユーザーが自分のエディタ設定を使いながら、昇格した権限でファイルを編集することを可能にします。エディタに直接<code>sudo</code>を使用する場合と異なり、<code>sudoedit</code>はファイルの一時的なコピーを作成し、お好みのエディタで編集させた後、適切な権限で元の場所にコピーし直します。</p>
+<h2>オプション</h2>
+<h3><strong>-u, --user=user</strong></h3>
+<p>ファイルを編集するユーザーを指定します（デフォルトはroot）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>www-data<span style="color: #F8F8F8"> </span>/var/www/html/index.html
+</pre></div>
+<h3><strong>-H, --set-home</strong></h3>
+<p>HOME環境変数を対象ユーザーのホームディレクトリに設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-H<span style="color: #F8F8F8"> </span>/etc/ssh/sshd_config
+</pre></div>
+<h3><strong>-C, --close-from=num</strong></h3>
+<p>num以上のすべてのファイルディスクリプタを閉じます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>/etc/hosts
+</pre></div>
+<h3><strong>-h, --help</strong></h3>
+<p>ヘルプメッセージを表示して終了します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-h
+</pre></div>
+<h2>使用例</h2>
+<h3>システム設定ファイルの編集</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>/etc/ssh/sshd_config
+<span style="color: #000; font-style: italic">[デフォルトのエディタがファイルを開きます]</span>
+</pre></div>
+<h3>複数のファイルを一度に編集</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>/etc/hosts<span style="color: #F8F8F8"> </span>/etc/resolv.conf
+<span style="color: #000; font-style: italic">[デフォルトのエディタが各ファイルを順番に開きます]</span>
+</pre></div>
+<h3>特定のユーザーとして編集</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudoedit<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>postgres<span style="color: #F8F8F8"> </span>/etc/postgresql/13/main/postgresql.conf
+<span style="color: #000; font-style: italic">[デフォルトのエディタがファイルを開き、変更はpostgresの所有となります]</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>お好みのエディタの設定</h3>
+<p><code>sudoedit</code>はEDITORまたはVISUAL環境変数を使用して、どのエディタを使用するかを決定します。シェルプロファイルでこれらを設定してください：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;export EDITOR=vim&#39;</span><span style="color: #F8F8F8"> </span>&gt;&gt;<span style="color: #F8F8F8"> </span>~/.bashrc
+<span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>~/.bashrc
+</pre></div>
+<h3>セキュリティ上の利点</h3>
+<p>システムファイルを編集する際は、<code>sudo vim</code>ではなく常に<code>sudoedit</code>を使用してください。これにより、エディタのプラグインや設定が昇格した権限でコードを実行する可能性があるセキュリティ問題を防ぎます。</p>
+<h3>一時ファイルの場所</h3>
+<p><code>sudoedit</code>はデフォルトで/tmpに一時ファイルを作成します。非常に大きなファイルを編集する必要がある場合は、/tmpパーティションに十分な空き容量があることを確認してください。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>sudoedit</code>と<code>sudo vim</code>の違いは何ですか？</h4>
+<p>A. <code>sudoedit</code>はファイルの一時的なコピーを作成し、通常のユーザー権限で編集した後、昇格した権限でコピーし直します。<code>sudo vim</code>はエディタ全体をroot権限で実行するため、エディタにコードを実行する可能性のあるプラグインや設定がある場合、セキュリティリスクとなる可能性があります。</p>
+<h4>Q2. どのエディタを使用するかを指定するにはどうすればよいですか？</h4>
+<p>A. シェルプロファイル（例：~/.bashrcの中の<code>export EDITOR=nano</code>）でEDITORまたはVISUAL環境変数を設定します。</p>
+<h4>Q3. <code>sudoedit</code>で複数のファイルを一度に編集できますか？</h4>
+<p>A. はい、編集したいすべてのファイルをリストするだけです：<code>sudoedit file1 file2 file3</code></p>
+<h4>Q4. 元のファイルを表示する権限がない場合はどうなりますか？</h4>
+<p>A. 通常のユーザーがファイルを読めなくても、そのファイルを編集するためのsudo権限があれば、<code>sudoedit</code>は正常に動作します。</p>
+<h2>参考資料</h2>
+<p>https://www.sudo.ws/docs/man/sudoedit.man/</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

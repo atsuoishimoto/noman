@@ -1,0 +1,20 @@
+{
+  "id": "msg_01VxAW5JkAmghnL6bCCzAmHc",
+  "content": [
+    {
+      "text": "# printf コマンド\n\n指定されたフォーマット文字列に従ってデータをフォーマットして表示します。\n\n## 概要\n\n`printf` コマンドは、フォーマット指定に従ってデータをフォーマットし、標準出力に表示します。C プログラミング言語の printf 関数と同様に動作し、テキストの配置、数値のフォーマット、文字列操作など、出力フォーマットを細かく制御できます。\n\n## オプション\n\n### **-v VAR**\n\n出力を標準出力に表示する代わりに、シェル変数 VAR に割り当てます。\n\n```console\n$ printf -v myvar \"Hello, %s\" \"World\"\n$ echo $myvar\nHello, World\n```\n\n### **--help**\n\nヘルプメッセージを表示して終了します。\n\n```console\n$ printf --help\nUsage: printf FORMAT [ARGUMENT]...\n   or: printf OPTION\nPrint ARGUMENT(s) according to FORMAT, or execute according to OPTION:\n\n      --help     display this help and exit\n      --version  output version information and exit\n...\n```\n\n### **--version**\n\nバージョン情報を出力して終了します。\n\n```console\n$ printf --version\nprintf (GNU coreutils) 8.32\nCopyright (C) 2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by David MacKenzie.\n```\n\n## フォーマット指定子\n\n### **%s** - 文字列\n\n```console\n$ printf \"Hello, %s!\\n\" \"World\"\nHello, World!\n```\n\n### **%d** - 10進整数\n\n```console\n$ printf \"Number: %d\\n\" 42\nNumber: 42\n```\n\n### **%f** - 浮動小数点数\n\n```console\n$ printf \"Pi is approximately %.2f\\n\" 3.14159\nPi is approximately 3.14\n```\n\n### **%c** - 文字\n\n```console\n$ printf \"First letter: %c\\n\" \"A\"\nFirst letter: A\n```\n\n### **%x** - 16進数\n\n```console\n$ printf \"Hex: %x\\n\" 255\nHex: ff\n```\n\n### **%%** - パーセント記号そのもの\n\n```console\n$ printf \"100%% complete\\n\"\n100% complete\n```\n\n## 使用例\n\n### 基本的なテキストフォーマット\n\n```console\n$ printf \"Name: %s, Age: %d\\n\" \"Alice\" 30\nName: Alice, Age: 30\n```\n\n### 複数の引数\n\n```console\n$ printf \"%s %s %s\\n\" \"one\" \"two\" \"three\"\none two three\n```\n\n### 幅と配置\n\n```console\n$ printf \"|%-10s|%10s|\\n\" \"left\" \"right\"\n|left      |     right|\n```\n\n### 浮動小数点数の精度\n\n```console\n$ printf \"%.2f %.4f %.0f\\n\" 3.14159 2.71828 5.999\n3.14 2.7183 6\n```\n\n### 表のフォーマット\n\n```console\n$ printf \"%-10s %-8s %s\\n\" \"Name\" \"Age\" \"City\"\n$ printf \"%-10s %-8d %s\\n\" \"Alice\" 30 \"New York\"\n$ printf \"%-10s %-8d %s\\n\" \"Bob\" 25 \"Chicago\"\nName       Age      City\nAlice      30       New York\nBob        25       Chicago\n```\n\n## ヒント:\n\n### エスケープシーケンスを使用する\n\n一般的なエスケープシーケンスには `\\n`（改行）、`\\t`（タブ）、`\\\\`（バックスラッシュ）があります。\n\n```console\n$ printf \"Line 1\\nLine 2\\tTabbed\\n\"\nLine 1\nLine 2\tTabbed\n```\n\n### 先頭にゼロを付けた数値フォーマット\n\n`%0Nd` という形式を使用します。N は合計幅です：\n\n```console\n$ printf \"ID: %04d\\n\" 42\nID: 0042\n```\n\n### フォーマット引数の再利用\n\n出力位置が引数よりも多い場合、最後の引数が再利用されます：\n\n```console\n$ printf \"A: %d, B: %d, C: %d\\n\" 1 2\nA: 1, B: 2, C: 2\n```\n\n### 改行なしで表示\n\n`echo` と異なり、`printf` は自動的に改行を追加しません：\n\n```console\n$ printf \"No newline\"\nNo newline$\n```\n\n## よくある質問\n\n#### Q1. `printf` と `echo` の違いは何ですか？\nA. `printf` はより正確なフォーマット制御を提供しますが、デフォルトでは改行を追加しません。`echo` はよりシンプルですが、フォーマットオプションが少なく、自動的に改行を追加します。\n\n#### Q2. `printf` で日付をフォーマットするにはどうすればよいですか？\nA. `printf` で直接日付をフォーマットすることはできません。`date` コマンドを使用してフォーマットされた日付文字列を生成し、それを `printf` に渡します：\n```console\n$ printf \"Today is %s\\n\" \"$(date +\"%Y-%m-%d\")\"\nToday is 2025-05-05\n```\n\n#### Q3. タブや改行などの特殊文字を表示するにはどうすればよいですか？\nA. エスケープシーケンスを使用します：`\\t` はタブ、`\\n` は改行、`\\r` はキャリッジリターン、`\\\\` はバックスラッシュそのものを表します。\n\n#### Q4. 数値の小数点以下の桁数をフォーマットするにはどうすればよいですか？\nA. 精度指定子を使用します。例えば `%.2f` は小数点以下2桁を表示します：\n```console\n$ printf \"Price: $%.2f\\n\" 9.99\nPrice: $9.99\n```\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/printf-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1503,
+    "output_tokens": 1775
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "msg_01E7aiUrcK41fjMPBApCoiEh",
+  "content": [
+    {
+      "text": "# which コマンド\n\nユーザーのPATH内にあるコマンドの実行ファイルを探します。\n\n## 概要\n\n`which`コマンドは、PATH環境変数にリストされているディレクトリを検索して、実行可能プログラムの場所を見つけます。コマンドラインから実行した場合にどのバージョンのプログラムが実行されるかを判断するのに役立ちます。\n\n## オプション\n\n### **-a, --all**\n\nPATH内の一致する実行ファイルをすべて表示します（最初の1つだけではなく）。\n\n```console\n$ which -a python\n/usr/bin/python\n/usr/local/bin/python\n```\n\n### **-s**\n\nサイレントモード - 出力なしで終了ステータスを返します（見つかった場合は0、見つからなかった場合は1）。\n\n```console\n$ which -s git\n$ echo $?\n0\n```\n\n## 使用例\n\n### コマンドの場所を見つける\n\n```console\n$ which ls\n/bin/ls\n```\n\n### コマンドが存在するかチェックする\n\n```console\n$ which nonexistentcommand\nwhich: no nonexistentcommand in (/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin)\n```\n\n### 複数のコマンドで使用する\n\n```console\n$ which bash python perl\n/bin/bash\n/usr/bin/python\n/usr/bin/perl\n```\n\n## ヒント:\n\n### コマンド置換で使用する\n\n`which`をコマンド置換と一緒に使用して、コマンドのフルパスを実行できます:\n```console\n$ $(which python) --version\nPython 3.9.6\n```\n\n### 複数のバージョンを確認する\n\n`which -a`を使用してPATH内のコマンドのすべてのインスタンスを見つけることができます。これはバージョンの競合をトラブルシューティングする際に役立ちます。\n\n### 他のコマンドと組み合わせる\n\nより多くの情報を得るために他のコマンドと組み合わせます:\n```console\n$ ls -l $(which python)\n-rwxr-xr-x 1 root wheel 31488 Jan 1 2023 /usr/bin/python\n```\n\n## よくある質問\n\n#### Q1. `which`と`whereis`の違いは何ですか？\nA. `which`はPATH内の実行ファイルの場所のみを表示しますが、`whereis`はコマンドのソースコード、マニュアルページ、関連ファイルも見つけます。\n\n#### Q2. なぜ`which`は存在するコマンドを見つけられないことがありますか？\nA. そのコマンドはシェルビルトイン（`cd`など）、エイリアス、またはPATH環境変数に含まれていない可能性があります。\n\n#### Q3. コマンドがインストールされているかを確認するために`which`をどのように使用できますか？\nA. `which -s command && echo \"Installed\" || echo \"Not installed\"`を使用して、コマンドがPATHに存在するかを確認できます。\n\n#### Q4. `which`はシェルビルトインに対して機能しますか？\nA. いいえ、`which`はPATH内の実行ファイルのみを見つけ、`cd`や`echo`などのシェルビルトインは見つけません。\n\n## 参考文献\n\nhttps://pubs.opengroup.org/onlinepubs/9699919799/utilities/which.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 811,
+    "output_tokens": 1042
+  }
+}

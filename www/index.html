@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    // Function to detect browser language and redirect
+    function redirectBasedOnLanguage() {
+      // Get browser language
+      let userLang = navigator.language || navigator.userLanguage || '';
+      
+      // Check if any of the preferred languages start with 'ja'
+      let isJapanese = false;
+      
+      // First check navigator.languages (array of preferred languages)
+      if (navigator.languages && navigator.languages.length) {
+        isJapanese = navigator.languages.some(lang => lang.startsWith('ja'));
+      } 
+      // If navigator.languages is not available or empty, fall back to navigator.language
+      else {
+        isJapanese = userLang.startsWith('ja');
+      }
+      
+      // Redirect based on language
+      if (isJapanese) {
+        window.location.href = '/ja/';
+      } else {
+        window.location.href = '/en/';
+      }
+    }
+    
+    // Execute the redirect function when the page loads
+    window.onload = redirectBasedOnLanguage;
+    
+    // Also try to redirect immediately (without waiting for onload)
+    redirectBasedOnLanguage();
+  </script>
+</head>
+<body>
+  <p>Redirecting to the appropriate language version...</p>
+</body>
+</html>

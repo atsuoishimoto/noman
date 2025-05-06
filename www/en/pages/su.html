@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  su - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>su command</h1>
+<p>Switch user identity or become another user.</p>
+<h2>Overview</h2>
+<p>The <code>su</code> command allows users to temporarily become another user during a login session. By default, it switches to the superuser (root) when no username is specified. It creates a new shell with the target user's environment variables and permissions.</p>
+<h2>Options</h2>
+<h3><strong>-</strong>, <strong>-l</strong>, <strong>--login</strong></h3>
+<p>Provide a login environment, simulating a direct login as the target user. This includes setting environment variables, changing to the target user's home directory, and running login scripts.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">john@hostname:~$</span>
+</pre></div>
+<h3><strong>-c</strong>, <strong>--command=COMMAND</strong></h3>
+<p>Execute a single command as the specified user and then exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;ls -la /root&quot;</span><span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #000; font-style: italic">total 28</span>
+<span style="color: #000; font-style: italic">drwx------  4 root root 4096 May  5 10:15 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x 20 root root 4096 May  5 10:15 ..</span>
+<span style="color: #000; font-style: italic">-rw-------  1 root root  571 May  5 10:15 .bash_history</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 root root 3106 May  5 10:15 .bashrc</span>
+<span style="color: #000; font-style: italic">drwx------  2 root root 4096 May  5 10:15 .cache</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 root root  161 May  5 10:15 .profile</span>
+<span style="color: #000; font-style: italic">drwx------  2 root root 4096 May  5 10:15 .ssh</span>
+</pre></div>
+<h3><strong>-s</strong>, <strong>--shell=SHELL</strong></h3>
+<p>Run the specified shell instead of the default shell for the target user.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/bin/zsh<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">john@hostname:~$</span>
+</pre></div>
+<h3><strong>-p</strong>, <strong>--preserve-environment</strong></h3>
+<p>Preserve the current environment variables instead of switching to the target user's environment.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">john@hostname:/current/directory$</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Becoming the root user</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">root@hostname:/home/user#</span>
+</pre></div>
+<h3>Running a command as root and returning to normal user</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;apt update &amp;&amp; apt upgrade&quot;</span><span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #000; font-style: italic">[apt update and upgrade output]</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>Switching to another user with login environment</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">john@hostname:~$</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use sudo instead when possible</h3>
+<p>Modern systems often prefer <code>sudo</code> over <code>su</code> for administrative tasks as it provides better logging and more granular permission control.</p>
+<h3>Be careful with environment variables</h3>
+<p>When using <code>su</code> without the <code>-</code> option, you keep your current environment variables, which might cause unexpected behavior. Use <code>-</code> for a clean environment.</p>
+<h3>Exit the su session properly</h3>
+<p>Type <code>exit</code> or press Ctrl+D to return to your original user session when finished with the elevated privileges.</p>
+<h3>Check before running commands as root</h3>
+<p>Always double-check commands before executing them as root, as mistakes can damage your system.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>su</code> and <code>sudo</code>?</h4>
+<p>A. <code>su</code> switches your entire user session to another user (typically root), while <code>sudo</code> executes just one command with elevated privileges and then returns to your normal user.</p>
+<h4>Q2. Why does <code>su</code> ask for a password?</h4>
+<p>A. <code>su</code> requires the password of the target user you're switching to, not your own password (unlike <code>sudo</code> which asks for your password).</p>
+<h4>Q3. How do I exit from an <code>su</code> session?</h4>
+<p>A. Type <code>exit</code> or press Ctrl+D to return to your original user session.</p>
+<h4>Q4. Why use <code>su -</code> instead of just <code>su</code>?</h4>
+<p>A. <code>su -</code> provides a complete login environment of the target user, including their environment variables, working directory, and shell configuration. Plain <code>su</code> only changes the user ID but keeps your current environment.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/su-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

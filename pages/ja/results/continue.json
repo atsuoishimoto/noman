@@ -1,0 +1,20 @@
+{
+  "id": "msg_011NRBLzYACCBetaS7Uc8qVu",
+  "content": [
+    {
+      "text": "# continue コマンド\n\n一時停止したジョブをフォアグラウンドに戻して再開します。\n\n## 概要\n\n`continue` コマンドはシェル組み込みコマンドで、ループ（for、while、until）の実行を次の繰り返しの先頭から再開し、現在の繰り返しの残りのコマンドをスキップします。シェルスクリプト内で使用され、特定の条件が満たされた場合に即座に次の繰り返しを開始することでループの流れを制御します。\n\n## オプション\n\n`continue` コマンドは従来の意味でのオプションはありませんが、オプションの数値引数を受け付けることができます。\n\n### **n**（数値引数）\n\nどの囲まれたループを継続するかを指定します。デフォルト（引数なし）では、`continue` は最も内側のループに影響します。\n\n```console\n$ for i in 1 2 3; do\n>   for j in a b c; do\n>     if [ $j = \"b\" ]; then\n>       continue 2  # 外側のループの次の繰り返しにスキップ\n>     fi\n>     echo \"$i $j\"\n>   done\n> done\n1 a\n2 a\n3 a\n```\n\n## 使用例\n\n### ループでの基本的な使い方\n\n```console\n$ for i in 1 2 3 4 5; do\n>   if [ $i -eq 3 ]; then\n>     continue\n>   fi\n>   echo \"Processing item $i\"\n> done\nProcessing item 1\nProcessing item 2\nProcessing item 4\nProcessing item 5\n```\n\n### 条件に基づいた繰り返しのスキップ\n\n```console\n$ i=0\n$ while [ $i -lt 5 ]; do\n>   i=$((i+1))\n>   if [ $((i % 2)) -eq 0 ]; then\n>     continue\n>   fi\n>   echo \"Odd number: $i\"\n> done\nOdd number: 1\nOdd number: 3\nOdd number: 5\n```\n\n## ヒント:\n\n### 複雑なループでは注意して使用する\n\nネストされたループで `continue` を使用する場合は、どのループに影響するかに注意してください。数値引数がない場合、最も内側のループにのみ影響します。\n\n### 条件論理と組み合わせる\n\n`continue` は条件文と組み合わせて特定の条件を満たす繰り返しをスキップするときに最も役立ち、スクリプトの効率を高めます。\n\n### 読みやすさを考慮する\n\n`continue` はスクリプトをより効率的にできますが、過度に使用するとコードの理解が難しくなる可能性があります。読みやすさを維持するために慎重に使用しましょう。\n\n## よくある質問\n\n#### Q1. `continue` と `break` の違いは何ですか？\nA. `continue` はループの次の繰り返しにスキップしますが、`break` はループを完全に終了します。\n\n#### Q2. ループの外で `continue` を使用できますか？\nA. いいえ、ループの外で `continue` を使用するとエラーになります。これはループ内でのみ意味を持ちます。\n\n#### Q3. ネストされたループで特定の外側のループを継続するにはどうすればよいですか？\nA. `continue n` を使用します。ここで n は継続したいループのレベルです（最も内側のループは 1、その外側のレベルは 2、など）。\n\n#### Q4. `continue` はすべてのシェルタイプで同じように機能しますか？\nA. 基本的な機能は bash、zsh、その他の一般的なシェルで一貫していますが、複雑なスクリプトでは動作に微妙な違いがある場合があります。\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 931,
+    "output_tokens": 1177
+  }
+}

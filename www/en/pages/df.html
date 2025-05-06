@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  df - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>df command</h1>
+<p>Display disk space usage for file systems.</p>
+<h2>Overview</h2>
+<p>The <code>df</code> command reports file system disk space usage, showing information about mounted file systems including their total size, used space, available space, and mount points. It's commonly used to monitor disk space and identify file systems that are running low on space.</p>
+<h2>Options</h2>
+<h3><strong>-h, --human-readable</strong></h3>
+<p>Display sizes in human-readable format (e.g., 1K, 234M, 2G)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>df<span style="color: #F8F8F8"> </span>-h
+<span style="color: #000; font-style: italic">Filesystem      Size  Used Avail Use% Mounted on</span>
+<span style="color: #000; font-style: italic">/dev/sda1        20G   15G  4.0G  79% /</span>
+<span style="color: #000; font-style: italic">tmpfs           3.9G     0  3.9G   0% /dev/shm</span>
+<span style="color: #000; font-style: italic">/dev/sda2       50G   20G   28G  42% /home</span>
+</pre></div>
+<h3><strong>-T, --print-type</strong></h3>
+<p>Print file system type</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>df<span style="color: #F8F8F8"> </span>-T
+<span style="color: #000; font-style: italic">Filesystem     Type     1K-blocks    Used Available Use% Mounted on</span>
+<span style="color: #000; font-style: italic">/dev/sda1      ext4      20971520 15728640   4194304  79% /</span>
+<span style="color: #000; font-style: italic">tmpfs          tmpfs      4096000        0   4096000   0% /dev/shm</span>
+<span style="color: #000; font-style: italic">/dev/sda2      ext4      52428800 20971520  29360128  42% /home</span>
+</pre></div>
+<h3><strong>-i, --inodes</strong></h3>
+<p>List inode information instead of block usage</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>df<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic">Filesystem      Inodes  IUsed   IFree IUse% Mounted on</span>
+<span style="color: #000; font-style: italic">/dev/sda1      1310720 354026  956694   27% /</span>
+<span style="color: #000; font-style: italic">tmpfs           999037      1  999036    1% /dev/shm</span>
+<span style="color: #000; font-style: italic">/dev/sda2      3276800 125892 3150908    4% /home</span>
+</pre></div>
+<h3><strong>-a, --all</strong></h3>
+<p>Include dummy, duplicate, or inaccessible file systems</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>df<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">Filesystem     1K-blocks    Used Available Use% Mounted on</span>
+<span style="color: #000; font-style: italic">/dev/sda1       20971520 15728640   4194304  79% /</span>
+<span style="color: #000; font-style: italic">proc                   0        0         0    - /proc</span>
+<span style="color: #000; font-style: italic">sysfs                  0        0         0    - /sys</span>
+<span style="color: #000; font-style: italic">tmpfs            4096000        0   4096000   0% /dev/shm</span>
+<span style="color: #000; font-style: italic">/dev/sda2       52428800 20971520  29360128  42% /home</span>
+</pre></div>
+<h3><strong>-P, --portability</strong></h3>
+<p>Use the POSIX output format</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>df<span style="color: #F8F8F8"> </span>-P
+<span style="color: #000; font-style: italic">Filesystem     1024-blocks      Used  Available Capacity Mounted on</span>
+<span style="color: #000; font-style: italic">/dev/sda1          20971520  15728640    4194304      79% /</span>
+<span style="color: #000; font-style: italic">tmpfs               4096000         0    4096000       0% /dev/shm</span>
+<span style="color: #000; font-style: italic">/dev/sda2          52428800  20971520   29360128      42% /home</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Checking space on a specific file system</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>df<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>/home
+<span style="color: #000; font-style: italic">Filesystem      Size  Used Avail Use% Mounted on</span>
+<span style="color: #000; font-style: italic">/dev/sda2        50G   20G   28G  42% /home</span>
+</pre></div>
+<h3>Combining options for detailed information</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>df<span style="color: #F8F8F8"> </span>-hT
+<span style="color: #000; font-style: italic">Filesystem     Type   Size  Used Avail Use% Mounted on</span>
+<span style="color: #000; font-style: italic">/dev/sda1      ext4    20G   15G  4.0G  79% /</span>
+<span style="color: #000; font-style: italic">tmpfs          tmpfs  3.9G     0  3.9G   0% /dev/shm</span>
+<span style="color: #000; font-style: italic">/dev/sda2      ext4    50G   20G   28G  42% /home</span>
+</pre></div>
+<h3>Checking space on all file systems including special ones</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>df<span style="color: #F8F8F8"> </span>-ha
+<span style="color: #000; font-style: italic">Filesystem      Size  Used Avail Use% Mounted on</span>
+<span style="color: #000; font-style: italic">/dev/sda1        20G   15G  4.0G  79% /</span>
+<span style="color: #000; font-style: italic">proc               0     0     0    - /proc</span>
+<span style="color: #000; font-style: italic">sysfs              0     0     0    - /sys</span>
+<span style="color: #000; font-style: italic">tmpfs            3.9G     0  3.9G   0% /dev/shm</span>
+<span style="color: #000; font-style: italic">/dev/sda2        50G   20G   28G  42% /home</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Focus on Important File Systems</h3>
+<p>Use <code>df -h | grep -v tmpfs</code> to filter out temporary file systems and focus on physical disks.</p>
+<h3>Identify Large File Systems</h3>
+<p>Combine with sort to identify the largest file systems: <code>df -h | sort -rh -k2</code>.</p>
+<h3>Monitor Critical Thresholds</h3>
+<p>Watch for file systems with high usage percentages (over 90%) as they may need attention soon.</p>
+<h3>Check Specific Mount Points</h3>
+<p>When troubleshooting, check specific mount points directly: <code>df -h /var</code> to see if a particular directory is running out of space.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What does the &quot;Use%&quot; column mean?</h4>
+<p>A. It shows the percentage of the file system's capacity that is currently in use.</p>
+<h4>Q2. How can I check disk space in a more readable format?</h4>
+<p>A. Use <code>df -h</code> for human-readable sizes (KB, MB, GB).</p>
+<h4>Q3. Why do some file systems show 0 size?</h4>
+<p>A. Special file systems like /proc and /sys are virtual and don't consume actual disk space.</p>
+<h4>Q4. How do I check inode usage?</h4>
+<p>A. Use <code>df -i</code> to display inode information instead of block usage.</p>
+<h4>Q5. What's the difference between df and du?</h4>
+<p>A. <code>df</code> reports disk space usage at the file system level, while <code>du</code> reports disk usage at the file and directory level.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

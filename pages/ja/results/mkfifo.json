@@ -1,0 +1,20 @@
+{
+  "id": "msg_01YFx4eqD27ddSibsJ4wcVba",
+  "content": [
+    {
+      "text": "# mkfifoコマンド\n\n指定した名前の名前付きパイプ（FIFO）を作成します。\n\n## 概要\n\n`mkfifo`は、プロセス間通信を可能にする特殊なFIFO（First-In-First-Out）ファイル、いわゆる名前付きパイプを作成します。`|`演算子で作成される通常のパイプとは異なり、名前付きパイプはファイルシステム上に削除されるまで存続し、関連のないプロセス同士が通信できるようにします。\n\n## オプション\n\n### **-m, --mode=MODE**\n\n作成されるFIFOのパーミッションモード（chmodと同様）を設定します。デフォルトモードの0666（全員が読み書き可能、umaskによって変更される）の代わりに使用します。\n\n```console\n$ mkfifo -m 0600 private_pipe\n$ ls -l private_pipe\nprw-------  1 user  group  0 May  5 10:00 private_pipe\n```\n\n### **-Z, --context=CTX**\n\n作成された各FIFOのSELinuxセキュリティコンテキストをCTXに設定します。\n\n```console\n$ mkfifo -Z user_u:object_r:user_fifo_t private_pipe\n```\n\n### **--help**\n\nヘルプ情報を表示して終了します。\n\n```console\n$ mkfifo --help\nUsage: mkfifo [OPTION]... NAME...\nCreate named pipes (FIFOs) with the given NAMEs.\n...\n```\n\n### **--version**\n\nバージョン情報を出力して終了します。\n\n```console\n$ mkfifo --version\nmkfifo (GNU coreutils) 8.32\n...\n```\n\n## 使用例\n\n### 基本的な名前付きパイプの作成\n\n```console\n$ mkfifo mypipe\n$ ls -l mypipe\nprw-r--r--  1 user  group  0 May  5 10:00 mypipe\n```\n\n### 名前付きパイプを使ったプロセス間通信\n\nターミナル1:\n```console\n$ mkfifo mypipe\n$ cat > mypipe\nHello, world!\n```\n\nターミナル2:\n```console\n$ cat < mypipe\nHello, world!\n```\n\n### 複数のパイプを一度に作成\n\n```console\n$ mkfifo pipe1 pipe2 pipe3\n$ ls -l pipe*\nprw-r--r--  1 user  group  0 May  5 10:00 pipe1\nprw-r--r--  1 user  group  0 May  5 10:00 pipe2\nprw-r--r--  1 user  group  0 May  5 10:00 pipe3\n```\n\n## ヒント:\n\n### 名前付きパイプの理解\n\n名前付きパイプは、誰かが書き込み用に開くまで読み取り用に開かれるとブロックします（その逆も同様）。この動作はFIFOを扱う際に理解しておくことが重要です。\n\n### クリーンアップ\n\n名前付きパイプは、`rm`で明示的に削除されるまでファイルシステム上に残ります。混乱を避けるため、不要になったパイプは常にクリーンアップしましょう。\n\n### デッドロックの回避\n\n同じパイプを単一プロセスで読み書きする場合は、デッドロックにつながる可能性があるため注意が必要です。一般的に、読み取りと書き込みには別々のプロセスを使用します。\n\n### リダイレクションとの併用\n\n名前付きパイプは標準入出力のリダイレクションとうまく連携するため、通常のパイプラインでは接続できないコマンドを接続するのに役立ちます。\n\n## よくある質問\n\n#### Q1. 名前付きパイプと通常のパイプの違いは何ですか？\nA. 通常のパイプ（`|`で作成）は接続されたプロセスが実行中の間だけ存在し、関連のないプロセスからアクセスできません。名前付きパイプはファイルシステムオブジェクトとして存在し、適切な権限を持つどのプロセスからも使用できます。\n\n#### Q2. 名前付きパイプを双方向通信に使用できますか？\nA. いいえ、名前付きパイプは一方向です。双方向通信には、2つの別々のパイプを作成する必要があります。\n\n#### Q3. 書き込み側がないパイプから読み取ろうとするとどうなりますか？\nA. 書き込み側がパイプを開くまで読み取り操作はブロックされます。すべての書き込み側がパイプを閉じると、読み取り側はEOF（ファイル終端）を受け取ります。\n\n#### Q4. 名前付きパイプを削除するにはどうすればよいですか？\nA. 通常のファイルと同様に`rm`コマンドを使用します：`rm mypipe`\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/mkfifo-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1127,
+    "output_tokens": 1520
+  }
+}

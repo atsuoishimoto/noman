@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tcpdump - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tcpdump command</h1>
+<p>Capture and analyze network traffic on a system.</p>
+<h2>Overview</h2>
+<p><code>tcpdump</code> is a powerful command-line packet analyzer that allows users to capture and display TCP/IP and other packets being transmitted or received over a network. It's commonly used for network troubleshooting, security analysis, and monitoring network activity.</p>
+<h2>Options</h2>
+<h3><strong>-i interface</strong></h3>
+<p>Specify the network interface to listen on</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>eth0
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP host1.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3><strong>-n</strong></h3>
+<p>Don't convert addresses (i.e., host addresses, port numbers, etc.) to names</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-n
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:46:12.357932 IP 192.168.1.10.22 &gt; 192.168.1.20.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3><strong>-c count</strong></h3>
+<p>Exit after capturing count packets</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">5 packets captured</span>
+<span style="color: #000; font-style: italic">5 packets received by filter</span>
+<span style="color: #000; font-style: italic">0 packets dropped by kernel</span>
+</pre></div>
+<h3><strong>-w file</strong></h3>
+<p>Write the raw packets to file rather than parsing and printing them out</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span>capture.pcap
+<span style="color: #000; font-style: italic">tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">^C</span>
+<span style="color: #000; font-style: italic">45 packets captured</span>
+<span style="color: #000; font-style: italic">45 packets received by filter</span>
+<span style="color: #000; font-style: italic">0 packets dropped by kernel</span>
+</pre></div>
+<h3><strong>-r file</strong></h3>
+<p>Read packets from a file (previously created with -w option)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>capture.pcap
+<span style="color: #000; font-style: italic">reading from file capture.pcap, link-type EN10MB (Ethernet)</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP host1.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3><strong>-v, -vv, -vvv</strong></h3>
+<p>Increase verbosity level (more packet information)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP (tos 0x10, ttl 64, id 12345, offset 0, flags [DF], proto TCP (6), length 104) host1.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Capture packets on a specific interface</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>eth0
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP host1.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3>Filter traffic by host</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>host<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.10
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP 192.168.1.10.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3>Filter traffic by port</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>port<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP host1.http &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3>Capture and save packets to a file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span>capture.pcap<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>eth0
+<span style="color: #000; font-style: italic">tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">^C</span>
+<span style="color: #000; font-style: italic">45 packets captured</span>
+<span style="color: #000; font-style: italic">45 packets received by filter</span>
+<span style="color: #000; font-style: italic">0 packets dropped by kernel</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Run with sudo for full access</h3>
+<p>Most systems require root privileges to capture packets. Use <code>sudo tcpdump</code> to ensure you have proper permissions.</p>
+<h3>Use expression filters for targeted capture</h3>
+<p>Combine filters to narrow down traffic: <code>tcpdump 'tcp port 80 and host 192.168.1.10'</code> captures only HTTP traffic to/from a specific host.</p>
+<h3>Disable name resolution for faster capture</h3>
+<p>Use <code>-n</code> to prevent DNS lookups which can slow down packet capture, especially in busy networks.</p>
+<h3>Capture full packet content</h3>
+<p>Use <code>-s 0</code> to capture full packets instead of just headers (default is 262144 bytes in modern versions).</p>
+<h3>Use Wireshark for analysis</h3>
+<p>Save captures with <code>-w filename.pcap</code> and open them in Wireshark for detailed graphical analysis.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I capture packets on a specific interface?</h4>
+<p>A. Use <code>tcpdump -i interface_name</code> (e.g., <code>tcpdump -i eth0</code>).</p>
+<h4>Q2. How can I save captured packets to a file?</h4>
+<p>A. Use <code>tcpdump -w filename.pcap</code> to save raw packets to a file.</p>
+<h4>Q3. How do I filter traffic by IP address?</h4>
+<p>A. Use <code>tcpdump host 192.168.1.10</code> to capture traffic to/from that IP.</p>
+<h4>Q4. How do I filter by port number?</h4>
+<p>A. Use <code>tcpdump port 80</code> to capture HTTP traffic or any traffic on port 80.</p>
+<h4>Q5. How can I see more detailed packet information?</h4>
+<p>A. Use increasing verbosity with <code>-v</code>, <code>-vv</code>, or <code>-vvv</code> flags.</p>
+<h2>References</h2>
+<p>https://www.tcpdump.org/manpages/tcpdump.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

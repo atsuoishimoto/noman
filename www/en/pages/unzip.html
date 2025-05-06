@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  unzip - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>unzip command</h1>
+<p>Extract files from ZIP archives.</p>
+<h2>Overview</h2>
+<p><code>unzip</code> extracts files and directories from ZIP archives. It supports various compression methods and can handle password-protected archives. The command can list, test, and extract the contents of ZIP files, making it essential for working with compressed data.</p>
+<h2>Options</h2>
+<h3><strong>-l</strong></h3>
+<p>List archive contents without extracting</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  Length      Date    Time    Name</span>
+<span style="color: #000; font-style: italic">---------  ---------- -----   ----</span>
+<span style="color: #000; font-style: italic">     1024  2025-01-01 12:34   file1.txt</span>
+<span style="color: #000; font-style: italic">      512  2025-01-02 15:45   file2.txt</span>
+<span style="color: #000; font-style: italic">---------                     -------</span>
+<span style="color: #000; font-style: italic">     1536                     2 files</span>
+</pre></div>
+<h3><strong>-t</strong></h3>
+<p>Test archive integrity without extracting</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">    testing: file1.txt               OK</span>
+<span style="color: #000; font-style: italic">    testing: file2.txt               OK</span>
+<span style="color: #000; font-style: italic">No errors detected in compressed data of archive.zip.</span>
+</pre></div>
+<h3><strong>-o</strong></h3>
+<p>Overwrite existing files without prompting</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  inflating: file1.txt</span>
+<span style="color: #000; font-style: italic">  inflating: file2.txt</span>
+</pre></div>
+<h3><strong>-d, --directory</strong></h3>
+<p>Extract files to specified directory</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>extracted_files
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">   creating: extracted_files/</span>
+<span style="color: #000; font-style: italic">  inflating: extracted_files/file1.txt</span>
+<span style="color: #000; font-style: italic">  inflating: extracted_files/file2.txt</span>
+</pre></div>
+<h3><strong>-P</strong></h3>
+<p>Use password for encrypted archives</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-P<span style="color: #F8F8F8"> </span>secretpassword<span style="color: #F8F8F8"> </span>protected.zip
+<span style="color: #000; font-style: italic">Archive:  protected.zip</span>
+<span style="color: #000; font-style: italic">  inflating: confidential.txt</span>
+</pre></div>
+<h3><strong>-q</strong></h3>
+<p>Quiet mode (suppress normal output)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>archive.zip
+</pre></div>
+<h3><strong>-j</strong></h3>
+<p>Junk paths (don't create directories)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-j<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  inflating: file1.txt</span>
+<span style="color: #000; font-style: italic">  inflating: file2.txt</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Extracting specific files from an archive</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>file1.txt
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  inflating: file1.txt</span>
+</pre></div>
+<h3>Listing contents with detailed information</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>archive.zip
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic"> Length   Method    Size  Cmpr    Date    Time   CRC-32   Name</span>
+<span style="color: #000; font-style: italic">--------  ------  ------- ---- ---------- ----- --------  ----</span>
+<span style="color: #000; font-style: italic">    1024  Defl:N      512  50% 2025-01-01 12:34 a1b2c3d4  file1.txt</span>
+<span style="color: #000; font-style: italic">     512  Defl:N      256  50% 2025-01-02 15:45 e5f6g7h8  file2.txt</span>
+<span style="color: #000; font-style: italic">--------          -------  ---                            -------</span>
+<span style="color: #000; font-style: italic">    1536              768  50%                            2 files</span>
+</pre></div>
+<h3>Extracting all files except specific ones</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unzip<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">Archive:  archive.zip</span>
+<span style="color: #000; font-style: italic">  inflating: file1.txt</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Preview Archive Contents Before Extracting</h3>
+<p>Always use <code>unzip -l archive.zip</code> to preview the contents before extraction. This helps avoid accidentally extracting files that might overwrite existing ones.</p>
+<h3>Handle Password-Protected Archives</h3>
+<p>For encrypted archives, use <code>unzip -P password archive.zip</code>. If you don't want to expose the password in command history, omit the -P option and unzip will prompt for the password.</p>
+<h3>Extract to a Specific Directory</h3>
+<p>Use <code>unzip archive.zip -d target_directory</code> to extract files to a specific location instead of the current directory. This keeps your workspace organized.</p>
+<h3>Dealing with Path Issues</h3>
+<p>If a ZIP file contains absolute paths or paths with <code>../</code>, use <code>unzip -j</code> to extract just the files without their directory structure, preventing potential security issues.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I extract only specific files from a ZIP archive?</h4>
+<p>A. Use <code>unzip archive.zip filename1 filename2</code> to extract only the specified files.</p>
+<h4>Q2. How can I extract a ZIP file without overwriting existing files?</h4>
+<p>A. By default, unzip prompts before overwriting. Use <code>unzip -n archive.zip</code> to never overwrite existing files.</p>
+<h4>Q3. How do I handle ZIP files with non-English filenames?</h4>
+<p>A. Use <code>unzip -O CP936 archive.zip</code> for Chinese filenames or other appropriate character encodings for different languages.</p>
+<h4>Q4. Can unzip handle password-protected ZIP files?</h4>
+<p>A. Yes, use <code>unzip -P password archive.zip</code> or omit the password to be prompted securely.</p>
+<h4>Q5. How do I extract a ZIP file without creating its directory structure?</h4>
+<p>A. Use <code>unzip -j archive.zip</code> to &quot;junk&quot; the paths and extract all files to a single directory.</p>
+<h2>References</h2>
+<p>https://linux.die.net/man/1/unzip</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

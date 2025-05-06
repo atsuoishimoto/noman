@@ -1,0 +1,20 @@
+{
+  "id": "msg_01LeUKWYBWna9FXoVpWGmVXn",
+  "content": [
+    {
+      "text": "# xdg-mime コマンド\n\nデスクトップ環境でファイルタイプの関連付けを照会または設定します。\n\n## 概要\n\n`xdg-mime` は、Linux デスクトップ環境でファイルタイプの関連付けを管理するためのコマンドラインツールです。特定のファイルタイプ（MIME タイプ）に関連付けられたアプリケーションの照会、ファイルタイプのデフォルトアプリケーションの設定、システムへの新しい MIME タイプ情報の追加などが可能です。\n\n## オプション\n\n### **query default**\n\nMIME タイプのデフォルトアプリケーションを照会します\n\n```console\n$ xdg-mime query default text/plain\ngedit.desktop\n```\n\n### **query filetype**\n\nファイルの MIME タイプを判定します\n\n```console\n$ xdg-mime query filetype document.pdf\napplication/pdf\n```\n\n### **default**\n\nMIME タイプのデフォルトアプリケーションを設定します\n\n```console\n$ xdg-mime default firefox.desktop text/html\n```\n\n### **install**\n\nXML ファイルから新しい MIME 情報をインストールします\n\n```console\n$ xdg-mime install --mode user myapplication-mime.xml\n```\n\n### **uninstall**\n\nMIME 情報を削除します\n\n```console\n$ xdg-mime uninstall --mode user myapplication-mime.xml\n```\n\n## 使用例\n\n### Firefox をデフォルトブラウザとして設定する\n\n```console\n$ xdg-mime default firefox.desktop x-scheme-handler/http\n$ xdg-mime default firefox.desktop x-scheme-handler/https\n```\n\n### PDF ファイルを開くアプリケーションを確認する\n\n```console\n$ xdg-mime query default application/pdf\nokular.desktop\n```\n\n### ファイルの MIME タイプを確認する\n\n```console\n$ xdg-mime query filetype ~/Downloads/presentation.pptx\napplication/vnd.openxmlformats-officedocument.presentationml.presentation\n```\n\n## ヒント:\n\n### デスクトップファイルの場所\n\nデスクトップファイルは通常 `/usr/share/applications/` または `~/.local/share/applications/` にあります。デフォルトアプリケーションを設定する際にはこれらのファイルを参照する必要があります。\n\n### カスタム MIME タイプの作成\n\nXML ファイルを作成し、`xdg-mime install` でインストールすることでカスタム MIME タイプを作成できます。これは特殊なファイル形式を扱うアプリケーションに役立ちます。\n\n### システム設定とユーザー設定\n\n`--mode user` を使用すると現在のユーザーのみに変更が適用され、`--mode system` を使用するとシステム全体に変更が適用されます（root 権限が必要です）。\n\n## よくある質問\n\n#### Q1. ファイルの MIME タイプを調べるにはどうすればよいですか？\nA. `xdg-mime query filetype ファイル名` を使用して MIME タイプを判定できます。\n\n#### Q2. ファイルタイプのデフォルトアプリケーションを設定するにはどうすればよいですか？\nA. `xdg-mime default アプリケーション.desktop MIMEタイプ` を使用します。アプリケーション.desktop はデスクトップファイル、MIMEタイプは MIME タイプです。\n\n#### Q3. MIME タイプの関連付けはどこに保存されますか？\nA. ユーザー固有の関連付けは `~/.config/mimeapps.list` に、システム全体の関連付けは `/usr/share/applications/mimeapps.list` に保存されます。\n\n#### Q4. ファイルの関連付けをシステムのデフォルトにリセットするにはどうすればよいですか？\nA. `~/.config/mimeapps.list` ファイルから関連するエントリを削除します。\n\n## 参考文献\n\nhttps://portland.freedesktop.org/doc/xdg-mime.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 900,
+    "output_tokens": 1203
+  }
+}

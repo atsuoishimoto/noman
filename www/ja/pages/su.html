@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  su - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>su コマンド</h1>
+<p>ユーザーIDを切り替えたり、別のユーザーになったりするコマンドです。</p>
+<h2>概要</h2>
+<p><code>su</code> コマンドを使用すると、ログインセッション中に一時的に別のユーザーになることができます。ユーザー名を指定しない場合、デフォルトではスーパーユーザー（root）に切り替わります。このコマンドは、対象ユーザーの環境変数と権限を持つ新しいシェルを作成します。</p>
+<h2>オプション</h2>
+<h3><strong>-</strong>, <strong>-l</strong>, <strong>--login</strong></h3>
+<p>ログイン環境を提供し、対象ユーザーとして直接ログインしたかのように動作します。これには環境変数の設定、対象ユーザーのホームディレクトリへの移動、ログインスクリプトの実行が含まれます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">john@hostname:~$</span>
+</pre></div>
+<h3><strong>-c</strong>, <strong>--command=COMMAND</strong></h3>
+<p>指定したユーザーとして単一のコマンドを実行し、その後終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;ls -la /root&quot;</span><span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #000; font-style: italic">total 28</span>
+<span style="color: #000; font-style: italic">drwx------  4 root root 4096 May  5 10:15 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x 20 root root 4096 May  5 10:15 ..</span>
+<span style="color: #000; font-style: italic">-rw-------  1 root root  571 May  5 10:15 .bash_history</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 root root 3106 May  5 10:15 .bashrc</span>
+<span style="color: #000; font-style: italic">drwx------  2 root root 4096 May  5 10:15 .cache</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 root root  161 May  5 10:15 .profile</span>
+<span style="color: #000; font-style: italic">drwx------  2 root root 4096 May  5 10:15 .ssh</span>
+</pre></div>
+<h3><strong>-s</strong>, <strong>--shell=SHELL</strong></h3>
+<p>対象ユーザーのデフォルトシェルの代わりに、指定したシェルを実行します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/bin/zsh<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">john@hostname:~$</span>
+</pre></div>
+<h3><strong>-p</strong>, <strong>--preserve-environment</strong></h3>
+<p>対象ユーザーの環境変数に切り替えるのではなく、現在の環境変数を保持します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">john@hostname:/current/directory$</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>rootユーザーになる</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">root@hostname:/home/user#</span>
+</pre></div>
+<h3>rootとしてコマンドを実行し、通常ユーザーに戻る</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;apt update &amp;&amp; apt upgrade&quot;</span><span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #000; font-style: italic">[apt update and upgrade output]</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>ログイン環境を持つ別のユーザーに切り替える</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>su<span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #8F5902">john@hostname:~$</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>可能な場合は sudo を使用する</h3>
+<p>最近のシステムでは、管理タスクには <code>su</code> よりも <code>sudo</code> を使用することが推奨されています。<code>sudo</code> はより良いログ記録と、より細かい権限制御を提供します。</p>
+<h3>環境変数に注意する</h3>
+<p><code>-</code> オプションなしで <code>su</code> を使用すると、現在の環境変数が保持され、予期しない動作を引き起こす可能性があります。クリーンな環境のためには <code>-</code> を使用してください。</p>
+<h3>suセッションを適切に終了する</h3>
+<p>特権セッションが終了したら、<code>exit</code> と入力するか Ctrl+D を押して、元のユーザーセッションに戻ります。</p>
+<h3>rootとしてコマンドを実行する前に確認する</h3>
+<p>rootとしてコマンドを実行する前には、常に二重確認してください。ミスがあるとシステムを損傷する可能性があります。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>su</code> と <code>sudo</code> の違いは何ですか？</h4>
+<p>A. <code>su</code> はユーザーセッション全体を別のユーザー（通常はroot）に切り替えますが、<code>sudo</code> は特権を持つ単一のコマンドを実行した後、通常のユーザーに戻ります。</p>
+<h4>Q2. なぜ <code>su</code> はパスワードを要求するのですか？</h4>
+<p>A. <code>su</code> は切り替え先のユーザーのパスワードを要求します。これは自分自身のパスワードを要求する <code>sudo</code> とは異なります。</p>
+<h4>Q3. <code>su</code> セッションからどうやって抜け出しますか？</h4>
+<p>A. <code>exit</code> と入力するか Ctrl+D を押すと、元のユーザーセッションに戻ります。</p>
+<h4>Q4. 単に <code>su</code> ではなく <code>su -</code> を使用する理由は何ですか？</h4>
+<p>A. <code>su -</code> は対象ユーザーの完全なログイン環境を提供します。これには環境変数、作業ディレクトリ、シェル設定が含まれます。単なる <code>su</code> はユーザーIDのみを変更し、現在の環境を保持します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/su-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

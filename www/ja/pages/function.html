@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  function - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>function コマンド</h1>
+<p>シェル関数を後で実行するために定義します。</p>
+<h2>概要</h2>
+<p><code>function</code> コマンドは、通常のコマンドのように呼び出せるシェル関数を作成します。関数は一連のコマンドを単一の名前付きユニットにカプセル化するのに役立ち、シェルスクリプトでのコードの再利用と整理を可能にします。関数は引数を受け取り、終了ステータスコードを返すことができます。</p>
+<h2>オプション</h2>
+<p><code>function</code> コマンド自体には従来のコマンドラインオプションはありません。代わりに、関数を定義するための特定の構文を使用します。</p>
+<h2>使用例</h2>
+<h3>基本的な関数定義</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>hello<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Hello, World!&quot;</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>hello
+<span style="color: #000; font-style: italic">Hello, World!</span>
+</pre></div>
+<h3>引数を持つ関数</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>greet<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Hello, $1!&quot;</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>greet<span style="color: #F8F8F8"> </span>Alice
+<span style="color: #000; font-style: italic">Hello, Alice!</span>
+</pre></div>
+<h3>戻り値を持つ関数</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>is_even<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   if (( $1 % 2 == 0 )); then</span>
+<span style="color: #000; font-style: italic">&gt;     return 0  # 成功（シェルではtrue）</span>
+<span style="color: #000; font-style: italic">&gt;   else</span>
+<span style="color: #000; font-style: italic">&gt;     return 1  # 失敗（シェルではfalse）</span>
+<span style="color: #000; font-style: italic">&gt;   fi</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>is_even<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Even&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Odd&quot;</span>
+<span style="color: #000; font-style: italic">Even</span>
+<span style="color: #8F5902">$ </span>is_even<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Even&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Odd&quot;</span>
+<span style="color: #000; font-style: italic">Odd</span>
+</pre></div>
+<h3>代替構文</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hello<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Hello, World!&quot;</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>hello
+<span style="color: #000; font-style: italic">Hello, World!</span>
+</pre></div>
+<h3>ローカル変数を持つ関数</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>calculate<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   local result=$(( $1 + $2 ))</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;The sum of $1 and $2 is $result&quot;</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span>calculate<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">7</span>
+<span style="color: #000; font-style: italic">The sum of 5 and 7 is 12</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>ローカル変数を使用する</h3>
+<p>関数内の変数には常に <code>local</code> を使用して、グローバルなシェル環境に影響を与えないようにしましょう：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>bad_example<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   x=10  # グローバル変数</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>good_example<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   local x=10  # ローカル変数</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+</pre></div>
+<h3>戻り値</h3>
+<p>関数は数値の終了コード（0-255）のみを返すことができます。文字列や複雑なデータを出力するには <code>echo</code> などのコマンドを使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>get_sum<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span>
+<span style="color: #000; font-style: italic">&gt;   echo $(( $1 + $2 ))</span>
+<span style="color: #000; font-style: italic">&gt; }</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">result</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>get_sum<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">7</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$result</span>
+<span style="color: #000; font-style: italic">12</span>
+</pre></div>
+<h3>関数の可視性</h3>
+<p>関数は現在のシェルセッションでのみ利用可能です。サブシェルで利用できるようにするには、エクスポートします：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">function</span><span style="color: #F8F8F8"> </span>hello<span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello!&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">}</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">export</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>hello
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>function name() {}</code> と <code>name() {}</code> の違いは何ですか？</h4>
+<p>A. どちらの構文もbashでは機能しますが、<code>name() {}</code> はさまざまなシェル間でより移植性があります。<code>function</code> キーワードはbashとkshに特有のものです。</p>
+<h4>Q2. 関数の引数にアクセスするにはどうすればよいですか？</h4>
+<p>A. 位置パラメータを使用します：個々の引数には <code>$1</code>、<code>$2</code> など、すべての引数には <code>$@</code>、引数の数には <code>$#</code> を使用します。</p>
+<h4>Q3. 関数を解除するにはどうすればよいですか？</h4>
+<p>A. <code>unset -f 関数名</code> コマンドを使用して関数定義を削除します。</p>
+<h4>Q4. 他の関数内に関数を定義できますか？</h4>
+<p>A. はい、bashはネストされた関数定義をサポートしていますが、それらは親関数のスコープ内でのみ可視です。</p>
+<h4>Q5. 定義されたすべての関数を確認するにはどうすればよいですか？</h4>
+<p>A. <code>declare -f</code> コマンドを使用してすべての関数定義を一覧表示するか、<code>declare -F</code> を使用して関数名のみを表示します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Shell-Functions.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/06 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

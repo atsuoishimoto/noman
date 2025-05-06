@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-pull - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git pull command</h1>
+<p>Fetch from and integrate with another repository or a local branch.</p>
+<h2>Overview</h2>
+<p><code>git pull</code> is a command that fetches changes from a remote repository and integrates them into the current branch. It's essentially a combination of <code>git fetch</code> followed by <code>git merge</code> or <code>git rebase</code>, depending on configuration. This command is commonly used to update your local repository with changes made by others.</p>
+<h2>Options</h2>
+<h3><strong>--all</strong></h3>
+<p>Fetch all remotes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull<span style="color: #F8F8F8"> </span>--all
+<span style="color: #000; font-style: italic">Fetching origin</span>
+<span style="color: #000; font-style: italic">Updating 3e4f123..8a9b012</span>
+<span style="color: #000; font-style: italic">Fast-forward</span>
+<span style="color: #000; font-style: italic"> README.md | 5 +++++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 5 insertions(+)</span>
+</pre></div>
+<h3><strong>-r, --rebase[=false|true|merges|interactive]</strong></h3>
+<p>Rebase the current branch on top of the upstream branch after fetching, instead of merging.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull<span style="color: #F8F8F8"> </span>--rebase
+<span style="color: #000; font-style: italic">Successfully rebased and updated refs/heads/main.</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Be more verbose.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">From https://github.com/user/repo</span>
+<span style="color: #000; font-style: italic"> * branch            main       -&gt; FETCH_HEAD</span>
+<span style="color: #000; font-style: italic">Updating 3e4f123..8a9b012</span>
+<span style="color: #000; font-style: italic">Fast-forward</span>
+<span style="color: #000; font-style: italic"> README.md | 5 +++++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 5 insertions(+)</span>
+</pre></div>
+<h3><strong>--ff, --no-ff</strong></h3>
+<p>When the merge resolves as a fast-forward, only update the branch pointer, without creating a merge commit. With --no-ff create a merge commit even when the merge resolves as a fast-forward.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull<span style="color: #F8F8F8"> </span>--no-ff
+<span style="color: #000; font-style: italic">From https://github.com/user/repo</span>
+<span style="color: #000; font-style: italic"> * branch            main       -&gt; FETCH_HEAD</span>
+<span style="color: #000; font-style: italic">Merge made by the &#39;recursive&#39; strategy.</span>
+<span style="color: #000; font-style: italic"> README.md | 5 +++++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 5 insertions(+)</span>
+</pre></div>
+<h3><strong>--ff-only</strong></h3>
+<p>Only fast-forward if possible. If not, exit with a non-zero status.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull<span style="color: #F8F8F8"> </span>--ff-only
+<span style="color: #000; font-style: italic">fatal: Not possible to fast-forward, aborting.</span>
+</pre></div>
+<h3><strong>-q, --quiet</strong></h3>
+<p>Be quiet. Only report errors.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull<span style="color: #F8F8F8"> </span>-q
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic pull from origin</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull
+<span style="color: #000; font-style: italic">From https://github.com/user/repo</span>
+<span style="color: #000; font-style: italic"> * branch            main       -&gt; FETCH_HEAD</span>
+<span style="color: #000; font-style: italic">Updating 3e4f123..8a9b012</span>
+<span style="color: #000; font-style: italic">Fast-forward</span>
+<span style="color: #000; font-style: italic"> README.md | 5 +++++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 5 insertions(+)</span>
+</pre></div>
+<h3>Pull from a specific remote and branch</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull<span style="color: #F8F8F8"> </span>upstream<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">From https://github.com/upstream/repo</span>
+<span style="color: #000; font-style: italic"> * branch            feature-branch -&gt; FETCH_HEAD</span>
+<span style="color: #000; font-style: italic">Updating 3e4f123..8a9b012</span>
+<span style="color: #000; font-style: italic">Fast-forward</span>
+<span style="color: #000; font-style: italic"> feature.js | 15 +++++++++++++++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 15 insertions(+)</span>
+</pre></div>
+<h3>Pull with rebase instead of merge</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>pull<span style="color: #F8F8F8"> </span>--rebase<span style="color: #F8F8F8"> </span>origin<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">From https://github.com/user/repo</span>
+<span style="color: #000; font-style: italic"> * branch            main       -&gt; FETCH_HEAD</span>
+<span style="color: #000; font-style: italic">Successfully rebased and updated refs/heads/main.</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Always commit or stash changes before pulling</h3>
+<p>Make sure your working directory is clean before running <code>git pull</code> to avoid conflicts with uncommitted changes.</p>
+<h3>Use <code>--rebase</code> for cleaner history</h3>
+<p>Using <code>git pull --rebase</code> creates a linear history without merge commits, which can make the commit history easier to follow.</p>
+<h3>Configure default pull behavior</h3>
+<p>You can set your default pull strategy with:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>config<span style="color: #F8F8F8"> </span>--global<span style="color: #F8F8F8"> </span>pull.rebase<span style="color: #F8F8F8"> </span><span style="color: #204A87">true</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># For rebase</span>
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>config<span style="color: #F8F8F8"> </span>--global<span style="color: #F8F8F8"> </span>pull.ff<span style="color: #F8F8F8"> </span>only<span style="color: #F8F8F8">      </span><span style="color: #8F5902; font-style: italic"># For fast-forward only</span>
+</pre></div>
+<h3>Check what will be pulled first</h3>
+<p>Use <code>git fetch</code> followed by <code>git log HEAD..origin/main</code> to see what changes will be pulled before actually pulling them.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>git pull</code> and <code>git fetch</code>?</h4>
+<p>A. <code>git fetch</code> only downloads new data from a remote repository but doesn't integrate changes into your working files. <code>git pull</code> does both: it fetches and then automatically merges or rebases.</p>
+<h4>Q2. How do I undo a git pull?</h4>
+<p>A. You can use <code>git reset --hard ORIG_HEAD</code> to undo the last pull and reset your branch to where it was before pulling.</p>
+<h4>Q3. Why am I getting merge conflicts when pulling?</h4>
+<p>A. Conflicts occur when the same part of a file has been modified both remotely and locally. You need to resolve these conflicts manually by editing the conflicted files.</p>
+<h4>Q4. How can I pull without merging?</h4>
+<p>A. Use <code>git fetch</code> instead of <code>git pull</code> to download changes without merging them.</p>
+<h4>Q5. What does &quot;fast-forward&quot; mean in git pull?</h4>
+<p>A. A fast-forward merge happens when the current branch's pointer can simply be moved forward to point to the incoming commit, without needing to create a merge commit.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-pull</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  jq - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>jqコマンド</h1>
+<p>軽量なコマンドラインプロセッサでJSONデータを処理・変換します。</p>
+<h2>概要</h2>
+<p><code>jq</code>は柔軟なコマンドラインJSONプロセッサで、構造化データの切り出し、フィルタリング、マッピング、変換が可能です。JSONデータに対する<code>sed</code>のように機能し、特定のフィールドの抽出、値の変換、配列のフィルタリング、出力のフォーマットなどをコマンドラインやスクリプトから実行できます。</p>
+<h2>オプション</h2>
+<h3><strong>-r, --raw-output</strong></h3>
+<p>JSON形式でエンコードされた文字列ではなく、生の文字列を出力します（引用符を削除）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;name&quot;: &quot;John&quot;}&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.name&#39;</span>
+<span style="color: #000; font-style: italic">John</span>
+</pre></div>
+<h3><strong>-c, --compact-output</strong></h3>
+<p>整形された出力ではなく、コンパクトな出力を生成します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30}&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.&#39;</span>
+<span style="color: #000; font-style: italic">{&quot;name&quot;:&quot;John&quot;,&quot;age&quot;:30}</span>
+</pre></div>
+<h3><strong>-s, --slurp</strong></h3>
+<p>すべての入力を配列として読み込み、フィルタを適用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;id&quot;: 1}&#39;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>file1.json
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;id&quot;: 2}&#39;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>file2.json
+<span style="color: #8F5902">$ </span>jq<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.&#39;</span><span style="color: #F8F8F8"> </span>file1.json<span style="color: #F8F8F8"> </span>file2.json
+<span style="color: #000; font-style: italic">[</span>
+<span style="color: #000; font-style: italic">  {</span>
+<span style="color: #000; font-style: italic">    &quot;id&quot;: 1</span>
+<span style="color: #000; font-style: italic">  },</span>
+<span style="color: #000; font-style: italic">  {</span>
+<span style="color: #000; font-style: italic">    &quot;id&quot;: 2</span>
+<span style="color: #000; font-style: italic">  }</span>
+<span style="color: #000; font-style: italic">]</span>
+</pre></div>
+<h3><strong>-f, --from-file FILENAME</strong></h3>
+<p>ファイルからフィルタを読み込みます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.name&#39;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>filter.jq
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30}&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>filter.jq
+<span style="color: #000; font-style: italic">&quot;John&quot;</span>
+</pre></div>
+<h3><strong>-n, --null-input</strong></h3>
+<p>入力を読み込まず、jqが独自に構築します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>jq<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;created_at&quot;: now | todate}&#39;</span>
+<span style="color: #000; font-style: italic">{</span>
+<span style="color: #000; font-style: italic">  &quot;created_at&quot;: &quot;2025-05-05T00:00:00Z&quot;</span>
+<span style="color: #000; font-style: italic">}</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>特定のフィールドを抽出する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;user&quot;: {&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30}}&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.user.name&#39;</span>
+<span style="color: #000; font-style: italic">&quot;John&quot;</span>
+</pre></div>
+<h3>配列をフィルタリングする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;users&quot;: [{&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30}, {&quot;name&quot;: &quot;Jane&quot;, &quot;age&quot;: 25}]}&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.users[] | select(.age &gt; 28)&#39;</span>
+<span style="color: #000; font-style: italic">{</span>
+<span style="color: #000; font-style: italic">  &quot;name&quot;: &quot;John&quot;,</span>
+<span style="color: #000; font-style: italic">  &quot;age&quot;: 30</span>
+<span style="color: #000; font-style: italic">}</span>
+</pre></div>
+<h3>データ構造を変換する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;users&quot;: [{&quot;name&quot;: &quot;John&quot;}, {&quot;name&quot;: &quot;Jane&quot;}]}&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.users | map({username: .name})&#39;</span>
+<span style="color: #000; font-style: italic">[</span>
+<span style="color: #000; font-style: italic">  {</span>
+<span style="color: #000; font-style: italic">    &quot;username&quot;: &quot;John&quot;</span>
+<span style="color: #000; font-style: italic">  },</span>
+<span style="color: #000; font-style: italic">  {</span>
+<span style="color: #000; font-style: italic">    &quot;username&quot;: &quot;Jane&quot;</span>
+<span style="color: #000; font-style: italic">  }</span>
+<span style="color: #000; font-style: italic">]</span>
+</pre></div>
+<h3>curlと組み合わせてAPIレスポンスを処理する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>curl<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;https://api.example.com/users&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.[] | {id, name}&#39;</span>
+<span style="color: #000; font-style: italic">{</span>
+<span style="color: #000; font-style: italic">  &quot;id&quot;: 1,</span>
+<span style="color: #000; font-style: italic">  &quot;name&quot;: &quot;John Doe&quot;</span>
+<span style="color: #000; font-style: italic">}</span>
+<span style="color: #000; font-style: italic">{</span>
+<span style="color: #000; font-style: italic">  &quot;id&quot;: 2,</span>
+<span style="color: #000; font-style: italic">  &quot;name&quot;: &quot;Jane Smith&quot;</span>
+<span style="color: #000; font-style: italic">}</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>複雑な変換にパイプを使用する</h3>
+<p>複数のフィルタをパイプでつなげて、複雑な変換を段階的に実行できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;users&quot;: [{&quot;name&quot;: &quot;John&quot;, &quot;roles&quot;: [&quot;admin&quot;, &quot;user&quot;]}, {&quot;name&quot;: &quot;Jane&quot;, &quot;roles&quot;: [&quot;user&quot;]}]}&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;.users[] | select(.roles | contains([&quot;admin&quot;])) | .name&#39;</span>
+<span style="color: #000; font-style: italic">&quot;John&quot;</span>
+</pre></div>
+<h3>新しいJSONオブジェクトを作成する</h3>
+<p>オブジェクト構築構文を使用して、新しいJSON構造を作成できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{&quot;first&quot;: &quot;John&quot;, &quot;last&quot;: &quot;Doe&quot;}&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;{full_name: &quot;\(.first) \(.last)&quot;, username: .first | ascii_downcase}&#39;</span>
+<span style="color: #000; font-style: italic">{</span>
+<span style="color: #000; font-style: italic">  &quot;full_name&quot;: &quot;John Doe&quot;,</span>
+<span style="color: #000; font-style: italic">  &quot;username&quot;: &quot;john&quot;</span>
+<span style="color: #000; font-style: italic">}</span>
+</pre></div>
+<h3>組み込み関数を使用する</h3>
+<p><code>jq</code>には文字列操作、配列操作などのための多くの組み込み関数があります：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;[1, 2, 3, 4, 5]&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>jq<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;map(. * 2) | add&#39;</span>
+<span style="color: #000; font-style: italic">30</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. JSONから特定のフィールドを抽出するにはどうすればよいですか？</h4>
+<p>A. ドット表記を使用します：<code>jq '.fieldname'</code>、またはネストしたフィールドの場合：<code>jq '.parent.child'</code>。</p>
+<h4>Q2. 出力から引用符を削除するにはどうすればよいですか？</h4>
+<p>A. <code>-r</code>または<code>--raw-output</code>オプションを使用します：<code>jq -r '.field'</code>。</p>
+<h4>Q3. 条件に基づいて配列をフィルタリングするにはどうすればよいですか？</h4>
+<p>A. <code>select()</code>を使用します：<code>jq '.items[] | select(.price &gt; 10)'</code>。</p>
+<h4>Q4. jqで日付をフォーマットするにはどうすればよいですか？</h4>
+<p>A. <code>strftime</code>関数を使用します：<code>jq '.timestamp | fromdate | strftime(&quot;%Y-%m-%d&quot;)'</code>。</p>
+<h4>Q5. 配列を反復処理するにはどうすればよいですか？</h4>
+<p>A. 配列イテレータを使用します：<code>jq '.items[]'</code>で各要素を処理します。</p>
+<h2>参考文献</h2>
+<p>https://stedolan.github.io/jq/manual/</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

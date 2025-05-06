@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  yes - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>yes command</h1>
+<p>Output a string repeatedly until killed.</p>
+<h2>Overview</h2>
+<p>The <code>yes</code> command continuously outputs a string (by default &quot;y&quot;) until it is terminated. It's commonly used to automatically respond to prompts in scripts or commands that require confirmation.</p>
+<h2>Options</h2>
+<h3><strong>--help</strong></h3>
+<p>Display help information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>yes<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: yes [STRING]...</span>
+<span style="color: #000; font-style: italic">  or:  yes OPTION</span>
+<span style="color: #000; font-style: italic">Repeatedly output a line with all specified STRING(s), or &#39;y&#39;.</span>
+
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>Output version information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>yes<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">yes (GNU coreutils) 9.0</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2021 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by David MacKenzie.</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Default Usage (Output &quot;y&quot; Repeatedly)</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>yes
+<span style="color: #000; font-style: italic">y</span>
+<span style="color: #000; font-style: italic">y</span>
+<span style="color: #000; font-style: italic">y</span>
+<span style="color: #000; font-style: italic">y</span>
+<span style="color: #000; font-style: italic">y</span>
+<span style="color: #000; font-style: italic">^C</span>
+</pre></div>
+<h3>Custom String Output</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>yes<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;I agree&quot;</span>
+<span style="color: #000; font-style: italic">I agree</span>
+<span style="color: #000; font-style: italic">I agree</span>
+<span style="color: #000; font-style: italic">I agree</span>
+<span style="color: #000; font-style: italic">I agree</span>
+<span style="color: #000; font-style: italic">^C</span>
+</pre></div>
+<h3>Piping to Another Command</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>yes<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>rm<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>*.txt
+<span style="color: #000; font-style: italic">rm: remove regular file &#39;file1.txt&#39;? rm: remove regular file &#39;file2.txt&#39;?</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Automatically Confirm Multiple Prompts</h3>
+<p>When you need to confirm multiple operations without manual intervention, pipe <code>yes</code> to the command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>yes<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>apt-get<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>package1<span style="color: #F8F8F8"> </span>package2<span style="color: #F8F8F8"> </span>package3
+</pre></div>
+<h3>Limit Output with head</h3>
+<p>If you need a specific number of repetitions, use <code>head</code>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>yes<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">Hello</span>
+<span style="color: #000; font-style: italic">Hello</span>
+<span style="color: #000; font-style: italic">Hello</span>
+<span style="color: #000; font-style: italic">Hello</span>
+<span style="color: #000; font-style: italic">Hello</span>
+</pre></div>
+<h3>Generate Test Files</h3>
+<p>Create test files of specific sizes by redirecting output:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>yes<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;data&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>1M<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>testfile.txt
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I stop the <code>yes</code> command?</h4>
+<p>A. Press Ctrl+C to terminate the command.</p>
+<h4>Q2. Can I output multiple strings with <code>yes</code>?</h4>
+<p>A. Yes, you can provide multiple arguments: <code>yes word1 word2</code> will output &quot;word1 word2&quot; repeatedly.</p>
+<h4>Q3. What's the purpose of the <code>yes</code> command?</h4>
+<p>A. It's primarily used to automatically answer &quot;y&quot; to confirmation prompts in scripts or commands.</p>
+<h4>Q4. Does <code>yes</code> consume a lot of system resources?</h4>
+<p>A. It can generate output very quickly and might consume CPU resources, so it's best used when piped to another command that controls the flow.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/yes-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

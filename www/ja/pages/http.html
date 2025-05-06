@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  http - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>http コマンド</h1>
+<p>任意のHTTPリクエストを送信し、レスポンスを表示します。</p>
+<h2>概要</h2>
+<p><code>http</code>コマンドは、HTTPリクエストを行うためのユーザーフレンドリーなコマンドラインHTTPクライアントです。これはHTTPieツールの一部で、カラー出力、JSONサポート、よりシンプルな構文を備え、curlよりも直感的に設計されています。APIのテスト、Webサービスのデバッグ、最小限の入力でのコンテンツのダウンロードが可能です。</p>
+<h2>オプション</h2>
+<h3><strong>-j, --json</strong></h3>
+<p>データをJSONとして送信します。Content-Typeヘッダーをapplication/jsonに設定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>-j<span style="color: #F8F8F8"> </span>POST<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #000">name</span><span style="color: #CE5C00; font-weight: bold">=</span>John<span style="color: #F8F8F8"> </span>age:<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">30</span>
+</pre></div>
+<h3><strong>-f, --form</strong></h3>
+<p>データをフォームエンコードとして送信します。Content-Typeヘッダーをapplication/x-www-form-urlencodedに設定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>POST<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #000">name</span><span style="color: #CE5C00; font-weight: bold">=</span>John<span style="color: #F8F8F8"> </span><span style="color: #000">age</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">30</span>
+</pre></div>
+<h3><strong>-a, --auth</strong></h3>
+<p>認証用のユーザー名とパスワードを指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>username:password<span style="color: #F8F8F8"> </span>example.com
+</pre></div>
+<h3><strong>-h, --headers</strong></h3>
+<p>レスポンスヘッダーのみを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">HTTP/1.1 200 OK</span>
+<span style="color: #000; font-style: italic">Content-Type: text/html; charset=UTF-8</span>
+<span style="color: #000; font-style: italic">Date: Mon, 05 May 2025 12:00:00 GMT</span>
+<span style="color: #000; font-style: italic">Server: nginx</span>
+<span style="color: #000; font-style: italic">Content-Length: 1256</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>HTTP通信全体（リクエストとレスポンス）を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>example.com
+</pre></div>
+<h3><strong>-d, --download</strong></h3>
+<p>レスポンスボディをファイルにダウンロードします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>example.com/file.pdf
+</pre></div>
+<h3><strong>--offline</strong></h3>
+<p>リクエストを構築して表示しますが、送信はしません。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>--offline<span style="color: #F8F8F8"> </span>POST<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #000">name</span><span style="color: #CE5C00; font-weight: bold">=</span>John
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なGETリクエスト</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">HTTP/1.1 200 OK</span>
+<span style="color: #000; font-style: italic">Content-Type: text/html; charset=UTF-8</span>
+<span style="color: #000; font-style: italic">...</span>
+
+<span style="color: #000; font-style: italic">&lt;!doctype html&gt;</span>
+<span style="color: #000; font-style: italic">&lt;html&gt;</span>
+<span style="color: #000; font-style: italic">...</span>
+<span style="color: #000; font-style: italic">&lt;/html&gt;</span>
+</pre></div>
+<h3>JSONデータを使用したPOST</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>POST<span style="color: #F8F8F8"> </span>api.example.com/users<span style="color: #F8F8F8"> </span><span style="color: #000">name</span><span style="color: #CE5C00; font-weight: bold">=</span>John<span style="color: #F8F8F8"> </span>age:<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">30</span><span style="color: #F8F8F8"> </span>is_active:<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87">true</span>
+<span style="color: #000; font-style: italic">HTTP/1.1 201 Created</span>
+<span style="color: #000; font-style: italic">Content-Type: application/json</span>
+
+<span style="color: #000; font-style: italic">{</span>
+<span style="color: #000; font-style: italic">    &quot;id&quot;: 123,</span>
+<span style="color: #000; font-style: italic">    &quot;name&quot;: &quot;John&quot;,</span>
+<span style="color: #000; font-style: italic">    &quot;age&quot;: 30,</span>
+<span style="color: #000; font-style: italic">    &quot;is_active&quot;: true</span>
+<span style="color: #000; font-style: italic">}</span>
+</pre></div>
+<h3>リクエストヘッダーの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span>User-Agent:MyApp<span style="color: #F8F8F8"> </span>X-API-Token:abc123
+</pre></div>
+<h3>ファイルアップロード</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>http<span style="color: #F8F8F8"> </span>POST<span style="color: #F8F8F8"> </span>example.com/upload<span style="color: #F8F8F8"> </span>file@/path/to/file.jpg
+</pre></div>
+<h2>ヒント:</h2>
+<h3>文字列以外のJSON値には<code>:=</code>を使用する</h3>
+<p>JSONデータを送信する際、数値、ブール値、nullには<code>:=</code>を使用します: <code>count:=42 active:=true data:=null</code></p>
+<h3>出力をファイルにリダイレクトする</h3>
+<p>標準シェルのリダイレクトを使用してレスポンスを保存できます: <code>http example.com &gt; response.html</code></p>
+<h3>セッションを使用して永続的なクッキーを維持する</h3>
+<p><code>--session=name</code>を使用してリクエスト間でクッキーを維持します: <code>http --session=logged-in -a user:pass example.com</code></p>
+<h3>JSONは自動的に整形表示される</h3>
+<p>HTTPieは自動的にJSONレスポンスを読みやすく整形し、ターミナルでの構文ハイライトを提供します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>http</code>と<code>curl</code>の違いは何ですか？</h4>
+<p>A. <code>http</code>（HTTPie）は、より直感的な構文、自動カラー出力、デフォルトのJSONサポートを提供し、一般的な操作に必要な入力が少なくて済みます。</p>
+<h4>Q2. クエリパラメータを送信するにはどうすればよいですか？</h4>
+<p>A. URLに<code>?</code>と<code>&amp;</code>を付けて追加します: <code>http example.com/search?q=term&amp;page=2</code> または<code>==</code>構文を使用します: <code>http example.com q==term page==2</code></p>
+<h4>Q3. カスタムHTTPメソッドを送信するにはどうすればよいですか？</h4>
+<p>A. URLの前にメソッドを指定するだけです: <code>http PUT example.com</code></p>
+<h4>Q4. リダイレクトに従うにはどうすればよいですか？</h4>
+<p>A. <code>--follow</code>オプションを使用します: <code>http --follow example.com/redirecting-url</code></p>
+<h2>参考文献</h2>
+<p>https://httpie.io/docs/cli</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

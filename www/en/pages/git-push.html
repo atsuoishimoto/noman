@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-push - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git push command</h1>
+<p>Update remote refs along with associated objects.</p>
+<h2>Overview</h2>
+<p><code>git push</code> sends local commits to a remote repository. It updates the remote branch to match your local branch, uploading all necessary objects to complete the update. This command is essential for sharing your changes with others or backing up your work to a remote repository.</p>
+<h2>Options</h2>
+<h3><strong>-u, --set-upstream</strong></h3>
+<p>Set upstream for the current branch, establishing a tracking relationship.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>origin<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Enumerating objects: 5, done.</span>
+<span style="color: #000; font-style: italic">Counting objects: 100% (5/5), done.</span>
+<span style="color: #000; font-style: italic">Delta compression using up to 8 threads</span>
+<span style="color: #000; font-style: italic">Compressing objects: 100% (3/3), done.</span>
+<span style="color: #000; font-style: italic">Writing objects: 100% (3/3), 294 bytes | 294.00 KiB/s, done.</span>
+<span style="color: #000; font-style: italic">Total 3 (delta 2), reused 0 (delta 0), pack-reused 0</span>
+<span style="color: #000; font-style: italic">remote: Resolving deltas: 100% (2/2), completed with 2 local objects.</span>
+<span style="color: #000; font-style: italic">To github.com:username/repository.git</span>
+<span style="color: #000; font-style: italic">   a1b2c3d..e4f5g6h  main -&gt; main</span>
+<span style="color: #000; font-style: italic">Branch &#39;main&#39; set up to track remote branch &#39;main&#39; from &#39;origin&#39;.</span>
+</pre></div>
+<h3><strong>-f, --force</strong></h3>
+<p>Force update the remote branch, overriding its state. Use with extreme caution as it can cause data loss.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>origin<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Enumerating objects: 5, done.</span>
+<span style="color: #000; font-style: italic">Counting objects: 100% (5/5), done.</span>
+<span style="color: #000; font-style: italic">Delta compression using up to 8 threads</span>
+<span style="color: #000; font-style: italic">Compressing objects: 100% (3/3), done.</span>
+<span style="color: #000; font-style: italic">Writing objects: 100% (3/3), 294 bytes | 294.00 KiB/s, done.</span>
+<span style="color: #000; font-style: italic">Total 3 (delta 2), reused 0 (delta 0), pack-reused 0</span>
+<span style="color: #000; font-style: italic">remote: Resolving deltas: 100% (2/2), completed with 2 local objects.</span>
+<span style="color: #000; font-style: italic">To github.com:username/repository.git</span>
+<span style="color: #000; font-style: italic"> + a1b2c3d...e4f5g6h main -&gt; main (forced update)</span>
+</pre></div>
+<h3><strong>--all</strong></h3>
+<p>Push all branches to the remote repository.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push<span style="color: #F8F8F8"> </span>--all<span style="color: #F8F8F8"> </span>origin
+<span style="color: #000; font-style: italic">Enumerating objects: 8, done.</span>
+<span style="color: #000; font-style: italic">Counting objects: 100% (8/8), done.</span>
+<span style="color: #000; font-style: italic">Delta compression using up to 8 threads</span>
+<span style="color: #000; font-style: italic">Compressing objects: 100% (6/6), done.</span>
+<span style="color: #000; font-style: italic">Writing objects: 100% (6/6), 584 bytes | 584.00 KiB/s, done.</span>
+<span style="color: #000; font-style: italic">Total 6 (delta 4), reused 0 (delta 0), pack-reused 0</span>
+<span style="color: #000; font-style: italic">remote: Resolving deltas: 100% (4/4), completed with 4 local objects.</span>
+<span style="color: #000; font-style: italic">To github.com:username/repository.git</span>
+<span style="color: #000; font-style: italic">   a1b2c3d..e4f5g6h  main -&gt; main</span>
+<span style="color: #000; font-style: italic">   b2c3d4e..f5g6h7i  feature -&gt; feature</span>
+</pre></div>
+<h3><strong>--tags</strong></h3>
+<p>Push all tags to the remote repository.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push<span style="color: #F8F8F8"> </span>--tags<span style="color: #F8F8F8"> </span>origin
+<span style="color: #000; font-style: italic">Enumerating objects: 1, done.</span>
+<span style="color: #000; font-style: italic">Counting objects: 100% (1/1), done.</span>
+<span style="color: #000; font-style: italic">Writing objects: 100% (1/1), 160 bytes | 160.00 KiB/s, done.</span>
+<span style="color: #000; font-style: italic">Total 1 (delta 0), reused 0 (delta 0), pack-reused 0</span>
+<span style="color: #000; font-style: italic">To github.com:username/repository.git</span>
+<span style="color: #000; font-style: italic"> * [new tag]         v1.0.0 -&gt; v1.0.0</span>
+<span style="color: #000; font-style: italic"> * [new tag]         v1.1.0 -&gt; v1.1.0</span>
+</pre></div>
+<h3><strong>-d, --delete</strong></h3>
+<p>Delete the specified remote branch.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>origin<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">To github.com:username/repository.git</span>
+<span style="color: #000; font-style: italic"> - [deleted]         feature-branch</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Pushing to the default remote</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push
+<span style="color: #000; font-style: italic">Everything up-to-date</span>
+</pre></div>
+<h3>Pushing a specific branch to a specific remote</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push<span style="color: #F8F8F8"> </span>origin<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Enumerating objects: 5, done.</span>
+<span style="color: #000; font-style: italic">Counting objects: 100% (5/5), done.</span>
+<span style="color: #000; font-style: italic">Delta compression using up to 8 threads</span>
+<span style="color: #000; font-style: italic">Compressing objects: 100% (3/3), done.</span>
+<span style="color: #000; font-style: italic">Writing objects: 100% (3/3), 294 bytes | 294.00 KiB/s, done.</span>
+<span style="color: #000; font-style: italic">Total 3 (delta 2), reused 0 (delta 0), pack-reused 0</span>
+<span style="color: #000; font-style: italic">remote: Resolving deltas: 100% (2/2), completed with 2 local objects.</span>
+<span style="color: #000; font-style: italic">To github.com:username/repository.git</span>
+<span style="color: #000; font-style: italic">   a1b2c3d..e4f5g6h  feature-branch -&gt; feature-branch</span>
+</pre></div>
+<h3>Pushing to a different remote branch name</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>push<span style="color: #F8F8F8"> </span>origin<span style="color: #F8F8F8"> </span>local-branch:remote-branch
+<span style="color: #000; font-style: italic">Enumerating objects: 5, done.</span>
+<span style="color: #000; font-style: italic">Counting objects: 100% (5/5), done.</span>
+<span style="color: #000; font-style: italic">Delta compression using up to 8 threads</span>
+<span style="color: #000; font-style: italic">Compressing objects: 100% (3/3), done.</span>
+<span style="color: #000; font-style: italic">Writing objects: 100% (3/3), 294 bytes | 294.00 KiB/s, done.</span>
+<span style="color: #000; font-style: italic">Total 3 (delta 2), reused 0 (delta 0), pack-reused 0</span>
+<span style="color: #000; font-style: italic">remote: Resolving deltas: 100% (2/2), completed with 2 local objects.</span>
+<span style="color: #000; font-style: italic">To github.com:username/repository.git</span>
+<span style="color: #000; font-style: italic">   a1b2c3d..e4f5g6h  local-branch -&gt; remote-branch</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Set Up Tracking Branches</h3>
+<p>When creating a new branch, use <code>git push -u origin branch-name</code> to set up tracking. This allows you to use <code>git pull</code> and <code>git push</code> without specifying the remote and branch each time.</p>
+<h3>Use <code>--force-with-lease</code> Instead of <code>--force</code></h3>
+<p><code>--force-with-lease</code> is safer than <code>--force</code> as it ensures you don't overwrite others' changes that you haven't seen yet. It only forces the push if the remote branch is in the state you expect.</p>
+<h3>Push Only Specific Tags</h3>
+<p>Instead of pushing all tags with <code>--tags</code>, you can push a specific tag using <code>git push origin tag-name</code>.</p>
+<h3>Verify Before Force Pushing</h3>
+<p>Always run <code>git log origin/branch..branch</code> before force pushing to see what commits you're about to overwrite on the remote.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>git push</code> and <code>git push origin main</code>?</h4>
+<p>A. <code>git push</code> pushes the current branch to its upstream branch if configured. <code>git push origin main</code> explicitly pushes the local main branch to the main branch on the origin remote, regardless of the current branch.</p>
+<h4>Q2. How do I push a new local branch to a remote repository?</h4>
+<p>A. Use <code>git push -u origin branch-name</code> to create and push a new branch while setting up tracking.</p>
+<h4>Q3. I get a &quot;rejected&quot; error when pushing. What should I do?</h4>
+<p>A. This usually means the remote has changes you don't have locally. Run <code>git pull</code> first to integrate those changes, resolve any conflicts, and then push again.</p>
+<h4>Q4. How can I undo a push?</h4>
+<p>A. You can revert the changes with <code>git revert</code> and push the revert, or use <code>git push -f</code> after resetting to an earlier commit (use with caution).</p>
+<h4>Q5. What does &quot;non-fast-forward updates were rejected&quot; mean?</h4>
+<p>A. It means your local repository is behind the remote. You need to pull the latest changes before pushing, or use <code>--force</code> if you're certain you want to overwrite the remote (not recommended for shared branches).</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-push</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

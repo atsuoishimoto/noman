@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ps - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ps command</h1>
+<p>Display information about active processes.</p>
+<h2>Overview</h2>
+<p>The <code>ps</code> command shows a snapshot of current processes running on the system. It provides details about process IDs (PIDs), CPU usage, memory consumption, and other process-related information. By default, <code>ps</code> shows only processes owned by the current user and associated with the current terminal.</p>
+<h2>Options</h2>
+<h3><strong>-e</strong></h3>
+<p>Display information about all processes (equivalent to -A).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>-e
+<span style="color: #000; font-style: italic">  PID TTY          TIME CMD</span>
+<span style="color: #000; font-style: italic">    1 ?        00:00:03 systemd</span>
+<span style="color: #000; font-style: italic">  546 ?        00:00:00 systemd-journal</span>
+<span style="color: #000; font-style: italic">  578 ?        00:00:00 systemd-udevd</span>
+<span style="color: #000; font-style: italic">  933 ?        00:00:00 sshd</span>
+<span style="color: #000; font-style: italic"> 1028 tty1     00:00:00 bash</span>
+<span style="color: #000; font-style: italic"> 1892 tty1     00:00:00 ps</span>
+</pre></div>
+<h3><strong>-f</strong></h3>
+<p>Display full-format listing, showing UID, PID, PPID, CPU usage, and more.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>-f
+<span style="color: #000; font-style: italic">UID        PID  PPID  C STIME TTY          TIME CMD</span>
+<span style="color: #000; font-style: italic">user      1028  1027  0 10:30 tty1     00:00:00 bash</span>
+<span style="color: #000; font-style: italic">user      1893  1028  0 10:35 tty1     00:00:00 ps -f</span>
+</pre></div>
+<h3><strong>-l</strong></h3>
+<p>Display long format with detailed information including priority, state codes, and memory usage.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span>
+<span style="color: #000; font-style: italic">0 S  1000  1028  1027  0  80   0 -  2546 wait   tty1     00:00:00 bash</span>
+<span style="color: #000; font-style: italic">0 R  1000  1894  1028  0  80   0 -  2715 -      tty1     00:00:00 ps</span>
+</pre></div>
+<h3><strong>-u username</strong></h3>
+<p>Display processes belonging to the specified user.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>john
+<span style="color: #000; font-style: italic">  PID TTY          TIME CMD</span>
+<span style="color: #000; font-style: italic"> 1028 tty1     00:00:00 bash</span>
+<span style="color: #000; font-style: italic"> 1895 tty1     00:00:00 ps</span>
+<span style="color: #000; font-style: italic"> 2156 ?        00:00:01 firefox</span>
+</pre></div>
+<h3><strong>-aux</strong></h3>
+<p>Display detailed information about all processes (BSD style).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>aux
+<span style="color: #000; font-style: italic">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span>
+<span style="color: #000; font-style: italic">root         1  0.0  0.1 168940  9128 ?        Ss   May04   0:03 /sbin/init</span>
+<span style="color: #000; font-style: italic">root       546  0.0  0.1  55492  8456 ?        Ss   May04   0:00 /lib/systemd/systemd-journald</span>
+<span style="color: #000; font-style: italic">user      1028  0.0  0.0  21712  5312 tty1     Ss   10:30   0:00 bash</span>
+<span style="color: #000; font-style: italic">user      1896  0.0  0.0  37364  3328 tty1     R+   10:36   0:00 ps aux</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Finding processes by name</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>-ef<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>firefox
+<span style="color: #000; font-style: italic">user      2156  1028  2 10:15 ?        00:01:23 /usr/lib/firefox/firefox</span>
+<span style="color: #000; font-style: italic">user      1897  1028  0 10:36 tty1     00:00:00 grep --color=auto firefox</span>
+</pre></div>
+<h3>Displaying process tree</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>-ejH
+<span style="color: #000; font-style: italic">  PID  PGID   SID TTY          TIME CMD</span>
+<span style="color: #000; font-style: italic">    1     1     1 ?        00:00:03 systemd</span>
+<span style="color: #000; font-style: italic">  546   546   546 ?        00:00:00   systemd-journal</span>
+<span style="color: #000; font-style: italic">  578   578   578 ?        00:00:00   systemd-udevd</span>
+<span style="color: #000; font-style: italic">  933   933   933 ?        00:00:00   sshd</span>
+<span style="color: #000; font-style: italic"> 1027  1027  1027 tty1     00:00:00   login</span>
+<span style="color: #000; font-style: italic"> 1028  1028  1028 tty1     00:00:00     bash</span>
+<span style="color: #000; font-style: italic"> 1898  1898  1028 tty1     00:00:00       ps</span>
+</pre></div>
+<h3>Sorting processes by memory usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>aux<span style="color: #F8F8F8"> </span>--sort<span style="color: #CE5C00; font-weight: bold">=</span>-%mem
+<span style="color: #000; font-style: italic">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span>
+<span style="color: #000; font-style: italic">user      2156  2.0  8.5 1854036 348216 ?      Sl   10:15   1:23 /usr/lib/firefox/firefox</span>
+<span style="color: #000; font-style: italic">user      2201  0.5  2.3 1123460 95684 ?       Sl   10:18   0:15 /usr/lib/thunderbird/thunderbird</span>
+<span style="color: #000; font-style: italic">root       546  0.0  0.1  55492  8456 ?        Ss   May04   0:00 /lib/systemd/systemd-journald</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Customize Output Fields</h3>
+<p>Use the <code>-o</code> option to specify which fields to display:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>-eo<span style="color: #F8F8F8"> </span>pid,ppid,cmd,%mem,%cpu<span style="color: #F8F8F8"> </span>--sort<span style="color: #CE5C00; font-weight: bold">=</span>-%cpu
+<span style="color: #000; font-style: italic">  PID  PPID CMD                         %MEM %CPU</span>
+<span style="color: #000; font-style: italic"> 2156  1028 /usr/lib/firefox/firefox     8.5  2.0</span>
+<span style="color: #000; font-style: italic"> 2201  1028 /usr/lib/thunderbird/thun    2.3  0.5</span>
+<span style="color: #000; font-style: italic">    1     0 /sbin/init                   0.1  0.0</span>
+</pre></div>
+<h3>Monitor Processes in Real-time</h3>
+<p>Combine <code>ps</code> with <code>watch</code> to monitor processes in real-time:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>watch<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -10&#39;</span>
+</pre></div>
+<h3>Find Parent-Child Process Relationships</h3>
+<p>Use <code>ps -f</code> to see the PPID (parent process ID) column, which helps understand process relationships.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>ps aux</code> and <code>ps -ef</code>?</h4>
+<p>A. Both show all processes, but <code>ps aux</code> is BSD-style output while <code>ps -ef</code> is UNIX-style output. <code>ps aux</code> shows %CPU and %MEM usage, while <code>ps -ef</code> shows PPID (parent process ID).</p>
+<h4>Q2. How do I find processes consuming the most CPU?</h4>
+<p>A. Use <code>ps aux --sort=-%cpu</code> to sort processes by CPU usage in descending order.</p>
+<h4>Q3. How do I find processes consuming the most memory?</h4>
+<p>A. Use <code>ps aux --sort=-%mem</code> to sort processes by memory usage in descending order.</p>
+<h4>Q4. How can I see only processes for a specific user?</h4>
+<p>A. Use <code>ps -u username</code> to display only processes owned by a specific user.</p>
+<h2>macOS Considerations</h2>
+<p>On macOS, some BSD-style options differ from Linux. For example, <code>-e</code> is not available, but you can use <code>ps -A</code> to show all processes. Also, the memory reporting columns may show different values than on Linux systems.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/ps.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

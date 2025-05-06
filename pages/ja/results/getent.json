@@ -1,0 +1,20 @@
+{
+  "id": "msg_01SRBXo7UhTc8EkxTDRVCLC8",
+  "content": [
+    {
+      "text": "# getent コマンド\n\n管理データベースからエントリを取得します。\n\n## 概要\n\n`getent` は、アプリケーションが使用するのと同じライブラリ関数を使用して、管理データベース（`/etc/passwd`、`/etc/group` など）からエントリを表示する Unix コマンドです。情報がローカルファイル、NIS、LDAP、その他のソースから来るかどうかに関わらず、標準化された方法でシステムデータベースを照会するのに役立ちます。\n\n## オプション\n\n### **database**\n\n照会するデータベース（passwd、group、hosts、services、protocols、networks など）を指定します\n\n```console\n$ getent passwd root\nroot:x:0:0:root:/root:/bin/bash\n```\n\n### **-s, --service=CONFIG**\n\n使用するサービス設定を指定します\n\n```console\n$ getent -s files passwd root\nroot:x:0:0:root:/root:/bin/bash\n```\n\n### **-h, --help**\n\nヘルプ情報を表示します\n\n```console\n$ getent --help\nUsage: getent [OPTION...] database [key ...]\nGet entries from administrative database.\n\n  -i, --no-idn               disable IDN encoding\n  -s, --service=CONFIG       Service configuration to be used\n  -?, --help                 Give this help list\n      --usage                Give a short usage message\n  -V, --version              Print program version\n\nMandatory or optional arguments to long options are also mandatory or optional\nfor any corresponding short options.\n\nSupported databases:\nahosts ahostsv4 ahostsv6 aliases ethers group gshadow hosts netgroup networks\npasswd protocols rpc services shadow\n```\n\n### **-V, --version**\n\nバージョン情報を表示します\n\n```console\n$ getent --version\ngetent (GNU libc) 2.31\n```\n\n### **-i, --no-idn**\n\nIDN（国際化ドメイン名）エンコーディングを無効にします\n\n```console\n$ getent -i hosts example.com\n93.184.216.34   example.com\n```\n\n## 使用例\n\n### ユーザー名でユーザーを検索する\n\n```console\n$ getent passwd username\nusername:x:1000:1000:Full Name:/home/username:/bin/bash\n```\n\n### ホスト名でホストを検索する\n\n```console\n$ getent hosts google.com\n142.250.190.78  google.com\n```\n\n### すべてのグループを一覧表示する\n\n```console\n$ getent group\nroot:x:0:\ndaemon:x:1:\nbin:x:2:\nsys:x:3:\n[additional groups...]\n```\n\n### サービスポートを検索する\n\n```console\n$ getent services ssh\nssh                  22/tcp\n```\n\n## ヒント:\n\n### grepと組み合わせてフィルタリングする\n\n`getent` と `grep` を組み合わせて、大きなデータベースから結果をフィルタリングします：\n\n```console\n$ getent passwd | grep username\n```\n\n### ユーザーが存在するかチェックする\n\n終了コードを使用して、ユーザーがシステムに存在するかどうかを確認します：\n\n```console\n$ getent passwd username > /dev/null && echo \"User exists\" || echo \"User does not exist\"\n```\n\n### グループのすべてのメンバーを見つける\n\nグループデータベースを使用して、特定のグループのすべてのメンバーを確認します：\n\n```console\n$ getent group sudo\nsudo:x:27:user1,user2,user3\n```\n\n## よくある質問\n\n#### Q1. getentで照会できるデータベースは何ですか？\nA. 一般的なデータベースには、passwd、group、hosts、services、protocols、networks、shadow、aliasesなどがあります。利用可能なデータベースはシステムによって異なる場合があります。\n\n#### Q2. ホスト名が解決されるかどうかを確認するにはどうすればよいですか？\nA. `getent hosts ホスト名` を使用します。ホスト名が解決される場合、IPアドレスとホスト名が返されます。\n\n#### Q3. getentはLDAPやその他のディレクトリサービスを照会できますか？\nA. はい、getentはネームサービススイッチ（NSS）設定を使用するため、システムの `/etc/nsswitch.conf` ファイルで設定されているLDAP、NIS、DNS、ローカルファイルなど、あらゆるソースを照会できます。\n\n#### Q4. getentと/etc/passwdなどのファイルを直接読み込むことの違いは何ですか？\nA. getentはシステムのNSS設定を尊重するため、ローカルファイルだけでなく、設定されたすべてのソース（ローカルファイル、LDAP、NISなど）から情報を取得します。\n\n## 参考資料\n\nhttps://man7.org/linux/man-pages/man1/getent.1.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1146,
+    "output_tokens": 1408
+  }
+}

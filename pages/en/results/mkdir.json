@@ -1,0 +1,20 @@
+{
+  "id": "msg_01CMXKzqduChLo84HhwKbvFc",
+  "content": [
+    {
+      "text": "# mkdir command\n\nCreate directories with specified names.\n\n## Overview\n\nThe `mkdir` command creates new directories in the file system. It allows users to create single or multiple directories at once, and can create parent directories automatically when needed. By default, directories are created with permissions based on the user's umask setting.\n\n## Options\n\n### **-p, --parents**\n\nCreate parent directories as needed. No error if existing.\n\n```console\n$ mkdir -p projects/website/css\n```\n\n### **-m, --mode=MODE**\n\nSet file mode (permissions) for the created directories.\n\n```console\n$ mkdir -m 755 secure_folder\n```\n\n### **-v, --verbose**\n\nPrint a message for each created directory.\n\n```console\n$ mkdir -v new_folder\nmkdir: created directory 'new_folder'\n```\n\n### **-Z, --context=CTX**\n\nSet the SELinux security context of each created directory to CTX.\n\n```console\n$ mkdir -Z new_folder\n```\n\n## Usage Examples\n\n### Creating multiple directories at once\n\n```console\n$ mkdir docs images videos\n$ ls\ndocs  images  videos\n```\n\n### Creating nested directories with parent creation\n\n```console\n$ mkdir -p projects/webapp/src/components\n$ ls -R projects\nprojects:\nwebapp\n\nprojects/webapp:\nsrc\n\nprojects/webapp/src:\ncomponents\n```\n\n### Creating a directory with specific permissions\n\n```console\n$ mkdir -m 700 private_data\n$ ls -l\ntotal 4\ndrwx------  2 user  user  4096 May  5 10:30 private_data\n```\n\n## Tips:\n\n### Use -p for Nested Directories\n\nThe `-p` option is extremely useful when creating a directory structure. It creates all necessary parent directories and doesn't error if directories already exist.\n\n### Set Permissions During Creation\n\nInstead of creating a directory and then changing its permissions with `chmod`, use the `-m` option to set permissions during creation.\n\n### Create Multiple Directories Efficiently\n\nYou can create multiple directories with a single command: `mkdir dir1 dir2 dir3`.\n\n### Use Brace Expansion for Related Directories\n\nCombine with bash brace expansion for creating related directories: `mkdir -p project/{src,docs,tests}`.\n\n## Frequently Asked Questions\n\n#### Q1. How do I create a directory with specific permissions?\nA. Use `mkdir -m MODE directory_name`. For example, `mkdir -m 755 my_dir` creates a directory with read, write, and execute permissions for the owner, and read and execute permissions for group and others.\n\n#### Q2. How do I create multiple nested directories at once?\nA. Use `mkdir -p parent/child/grandchild`. The `-p` option creates all necessary parent directories.\n\n#### Q3. What happens if I try to create a directory that already exists?\nA. Without the `-p` option, `mkdir` will return an error. With `-p`, it will silently continue without error.\n\n#### Q4. Can I see what directories are being created?\nA. Yes, use the `-v` (verbose) option to see a message for each directory created.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/mkdir-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 764
+  }
+}

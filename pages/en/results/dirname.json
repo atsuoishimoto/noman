@@ -1,0 +1,20 @@
+{
+  "id": "msg_01B5dGb1rYTVhXCTUtk3DxGy",
+  "content": [
+    {
+      "text": "# dirname command\n\nOutput the directory portion of a pathname.\n\n## Overview\n\nThe `dirname` command strips the last component from a pathname, leaving only the directory path. It's commonly used in shell scripts to extract the directory part of a file path, which is useful for navigating to specific directories or processing files in the same location.\n\n## Options\n\n### **--zero, -z**\n\nOutput a zero byte (ASCII NUL) instead of a newline after each pathname.\n\n```console\n$ dirname -z /usr/bin/zip\n/usr/bin$\n```\n\n### **--help**\n\nDisplay help information and exit.\n\n```console\n$ dirname --help\nUsage: dirname [OPTION] NAME...\nOutput each NAME with its last non-slash component and trailing slashes\nremoved; if NAME contains no /'s, output '.' (meaning the current directory).\n\n  -z, --zero     end each output line with NUL, not newline\n      --help     display this help and exit\n      --version  output version information and exit\n\nExamples:\n  dirname /usr/bin/          -> \"/usr\"\n  dirname dir1/str dir2/str  -> \"dir1\" followed by \"dir2\"\n  dirname stdio.h            -> \".\"\n```\n\n### **--version**\n\nOutput version information and exit.\n\n```console\n$ dirname --version\ndirname (GNU coreutils) 9.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by David MacKenzie.\n```\n\n## Usage Examples\n\n### Basic Usage\n\n```console\n$ dirname /usr/bin/zip\n/usr/bin\n```\n\n### Multiple Arguments\n\n```console\n$ dirname /usr/bin/zip /etc/passwd /home/user/file.txt\n/usr/bin\n/etc\n/home/user\n```\n\n### Current Directory\n\n```console\n$ dirname file.txt\n.\n```\n\n### Using in Shell Scripts\n\n```console\n$ script_dir=$(dirname \"$0\")\n$ echo \"This script is located in: $script_dir\"\nThis script is located in: /path/to/script/directory\n```\n\n## Tips:\n\n### Combine with basename\n\nUse `dirname` together with `basename` to split a path into its directory and filename components:\n\n```console\n$ path=\"/home/user/documents/report.pdf\"\n$ dir=$(dirname \"$path\")\n$ file=$(basename \"$path\")\n$ echo \"Directory: $dir, File: $file\"\nDirectory: /home/user/documents, File: report.pdf\n```\n\n### Handle Paths with Spaces\n\nAlways quote variables when using `dirname` to handle paths with spaces correctly:\n\n```console\n$ path=\"/home/user/my documents/report.pdf\"\n$ dir=$(dirname \"$path\")  # Quotes are important\n$ echo \"$dir\"\n/home/user/my documents\n```\n\n### Use with cd\n\nCombine with `cd` to navigate to a file's directory:\n\n```console\n$ cd \"$(dirname \"/path/to/file.txt\")\"\n```\n\n## Frequently Asked Questions\n\n#### Q1. What does `dirname` return if I pass a filename without a path?\nA. It returns `.` (the current directory).\n\n#### Q2. Can `dirname` process multiple paths at once?\nA. Yes, you can pass multiple arguments, and it will process each one separately.\n\n#### Q3. How does `dirname` handle trailing slashes?\nA. It removes trailing slashes before processing the path.\n\n#### Q4. What's the difference between `dirname` and `basename`?\nA. `dirname` returns the directory portion of a path, while `basename` returns the filename portion.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/dirname-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 933
+  }
+}

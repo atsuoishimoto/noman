@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  head - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>headコマンド</h1>
+<p>ファイルの先頭部分を表示します。</p>
+<h2>概要</h2>
+<p><code>head</code>コマンドはファイルの先頭部分を標準出力に出力します。デフォルトでは、指定された各ファイルの最初の10行を表示します。複数のファイルが指定された場合、各ファイルの前にファイル名を識別するヘッダーが付きます。</p>
+<h2>オプション</h2>
+<h3><strong>-n, --lines=N</strong></h3>
+<p>デフォルトの10行ではなく、最初のN行を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">Line 1</span>
+<span style="color: #000; font-style: italic">Line 2</span>
+<span style="color: #000; font-style: italic">Line 3</span>
+<span style="color: #000; font-style: italic">Line 4</span>
+<span style="color: #000; font-style: italic">Line 5</span>
+</pre></div>
+<h3><strong>-c, --bytes=N</strong></h3>
+<p>各ファイルの最初のNバイトを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">This is the first 20</span>
+</pre></div>
+<h3><strong>-q, --quiet, --silent</strong></h3>
+<p>ファイル名を示すヘッダーを表示しません</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #8F5902">(file1.txtの内容)</span>
+<span style="color: #8F5902">(file2.txtの内容)</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>常にファイル名を示すヘッダーを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">==&gt; file.txt &lt;==</span>
+<span style="color: #000; font-style: italic">Line 1</span>
+<span style="color: #000; font-style: italic">Line 2</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ログファイルの先頭を表示する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>/var/log/syslog
+<span style="color: #000; font-style: italic">May  5 10:15:01 hostname CRON[12345]: (root) CMD (command -v debian-sa1 &gt; /dev/null &amp;&amp; debian-sa1 1 1)</span>
+<span style="color: #000; font-style: italic">May  5 10:17:01 hostname CRON[12346]: (root) CMD (/usr/local/bin/backup.sh)</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3>複数ファイルの先頭数行を表示する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>*.conf
+<span style="color: #000; font-style: italic">==&gt; apache.conf &lt;==</span>
+<span style="color: #8F5902"># </span>Apache<span style="color: #F8F8F8"> </span>configuration
+<span style="color: #000; font-style: italic">ServerName localhost</span>
+<span style="color: #000; font-style: italic">Listen 80</span>
+
+<span style="color: #000; font-style: italic">==&gt; nginx.conf &lt;==</span>
+<span style="color: #8F5902"># </span>Nginx<span style="color: #F8F8F8"> </span>configuration
+<span style="color: #000; font-style: italic">worker_processes auto;</span>
+<span style="color: #000; font-style: italic">events {</span>
+</pre></div>
+<h3>パイプとheadを組み合わせる</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>aux<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-5
+<span style="color: #000; font-style: italic">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span>
+<span style="color: #000; font-style: italic">root         1  0.0  0.0 168940  9416 ?        Ss   May04   0:02 /sbin/init</span>
+<span style="color: #000; font-style: italic">root         2  0.0  0.0      0     0 ?        S    May04   0:00 [kthreadd]</span>
+<span style="color: #000; font-style: italic">root         3  0.0  0.0      0     0 ?        I&lt;   May04   0:00 [rcu_gp]</span>
+<span style="color: #000; font-style: italic">root         4  0.0  0.0      0     0 ?        I&lt;   May04   0:00 [rcu_par_gp]</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>tailと組み合わせる</h3>
+<p><code>head</code>と<code>tail</code>を組み合わせて特定の行範囲を抽出できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tail<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>
+</pre></div>
+<p>これはファイルの11〜20行目を表示します。</p>
+<h3>負の数を使用する</h3>
+<p>GNU headでは、<code>-n -N</code>を使用して最後のN行を除くすべての行を表示できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>-5<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<p>これは最後の5行を除くすべての行を表示します。</p>
+<h3>成長するファイルの監視</h3>
+<p><code>tail -f</code>とは異なり、<code>head</code>にはフォローモードがありません。アクティブに書き込まれているファイルを監視する必要がある場合は、<code>-f</code>オプション付きの<code>tail</code>を使用してください。</p>
+<h2>よくある質問</h2>
+<h4>Q1. headとtailの違いは何ですか？</h4>
+<p>A. <code>head</code>はファイルの先頭（デフォルトでは最初の10行）を表示し、<code>tail</code>はファイルの末尾（デフォルトでは最後の10行）を表示します。</p>
+<h4>Q2. 行数ではなく特定の文字数を表示するにはどうすればよいですか？</h4>
+<p>A. <code>-c</code>オプションを使用します：<code>head -c 100 file.txt</code>はファイルの最初の100バイトを表示します。</p>
+<h4>Q3. ファイル名のヘッダーなしで複数ファイルの先頭数行を表示するにはどうすればよいですか？</h4>
+<p>A. <code>-q</code>オプションを使用します：<code>head -q file1.txt file2.txt</code></p>
+<h4>Q4. headはtail -fのようにファイルの成長に合わせて追跡できますか？</h4>
+<p>A. いいえ、<code>head</code>にはフォローモードがありません。成長するファイルを監視するには<code>tail -f</code>を使用してください。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/head-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

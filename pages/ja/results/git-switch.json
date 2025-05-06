@@ -1,0 +1,20 @@
+{
+  "id": "msg_012efPK7VDz7cnnjhfxaJTbb",
+  "content": [
+    {
+      "text": "# git switch コマンド\n\nブランチの切り替えやワーキングツリーファイルの復元を行います。\n\n## 概要\n\n`git switch` コマンドは、Gitリポジトリでブランチを切り替えるために使用されます。これはGit 2.23で導入され、`git checkout`の特定の用途に対するよりユーザーフレンドリーな代替手段です。`git checkout`が複数の目的を果たすのに対し、`git switch`は特にブランチ操作のために設計されており、コマンド構造がより直感的になっています。\n\n## オプション\n\n### **-c, --create**\n\n新しいブランチを作成して切り替えます。\n\n```console\n$ git switch -c feature-login\nSwitched to a new branch 'feature-login'\n```\n\n### **-d, --detach**\n\nデタッチドHEAD状態でコミットに切り替えます。\n\n```console\n$ git switch -d 1a2b3c4\nNote: switching to '1a2b3c4'.\n\nYou are in 'detached HEAD' state...\nHEAD is now at 1a2b3c4 Add login functionality\n```\n\n### **--discard-changes**\n\n切り替える前にローカルの変更を破棄します。\n\n```console\n$ git switch --discard-changes main\nSwitched to branch 'main'\n```\n\n### **-f, --force**\n\nインデックスまたはワーキングツリーがHEADと異なる場合でも強制的に切り替えます。\n\n```console\n$ git switch -f main\nSwitched to branch 'main'\n```\n\n### **-m, --merge**\n\n現在のブランチ、ワーキングツリーの内容、および新しいブランチの間で3方向マージを実行します。\n\n```console\n$ git switch -m feature-branch\nSwitched to branch 'feature-branch'\n```\n\n### **--orphan**\n\n新しい孤立ブランチ（履歴のないブランチ）を作成します。\n\n```console\n$ git switch --orphan new-root\nSwitched to a new branch 'new-root'\n```\n\n### **-t, --track**\n\n新しいブランチを作成する際に、「upstream」設定を行います。\n\n```console\n$ git switch -c feature-branch -t origin/feature-branch\nBranch 'feature-branch' set up to track remote branch 'feature-branch' from 'origin'.\nSwitched to a new branch 'feature-branch'\n```\n\n### **-**\n\n前のブランチに切り替えます。\n\n```console\n$ git switch -\nSwitched to branch 'main'\n```\n\n## 使用例\n\n### 基本的なブランチの切り替え\n\n```console\n$ git switch main\nSwitched to branch 'main'\n```\n\n### 新しいブランチの作成と切り替え\n\n```console\n$ git switch -c feature-auth\nSwitched to a new branch 'feature-auth'\n```\n\n### リモートブランチへの切り替え\n\n```console\n$ git switch feature-branch\nBranch 'feature-branch' set up to track remote branch 'feature-branch' from 'origin'.\nSwitched to a new branch 'feature-branch'\n```\n\n### 特定のコミットへの切り替え\n\n```console\n$ git switch -d 1a2b3c4\nNote: switching to '1a2b3c4'.\n\nYou are in 'detached HEAD' state...\nHEAD is now at 1a2b3c4 Add login functionality\n```\n\n## ヒント:\n\n### `-` を使用してブランチ間をトグルする\n\nダッシュの省略形（`git switch -`）を使用すると、シェルの `cd -` と同様に、現在のブランチと前のブランチの間を素早く切り替えることができます。\n\n### より良いワークフローのために `git branch` と組み合わせる\n\n切り替える前に利用可能なブランチを確認するには、`git branch` を使用してから `git switch ブランチ名` を実行します。\n\n### ブランチ操作には `checkout` よりも `switch` を優先する\n\n`git switch` は、ブランチ操作に特化して設計されており、より明確なセマンティクスを持っているため、ブランチ操作には `git checkout` よりも直感的です。\n\n### 自動的に追跡ブランチを作成する\n\nローカルに存在しないリモートブランチに切り替える場合、ブランチ名が単一のリモートに存在すれば、Gitは自動的に追跡ブランチを作成します。\n\n## よくある質問\n\n#### Q1. `git switch` と `git checkout` の違いは何ですか？\nA. `git switch` はブランチ操作のみに焦点を当てていますが、`git checkout` はブランチの切り替え、ファイルの復元など、複数の目的を持っています。`git switch` は、より明確で具体的なコマンドを提供するために導入されました。\n\n#### Q2. 新しいブランチを作成して切り替えるにはどうすればよいですか？\nA. `git switch -c 新しいブランチ名` を使用して、1つのコマンドで新しいブランチを作成して切り替えることができます。\n\n#### Q3. ブランチを切り替える際にローカルの変更を破棄するにはどうすればよいですか？\nA. `git switch --discard-changes ブランチ名` を使用して、切り替える前にローカルの変更を破棄できます。\n\n#### Q4. 前のブランチに戻るにはどうすればよいですか？\nA. `git switch -` を使用して、以前にチェックアウトしたブランチに切り替えることができます。\n\n#### Q5. コミットしていない変更がある状態でブランチを切り替えるとどうなりますか？\nA. 競合がある場合、Gitは切り替えを防止します。変更をコミットするか、`git stash` で一時保存するか、`--discard-changes` または `--merge` オプションを使用することができます。\n\n## 参考文献\n\nhttps://git-scm.com/docs/git-switch\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1314,
+    "output_tokens": 1743
+  }
+}

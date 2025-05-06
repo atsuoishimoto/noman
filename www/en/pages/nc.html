@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  nc - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>nc command</h1>
+<p>Create and manage network connections for data transfer, port scanning, and network debugging.</p>
+<h2>Overview</h2>
+<p><code>nc</code> (netcat) is a versatile networking utility that reads and writes data across network connections using TCP or UDP protocols. It functions as a &quot;Swiss Army knife&quot; for network operations, allowing users to create servers, connect to services, transfer files, scan ports, and debug network issues.</p>
+<h2>Options</h2>
+<h3><strong>-l</strong></h3>
+<p>Listen for incoming connections rather than initiating a connection to a remote host.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span>
+</pre></div>
+<h3><strong>-p</strong></h3>
+<p>Specify the source port nc should use.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">12345</span><span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>
+</pre></div>
+<h3><strong>-v</strong></h3>
+<p>Enable verbose output, showing more connection details.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>
+<span style="color: #000; font-style: italic">Connection to example.com port 80 [tcp/http] succeeded!</span>
+</pre></div>
+<h3><strong>-z</strong></h3>
+<p>Scan for listening daemons without sending any data (port scanning mode).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span>-30
+<span style="color: #000; font-style: italic">Connection to example.com 22 port [tcp/ssh] succeeded!</span>
+</pre></div>
+<h3><strong>-u</strong></h3>
+<p>Use UDP instead of the default TCP protocol.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.1<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">53</span>
+</pre></div>
+<h3><strong>-w</strong></h3>
+<p>Specify timeout for connections and port scans in seconds.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>
+</pre></div>
+<h3><strong>-n</strong></h3>
+<p>Skip DNS lookup, use numeric IP addresses only.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.1<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Simple Chat Server and Client</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902"># </span>On<span style="color: #F8F8F8"> </span>server
+<span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+<span style="color: #000; font-style: italic">Hello from client!</span>
+<span style="color: #000; font-style: italic">Hello from server!</span>
+
+<span style="color: #8F5902"># </span>On<span style="color: #F8F8F8"> </span>client
+<span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.100<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+<span style="color: #000; font-style: italic">Hello from client!</span>
+<span style="color: #000; font-style: italic">Hello from server!</span>
+</pre></div>
+<h3>File Transfer</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902"># </span>On<span style="color: #F8F8F8"> </span>receiving<span style="color: #F8F8F8"> </span>end
+<span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>received_file.txt
+
+<span style="color: #8F5902"># </span>On<span style="color: #F8F8F8"> </span>sending<span style="color: #F8F8F8"> </span>end
+<span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.100<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span><span style="color: #F8F8F8"> </span>&lt;<span style="color: #F8F8F8"> </span>file_to_send.txt
+</pre></div>
+<h3>Port Scanning</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.1<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span>-30
+<span style="color: #000; font-style: italic">Connection to 192.168.1.1 22 port [tcp/ssh] succeeded!</span>
+<span style="color: #000; font-style: italic">Connection to 192.168.1.1 25 port [tcp/smtp] succeeded!</span>
+</pre></div>
+<h3>HTTP Request</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;GET / HTTP/1.1\r\nHost: example.com\r\n\r\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>nc<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>
+<span style="color: #000; font-style: italic">HTTP/1.1 200 OK</span>
+<span style="color: #000; font-style: italic">Content-Type: text/html</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Persistent Listening Server</h3>
+<p>Use the <code>-k</code> option (on systems that support it) to keep the server running after client disconnection:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-k<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span>
+</pre></div>
+<h3>Banner Grabbing</h3>
+<p>Quickly identify services running on specific ports:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">22</span>
+<span style="color: #000; font-style: italic">SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5</span>
+</pre></div>
+<h3>Proxy Connections</h3>
+<p>Use nc to create a simple proxy between two endpoints:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>nc<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>nc<span style="color: #F8F8F8"> </span>example.com<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>
+</pre></div>
+<h3>Debugging Network Issues</h3>
+<p>When troubleshooting connectivity problems, use nc to test if specific ports are reachable before diving into application-specific debugging.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I create a simple chat server with nc?</h4>
+<p>A. Run <code>nc -l PORT</code> on the server and <code>nc SERVER_IP PORT</code> on the client. Type messages and press Enter to send them.</p>
+<h4>Q2. Can I use nc to transfer files?</h4>
+<p>A. Yes. On the receiving end, run <code>nc -l PORT &gt; filename</code> and on the sending end, run <code>nc DESTINATION_IP PORT &lt; filename</code>.</p>
+<h4>Q3. How do I scan for open ports with nc?</h4>
+<p>A. Use <code>nc -z -v TARGET_IP PORT_RANGE</code> (e.g., <code>nc -z -v example.com 20-100</code>).</p>
+<h4>Q4. Is nc secure for transferring sensitive data?</h4>
+<p>A. No, nc transmits data in plaintext. For sensitive data, use secure alternatives like scp, sftp, or encrypt the data before transmission.</p>
+<h4>Q5. What's the difference between nc and ncat?</h4>
+<p>A. ncat is part of the Nmap project and offers additional features like SSL support, proxy connections, and more advanced options while maintaining compatibility with traditional nc.</p>
+<h2>References</h2>
+<p>https://man.openbsd.org/nc.1</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

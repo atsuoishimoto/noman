@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tr - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tr command</h1>
+<p>Translate or delete characters from standard input, writing to standard output.</p>
+<h2>Overview</h2>
+<p>The <code>tr</code> command is a text transformation utility that operates on a character-by-character basis. It reads from standard input, performs character substitution, deletion, or compression according to specified parameters, and writes the result to standard output. It's commonly used in shell scripts for tasks like case conversion, character removal, and basic text transformations.</p>
+<h2>Options</h2>
+<h3><strong>-d</strong></h3>
+<p>Delete characters in SET1, do not translate.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, World!&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;aeiou&#39;</span>
+<span style="color: #000; font-style: italic">Hll, Wrld!</span>
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>Replace each sequence of a repeated character in SET1 with a single occurrence.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello    World!&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39; &#39;</span>
+<span style="color: #000; font-style: italic">Hello World!</span>
+</pre></div>
+<h3><strong>-c, --complement</strong></h3>
+<p>Use the complement of SET1.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, World!&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span>-cd<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;a-zA-Z\n&#39;</span>
+<span style="color: #000; font-style: italic">HelloWorld</span>
+</pre></div>
+<h3><strong>-t, --truncate-set1</strong></h3>
+<p>First truncate SET1 to length of SET2.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, World!&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;a-z&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;A-Z&#39;</span>
+<span style="color: #000; font-style: italic">HELLO, WORLD!</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Converting lowercase to uppercase</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;hello world&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;a-z&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;A-Z&#39;</span>
+<span style="color: #000; font-style: italic">HELLO WORLD</span>
+</pre></div>
+<h3>Removing all digits from text</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Phone: 123-456-7890&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;0-9&#39;</span>
+<span style="color: #000; font-style: italic">Phone: --</span>
+</pre></div>
+<h3>Translating spaces to newlines</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;one two three&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39; &#39;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;\n&#39;</span>
+<span style="color: #000; font-style: italic">one</span>
+<span style="color: #000; font-style: italic">two</span>
+<span style="color: #000; font-style: italic">three</span>
+</pre></div>
+<h3>Removing all non-printable characters</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>binary_file<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span>-cd<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;[:print:]\n&#39;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>cleaned_file
+</pre></div>
+<h3>Squeezing multiple newlines into one</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;\n&#39;</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Character Classes</h3>
+<p><code>tr</code> supports POSIX character classes like <code>[:alnum:]</code>, <code>[:alpha:]</code>, <code>[:digit:]</code>, which make it easier to work with groups of characters.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello123&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;[:digit:]&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;x&#39;</span>
+<span style="color: #000; font-style: italic">Helloxxx</span>
+</pre></div>
+<h3>Combine Options for Complex Transformations</h3>
+<p>Combine options like <code>-d</code> and <code>-c</code> to perform more complex operations, such as keeping only specific characters.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;user@example.com&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tr<span style="color: #F8F8F8"> </span>-cd<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;[:alnum:]@.\n&#39;</span>
+<span style="color: #000; font-style: italic">user@example.com</span>
+</pre></div>
+<h3>Escape Special Characters</h3>
+<p>Remember to escape special characters like newlines (<code>\n</code>), tabs (<code>\t</code>), or backslashes (<code>\\</code>) when using them in translation sets.</p>
+<h3>Pipe with Other Commands</h3>
+<p><code>tr</code> works best in pipelines with other commands like <code>grep</code>, <code>sed</code>, or <code>awk</code> for more complex text processing.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I convert a file to uppercase?</h4>
+<p>A. Use <code>cat file.txt | tr 'a-z' 'A-Z'</code> or <code>tr 'a-z' 'A-Z' &lt; file.txt</code>.</p>
+<h4>Q2. How can I remove all whitespace from a file?</h4>
+<p>A. Use <code>tr -d '[:space:]'</code> to remove all whitespace characters.</p>
+<h4>Q3. Can tr replace strings or just single characters?</h4>
+<p>A. <code>tr</code> only works on single characters, not strings. For string replacement, use <code>sed</code> instead.</p>
+<h4>Q4. How do I translate multiple characters to a single character?</h4>
+<p>A. Use <code>tr 'abc' 'x'</code> to translate a, b, and c all to x.</p>
+<h4>Q5. How can I count unique characters in a file?</h4>
+<p>A. Use <code>tr -d '\n' &lt; file.txt | fold -w1 | sort | uniq -c</code>.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/tr-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  chsh - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>chsh command</h1>
+<p>Change the login shell for a user.</p>
+<h2>Overview</h2>
+<p>The <code>chsh</code> command allows users to change their login shell - the command interpreter that starts when they log in. It modifies the user's entry in the password file to set which shell program runs when they log in to the system.</p>
+<h2>Options</h2>
+<h3><strong>-s, --shell</strong></h3>
+<p>Specify the login shell to use. The shell must be listed in the /etc/shells file, unless the invoking user is the superuser.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/bin/zsh
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #000; font-style: italic">Shell changed.</span>
+</pre></div>
+<h3><strong>-l, --list-shells</strong></h3>
+<p>Display the list of shells listed in the /etc/shells file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">/bin/sh</span>
+<span style="color: #000; font-style: italic">/bin/bash</span>
+<span style="color: #000; font-style: italic">/bin/zsh</span>
+<span style="color: #000; font-style: italic">/bin/fish</span>
+</pre></div>
+<h3><strong>-h, --help</strong></h3>
+<p>Display help information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: chsh [options] [LOGIN]</span>
+
+<span style="color: #000; font-style: italic">Options:</span>
+<span style="color: #000; font-style: italic">  -s, --shell SHELL         specify login shell</span>
+<span style="color: #000; font-style: italic">  -l, --list-shells         list shells and exit</span>
+<span style="color: #000; font-style: italic">  -h, --help                display this help and exit</span>
+<span style="color: #000; font-style: italic">  -v, --version             display version information and exit</span>
+</pre></div>
+<h3><strong>-v, --version</strong></h3>
+<p>Display version information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">chsh from util-linux 2.38.1</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Changing your own shell</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/bin/zsh
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #000; font-style: italic">Shell changed.</span>
+</pre></div>
+<h3>Viewing your current shell</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;^</span><span style="color: #204A87; font-weight: bold">$(</span>whoami<span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">:&quot;</span><span style="color: #F8F8F8"> </span>/etc/passwd
+<span style="color: #000; font-style: italic">username:x:1000:1000:User Name:/home/username:/bin/zsh</span>
+</pre></div>
+<h3>Changing another user's shell (requires root privileges)</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>chsh<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/bin/bash<span style="color: #F8F8F8"> </span>otheruser
+<span style="color: #000; font-style: italic">Shell changed.</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Check Available Shells First</h3>
+<p>Always use <code>chsh -l</code> or check <code>/etc/shells</code> to see what shells are available on your system before changing your shell.</p>
+<h3>Logout Required</h3>
+<p>Changes to your login shell won't take effect until you log out and log back in.</p>
+<h3>Shell Must Be in /etc/shells</h3>
+<p>The shell you choose must be listed in the <code>/etc/shells</code> file, unless you're the superuser. This is a security measure to prevent users from setting arbitrary programs as their login shell.</p>
+<h3>Reverting Changes</h3>
+<p>If you change to a shell that doesn't work for you, you can always change back using the same command with your previous shell.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What is the difference between login shell and current shell?</h4>
+<p>A. The login shell is the shell that starts when you log in to the system. The current shell is the shell you're currently using, which might be different if you've started another shell from your login shell.</p>
+<h4>Q2. How do I know what my current shell is?</h4>
+<p>A. Run <code>echo $SHELL</code> to see your login shell, or <code>ps -p $$</code> to see what shell you're currently using.</p>
+<h4>Q3. Can I use any program as my shell?</h4>
+<p>A. No, for security reasons, regular users can only use shells listed in <code>/etc/shells</code>. Only the superuser can set arbitrary programs as shells.</p>
+<h4>Q4. What happens if I set an invalid shell?</h4>
+<p>A. If you set a shell that doesn't exist or doesn't work properly, you might be unable to log in normally. In such cases, you would need to use recovery methods or ask a system administrator to fix it.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/chsh.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-add - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git add command</h1>
+<p>Add file contents to the index (staging area) for the next commit.</p>
+<h2>Overview</h2>
+<p><code>git add</code> updates the Git index (staging area) with the current content of files in the working directory. It marks modified files to be included in the next commit. This command is essential for the Git workflow as it allows you to selectively choose which changes to commit.</p>
+<h2>Options</h2>
+<h3><strong>-A, --all</strong></h3>
+<p>Add changes from all tracked and untracked files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-A
+</pre></div>
+<h3><strong>-u, --update</strong></h3>
+<p>Update the index just for files that are already tracked.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-u
+</pre></div>
+<h3><strong>-p, --patch</strong></h3>
+<p>Interactively choose hunks of patch between the index and the work tree and add them to the index.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-p
+<span style="color: #000; font-style: italic">diff --git a/file.txt b/file.txt</span>
+<span style="color: #000; font-style: italic">index 1234567..abcdefg 100644</span>
+<span style="color: #000; font-style: italic">--- a/file.txt</span>
+<span style="color: #000; font-style: italic">+++ b/file.txt</span>
+<span style="color: #000; font-style: italic">@@ -1,4 +1,5 @@</span>
+<span style="color: #000; font-style: italic"> Line 1</span>
+<span style="color: #000; font-style: italic"> Line 2</span>
+<span style="color: #000; font-style: italic">+New line added</span>
+<span style="color: #000; font-style: italic"> Line 3</span>
+<span style="color: #000; font-style: italic"> Line 4</span>
+<span style="color: #000; font-style: italic">Stage this hunk [y,n,q,a,d,j,J,g,/,e,?]?</span>
+</pre></div>
+<h3><strong>-i, --interactive</strong></h3>
+<p>Add modified contents interactively.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic">           staged     unstaged path</span>
+<span style="color: #000; font-style: italic">  1:    unchanged        +2/-0 file1.txt</span>
+<span style="color: #000; font-style: italic">  2:    unchanged        +1/-1 file2.txt</span>
+
+<span style="color: #000; font-style: italic">*** Commands ***</span>
+<span style="color: #000; font-style: italic">  1: status       2: update       3: revert       4: add untracked</span>
+<span style="color: #000; font-style: italic">  5: patch        6: diff         7: quit         8: help</span>
+<span style="color: #000; font-style: italic">What now&gt;</span>
+</pre></div>
+<h3><strong>-n, --dry-run</strong></h3>
+<p>Don't actually add the files, just show what would happen.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>*.txt
+<span style="color: #000; font-style: italic">add &#39;document.txt&#39;</span>
+<span style="color: #000; font-style: italic">add &#39;notes.txt&#39;</span>
+</pre></div>
+<h3><strong>-f, --force</strong></h3>
+<p>Allow adding otherwise ignored files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>build/generated.js
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Be verbose.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>*.js
+<span style="color: #000; font-style: italic">add &#39;app.js&#39;</span>
+<span style="color: #000; font-style: italic">add &#39;utils.js&#39;</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Adding specific files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+</pre></div>
+<h3>Adding all files in a directory</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>src/
+</pre></div>
+<h3>Adding all files with a specific extension</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>*.js
+</pre></div>
+<h3>Adding all changes in the working directory</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>.
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Patch Mode for Precise Control</h3>
+<p>The <code>-p</code> (patch) option allows you to review and selectively stage parts of a file. This is useful when you've made multiple changes to a file but want to commit them separately.</p>
+<h3>Verify What's Being Added</h3>
+<p>Before committing, use <code>git status</code> to verify what changes are staged. This helps prevent accidentally committing unwanted changes.</p>
+<h3>Undo Staging with Reset</h3>
+<p>If you accidentally stage a file, you can unstage it with <code>git reset HEAD &lt;file&gt;</code>.</p>
+<h3>Use Interactive Mode for Complex Changes</h3>
+<p>For repositories with many changed files, <code>-i</code> (interactive) mode provides a menu-driven interface to selectively stage changes.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>git add .</code> and <code>git add -A</code>?</h4>
+<p>A. <code>git add .</code> adds all changes in the current directory and its subdirectories, while <code>git add -A</code> adds changes from the entire working tree, regardless of your current directory.</p>
+<h4>Q2. How do I add only modified and deleted files but not untracked files?</h4>
+<p>A. Use <code>git add -u</code> or <code>git add --update</code>.</p>
+<h4>Q3. How can I see what changes I'm about to add?</h4>
+<p>A. Use <code>git add -n</code> (dry run) to see what would be added without actually adding anything, or <code>git diff</code> to see the changes in detail.</p>
+<h4>Q4. What happens if I add a file and then modify it again?</h4>
+<p>A. Only the changes that were present when you ran <code>git add</code> will be staged. The newer changes will need to be added with another <code>git add</code> command.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-add</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

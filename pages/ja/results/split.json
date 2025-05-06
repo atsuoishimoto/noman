@@ -1,0 +1,20 @@
+{
+  "id": "msg_013EQ1hAXyS8bFch813p2VdH",
+  "content": [
+    {
+      "text": "# split コマンド\n\nファイルを複数の部分に分割します。\n\n## 概要\n\n`split` コマンドはファイルを複数の小さなファイルに分割します。大きなファイルを扱いやすく分割したり、サイズ制限のあるメディアで転送したり、一部ずつ処理したりする場合に便利です。デフォルトでは、元のファイルから指定された行数またはバイト数を含む「xaa」、「xab」などの名前のファイルを作成します。\n\n## オプション\n\n### **-b, --bytes=SIZE**\n\n行ではなくバイト単位で分割します。SIZEは数字の後に乗数を付けることができます：k (1024)、m (1024²)、g (1024³) など。\n\n```console\n$ split -b 1M largefile.dat chunk_\n$ ls chunk_*\nchunk_aa  chunk_ab  chunk_ac\n```\n\n### **-l, --lines=NUMBER**\n\nファイルをNUMBER行ごとに分割します（デフォルトは1000行）。\n\n```console\n$ split -l 100 data.csv part_\n$ ls part_*\npart_aa  part_ab  part_ac  part_ad\n```\n\n### **-d, --numeric-suffixes[=FROM]**\n\nアルファベットの代わりに数字の接尾辞を使用し、FROM（デフォルトは0）から始めます。\n\n```console\n$ split -d -l 100 data.txt section_\n$ ls section_*\nsection_00  section_01  section_02\n```\n\n### **-a, --suffix-length=N**\n\n長さNの接尾辞を生成します（デフォルトは2）。\n\n```console\n$ split -a 3 -l 100 data.txt part_\n$ ls part_*\npart_aaa  part_aab  part_aac\n```\n\n### **--additional-suffix=SUFFIX**\n\nファイル名に追加の接尾辞SUFFIXを付加します。\n\n```console\n$ split -l 100 --additional-suffix=.txt data.csv part_\n$ ls part_*\npart_aa.txt  part_ab.txt  part_ac.txt\n```\n\n### **-n, --number=CHUNKS**\n\nサイズまたは数に基づいてCHUNKS個のファイルに分割します。\n\n```console\n$ split -n 3 largefile.dat chunk_\n$ ls chunk_*\nchunk_aa  chunk_ab  chunk_ac\n```\n\n## 使用例\n\n### 大きなログファイルを行数で分割する\n\n```console\n$ split -l 1000 server.log server_log_\n$ ls server_log_*\nserver_log_aa  server_log_ab  server_log_ac  server_log_ad\n```\n\n### 大きなファイルを等サイズのチャンクに分割する\n\n```console\n$ split -n 5 backup.tar.gz backup_part_\n$ ls backup_part_*\nbackup_part_aa  backup_part_ab  backup_part_ac  backup_part_ad  backup_part_ae\n```\n\n### 特定のバイトサイズで数字の接尾辞を使って分割する\n\n```console\n$ split -b 10M -d large_video.mp4 video_\n$ ls video_*\nvideo_00  video_01  video_02  video_03\n```\n\n## ヒント\n\n### 分割ファイルの再結合\n\n分割したファイルを再結合するには、正しい順序でファイルを指定して `cat` コマンドを使用します：\n```console\n$ cat chunk_* > original_file_restored\n```\n\n### ファイル拡張子の保持\n\n拡張子のあるファイルを分割する場合、`--additional-suffix` を使用して識別しやすいように拡張子を維持します：\n```console\n$ split -b 5M --additional-suffix=.mp4 video.mp4 video_part_\n```\n\n### ヘッダー付きCSVファイルの分割\n\nCSVファイルを分割する場合、各ファイルにヘッダーを保持したい場合があります：\n```console\n$ head -1 data.csv > header\n$ tail -n +2 data.csv | split -l 1000 - part_\n$ for f in part_*; do cat header \"$f\" > \"${f}.csv\"; rm \"$f\"; done\n```\n\n## よくある質問\n\n#### Q1. ファイルを等サイズの部分に分割するにはどうすればよいですか？\nA. `split -n NUMBER filename prefix` を使用します。NUMBERは必要な部分の数です。\n\n#### Q2. ファイルをサイズで分割するにはどうすればよいですか？\nA. `split -b SIZE filename prefix` を使用します。SIZEはバイト、KB (k)、MB (m)、GB (g) で指定できます。\n\n#### Q3. 分割したファイルを元に戻すにはどうすればよいですか？\nA. `cat prefix* > original_filename` を使用して、すべての分割部分を順番に連結します。\n\n#### Q4. アルファベットの代わりに数字の接尾辞を使用できますか？\nA. はい、`-d` オプションを使用すると、アルファベットの代わりに数字の接尾辞（00、01、02など）を使用できます。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1272,
+    "output_tokens": 1540
+  }
+}

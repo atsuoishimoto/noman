@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  less - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>lessコマンド</h1>
+<p>テキストファイルを検索機能付きのスクロール可能なインターフェースで表示します。</p>
+<h2>概要</h2>
+<p><code>less</code>はターミナルページャープログラムで、テキストファイルを一度に1画面ずつ表示することができます。ファイル全体を一度に表示する<code>cat</code>とは異なり、<code>less</code>は前後の移動、テキスト検索などのナビゲーション機能を提供します。特に大きなファイルをターミナルに負担をかけずに表示するのに便利です。</p>
+<h2>オプション</h2>
+<h3><strong>-N</strong></h3>
+<p>各行の先頭に行番号を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>less<span style="color: #F8F8F8"> </span>-N<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">      1 This is line 1</span>
+<span style="color: #000; font-style: italic">      2 This is line 2</span>
+<span style="color: #000; font-style: italic">      3 This is line 3</span>
+</pre></div>
+<h3><strong>-i</strong></h3>
+<p>大文字と小文字を区別しない検索を行います。このオプションを有効にすると、「text」を検索すると「text」、「Text」、「TEXT」などにマッチします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>less<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h3><strong>-S</strong></h3>
+<p>行の折り返しを無効にします。長い行は次の行に折り返されるのではなく、切り詰められ、水平スクロールが可能になります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>less<span style="color: #F8F8F8"> </span>-S<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h3><strong>-F</strong></h3>
+<p>ファイル全体が最初の画面に表示できる場合、自動的に終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>less<span style="color: #F8F8F8"> </span>-F<span style="color: #F8F8F8"> </span>short_file.txt
+</pre></div>
+<h3><strong>-R</strong></h3>
+<p>ANSIカラーエスケープシーケンスをそのままの形で表示し、色付きテキストを適切に表示できるようにします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>less<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>colored_output.txt
+</pre></div>
+<h3><strong>-X</strong></h3>
+<p>lessを終了する際に画面をクリアせず、内容をターミナルに表示したままにします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>less<span style="color: #F8F8F8"> </span>-X<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なファイル表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>less<span style="color: #F8F8F8"> </span>/var/log/syslog
+<span style="color: #000; font-style: italic">[スクロール可能なインターフェースでファイル内容が表示される]</span>
+</pre></div>
+<h3>コマンド出力の表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-la<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>less
+<span style="color: #000; font-style: italic">total 112</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  18 user  staff   576 May  5 10:23 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x   5 user  staff   160 Apr 29 14:12 ..</span>
+<span style="color: #000; font-style: italic">-rw-r--r--   1 user  staff  8196 May  5 09:45 file1.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r--   1 user  staff  5423 May  4 16:32 file2.txt</span>
+</pre></div>
+<h3>圧縮ファイルの表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zless<span style="color: #F8F8F8"> </span>compressed_file.gz
+<span style="color: #000; font-style: italic">[スクロール可能なインターフェースで解凍された内容が表示される]</span>
+</pre></div>
+<h2>ナビゲーションコマンド</h2>
+<p>less内では、以下のキーボードコマンドが使用できます：</p>
+<ul>
+<li><strong>スペース/Page Down</strong>：1画面進む</li>
+<li><strong>b/Page Up</strong>：1画面戻る</li>
+<li><strong>下矢印/Enter</strong>：1行進む</li>
+<li><strong>上矢印</strong>：1行戻る</li>
+<li><strong>g</strong>：最初の行に移動</li>
+<li><strong>G</strong>：最後の行に移動</li>
+<li><strong>/パターン</strong>：「パターン」を前方検索</li>
+<li><strong>n</strong>：最後の検索を前方に繰り返す</li>
+<li><strong>N</strong>：最後の検索を後方に繰り返す</li>
+<li><strong>q</strong>：lessを終了</li>
+</ul>
+<h2>ヒント：</h2>
+<h3>クイックナビゲーション用の位置マーク</h3>
+<p><code>m</code>を押した後に任意の文字を押すと、現在の位置をマークできます。後で<code>'</code>（アポストロフィ）を押した後に同じ文字を押すと、その位置に戻ることができます。</p>
+<h3>成長するファイルの追跡</h3>
+<p><code>less +F file.log</code>を使用して成長するファイルを追跡します（<code>tail -f</code>と同様）。Ctrl+Cを押すと追跡を停止し、通常のブラウジングモードに戻ります。<code>F</code>を押すと追跡を再開します。</p>
+<h3>環境変数でエクスペリエンスをカスタマイズ</h3>
+<p>シェル設定で<code>LESS=&quot;-R -i&quot;</code>を設定すると、それらのオプションを入力しなくても常に使用できます。</p>
+<h3>複数ファイルのナビゲーション</h3>
+<p><code>less file1 file2 file3</code>で複数のファイルを開いた場合、<code>:n</code>で次のファイルに移動し、<code>:p</code>で前のファイルに移動します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>less</code>と<code>more</code>の違いは何ですか？</h4>
+<p>A. <code>less</code>は<code>more</code>の改良版で、双方向スクロール、より優れた検索機能を持ち、表示前にファイル全体を読み込む必要がありません。</p>
+<h4>Q2. ファイル内のテキストを検索するにはどうすればよいですか？</h4>
+<p>A. <code>/</code>を押した後に検索語を入力してEnterを押します。<code>n</code>で次の出現箇所を、<code>N</code>で前の出現箇所を見つけます。</p>
+<h4>Q3. 行番号を表示するにはどうすればよいですか？</h4>
+<p>A. <code>less -N ファイル名</code>を使用するか、lessでファイルを表示中に<code>-N</code>を押します。</p>
+<h4>Q4. lessを終了するにはどうすればよいですか？</h4>
+<p>A. <code>q</code>を押して終了します。</p>
+<h4>Q5. lessでバイナリファイルを表示できますか？</h4>
+<p>A. lessはバイナリファイルを開くことができますが、テキスト用に設計されています。バイナリファイルの場合は、<code>hexdump</code>や<code>xxd</code>などの専用ツールの使用を検討してください。</p>
+<h2>参考文献</h2>
+<p>https://www.greenwoodsoftware.com/less/</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

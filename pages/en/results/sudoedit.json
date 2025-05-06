@@ -1,0 +1,20 @@
+{
+  "id": "msg_01Q1rpcSzeadEq8AW2CT64cg",
+  "content": [
+    {
+      "text": "# sudoedit command\n\nEdit files securely as another user, typically root.\n\n## Overview\n\n`sudoedit` (also accessible as `sudo -e`) allows users to edit files with elevated privileges while using their own editor preferences. Unlike directly using `sudo` with an editor, `sudoedit` creates a temporary copy of the file, lets you edit it with your preferred editor, then copies it back to the original location with proper permissions.\n\n## Options\n\n### **-u, --user=user**\n\nSpecify which user to edit the file as (defaults to root)\n\n```console\n$ sudoedit -u www-data /var/www/html/index.html\n```\n\n### **-H, --set-home**\n\nSet HOME environment variable to target user's home directory\n\n```console\n$ sudoedit -H /etc/ssh/sshd_config\n```\n\n### **-C, --close-from=num**\n\nClose all file descriptors greater than or equal to num\n\n```console\n$ sudoedit -C 3 /etc/hosts\n```\n\n### **-h, --help**\n\nDisplay help message and exit\n\n```console\n$ sudoedit -h\n```\n\n## Usage Examples\n\n### Editing a system configuration file\n\n```console\n$ sudoedit /etc/ssh/sshd_config\n[Your default editor opens with the file]\n```\n\n### Editing multiple files at once\n\n```console\n$ sudoedit /etc/hosts /etc/resolv.conf\n[Your default editor opens with each file in sequence]\n```\n\n### Editing as a specific user\n\n```console\n$ sudoedit -u postgres /etc/postgresql/13/main/postgresql.conf\n[Your default editor opens with the file, changes will be owned by postgres]\n```\n\n## Tips:\n\n### Setting Your Preferred Editor\n\n`sudoedit` uses the EDITOR or VISUAL environment variable to determine which editor to use. Set these in your shell profile:\n\n```console\n$ echo 'export EDITOR=vim' >> ~/.bashrc\n$ source ~/.bashrc\n```\n\n### Security Benefits\n\nAlways use `sudoedit` instead of `sudo vim` when editing system files. This prevents potential security issues with editor plugins or configurations that might execute code with elevated privileges.\n\n### Temporary File Location\n\n`sudoedit` creates temporary files in /tmp by default. If you need to edit very large files, ensure your /tmp partition has sufficient space.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `sudoedit` and `sudo vim`?\nA. `sudoedit` creates a temporary copy of the file that you edit with your normal user privileges, then copies it back with elevated privileges. `sudo vim` runs the entire editor with root privileges, which can be a security risk if your editor has plugins or configurations that might execute code.\n\n#### Q2. How do I specify which editor to use?\nA. Set the EDITOR or VISUAL environment variable in your shell profile (e.g., `export EDITOR=nano` in ~/.bashrc).\n\n#### Q3. Can I use `sudoedit` to edit multiple files at once?\nA. Yes, simply list all files you want to edit: `sudoedit file1 file2 file3`.\n\n#### Q4. What happens if I don't have permission to view the original file?\nA. `sudoedit` will still work as long as you have sudo privileges to edit the file, even if your normal user can't read it.\n\n## References\n\nhttps://www.sudo.ws/docs/man/sudoedit.man/\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1680,
+    "output_tokens": 819
+  }
+}

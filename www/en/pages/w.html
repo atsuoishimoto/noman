@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  w - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>w command</h1>
+<p>Display information about users currently logged in and their processes.</p>
+<h2>Overview</h2>
+<p>The <code>w</code> command shows who is logged on and what they are doing. It displays a summary of the current activity on the system, including the user name, terminal name, remote host, login time, idle time, CPU usage, and the command line of their current process.</p>
+<h2>Options</h2>
+<h3><strong>-h, --no-header</strong></h3>
+<p>Don't print the header</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>-h
+<span style="color: #000; font-style: italic">user     tty      from             login@   idle   JCPU   PCPU  what</span>
+<span style="color: #000; font-style: italic">john     tty1     -                09:15    0.00s  0.05s  0.01s  w -h</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s  vim document.txt</span>
+</pre></div>
+<h3><strong>-s, --short</strong></h3>
+<p>Use the short format (don't print login time, JCPU or PCPU times)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             IDLE   WHAT</span>
+<span style="color: #000; font-style: italic">john     tty1     -                0.00s  w -s</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      2:35   vim document.txt</span>
+<span style="color: #000; font-style: italic">bob      pts/1    10.0.0.25        0.00s  top</span>
+</pre></div>
+<h3><strong>-f, --from</strong></h3>
+<p>Toggle printing the FROM (remote hostname) field</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>-f
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span>
+<span style="color: #000; font-style: italic">john     tty1     -                09:15    0.00s  0.05s  0.01s w -f</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s vim document.txt</span>
+<span style="color: #000; font-style: italic">bob      pts/1    10.0.0.25        10:05    0.00s  0.15s  0.10s top</span>
+</pre></div>
+<h3><strong>-i, --ip-addr</strong></h3>
+<p>Display IP address instead of hostname in the FROM field</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span>
+<span style="color: #000; font-style: italic">john     tty1     -                09:15    0.00s  0.05s  0.01s w -i</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s vim document.txt</span>
+<span style="color: #000; font-style: italic">bob      pts/1    10.0.0.25        10:05    0.00s  0.15s  0.10s top</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span>
+<span style="color: #000; font-style: italic">john     tty1     -                09:15    0.00s  0.05s  0.01s w</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s vim document.txt</span>
+<span style="color: #000; font-style: italic">bob      pts/1    10.0.0.25        10:05    0.00s  0.15s  0.10s top</span>
+</pre></div>
+<h3>Showing information for a specific user</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>jane
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s vim document.txt</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Understanding the Output Columns</h3>
+<ul>
+<li><strong>USER</strong>: Username of the logged-in user</li>
+<li><strong>TTY</strong>: Terminal name the user is logged in on</li>
+<li><strong>FROM</strong>: Remote hostname or IP address</li>
+<li><strong>LOGIN@</strong>: Time when the user logged in</li>
+<li><strong>IDLE</strong>: Time since the user's last activity</li>
+<li><strong>JCPU</strong>: Time used by all processes attached to the tty</li>
+<li><strong>PCPU</strong>: Time used by the current process (shown in WHAT)</li>
+<li><strong>WHAT</strong>: Command line of the user's current process</li>
+</ul>
+<h3>Combine with grep for Filtering</h3>
+<p>Use <code>w | grep username</code> to quickly find information about a specific user without having to use the username parameter.</p>
+<h3>Check System Load</h3>
+<p>The first line of <code>w</code> output shows system uptime and load averages, which is useful for quick system health checks.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>w</code> and <code>who</code>?</h4>
+<p>A. <code>w</code> provides more detailed information than <code>who</code>, including what each user is doing and system load averages. <code>who</code> simply lists who is logged in.</p>
+<h4>Q2. What does the IDLE time represent?</h4>
+<p>A. IDLE time shows how long it's been since the user performed any activity on their terminal. A high idle time indicates the user is logged in but not actively using the system.</p>
+<h4>Q3. How do I interpret the load averages?</h4>
+<p>A. Load averages show the system demand over the last 1, 5, and 15 minutes. Numbers below your CPU core count generally indicate the system isn't overloaded.</p>
+<h4>Q4. What do the JCPU and PCPU columns mean?</h4>
+<p>A. JCPU shows the time used by all processes attached to the user's terminal. PCPU shows the time used by the current process listed in the WHAT column.</p>
+<h2>References</h2>
+<p>https://www.man7.org/linux/man-pages/man1/w.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

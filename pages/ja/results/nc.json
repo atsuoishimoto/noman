@@ -1,0 +1,20 @@
+{
+  "id": "msg_01SJpjyMT2WgDZmoDFBeXssY",
+  "content": [
+    {
+      "text": "# nc コマンド\n\nネットワーク接続を作成・管理し、データ転送、ポートスキャン、ネットワークデバッグを行うコマンドです。\n\n## 概要\n\n`nc`（netcat）は、TCPまたはUDPプロトコルを使用してネットワーク接続を介してデータを読み書きする多目的ネットワークユーティリティです。ネットワーク操作のための「スイスアーミーナイフ」として機能し、サーバーの作成、サービスへの接続、ファイル転送、ポートスキャン、ネットワーク問題のデバッグなどを行うことができます。\n\n## オプション\n\n### **-l**\n\nリモートホストへの接続を開始するのではなく、着信接続をリッスンします。\n\n```console\n$ nc -l 8080\n```\n\n### **-p**\n\nncが使用するソースポートを指定します。\n\n```console\n$ nc -p 12345 example.com 80\n```\n\n### **-v**\n\n詳細な出力を有効にし、より多くの接続詳細を表示します。\n\n```console\n$ nc -v example.com 80\nConnection to example.com port 80 [tcp/http] succeeded!\n```\n\n### **-z**\n\nデータを送信せずにリスニングデーモンをスキャンします（ポートスキャンモード）。\n\n```console\n$ nc -z -v example.com 20-30\nConnection to example.com 22 port [tcp/ssh] succeeded!\n```\n\n### **-u**\n\nデフォルトのTCPプロトコルの代わりにUDPを使用します。\n\n```console\n$ nc -u 192.168.1.1 53\n```\n\n### **-w**\n\n接続とポートスキャンのタイムアウトを秒単位で指定します。\n\n```console\n$ nc -w 5 example.com 80\n```\n\n### **-n**\n\nDNS検索をスキップし、数値IPアドレスのみを使用します。\n\n```console\n$ nc -n 192.168.1.1 80\n```\n\n## 使用例\n\n### 簡単なチャットサーバーとクライアント\n\n```console\n# サーバー側\n$ nc -l 1234\nHello from client!\nHello from server!\n\n# クライアント側\n$ nc 192.168.1.100 1234\nHello from client!\nHello from server!\n```\n\n### ファイル転送\n\n```console\n# 受信側\n$ nc -l 1234 > received_file.txt\n\n# 送信側\n$ nc 192.168.1.100 1234 < file_to_send.txt\n```\n\n### ポートスキャン\n\n```console\n$ nc -z -v 192.168.1.1 20-30\nConnection to 192.168.1.1 22 port [tcp/ssh] succeeded!\nConnection to 192.168.1.1 25 port [tcp/smtp] succeeded!\n```\n\n### HTTPリクエスト\n\n```console\n$ echo -e \"GET / HTTP/1.1\\r\\nHost: example.com\\r\\n\\r\\n\" | nc example.com 80\nHTTP/1.1 200 OK\nContent-Type: text/html\n...\n```\n\n## ヒント\n\n### 永続的なリスニングサーバー\n\nクライアント切断後もサーバーを実行し続けるには、（サポートされているシステムで）`-k`オプションを使用します：\n```console\n$ nc -k -l 8080\n```\n\n### バナーグラビング\n\n特定のポートで実行されているサービスを素早く識別します：\n```console\n$ nc -v example.com 22\nSSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5\n```\n\n### プロキシ接続\n\nncを使用して2つのエンドポイント間の簡単なプロキシを作成します：\n```console\n$ nc -l 8080 | nc example.com 80\n```\n\n### ネットワーク問題のデバッグ\n\n接続問題のトラブルシューティングを行う際は、アプリケーション固有のデバッグに入る前に、ncを使用して特定のポートに到達可能かどうかをテストします。\n\n## よくある質問\n\n#### Q1. ncで簡単なチャットサーバーを作成するにはどうすればよいですか？\nA. サーバー側で`nc -l PORT`を実行し、クライアント側で`nc SERVER_IP PORT`を実行します。メッセージを入力してEnterキーを押すと送信されます。\n\n#### Q2. ncを使用してファイルを転送できますか？\nA. はい。受信側で`nc -l PORT > filename`を実行し、送信側で`nc DESTINATION_IP PORT < filename`を実行します。\n\n#### Q3. ncでオープンポートをスキャンするにはどうすればよいですか？\nA. `nc -z -v TARGET_IP PORT_RANGE`を使用します（例：`nc -z -v example.com 20-100`）。\n\n#### Q4. 機密データの転送にncは安全ですか？\nA. いいえ、ncはデータを平文で送信します。機密データには、scp、sftpなどの安全な代替手段を使用するか、送信前にデータを暗号化してください。\n\n#### Q5. ncとncatの違いは何ですか？\nA. ncatはNmapプロジェクトの一部であり、従来のncとの互換性を維持しながら、SSL対応、プロキシ接続、より高度なオプションなどの追加機能を提供します。\n\n## 参考文献\n\nhttps://man.openbsd.org/nc.1\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1237,
+    "output_tokens": 1620
+  }
+}

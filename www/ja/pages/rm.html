@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  rm - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>rm コマンド</h1>
+<p>ファイルシステムからファイルやディレクトリを削除します。</p>
+<h2>概要</h2>
+<p><code>rm</code> コマンドはファイルシステムからファイルやディレクトリを削除します。デフォルトでは、ディレクトリは削除せず、ファイルを削除する前に確認を求めません。<code>rm</code> で削除されたファイルは簡単に復元できないため、このコマンドは注意して使用してください。</p>
+<h2>オプション</h2>
+<h3><strong>-f, --force</strong></h3>
+<p>存在しないファイルや引数を無視し、確認を求めません</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>nonexistent_file.txt
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3><strong>-i, --interactive</strong></h3>
+<p>削除の前に毎回確認を求めます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>important.txt
+<span style="color: #000; font-style: italic">rm: remove regular file &#39;important.txt&#39;? y</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3><strong>-r, -R, --recursive</strong></h3>
+<p>ディレクトリとその内容を再帰的に削除します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>project_folder/
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3><strong>-d, --dir</strong></h3>
+<p>空のディレクトリを削除します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>empty_directory/
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>実行内容を説明します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">removed &#39;file.txt&#39;</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>複数のファイルを削除する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>file3.txt
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>確認付きでファイルを削除する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>*.txt
+<span style="color: #000; font-style: italic">rm: remove regular file &#39;document.txt&#39;? y</span>
+<span style="color: #000; font-style: italic">rm: remove regular file &#39;notes.txt&#39;? n</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>ディレクトリとその内容を削除する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-rf<span style="color: #F8F8F8"> </span>old_project/
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>詳細出力付きでファイルを削除する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>*.log
+<span style="color: #000; font-style: italic">removed &#39;error.log&#39;</span>
+<span style="color: #000; font-style: italic">removed &#39;access.log&#39;</span>
+<span style="color: #000; font-style: italic">removed &#39;system.log&#39;</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>注意して使用する</h3>
+<p><code>rm</code> コマンドはファイルをゴミ箱やリサイクルビンに移動せずに完全に削除します。特にワイルドカードを使用する場合は、削除対象を常に確認してください。</p>
+<h3>インタラクティブモードでより安全に削除する</h3>
+<p>複数のファイルを削除する場合は、<code>rm -i</code> を使用して各削除を確認しましょう。これにより重要なファイルの誤削除を防ぐことができます。</p>
+<h3><code>rm -rf /</code> は避ける</h3>
+<p><code>rm -rf /</code> や <code>rm -rf /*</code> は絶対に実行しないでください。これらのコマンドはシステム上のすべてを削除しようとし、システムが使用不能になる可能性があります。</p>
+<h3>安全のためのエイリアスを使用する</h3>
+<p>シェル設定で <code>alias rm='rm -i'</code> のようなエイリアスを作成して、デフォルトで常にインタラクティブモードを使用することを検討してください。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>rm</code> で削除したファイルを復元できますか？</h4>
+<p>A. 一般的にはできません。グラフィカルなファイルマネージャとは異なり、<code>rm</code> はファイルをゴミ箱フォルダに移動しません。復元には特殊なツールが必要で、保証はされていません。</p>
+<h4>Q2. 特殊文字を含むファイル名のファイルを削除するにはどうすればよいですか？</h4>
+<p>A. ファイル名を引用符で囲むか、特殊文字をバックスラッシュでエスケープします。例：<code>rm &quot;file with spaces.txt&quot;</code> または <code>rm file\ with\ spaces.txt</code></p>
+<h4>Q3. ディレクトリとその内容を安全に削除するにはどうすればよいですか？</h4>
+<p>A. <code>rm -r directory/</code> を使用してディレクトリとその内容を再帰的に削除します。確認プロンプトを表示するには <code>-i</code> を追加します。</p>
+<h4>Q4. <code>rm -r</code> と <code>rmdir</code> の違いは何ですか？</h4>
+<p>A. <code>rmdir</code> は空のディレクトリのみを削除しますが、<code>rm -r</code> はディレクトリとその内容をすべて再帰的に削除します。</p>
+<h2>macOSに関する考慮事項</h2>
+<p>macOSでは、デフォルトの <code>rm</code> コマンドはGNU rmで利用可能な <code>--one-file-system</code> オプションをサポートしていません。また、外部ドライブからファイルを削除する際にmacOSのゴミ箱を完全に回避するには、Finderの削除機能ではなく <code>rm</code> を使用する必要があります。</p>
+<h2>参考資料</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/rm-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

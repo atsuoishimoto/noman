@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  dmesg - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>dmesg command</h1>
+<p>Display or control the kernel ring buffer, showing system messages and hardware information.</p>
+<h2>Overview</h2>
+<p>The <code>dmesg</code> command examines or controls the kernel ring buffer, which contains messages from the kernel about hardware devices, driver initializations, and system events. It's particularly useful for troubleshooting hardware issues, checking boot messages, and monitoring system events.</p>
+<h2>Options</h2>
+<h3><strong>-c, --clear</strong></h3>
+<p>Clear the ring buffer after printing its contents.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dmesg<span style="color: #F8F8F8"> </span>-c
+<span style="color: #000; font-style: italic">[    0.000000] Linux version 5.15.0-76-generic (buildd@lcy02-amd64-017) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #83-Ubuntu SMP</span>
+<span style="color: #000; font-style: italic">[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-76-generic root=UUID=1234abcd-1234-1234-1234-1234abcd5678 ro quiet splash</span>
+<span style="color: #000; font-style: italic">[... more kernel messages ...]</span>
+</pre></div>
+<h3><strong>-H, --human</strong></h3>
+<p>Enable human-readable output with timestamps in a readable format.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>-H
+<span style="color: #000; font-style: italic">[May  5 09:15:32] Linux version 5.15.0-76-generic (buildd@lcy02-amd64-017) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #83-Ubuntu SMP</span>
+<span style="color: #000; font-style: italic">[May  5 09:15:32] Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-76-generic root=UUID=1234abcd-1234-1234-1234-1234abcd5678 ro quiet splash</span>
+<span style="color: #000; font-style: italic">[... more kernel messages ...]</span>
+</pre></div>
+<h3><strong>-l, --level</strong></h3>
+<p>Restrict output to the specified priority levels (comma-separated list).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>--level<span style="color: #CE5C00; font-weight: bold">=</span>err,warn
+<span style="color: #000; font-style: italic">[    5.123456] CPU: 0 PID: 123 Comm: systemd-udevd Not tainted 5.15.0-76-generic #83-Ubuntu</span>
+<span style="color: #000; font-style: italic">[    7.234567] usb 1-2: device descriptor read/64, error -110</span>
+<span style="color: #000; font-style: italic">[... more error and warning messages ...]</span>
+</pre></div>
+<h3><strong>-f, --facility</strong></h3>
+<p>Restrict output to the specified facilities (comma-separated list).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>--facility<span style="color: #CE5C00; font-weight: bold">=</span>kern
+<span style="color: #000; font-style: italic">[    0.000000] Linux version 5.15.0-76-generic (buildd@lcy02-amd64-017) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #83-Ubuntu SMP</span>
+<span style="color: #000; font-style: italic">[... more kernel messages ...]</span>
+</pre></div>
+<h3><strong>-T, --ctime</strong></h3>
+<p>Display human-readable timestamps (using ctime format).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>-T
+<span style="color: #000; font-style: italic">[Mon May  5 09:15:32 2025] Linux version 5.15.0-76-generic (buildd@lcy02-amd64-017) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #83-Ubuntu SMP</span>
+<span style="color: #000; font-style: italic">[Mon May  5 09:15:32 2025] Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-76-generic root=UUID=1234abcd-1234-1234-1234-1234abcd5678 ro quiet splash</span>
+</pre></div>
+<h3><strong>-w, --follow</strong></h3>
+<p>Wait for new messages (similar to <code>tail -f</code>).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span>-w
+<span style="color: #000; font-style: italic">[    0.000000] Linux version 5.15.0-76-generic</span>
+<span style="color: #000; font-style: italic">[... existing messages ...]</span>
+<span style="color: #000; font-style: italic">[  123.456789] usb 1-1: new high-speed USB device number 2 using xhci_hcd</span>
+<span style="color: #000; font-style: italic">[... new messages appear as they occur ...]</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Filtering for USB-related messages</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>usb
+<span style="color: #000; font-style: italic">[    2.123456] usb 1-1: new high-speed USB device number 2 using xhci_hcd</span>
+<span style="color: #000; font-style: italic">[    2.234567] usb 1-1: New USB device found, idVendor=abcd, idProduct=1234, bcdDevice= 1.00</span>
+<span style="color: #000; font-style: italic">[    2.345678] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3</span>
+</pre></div>
+<h3>Checking for disk or filesystem errors</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dmesg<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;error\|fail\|warn&#39;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;disk\|sda\|ext4\|fs&#39;</span>
+<span style="color: #000; font-style: italic">[   15.123456] EXT4-fs (sda1): mounted filesystem with ordered data mode</span>
+<span style="color: #000; font-style: italic">[  234.567890] Buffer I/O error on dev sda2, logical block 12345, async page read</span>
+</pre></div>
+<h3>Monitoring kernel messages in real-time</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dmesg<span style="color: #F8F8F8"> </span>-wH
+<span style="color: #000; font-style: italic">[May  5 09:20:15] Linux version 5.15.0-76-generic</span>
+<span style="color: #000; font-style: italic">[... existing messages ...]</span>
+<span style="color: #000; font-style: italic">[May  5 09:25:32] usb 1-1: new high-speed USB device number 2 using xhci_hcd</span>
+<span style="color: #000; font-style: italic">[... new messages appear as they occur with human-readable timestamps ...]</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Use sudo for Full Access</h3>
+<p>On many systems, regular users may have limited access to kernel messages. Use <code>sudo dmesg</code> to see all messages, especially when troubleshooting hardware issues.</p>
+<h3>Combine with grep for Targeted Troubleshooting</h3>
+<p>When troubleshooting specific hardware, pipe <code>dmesg</code> output to <code>grep</code> with relevant keywords like <code>dmesg | grep -i wifi</code> for wireless issues or <code>dmesg | grep -i sda</code> for disk problems.</p>
+<h3>Check Boot Messages After System Updates</h3>
+<p>After kernel updates or system changes, review <code>dmesg</code> output to ensure all hardware is properly detected and no errors occurred during initialization.</p>
+<h3>Clear the Buffer for Fresh Monitoring</h3>
+<p>Use <code>sudo dmesg -c</code> to clear the buffer after reviewing messages, then monitor for new issues without the clutter of old messages.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. Why do I need sudo to run dmesg on some systems?</h4>
+<p>A. On many modern Linux distributions, access to kernel messages is restricted for security reasons. Using <code>sudo</code> provides the necessary privileges to view all messages.</p>
+<h4>Q2. How can I see timestamps in a readable format?</h4>
+<p>A. Use <code>dmesg -T</code> for human-readable timestamps in ctime format, or <code>dmesg -H</code> for a more concise human-readable output with relative timestamps.</p>
+<h4>Q3. How do I monitor dmesg output continuously?</h4>
+<p>A. Use <code>dmesg -w</code> or <code>dmesg --follow</code> to watch for new messages in real-time, similar to <code>tail -f</code>.</p>
+<h4>Q4. How can I save dmesg output to a file?</h4>
+<p>A. Use redirection: <code>dmesg &gt; dmesg_output.txt</code> or <code>dmesg | tee dmesg_output.txt</code> to both display and save the output.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/dmesg.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

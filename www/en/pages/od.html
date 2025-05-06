@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  od - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>od command</h1>
+<p>Display file contents in various formats, primarily octal, decimal, or hexadecimal.</p>
+<h2>Overview</h2>
+<p>The <code>od</code> (octal dump) command displays the content of files in different formats. While originally designed to show data in octal format, modern versions support multiple output formats including hexadecimal, decimal, ASCII, and more. It's particularly useful for examining binary files, viewing non-printable characters, or analyzing file content byte by byte.</p>
+<h2>Options</h2>
+<h3><strong>-t, --format=TYPE</strong></h3>
+<p>Specify the output format. Common TYPE values include:</p>
+<ul>
+<li><code>a</code> - named characters</li>
+<li><code>c</code> - ASCII characters or backslash escapes</li>
+<li><code>d</code> - signed decimal</li>
+<li><code>o</code> - octal (default)</li>
+<li><code>x</code> - hexadecimal</li>
+<li><code>f</code> - floating point</li>
+</ul>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>c
+<span style="color: #000; font-style: italic">0000000   H   e   l   l   o  \n</span>
+<span style="color: #000; font-style: italic">0000006</span>
+</pre></div>
+<h3><strong>-A, --address-radix=RADIX</strong></h3>
+<p>Specify the format for file offsets. RADIX can be:</p>
+<ul>
+<li><code>d</code> - decimal</li>
+<li><code>o</code> - octal (default)</li>
+<li><code>x</code> - hexadecimal</li>
+<li><code>n</code> - none (no addresses)</li>
+</ul>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span>x
+<span style="color: #000; font-style: italic">000000   48 65 6c 6c 6f 0a</span>
+<span style="color: #000; font-style: italic">000006</span>
+</pre></div>
+<h3><strong>-j, --skip-bytes=BYTES</strong></h3>
+<p>Skip BYTES input bytes before formatting and writing.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-j<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">6</span>
+<span style="color: #000; font-style: italic">0000006  W   o   r   l   d  \n</span>
+<span style="color: #000; font-style: italic">0000014</span>
+</pre></div>
+<h3><strong>-N, --read-bytes=BYTES</strong></h3>
+<p>Format and write at most BYTES input bytes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-N<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">0000000   H   e   l   l   o</span>
+<span style="color: #000; font-style: italic">0000005</span>
+</pre></div>
+<h3><strong>-w, --width=BYTES</strong></h3>
+<p>Output BYTES bytes per output line. Default is 16.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello World&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-w4
+<span style="color: #000; font-style: italic">0000000   H   e   l   l</span>
+<span style="color: #000; font-style: italic">0000004   o       W   o</span>
+<span style="color: #000; font-style: italic">0000010   r   l   d  \n</span>
+<span style="color: #000; font-style: italic">0000014</span>
+</pre></div>
+<h3><strong>-v, --output-duplicates</strong></h3>
+<p>Do not use * to mark line suppression (by default, * indicates when multiple identical lines are collapsed).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/zero<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #000">count</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">32</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">0000000 000000 000000 000000 000000 000000 000000 000000 000000</span>
+<span style="color: #000; font-style: italic">0000020 000000 000000 000000 000000 000000 000000 000000 000000</span>
+<span style="color: #000; font-style: italic">0000040</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Viewing a file in hexadecimal format</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>od<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>x1<span style="color: #F8F8F8"> </span>sample.bin
+<span style="color: #000; font-style: italic">0000000 48 65 6c 6c 6f 20 57 6f 72 6c 64 0a</span>
+<span style="color: #000; font-style: italic">0000014</span>
+</pre></div>
+<h3>Viewing a file in multiple formats simultaneously</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;ABC123&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>x1z<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>c
+<span style="color: #000; font-style: italic">0000000 41 42 43 31 32 33 0a                              &gt;ABC123.&lt;</span>
+<span style="color: #000; font-style: italic">0000007</span>
+</pre></div>
+<h3>Examining binary data with addresses in hexadecimal</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">16</span><span style="color: #F8F8F8"> </span>/dev/urandom<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span>x<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>x1z
+<span style="color: #000; font-style: italic">000000 ca f8 b1 35 94 55 29 45 9c 42 2a 8f 27 4a 0d 9e  &gt;...5.U)E.B*..&#39;J..&lt;</span>
+<span style="color: #000; font-style: italic">000010</span>
+</pre></div>
+<h3>Viewing file content as ASCII characters</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello\tWorld\nTest&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-c
+<span style="color: #000; font-style: italic">0000000   H   e   l   l   o  \t   W   o   r   l   d  \n   T   e   s   t</span>
+<span style="color: #000; font-style: italic">0000020</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Combine Format Types for Better Analysis</h3>
+<p>Use multiple <code>-t</code> options to display the same data in different formats simultaneously, making it easier to interpret binary data.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>x1<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>c
+<span style="color: #000; font-style: italic">0000000 48 65 6c 6c 6f 0a</span>
+<span style="color: #000; font-style: italic">         H   e   l   l   o  \n</span>
+<span style="color: #000; font-style: italic">0000006</span>
+</pre></div>
+<h3>Use with Pipes for Quick Data Inspection</h3>
+<p>Pipe command output to <code>od</code> for quick inspection of binary data or to reveal hidden characters.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>/bin/ls<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>od<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>x1c
+</pre></div>
+<h3>Analyze File Headers</h3>
+<p>Use <code>od</code> with <code>-N</code> to examine just the header bytes of binary files, which often contain format information.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>od<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>x1<span style="color: #F8F8F8"> </span>-N<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">16</span><span style="color: #F8F8F8"> </span>image.jpg
+</pre></div>
+<h3>Debugging Non-Printing Characters</h3>
+<p>When troubleshooting text files with unexpected behavior, use <code>od -c</code> to reveal non-printing characters like carriage returns or null bytes.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What does &quot;od&quot; stand for?</h4>
+<p>A. &quot;od&quot; stands for &quot;octal dump,&quot; reflecting its original purpose of displaying file contents in octal format.</p>
+<h4>Q2. How can I view a file in hexadecimal format?</h4>
+<p>A. Use <code>od -t x1 filename</code> to view the file in hexadecimal format, with each byte shown separately.</p>
+<h4>Q3. How do I display only ASCII characters?</h4>
+<p>A. Use <code>od -t c filename</code> to display the file content as ASCII characters, with non-printable characters shown as escape sequences.</p>
+<h4>Q4. How can I skip the first few bytes of a file?</h4>
+<p>A. Use <code>od -j N filename</code> where N is the number of bytes to skip before starting the display.</p>
+<h4>Q5. How do I remove the address column from the output?</h4>
+<p>A. Use <code>od -A n filename</code> to suppress the address column in the output.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

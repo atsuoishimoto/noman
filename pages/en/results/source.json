@@ -1,0 +1,20 @@
+{
+  "id": "msg_0113L4deUSfaxtCfTARbHxCo",
+  "content": [
+    {
+      "text": "# source command\n\nExecute commands from a file or script in the current shell environment.\n\n## Overview\n\nThe `source` command (also accessible via the `.` alias) reads and executes commands from a specified file in the current shell context. Unlike executing a script directly, which runs in a subshell, `source` runs commands in the current shell, allowing variables and functions defined in the sourced file to persist in the current session.\n\n## Options\n\nThe `source` command has minimal options as it's a shell builtin:\n\n### **-h**\n\nDisplay help information (in some shells)\n\n```console\n$ source -h\n.: usage: . filename [arguments]\n```\n\n## Usage Examples\n\n### Sourcing a configuration file\n\n```console\n$ source ~/.bashrc\n```\n\n### Using the dot (.) alias\n\n```console\n$ . ~/.bash_profile\n```\n\n### Sourcing with arguments\n\n```console\n$ source script.sh arg1 arg2\n```\n\n### Sourcing environment variables\n\n```console\n$ cat env.sh\nexport PROJECT_ROOT=\"/path/to/project\"\nexport API_KEY=\"abc123\"\n\n$ source env.sh\n$ echo $PROJECT_ROOT\n/path/to/project\n```\n\n## Tips\n\n### Use source for environment setup\n\nSource is ideal for loading environment variables, functions, and aliases that you want available in your current shell session.\n\n### Debugging scripts\n\nYou can use `source` with the `-x` option in bash to debug scripts by showing each command as it executes:\n\n```console\n$ source -x script.sh\n```\n\n### Reload configuration without logging out\n\nWhen you modify shell configuration files like `.bashrc` or `.zshrc`, use `source` to apply changes without restarting your terminal.\n\n### Script path considerations\n\nWhen using `source`, the script path is relative to your current directory, not the location of the calling script.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `source` and executing a script directly?\nA. When you execute a script directly (e.g., `./script.sh`), it runs in a subshell. Any variables or functions defined in that script are lost when the script finishes. Using `source` executes the commands in your current shell, so variables and functions persist after the script completes.\n\n#### Q2. Can I use `source` with any type of file?\nA. You can source any text file containing valid shell commands. Typically, it's used with shell scripts (`.sh`), configuration files, and environment setup files.\n\n#### Q3. Is there a difference between `source` and the dot (`.`) command?\nA. No functional difference. The dot (`.`) is the POSIX standard command, while `source` is a more readable alias available in bash and some other shells. Both do the same thing.\n\n#### Q4. What happens if the sourced file doesn't exist?\nA. You'll get an error message like \"No such file or directory\" and the command will return a non-zero exit status.\n\n## References\n\n- Bash Reference Manual: https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html\n- POSIX specification: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#dot\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1651,
+    "output_tokens": 769
+  }
+}

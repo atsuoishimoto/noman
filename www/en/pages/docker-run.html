@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  docker-run - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>docker run command</h1>
+<p>Creates and starts a new container from an image.</p>
+<h2>Overview</h2>
+<p><code>docker run</code> creates and runs a new container from a specified Docker image. It combines the functionality of <code>docker create</code> and <code>docker start</code> in a single command. This command is fundamental for launching containers with various configurations, network settings, volume mounts, and runtime parameters.</p>
+<h2>Options</h2>
+<h3><strong>--name</strong></h3>
+<p>Assign a name to the container</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--name<span style="color: #F8F8F8"> </span>my-nginx<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>-d, --detach</strong></h3>
+<p>Run container in background and print container ID</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">7cb5d2b9a7eab87f07182b5bf58936c9947890995b1b94f412912fa822a9ecb5</span>
+</pre></div>
+<h3><strong>-p, --publish</strong></h3>
+<p>Publish a container's port(s) to the host</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span>:80<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>-v, --volume</strong></h3>
+<p>Bind mount a volume</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>/host/path:/container/path<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>-e, --env</strong></h3>
+<p>Set environment variables</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #000">MYSQL_ROOT_PASSWORD</span><span style="color: #CE5C00; font-weight: bold">=</span>my-secret-pw<span style="color: #F8F8F8"> </span>mysql
+</pre></div>
+<h3><strong>--rm</strong></h3>
+<p>Automatically remove the container when it exits</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--rm<span style="color: #F8F8F8"> </span>alpine<span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, World!&quot;</span>
+<span style="color: #000; font-style: italic">Hello, World!</span>
+</pre></div>
+<h3><strong>-i, --interactive</strong></h3>
+<p>Keep STDIN open even if not attached</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>ubuntu
+</pre></div>
+<h3><strong>-t, --tty</strong></h3>
+<p>Allocate a pseudo-TTY</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-it<span style="color: #F8F8F8"> </span>ubuntu<span style="color: #F8F8F8"> </span>bash
+<span style="color: #8F5902">root@7cb5d2b9a7ea:/#</span>
+</pre></div>
+<h3><strong>--network</strong></h3>
+<p>Connect a container to a network</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--network<span style="color: #CE5C00; font-weight: bold">=</span>my-network<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>--restart</strong></h3>
+<p>Restart policy to apply when a container exits</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--restart<span style="color: #CE5C00; font-weight: bold">=</span>always<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Running a web server with port mapping</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>--name<span style="color: #F8F8F8"> </span>my-website<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span>:80<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">7cb5d2b9a7eab87f07182b5bf58936c9947890995b1b94f412912fa822a9ecb5</span>
+</pre></div>
+<h3>Running an interactive shell in a container</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-it<span style="color: #F8F8F8"> </span>--rm<span style="color: #F8F8F8"> </span>ubuntu<span style="color: #F8F8F8"> </span>bash
+<span style="color: #8F5902">root@7cb5d2b9a7ea:/# </span>ls
+<span style="color: #000; font-style: italic">bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span>
+<span style="color: #8F5902">root@7cb5d2b9a7ea:/# </span><span style="color: #204A87">exit</span>
+</pre></div>
+<h3>Running a container with environment variables and volume mounts</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>--name<span style="color: #F8F8F8"> </span>my-database<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>-e<span style="color: #F8F8F8"> </span><span style="color: #000">POSTGRES_PASSWORD</span><span style="color: #CE5C00; font-weight: bold">=</span>mysecretpassword<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>-v<span style="color: #F8F8F8"> </span>pgdata:/var/lib/postgresql/data<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5432</span>:5432<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>postgres:13
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use --rm for Temporary Containers</h3>
+<p>When running containers for one-off tasks or testing, use the <code>--rm</code> flag to automatically clean up the container after it exits, preventing container clutter.</p>
+<h3>Combine -i and -t for Interactive Sessions</h3>
+<p>The <code>-it</code> combination is commonly used when you need an interactive terminal session with the container, such as running a shell.</p>
+<h3>Use Named Volumes for Persistent Data</h3>
+<p>Instead of binding to host directories, consider using named volumes (<code>-v myvolume:/container/path</code>) for better portability and management of persistent data.</p>
+<h3>Limit Container Resources</h3>
+<p>Use <code>--memory</code> and <code>--cpus</code> flags to limit the resources a container can use, preventing a single container from consuming all host resources.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--memory<span style="color: #CE5C00; font-weight: bold">=</span>512m<span style="color: #F8F8F8"> </span>--cpus<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">0</span>.5<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>docker run</code> and <code>docker start</code>?</h4>
+<p>A. <code>docker run</code> creates and starts a new container from an image, while <code>docker start</code> restarts a stopped container that already exists.</p>
+<h4>Q2. How do I run a container in the background?</h4>
+<p>A. Use the <code>-d</code> or <code>--detach</code> flag to run the container in the background.</p>
+<h4>Q3. How can I access a service running in a container?</h4>
+<p>A. Use the <code>-p</code> or <code>--publish</code> flag to map container ports to host ports, e.g., <code>-p 8080:80</code> maps container port 80 to host port 8080.</p>
+<h4>Q4. How do I pass environment variables to a container?</h4>
+<p>A. Use the <code>-e</code> or <code>--env</code> flag followed by the variable name and value, e.g., <code>-e VARIABLE=value</code>.</p>
+<h4>Q5. How do I share files between my host and a container?</h4>
+<p>A. Use the <code>-v</code> or <code>--volume</code> flag to mount host directories or volumes into the container, e.g., <code>-v /host/path:/container/path</code>.</p>
+<h2>References</h2>
+<p>https://docs.docker.com/engine/reference/commandline/run/</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

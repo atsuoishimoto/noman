@@ -1,0 +1,20 @@
+{
+  "id": "msg_01SfcSqgVY7xJ9AKLoaCwoBk",
+  "content": [
+    {
+      "text": "# if コマンド\n\n条件式を評価し、結果に基づいてコマンドを実行します。\n\n## 概要\n\n`if` コマンドはシェルの構文で、条件付き実行を可能にします。条件が真かどうかをテストし、それに応じてコードブロックを実行します。オプションで `elif`（else if）や `else` 節を含めることで、複数の条件を処理できます。\n\n## オプション\n\n`if` コマンドは独立した実行ファイルではなく、シェル組み込みの構文であるため、従来のコマンドラインオプションはありません。\n\n## 使用例\n\n### 基本的な if 文\n\n```console\n$ if [ -f /etc/passwd ]; then\n>   echo \"passwdファイルが存在します。\"\n> fi\npasswdファイルが存在します。\n```\n\n### if-else 文\n\n```console\n$ if [ $USER = \"root\" ]; then\n>   echo \"あなたはrootです。\"\n> else\n>   echo \"あなたはrootではありません。\"\n> fi\nあなたはrootではありません。\n```\n\n### if-elif-else 文\n\n```console\n$ count=15\n$ if [ $count -lt 10 ]; then\n>   echo \"カウントは10未満です。\"\n> elif [ $count -lt 20 ]; then\n>   echo \"カウントは10以上20未満です。\"\n> else\n>   echo \"カウントは20以上です。\"\n> fi\nカウントは10以上20未満です。\n```\n\n### テスト演算子の使用\n\n```console\n$ file=\"example.txt\"\n$ if [ -e \"$file\" ] && [ -w \"$file\" ]; then\n>   echo \"ファイルは存在し、書き込み可能です。\"\n> else\n>   echo \"ファイルが存在しないか、書き込みできません。\"\n> fi\nファイルが存在しないか、書き込みできません。\n```\n\n### コマンドの終了ステータスの使用\n\n```console\n$ if grep \"root\" /etc/passwd > /dev/null; then\n>   echo \"ユーザーrootが存在します。\"\n> fi\nユーザーrootが存在します。\n```\n\n## ヒント:\n\n### 変数は常に引用符で囲む\n\nテスト条件では、単語分割やグロブの問題を防ぐために、常に変数を引用符で囲みましょう：\n\n```console\n$ filename=\"my file.txt\"\n$ if [ -f \"$filename\" ]; then  # 引用符によりスペースの問題を防止\n>   echo \"ファイルが存在します\"\n> fi\n```\n\n### Bashでは二重角括弧を使用する\n\nBashでは、`[[ ]]` は従来の `[ ]` テストコマンドよりも多くの機能を提供します：\n\n```console\n$ if [[ \"$string\" == *txt ]]; then  # [[ ]]ではパターンマッチングが機能する\n>   echo \"文字列はtxtで終わります\"\n> fi\n```\n\n### コマンドの成功を確認する\n\n`[ ]` を使わずにコマンドが成功したかどうかをテストできます：\n\n```console\n$ if ping -c1 -W1 google.com &>/dev/null; then\n>   echo \"ネットワークは稼働中です\"\n> else\n>   echo \"ネットワークはダウンしています\"\n> fi\n```\n\n## よくある質問\n\n#### Q1. `[ ]` と `[[ ]]` の違いは何ですか？\nA. `[ ]` はほとんどのシェルで利用可能な従来のテストコマンドです。`[[ ]]` はパターンマッチングや論理演算子などの追加機能を持つBashの拡張機能です。可能な場合はBashスクリプトで `[[ ]]` を使用してください。\n\n#### Q2. ファイルが存在するかどうかをテストするにはどうすればよいですか？\nA. ファイルが存在するかを確認するには `if [ -e ファイル名 ]`、通常のファイルかを確認するには `if [ -f ファイル名 ]`、ディレクトリかを確認するには `if [ -d ファイル名 ]` を使用します。\n\n#### Q3. 文字列を比較するにはどうすればよいですか？\nA. 等しいかどうかは `if [ \"$string1\" = \"$string2\" ]`、等しくないかどうかは `if [ \"$string1\" != \"$string2\" ]` を使用します。文字列比較では単一の `=` を使用することに注意してください。\n\n#### Q4. 数値を比較するにはどうすればよいですか？\nA. `-eq`（等しい）、`-ne`（等しくない）、`-lt`（より小さい）、`-le`（以下）、`-gt`（より大きい）、または `-ge`（以上）を使用します：`if [ \"$num1\" -eq \"$num2\" ]`。\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html\n\n## 改訂履歴\n\n- 2025/05/06 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1116,
+    "output_tokens": 1483
+  }
+}

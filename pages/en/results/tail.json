@@ -1,0 +1,20 @@
+{
+  "id": "msg_019sCNLXtt967NPCvWxBXNY4",
+  "content": [
+    {
+      "text": "# tail command\n\nDisplay the last part of files.\n\n## Overview\n\nThe `tail` command outputs the last part (by default, 10 lines) of one or more files. It's commonly used to view recent entries in log files, monitor file changes in real-time, or check the end of any text file without opening the entire file.\n\n## Options\n\n### **-n, --lines=NUM**\n\nOutput the last NUM lines (default is 10)\n\n```console\n$ tail -n 5 /var/log/syslog\nMay  5 10:15:22 hostname service[1234]: Processing request\nMay  5 10:15:23 hostname service[1234]: Request completed\nMay  5 10:15:25 hostname service[1234]: New connection from 192.168.1.5\nMay  5 10:15:26 hostname service[1234]: Processing request\nMay  5 10:15:27 hostname service[1234]: Request completed\n```\n\n### **-f, --follow**\n\nOutput appended data as the file grows; useful for monitoring log files\n\n```console\n$ tail -f /var/log/apache2/access.log\n192.168.1.5 - - [05/May/2025:10:15:22 +0000] \"GET /index.html HTTP/1.1\" 200 2326\n192.168.1.6 - - [05/May/2025:10:15:25 +0000] \"GET /images/logo.png HTTP/1.1\" 200 4589\n192.168.1.7 - - [05/May/2025:10:15:27 +0000] \"POST /login HTTP/1.1\" 302 -\n```\n\n### **-c, --bytes=NUM**\n\nOutput the last NUM bytes\n\n```console\n$ tail -c 20 file.txt\nend of the file.\n```\n\n### **-q, --quiet, --silent**\n\nNever output headers giving file names\n\n```console\n$ tail -q file1.txt file2.txt\nLast line of file1\nLast line of file2\n```\n\n### **--pid=PID**\n\nWith -f, terminate after process ID, PID dies\n\n```console\n$ tail -f --pid=1234 logfile.txt\n```\n\n## Usage Examples\n\n### Monitoring multiple log files simultaneously\n\n```console\n$ tail -f /var/log/syslog /var/log/auth.log\n==> /var/log/syslog <==\nMay  5 10:20:22 hostname service[1234]: Processing request\n\n==> /var/log/auth.log <==\nMay  5 10:20:25 hostname sshd[5678]: Accepted publickey for user from 192.168.1.10\n```\n\n### Viewing the last 20 lines with line numbers\n\n```console\n$ tail -n 20 file.txt | nl\n     1  Line content here\n     2  More content here\n     ...\n     20 Last line here\n```\n\n### Following a log file but stopping when a process ends\n\n```console\n$ tail -f --pid=$(pgrep apache2) /var/log/apache2/access.log\n```\n\n## Tips:\n\n### Combine with grep for filtering\n\nUse `tail -f logfile.txt | grep ERROR` to monitor a log file in real-time but only show lines containing \"ERROR\".\n\n### Use with head for middle sections\n\nExtract the middle of a file with `head -n 20 file.txt | tail -n 10` to get lines 11-20.\n\n### Follow multiple files efficiently\n\nWhen following multiple log files with `tail -f`, use `--retry` to keep trying if a file becomes inaccessible and reappears later.\n\n### Terminate follow mode gracefully\n\nPress Ctrl+C to exit from tail's follow mode when you're done monitoring.\n\n## Frequently Asked Questions\n\n#### Q1. How do I view the last 10 lines of a file?\nA. Simply use `tail filename` or `tail -n 10 filename`.\n\n#### Q2. How can I continuously monitor a log file for changes?\nA. Use `tail -f logfile.txt` to follow the file in real-time as new content is added.\n\n#### Q3. Can I monitor multiple files at once?\nA. Yes, use `tail -f file1.txt file2.txt` to monitor multiple files simultaneously.\n\n#### Q4. How do I show a specific number of lines from the end?\nA. Use `tail -n NUMBER filename` where NUMBER is the count of lines you want to see.\n\n#### Q5. How can I exit from tail's follow mode?\nA. Press Ctrl+C to terminate the tail command when in follow mode.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/tail-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 1150
+  }
+}

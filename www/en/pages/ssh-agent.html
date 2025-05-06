@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ssh-agent - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ssh-agent command</h1>
+<p>Authentication agent for SSH private keys that holds keys in memory to avoid repeated passphrase entry.</p>
+<h2>Overview</h2>
+<p>ssh-agent is a program that holds private keys used for SSH public key authentication. It runs in the background, eliminating the need to enter passphrases each time you use SSH to connect to servers. When you add keys to the agent, you enter the passphrase once, and the agent keeps the decrypted key in memory for future use.</p>
+<h2>Options</h2>
+<h3><strong>-c</strong></h3>
+<p>Generates C-shell commands on stdout. This is the default if SHELL looks like it's a csh style shell.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-agent<span style="color: #F8F8F8"> </span>-c
+<span style="color: #000; font-style: italic">setenv SSH_AUTH_SOCK /tmp/ssh-XXXXXXXX/agent.12345;</span>
+<span style="color: #000; font-style: italic">setenv SSH_AGENT_PID 12345;</span>
+<span style="color: #000; font-style: italic">echo Agent pid 12345;</span>
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>Generates Bourne shell commands on stdout. This is the default if SHELL does not look like it's a csh style shell.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-agent<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic">SSH_AUTH_SOCK=/tmp/ssh-XXXXXXXX/agent.12345; export SSH_AUTH_SOCK;</span>
+<span style="color: #000; font-style: italic">SSH_AGENT_PID=12345; export SSH_AGENT_PID;</span>
+<span style="color: #000; font-style: italic">echo Agent pid 12345;</span>
+</pre></div>
+<h3><strong>-d</strong></h3>
+<p>Debug mode. When this option is specified, ssh-agent will not fork and will write debug information to standard error.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-agent<span style="color: #F8F8F8"> </span>-d
+</pre></div>
+<h3><strong>-a</strong> <em>bind_address</em></h3>
+<p>Bind the agent to the Unix-domain socket bind_address.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-agent<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>/tmp/custom-ssh-agent.socket
+</pre></div>
+<h3><strong>-t</strong> <em>life</em></h3>
+<p>Sets a default value for the maximum lifetime of identities added to the agent. The lifetime may be specified in seconds or in a time format specified in sshd_config(5).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-agent<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>1h
+</pre></div>
+<h3><strong>-k</strong></h3>
+<p>Kill the current agent (given by the SSH_AGENT_PID environment variable).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-agent<span style="color: #F8F8F8"> </span>-k
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Starting ssh-agent and loading your keys</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>ssh-agent<span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #000; font-style: italic">Agent pid 12345</span>
+<span style="color: #8F5902">$ </span>ssh-add
+<span style="color: #000; font-style: italic">Enter passphrase for /home/user/.ssh/id_rsa: </span>
+<span style="color: #000; font-style: italic">Identity added: /home/user/.ssh/id_rsa</span>
+</pre></div>
+<h3>Starting ssh-agent with a specific lifetime</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>ssh-agent<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>4h<span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #000; font-style: italic">Agent pid 12345</span>
+<span style="color: #8F5902">$ </span>ssh-add
+<span style="color: #000; font-style: italic">Enter passphrase for /home/user/.ssh/id_rsa: </span>
+<span style="color: #000; font-style: italic">Identity added: /home/user/.ssh/id_rsa (will expire in 4 hours)</span>
+</pre></div>
+<h3>Killing the ssh-agent process</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>ssh-agent<span style="color: #F8F8F8"> </span>-k<span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #000; font-style: italic">Agent pid 12345 killed</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Add ssh-agent to Your Shell Startup</h3>
+<p>Add <code>eval $(ssh-agent)</code> to your shell's startup file (like ~/.bashrc or ~/.zshrc) to automatically start ssh-agent when you open a terminal.</p>
+<h3>Use ssh-add -l to List Keys</h3>
+<p>Run <code>ssh-add -l</code> to see which keys are currently loaded in the agent.</p>
+<h3>Forward Your SSH Agent</h3>
+<p>When connecting to remote servers, use <code>ssh -A user@host</code> to forward your local SSH agent to the remote server, allowing you to use your local keys for authentication on that server.</p>
+<h3>Security Considerations</h3>
+<p>Be cautious with agent forwarding (<code>ssh -A</code>), especially on untrusted servers, as it could potentially allow someone with root access on the remote server to use your keys.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between ssh-agent and ssh-add?</h4>
+<p>A. ssh-agent is the background service that holds your decrypted keys, while ssh-add is the command used to add keys to the running agent.</p>
+<h4>Q2. How do I check if ssh-agent is running?</h4>
+<p>A. Run <code>echo $SSH_AGENT_PID</code> - if it returns a number, the agent is running.</p>
+<h4>Q3. How can I make my keys automatically load when I start ssh-agent?</h4>
+<p>A. Use <code>ssh-add -c ~/.ssh/id_rsa</code> to add keys with confirmation, or create a ~/.ssh/config file with an IdentityFile directive.</p>
+<h4>Q4. How do I stop ssh-agent from running?</h4>
+<p>A. Run <code>eval $(ssh-agent -k)</code> to kill the current agent process.</p>
+<h2>References</h2>
+<p>https://man.openbsd.org/ssh-agent.1</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

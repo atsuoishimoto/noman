@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  dd - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>dd command</h1>
+<p>Convert and copy files with block-level operations.</p>
+<h2>Overview</h2>
+<p>The <code>dd</code> command copies data between files using specified block sizes, performing conversions during the copy. It's commonly used for tasks like creating disk images, backing up partitions, wiping disks, and benchmarking I/O performance. Unlike most Unix commands, <code>dd</code> uses a unique syntax with <code>option=value</code> pairs rather than traditional flags.</p>
+<h2>Options</h2>
+<h3><strong>if=FILE</strong></h3>
+<p>Specifies the input file to read from. If not specified, stdin is used.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/sda
+</pre></div>
+<h3><strong>of=FILE</strong></h3>
+<p>Specifies the output file to write to. If not specified, stdout is used.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/sda<span style="color: #F8F8F8"> </span><span style="color: #000">of</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/sdb
+</pre></div>
+<h3><strong>bs=BYTES</strong></h3>
+<p>Sets both input and output block size to BYTES. This can significantly affect performance.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/zero<span style="color: #F8F8F8"> </span><span style="color: #000">of</span><span style="color: #CE5C00; font-weight: bold">=</span>testfile<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span>1M<span style="color: #F8F8F8"> </span><span style="color: #000">count</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">100</span>
+<span style="color: #000; font-style: italic">100+0 records in</span>
+<span style="color: #000; font-style: italic">100+0 records out</span>
+<span style="color: #000; font-style: italic">104857600 bytes (105 MB, 100 MiB) transferred in 0.083 seconds, 1.3 GB/s</span>
+</pre></div>
+<h3><strong>count=N</strong></h3>
+<p>Copy only N input blocks. Limits the amount of data copied.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/urandom<span style="color: #F8F8F8"> </span><span style="color: #000">of</span><span style="color: #CE5C00; font-weight: bold">=</span>random.dat<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span>1M<span style="color: #F8F8F8"> </span><span style="color: #000">count</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">10</span>
+<span style="color: #000; font-style: italic">10+0 records in</span>
+<span style="color: #000; font-style: italic">10+0 records out</span>
+<span style="color: #000; font-style: italic">10485760 bytes (10 MB, 10 MiB) transferred in 0.035 seconds, 299 MB/s</span>
+</pre></div>
+<h3><strong>status=LEVEL</strong></h3>
+<p>Controls the information displayed while dd is running:</p>
+<ul>
+<li><code>none</code>: No output until completion</li>
+<li><code>noxfer</code>: Suppress the final transfer statistics</li>
+<li><code>progress</code>: Show periodic transfer statistics</li>
+</ul>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/zero<span style="color: #F8F8F8"> </span><span style="color: #000">of</span><span style="color: #CE5C00; font-weight: bold">=</span>testfile<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span>1G<span style="color: #F8F8F8"> </span><span style="color: #000">count</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #000">status</span><span style="color: #CE5C00; font-weight: bold">=</span>progress
+<span style="color: #000; font-style: italic">536870912 bytes (537 MB, 512 MiB) copied, 0.5 s, 1.1 GB/s</span>
+<span style="color: #000; font-style: italic">1+0 records in</span>
+<span style="color: #000; font-style: italic">1+0 records out</span>
+<span style="color: #000; font-style: italic">1073741824 bytes (1.1 GB, 1.0 GiB) transferred in 0.969 seconds, 1.1 GB/s</span>
+</pre></div>
+<h3><strong>conv=CONVS</strong></h3>
+<p>Perform conversions on the data. Multiple conversions can be specified, separated by commas:</p>
+<ul>
+<li><code>sync</code>: Pad input blocks with zeros</li>
+<li><code>noerror</code>: Continue after read errors</li>
+<li><code>notrunc</code>: Don't truncate the output file</li>
+</ul>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/sda<span style="color: #F8F8F8"> </span><span style="color: #000">of</span><span style="color: #CE5C00; font-weight: bold">=</span>disk.img<span style="color: #F8F8F8"> </span><span style="color: #000">conv</span><span style="color: #CE5C00; font-weight: bold">=</span>sync,noerror
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating a bootable USB drive</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>ubuntu.iso<span style="color: #F8F8F8"> </span><span style="color: #000">of</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/sdb<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span>4M<span style="color: #F8F8F8"> </span><span style="color: #000">status</span><span style="color: #CE5C00; font-weight: bold">=</span>progress
+<span style="color: #000; font-style: italic">1485881344 bytes (1.5 GB, 1.4 GiB) copied, 120 s, 12.4 MB/s</span>
+<span style="color: #000; font-style: italic">354+1 records in</span>
+<span style="color: #000; font-style: italic">354+1 records out</span>
+<span style="color: #000; font-style: italic">1485881344 bytes (1.5 GB, 1.4 GiB) transferred in 120.023 seconds, 12.4 MB/s</span>
+</pre></div>
+<h3>Creating a disk image</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/sda<span style="color: #F8F8F8"> </span><span style="color: #000">of</span><span style="color: #CE5C00; font-weight: bold">=</span>disk_backup.img<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span>8M<span style="color: #F8F8F8"> </span><span style="color: #000">status</span><span style="color: #CE5C00; font-weight: bold">=</span>progress
+<span style="color: #000; font-style: italic">20971520000 bytes (21 GB, 20 GiB) copied, 300 s, 70 MB/s</span>
+<span style="color: #000; font-style: italic">2500+0 records in</span>
+<span style="color: #000; font-style: italic">2500+0 records out</span>
+<span style="color: #000; font-style: italic">20971520000 bytes (21 GB, 20 GiB) transferred in 300.123 seconds, 69.9 MB/s</span>
+</pre></div>
+<h3>Wiping a disk with zeros</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>dd<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/zero<span style="color: #F8F8F8"> </span><span style="color: #000">of</span><span style="color: #CE5C00; font-weight: bold">=</span>/dev/sdb<span style="color: #F8F8F8"> </span><span style="color: #000">bs</span><span style="color: #CE5C00; font-weight: bold">=</span>8M<span style="color: #F8F8F8"> </span><span style="color: #000">status</span><span style="color: #CE5C00; font-weight: bold">=</span>progress
+<span style="color: #000; font-style: italic">8589934592 bytes (8.6 GB, 8.0 GiB) copied, 120 s, 71.6 MB/s</span>
+<span style="color: #000; font-style: italic">1024+0 records in</span>
+<span style="color: #000; font-style: italic">1024+0 records out</span>
+<span style="color: #000; font-style: italic">8589934592 bytes (8.6 GB, 8.0 GiB) transferred in 120.001 seconds, 71.6 MB/s</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Use Appropriate Block Size</h3>
+<p>The <code>bs</code> parameter significantly affects performance. For most operations, values between 1M and 8M provide good performance. Too small (like the default 512 bytes) can be very slow, while too large may waste memory.</p>
+<h3>Always Use Status=progress</h3>
+<p>Adding <code>status=progress</code> provides real-time feedback on long-running operations, which is essential when copying large amounts of data.</p>
+<h3>Send SIGUSR1 Signal for Progress Updates</h3>
+<p>If you forgot to use <code>status=progress</code>, you can send the USR1 signal to get a progress update:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span>-USR1<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>pgrep<span style="color: #F8F8F8"> </span>dd<span style="color: #204A87; font-weight: bold">)</span>
+</pre></div>
+<h3>Be Extremely Careful with Device Names</h3>
+<p>Double-check device names (like <code>/dev/sda</code>) before running dd. Using the wrong output device can destroy data. The command <code>lsblk</code> can help identify the correct devices.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. Why is dd called &quot;disk destroyer&quot;?</h4>
+<p>A. This nickname comes from its power to completely overwrite disks without confirmation. A simple typo in device names can lead to catastrophic data loss.</p>
+<h4>Q2. How can I make dd run faster?</h4>
+<p>A. Use larger block sizes (bs=4M or bs=8M), ensure you're not hitting I/O bottlenecks, and consider using <code>oflag=direct</code> to bypass the buffer cache for certain operations.</p>
+<h4>Q3. How do I monitor dd progress?</h4>
+<p>A. Use <code>status=progress</code> option or send the USR1 signal to the dd process with <code>kill -USR1 $(pgrep dd)</code>.</p>
+<h4>Q4. Why does dd use different syntax from other Unix commands?</h4>
+<p>A. dd's syntax (option=value) comes from IBM's JCL (Job Control Language) and was preserved for historical reasons when it was implemented in Unix.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/dd-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

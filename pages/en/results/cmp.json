@@ -1,0 +1,20 @@
+{
+  "id": "msg_01JRan9RkfRLmJsxJyHSoonC",
+  "content": [
+    {
+      "text": "# cmp command\n\nCompare two files byte by byte.\n\n## Overview\n\nThe `cmp` command compares two files of any type and reports the location of the first difference. Unlike `diff`, which shows all differences between text files, `cmp` simply identifies the first byte or line where files differ, making it useful for quick binary file comparisons.\n\n## Options\n\n### **-b, --print-bytes**\n\nPrint differing bytes as octal values.\n\n```console\n$ cmp -b file1.txt file2.txt\nfile1.txt file2.txt differ: byte 5, line 1 is 141 a 142 b\n```\n\n### **-i, --ignore-initial=SKIP**\n\nSkip the first SKIP bytes of both input files before comparing.\n\n```console\n$ cmp -i 10 file1.bin file2.bin\nfile1.bin file2.bin differ: byte 11, line 1\n```\n\n### **-l, --verbose**\n\nPrint the byte number and the differing byte values for each difference.\n\n```console\n$ cmp -l file1.txt file2.txt\n5 141 142\n8 144 145\n12 150 151\n```\n\n### **-n, --bytes=LIMIT**\n\nCompare at most LIMIT bytes.\n\n```console\n$ cmp -n 100 largefile1.bin largefile2.bin\nlargefile1.bin largefile2.bin differ: byte 64, line 1\n```\n\n### **-s, --quiet, --silent**\n\nSuppress all normal output; only return exit status.\n\n```console\n$ cmp -s file1.txt file2.txt\n$ echo $?\n1\n```\n\n## Usage Examples\n\n### Basic comparison\n\n```console\n$ cmp file1.txt file2.txt\nfile1.txt file2.txt differ: byte 5, line 1\n```\n\n### Comparing specific portions of files\n\n```console\n$ cmp -i 100 -n 1000 bigfile1.dat bigfile2.dat\nbigfile1.dat bigfile2.dat differ: byte 340, line 3\n```\n\n### Silent comparison in scripts\n\n```console\n$ if cmp -s file1.txt file2.txt; then\n>   echo \"Files are identical\"\n> else\n>   echo \"Files are different\"\n> fi\nFiles are different\n```\n\n## Tips:\n\n### Use Exit Status in Scripts\n\nThe `cmp` command returns 0 if files are identical, 1 if they differ, and 2 if an error occurs. This makes it perfect for conditional logic in shell scripts.\n\n### Combine with Other Commands\n\nPipe the output of commands to `cmp` using process substitution to compare command outputs:\n```bash\ncmp <(command1) <(command2)\n```\n\n### Binary File Comparison\n\nWhile `diff` is better for text files, `cmp` excels at comparing binary files where you only need to know if and where they differ.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `cmp` and `diff`?\nA. `cmp` reports only the first difference between files and works well with binary files. `diff` shows all differences and is designed primarily for text files.\n\n#### Q2. How can I check if two files are identical without seeing any output?\nA. Use `cmp -s file1 file2` and check the exit status with `echo $?`. A return value of 0 means the files are identical.\n\n#### Q3. Can `cmp` compare directories?\nA. No, `cmp` only compares files. For directory comparison, use `diff -r` instead.\n\n#### Q4. How do I compare large files efficiently?\nA. Use `cmp` with the `-s` option for a quick check if files differ, or use `-i` and `-n` to compare specific portions of large files.\n\n## References\n\nhttps://www.gnu.org/software/diffutils/manual/html_node/Invoking-cmp.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1633,
+    "output_tokens": 945
+  }
+}

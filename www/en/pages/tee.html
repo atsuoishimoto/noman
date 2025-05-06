@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tee - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tee command</h1>
+<p>Read from standard input and write to both standard output and files.</p>
+<h2>Overview</h2>
+<p>The <code>tee</code> command reads from standard input and writes to both standard output and one or more files simultaneously. This allows you to view command output in the terminal while also saving it to a file, making it useful for logging and debugging.</p>
+<h2>Options</h2>
+<h3><strong>-a, --append</strong></h3>
+<p>Append to the given files, do not overwrite them.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Additional line&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">Additional line</span>
+</pre></div>
+<h3><strong>-i, --ignore-interrupts</strong></h3>
+<p>Ignore interrupt signals (SIGINT).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>long_running_command<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>output.log
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>Display help information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tee<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: tee [OPTION]... [FILE]...</span>
+<span style="color: #000; font-style: italic">Copy standard input to each FILE, and also to standard output.</span>
+
+<span style="color: #000; font-style: italic">  -a, --append              append to the given FILEs, do not overwrite</span>
+<span style="color: #000; font-style: italic">  -i, --ignore-interrupts   ignore interrupt signals</span>
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+
+<span style="color: #000; font-style: italic">If a FILE is -, copy again to standard output.</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>Output version information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tee<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">tee (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2020 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by Mike Parker, Richard M. Stallman, and David MacKenzie.</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Saving command output while viewing it</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-la<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>directory_listing.txt
+<span style="color: #000; font-style: italic">total 32</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  5 user  staff   160 May  5 10:15 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 user  staff    96 May  4 09:30 ..</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  2048 May  5 10:10 file1.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  4096 May  5 10:12 file2.txt</span>
+</pre></div>
+<h3>Writing to multiple files at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, world!&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>file3.txt
+<span style="color: #000; font-style: italic">Hello, world!</span>
+</pre></div>
+<h3>Using tee in a pipeline</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>input.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>errors.log<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>wc<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">5</span>
+</pre></div>
+<h3>Writing to a file that requires elevated privileges</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;127.0.0.1 example.com&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>sudo<span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>/etc/hosts
+<span style="color: #000; font-style: italic">127.0.0.1 example.com</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use tee for sudo operations on files</h3>
+<p>When you need to redirect output to a file that requires root privileges, using <code>sudo command &gt; file</code> won't work because the redirection happens before sudo. Instead, use <code>command | sudo tee file</code> to properly handle permissions.</p>
+<h3>Create logs while monitoring output</h3>
+<p>When troubleshooting, use tee to create logs while still seeing the output in real-time: <code>command | tee logfile.txt</code>.</p>
+<h3>Write to both a file and another command</h3>
+<p>You can use tee to branch a pipeline: <code>command | tee file.txt | another_command</code>.</p>
+<h3>Use /dev/tty to force output to terminal</h3>
+<p>If you need to ensure output goes to the terminal even when redirected: <code>command | tee /dev/tty | another_command</code>.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What does the name &quot;tee&quot; come from?</h4>
+<p>A. The name comes from the T-splitter used in plumbing, as the command splits the input into multiple outputs, resembling a &quot;T&quot; shape.</p>
+<h4>Q2. How do I append to a file instead of overwriting it?</h4>
+<p>A. Use the <code>-a</code> or <code>--append</code> option: <code>command | tee -a file.txt</code>.</p>
+<h4>Q3. Can tee write to standard error instead of standard output?</h4>
+<p>A. No, tee always writes to standard output. To redirect to standard error, you would need additional shell redirection: <code>command | tee file.txt &gt;&amp;2</code>.</p>
+<h4>Q4. How can I use tee to write to a file that requires root permissions?</h4>
+<p>A. Use sudo with tee: <code>command | sudo tee /path/to/restricted/file</code>.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "id": "msg_018DWmeTt4e11TqnM9Mu2cWx",
+  "content": [
+    {
+      "text": "# gunzipコマンド\n\ngzipで圧縮されたファイルを展開します。\n\n## 概要\n\n`gunzip`はgzip圧縮で圧縮されたファイルを展開するユーティリティです。`.gz`拡張子を削除して元のファイルを復元します。デフォルトでは、`-k`オプションを使用しない限り、gunzipは元の圧縮ファイルを保持しません。\n\n## オプション\n\n### **-c, --stdout, --to-stdout**\n\n出力を標準出力に書き込み、元のファイルを変更しません。\n\n```console\n$ gunzip -c archive.gz > extracted_file\n```\n\n### **-f, --force**\n\nファイルに複数のリンクがある場合や、対応するファイルがすでに存在する場合でも、強制的に展開します。\n\n```console\n$ gunzip -f already_exists.gz\n```\n\n### **-k, --keep**\n\n展開中に入力ファイルを保持します（削除しません）。\n\n```console\n$ gunzip -k data.gz\n$ ls\ndata  data.gz\n```\n\n### **-l, --list**\n\n展開せずに圧縮ファイルの内容を一覧表示します。\n\n```console\n$ gunzip -l archive.gz\n         compressed        uncompressed  ratio uncompressed_name\n                 220                 356  38.2% archive\n```\n\n### **-q, --quiet**\n\nすべての警告を抑制します。\n\n```console\n$ gunzip -q noisy.gz\n```\n\n### **-r, --recursive**\n\nディレクトリ内のファイルを再帰的に展開します。\n\n```console\n$ gunzip -r ./compressed_directory/\n```\n\n### **-t, --test**\n\n展開せずに圧縮ファイルの整合性をテストします。\n\n```console\n$ gunzip -t archive.gz\n```\n\n### **-v, --verbose**\n\n展開された各ファイルの名前と圧縮率を表示します。\n\n```console\n$ gunzip -v data.gz\ndata.gz:\t 65.3% -- replaced with data\n```\n\n## 使用例\n\n### 基本的な展開\n\n```console\n$ gunzip archive.gz\n$ ls\narchive\n```\n\n### 複数ファイルの展開\n\n```console\n$ gunzip file1.gz file2.gz file3.gz\n$ ls\nfile1 file2 file3\n```\n\n### 標準出力への展開\n\n```console\n$ gunzip -c config.gz | grep \"setting\"\ndefault_setting=true\nadvanced_setting=false\n```\n\n### 展開せずに圧縮ファイルをテスト\n\n```console\n$ gunzip -tv *.gz\narchive1.gz: OK\narchive2.gz: OK\ndata.gz: OK\n```\n\n## ヒント:\n\n### tarファイルとの使用\n\n多くのtarアーカイブはgzipで圧縮されています（.tar.gzまたは.tgz拡張子）。最初にgunzipを使用する代わりに、`tar -xzf`を使用して一度に展開できます。\n\n### 複数の圧縮形式の処理\n\n圧縮形式が不明な場合は、様々な圧縮形式で動作する`zcat`の使用を検討するか、zipファイル用のより汎用性の高い`unzip`を試してみてください。\n\n### タイムスタンプの保持\n\ngunzipはデフォルトで元のファイルのタイムスタンプを保持します。これによりファイル履歴情報を維持できます。\n\n### パイプの使用\n\n大きなファイルを扱う場合は、`-c`オプションを使用して中間ファイルを作成せずに出力を別のコマンドに直接パイプすることができます。\n\n## よくある質問\n\n#### Q1. gunzipとgzip -dの違いは何ですか？\nA. 機能的に同等です。`gunzip file.gz`は`gzip -d file.gz`と同じです。\n\n#### Q2. 元のファイルを削除せずにファイルを展開するにはどうすればよいですか？\nA. `-k`または`--keep`オプションを使用します：`gunzip -k file.gz`\n\n#### Q3. gunzipは.zipファイルを処理できますか？\nA. いいえ、gunzipはgzip圧縮ファイル（.gz）のみを処理します。.zipファイルの場合は、`unzip`コマンドを使用してください。\n\n#### Q4. 複数のファイルを一度に展開するにはどうすればよいですか？\nA. すべてのファイルをリストするだけです：`gunzip file1.gz file2.gz file3.gz`またはワイルドカードを使用します：`gunzip *.gz`\n\n#### Q5. 展開せずに.gzファイルの内容を確認するにはどうすればよいですか？\nA. `gunzip -l file.gz`を使用して内容を一覧表示するか、`zcat file.gz | less`を使用して内容を表示します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/gzip/manual/gzip.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1141,
+    "output_tokens": 1470
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "msg_01YMtoXiM4ggsyjtwvUvosBZ",
+  "content": [
+    {
+      "text": "# gunzip command\n\nDecompress files compressed with gzip.\n\n## Overview\n\n`gunzip` is a utility that expands files compressed with gzip compression. It restores the original files by removing the `.gz` extension. By default, gunzip keeps the original compressed file unless the `-k` option is used.\n\n## Options\n\n### **-c, --stdout, --to-stdout**\n\nWrite output to standard output and keep original files unchanged.\n\n```console\n$ gunzip -c archive.gz > extracted_file\n```\n\n### **-f, --force**\n\nForce decompression even if the file has multiple links or the corresponding file already exists.\n\n```console\n$ gunzip -f already_exists.gz\n```\n\n### **-k, --keep**\n\nKeep (don't delete) input files during decompression.\n\n```console\n$ gunzip -k data.gz\n$ ls\ndata  data.gz\n```\n\n### **-l, --list**\n\nList the contents of the compressed file without decompressing.\n\n```console\n$ gunzip -l archive.gz\n         compressed        uncompressed  ratio uncompressed_name\n                 220                 356  38.2% archive\n```\n\n### **-q, --quiet**\n\nSuppress all warnings.\n\n```console\n$ gunzip -q noisy.gz\n```\n\n### **-r, --recursive**\n\nRecursively decompress files in directories.\n\n```console\n$ gunzip -r ./compressed_directory/\n```\n\n### **-t, --test**\n\nTest the compressed file integrity without decompressing.\n\n```console\n$ gunzip -t archive.gz\n```\n\n### **-v, --verbose**\n\nDisplay the name and percentage reduction for each file decompressed.\n\n```console\n$ gunzip -v data.gz\ndata.gz:\t 65.3% -- replaced with data\n```\n\n## Usage Examples\n\n### Basic decompression\n\n```console\n$ gunzip archive.gz\n$ ls\narchive\n```\n\n### Decompressing multiple files\n\n```console\n$ gunzip file1.gz file2.gz file3.gz\n$ ls\nfile1 file2 file3\n```\n\n### Decompressing to standard output\n\n```console\n$ gunzip -c config.gz | grep \"setting\"\ndefault_setting=true\nadvanced_setting=false\n```\n\n### Testing compressed files without extracting\n\n```console\n$ gunzip -tv *.gz\narchive1.gz: OK\narchive2.gz: OK\ndata.gz: OK\n```\n\n## Tips:\n\n### Use with tar files\n\nMany tar archives are also gzip compressed (with .tar.gz or .tgz extension). Instead of using gunzip first, you can use `tar -xzf` to extract them in one step.\n\n### Handling multiple compression formats\n\nIf you're unsure about the compression format, consider using `zcat` which works with various compression formats, or try the more versatile `unzip` for zip files.\n\n### Preserving timestamps\n\ngunzip preserves the original file's timestamp by default, which helps maintain file history information.\n\n### Pipe usage\n\nWhen working with large files, use the `-c` option to pipe the output directly to another command without creating intermediate files.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between gunzip and gzip -d?\nA. They are functionally equivalent. `gunzip file.gz` is the same as `gzip -d file.gz`.\n\n#### Q2. How can I decompress a file without removing the original?\nA. Use the `-k` or `--keep` option: `gunzip -k file.gz`\n\n#### Q3. Can gunzip handle .zip files?\nA. No, gunzip only handles gzip-compressed files (.gz). For .zip files, use the `unzip` command.\n\n#### Q4. How do I decompress multiple files at once?\nA. Simply list all files: `gunzip file1.gz file2.gz file3.gz` or use wildcards: `gunzip *.gz`\n\n#### Q5. How can I see what's in a .gz file without extracting it?\nA. Use `gunzip -l file.gz` to list the contents or `zcat file.gz | less` to view the contents.\n\n## References\n\nhttps://www.gnu.org/software/gzip/manual/gzip.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1633,
+    "output_tokens": 1011
+  }
+}

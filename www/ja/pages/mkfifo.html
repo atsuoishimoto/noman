@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  mkfifo - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>mkfifoコマンド</h1>
+<p>指定した名前の名前付きパイプ（FIFO）を作成します。</p>
+<h2>概要</h2>
+<p><code>mkfifo</code>は、プロセス間通信を可能にする特殊なFIFO（First-In-First-Out）ファイル、いわゆる名前付きパイプを作成します。<code>|</code>演算子で作成される通常のパイプとは異なり、名前付きパイプはファイルシステム上に削除されるまで存続し、関連のないプロセス同士が通信できるようにします。</p>
+<h2>オプション</h2>
+<h3><strong>-m, --mode=MODE</strong></h3>
+<p>作成されるFIFOのパーミッションモード（chmodと同様）を設定します。デフォルトモードの0666（全員が読み書き可能、umaskによって変更される）の代わりに使用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">0600</span><span style="color: #F8F8F8"> </span>private_pipe
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>private_pipe
+<span style="color: #000; font-style: italic">prw-------  1 user  group  0 May  5 10:00 private_pipe</span>
+</pre></div>
+<h3><strong>-Z, --context=CTX</strong></h3>
+<p>作成された各FIFOのSELinuxセキュリティコンテキストをCTXに設定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>-Z<span style="color: #F8F8F8"> </span>user_u:object_r:user_fifo_t<span style="color: #F8F8F8"> </span>private_pipe
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>ヘルプ情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: mkfifo [OPTION]... NAME...</span>
+<span style="color: #000; font-style: italic">Create named pipes (FIFOs) with the given NAMEs.</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>バージョン情報を出力して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">mkfifo (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な名前付きパイプの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #000; font-style: italic">prw-r--r--  1 user  group  0 May  5 10:00 mypipe</span>
+</pre></div>
+<h3>名前付きパイプを使ったプロセス間通信</h3>
+<p>ターミナル1:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #000; font-style: italic">Hello, world!</span>
+</pre></div>
+<p>ターミナル2:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&lt;<span style="color: #F8F8F8"> </span>mypipe
+<span style="color: #000; font-style: italic">Hello, world!</span>
+</pre></div>
+<h3>複数のパイプを一度に作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkfifo<span style="color: #F8F8F8"> </span>pipe1<span style="color: #F8F8F8"> </span>pipe2<span style="color: #F8F8F8"> </span>pipe3
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>pipe*
+<span style="color: #000; font-style: italic">prw-r--r--  1 user  group  0 May  5 10:00 pipe1</span>
+<span style="color: #000; font-style: italic">prw-r--r--  1 user  group  0 May  5 10:00 pipe2</span>
+<span style="color: #000; font-style: italic">prw-r--r--  1 user  group  0 May  5 10:00 pipe3</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>名前付きパイプの理解</h3>
+<p>名前付きパイプは、誰かが書き込み用に開くまで読み取り用に開かれるとブロックします（その逆も同様）。この動作はFIFOを扱う際に理解しておくことが重要です。</p>
+<h3>クリーンアップ</h3>
+<p>名前付きパイプは、<code>rm</code>で明示的に削除されるまでファイルシステム上に残ります。混乱を避けるため、不要になったパイプは常にクリーンアップしましょう。</p>
+<h3>デッドロックの回避</h3>
+<p>同じパイプを単一プロセスで読み書きする場合は、デッドロックにつながる可能性があるため注意が必要です。一般的に、読み取りと書き込みには別々のプロセスを使用します。</p>
+<h3>リダイレクションとの併用</h3>
+<p>名前付きパイプは標準入出力のリダイレクションとうまく連携するため、通常のパイプラインでは接続できないコマンドを接続するのに役立ちます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. 名前付きパイプと通常のパイプの違いは何ですか？</h4>
+<p>A. 通常のパイプ（<code>|</code>で作成）は接続されたプロセスが実行中の間だけ存在し、関連のないプロセスからアクセスできません。名前付きパイプはファイルシステムオブジェクトとして存在し、適切な権限を持つどのプロセスからも使用できます。</p>
+<h4>Q2. 名前付きパイプを双方向通信に使用できますか？</h4>
+<p>A. いいえ、名前付きパイプは一方向です。双方向通信には、2つの別々のパイプを作成する必要があります。</p>
+<h4>Q3. 書き込み側がないパイプから読み取ろうとするとどうなりますか？</h4>
+<p>A. 書き込み側がパイプを開くまで読み取り操作はブロックされます。すべての書き込み側がパイプを閉じると、読み取り側はEOF（ファイル終端）を受け取ります。</p>
+<h4>Q4. 名前付きパイプを削除するにはどうすればよいですか？</h4>
+<p>A. 通常のファイルと同様に<code>rm</code>コマンドを使用します：<code>rm mypipe</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/mkfifo-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

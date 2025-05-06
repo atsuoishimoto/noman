@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  install - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>install コマンド</h1>
+<p>ファイルをコピーして属性を設定します。</p>
+<h2>概要</h2>
+<p><code>install</code> コマンドは、ファイルを指定した宛先にコピーしながら、権限、所有権、タイムスタンプを設定します。ソフトウェアのインストール中にファイルを適切な場所に配置するために、スクリプトやMakefileでよく使用されます。<code>cp</code>、<code>chmod</code>、<code>chown</code>、<code>mkdir</code> の機能を1つのコマンドに統合しています。</p>
+<h2>オプション</h2>
+<h3><strong>-d, --directory</strong></h3>
+<p>ファイルをコピーする代わりにディレクトリを作成します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>/tmp/new_directory
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-ld<span style="color: #F8F8F8"> </span>/tmp/new_directory
+<span style="color: #000; font-style: italic">drwxr-xr-x 2 user user 4096 May 5 10:00 /tmp/new_directory</span>
+</pre></div>
+<h3><strong>-m, --mode=MODE</strong></h3>
+<p>デフォルトの rwxr-xr-x ではなく、指定した権限モード（chmod と同様）を設定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/tmp/source.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user user 123 May 5 10:01 /tmp/source.txt</span>
+</pre></div>
+<h3><strong>-o, --owner=OWNER</strong></h3>
+<p>所有者を設定します（スーパーユーザーのみ）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>root<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/tmp/source.txt
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 root user 123 May 5 10:02 /tmp/source.txt</span>
+</pre></div>
+<h3><strong>-g, --group=GROUP</strong></h3>
+<p>グループ所有権を設定します（スーパーユーザーのみ）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>-g<span style="color: #F8F8F8"> </span>wheel<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/tmp/source.txt
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 user wheel 123 May 5 10:03 /tmp/source.txt</span>
+</pre></div>
+<h3><strong>-s, --strip</strong></h3>
+<p>実行ファイルからシンボルテーブルを削除します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>executable<span style="color: #F8F8F8"> </span>/tmp/
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>作成される各ディレクトリの名前を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #000; font-style: italic">&#39;source.txt&#39; -&gt; &#39;/tmp/source.txt&#39;</span>
+</pre></div>
+<h3><strong>-b, --backup[=CONTROL]</strong></h3>
+<p>既存の宛先ファイルごとにバックアップを作成します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/tmp/
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 user user 123 May 5 10:04 source.txt</span>
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 user user 123 May 5 10:03 source.txt~</span>
+</pre></div>
+<h3><strong>-c, --compare</strong></h3>
+<p>ソースファイルと宛先ファイルが同じ場合はコピーしません。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>/tmp/
+</pre></div>
+<h2>使用例</h2>
+<h3>特定の権限でファイルをインストールする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">755</span><span style="color: #F8F8F8"> </span>myscript.sh<span style="color: #F8F8F8"> </span>/usr/local/bin/
+</pre></div>
+<h3>複数のディレクトリを一度に作成する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>/tmp/dir1<span style="color: #F8F8F8"> </span>/tmp/dir2<span style="color: #F8F8F8"> </span>/tmp/dir3
+</pre></div>
+<h3>特定の所有者とグループでファイルをインストールする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>www-data<span style="color: #F8F8F8"> </span>-g<span style="color: #F8F8F8"> </span>www-data<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>config.php<span style="color: #F8F8F8"> </span>/var/www/html/
+</pre></div>
+<h3>複数のファイルをディレクトリにインストールする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>install<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>*.txt<span style="color: #F8F8F8"> </span>/tmp/
+</pre></div>
+<h2>ヒント:</h2>
+<h3>デプロイメントスクリプトでの使用</h3>
+<p><code>install</code> コマンドは、権限と所有権を一度に処理するため、デプロイメントスクリプトに最適です。個別の <code>cp</code> と <code>chmod</code> コマンドを使用するよりも効率的です。</p>
+<h3>親ディレクトリの作成</h3>
+<p><code>mkdir -p</code> とは異なり、<code>install -d</code> は親ディレクトリを作成しません。ネストされたディレクトリ構造を作成する必要がある場合は、最初に親ディレクトリを作成するか、代わりに <code>mkdir -p</code> を使用してください。</p>
+<h3>ファイル属性の保存</h3>
+<p>元のファイルの属性を保持したい場合は、<code>install -p</code> を使用します。これにより、ソースファイルの変更時間、アクセス時間、モードが保持されます。</p>
+<h3>バックアップ戦略</h3>
+<p>バックアップに <code>-b</code> を使用する場合、<code>--suffix=SUFFIX</code> でバックアップの接尾辞を制御したり、<code>--backup=CONTROL</code> でバックアップ方法を設定したりできます（CONTROL は 'none'、'numbered'、'existing'、または 'simple' のいずれか）。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>install</code> と <code>cp</code> の違いは何ですか？</h4>
+<p>A. <code>install</code> はコピーと権限・所有権の設定を1つのコマンドで組み合わせますが、<code>cp</code> はファイルのコピーのみを行います。<code>install</code> はソフトウェアのインストール用に設計されていますが、<code>cp</code> は汎用的なコピーコマンドです。</p>
+<h4>Q2. <code>install</code> は <code>mkdir</code> のようにディレクトリを作成できますか？</h4>
+<p>A. はい、<code>-d</code> オプションを使用すると、<code>install</code> は特定の権限を持つディレクトリを一度に作成できます。</p>
+<h4>Q3. <code>install</code> はファイルのタイムスタンプを保持しますか？</h4>
+<p>A. デフォルトでは、<code>install</code> はタイムスタンプを現在の時刻に更新します。元のタイムスタンプを保持するには、<code>-p</code> オプションを使用してください。</p>
+<h4>Q4. <code>install</code> を使用してディレクトリを再帰的にコピーできますか？</h4>
+<p>A. いいえ、<code>install</code> には <code>cp -r</code> のような再帰的オプションはありません。最初にディレクトリ構造を作成し、その後ファイルをインストールする必要があります。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

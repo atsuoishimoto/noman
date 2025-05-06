@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  w - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>w コマンド</h1>
+<p>現在ログインしているユーザーとそのプロセスに関する情報を表示します。</p>
+<h2>概要</h2>
+<p><code>w</code> コマンドは、誰がログインしていて何をしているかを表示します。システムの現在のアクティビティの概要を表示し、ユーザー名、端末名、リモートホスト、ログイン時間、アイドル時間、CPU使用率、および現在のプロセスのコマンドラインが含まれます。</p>
+<h2>オプション</h2>
+<h3><strong>-h, --no-header</strong></h3>
+<p>ヘッダーを表示しません</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>-h
+<span style="color: #000; font-style: italic">user     tty      from             login@   idle   JCPU   PCPU  what</span>
+<span style="color: #000; font-style: italic">john     tty1     -                09:15    0.00s  0.05s  0.01s  w -h</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s  vim document.txt</span>
+</pre></div>
+<h3><strong>-s, --short</strong></h3>
+<p>短い形式を使用します（ログイン時間、JCPUまたはPCPU時間を表示しません）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             IDLE   WHAT</span>
+<span style="color: #000; font-style: italic">john     tty1     -                0.00s  w -s</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      2:35   vim document.txt</span>
+<span style="color: #000; font-style: italic">bob      pts/1    10.0.0.25        0.00s  top</span>
+</pre></div>
+<h3><strong>-f, --from</strong></h3>
+<p>FROM（リモートホスト名）フィールドの表示を切り替えます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>-f
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span>
+<span style="color: #000; font-style: italic">john     tty1     -                09:15    0.00s  0.05s  0.01s w -f</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s vim document.txt</span>
+<span style="color: #000; font-style: italic">bob      pts/1    10.0.0.25        10:05    0.00s  0.15s  0.10s top</span>
+</pre></div>
+<h3><strong>-i, --ip-addr</strong></h3>
+<p>FROMフィールドにホスト名の代わりにIPアドレスを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span>
+<span style="color: #000; font-style: italic">john     tty1     -                09:15    0.00s  0.05s  0.01s w -i</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s vim document.txt</span>
+<span style="color: #000; font-style: italic">bob      pts/1    10.0.0.25        10:05    0.00s  0.15s  0.10s top</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な使用法</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span>
+<span style="color: #000; font-style: italic">john     tty1     -                09:15    0.00s  0.05s  0.01s w</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s vim document.txt</span>
+<span style="color: #000; font-style: italic">bob      pts/1    10.0.0.25        10:05    0.00s  0.15s  0.10s top</span>
+</pre></div>
+<h3>特定のユーザーの情報を表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>w<span style="color: #F8F8F8"> </span>jane
+<span style="color: #000; font-style: italic"> 10:15:03 up  1:33,  3 users,  load average: 0.01, 0.03, 0.05</span>
+<span style="color: #000; font-style: italic">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span>
+<span style="color: #000; font-style: italic">jane     pts/0    192.168.1.5      08:30    2:35   0.10s  0.05s vim document.txt</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>出力列の理解</h3>
+<ul>
+<li><strong>USER</strong>: ログインしているユーザーのユーザー名</li>
+<li><strong>TTY</strong>: ユーザーがログインしている端末名</li>
+<li><strong>FROM</strong>: リモートホスト名またはIPアドレス</li>
+<li><strong>LOGIN@</strong>: ユーザーがログインした時間</li>
+<li><strong>IDLE</strong>: ユーザーの最後のアクティビティからの経過時間</li>
+<li><strong>JCPU</strong>: ttyに接続されているすべてのプロセスで使用された時間</li>
+<li><strong>PCPU</strong>: 現在のプロセス（WHATに表示）で使用された時間</li>
+<li><strong>WHAT</strong>: ユーザーの現在のプロセスのコマンドライン</li>
+</ul>
+<h3>grepと組み合わせてフィルタリング</h3>
+<p><code>w | grep username</code>を使用すると、ユーザー名パラメータを使わなくても特定のユーザーに関する情報をすばやく見つけることができます。</p>
+<h3>システム負荷の確認</h3>
+<p><code>w</code>出力の最初の行にはシステムの稼働時間と負荷平均が表示され、システムの健全性を素早くチェックするのに役立ちます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>w</code>と<code>who</code>の違いは何ですか？</h4>
+<p>A. <code>w</code>は<code>who</code>よりも詳細な情報を提供し、各ユーザーが何をしているかやシステムの負荷平均などが含まれます。<code>who</code>は単にログインしている人を一覧表示するだけです。</p>
+<h4>Q2. IDLE時間は何を表していますか？</h4>
+<p>A. IDLE時間は、ユーザーが端末で最後にアクティビティを行ってからの経過時間を示します。アイドル時間が長いということは、ユーザーはログインしているがシステムを積極的に使用していないことを示します。</p>
+<h4>Q3. 負荷平均はどのように解釈すればよいですか？</h4>
+<p>A. 負荷平均は、過去1分、5分、15分のシステム需要を示します。CPU コア数を下回る数値は、一般的にシステムが過負荷になっていないことを示します。</p>
+<h4>Q4. JCPUとPCPU列は何を意味しますか？</h4>
+<p>A. JCPUはユーザーの端末に接続されているすべてのプロセスで使用された時間を示します。PCPUはWHAT列に表示されている現在のプロセスで使用された時間を示します。</p>
+<h2>参考文献</h2>
+<p>https://www.man7.org/linux/man-pages/man1/w.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

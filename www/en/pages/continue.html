@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  continue - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>continue command</h1>
+<p>Resume a suspended job by bringing it to the foreground.</p>
+<h2>Overview</h2>
+<p>The <code>continue</code> command is a shell built-in that resumes execution of a loop (for, while, until) at the beginning of the next iteration, skipping any remaining commands in the current iteration. It's used within shell scripts to control loop flow by immediately starting the next iteration when certain conditions are met.</p>
+<h2>Options</h2>
+<p>The <code>continue</code> command doesn't have options in the traditional sense, but it can accept an optional numeric argument.</p>
+<h3><strong>n</strong> (numeric argument)</h3>
+<p>Specifies which enclosing loop to continue. By default (no argument), <code>continue</code> affects the innermost loop.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>i<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   for j in a b c; do</span>
+<span style="color: #000; font-style: italic">&gt;     if [ $j = &quot;b&quot; ]; then</span>
+<span style="color: #000; font-style: italic">&gt;       continue 2  # Skip to next iteration of outer loop</span>
+<span style="color: #000; font-style: italic">&gt;     fi</span>
+<span style="color: #000; font-style: italic">&gt;     echo &quot;$i $j&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   done</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">1 a</span>
+<span style="color: #000; font-style: italic">2 a</span>
+<span style="color: #000; font-style: italic">3 a</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Usage in a Loop</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>i<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   if [ $i -eq 3 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;     continue</span>
+<span style="color: #000; font-style: italic">&gt;   fi</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Processing item $i&quot;</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Processing item 1</span>
+<span style="color: #000; font-style: italic">Processing item 2</span>
+<span style="color: #000; font-style: italic">Processing item 4</span>
+<span style="color: #000; font-style: italic">Processing item 5</span>
+</pre></div>
+<h3>Skipping Iterations Based on Conditions</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">i</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">0</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$i</span><span style="color: #F8F8F8"> </span>-lt<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   i=$((i+1))</span>
+<span style="color: #000; font-style: italic">&gt;   if [ $((i % 2)) -eq 0 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;     continue</span>
+<span style="color: #000; font-style: italic">&gt;   fi</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Odd number: $i&quot;</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Odd number: 1</span>
+<span style="color: #000; font-style: italic">Odd number: 3</span>
+<span style="color: #000; font-style: italic">Odd number: 5</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use with Caution in Complex Loops</h3>
+<p>When using <code>continue</code> in nested loops, be careful about which loop you're affecting. Without a numeric argument, it only affects the innermost loop.</p>
+<h3>Combine with Conditional Logic</h3>
+<p><code>continue</code> is most useful when combined with conditional statements to skip iterations that meet specific criteria, making your scripts more efficient.</p>
+<h3>Consider Readability</h3>
+<p>While <code>continue</code> can make scripts more efficient, excessive use can make code harder to follow. Use it judiciously to maintain readability.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>continue</code> and <code>break</code>?</h4>
+<p>A. <code>continue</code> skips to the next iteration of a loop, while <code>break</code> exits the loop entirely.</p>
+<h4>Q2. Can I use <code>continue</code> outside of a loop?</h4>
+<p>A. No, using <code>continue</code> outside a loop will result in an error as it only has meaning within loops.</p>
+<h4>Q3. How do I continue a specific outer loop in nested loops?</h4>
+<p>A. Use <code>continue n</code> where n is the level of the loop you want to continue (1 for the innermost loop, 2 for the next level out, etc.).</p>
+<h4>Q4. Does <code>continue</code> work the same in all shell types?</h4>
+<p>A. The basic functionality is consistent across bash, zsh, and other common shells, but there might be subtle differences in behavior with complex scripts.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

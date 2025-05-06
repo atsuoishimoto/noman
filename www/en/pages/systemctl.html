@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  systemctl - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>systemctl command</h1>
+<p>Control the systemd system and service manager.</p>
+<h2>Overview</h2>
+<p><code>systemctl</code> is a command-line utility used to control and manage the systemd system and service manager. It allows users to start, stop, restart, enable, disable, and check the status of system services. It's the primary tool for interacting with systemd, which is the init system and service manager for most modern Linux distributions.</p>
+<h2>Options</h2>
+<h3><strong>status</strong></h3>
+<p>Show the runtime status of one or more units</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>status<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">● nginx.service - A high performance web server and a reverse proxy server</span>
+<span style="color: #000; font-style: italic">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span>
+<span style="color: #000; font-style: italic">   Active: active (running) since Mon 2025-05-05 10:15:30 UTC; 2h 30min ago</span>
+<span style="color: #000; font-style: italic">     Docs: man:nginx(8)</span>
+<span style="color: #000; font-style: italic">  Process: 1234 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic">  Process: 1235 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic"> Main PID: 1236 (nginx)</span>
+<span style="color: #000; font-style: italic">    Tasks: 2 (limit: 4915)</span>
+<span style="color: #000; font-style: italic">   Memory: 3.0M</span>
+<span style="color: #000; font-style: italic">   CGroup: /system.slice/nginx.service</span>
+<span style="color: #000; font-style: italic">           ├─1236 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;</span>
+<span style="color: #000; font-style: italic">           └─1237 nginx: worker process</span>
+</pre></div>
+<h3><strong>start</strong></h3>
+<p>Start (activate) one or more units</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>start<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>stop</strong></h3>
+<p>Stop (deactivate) one or more units</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>stop<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>restart</strong></h3>
+<p>Restart one or more units</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>restart<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>reload</strong></h3>
+<p>Reload one or more units</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>reload<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>enable</strong></h3>
+<p>Enable one or more units to be started at boot</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span><span style="color: #204A87">enable</span><span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.</span>
+</pre></div>
+<h3><strong>disable</strong></h3>
+<p>Disable one or more units from starting at boot</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>disable<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Removed /etc/systemd/system/multi-user.target.wants/nginx.service.</span>
+</pre></div>
+<h3><strong>is-active</strong></h3>
+<p>Check whether units are active</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>is-active<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">active</span>
+</pre></div>
+<h3><strong>is-enabled</strong></h3>
+<p>Check whether units are enabled</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>is-enabled<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">enabled</span>
+</pre></div>
+<h3><strong>list-units</strong></h3>
+<p>List loaded units</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>list-units
+<span style="color: #000; font-style: italic">UNIT                                      LOAD   ACTIVE SUB     DESCRIPTION</span>
+<span style="color: #000; font-style: italic">proc-sys-fs-binfmt_misc.automount         loaded active waiting Arbitrary Executable File Formats File System</span>
+<span style="color: #000; font-style: italic">sys-devices-pci0000:00-0000:00:02.0-drm-card0-card0\x2dDP\x2d1-intel_backlight.device loaded active plugged /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-DP-1/intel_backlight</span>
+<span style="color: #000; font-style: italic">sys-devices-platform-serial8250-tty-ttyS0.device loaded active plugged /sys/devices/platform/serial8250/tty/ttyS0</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>--type=TYPE</strong></h3>
+<p>List units of a specific type</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>--type<span style="color: #CE5C00; font-weight: bold">=</span>service
+<span style="color: #000; font-style: italic">UNIT                               LOAD   ACTIVE SUB     DESCRIPTION</span>
+<span style="color: #000; font-style: italic">accounts-daemon.service            loaded active running Accounts Service</span>
+<span style="color: #000; font-style: italic">apparmor.service                   loaded active exited  AppArmor initialization</span>
+<span style="color: #000; font-style: italic">apport.service                     loaded active exited  LSB: automatic crash report generation</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>daemon-reload</strong></h3>
+<p>Reload systemd manager configuration</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>daemon-reload
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Checking the status of a specific service</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>status<span style="color: #F8F8F8"> </span>ssh
+<span style="color: #000; font-style: italic">● ssh.service - OpenBSD Secure Shell server</span>
+<span style="color: #000; font-style: italic">   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)</span>
+<span style="color: #000; font-style: italic">   Active: active (running) since Mon 2025-05-05 09:45:23 UTC; 3h 10min ago</span>
+<span style="color: #000; font-style: italic">  Process: 1122 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic"> Main PID: 1123 (sshd)</span>
+<span style="color: #000; font-style: italic">    Tasks: 1 (limit: 4915)</span>
+<span style="color: #000; font-style: italic">   Memory: 5.6M</span>
+<span style="color: #000; font-style: italic">   CGroup: /system.slice/ssh.service</span>
+<span style="color: #000; font-style: italic">           └─1123 /usr/sbin/sshd -D</span>
+</pre></div>
+<h3>Restarting a service and checking its status</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>restart<span style="color: #F8F8F8"> </span>nginx<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>status<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">● nginx.service - A high performance web server and a reverse proxy server</span>
+<span style="color: #000; font-style: italic">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span>
+<span style="color: #000; font-style: italic">   Active: active (running) since Mon 2025-05-05 13:05:45 UTC; 2s ago</span>
+<span style="color: #000; font-style: italic">     Docs: man:nginx(8)</span>
+<span style="color: #000; font-style: italic">  Process: 5678 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic">  Process: 5679 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic"> Main PID: 5680 (nginx)</span>
+<span style="color: #000; font-style: italic">    Tasks: 2 (limit: 4915)</span>
+<span style="color: #000; font-style: italic">   Memory: 2.8M</span>
+<span style="color: #000; font-style: italic">   CGroup: /system.slice/nginx.service</span>
+<span style="color: #000; font-style: italic">           ├─5680 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;</span>
+<span style="color: #000; font-style: italic">           └─5681 nginx: worker process</span>
+</pre></div>
+<h3>Listing all failed services</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>list-units<span style="color: #F8F8F8"> </span>--state<span style="color: #CE5C00; font-weight: bold">=</span>failed
+<span style="color: #000; font-style: italic">UNIT                  LOAD   ACTIVE SUB    DESCRIPTION</span>
+<span style="color: #000; font-style: italic">mysql.service         loaded failed failed MySQL Database Server</span>
+<span style="color: #000; font-style: italic">openvpn.service       loaded failed failed OpenVPN service</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Tab Completion</h3>
+<p>Systemctl supports tab completion for service names, making it easier to manage services without remembering exact names.</p>
+<h3>Check Service Logs</h3>
+<p>When troubleshooting services, use <code>journalctl -u service-name</code> to view logs specific to that service.</p>
+<h3>Mask Services</h3>
+<p>To completely prevent a service from being started (even manually), use <code>systemctl mask service-name</code>. This creates a symlink to /dev/null, making it impossible to start the service until it's unmasked with <code>systemctl unmask service-name</code>.</p>
+<h3>View Service Dependencies</h3>
+<p>Use <code>systemctl list-dependencies service-name</code> to see what other services a particular service depends on.</p>
+<h3>Manage System State</h3>
+<p>Beyond services, systemctl can manage system states like reboot (<code>systemctl reboot</code>), poweroff (<code>systemctl poweroff</code>), and suspend (<code>systemctl suspend</code>).</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>systemctl stop</code> and <code>systemctl disable</code>?</h4>
+<p>A. <code>systemctl stop</code> immediately stops a running service but doesn't change its boot behavior. <code>systemctl disable</code> prevents a service from starting automatically at boot but doesn't affect currently running services.</p>
+<h4>Q2. How do I make changes to a service configuration take effect?</h4>
+<p>A. After modifying a service file, run <code>sudo systemctl daemon-reload</code> to reload the systemd manager configuration, then restart the service with <code>sudo systemctl restart service-name</code>.</p>
+<h4>Q3. How can I see all available services?</h4>
+<p>A. Use <code>systemctl list-unit-files --type=service</code> to see all available service unit files and their states.</p>
+<h4>Q4. How do I create a custom systemd service?</h4>
+<p>A. Create a .service file in /etc/systemd/system/, then run <code>systemctl daemon-reload</code> to register it, and <code>systemctl enable</code> to enable it at boot.</p>
+<h4>Q5. What does &quot;masked&quot; status mean for a service?</h4>
+<p>A. A masked service is completely prevented from starting, either manually or automatically. It's a stronger form of &quot;disabled&quot; and is done by creating a symlink from the service file to /dev/null.</p>
+<h2>References</h2>
+<p>https://www.freedesktop.org/software/systemd/man/systemctl.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

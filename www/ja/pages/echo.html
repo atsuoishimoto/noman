@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  echo - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>echo コマンド</h1>
+<p>テキストや変数を標準出力に表示します。</p>
+<h2>概要</h2>
+<p><code>echo</code> コマンドは、引数を標準出力に表示し、最後に改行を追加します。シェルスクリプトでテキストを表示したり、変数の値を表示したり、他のコマンドへの出力を生成したりするために一般的に使用されます。</p>
+<h2>オプション</h2>
+<h3><strong>-n</strong></h3>
+<p>通常出力の最後に追加される改行を抑制します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello&quot;</span>
+<span style="color: #000; font-style: italic">Hello$</span>
+</pre></div>
+<h3><strong>-e</strong></h3>
+<p>バックスラッシュエスケープシーケンスの解釈を有効にします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello\nWorld&quot;</span>
+<span style="color: #000; font-style: italic">Hello</span>
+<span style="color: #000; font-style: italic">World</span>
+</pre></div>
+<h3><strong>-E</strong></h3>
+<p>バックスラッシュエスケープシーケンスの解釈を無効にします（これがデフォルトです）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-E<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello\nWorld&quot;</span>
+<span style="color: #000; font-style: italic">Hello\nWorld</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>テキストの表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>Hello<span style="color: #F8F8F8"> </span>World
+<span style="color: #000; font-style: italic">Hello World</span>
+</pre></div>
+<h3>変数値の表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">name</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;John&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;My name is </span><span style="color: #000">$name</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">My name is John</span>
+</pre></div>
+<h3>コマンド置換との併用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Today&#39;s date is </span><span style="color: #204A87; font-weight: bold">$(</span>date<span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Today&#39;s date is Mon May 5 10:15:23 EDT 2025</span>
+</pre></div>
+<h3>-e オプションでエスケープシーケンスを使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Tab:\t| Newline:\n| Backslash:\\&quot;</span>
+<span style="color: #000; font-style: italic">Tab:	| Newline:</span>
+<span style="color: #000; font-style: italic">| Backslash:\</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>変数展開を防ぐ</h3>
+<p>シングルクォートを使用して変数展開と解釈を防ぎます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;$HOME contains your home directory path&#39;</span>
+<span style="color: #8F5902">$</span>HOME<span style="color: #F8F8F8"> </span>contains<span style="color: #F8F8F8"> </span>your<span style="color: #F8F8F8"> </span>home<span style="color: #F8F8F8"> </span>directory<span style="color: #F8F8F8"> </span>path
+</pre></div>
+<h3>出力をファイルにリダイレクト</h3>
+<p>echo とリダイレクションを組み合わせて、ファイルを作成または追加します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This is a new file&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>newfile.txt
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This is appended&quot;</span><span style="color: #F8F8F8"> </span>&gt;&gt;<span style="color: #F8F8F8"> </span>newfile.txt
+</pre></div>
+<h3>複数行のコンテンツを生成</h3>
+<p>複数の echo コマンドまたはエスケープシーケンスを使用して、複数行のコンテンツを作成します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Line 1\nLine 2\nLine 3&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>multiline.txt
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. echo でシングルクォートとダブルクォートの違いは何ですか？</h4>
+<p>A. ダブルクォート（<code>&quot;</code>）は変数展開と一部のエスケープシーケンスを許可しますが、シングルクォート（<code>'</code>）は展開せずにすべてを文字通りに扱います。</p>
+<h4>Q2. 最後に改行なしで echo するにはどうすればよいですか？</h4>
+<p>A. <code>-n</code> オプションを使用します：<code>echo -n &quot;text&quot;</code>。</p>
+<h4>Q3. タブや改行などの特殊文字を含めるにはどうすればよいですか？</h4>
+<p>A. <code>-e</code> オプションとエスケープシーケンスを使用します：<code>echo -e &quot;Tab:\t Newline:\n&quot;</code>。</p>
+<h4>Q4. echo でファイルの内容を表示できますか？</h4>
+<p>A. いいえ、それは <code>cat</code> コマンドの役割です。Echo は引数のみを表示します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/echo-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

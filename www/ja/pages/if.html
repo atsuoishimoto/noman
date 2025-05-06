@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  if - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>if コマンド</h1>
+<p>条件式を評価し、結果に基づいてコマンドを実行します。</p>
+<h2>概要</h2>
+<p><code>if</code> コマンドはシェルの構文で、条件付き実行を可能にします。条件が真かどうかをテストし、それに応じてコードブロックを実行します。オプションで <code>elif</code>（else if）や <code>else</code> 節を含めることで、複数の条件を処理できます。</p>
+<h2>オプション</h2>
+<p><code>if</code> コマンドは独立した実行ファイルではなく、シェル組み込みの構文であるため、従来のコマンドラインオプションはありません。</p>
+<h2>使用例</h2>
+<h3>基本的な if 文</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;passwdファイルが存在します。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">passwdファイルが存在します。</span>
+</pre></div>
+<h3>if-else 文</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$USER</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;root&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;あなたはrootです。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;あなたはrootではありません。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">あなたはrootではありません。</span>
+</pre></div>
+<h3>if-elif-else 文</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">count</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">15</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$count</span><span style="color: #F8F8F8"> </span>-lt<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;カウントは10未満です。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; elif [ $count -lt 20 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;カウントは10以上20未満です。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;カウントは20以上です。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">カウントは10以上20未満です。</span>
+</pre></div>
+<h3>テスト演算子の使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">file</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;example.txt&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$file</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$file</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;ファイルは存在し、書き込み可能です。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;ファイルが存在しないか、書き込みできません。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">ファイルが存在しないか、書き込みできません。</span>
+</pre></div>
+<h3>コマンドの終了ステータスの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;root&quot;</span><span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;ユーザーrootが存在します。&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">ユーザーrootが存在します。</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>変数は常に引用符で囲む</h3>
+<p>テスト条件では、単語分割やグロブの問題を防ぐために、常に変数を引用符で囲みましょう：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">filename</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;my file.txt&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$filename</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># 引用符によりスペースの問題を防止</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;ファイルが存在します&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+</pre></div>
+<h3>Bashでは二重角括弧を使用する</h3>
+<p>Bashでは、<code>[[ ]]</code> は従来の <code>[ ]</code> テストコマンドよりも多くの機能を提供します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[[</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$string</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">==</span><span style="color: #F8F8F8"> </span>*txt<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># [[ ]]ではパターンマッチングが機能する</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;文字列はtxtで終わります&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+</pre></div>
+<h3>コマンドの成功を確認する</h3>
+<p><code>[ ]</code> を使わずにコマンドが成功したかどうかをテストできます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span>ping<span style="color: #F8F8F8"> </span>-c1<span style="color: #F8F8F8"> </span>-W1<span style="color: #F8F8F8"> </span>google.com<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">&amp;</span>&gt;/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;ネットワークは稼働中です&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;ネットワークはダウンしています&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>[ ]</code> と <code>[[ ]]</code> の違いは何ですか？</h4>
+<p>A. <code>[ ]</code> はほとんどのシェルで利用可能な従来のテストコマンドです。<code>[[ ]]</code> はパターンマッチングや論理演算子などの追加機能を持つBashの拡張機能です。可能な場合はBashスクリプトで <code>[[ ]]</code> を使用してください。</p>
+<h4>Q2. ファイルが存在するかどうかをテストするにはどうすればよいですか？</h4>
+<p>A. ファイルが存在するかを確認するには <code>if [ -e ファイル名 ]</code>、通常のファイルかを確認するには <code>if [ -f ファイル名 ]</code>、ディレクトリかを確認するには <code>if [ -d ファイル名 ]</code> を使用します。</p>
+<h4>Q3. 文字列を比較するにはどうすればよいですか？</h4>
+<p>A. 等しいかどうかは <code>if [ &quot;$string1&quot; = &quot;$string2&quot; ]</code>、等しくないかどうかは <code>if [ &quot;$string1&quot; != &quot;$string2&quot; ]</code> を使用します。文字列比較では単一の <code>=</code> を使用することに注意してください。</p>
+<h4>Q4. 数値を比較するにはどうすればよいですか？</h4>
+<p>A. <code>-eq</code>（等しい）、<code>-ne</code>（等しくない）、<code>-lt</code>（より小さい）、<code>-le</code>（以下）、<code>-gt</code>（より大きい）、または <code>-ge</code>（以上）を使用します：<code>if [ &quot;$num1&quot; -eq &quot;$num2&quot; ]</code>。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/06 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

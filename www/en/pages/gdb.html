@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  gdb - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>gdb command</h1>
+<p>Debug programs interactively with the GNU Debugger.</p>
+<h2>Overview</h2>
+<p>GDB (GNU Debugger) is a powerful debugging tool that allows developers to monitor and control the execution of programs. It helps find and fix bugs by letting you pause execution, examine memory, set breakpoints, step through code, and inspect variables during runtime. GDB works with many programming languages including C, C++, Objective-C, and Fortran.</p>
+<h2>Options</h2>
+<h3><strong>-q, --quiet, --silent</strong></h3>
+<p>Start GDB without printing the introductory and copyright messages</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>./program
+<span style="color: #8F5902">(gdb)</span>
+</pre></div>
+<h3><strong>-c FILE</strong></h3>
+<p>Use FILE as a core dump to examine</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>core<span style="color: #F8F8F8"> </span>./program
+</pre></div>
+<h3><strong>-p PID</strong></h3>
+<p>Attach to a running process with the specified process ID</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3><strong>-x FILE</strong></h3>
+<p>Execute GDB commands from FILE</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>commands.gdb<span style="color: #F8F8F8"> </span>./program
+</pre></div>
+<h3><strong>--args</strong></h3>
+<p>Pass arguments after program name to the program being debugged</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>--args<span style="color: #F8F8F8"> </span>./program<span style="color: #F8F8F8"> </span>arg1<span style="color: #F8F8F8"> </span>arg2
+</pre></div>
+<h3><strong>-d DIRECTORY</strong></h3>
+<p>Add DIRECTORY to the path to search for source files</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>/path/to/source<span style="color: #F8F8F8"> </span>./program
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic debugging session</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>./program
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">break main</span>
+<span style="color: #000; font-style: italic">Breakpoint 1 at 0x1149: file main.c, line 5.</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">run</span>
+<span style="color: #000; font-style: italic">Starting program: /path/to/program </span>
+
+<span style="color: #000; font-style: italic">Breakpoint 1, main () at main.c:5</span>
+<span style="color: #000; font-style: italic">5       int x = 10;</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">next</span>
+<span style="color: #000; font-style: italic">6       printf(&quot;x = %d\n&quot;, x);</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">print x</span>
+<span style="color: #8F5902">$</span><span style="color: #000">1</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">continue</span>
+<span style="color: #000; font-style: italic">Continuing.</span>
+<span style="color: #000; font-style: italic">x = 10</span>
+<span style="color: #000; font-style: italic">[Inferior 1 (process 12345) exited normally]</span>
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">quit</span>
+</pre></div>
+<h3>Debugging a program with arguments</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>--args<span style="color: #F8F8F8"> </span>./program<span style="color: #F8F8F8"> </span>input.txt<span style="color: #F8F8F8"> </span>output.txt
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">run</span>
+<span style="color: #000; font-style: italic">Starting program: /path/to/program input.txt output.txt</span>
+<span style="color: #000; font-style: italic">[Program execution...]</span>
+</pre></div>
+<h3>Examining a core dump</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>gdb<span style="color: #F8F8F8"> </span>./program<span style="color: #F8F8F8"> </span>core
+<span style="color: #8F5902">(gdb)</span> <span style="color: #000; font-style: italic">bt</span>
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">0</span><span style="color: #F8F8F8">  </span>0x00007f8b4c5e32a3<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>__GI_raise<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">(</span><span style="color: #000">sig</span><span style="color: #CE5C00; font-weight: bold">=</span>sig@entry<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">6</span><span style="color: #CE5C00; font-weight: bold">)</span><span style="color: #F8F8F8"> </span>at<span style="color: #F8F8F8"> </span>../sysdeps/unix/sysv/linux/raise.c:50
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8">  </span>0x00007f8b4c5e4921<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>__GI_abort<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>at<span style="color: #F8F8F8"> </span>abort.c:79
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8">  </span>0x0000555555555160<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>main<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>at<span style="color: #F8F8F8"> </span>crash.c:5
+</pre></div>
+<h2>Tips:</h2>
+<h3>Common GDB Commands</h3>
+<ul>
+<li><code>break</code> (or <code>b</code>): Set a breakpoint at a line or function</li>
+<li><code>run</code> (or <code>r</code>): Start the program</li>
+<li><code>continue</code> (or <code>c</code>): Continue execution after stopping</li>
+<li><code>next</code> (or <code>n</code>): Execute next line without stepping into functions</li>
+<li><code>step</code> (or <code>s</code>): Execute next line, stepping into functions</li>
+<li><code>print</code> (or <code>p</code>): Print value of a variable or expression</li>
+<li><code>backtrace</code> (or <code>bt</code>): Show call stack</li>
+<li><code>info breakpoints</code>: List all breakpoints</li>
+<li><code>watch</code>: Set a watchpoint to stop when a variable changes</li>
+</ul>
+<h3>Using TUI Mode</h3>
+<p>Enable Text User Interface mode with <code>Ctrl+X+A</code> for a split view showing source code and GDB commands simultaneously.</p>
+<h3>Saving Breakpoints</h3>
+<p>Use <code>save breakpoints file.txt</code> to save your breakpoints to a file, and load them in future sessions with <code>source file.txt</code>.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I start debugging a program?</h4>
+<p>A. Run <code>gdb ./program</code>, then use <code>break main</code> to set a breakpoint at the main function, and <code>run</code> to start execution.</p>
+<h4>Q2. How can I examine what caused a segmentation fault?</h4>
+<p>A. After the crash, use <code>backtrace</code> (or <code>bt</code>) to see the call stack and identify where the crash occurred. Then use <code>frame N</code> to select a specific frame and examine variables.</p>
+<h4>Q3. How do I debug a running process?</h4>
+<p>A. Use <code>gdb -p PID</code> to attach to a running process with the specified process ID.</p>
+<h4>Q4. How do I set conditional breakpoints?</h4>
+<p>A. Use <code>break location if condition</code>, for example: <code>break main.c:25 if x &gt; 10</code>.</p>
+<h4>Q5. How do I print all elements of an array?</h4>
+<p>A. Use <code>print *array@length</code> where <code>length</code> is the number of elements to display.</p>
+<h2>References</h2>
+<p>https://sourceware.org/gdb/current/onlinedocs/gdb/</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

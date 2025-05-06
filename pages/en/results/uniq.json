@@ -1,0 +1,20 @@
+{
+  "id": "msg_0111SxZVZQNWJbWuTErQV9v5",
+  "content": [
+    {
+      "text": "# uniq command\n\nFilter adjacent matching lines from input, or report unique lines.\n\n## Overview\n\nThe `uniq` command filters out repeated lines in a file or input stream. It works by comparing adjacent lines and removing or identifying duplicate lines. By default, `uniq` only detects duplicate lines if they are adjacent, so input is typically sorted first using the `sort` command.\n\n## Options\n\n### **-c, --count**\n\nPrefix lines with the number of occurrences\n\n```console\n$ sort names.txt | uniq -c\n      2 Alice\n      1 Bob\n      3 Charlie\n```\n\n### **-d, --repeated**\n\nOnly print duplicate lines, one for each group\n\n```console\n$ sort names.txt | uniq -d\nAlice\nCharlie\n```\n\n### **-u, --unique**\n\nOnly print unique lines (not duplicated in input)\n\n```console\n$ sort names.txt | uniq -u\nBob\n```\n\n### **-i, --ignore-case**\n\nIgnore case when comparing lines\n\n```console\n$ sort names.txt | uniq -i\nAlice\nBob\nCharlie\n```\n\n### **-f N, --skip-fields=N**\n\nSkip comparing the first N fields\n\n```console\n$ cat data.txt\n1 Alice Engineering\n1 Alice Marketing\n2 Bob Sales\n$ uniq -f 1 data.txt\n1 Alice Engineering\n2 Bob Sales\n```\n\n### **-s N, --skip-chars=N**\n\nSkip comparing the first N characters\n\n```console\n$ cat codes.txt\nABC123\nABC456\nDEF789\n$ uniq -s 3 codes.txt\nABC123\nDEF789\n```\n\n## Usage Examples\n\n### Basic usage with sort\n\n```console\n$ cat names.txt\nAlice\nBob\nAlice\nCharlie\nCharlie\nCharlie\nBob\n$ sort names.txt | uniq\nAlice\nBob\nCharlie\n```\n\n### Count occurrences of each line\n\n```console\n$ sort names.txt | uniq -c\n      2 Alice\n      2 Bob\n      3 Charlie\n```\n\n### Show only lines that appear exactly once\n\n```console\n$ sort names.txt | uniq -u\n```\n\n### Show only duplicate lines\n\n```console\n$ sort names.txt | uniq -d\nAlice\nBob\nCharlie\n```\n\n## Tips:\n\n### Always Sort First\n\nSince `uniq` only removes adjacent duplicate lines, always pipe the output of `sort` to `uniq` to ensure all duplicates are detected:\n\n```console\n$ sort file.txt | uniq\n```\n\n### Counting Word Frequency\n\nTo count word frequency in a file, use:\n\n```console\n$ cat file.txt | tr -s ' ' '\\n' | sort | uniq -c | sort -nr\n```\n\nThis splits text into words, sorts them, counts occurrences, and sorts by frequency.\n\n### Case-Insensitive Matching\n\nUse `-i` when you want to treat uppercase and lowercase versions of the same word as identical:\n\n```console\n$ sort words.txt | uniq -i\n```\n\n## Frequently Asked Questions\n\n#### Q1. Why doesn't `uniq` remove all duplicate lines in my file?\nA. `uniq` only removes adjacent duplicate lines. You need to sort the file first: `sort file.txt | uniq`\n\n#### Q2. How can I count how many times each line appears?\nA. Use `sort file.txt | uniq -c`\n\n#### Q3. How do I find lines that appear only once?\nA. Use `sort file.txt | uniq -u`\n\n#### Q4. How do I find duplicated lines?\nA. Use `sort file.txt | uniq -d`\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/uniq-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1679,
+    "output_tokens": 894
+  }
+}

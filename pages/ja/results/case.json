@@ -1,0 +1,20 @@
+{
+  "id": "msg_017cKNZBpMZCUG94vzRULubB",
+  "content": [
+    {
+      "text": "# case コマンド\n\nシェルスクリプトでパターンマッチングに基づく条件分岐を実行します。\n\n## 概要\n\n`case`文はシェルの構文で、パターンマッチングに基づいて複数の条件分岐を可能にします。単一の値を複数のパターンと比較する場合、複数の`if-else`文よりも読みやすく効率的です。`case`文は、コマンドライン引数の処理、メニュー選択、または複数の条件チェックが必要な状況でシェルスクリプトでよく使用されます。\n\n## 構文\n\n```bash\ncase 単語 in\n  パターン1)\n    コマンド1\n    ;;\n  パターン2)\n    コマンド2\n    ;;\n  *)\n    デフォルトコマンド\n    ;;\nesac\n```\n\n## 使用例\n\n### 基本的なパターンマッチング\n\n```console\n$ cat example.sh\n#!/bin/bash\nfruit=\"apple\"\n\ncase \"$fruit\" in\n  \"apple\")\n    echo \"これはリンゴです。\"\n    ;;\n  \"banana\")\n    echo \"これはバナナです。\"\n    ;;\n  *)\n    echo \"これは他のものです。\"\n    ;;\nesac\n\n$ ./example.sh\nこれはリンゴです。\n```\n\n### 一つのアクションに対する複数のパターン\n\n```console\n$ cat example2.sh\n#!/bin/bash\nfruit=\"pear\"\n\ncase \"$fruit\" in\n  \"apple\"|\"pear\"|\"peach\")\n    echo \"これは仁果類または核果類です。\"\n    ;;\n  \"banana\"|\"pineapple\")\n    echo \"これは熱帯果実です。\"\n    ;;\n  *)\n    echo \"不明な果物タイプです。\"\n    ;;\nesac\n\n$ ./example2.sh\nこれは仁果類または核果類です。\n```\n\n### コマンドライン引数の処理\n\n```console\n$ cat options.sh\n#!/bin/bash\n\ncase \"$1\" in\n  -h|--help)\n    echo \"使用法: $0 [オプション]\"\n    echo \"オプション:\"\n    echo \"  -h, --help     このヘルプメッセージを表示\"\n    echo \"  -v, --version  バージョン情報を表示\"\n    ;;\n  -v|--version)\n    echo \"バージョン 1.0\"\n    ;;\n  *)\n    echo \"不明なオプション: $1\"\n    echo \"詳細は --help を使用してください。\"\n    ;;\nesac\n\n$ ./options.sh --help\n使用法: ./options.sh [オプション]\nオプション:\n  -h, --help     このヘルプメッセージを表示\n  -v, --version  バージョン情報を表示\n```\n\n### ワイルドカードを使用したパターンマッチング\n\n```console\n$ cat wildcard.sh\n#!/bin/bash\nfilename=\"document.txt\"\n\ncase \"$filename\" in\n  *.txt)\n    echo \"テキストファイル\"\n    ;;\n  *.jpg|*.png|*.gif)\n    echo \"画像ファイル\"\n    ;;\n  *.sh)\n    echo \"シェルスクリプト\"\n    ;;\n  *)\n    echo \"不明なファイルタイプ\"\n    ;;\nesac\n\n$ ./wildcard.sh\nテキストファイル\n```\n\n## ヒント\n\n### フォールスルーに ;& または ;&& を使用する（Bash 4以降）\n\nBash 4以降では、`;& `を使用して次のパターンをテストせずに続行するか、`;&& `を使用して次のパターンをテストできます：\n\n```bash\ncase \"$var\" in\n  pattern1)\n    echo \"pattern1に一致\"\n    ;& # 次のパターンにフォールスルー\n  pattern2)\n    echo \"pattern1が一致した場合、これも実行される\"\n    ;;\nesac\n```\n\n### パイプ記号でパターンを組み合わせる\n\nパイプ記号 `|` を使用して、同じアクションに対して複数のパターンを一致させます：\n\n```bash\ncase \"$var\" in\n  yes|y|Y)\n    echo \"肯定的\"\n    ;;\nesac\n```\n\n### 常にデフォルトケースを含める\n\n予期しない入力を処理するために、`*` を使用してデフォルトケースを含めます：\n\n```bash\ncase \"$var\" in\n  # 他のパターン\n  *)\n    echo \"一致するものが見つかりません\"\n    ;;\nesac\n```\n\n### 変数の周りに引用符を使用する\n\n単語分割とグロブを防ぐために、常に変数を引用符で囲みます：\n\n```bash\ncase \"$variable\" in\n  # パターン\nesac\n```\n\n## よくある質問\n\n#### Q1. `case`は`if-else`文とどう違いますか？\nA. `case`は単一の値を複数のパターンと比較する場合、より読みやすく効率的です。一般的な条件論理ではなく、特にパターンマッチング用に設計されています。\n\n#### Q2. `case`パターンで正規表現を使用できますか？\nA. `case`は正規表現ではなく、シェルのパターンマッチング（グロビング）を使用します。`*`、`?`などのワイルドカードや`[a-z]`などの文字クラスは使用できますが、`+`や`\\d`などの正規表現構文は使用できません。\n\n#### Q3. `case`文で任意のパターンに一致させるにはどうすればよいですか？\nA. パターンとして`*`を使用すると、何にでも一致します。これは通常、デフォルトケースとして使用されます。\n\n#### Q4. 数値比較で`case`を使用できますか？\nA. はい、ただし構文に注意する必要があります。例えば：\n```bash\ncase $number in\n  [0-9]) echo \"1桁\" ;;\n  [0-9][0-9]) echo \"2桁\" ;;\n  *) echo \"2桁以上または数字ではない\" ;;\nesac\n```\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html\n\n## 改訂履歴\n\n- 2025/05/06 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1422,
+    "output_tokens": 1811
+  }
+}

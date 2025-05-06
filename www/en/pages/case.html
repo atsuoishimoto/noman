@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  case - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>case command</h1>
+<p>Performs conditional branching based on pattern matching in shell scripts.</p>
+<h2>Overview</h2>
+<p>The <code>case</code> statement is a shell construct that allows for multiple conditional branches based on pattern matching. It's more readable and efficient than multiple <code>if-else</code> statements when comparing a single value against multiple patterns. The <code>case</code> statement is commonly used in shell scripts to handle command-line arguments, menu selections, or any situation requiring multiple condition checks.</p>
+<h2>Syntax</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">case</span><span style="color: #F8F8F8"> </span>WORD<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span>
+<span style="color: #F8F8F8">  </span>PATTERN1<span style="color: #CE5C00; font-weight: bold">)</span>
+<span style="color: #F8F8F8">    </span>COMMANDS1
+<span style="color: #F8F8F8">    </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #F8F8F8">  </span>PATTERN2<span style="color: #CE5C00; font-weight: bold">)</span>
+<span style="color: #F8F8F8">    </span>COMMANDS2
+<span style="color: #F8F8F8">    </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #F8F8F8">  </span>*<span style="color: #CE5C00; font-weight: bold">)</span>
+<span style="color: #F8F8F8">    </span>DEFAULT_COMMANDS
+<span style="color: #F8F8F8">    </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #204A87; font-weight: bold">esac</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Pattern Matching</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>example.sh
+<span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #000; font-style: italic">fruit=&quot;apple&quot;</span>
+
+<span style="color: #000; font-style: italic">case &quot;$fruit&quot; in</span>
+<span style="color: #000; font-style: italic">  &quot;apple&quot;)</span>
+<span style="color: #000; font-style: italic">    echo &quot;It&#39;s an apple.&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  &quot;banana&quot;)</span>
+<span style="color: #000; font-style: italic">    echo &quot;It&#39;s a banana.&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  *)</span>
+<span style="color: #000; font-style: italic">    echo &quot;It&#39;s something else.&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">esac</span>
+
+<span style="color: #8F5902">$ </span>./example.sh
+<span style="color: #000; font-style: italic">It&#39;s an apple.</span>
+</pre></div>
+<h3>Multiple Patterns for One Action</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>example2.sh
+<span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #000; font-style: italic">fruit=&quot;pear&quot;</span>
+
+<span style="color: #000; font-style: italic">case &quot;$fruit&quot; in</span>
+<span style="color: #000; font-style: italic">  &quot;apple&quot;|&quot;pear&quot;|&quot;peach&quot;)</span>
+<span style="color: #000; font-style: italic">    echo &quot;It&#39;s a pome or stone fruit.&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  &quot;banana&quot;|&quot;pineapple&quot;)</span>
+<span style="color: #000; font-style: italic">    echo &quot;It&#39;s a tropical fruit.&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  *)</span>
+<span style="color: #000; font-style: italic">    echo &quot;Unknown fruit type.&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">esac</span>
+
+<span style="color: #8F5902">$ </span>./example2.sh
+<span style="color: #000; font-style: italic">It&#39;s a pome or stone fruit.</span>
+</pre></div>
+<h3>Command-Line Argument Handling</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>options.sh
+<span style="color: #8F5902">#</span>!/bin/bash
+
+<span style="color: #000; font-style: italic">case &quot;$1&quot; in</span>
+<span style="color: #000; font-style: italic">  -h|--help)</span>
+<span style="color: #000; font-style: italic">    echo &quot;Usage: $0 [OPTION]&quot;</span>
+<span style="color: #000; font-style: italic">    echo &quot;Options:&quot;</span>
+<span style="color: #000; font-style: italic">    echo &quot;  -h, --help     Display this help message&quot;</span>
+<span style="color: #000; font-style: italic">    echo &quot;  -v, --version  Display version information&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  -v|--version)</span>
+<span style="color: #000; font-style: italic">    echo &quot;Version 1.0&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  *)</span>
+<span style="color: #000; font-style: italic">    echo &quot;Unknown option: $1&quot;</span>
+<span style="color: #000; font-style: italic">    echo &quot;Use --help for more information.&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">esac</span>
+
+<span style="color: #8F5902">$ </span>./options.sh<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: ./options.sh [OPTION]</span>
+<span style="color: #000; font-style: italic">Options:</span>
+<span style="color: #000; font-style: italic">  -h, --help     Display this help message</span>
+<span style="color: #000; font-style: italic">  -v, --version  Display version information</span>
+</pre></div>
+<h3>Pattern Matching with Wildcards</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>wildcard.sh
+<span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #000; font-style: italic">filename=&quot;document.txt&quot;</span>
+
+<span style="color: #000; font-style: italic">case &quot;$filename&quot; in</span>
+<span style="color: #000; font-style: italic">  *.txt)</span>
+<span style="color: #000; font-style: italic">    echo &quot;Text file&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  *.jpg|*.png|*.gif)</span>
+<span style="color: #000; font-style: italic">    echo &quot;Image file&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  *.sh)</span>
+<span style="color: #000; font-style: italic">    echo &quot;Shell script&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">  *)</span>
+<span style="color: #000; font-style: italic">    echo &quot;Unknown file type&quot;</span>
+<span style="color: #000; font-style: italic">    ;;</span>
+<span style="color: #000; font-style: italic">esac</span>
+
+<span style="color: #8F5902">$ </span>./wildcard.sh
+<span style="color: #000; font-style: italic">Text file</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Use Fall-Through with ;&amp; or ;&amp;&amp; (Bash 4+)</h3>
+<p>In Bash 4 and later, you can use <code>;&amp; </code> to continue to the next pattern without testing it, or <code>;&amp;&amp; </code> to test the next pattern:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">case</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$var</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span>
+<span style="color: #F8F8F8">  </span>pattern1<span style="color: #CE5C00; font-weight: bold">)</span>
+<span style="color: #F8F8F8">    </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Matches pattern1&quot;</span>
+<span style="color: #F8F8F8">    </span><span style="color: #000; font-weight: bold">;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #8F5902; font-style: italic"># Fall through to next pattern</span>
+<span style="color: #F8F8F8">  </span>pattern2<span style="color: #CE5C00; font-weight: bold">)</span>
+<span style="color: #F8F8F8">    </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This will execute if pattern1 matches&quot;</span>
+<span style="color: #F8F8F8">    </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #204A87; font-weight: bold">esac</span>
+</pre></div>
+<h3>Combine Patterns with Pipe Symbol</h3>
+<p>Use the pipe symbol <code>|</code> to match multiple patterns for the same action:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">case</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$var</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span>
+<span style="color: #F8F8F8">  </span>yes<span style="color: #000; font-weight: bold">|</span>y<span style="color: #000; font-weight: bold">|</span>Y<span style="color: #CE5C00; font-weight: bold">)</span>
+<span style="color: #F8F8F8">    </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Affirmative&quot;</span>
+<span style="color: #F8F8F8">    </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #204A87; font-weight: bold">esac</span>
+</pre></div>
+<h3>Always Include a Default Case</h3>
+<p>Include a default case using <code>*</code> to handle unexpected inputs:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">case</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$var</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span>
+<span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># other patterns</span>
+<span style="color: #F8F8F8">  </span>*<span style="color: #CE5C00; font-weight: bold">)</span>
+<span style="color: #F8F8F8">    </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;No match found&quot;</span>
+<span style="color: #F8F8F8">    </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #204A87; font-weight: bold">esac</span>
+</pre></div>
+<h3>Use Quotes Around Variables</h3>
+<p>Always quote your variables to prevent word splitting and globbing:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">case</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$variable</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span>
+<span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># patterns</span>
+<span style="color: #204A87; font-weight: bold">esac</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How does <code>case</code> differ from <code>if-else</code> statements?</h4>
+<p>A. <code>case</code> is more readable and efficient when comparing a single value against multiple patterns. It's designed specifically for pattern matching rather than general conditional logic.</p>
+<h4>Q2. Can I use regular expressions in <code>case</code> patterns?</h4>
+<p>A. <code>case</code> uses shell pattern matching (globbing), not regular expressions. You can use wildcards like <code>*</code>, <code>?</code>, and character classes like <code>[a-z]</code>, but not regex syntax like <code>+</code> or <code>\d</code>.</p>
+<h4>Q3. How do I match any pattern in a <code>case</code> statement?</h4>
+<p>A. Use <code>*</code> as the pattern to match anything. This is commonly used as the default case.</p>
+<h4>Q4. Can I use <code>case</code> with numeric comparisons?</h4>
+<p>A. Yes, but you need to be careful with the syntax. For example:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #204A87; font-weight: bold">case</span><span style="color: #F8F8F8"> </span><span style="color: #000">$number</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span>
+<span style="color: #F8F8F8">  </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #0000CF; font-weight: bold">0</span>-9<span style="color: #CE5C00; font-weight: bold">])</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Single digit&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #F8F8F8">  </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #0000CF; font-weight: bold">0</span>-9<span style="color: #CE5C00; font-weight: bold">][</span><span style="color: #0000CF; font-weight: bold">0</span>-9<span style="color: #CE5C00; font-weight: bold">])</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Two digits&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #F8F8F8">  </span>*<span style="color: #CE5C00; font-weight: bold">)</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;More than two digits or not a number&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">;;</span>
+<span style="color: #204A87; font-weight: bold">esac</span>
+</pre></div>
+<h2>References</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

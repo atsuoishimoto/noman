@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  truncate - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>truncate command</h1>
+<p>Shrink or extend the size of a file to a specified size.</p>
+<h2>Overview</h2>
+<p>The <code>truncate</code> command modifies the size of a file to a specified length. It can either shrink a file by removing data from the end or extend it by adding null bytes. This command is useful for creating files of specific sizes, clearing file contents while preserving the file, or testing disk space scenarios.</p>
+<h2>Options</h2>
+<h3><strong>-s, --size=SIZE</strong></h3>
+<p>Set or adjust the file size to SIZE. SIZE can be an absolute number or a relative adjustment with a prefix of '+' or '-'.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>myfile.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>myfile.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 100 May 5 10:00 myfile.txt</span>
+</pre></div>
+<h3><strong>-c, --no-create</strong></h3>
+<p>Do not create files that do not exist.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">50</span><span style="color: #F8F8F8"> </span>nonexistent.txt
+<span style="color: #000; font-style: italic">truncate: cannot open &#39;nonexistent.txt&#39; for writing: No such file or directory</span>
+</pre></div>
+<h3><strong>-o, --io-blocks</strong></h3>
+<p>Treat SIZE as number of I/O blocks instead of bytes.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span>blockfile.dat
+</pre></div>
+<h3><strong>-r, --reference=RFILE</strong></h3>
+<p>Base the size on the size of RFILE.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>reference.txt<span style="color: #F8F8F8"> </span>target.txt
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>Display help information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>--help
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>Output version information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>--version
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating an empty file of specific size</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>1M<span style="color: #F8F8F8"> </span>largefile.dat
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-lh<span style="color: #F8F8F8"> </span>largefile.dat
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 1.0M May 5 10:05 largefile.dat</span>
+</pre></div>
+<h3>Shrinking a file to a smaller size</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This is a test file with content&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>testfile.txt
+<span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span>testfile.txt
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>testfile.txt
+<span style="color: #000; font-style: italic">This is a</span>
+</pre></div>
+<h3>Extending a file's size</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Small&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>smallfile.txt
+<span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>smallfile.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>smallfile.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 100 May 5 10:10 smallfile.txt</span>
+</pre></div>
+<h3>Using relative sizes</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>myfile.txt
+<span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>+50<span style="color: #F8F8F8"> </span>myfile.txt<span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Add 50 bytes</span>
+<span style="color: #8F5902">$ </span>truncate<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>-30<span style="color: #F8F8F8"> </span>myfile.txt<span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Remove 30 bytes</span>
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>myfile.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 120 May 5 10:15 myfile.txt</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Create Sparse Files</h3>
+<p>When extending a file, <code>truncate</code> creates sparse files (files that appear larger than the actual disk space they consume) by adding null bytes. This is useful for testing applications with large files without consuming actual disk space.</p>
+<h3>Quickly Empty a File</h3>
+<p>Use <code>truncate -s 0 filename</code> to quickly empty a file without deleting it. This preserves file permissions and ownership while removing all content.</p>
+<h3>Be Careful with Shrinking</h3>
+<p>When shrinking files, data beyond the new size is permanently lost. Always make backups of important files before truncating them.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What happens when I truncate a file to a smaller size?</h4>
+<p>A. Any data beyond the specified size is permanently deleted. The file will be cut off at exactly the byte position specified.</p>
+<h4>Q2. Does truncate work on all file types?</h4>
+<p>A. <code>truncate</code> works on regular files but may not work as expected on special files like devices or sockets. It's primarily designed for regular files.</p>
+<h4>Q3. How is truncate different from using <code>&gt; file</code> redirection?</h4>
+<p>A. While <code>&gt; file</code> empties a file completely, <code>truncate</code> can set a file to any specific size, including extending it or reducing it to a precise byte count.</p>
+<h4>Q4. Can truncate create files with specific content?</h4>
+<p>A. No, <code>truncate</code> only adjusts file size. When extending files, it adds null bytes (zeros). To create files with specific content, you need to use other commands like <code>echo</code> or <code>cat</code>.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/truncate-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

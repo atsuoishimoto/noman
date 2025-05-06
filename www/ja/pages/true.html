@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  true - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>true コマンド</h1>
+<p>成功の終了ステータス（0）を返します。</p>
+<h2>概要</h2>
+<p><code>true</code> コマンドは成功の終了ステータス（0）を返す以外は何もしません。主にシェルスクリプトで無限ループの作成、プレースホルダー、または条件ロジックのテストに使用されます。</p>
+<h2>オプション</h2>
+<p><code>true</code> コマンドは成功ステータスコードで終了することが唯一の目的であるため、オプションはありません。</p>
+<h2>使用例</h2>
+<h3>基本的な使い方</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">true</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">0</span>
+</pre></div>
+<h3>シェルスクリプトで無限ループを作成する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span>true<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Ctrl+Cで終了&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span>sleep<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">done</span>
+<span style="color: #000; font-style: italic">Ctrl+Cで終了</span>
+<span style="color: #000; font-style: italic">Ctrl+Cで終了</span>
+<span style="color: #000; font-style: italic">Ctrl+Cで終了</span>
+<span style="color: #000; font-style: italic">^C</span>
+</pre></div>
+<h3>条件文でプレースホルダーとして使用する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$DEBUG</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;yes&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;デバッグ情報&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">else</span><span style="color: #F8F8F8"> </span>true<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">fi</span>
+</pre></div>
+<h3>論理OR演算での使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">true</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;これは表示されない&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">false</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;これは表示される&quot;</span>
+<span style="color: #000; font-style: italic">これは表示される</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3><code>true</code> と <code>:</code> の違い</h3>
+<p><code>true</code> と <code>:</code> (コロン) コマンドは本質的に同じことを行います - どちらも成功の終了ステータスを返します。コロンはシェル組み込みコマンドでわずかに効率的ですが、<code>true</code> はより読みやすく明示的です。</p>
+<h3>条件付き実行での使用</h3>
+<p><code>true</code> は <code>&amp;&amp;</code> や <code>||</code> 演算子を使った条件付き実行で便利です。例えば、<code>command &amp;&amp; true</code> は最初のコマンドが成功するかどうかに関わらず、全体のコマンドが成功することを保証します。</p>
+<h3>空ファイルの作成</h3>
+<p>主な目的ではありませんが、<code>true &gt; ファイル名</code> を使用して空のファイルを作成できます（<code>touch</code> と同様）。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>true</code> と <code>false</code> コマンドの違いは何ですか？</h4>
+<p>A. <code>true</code> は常にステータスコード0（成功）で終了し、<code>false</code> は常にステータスコード1（失敗）で終了します。</p>
+<h4>Q2. <code>true</code> はシェル組み込みコマンドですか、それとも外部コマンドですか？</h4>
+<p>A. 効率性のために、ほとんどのシェルは <code>true</code> を組み込みコマンドとして実装していますが、同じことを行う外部の <code>/bin/true</code> コマンドも存在します。</p>
+<h4>Q3. コメントの代わりに <code>true</code> を使う理由は何ですか？</h4>
+<p>A. コメントとは異なり、<code>true</code> は実際に実行されるコマンドであるため、ループ構造や条件分岐のプレースホルダーなど、構文がコマンドを必要とする場所で役立ちます。</p>
+<h4>Q4. <code>true</code> はエラーを抑制するために使用できますか？</h4>
+<p>A. はい、<code>command || true</code> を使用すると、最初のコマンドが失敗しても全体のコマンドが成功を返すことを保証します。</p>
+<h2>参考資料</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/true-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

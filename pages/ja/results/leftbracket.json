@@ -1,0 +1,20 @@
+{
+  "id": "msg_019nFUADz6C4YiFFjUnhZdoN",
+  "content": [
+    {
+      "text": "# [ コマンド\n\n条件式を評価し、評価結果に基づいてステータスを返します。\n\n## 概要\n\n`[` コマンド（`test` としても知られています）は、条件式を評価し、0（真）または1（偽）のステータスを返すシェル組み込みコマンドです。シェルスクリプトでファイル属性のテスト、文字列比較、算術演算の条件テストによく使用されます。このコマンドは構文を完成させるために閉じる `]` が必要です。\n\n## オプション\n\n### **-e file**\n\nファイルが存在するかテストします。\n\n```console\n$ [ -e /etc/passwd ] && echo \"File exists\" || echo \"File does not exist\"\nFile exists\n```\n\n### **-f file**\n\nファイルが存在し、通常ファイルであるかテストします。\n\n```console\n$ [ -f /etc/passwd ] && echo \"Regular file\" || echo \"Not a regular file\"\nRegular file\n```\n\n### **-d file**\n\nファイルが存在し、ディレクトリであるかテストします。\n\n```console\n$ [ -d /etc ] && echo \"Directory exists\" || echo \"Not a directory\"\nDirectory exists\n```\n\n### **-r file**\n\nファイルが存在し、読み取り可能であるかテストします。\n\n```console\n$ [ -r /etc/passwd ] && echo \"File is readable\" || echo \"File is not readable\"\nFile is readable\n```\n\n### **-w file**\n\nファイルが存在し、書き込み可能であるかテストします。\n\n```console\n$ [ -w /tmp ] && echo \"Directory is writable\" || echo \"Directory is not writable\"\nDirectory is writable\n```\n\n### **-x file**\n\nファイルが存在し、実行可能であるかテストします。\n\n```console\n$ [ -x /bin/ls ] && echo \"File is executable\" || echo \"File is not executable\"\nFile is executable\n```\n\n### **-z string**\n\n文字列の長さがゼロであるかテストします。\n\n```console\n$ [ -z \"\" ] && echo \"String is empty\" || echo \"String is not empty\"\nString is empty\n```\n\n### **-n string**\n\n文字列の長さがゼロでないかテストします。\n\n```console\n$ [ -n \"hello\" ] && echo \"String is not empty\" || echo \"String is empty\"\nString is not empty\n```\n\n## 使用例\n\n### 文字列比較\n\n```console\n$ name=\"John\"\n$ [ \"$name\" = \"John\" ] && echo \"Name is John\" || echo \"Name is not John\"\nName is John\n```\n\n### 数値比較\n\n```console\n$ age=25\n$ [ $age -eq 25 ] && echo \"Age is 25\" || echo \"Age is not 25\"\nAge is 25\n```\n\n### 論理演算子による条件の組み合わせ\n\n```console\n$ [ -d /etc ] && [ -r /etc/passwd ] && echo \"Both conditions are true\"\nBoth conditions are true\n```\n\n### if文での使用\n\n```console\n$ if [ -f /etc/hosts ]; then\n>   echo \"The hosts file exists\"\n> else\n>   echo \"The hosts file does not exist\"\n> fi\nThe hosts file exists\n```\n\n## ヒント:\n\n### 変数は常に引用符で囲む\n\n`[` の中では変数を常に引用符で囲み、空の変数やスペースを含む変数によるエラーを防ぎます：\n\n```console\n$ [ \"$variable\" = \"value\" ]  # 正しい\n$ [ $variable = value ]      # 潜在的に問題あり\n```\n\n### Bashでは二重角括弧を使用する\n\nBashでは、より高度な機能と引用符の問題が少ない `[[` を `[` の代わりに使用することを検討してください：\n\n```console\n$ [[ $string == *txt ]] && echo \"String ends with txt\"\n```\n\n### 閉じ括弧を忘れない\n\n`[` コマンドは最後の引数として閉じ括弧 `]` が必要です。これを忘れると構文エラーが発生します。\n\n### スペースは重要\n\n括弧と演算子の周りにはスペースが必要です：\n\n```console\n$ [ -f file.txt ]    # 正しい\n$ [-f file.txt]      # 間違い\n$ [ $a = $b ]        # 正しい\n$ [ $a=$b ]          # 間違い\n```\n\n## よくある質問\n\n#### Q1. `[` と `[[` の違いは何ですか？\nA. `[` はすべてのPOSIXシェルで利用可能なコマンド（`test` としても知られる）であるのに対し、`[[` はBash/Zshシェルのキーワードで、パターンマッチングやエスケープなしの論理演算子などの拡張機能があります。\n\n#### Q2. 変数が空かどうかを確認するにはどうすればよいですか？\nA. 変数が空かどうかを確認するには `[ -z \"$variable\" ]` を、空でないかを確認するには `[ -n \"$variable\" ]` を使用します。\n\n#### Q3. 数値を比較するにはどうすればよいですか？\nA. `-eq`（等しい）、`-ne`（等しくない）、`-lt`（より小さい）、`-le`（以下）、`-gt`（より大きい）、または `-ge`（以上）を使用します：`[ \"$num1\" -eq \"$num2\" ]`。\n\n#### Q4. 文字列を比較するにはどうすればよいですか？\nA. `=`（等しい）または `!=`（等しくない）を使用します：`[ \"$string1\" = \"$string2\" ]`。\n\n## 参考文献\n\nhttps://pubs.opengroup.org/onlinepubs/9699919799/utilities/test.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1342,
+    "output_tokens": 1639
+  }
+}

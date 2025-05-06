@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  uname - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>uname コマンド</h1>
+<p>オペレーティングシステムに関するシステム情報を表示します。</p>
+<h2>概要</h2>
+<p><code>uname</code> コマンドは、コンピュータで実行されているオペレーティングシステムに関するシステム情報を表示します。カーネル名、ネットワークノードのホスト名、カーネルリリース、カーネルバージョン、マシンのハードウェア名、プロセッサタイプ、ハードウェアプラットフォーム、およびオペレーティングシステムを表示できます。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --all</strong></h3>
+<p>以下の順序ですべての情報を表示します：カーネル名、ネットワークノードのホスト名、カーネルリリース、カーネルバージョン、マシンのハードウェア名、プロセッサタイプ、ハードウェアプラットフォーム、オペレーティングシステム。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">Linux hostname 5.15.0-76-generic #83-Ubuntu SMP Thu Jun 15 19:16:32 UTC 2023 x86_64 x86_64 GNU/Linux</span>
+</pre></div>
+<h3><strong>-s, --kernel-name</strong></h3>
+<p>カーネル名を表示します。オプションが指定されていない場合のデフォルトです。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic">Linux</span>
+</pre></div>
+<h3><strong>-n, --nodename</strong></h3>
+<p>ネットワークノードのホスト名を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-n
+<span style="color: #000; font-style: italic">hostname</span>
+</pre></div>
+<h3><strong>-r, --kernel-release</strong></h3>
+<p>カーネルリリースを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-r
+<span style="color: #000; font-style: italic">5.15.0-76-generic</span>
+</pre></div>
+<h3><strong>-v, --kernel-version</strong></h3>
+<p>カーネルバージョンを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-v
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">83</span>-Ubuntu<span style="color: #F8F8F8"> </span>SMP<span style="color: #F8F8F8"> </span>Thu<span style="color: #F8F8F8"> </span>Jun<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">15</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">19</span>:16:32<span style="color: #F8F8F8"> </span>UTC<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2023</span>
+</pre></div>
+<h3><strong>-m, --machine</strong></h3>
+<p>マシンのハードウェア名を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-m
+<span style="color: #000; font-style: italic">x86_64</span>
+</pre></div>
+<h3><strong>-p, --processor</strong></h3>
+<p>プロセッサタイプを表示します（不明な場合は「unknown」と表示されます）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-p
+<span style="color: #000; font-style: italic">x86_64</span>
+</pre></div>
+<h3><strong>-i, --hardware-platform</strong></h3>
+<p>ハードウェアプラットフォームを表示します（不明な場合は「unknown」と表示されます）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic">x86_64</span>
+</pre></div>
+<h3><strong>-o, --operating-system</strong></h3>
+<p>オペレーティングシステムを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-o
+<span style="color: #000; font-style: italic">GNU/Linux</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>カーネル情報の取得</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-sr
+<span style="color: #000; font-style: italic">Linux 5.15.0-76-generic</span>
+</pre></div>
+<h3>互換性のためのアーキテクチャの確認</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-m
+<span style="color: #000; font-style: italic">x86_64</span>
+</pre></div>
+<h3>システム情報の完全表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>uname<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">Linux hostname 5.15.0-76-generic #83-Ubuntu SMP Thu Jun 15 19:16:32 UTC 2023 x86_64 x86_64 GNU/Linux</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>システムアーキテクチャの識別</h3>
+<p><code>uname -m</code> を使用して、システムが32ビット（i686）か64ビット（x86_64）かを素早く識別できます。これはソフトウェアをダウンロードしたり、ソースからコンパイルしたりする際に重要です。</p>
+<h3>カーネルバージョンの確認</h3>
+<p>カーネル依存のソフトウェアやドライバをインストールする前に、<code>uname -r</code> を使用してカーネルバージョンを確認します。</p>
+<h3>オプションの組み合わせ</h3>
+<p><code>uname -sr</code> のように複数のオプションを組み合わせて、すべてを表示せずに特定の情報を取得できます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. システムが32ビットか64ビットかを確認するにはどうすればよいですか？</h4>
+<p>A. <code>uname -m</code> を使用します。「x86_64」が返される場合は64ビットシステム、「i686」または「i386」が返される場合は32ビットシステムです。</p>
+<h4>Q2. Linuxカーネルバージョンを確認するにはどうすればよいですか？</h4>
+<p>A. <code>uname -r</code> を使用してカーネルリリースバージョンを表示します。</p>
+<h4>Q3. <code>uname -v</code> と <code>uname -r</code> の違いは何ですか？</h4>
+<p>A. <code>uname -r</code> はカーネルリリース（「5.15.0-76-generic」など）を表示し、<code>uname -v</code> はビルド情報を含むカーネルバージョン（「#83-Ubuntu SMP Thu Jun 15 19:16:32 UTC 2023」など）を表示します。</p>
+<h4>Q4. 使用しているLinuxディストリビューションを確認するにはどうすればよいですか？</h4>
+<p>A. <code>uname</code> はカーネル情報のみを表示します。ディストリビューションを確認するには、代わりに <code>cat /etc/os-release</code> または <code>lsb_release -a</code> を使用します。</p>
+<h2>macOSに関する考慮事項</h2>
+<p>macOSでは、<code>uname</code> は同様に機能しますが、いくつかの違いがあります：</p>
+<ul>
+<li><code>-o</code> オプションはmacOSでは利用できません</li>
+<li><code>uname -a</code> の出力では、カーネル名として「Linux」ではなく「Darwin」が表示されます</li>
+<li>macOSのバージョン情報を取得するには、代わりに <code>sw_vers</code> を使用します</li>
+</ul>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/uname-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  file - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>file コマンド</h1>
+<p>ファイルの内容を調べてファイルタイプを判定します。</p>
+<h2>概要</h2>
+<p><code>file</code> コマンドは、ファイル名の拡張子に依存せず、ファイルの内容を調査してそのタイプを識別します。ファイルがテキスト、実行可能バイナリ、データファイル、またはその他のタイプであるかを判断するために、さまざまなテストを実行します。これは、拡張子が欠けていたり誤解を招くようなファイルを扱う場合に特に役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>-b, --brief</strong></h3>
+<p>ファイル名の接頭辞なしで結果を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">ASCII text</span>
+</pre></div>
+<h3><strong>-i, --mime</strong></h3>
+<p>従来のファイルタイプの説明の代わりにMIMEタイプを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">document.txt: text/plain; charset=us-ascii</span>
+</pre></div>
+<h3><strong>-z, --uncompress</strong></h3>
+<p>圧縮ファイルの中身を調べようとします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span>archive.gz
+<span style="color: #000; font-style: italic">archive.gz: ASCII text (gzip compressed data, was &quot;notes.txt&quot;, last modified: Wed Apr 28 15:30:45 2021, from Unix)</span>
+</pre></div>
+<h3><strong>-L, --dereference</strong></h3>
+<p>シンボリックリンクをたどります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span>symlink
+<span style="color: #000; font-style: italic">symlink: ASCII text</span>
+</pre></div>
+<h3><strong>-s, --special-files</strong></h3>
+<p>ブロックまたはキャラクタ特殊ファイルを読み込みます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/dev/sda1
+<span style="color: #000; font-style: italic">/dev/sda1: Linux rev 1.0 ext4 filesystem data (extents) (large files)</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>複数のファイルを一度にチェックする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>document.txt<span style="color: #F8F8F8"> </span>image.png<span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #000; font-style: italic">document.txt: ASCII text</span>
+<span style="color: #000; font-style: italic">image.png:    PNG image data, 1920 x 1080, 8-bit/color RGB, non-interlaced</span>
+<span style="color: #000; font-style: italic">script.sh:    Bourne-Again shell script, ASCII text executable</span>
+</pre></div>
+<h3>バイナリファイルの調査</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>/bin/ls
+<span style="color: #000; font-style: italic">/bin/ls: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=2f15ad836be3339dec0e2e6a3c637e08e48aacbd, for GNU/Linux 3.2.0, stripped</span>
+</pre></div>
+<h3>ファイルエンコーディングの確認</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>--mime-encoding<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">document.txt: us-ascii</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>findコマンドとの併用</h3>
+<p><code>find</code>と組み合わせてディレクトリ構造内のファイルタイプを識別します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-type<span style="color: #F8F8F8"> </span>f<span style="color: #F8F8F8"> </span>-exec<span style="color: #F8F8F8"> </span>file<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\;</span>
+</pre></div>
+<h3>ディスクパーティションの調査</h3>
+<p><code>file -s</code>を使用してディスクパーティションとファイルシステムを調査します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>file<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/dev/sd*
+</pre></div>
+<h3>ファイルエンコーディングの確認</h3>
+<p>国際的なテキストを扱う場合、<code>file --mime-encoding</code>を使用して文字エンコーディングを判断します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>--mime-encoding<span style="color: #F8F8F8"> </span>international_text.txt
+<span style="color: #000; font-style: italic">international_text.txt: utf-8</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. fileコマンドはどれくらい正確ですか？</h4>
+<p>A. <code>file</code>コマンドは一般的に正確ですが、完璧ではありません。パターンを調べるための「マジック」テストを使用しますが、特にカスタムや珍しいフォーマットのファイルタイプは誤認識される場合があります。</p>
+<h4>Q2. fileは暗号化されたファイルを検出できますか？</h4>
+<p>A. はい、<code>file</code>は暗号化されたファイルを検出できることが多いですが、暗号化方法を特定せずに「データ」または「暗号化データ」としてのみ識別する場合があります。</p>
+<h4>Q3. fileはファイル拡張子の使用とどう違いますか？</h4>
+<p>A. ファイル拡張子（変更されたり誤解を招く可能性がある）に依存する代わりに、<code>file</code>はファイルの実際の内容を調査してタイプを判断するため、より信頼性の高い識別が可能です。</p>
+<h4>Q4. fileはプログラミング言語のソースコードを識別できますか？</h4>
+<p>A. はい、<code>file</code>は多くのプログラミング言語のソースファイルを識別できますが、時には単に「ASCIIテキスト」などと一般的に識別するだけの場合もあります。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man1/file.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

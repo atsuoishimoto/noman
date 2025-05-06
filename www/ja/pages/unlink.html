@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  unlink - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>unlink コマンド</h1>
+<p>単一のファイルを削除します。</p>
+<h2>概要</h2>
+<p><code>unlink</code> コマンドは、ファイルシステムからその名前を削除することで単一のファイルを削除します。<code>rm</code> とは異なり、一度に1つのファイルにしか操作できず、再帰的な削除やインタラクティブなプロンプトのオプションは受け付けません。これは基本的なファイル削除操作を実行するシンプルで焦点を絞ったコマンドです。</p>
+<h2>オプション</h2>
+<p><code>unlink</code> はシンプルなコマンドで、最小限のオプションがあります：</p>
+<h3><strong>--help</strong></h3>
+<p>ヘルプ情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unlink<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: unlink FILE</span>
+<span style="color: #000; font-style: italic">  or:  unlink OPTION</span>
+<span style="color: #000; font-style: italic">指定されたFILEを削除するためにunlink関数を呼び出す。</span>
+
+<span style="color: #000; font-style: italic">      --help     このヘルプを表示して終了する</span>
+<span style="color: #000; font-style: italic">      --version  バージョン情報を出力して終了する</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>バージョン情報を出力して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>unlink<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">unlink (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2020 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by Michael Stone.</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ファイルの削除</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>testfile.txt
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">testfile.txt</span>
+<span style="color: #8F5902">$ </span>unlink<span style="color: #F8F8F8"> </span>testfile.txt
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>ディレクトリの削除を試みる（失敗します）</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>testdir
+<span style="color: #8F5902">$ </span>unlink<span style="color: #F8F8F8"> </span>testdir
+<span style="color: #000; font-style: italic">unlink: cannot unlink &#39;testdir&#39;: Is a directory</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>より柔軟性のために <code>rm</code> を使用する</h3>
+<p><code>unlink</code> はシンプルなファイル削除に便利ですが、<code>rm</code> は再帰的な削除（<code>-r</code>）、強制削除（<code>-f</code>）、インタラクティブなプロンプト（<code>-i</code>）などのより多くのオプションを提供します。</p>
+<h3>シンボリックリンク</h3>
+<p>シンボリックリンクに対して <code>unlink</code> を使用すると、リンク先のファイルではなく、リンク自体が削除されます。</p>
+<h3>エラー処理</h3>
+<p>ファイルが存在しない場合、ディレクトリである場合、または削除する権限がない場合、<code>unlink</code> はエラーメッセージを表示して失敗します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>unlink</code> と <code>rm</code> の違いは何ですか？</h4>
+<p>A. <code>unlink</code> は単一のファイルのみを削除でき、その動作を変更するオプションはありません。<code>rm</code> は複数のファイル、ディレクトリ（<code>-r</code> を使用）を削除でき、削除の動作を制御するための様々なオプションがあります。</p>
+<h4>Q2. <code>unlink</code> でディレクトリを削除できますか？</h4>
+<p>A. いいえ、<code>unlink</code> はディレクトリを削除できません。空のディレクトリには <code>rmdir</code> を、内容のあるディレクトリには <code>rm -r</code> を使用してください。</p>
+<h4>Q3. 存在しないファイルを <code>unlink</code> しようとするとどうなりますか？</h4>
+<p>A. <code>unlink</code> はファイルが存在しないことを示すエラーメッセージを表示します。</p>
+<h4>Q4. <code>unlink</code> を使用した後にファイルを復元する方法はありますか？</h4>
+<p>A. 一般的にはありません。ファイルがリンク解除されると、ファイルシステムから削除されます。専門的なツールを使用して復元できる可能性はありますが、保証はされていません。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/unlink-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

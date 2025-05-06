@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  split - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>split コマンド</h1>
+<p>ファイルを複数の部分に分割します。</p>
+<h2>概要</h2>
+<p><code>split</code> コマンドはファイルを複数の小さなファイルに分割します。大きなファイルを扱いやすく分割したり、サイズ制限のあるメディアで転送したり、一部ずつ処理したりする場合に便利です。デフォルトでは、元のファイルから指定された行数またはバイト数を含む「xaa」、「xab」などの名前のファイルを作成します。</p>
+<h2>オプション</h2>
+<h3><strong>-b, --bytes=SIZE</strong></h3>
+<p>行ではなくバイト単位で分割します。SIZEは数字の後に乗数を付けることができます：k (1024)、m (1024²)、g (1024³) など。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>1M<span style="color: #F8F8F8"> </span>largefile.dat<span style="color: #F8F8F8"> </span>chunk_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>chunk_*
+<span style="color: #000; font-style: italic">chunk_aa  chunk_ab  chunk_ac</span>
+</pre></div>
+<h3><strong>-l, --lines=NUMBER</strong></h3>
+<p>ファイルをNUMBER行ごとに分割します（デフォルトは1000行）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>data.csv<span style="color: #F8F8F8"> </span>part_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>part_*
+<span style="color: #000; font-style: italic">part_aa  part_ab  part_ac  part_ad</span>
+</pre></div>
+<h3><strong>-d, --numeric-suffixes[=FROM]</strong></h3>
+<p>アルファベットの代わりに数字の接尾辞を使用し、FROM（デフォルトは0）から始めます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>data.txt<span style="color: #F8F8F8"> </span>section_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>section_*
+<span style="color: #000; font-style: italic">section_00  section_01  section_02</span>
+</pre></div>
+<h3><strong>-a, --suffix-length=N</strong></h3>
+<p>長さNの接尾辞を生成します（デフォルトは2）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>data.txt<span style="color: #F8F8F8"> </span>part_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>part_*
+<span style="color: #000; font-style: italic">part_aaa  part_aab  part_aac</span>
+</pre></div>
+<h3><strong>--additional-suffix=SUFFIX</strong></h3>
+<p>ファイル名に追加の接尾辞SUFFIXを付加します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>--additional-suffix<span style="color: #CE5C00; font-weight: bold">=</span>.txt<span style="color: #F8F8F8"> </span>data.csv<span style="color: #F8F8F8"> </span>part_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>part_*
+<span style="color: #000; font-style: italic">part_aa.txt  part_ab.txt  part_ac.txt</span>
+</pre></div>
+<h3><strong>-n, --number=CHUNKS</strong></h3>
+<p>サイズまたは数に基づいてCHUNKS個のファイルに分割します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>largefile.dat<span style="color: #F8F8F8"> </span>chunk_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>chunk_*
+<span style="color: #000; font-style: italic">chunk_aa  chunk_ab  chunk_ac</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>大きなログファイルを行数で分割する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1000</span><span style="color: #F8F8F8"> </span>server.log<span style="color: #F8F8F8"> </span>server_log_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>server_log_*
+<span style="color: #000; font-style: italic">server_log_aa  server_log_ab  server_log_ac  server_log_ad</span>
+</pre></div>
+<h3>大きなファイルを等サイズのチャンクに分割する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span>backup.tar.gz<span style="color: #F8F8F8"> </span>backup_part_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>backup_part_*
+<span style="color: #000; font-style: italic">backup_part_aa  backup_part_ab  backup_part_ac  backup_part_ad  backup_part_ae</span>
+</pre></div>
+<h3>特定のバイトサイズで数字の接尾辞を使って分割する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>10M<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>large_video.mp4<span style="color: #F8F8F8"> </span>video_
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>video_*
+<span style="color: #000; font-style: italic">video_00  video_01  video_02  video_03</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>分割ファイルの再結合</h3>
+<p>分割したファイルを再結合するには、正しい順序でファイルを指定して <code>cat</code> コマンドを使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>chunk_*<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>original_file_restored
+</pre></div>
+<h3>ファイル拡張子の保持</h3>
+<p>拡張子のあるファイルを分割する場合、<code>--additional-suffix</code> を使用して識別しやすいように拡張子を維持します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>split<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>5M<span style="color: #F8F8F8"> </span>--additional-suffix<span style="color: #CE5C00; font-weight: bold">=</span>.mp4<span style="color: #F8F8F8"> </span>video.mp4<span style="color: #F8F8F8"> </span>video_part_
+</pre></div>
+<h3>ヘッダー付きCSVファイルの分割</h3>
+<p>CSVファイルを分割する場合、各ファイルにヘッダーを保持したい場合があります：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>head<span style="color: #F8F8F8"> </span>-1<span style="color: #F8F8F8"> </span>data.csv<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>header
+<span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>+2<span style="color: #F8F8F8"> </span>data.csv<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>split<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1000</span><span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8"> </span>part_
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>f<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>part_*<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span><span style="color: #F8F8F8"> </span>cat<span style="color: #F8F8F8"> </span>header<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$f</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;${</span><span style="color: #000">f</span><span style="color: #4E9A06">}.csv&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span>rm<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$f</span><span style="color: #4E9A06">&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">done</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. ファイルを等サイズの部分に分割するにはどうすればよいですか？</h4>
+<p>A. <code>split -n NUMBER filename prefix</code> を使用します。NUMBERは必要な部分の数です。</p>
+<h4>Q2. ファイルをサイズで分割するにはどうすればよいですか？</h4>
+<p>A. <code>split -b SIZE filename prefix</code> を使用します。SIZEはバイト、KB (k)、MB (m)、GB (g) で指定できます。</p>
+<h4>Q3. 分割したファイルを元に戻すにはどうすればよいですか？</h4>
+<p>A. <code>cat prefix* &gt; original_filename</code> を使用して、すべての分割部分を順番に連結します。</p>
+<h4>Q4. アルファベットの代わりに数字の接尾辞を使用できますか？</h4>
+<p>A. はい、<code>-d</code> オプションを使用すると、アルファベットの代わりに数字の接尾辞（00、01、02など）を使用できます。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "id": "msg_01BNNdPuosoB6m1byDvkjsyX",
+  "content": [
+    {
+      "text": "# rmdir コマンド\n\nファイルシステムから空のディレクトリを削除します。\n\n## 概要\n\n`rmdir` コマンドはファイルシステムから空のディレクトリを削除します。ディレクトリとその内容を削除できる `rm -r` とは異なり、`rmdir` は指定されたディレクトリが完全に空である場合にのみ成功します。\n\n## オプション\n\n### **-p, --parents**\n\nディレクトリとその祖先を削除します。例えば、`rmdir -p a/b/c` は `rmdir a/b/c a/b a` と同様です。\n\n```console\n$ mkdir -p test/nested/dir\n$ rmdir -p test/nested/dir\n$ ls test\nls: cannot access 'test': No such file or directory\n```\n\n### **-v, --verbose**\n\n処理されるすべてのディレクトリに対して診断メッセージを出力します。\n\n```console\n$ mkdir empty_dir\n$ rmdir -v empty_dir\nrmdir: removing directory, 'empty_dir'\n```\n\n### **--ignore-fail-on-non-empty**\n\nディレクトリが空でないことだけが原因で発生する失敗を無視します。\n\n```console\n$ mkdir dir_with_file\n$ touch dir_with_file/file.txt\n$ rmdir --ignore-fail-on-non-empty dir_with_file\n$ ls\ndir_with_file\n```\n\n## 使用例\n\n### 単一の空ディレクトリの削除\n\n```console\n$ mkdir empty_dir\n$ rmdir empty_dir\n$ ls\n[empty_dirはリストに表示されなくなる]\n```\n\n### 入れ子になった空ディレクトリの削除\n\n```console\n$ mkdir -p parent/child/grandchild\n$ rmdir -p parent/child/grandchild\n$ ls\n[parentディレクトリとそのサブディレクトリが削除される]\n```\n\n### 空でないディレクトリの削除を試みる\n\n```console\n$ mkdir non_empty\n$ touch non_empty/file.txt\n$ rmdir non_empty\nrmdir: failed to remove 'non_empty': Directory not empty\n```\n\n## ヒント:\n\n### 空でないディレクトリには rm -r を使用する\n\nファイルを含むディレクトリを削除する必要がある場合は、`rmdir` の代わりに `rm -r directory_name` を使用します。このコマンドはディレクトリ内のすべてを再帰的に削除するため、注意して使用してください。\n\n### find と組み合わせて複数の空ディレクトリを削除する\n\n`find` と `rmdir` を使用して、一度に複数の空ディレクトリを削除できます：\n```console\n$ find . -type d -empty -exec rmdir {} \\;\n```\n\n### 削除前に確認する\n\nディレクトリが空かどうか不明な場合は、削除を試みる前に `ls -la directory_name` を使用して内容を確認してください。\n\n## よくある質問\n\n#### Q1. `rmdir` と `rm -r` の違いは何ですか？\nA. `rmdir` は空のディレクトリのみを削除しますが、`rm -r` はディレクトリとその内容をすべて再帰的に削除します。\n\n#### Q2. ファイルを含むディレクトリを削除するにはどうすればよいですか？\nA. この目的には `rmdir` を使用できません。代わりに `rm -r directory_name` を使用してください。\n\n#### Q3. `rmdir` で複数のディレクトリを一度に削除できますか？\nA. はい、引数として複数のディレクトリ名を指定できます：`rmdir dir1 dir2 dir3`。\n\n#### Q4. 存在しないディレクトリを削除しようとするとどうなりますか？\nA. `rmdir` はディレクトリが存在しないことを示すエラーメッセージを表示します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/rmdir-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 943,
+    "output_tokens": 1174
+  }
+}

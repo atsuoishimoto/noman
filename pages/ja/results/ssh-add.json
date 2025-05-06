@@ -1,0 +1,20 @@
+{
+  "id": "msg_013eNtw9zJre51cPaMWyUQo7",
+  "content": [
+    {
+      "text": "# ssh-addコマンド\n\nOpenSSH認証エージェントに秘密鍵の識別情報を追加します。\n\n## 概要\n\n`ssh-add`はSSH認証に使用される秘密鍵を管理します。SSHエージェントに鍵を追加することで、リモートサーバーに接続する際にパスフレーズを繰り返し入力する必要がなくなります。ssh-addを使用する前に、SSHエージェントが実行されている必要があります。\n\n## オプション\n\n### **-l**\n\n現在エージェントが保持しているすべての識別情報のフィンガープリントを一覧表示します。\n\n```console\n$ ssh-add -l\n2048 SHA256:abcdefghijklmnopqrstuvwxyz1234567890ABCD user@hostname (RSA)\n```\n\n### **-L**\n\n現在エージェントが保持しているすべての識別情報の公開鍵パラメータを一覧表示します。\n\n```console\n$ ssh-add -L\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... user@hostname\n```\n\n### **-d**\n\n指定した秘密鍵識別情報をエージェントから削除します。\n\n```console\n$ ssh-add -d ~/.ssh/id_rsa\nIdentity removed: /home/user/.ssh/id_rsa (user@hostname)\n```\n\n### **-D**\n\nエージェントからすべての識別情報を削除します。\n\n```console\n$ ssh-add -D\nAll identities removed.\n```\n\n### **-t life**\n\nエージェントに識別情報を追加する際の最大有効期間を設定します。有効期間は秒単位、またはsshd_config(5)で指定された時間形式で指定できます。\n\n```console\n$ ssh-add -t 3600 ~/.ssh/id_rsa\nIdentity added: /home/user/.ssh/id_rsa (user@hostname)\nLifetime set to 3600 seconds\n```\n\n### **-x**\n\nパスワードでエージェントをロックします。\n\n```console\n$ ssh-add -x\nEnter lock password: \nAgain: \nAgent locked.\n```\n\n### **-X**\n\nエージェントのロックを解除します。\n\n```console\n$ ssh-add -X\nEnter unlock password: \nAgent unlocked.\n```\n\n## 使用例\n\n### エージェントに鍵を追加する\n\n```console\n$ ssh-add ~/.ssh/id_rsa\nEnter passphrase for /home/user/.ssh/id_rsa: \nIdentity added: /home/user/.ssh/id_rsa (user@hostname)\n```\n\n### 複数の鍵を一度に追加する\n\n```console\n$ ssh-add ~/.ssh/id_rsa ~/.ssh/id_ed25519\nEnter passphrase for /home/user/.ssh/id_rsa: \nIdentity added: /home/user/.ssh/id_rsa (user@hostname)\nEnter passphrase for /home/user/.ssh/id_ed25519: \nIdentity added: /home/user/.ssh/id_ed25519 (user@hostname)\n```\n\n### すべてのデフォルト鍵を追加する\n\n```console\n$ ssh-add\nIdentity added: /home/user/.ssh/id_rsa (user@hostname)\nIdentity added: /home/user/.ssh/id_ed25519 (user@hostname)\n```\n\n## ヒント:\n\n### SSHエージェントを自動的に起動する\n\nほとんどのシステムでは、以下の行を`~/.bashrc`または`~/.bash_profile`に追加することで、SSHエージェントが自動的に起動するようにできます：\n```bash\nif [ -z \"$SSH_AUTH_SOCK\" ]; then\n   eval $(ssh-agent -s)\nfi\n```\n\n### SSH設定で鍵管理を行う\n\n手動で鍵を追加する代わりに、`~/.ssh/config`ファイルで特定のホストに使用する鍵を指定できます：\n```\nHost example.com\n    IdentityFile ~/.ssh/special_key\n```\n\n### 鍵が既に追加されているか確認する\n\n鍵を追加する前に、`ssh-add -l`で既に読み込まれているかを確認し、重複エントリを避けましょう。\n\n## よくある質問\n\n#### Q1. なぜssh-addを使用する必要があるのですか？\nA. `ssh-add`を使うと、SSHエージェントに秘密鍵のパスフレーズを保存できるため、サーバーに接続するたびにパスフレーズを入力する必要がなくなります。\n\n#### Q2. 再起動後もssh-addで鍵を記憶させるにはどうすればよいですか？\nA. SSHエージェントはデフォルトでは再起動後に保持されません。`keychain`などのツールを使用するか、ログインマネージャーを設定してSSHエージェントを自動的に起動し、鍵を追加するように設定できます。\n\n#### Q3. ssh-add -lとssh-add -Lの違いは何ですか？\nA. `-l`は読み込まれた鍵のフィンガープリントを表示し（短い出力）、`-L`は完全な公開鍵データを表示します（より長く、詳細な出力）。\n\n#### Q4. エージェントに鍵が保存される時間を制限するにはどうすればよいですか？\nA. `ssh-add -t <秒数>`を使用して時間制限を設定すると、指定した時間後に鍵が自動的に削除されます。\n\n## macOS固有の情報\n\nmacOSでは、SSHエージェントがKeychainと統合されているため、`ssh-add -K`で追加された鍵は再起動後も永続的に保存されます。新しいmacOSバージョン（Montereyおよびそれよりあとのバージョン）では、非推奨の`-K`オプションの代わりに`ssh-add --apple-use-keychain`を使用してください。\n\n## 参考資料\n\nhttps://man.openbsd.org/ssh-add.1\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1354,
+    "output_tokens": 1737
+  }
+}

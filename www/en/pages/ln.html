@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ln - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ln command</h1>
+<p>Create links between files.</p>
+<h2>Overview</h2>
+<p>The <code>ln</code> command creates links between files. It can create hard links (the default) or symbolic links (with the <code>-s</code> option). Hard links point directly to the file's data on disk, while symbolic links are special files that point to another file by name.</p>
+<h2>Options</h2>
+<h3><strong>-s, --symbolic</strong></h3>
+<p>Create a symbolic link instead of a hard link.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>target_file<span style="color: #F8F8F8"> </span>link_name
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>link_name
+<span style="color: #000; font-style: italic">lrwxrwxrwx 1 user user 10 May 5 10:00 link_name -&gt; target_file</span>
+</pre></div>
+<h3><strong>-f, --force</strong></h3>
+<p>Remove existing destination files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sf<span style="color: #F8F8F8"> </span>target_file<span style="color: #F8F8F8"> </span>existing_link
+</pre></div>
+<h3><strong>-n, --no-dereference</strong></h3>
+<p>Treat destination that is a symlink to a directory as if it were a normal file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sfn<span style="color: #F8F8F8"> </span>new_target<span style="color: #F8F8F8"> </span>existing_link
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Print the name of each linked file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sv<span style="color: #F8F8F8"> </span>target_file<span style="color: #F8F8F8"> </span>link_name
+<span style="color: #000; font-style: italic">&#39;link_name&#39; -&gt; &#39;target_file&#39;</span>
+</pre></div>
+<h3><strong>-r, --relative</strong></h3>
+<p>Create symbolic links relative to link location.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sr<span style="color: #F8F8F8"> </span>../target_file<span style="color: #F8F8F8"> </span>link_name
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating a hard link</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Original content&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>original.txt
+<span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>hardlink.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>hardlink.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 2 user user 16 May 5 10:00 hardlink.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r-- 2 user user 16 May 5 10:00 original.txt</span>
+</pre></div>
+<h3>Creating a symbolic link to a file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/path/to/file.txt<span style="color: #F8F8F8"> </span>symlink.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>symlink.txt
+<span style="color: #000; font-style: italic">lrwxrwxrwx 1 user user 14 May 5 10:00 symlink.txt -&gt; /path/to/file.txt</span>
+</pre></div>
+<h3>Creating a symbolic link to a directory</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/path/to/directory<span style="color: #F8F8F8"> </span>dir_link
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>dir_link
+<span style="color: #000; font-style: italic">lrwxrwxrwx 1 user user 17 May 5 10:00 dir_link -&gt; /path/to/directory</span>
+</pre></div>
+<h3>Creating a relative symbolic link</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sr<span style="color: #F8F8F8"> </span>../../shared/config.txt<span style="color: #F8F8F8"> </span>config_link
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>config_link
+<span style="color: #000; font-style: italic">lrwxrwxrwx 1 user user 22 May 5 10:00 config_link -&gt; ../../shared/config.txt</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Understanding Hard Links vs Symbolic Links</h3>
+<ul>
+<li>Hard links share the same inode as the original file, meaning they point to the same physical data on disk. Changes to either file affect both, and the file isn't deleted until all hard links are removed.</li>
+<li>Symbolic links are separate files that point to another file by name. If the original file is moved or deleted, the symlink becomes broken.</li>
+</ul>
+<h3>Hard Link Limitations</h3>
+<p>Hard links cannot link to directories or files on different filesystems. Use symbolic links in these cases.</p>
+<h3>Checking if a File is a Link</h3>
+<p>Use <code>ls -l</code> to see if a file is a link. Symbolic links show with an &quot;l&quot; at the beginning of permissions and an arrow pointing to the target.</p>
+<h3>Fixing Broken Symbolic Links</h3>
+<p>If you move the target of a symbolic link, the link will break. Use <code>ln -sf</code> to update it to point to the new location.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between hard and symbolic links?</h4>
+<p>A. Hard links share the same inode (data on disk) as the original file, while symbolic links are separate files that point to another file by name. Hard links can't cross filesystems or link to directories.</p>
+<h4>Q2. How do I create a symbolic link to a directory?</h4>
+<p>A. Use <code>ln -s /path/to/directory link_name</code> to create a symbolic link to a directory.</p>
+<h4>Q3. How can I update an existing symbolic link?</h4>
+<p>A. Use <code>ln -sf new_target existing_link</code> to force the creation of a new link, replacing the existing one.</p>
+<h4>Q4. Why is my symbolic link broken?</h4>
+<p>A. Symbolic links break when the target file is moved or deleted. They point to a path, not the actual file data.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/ln-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

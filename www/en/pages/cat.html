@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  cat - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>cat command</h1>
+<p>Concatenate and display file contents to standard output.</p>
+<h2>Overview</h2>
+<p>The <code>cat</code> command reads files and outputs their contents. It's primarily used to display file contents, combine multiple files, or create new files. The name &quot;cat&quot; comes from &quot;concatenate,&quot; reflecting its ability to join files together.</p>
+<h2>Options</h2>
+<h3><strong>-n, --number</strong></h3>
+<p>Number all output lines, starting with 1.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">     1  This is the first line</span>
+<span style="color: #000; font-style: italic">     2  This is the second line</span>
+<span style="color: #000; font-style: italic">     3  This is the third line</span>
+</pre></div>
+<h3><strong>-b, --number-nonblank</strong></h3>
+<p>Number only non-empty output lines, starting with 1.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">     1  This is the first line</span>
+<span style="color: #000; font-style: italic">     </span>
+<span style="color: #000; font-style: italic">     2  This is the third line</span>
+</pre></div>
+<h3><strong>-s, --squeeze-blank</strong></h3>
+<p>Suppress repeated empty output lines, showing only one blank line instead of multiple consecutive ones.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>file_with_blanks.txt
+<span style="color: #000; font-style: italic">This is text.</span>
+
+<span style="color: #000; font-style: italic">This has only one blank line between paragraphs instead of multiple.</span>
+</pre></div>
+<h3><strong>-A, --show-all</strong></h3>
+<p>Show all control characters and non-printing characters.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">This is a line with a tab^I and a newline$</span>
+</pre></div>
+<h3><strong>-E, --show-ends</strong></h3>
+<p>Display $ at the end of each line.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-E<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">This is line one.$</span>
+<span style="color: #000; font-style: italic">This is line two.$</span>
+</pre></div>
+<h3><strong>-T, --show-tabs</strong></h3>
+<p>Display TAB characters as ^I.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>-T<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">This is a^Itabbed line</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Displaying file contents</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">This is the content of document.txt</span>
+<span style="color: #000; font-style: italic">It has multiple lines</span>
+<span style="color: #000; font-style: italic">that will be displayed.</span>
+</pre></div>
+<h3>Concatenating multiple files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">Contents of file1.txt</span>
+<span style="color: #000; font-style: italic">Contents of file2.txt</span>
+</pre></div>
+<h3>Creating a new file with content</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>newfile.txt
+<span style="color: #000; font-style: italic">Type your content here</span>
+<span style="color: #000; font-style: italic">Press Ctrl+D when finished</span>
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>newfile.txt
+<span style="color: #000; font-style: italic">Type your content here</span>
+<span style="color: #000; font-style: italic">Press Ctrl+D when finished</span>
+</pre></div>
+<h3>Appending to an existing file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&gt;&gt;<span style="color: #F8F8F8"> </span>existing.txt
+<span style="color: #000; font-style: italic">This text will be added to the end of the file</span>
+<span style="color: #000; font-style: italic">Press Ctrl+D when finished</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use cat with caution on large files</h3>
+<p>For very large files, use tools like <code>less</code> or <code>more</code> instead of <code>cat</code> to avoid overwhelming your terminal with output.</p>
+<h3>Combine cat with grep for searching</h3>
+<p>Pipe <code>cat</code> output to <code>grep</code> to search for specific patterns: <code>cat file.txt | grep &quot;search term&quot;</code>.</p>
+<h3>Create files quickly with heredocs</h3>
+<p>Use heredocs for creating files with multiple lines:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>script.sh<span style="color: #F8F8F8"> </span>&lt;&lt;<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;EOF&#39;</span>
+<span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #000; font-style: italic">echo &quot;Hello World&quot;</span>
+<span style="color: #000; font-style: italic">EOF</span>
+</pre></div>
+<h3>View non-printable characters</h3>
+<p>When troubleshooting files with strange formatting, use <code>cat -A</code> to see all control characters.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What does &quot;cat&quot; stand for?</h4>
+<p>A. &quot;Cat&quot; stands for &quot;concatenate,&quot; which means to link things together in a series.</p>
+<h4>Q2. How do I view a file without modifying it?</h4>
+<p>A. Simply use <code>cat filename</code> without any redirection operators.</p>
+<h4>Q3. How can I create a file with cat?</h4>
+<p>A. Use <code>cat &gt; filename</code>, type your content, and press Ctrl+D when finished.</p>
+<h4>Q4. How do I append to a file without overwriting it?</h4>
+<p>A. Use <code>cat &gt;&gt; filename</code> to add content to the end of an existing file.</p>
+<h4>Q5. Why does cat sometimes display strange characters?</h4>
+<p>A. When viewing binary files or files with non-text content, <code>cat</code> will display unprintable characters. Use <code>cat -A</code> to see control characters or use specialized tools for binary files.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/cat-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

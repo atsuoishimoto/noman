@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  leftbracket - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>[ コマンド</h1>
+<p>条件式を評価し、評価結果に基づいてステータスを返します。</p>
+<h2>概要</h2>
+<p><code>[</code> コマンド（<code>test</code> としても知られています）は、条件式を評価し、0（真）または1（偽）のステータスを返すシェル組み込みコマンドです。シェルスクリプトでファイル属性のテスト、文字列比較、算術演算の条件テストによく使用されます。このコマンドは構文を完成させるために閉じる <code>]</code> が必要です。</p>
+<h2>オプション</h2>
+<h3><strong>-e file</strong></h3>
+<p>ファイルが存在するかテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;File exists&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;File does not exist&quot;</span>
+<span style="color: #000; font-style: italic">File exists</span>
+</pre></div>
+<h3><strong>-f file</strong></h3>
+<p>ファイルが存在し、通常ファイルであるかテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Regular file&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Not a regular file&quot;</span>
+<span style="color: #000; font-style: italic">Regular file</span>
+</pre></div>
+<h3><strong>-d file</strong></h3>
+<p>ファイルが存在し、ディレクトリであるかテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>/etc<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Directory exists&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Not a directory&quot;</span>
+<span style="color: #000; font-style: italic">Directory exists</span>
+</pre></div>
+<h3><strong>-r file</strong></h3>
+<p>ファイルが存在し、読み取り可能であるかテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;File is readable&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;File is not readable&quot;</span>
+<span style="color: #000; font-style: italic">File is readable</span>
+</pre></div>
+<h3><strong>-w file</strong></h3>
+<p>ファイルが存在し、書き込み可能であるかテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span>/tmp<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Directory is writable&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Directory is not writable&quot;</span>
+<span style="color: #000; font-style: italic">Directory is writable</span>
+</pre></div>
+<h3><strong>-x file</strong></h3>
+<p>ファイルが存在し、実行可能であるかテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>/bin/ls<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;File is executable&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;File is not executable&quot;</span>
+<span style="color: #000; font-style: italic">File is executable</span>
+</pre></div>
+<h3><strong>-z string</strong></h3>
+<p>文字列の長さがゼロであるかテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;String is empty&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;String is not empty&quot;</span>
+<span style="color: #000; font-style: italic">String is empty</span>
+</pre></div>
+<h3><strong>-n string</strong></h3>
+<p>文字列の長さがゼロでないかテストします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;hello&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;String is not empty&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;String is empty&quot;</span>
+<span style="color: #000; font-style: italic">String is not empty</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>文字列比較</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">name</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;John&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$name</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;John&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Name is John&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Name is not John&quot;</span>
+<span style="color: #000; font-style: italic">Name is John</span>
+</pre></div>
+<h3>数値比較</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">age</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">25</span>
+<span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$age</span><span style="color: #F8F8F8"> </span>-eq<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">25</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Age is 25&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Age is not 25&quot;</span>
+<span style="color: #000; font-style: italic">Age is 25</span>
+</pre></div>
+<h3>論理演算子による条件の組み合わせ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>/etc<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Both conditions are true&quot;</span>
+<span style="color: #000; font-style: italic">Both conditions are true</span>
+</pre></div>
+<h3>if文での使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/etc/hosts<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;The hosts file exists&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;The hosts file does not exist&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">The hosts file exists</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>変数は常に引用符で囲む</h3>
+<p><code>[</code> の中では変数を常に引用符で囲み、空の変数やスペースを含む変数によるエラーを防ぎます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$variable</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;value&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># 正しい</span>
+<span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$variable</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span>value<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8">      </span><span style="color: #8F5902; font-style: italic"># 潜在的に問題あり</span>
+</pre></div>
+<h3>Bashでは二重角括弧を使用する</h3>
+<p>Bashでは、より高度な機能と引用符の問題が少ない <code>[[</code> を <code>[</code> の代わりに使用することを検討してください：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$string</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">==</span><span style="color: #F8F8F8"> </span>*txt<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;String ends with txt&quot;</span>
+</pre></div>
+<h3>閉じ括弧を忘れない</h3>
+<p><code>[</code> コマンドは最後の引数として閉じ括弧 <code>]</code> が必要です。これを忘れると構文エラーが発生します。</p>
+<h3>スペースは重要</h3>
+<p>括弧と演算子の周りにはスペースが必要です：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8">    </span><span style="color: #8F5902; font-style: italic"># 正しい</span>
+<span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span>-f<span style="color: #F8F8F8"> </span>file.txt<span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8">      </span><span style="color: #8F5902; font-style: italic"># 間違い</span>
+<span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$a</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #000">$b</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8">        </span><span style="color: #8F5902; font-style: italic"># 正しい</span>
+<span style="color: #8F5902">$ </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$a</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #000">$b</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8">          </span><span style="color: #8F5902; font-style: italic"># 間違い</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>[</code> と <code>[[</code> の違いは何ですか？</h4>
+<p>A. <code>[</code> はすべてのPOSIXシェルで利用可能なコマンド（<code>test</code> としても知られる）であるのに対し、<code>[[</code> はBash/Zshシェルのキーワードで、パターンマッチングやエスケープなしの論理演算子などの拡張機能があります。</p>
+<h4>Q2. 変数が空かどうかを確認するにはどうすればよいですか？</h4>
+<p>A. 変数が空かどうかを確認するには <code>[ -z &quot;$variable&quot; ]</code> を、空でないかを確認するには <code>[ -n &quot;$variable&quot; ]</code> を使用します。</p>
+<h4>Q3. 数値を比較するにはどうすればよいですか？</h4>
+<p>A. <code>-eq</code>（等しい）、<code>-ne</code>（等しくない）、<code>-lt</code>（より小さい）、<code>-le</code>（以下）、<code>-gt</code>（より大きい）、または <code>-ge</code>（以上）を使用します：<code>[ &quot;$num1&quot; -eq &quot;$num2&quot; ]</code>。</p>
+<h4>Q4. 文字列を比較するにはどうすればよいですか？</h4>
+<p>A. <code>=</code>（等しい）または <code>!=</code>（等しくない）を使用します：<code>[ &quot;$string1&quot; = &quot;$string2&quot; ]</code>。</p>
+<h2>参考文献</h2>
+<p>https://pubs.opengroup.org/onlinepubs/9699919799/utilities/test.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ss - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ss コマンド</h1>
+<p>ソケット統計を表示し、ネットワーク接続に関する情報を提供します。</p>
+<h2>概要</h2>
+<p><code>ss</code> コマンドは、ソケットを調査するためのユーティリティで、ネットワーク接続、ルーティングテーブル、ネットワークインターフェイスに関する情報を表示します。古い <code>netstat</code> コマンドよりも強力で高速な代替手段であり、Linux システム上の TCP、UDP、およびその他のソケットタイプに関する詳細な情報を提供します。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --all</strong></h3>
+<p>リッスン中および非リッスン中の両方のソケットを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">Netid  State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port  Process</span>
+<span style="color: #000; font-style: italic">u_str  ESTAB   0       0       * 19350               * 19351</span>
+<span style="color: #000; font-style: italic">u_str  ESTAB   0       0       * 19351               * 19350</span>
+<span style="color: #000; font-style: italic">tcp    LISTEN  0       128     0.0.0.0:22            0.0.0.0:*</span>
+<span style="color: #000; font-style: italic">tcp    ESTAB   0       0       192.168.1.5:22        192.168.1.10:52914</span>
+</pre></div>
+<h3><strong>-l, --listening</strong></h3>
+<p>リッスン中のソケットのみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">Netid  State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port  Process</span>
+<span style="color: #000; font-style: italic">tcp    LISTEN  0       128     0.0.0.0:22            0.0.0.0:*</span>
+<span style="color: #000; font-style: italic">tcp    LISTEN  0       128     127.0.0.1:631         0.0.0.0:*</span>
+<span style="color: #000; font-style: italic">tcp    LISTEN  0       128     127.0.0.1:25          0.0.0.0:*</span>
+</pre></div>
+<h3><strong>-t, --tcp</strong></h3>
+<p>TCP ソケットのみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-t
+<span style="color: #000; font-style: italic">State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port</span>
+<span style="color: #000; font-style: italic">ESTAB   0       0       192.168.1.5:22        192.168.1.10:52914</span>
+</pre></div>
+<h3><strong>-u, --udp</strong></h3>
+<p>UDP ソケットのみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-u
+<span style="color: #000; font-style: italic">State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port</span>
+<span style="color: #000; font-style: italic">UNCONN  0       0       0.0.0.0:68            0.0.0.0:*</span>
+<span style="color: #000; font-style: italic">UNCONN  0       0       0.0.0.0:5353          0.0.0.0:*</span>
+</pre></div>
+<h3><strong>-p, --processes</strong></h3>
+<p>ソケットを使用しているプロセスを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-p
+<span style="color: #000; font-style: italic">Netid  State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port  Process</span>
+<span style="color: #000; font-style: italic">tcp    ESTAB   0       0       192.168.1.5:22        192.168.1.10:52914 users:((&quot;sshd&quot;,pid=1234,fd=3))</span>
+</pre></div>
+<h3><strong>-n, --numeric</strong></h3>
+<p>サービス名を解決しません（代わりにポート番号を表示）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-n
+<span style="color: #000; font-style: italic">State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port</span>
+<span style="color: #000; font-style: italic">ESTAB   0       0       192.168.1.5:22        192.168.1.10:52914</span>
+</pre></div>
+<h3><strong>-r, --resolve</strong></h3>
+<p>数値アドレス/ポートを解決します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-r
+<span style="color: #000; font-style: italic">State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port</span>
+<span style="color: #000; font-style: italic">ESTAB   0       0       server:ssh            client:52914</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>すべての TCP 接続を表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-ta
+<span style="color: #000; font-style: italic">State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port</span>
+<span style="color: #000; font-style: italic">LISTEN  0       128     0.0.0.0:ssh           0.0.0.0:*</span>
+<span style="color: #000; font-style: italic">LISTEN  0       128     127.0.0.1:ipp         0.0.0.0:*</span>
+<span style="color: #000; font-style: italic">ESTAB   0       0       192.168.1.5:ssh       192.168.1.10:52914</span>
+</pre></div>
+<h3>プロセス情報付きでリッスン中の TCP ソケットを表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-tlp
+<span style="color: #000; font-style: italic">State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port   Process</span>
+<span style="color: #000; font-style: italic">LISTEN  0       128     0.0.0.0:ssh           0.0.0.0:*           users:((&quot;sshd&quot;,pid=1234,fd=3))</span>
+<span style="color: #000; font-style: italic">LISTEN  0       128     127.0.0.1:ipp         0.0.0.0:*           users:((&quot;cupsd&quot;,pid=5678,fd=12))</span>
+</pre></div>
+<h3>ポートで接続をフィルタリング</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ss<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;( dport = :ssh or sport = :ssh )&#39;</span>
+<span style="color: #000; font-style: italic">State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port</span>
+<span style="color: #000; font-style: italic">ESTAB   0       0       192.168.1.5:ssh       192.168.1.10:52914</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>詳細な出力のためにオプションを組み合わせる</h3>
+<p><code>ss -tuln</code> のようにオプションを組み合わせて、数値アドレスを持つ TCP および UDP のリッスンソケットを表示します。これはシステム上で開いているポートを素早く確認するのに役立ちます。</p>
+<h3>接続状態でフィルタリングする</h3>
+<p><code>ss state established</code> を使用して確立された接続のみを表示したり、<code>ss state time-wait</code> を使用して TIME-WAIT 状態の接続を表示したりします。これは接続の問題をトラブルシューティングする際に役立ちます。</p>
+<h3>リアルタイムで接続を監視する</h3>
+<p><code>watch -n1 'ss -t'</code> を使用して、1秒ごとに更新される TCP 接続をリアルタイムで監視します。これはトラブルシューティング中に接続の変化を追跡する際に役立ちます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>ss</code> と <code>netstat</code> の違いは何ですか？</h4>
+<p>A. <code>ss</code> は <code>netstat</code> よりも高速で、より多くの情報を提供します。<code>/proc</code> ファイルを解析するのではなく、ソケット情報をカーネル空間から直接クエリします。</p>
+<h4>Q2. 特定のポートを使用しているプロセスを確認するにはどうすればよいですか？</h4>
+<p>A. <code>ss -ltp</code> を使用して、プロセス情報付きのリッスン中の TCP ソケットを表示します。ポートでフィルタリングすることもできます：<code>ss -ltp sport = :80</code>。</p>
+<h4>Q3. 特定の IP アドレスへの確立された接続を確認するにはどうすればよいですか？</h4>
+<p>A. <code>ss -t dst 192.168.1.10</code> を使用して、その IP アドレスへのすべての TCP 接続を表示します。</p>
+<h4>Q4. ソケットのメモリ使用量を確認するにはどうすればよいですか？</h4>
+<p>A. <code>ss -m</code> を使用して、ソケットのメモリ使用量情報を表示します。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man8/ss.8.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

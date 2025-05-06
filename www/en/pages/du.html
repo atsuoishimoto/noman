@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  du - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>du command</h1>
+<p>Estimate file space usage for directories and files.</p>
+<h2>Overview</h2>
+<p>The <code>du</code> (disk usage) command estimates and displays the disk space used by files and directories. It's particularly useful for finding which directories are consuming the most space on your system, helping you identify areas for cleanup.</p>
+<h2>Options</h2>
+<h3><strong>-h, --human-readable</strong></h3>
+<p>Display sizes in human-readable format (e.g., 1K, 234M, 2G)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>Documents
+<span style="color: #000; font-style: italic">4.0K    Documents/notes</span>
+<span style="color: #000; font-style: italic">16K     Documents/projects/code</span>
+<span style="color: #000; font-style: italic">24K     Documents/projects</span>
+<span style="color: #000; font-style: italic">28K     Documents</span>
+</pre></div>
+<h3><strong>-s, --summarize</strong></h3>
+<p>Display only a total for each argument</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>Documents
+<span style="color: #000; font-style: italic">28      Documents</span>
+</pre></div>
+<h3><strong>-c, --total</strong></h3>
+<p>Produce a grand total of all arguments</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>Documents<span style="color: #F8F8F8"> </span>Downloads
+<span style="color: #000; font-style: italic">28      Documents</span>
+<span style="color: #000; font-style: italic">156     Downloads</span>
+<span style="color: #000; font-style: italic">184     total</span>
+</pre></div>
+<h3><strong>-a, --all</strong></h3>
+<p>Show sizes for files as well as directories</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>Documents
+<span style="color: #000; font-style: italic">4       Documents/notes/todo.txt</span>
+<span style="color: #000; font-style: italic">4       Documents/notes</span>
+<span style="color: #000; font-style: italic">8       Documents/projects/code/script.py</span>
+<span style="color: #000; font-style: italic">16      Documents/projects/code</span>
+<span style="color: #000; font-style: italic">24      Documents/projects</span>
+<span style="color: #000; font-style: italic">28      Documents</span>
+</pre></div>
+<h3><strong>--max-depth=N</strong></h3>
+<p>Print the total for a directory only if it is N or fewer levels below the command line argument</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>--max-depth<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>Documents
+<span style="color: #000; font-style: italic">4       Documents/notes</span>
+<span style="color: #000; font-style: italic">24      Documents/projects</span>
+<span style="color: #000; font-style: italic">28      Documents</span>
+</pre></div>
+<h3><strong>-x, --one-file-system</strong></h3>
+<p>Skip directories on different file systems</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>/home
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Finding the largest directories</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>--max-depth<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>/home/user<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>sort<span style="color: #F8F8F8"> </span>-hr
+<span style="color: #000; font-style: italic">1.2G    /home/user</span>
+<span style="color: #000; font-style: italic">650M    /home/user/Downloads</span>
+<span style="color: #000; font-style: italic">320M    /home/user/Videos</span>
+<span style="color: #000; font-style: italic">200M    /home/user/Documents</span>
+<span style="color: #000; font-style: italic">45M     /home/user/.cache</span>
+</pre></div>
+<h3>Checking specific directory size with human-readable output</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-sh<span style="color: #F8F8F8"> </span>/var/log
+<span style="color: #000; font-style: italic">156M    /var/log</span>
+</pre></div>
+<h3>Finding large files in the current directory</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-ah<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>sort<span style="color: #F8F8F8"> </span>-hr<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>head<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>
+<span style="color: #000; font-style: italic">1.2G    .</span>
+<span style="color: #000; font-style: italic">650M    ./Downloads</span>
+<span style="color: #000; font-style: italic">320M    ./Videos</span>
+<span style="color: #000; font-style: italic">200M    ./Documents</span>
+<span style="color: #000; font-style: italic">150M    ./Downloads/ubuntu.iso</span>
+<span style="color: #000; font-style: italic">100M    ./Videos/lecture.mp4</span>
+<span style="color: #000; font-style: italic">45M     ./.cache</span>
+<span style="color: #000; font-style: italic">25M     ./Documents/thesis.pdf</span>
+<span style="color: #000; font-style: italic">20M     ./Pictures</span>
+<span style="color: #000; font-style: italic">15M     ./Music</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Combine with sort for better insights</h3>
+<p>Pipe <code>du</code> output to <code>sort -hr</code> to list directories by size in descending order:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>sort<span style="color: #F8F8F8"> </span>-hr
+</pre></div>
+<h3>Use with find to target specific file types</h3>
+<p>Combine with <code>find</code> to analyze space used by specific file types:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-name<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.log&quot;</span><span style="color: #F8F8F8"> </span>-exec<span style="color: #F8F8F8"> </span>du<span style="color: #F8F8F8"> </span>-ch<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>total$
+</pre></div>
+<h3>Exclude certain directories</h3>
+<p>Use with <code>grep -v</code> to exclude directories from analysis:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>du<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;node_modules&quot;</span>
+</pre></div>
+<h3>On macOS</h3>
+<p>The BSD version of <code>du</code> on macOS has slightly different options. Use <code>brew install coreutils</code> and then <code>gdu</code> to get GNU-compatible behavior.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>du</code> and <code>df</code>?</h4>
+<p>A. <code>du</code> shows disk usage of files and directories, while <code>df</code> shows available and used disk space on mounted filesystems.</p>
+<h4>Q2. Why does <code>du</code> report different sizes than what I see in a file manager?</h4>
+<p>A. <code>du</code> measures disk space used (including filesystem overhead), while file managers often show logical file sizes.</p>
+<h4>Q3. How can I exclude certain directories from the calculation?</h4>
+<p>A. Use the <code>--exclude=PATTERN</code> option: <code>du --exclude=node_modules</code>.</p>
+<h4>Q4. Why is <code>du</code> slow on large directories?</h4>
+<p>A. <code>du</code> needs to traverse the entire directory structure to calculate sizes. For large directories, consider using <code>du -s</code> for summary only.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/du-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

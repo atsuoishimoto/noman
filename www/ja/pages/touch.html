@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  touch - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>touchコマンド</h1>
+<p>ファイルのタイムスタンプを作成または更新します。</p>
+<h2>概要</h2>
+<p><code>touch</code>コマンドは、存在しないファイルを空のファイルとして作成したり、既存のファイルのアクセスタイムスタンプと変更タイムスタンプを現在の時刻に更新したりします。一般的に、空のファイルを作成したり、ファイルの内容を変更せずにタイムスタンプを更新したりするために使用されます。</p>
+<h2>オプション</h2>
+<h3><strong>-a</strong></h3>
+<p>アクセス時間のみを変更します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h3><strong>-c, --no-create</strong></h3>
+<p>存在しないファイルを作成しません。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>nonexistent.txt
+</pre></div>
+<h3><strong>-m</strong></h3>
+<p>変更時間のみを変更します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h3><strong>-r, --reference=FILE</strong></h3>
+<p>現在の時刻の代わりに、参照ファイルのタイムスタンプを使用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>reference.txt<span style="color: #F8F8F8"> </span>target.txt
+</pre></div>
+<h3><strong>-t STAMP</strong></h3>
+<p>現在の時刻の代わりに指定した時刻を使用します。形式: [[CC]YY]MMDDhhmm[.ss]</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">202505051200</span><span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h3><strong>-d, --date=STRING</strong></h3>
+<p>STRINGを解析し、現在の時刻の代わりに使用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;2025-05-05 12:00:00&quot;</span><span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h2>使用例</h2>
+<h3>複数の空ファイルを作成する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>file3.txt
+</pre></div>
+<h3>タイムスタンプを現在の時刻に更新する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>existing_file.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>existing_file.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 0 May  5 10:30 existing_file.txt</span>
+</pre></div>
+<h3>特定のタイムスタンプを設定する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;yesterday&quot;</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 0 May  4 10:30 file.txt</span>
+</pre></div>
+<h3>別のファイルのタイムスタンプを使用する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>destination.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>source.txt<span style="color: #F8F8F8"> </span>destination.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 0 May  5 09:15 source.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 0 May  5 09:15 destination.txt</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>ディレクトリパスでファイルを作成する</h3>
+<p>まだ存在しないディレクトリにファイルを作成する必要がある場合は、まず<code>mkdir -p</code>を使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>path/to/directory
+<span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>path/to/directory/file.txt
+</pre></div>
+<h3>パターンを使って一括でファイルを作成する</h3>
+<p>ブレース展開を使用して、パターンに従った複数のファイルを作成できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>file<span style="color: #CE5C00; font-weight: bold">{</span><span style="color: #0000CF; font-weight: bold">1</span>..5<span style="color: #CE5C00; font-weight: bold">}</span>.txt
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">file1.txt file2.txt file3.txt file4.txt file5.txt</span>
+</pre></div>
+<h3>新しいファイルを作成せずにタイムスタンプを更新する</h3>
+<p>既存のファイルのタイムスタンプのみを更新したい場合は、<code>-c</code>オプションを使用して新しいファイルの作成を防ぎます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>*.txt
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. 存在しないファイルをtouchするとどうなりますか？</h4>
+<p>A. デフォルトでは、<code>touch</code>はその名前の空のファイルを作成します。</p>
+<h4>Q2. アクセス時間を変更せずに変更時間だけを更新するにはどうすればよいですか？</h4>
+<p>A. <code>touch -m ファイル名</code>を使用して、変更時間のみを更新します。</p>
+<h4>Q3. ファイルのタイムスタンプを特定の日時に設定できますか？</h4>
+<p>A. はい、<code>touch -d &quot;YYYY-MM-DD HH:MM:SS&quot; ファイル名</code>または<code>touch -t YYYYMMDDhhmm.ss ファイル名</code>を使用します。</p>
+<h4>Q4. touchはファイルの内容を変更しますか？</h4>
+<p>A. いいえ、<code>touch</code>は空のファイルを作成するか、タイムスタンプを更新するだけで、既存のファイルの内容を変更することはありません。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/touch-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

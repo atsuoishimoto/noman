@@ -1,0 +1,20 @@
+{
+  "id": "msg_01RYDgPJ165MyFUs4EAaZZzy",
+  "content": [
+    {
+      "text": "# pandocコマンド\n\nマークアップ形式間でファイルを変換する汎用ドキュメントコンバーター。\n\n## 概要\n\nPandocは、Markdown、HTML、LaTeX、Word、EPUBなど、多数のマークアップ形式間で変換できる強力なドキュメント変換ツールです。特に、フォーマット、引用、その他の要素を保持しながらドキュメントを変換する必要がある作家、学者、出版社にとって非常に便利です。\n\n## オプション\n\n### **-f, --from=FORMAT**\n\n入力形式を指定します。指定しない場合、Pandocは形式を推測しようとします。\n\n```console\n$ pandoc -f markdown -t html document.md -o document.html\n```\n\n### **-t, --to=FORMAT**\n\n出力形式を指定します。\n\n```console\n$ pandoc -t docx document.md -o document.docx\n```\n\n### **-o, --output=FILE**\n\n標準出力ではなくFILEに出力を書き込みます。\n\n```console\n$ pandoc document.md -o document.html\n```\n\n### **--pdf-engine=PROGRAM**\n\nPDF出力を作成する際に使用するプログラムを指定します。\n\n```console\n$ pandoc document.md --pdf-engine=xelatex -o document.pdf\n```\n\n### **--toc, --table-of-contents**\n\n出力ドキュメントに自動生成された目次を含めます。\n\n```console\n$ pandoc --toc document.md -o document.html\n```\n\n### **-s, --standalone**\n\n適切なヘッダーとフッターを含むスタンドアロンドキュメントを生成します。\n\n```console\n$ pandoc -s document.md -o document.html\n```\n\n### **-c, --css=URL**\n\nHTML出力を作成する際にCSSファイルにリンクします。\n\n```console\n$ pandoc -c style.css document.md -o document.html\n```\n\n### **--bibliography=FILE**\n\n引用処理のための参考文献ファイルを指定します。\n\n```console\n$ pandoc --bibliography=references.bib document.md -o document.pdf\n```\n\n### **--citeproc**\n\nciteprocを使用して引用を処理します。\n\n```console\n$ pandoc --citeproc --bibliography=references.bib document.md -o document.pdf\n```\n\n### **-V, --variable=KEY[:VALUE]**\n\nテンプレートで使用するテンプレート変数を設定します。\n\n```console\n$ pandoc -V title=\"My Document\" document.md -o document.pdf\n```\n\n## 使用例\n\n### MarkdownからHTMLへの変換\n\n```console\n$ pandoc document.md -o document.html\n```\n\n### カスタムテンプレートを使用したMarkdownからPDFへの変換\n\n```console\n$ pandoc document.md --template=template.tex -o document.pdf\n```\n\n### 複数のファイルを単一の出力に変換\n\n```console\n$ pandoc chapter1.md chapter2.md chapter3.md -o book.docx\n```\n\n### Markdownからプレゼンテーションを作成\n\n```console\n$ pandoc -t revealjs -s presentation.md -o presentation.html\n```\n\n### HTMLからMarkdownへの変換\n\n```console\n$ pandoc -f html -t markdown webpage.html -o webpage.md\n```\n\n## ヒント:\n\n### 一貫した出力のためのテンプレートの使用\n\n頻繁に使用する出力形式のカスタムテンプレートを作成して、ドキュメント間で一貫したスタイルを維持します：\n\n```console\n$ pandoc --template=mythesis.tex thesis.md -o thesis.pdf\n```\n\n### メタデータブロックの活用\n\nMarkdownファイルの先頭にYAMLメタデータブロックを含めて、ドキュメントのプロパティを制御します：\n\n```markdown\n---\ntitle: \"Document Title\"\nauthor: \"Your Name\"\ndate: \"2025-05-05\"\n---\n```\n\n### 複数のファイルの一括変換\n\nシェルループを使用して複数のファイルを一度に変換します：\n\n```console\n$ for file in *.md; do pandoc \"$file\" -o \"${file%.md}.html\"; done\n```\n\n### Markdownをリアルタイムでプレビュー\n\n執筆中の素早いプレビューには、pandocとブラウザへのパイプを使用します：\n\n```console\n$ pandoc document.md | firefox -\n```\n\n## よくある質問\n\n#### Q1. pandocはどのような形式間で変換できますか？\nA. PandocはMarkdown、HTML、LaTeX、DOCX、ODT、EPUB、PDFなど、多数の形式をサポートしています。サポートされているすべての形式を確認するには、`pandoc --list-input-formats`または`pandoc --list-output-formats`を実行してください。\n\n#### Q2. pandocでPDFを作成するにはどうすればよいですか？\nA. `pandoc document.md -o document.pdf`を使用します。これにはシステムにLaTeXエンジンがインストールされている必要があることに注意してください。\n\n#### Q3. ドキュメントに引用を含めるにはどうすればよいですか？\nA. `--citeproc`と`--bibliography=references.bib`を使用します：`pandoc --citeproc --bibliography=references.bib document.md -o document.pdf`。\n\n#### Q4. pandocは表を適切に変換できますか？\nA. はい、pandocはほとんどの形式で表をうまく処理します。複雑な表については、Markdownのパイプテーブルまたはグリッドテーブル構文の使用を検討してください。\n\n#### Q5. 出力ドキュメントの外観をカスタマイズするにはどうすればよいですか？\nA. テンプレート（`--template`）、HTMLのCSS（`-c`）、または変数（`-V`）を使用して外観をカスタマイズします。\n\n## 参考文献\n\nhttps://pandoc.org/MANUAL.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1331,
+    "output_tokens": 1717
+  }
+}

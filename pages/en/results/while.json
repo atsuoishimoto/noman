@@ -1,0 +1,20 @@
+{
+  "id": "msg_01FEB49UpvFxeSpjkGa9bWWW",
+  "content": [
+    {
+      "text": "# while command\n\nExecute commands repeatedly as long as a condition is true.\n\n## Overview\n\nThe `while` command is a shell construct that creates a loop, executing a set of commands repeatedly as long as a specified condition evaluates to true. It's commonly used for iterating a fixed number of times, processing input line by line, or running commands until a specific condition changes.\n\n## Options\n\nThe `while` command doesn't have traditional command-line options as it's a shell built-in construct rather than a standalone program.\n\n## Usage Examples\n\n### Basic while loop\n\n```console\n$ i=1\n$ while [ $i -le 5 ]; do\n>   echo \"Count: $i\"\n>   i=$((i+1))\n> done\nCount: 1\nCount: 2\nCount: 3\nCount: 4\nCount: 5\n```\n\n### Reading file line by line\n\n```console\n$ while read line; do\n>   echo \"Line: $line\"\n> done < file.txt\nLine: This is the first line\nLine: This is the second line\nLine: This is the third line\n```\n\n### Infinite loop with break condition\n\n```console\n$ while true; do\n>   echo \"Enter a number (0 to exit):\"\n>   read num\n>   if [ \"$num\" -eq 0 ]; then\n>     break\n>   fi\n>   echo \"You entered: $num\"\n> done\nEnter a number (0 to exit):\n5\nYou entered: 5\nEnter a number (0 to exit):\n0\n```\n\n### Processing command output\n\n```console\n$ ls -1 *.txt | while read file; do\n>   echo \"Processing $file\"\n>   wc -l \"$file\"\n> done\nProcessing document.txt\n      10 document.txt\nProcessing notes.txt\n       5 notes.txt\n```\n\n## Tips\n\n### Use Control-C to Exit Infinite Loops\n\nIf you create an infinite loop (like `while true; do...`) and need to exit, press Control-C to terminate the loop.\n\n### Combine with Sleep for Polling\n\nUse `while` with the `sleep` command to periodically check conditions:\n\n```console\n$ while ! ping -c 1 server.example.com &>/dev/null; do\n>   echo \"Server not reachable, waiting...\"\n>   sleep 5\n> done\n```\n\n### Avoid Common Pitfalls\n\nBe careful with conditions that might never become false, which can create infinite loops. Always ensure there's a way for the condition to eventually evaluate to false.\n\n### Use Continue to Skip Iterations\n\nThe `continue` statement can be used within a `while` loop to skip the rest of the current iteration and move to the next one.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `while` and `until`?\nA. `while` executes commands as long as the condition is true, whereas `until` executes commands as long as the condition is false.\n\n#### Q2. Can I use `while` to read from standard input?\nA. Yes, `while read line; do ...; done` without a redirection will read from standard input.\n\n#### Q3. How do I create a countdown timer with `while`?\nA. Use a decreasing counter: `count=10; while [ $count -gt 0 ]; do echo $count; count=$((count-1)); sleep 1; done; echo \"Done!\"`\n\n#### Q4. How can I process multiple values in each iteration?\nA. Use multiple variables in the read command: `while read name age; do echo \"$name is $age years old\"; done < data.txt`\n\n## References\n\nhttps://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 890
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "msg_01M2MBrntszEwb2GdU2briBP",
+  "content": [
+    {
+      "text": "# awk command\n\nPattern scanning and text processing language for manipulating structured data.\n\n## Overview\n\n`awk` is a powerful text processing tool that treats each line of input as a record and each word as a field. It excels at extracting and manipulating data from structured text files like CSV, logs, and tables. The command follows the pattern: `awk 'pattern {action}' file`.\n\n## Options\n\n### **-F, --field-separator**\n\nSpecify the field separator character (default is whitespace)\n\n```console\n$ echo \"apple,orange,banana\" | awk -F, '{print $2}'\norange\n```\n\n### **-f, --file**\n\nRead the AWK program from a file instead of the command line\n\n```console\n$ cat script.awk\n{print $1}\n$ awk -f script.awk data.txt\nFirst\nSecond\nThird\n```\n\n### **-v, --assign**\n\nAssign a value to a variable before program execution\n\n```console\n$ awk -v name=\"John\" '{print \"Hello, \" name}' /dev/null\nHello, John\n```\n\n### **-W, --compat, --posix**\n\nRun in POSIX compatibility mode\n\n```console\n$ awk -W posix '{print $1}' data.txt\nFirst\nSecond\nThird\n```\n\n## Usage Examples\n\n### Basic Field Printing\n\n```console\n$ echo \"Hello World\" | awk '{print $1}'\nHello\n```\n\n### Processing CSV Data\n\n```console\n$ cat data.csv\nJohn,25,Engineer\nMary,30,Doctor\n$ awk -F, '{print \"Name: \" $1 \", Job: \" $3}' data.csv\nName: John, Job: Engineer\nName: Mary, Job: Doctor\n```\n\n### Filtering Lines with Pattern Matching\n\n```console\n$ cat /etc/passwd | awk -F: '/root/ {print $1 \" has home directory \" $6}'\nroot has home directory /root\n```\n\n### Calculating Sums\n\n```console\n$ cat numbers.txt\n10 20\n30 40\n$ awk '{sum += $1} END {print \"Sum:\", sum}' numbers.txt\nSum: 40\n```\n\n## Tips:\n\n### Built-in Variables\n\nAWK has useful built-in variables like `NR` (current record number), `NF` (number of fields in current record), and `FS` (field separator).\n\n```console\n$ echo -e \"a b c\\nd e f\" | awk '{print \"Line\", NR, \"has\", NF, \"fields\"}'\nLine 1 has 3 fields\nLine 2 has 3 fields\n```\n\n### Conditional Processing\n\nUse if-else statements for conditional processing:\n\n```console\n$ cat ages.txt\nJohn 25\nMary 17\nBob 32\n$ awk '{if ($2 >= 18) print $1, \"is an adult\"; else print $1, \"is a minor\"}' ages.txt\nJohn is an adult\nMary is a minor\nBob is an adult\n```\n\n### Multiple Commands\n\nSeparate multiple commands with semicolons:\n\n```console\n$ echo \"Hello World\" | awk '{count=split($0,arr,\" \"); print \"Words:\", count; print \"First word:\", arr[1]}'\nWords: 2\nFirst word: Hello\n```\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between awk, sed, and grep?\nA. While grep searches for patterns, and sed performs text transformations, awk is designed for structured data processing with more programming capabilities including variables, functions, and arithmetic operations.\n\n#### Q2. How do I process multiple files with awk?\nA. Simply list the files after the awk command: `awk '{print $1}' file1.txt file2.txt`\n\n#### Q3. Can awk handle multi-line processing?\nA. Yes, using the `RS` (record separator) variable: `awk 'BEGIN{RS=\"\";FS=\"\\n\"}{print $1}' file.txt` processes paragraph-separated text.\n\n#### Q4. How do I use regular expressions in awk?\nA. Regular expressions are placed between slashes: `awk '/pattern/ {print}' file.txt`\n\n## References\n\nhttps://www.gnu.org/software/gawk/manual/gawk.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1679,
+    "output_tokens": 1027
+  }
+}

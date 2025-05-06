@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  whoami - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>whoami コマンド</h1>
+<p>現在のユーザーの実効ユーザーIDを表示します。</p>
+<h2>概要</h2>
+<p><code>whoami</code> コマンドは、現在の実効ユーザーIDに関連付けられたユーザー名を表示します。これは、ターミナルセッションで現在使用されているユーザーアカウントを識別するのに役立つシンプルなユーティリティで、スクリプト内や異なるユーザーアカウント間で切り替える際に特に便利です。</p>
+<h2>オプション</h2>
+<p><code>whoami</code> コマンドは単一の明確な機能を実行するため、オプションはほとんどありません。</p>
+<h3><strong>--help</strong></h3>
+<p>ヘルプ情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>whoami<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: whoami [OPTION]...</span>
+<span style="color: #000; font-style: italic">Print the user name associated with the current effective user ID.</span>
+<span style="color: #000; font-style: italic">Same as id -un.</span>
+
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+
+<span style="color: #000; font-style: italic">GNU coreutils online help: &lt;https://www.gnu.org/software/coreutils/&gt;</span>
+<span style="color: #000; font-style: italic">Report whoami translation bugs to &lt;https://translationproject.org/team/&gt;</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>バージョン情報を出力して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>whoami<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">whoami (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2020 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by Richard Mlynarik.</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な使い方</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>whoami
+<span style="color: #000; font-style: italic">john</span>
+</pre></div>
+<h3>スクリプト内で現在のユーザーを確認する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Current user is </span><span style="color: #204A87; font-weight: bold">$(</span>whoami<span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Current user is john</span>
+</pre></div>
+<h3>sudoでユーザーを切り替えた後の使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>whoami
+<span style="color: #000; font-style: italic">john</span>
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>whoami
+<span style="color: #000; font-style: italic">root</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3><code>id</code> コマンドとの違い</h3>
+<p><code>whoami</code> コマンドは <code>id -un</code> と同等です。<code>id</code> コマンドはより包括的なユーザー識別情報を提供しますが、<code>whoami</code> はユーザー名のみに焦点を当てています。</p>
+<h3>シェルスクリプトでの使用</h3>
+<p><code>whoami</code> は、スクリプトを実行しているユーザーを確認するためにシェルスクリプトで特に役立ち、ユーザー識別に基づいた条件付き実行を可能にします。</p>
+<h3>ルートユーザーの確認</h3>
+<p><code>sudo</code> や <code>su</code> などのコマンドを使用した後、現在ルート権限で操作しているかどうかを確認するために <code>whoami</code> を使用します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>whoami</code> と <code>who am i</code> の違いは何ですか？</h4>
+<p>A. <code>whoami</code> は実効ユーザー名（現在実行中のユーザー）を表示しますが、<code>who am i</code>（または <code>who -m</code>）は元のログイン名を表示します。<code>su</code> や <code>sudo</code> を使用した場合は異なる場合があります。</p>
+<h4>Q2. <code>whoami</code> は他のユーザーに関する情報を表示できますか？</h4>
+<p>A. いいえ、<code>whoami</code> は現在の実効ユーザーに関する情報のみを表示します。他のユーザーに関する情報を取得するには、<code>id username</code> や <code>finger username</code> などのコマンドを使用してください。</p>
+<h4>Q3. <code>whoami</code> はすべてのUnix/Linuxシステムで同じように動作しますか？</h4>
+<p>A. はい、<code>whoami</code> はLinuxやmacOSを含むUnixライクなオペレーティングシステム全体で一貫した動作をする標準コマンドです。</p>
+<h4>Q4. なぜ <code>echo $USER</code> の代わりに <code>whoami</code> を使用するのですか？</h4>
+<p>A. <code>whoami</code> は実効ユーザー（実行中のユーザー）を表示しますが、<code>$USER</code> はログインユーザーを表示します。<code>sudo</code> や <code>su</code> を使ってユーザーを変更した場合に違いが生じます。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/whoami-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

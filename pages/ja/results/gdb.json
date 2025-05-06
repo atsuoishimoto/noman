@@ -1,0 +1,20 @@
+{
+  "id": "msg_01PTTvaabvPSDxFUrapSDoYU",
+  "content": [
+    {
+      "text": "# gdbコマンド\n\nGNUデバッガを使用してプログラムを対話的にデバッグします。\n\n## 概要\n\nGDB（GNU Debugger）は、プログラムの実行を監視および制御できる強力なデバッグツールです。実行を一時停止し、メモリを調査し、ブレークポイントを設定し、コードをステップ実行し、実行時に変数を検査することで、バグを見つけて修正するのに役立ちます。GDBはC、C++、Objective-C、Fortranなど多くのプログラミング言語で動作します。\n\n## オプション\n\n### **-q, --quiet, --silent**\n\n紹介文と著作権メッセージを表示せずにGDBを起動します\n\n```console\n$ gdb -q ./program\n(gdb)\n```\n\n### **-c FILE**\n\nFILEをコアダンプとして使用して調査します\n\n```console\n$ gdb -c core ./program\n```\n\n### **-p PID**\n\n指定されたプロセスIDを持つ実行中のプロセスにアタッチします\n\n```console\n$ gdb -p 1234\n```\n\n### **-x FILE**\n\nFILEからGDBコマンドを実行します\n\n```console\n$ gdb -x commands.gdb ./program\n```\n\n### **--args**\n\nプログラム名の後の引数をデバッグ対象のプログラムに渡します\n\n```console\n$ gdb --args ./program arg1 arg2\n```\n\n### **-d DIRECTORY**\n\nソースファイルを検索するパスにDIRECTORYを追加します\n\n```console\n$ gdb -d /path/to/source ./program\n```\n\n## 使用例\n\n### 基本的なデバッグセッション\n\n```console\n$ gdb ./program\n(gdb) break main\nBreakpoint 1 at 0x1149: file main.c, line 5.\n(gdb) run\nStarting program: /path/to/program \n\nBreakpoint 1, main () at main.c:5\n5       int x = 10;\n(gdb) next\n6       printf(\"x = %d\\n\", x);\n(gdb) print x\n$1 = 10\n(gdb) continue\nContinuing.\nx = 10\n[Inferior 1 (process 12345) exited normally]\n(gdb) quit\n```\n\n### 引数付きプログラムのデバッグ\n\n```console\n$ gdb --args ./program input.txt output.txt\n(gdb) run\nStarting program: /path/to/program input.txt output.txt\n[Program execution...]\n```\n\n### コアダンプの調査\n\n```console\n$ gdb ./program core\n(gdb) bt\n#0  0x00007f8b4c5e32a3 in __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:50\n#1  0x00007f8b4c5e4921 in __GI_abort () at abort.c:79\n#2  0x0000555555555160 in main () at crash.c:5\n```\n\n## ヒント:\n\n### 一般的なGDBコマンド\n\n- `break`（または`b`）：行または関数にブレークポイントを設定\n- `run`（または`r`）：プログラムを開始\n- `continue`（または`c`）：停止後に実行を継続\n- `next`（または`n`）：関数内に入らずに次の行を実行\n- `step`（または`s`）：関数内に入りながら次の行を実行\n- `print`（または`p`）：変数または式の値を表示\n- `backtrace`（または`bt`）：コールスタックを表示\n- `info breakpoints`：すべてのブレークポイントを一覧表示\n- `watch`：変数が変更されたときに停止するウォッチポイントを設定\n\n### TUIモードの使用\n\n`Ctrl+X+A`でテキストユーザーインターフェースモードを有効にすると、ソースコードとGDBコマンドを同時に表示する分割ビューが表示されます。\n\n### ブレークポイントの保存\n\n`save breakpoints file.txt`を使用してブレークポイントをファイルに保存し、将来のセッションで`source file.txt`を使用して読み込むことができます。\n\n## よくある質問\n\n#### Q1. プログラムのデバッグを開始するにはどうすればよいですか？\nA. `gdb ./program`を実行し、`break main`でメイン関数にブレークポイントを設定し、`run`で実行を開始します。\n\n#### Q2. セグメンテーション違反の原因を調査するにはどうすればよいですか？\nA. クラッシュ後、`backtrace`（または`bt`）を使用してコールスタックを確認し、クラッシュが発生した場所を特定します。次に`frame N`を使用して特定のフレームを選択し、変数を調査します。\n\n#### Q3. 実行中のプロセスをデバッグするにはどうすればよいですか？\nA. `gdb -p PID`を使用して、指定されたプロセスIDを持つ実行中のプロセスにアタッチします。\n\n#### Q4. 条件付きブレークポイントを設定するにはどうすればよいですか？\nA. `break location if condition`を使用します。例：`break main.c:25 if x > 10`\n\n#### Q5. 配列のすべての要素を表示するにはどうすればよいですか？\nA. `print *array@length`を使用します。ここで`length`は表示する要素の数です。\n\n## 参考文献\n\nhttps://sourceware.org/gdb/current/onlinedocs/gdb/\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1293,
+    "output_tokens": 1654
+  }
+}

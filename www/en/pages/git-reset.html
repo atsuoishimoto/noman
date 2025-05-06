@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-reset - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git reset command</h1>
+<p>Reset current HEAD to the specified state.</p>
+<h2>Overview</h2>
+<p><code>git reset</code> is used to undo changes by moving the HEAD and current branch to a different commit. It can also modify the staging area (index) and optionally the working directory, allowing you to undo commits, unstage files, or completely discard changes.</p>
+<h2>Options</h2>
+<h3><strong>--soft</strong></h3>
+<p>Reset HEAD to specified commit but leave staging area and working directory unchanged.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>--soft<span style="color: #F8F8F8"> </span>HEAD~1
+</pre></div>
+<h3><strong>--mixed</strong></h3>
+<p>Default mode. Reset HEAD and staging area but leave working directory unchanged.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>HEAD~1
+</pre></div>
+<h3><strong>--hard</strong></h3>
+<p>Reset HEAD, staging area, and working directory to match the specified commit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>--hard<span style="color: #F8F8F8"> </span>HEAD~1
+</pre></div>
+<h3><strong>-p, --patch</strong></h3>
+<p>Interactively select hunks of changes to reset.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>-p
+</pre></div>
+<h3><strong>&lt;commit&gt;</strong></h3>
+<p>The commit to reset to. Can be a commit hash, branch name, tag, or relative reference.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>abc123f
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Unstaging a file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">Unstaged changes after reset:</span>
+<span style="color: #000; font-style: italic">M       file.txt</span>
+</pre></div>
+<h3>Undoing the last commit but keeping changes staged</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>--soft<span style="color: #F8F8F8"> </span>HEAD~1
+</pre></div>
+<h3>Completely discarding the last three commits</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>--hard<span style="color: #F8F8F8"> </span>HEAD~3
+<span style="color: #000; font-style: italic">HEAD is now at 1a2b3c4 Previous commit message</span>
+</pre></div>
+<h3>Resetting to a specific commit</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>reset<span style="color: #F8F8F8"> </span>--mixed<span style="color: #F8F8F8"> </span>1a2b3c4
+<span style="color: #000; font-style: italic">Unstaged changes after reset:</span>
+<span style="color: #000; font-style: italic">M       file1.txt</span>
+<span style="color: #000; font-style: italic">M       file2.txt</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use <code>--soft</code> for Amending Commits</h3>
+<p>When you want to add more changes to your last commit or change the commit message, use <code>git reset --soft HEAD~1</code> to undo the commit but keep all changes staged.</p>
+<h3>Recover from a Hard Reset</h3>
+<p>If you accidentally reset with <code>--hard</code>, you can often recover using <code>git reflog</code> to find the commit you reset from, then <code>git reset --hard</code> to that commit hash.</p>
+<h3>Understand the Three Reset Modes</h3>
+<p>Think of the three reset modes as levels of impact:</p>
+<ul>
+<li><code>--soft</code>: Only moves HEAD (safest)</li>
+<li><code>--mixed</code>: Moves HEAD and updates staging area</li>
+<li><code>--hard</code>: Moves HEAD, updates staging area, and working directory (most destructive)</li>
+</ul>
+<h3>Use <code>git reset</code> Instead of <code>git checkout</code> for Branches</h3>
+<p>When switching to a different branch, prefer <code>git switch</code> or <code>git checkout</code> over <code>git reset</code>. Using reset to switch branches can lead to unexpected results.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>git reset</code> and <code>git revert</code>?</h4>
+<p>A. <code>git reset</code> changes history by moving HEAD to a previous commit, while <code>git revert</code> creates a new commit that undoes changes from a previous commit, preserving history.</p>
+<h4>Q2. How do I undo a <code>git reset --hard</code>?</h4>
+<p>A. Use <code>git reflog</code> to find the commit hash before the reset, then <code>git reset --hard &lt;commit-hash&gt;</code> to return to that state.</p>
+<h4>Q3. How can I unstage all files?</h4>
+<p>A. Use <code>git reset</code> with no arguments to unstage all files.</p>
+<h4>Q4. Can I reset only specific files?</h4>
+<p>A. Yes, use <code>git reset &lt;filename&gt;</code> to unstage specific files or <code>git reset -p</code> to interactively select parts of files to unstage.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-reset</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

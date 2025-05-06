@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "*.j2": "django-html"
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "junstyle.vscode-django-support"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false  
+  }
+}

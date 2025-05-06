@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  top - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>top command</h1>
+<p>Display and update sorted information about processes.</p>
+<h2>Overview</h2>
+<p><code>top</code> provides a dynamic real-time view of running system processes. It displays a continuously updated list of processes, showing CPU usage, memory consumption, running time, and other system statistics. The display refreshes at regular intervals, allowing users to monitor system performance and identify resource-intensive processes.</p>
+<h2>Options</h2>
+<h3><strong>-d, --delay</strong></h3>
+<p>Specify the delay between screen updates in seconds (can include decimal points)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">[Updates the display every 5 seconds instead of the default]</span>
+</pre></div>
+<h3><strong>-n, --iterations</strong></h3>
+<p>Specify the maximum number of iterations before exiting</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span>
+<span style="color: #000; font-style: italic">[Displays 3 updates then exits]</span>
+</pre></div>
+<h3><strong>-p, --pid</strong></h3>
+<p>Monitor only the processes with specified process IDs</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>,5678
+<span style="color: #000; font-style: italic">[Shows only processes with PIDs 1234 and 5678]</span>
+</pre></div>
+<h3><strong>-u, --user</strong></h3>
+<p>Show only processes owned by specified user</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">[Shows only processes owned by &#39;username&#39;]</span>
+</pre></div>
+<h3><strong>-b, --batch</strong></h3>
+<p>Run in batch mode (useful for sending output to other programs or files)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>top_output.txt
+<span style="color: #000; font-style: italic">[Captures one iteration of top output to a file]</span>
+</pre></div>
+<h3><strong>-H, --threads</strong></h3>
+<p>Show individual threads instead of summarizing by process</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-H
+<span style="color: #000; font-style: italic">[Displays threads instead of processes]</span>
+</pre></div>
+<h2>Interactive Commands</h2>
+<p>While top is running, you can use these keyboard commands:</p>
+<h3>Process Control</h3>
+<pre><code>k - Kill a process (prompts for PID and signal)
+r - Renice a process (change priority)
+q - Quit the top command
+</code></pre><h3>Display Options</h3>
+<pre><code>h or ? - Help screen
+f - Field management (add/remove columns)
+o - Change sort field
+1 - Toggle display of individual CPU cores
+m - Toggle memory display mode
+t - Toggle task/CPU display mode
+c - Toggle command line/program name
+</code></pre><h2>Usage Examples</h2>
+<h3>Basic System Monitoring</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top
+<span style="color: #000; font-style: italic">top - 14:23:45 up 3 days, 2:34, 2 users, load average: 0.15, 0.10, 0.09</span>
+<span style="color: #000; font-style: italic">Tasks: 213 total,   1 running, 212 sleeping,   0 stopped,   0 zombie</span>
+<span style="color: #8F5902">%</span>Cpu<span style="color: #CE5C00; font-weight: bold">(</span>s<span style="color: #CE5C00; font-weight: bold">)</span>:<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">2</span>.3<span style="color: #F8F8F8"> </span>us,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.7<span style="color: #F8F8F8"> </span>sy,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.0<span style="color: #F8F8F8"> </span>ni,<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">96</span>.9<span style="color: #F8F8F8"> </span>id,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.1<span style="color: #F8F8F8"> </span>wa,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.0<span style="color: #F8F8F8"> </span>hi,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.0<span style="color: #F8F8F8"> </span>si,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.0<span style="color: #F8F8F8"> </span>st
+<span style="color: #000; font-style: italic">MiB Mem :  15895.1 total,   7431.0 free,   3820.2 used,   4643.9 buff/cache</span>
+<span style="color: #000; font-style: italic">MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.  11389.0 avail Mem </span>
+
+<span style="color: #000; font-style: italic">  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND</span>
+<span style="color: #000; font-style: italic"> 1234 user      20   0 3256712 198232  89456 S   2.0   1.2   5:23.45 firefox</span>
+<span style="color: #000; font-style: italic"> 5678 user      20   0 2345678 123456  65432 S   1.5   0.8   3:45.67 chrome</span>
+</pre></div>
+<h3>Monitoring Specific User's Processes</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">[Shows only processes owned by root user]</span>
+</pre></div>
+<h3>Saving Top Output to a File</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>firefox<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>firefox_processes.txt
+<span style="color: #000; font-style: italic">[Captures information about Firefox processes to a file]</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Sorting the Process List</h3>
+<p>Press <code>P</code> to sort by CPU usage, <code>M</code> to sort by memory usage, or <code>T</code> to sort by time. This helps quickly identify resource-intensive processes.</p>
+<h3>Changing Update Interval</h3>
+<p>Press <code>d</code> or <code>s</code> while top is running to change the refresh interval. Useful for monitoring rapidly changing systems or conserving resources.</p>
+<h3>Filtering Processes</h3>
+<p>Use <code>o</code> or <code>O</code> to filter processes based on specific criteria. For example, filtering by memory usage above a certain threshold.</p>
+<h3>Memory Display Units</h3>
+<p>Press <code>E</code> to cycle through different memory display units (KiB, MiB, GiB, etc.) for easier reading of memory statistics.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I exit top?</h4>
+<p>A. Press <code>q</code> to quit the top command.</p>
+<h4>Q2. How can I kill a process from within top?</h4>
+<p>A. Press <code>k</code>, enter the PID of the process you want to kill, then specify the signal number (9 for SIGKILL).</p>
+<h4>Q3. How do I change the refresh rate?</h4>
+<p>A. Use the <code>-d</code> option when starting top (e.g., <code>top -d 5</code> for 5 seconds) or press <code>d</code> while top is running.</p>
+<h4>Q4. Why does top show different CPU usage than other tools?</h4>
+<p>A. top calculates CPU usage based on the time between refreshes, while other tools may use different calculation methods or time intervals.</p>
+<h4>Q5. How can I see memory usage in a more readable format?</h4>
+<p>A. Press <code>E</code> while top is running to cycle through different memory display units.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/top.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

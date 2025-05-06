@@ -1,0 +1,20 @@
+{
+  "id": "msg_01BwsHHw79UEzYpdVshhDAqT",
+  "content": [
+    {
+      "text": "# true コマンド\n\n成功の終了ステータス（0）を返します。\n\n## 概要\n\n`true` コマンドは成功の終了ステータス（0）を返す以外は何もしません。主にシェルスクリプトで無限ループの作成、プレースホルダー、または条件ロジックのテストに使用されます。\n\n## オプション\n\n`true` コマンドは成功ステータスコードで終了することが唯一の目的であるため、オプションはありません。\n\n## 使用例\n\n### 基本的な使い方\n\n```console\n$ true\n$ echo $?\n0\n```\n\n### シェルスクリプトで無限ループを作成する\n\n```console\n$ while true; do echo \"Ctrl+Cで終了\"; sleep 1; done\nCtrl+Cで終了\nCtrl+Cで終了\nCtrl+Cで終了\n^C\n```\n\n### 条件文でプレースホルダーとして使用する\n\n```console\n$ if [ \"$DEBUG\" = \"yes\" ]; then echo \"デバッグ情報\"; else true; fi\n```\n\n### 論理OR演算での使用\n\n```console\n$ true || echo \"これは表示されない\"\n$ false || echo \"これは表示される\"\nこれは表示される\n```\n\n## ヒント:\n\n### `true` と `:` の違い\n\n`true` と `:` (コロン) コマンドは本質的に同じことを行います - どちらも成功の終了ステータスを返します。コロンはシェル組み込みコマンドでわずかに効率的ですが、`true` はより読みやすく明示的です。\n\n### 条件付き実行での使用\n\n`true` は `&&` や `||` 演算子を使った条件付き実行で便利です。例えば、`command && true` は最初のコマンドが成功するかどうかに関わらず、全体のコマンドが成功することを保証します。\n\n### 空ファイルの作成\n\n主な目的ではありませんが、`true > ファイル名` を使用して空のファイルを作成できます（`touch` と同様）。\n\n## よくある質問\n\n#### Q1. `true` と `false` コマンドの違いは何ですか？\nA. `true` は常にステータスコード0（成功）で終了し、`false` は常にステータスコード1（失敗）で終了します。\n\n#### Q2. `true` はシェル組み込みコマンドですか、それとも外部コマンドですか？\nA. 効率性のために、ほとんどのシェルは `true` を組み込みコマンドとして実装していますが、同じことを行う外部の `/bin/true` コマンドも存在します。\n\n#### Q3. コメントの代わりに `true` を使う理由は何ですか？\nA. コメントとは異なり、`true` は実際に実行されるコマンドであるため、ループ構造や条件分岐のプレースホルダーなど、構文がコマンドを必要とする場所で役立ちます。\n\n#### Q4. `true` はエラーを抑制するために使用できますか？\nA. はい、`command || true` を使用すると、最初のコマンドが失敗しても全体のコマンドが成功を返すことを保証します。\n\n## 参考資料\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/true-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 780,
+    "output_tokens": 1012
+  }
+}

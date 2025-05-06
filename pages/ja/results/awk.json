@@ -1,0 +1,20 @@
+{
+  "id": "msg_01LH7bUDgambAfgZgBYJKwEn",
+  "content": [
+    {
+      "text": "# awk コマンド\n\n構造化されたデータを操作するためのパターンスキャンとテキスト処理言語です。\n\n## 概要\n\n`awk` は強力なテキスト処理ツールで、入力の各行をレコードとして、各単語をフィールドとして扱います。CSV、ログ、テーブルなどの構造化されたテキストファイルからデータを抽出・操作するのに優れています。コマンドは次のパターンに従います: `awk 'パターン {アクション}' ファイル`。\n\n## オプション\n\n### **-F, --field-separator**\n\nフィールド区切り文字を指定します（デフォルトは空白）\n\n```console\n$ echo \"apple,orange,banana\" | awk -F, '{print $2}'\norange\n```\n\n### **-f, --file**\n\nコマンドラインではなくファイルからAWKプログラムを読み込みます\n\n```console\n$ cat script.awk\n{print $1}\n$ awk -f script.awk data.txt\nFirst\nSecond\nThird\n```\n\n### **-v, --assign**\n\nプログラム実行前に変数に値を割り当てます\n\n```console\n$ awk -v name=\"John\" '{print \"Hello, \" name}' /dev/null\nHello, John\n```\n\n### **-W, --compat, --posix**\n\nPOSIX互換モードで実行します\n\n```console\n$ awk -W posix '{print $1}' data.txt\nFirst\nSecond\nThird\n```\n\n## 使用例\n\n### 基本的なフィールド表示\n\n```console\n$ echo \"Hello World\" | awk '{print $1}'\nHello\n```\n\n### CSVデータの処理\n\n```console\n$ cat data.csv\nJohn,25,Engineer\nMary,30,Doctor\n$ awk -F, '{print \"Name: \" $1 \", Job: \" $3}' data.csv\nName: John, Job: Engineer\nName: Mary, Job: Doctor\n```\n\n### パターンマッチングによる行のフィルタリング\n\n```console\n$ cat /etc/passwd | awk -F: '/root/ {print $1 \" has home directory \" $6}'\nroot has home directory /root\n```\n\n### 合計の計算\n\n```console\n$ cat numbers.txt\n10 20\n30 40\n$ awk '{sum += $1} END {print \"Sum:\", sum}' numbers.txt\nSum: 40\n```\n\n## ヒント:\n\n### 組み込み変数\n\nAWKには、`NR`（現在のレコード番号）、`NF`（現在のレコードのフィールド数）、`FS`（フィールド区切り文字）などの便利な組み込み変数があります。\n\n```console\n$ echo -e \"a b c\\nd e f\" | awk '{print \"Line\", NR, \"has\", NF, \"fields\"}'\nLine 1 has 3 fields\nLine 2 has 3 fields\n```\n\n### 条件付き処理\n\nif-else文を使用して条件付き処理を行います：\n\n```console\n$ cat ages.txt\nJohn 25\nMary 17\nBob 32\n$ awk '{if ($2 >= 18) print $1, \"is an adult\"; else print $1, \"is a minor\"}' ages.txt\nJohn is an adult\nMary is a minor\nBob is an adult\n```\n\n### 複数のコマンド\n\nセミコロンで複数のコマンドを区切ります：\n\n```console\n$ echo \"Hello World\" | awk '{count=split($0,arr,\" \"); print \"Words:\", count; print \"First word:\", arr[1]}'\nWords: 2\nFirst word: Hello\n```\n\n## よくある質問\n\n#### Q1. awk、sed、grepの違いは何ですか？\nA. grepがパターンを検索し、sedがテキスト変換を実行するのに対し、awkは変数、関数、算術演算などのプログラミング機能を含む構造化データ処理用に設計されています。\n\n#### Q2. awkで複数のファイルを処理するにはどうすればよいですか？\nA. awkコマンドの後にファイルを列挙するだけです：`awk '{print $1}' file1.txt file2.txt`\n\n#### Q3. awkは複数行処理を扱えますか？\nA. はい、`RS`（レコード区切り文字）変数を使用します：`awk 'BEGIN{RS=\"\";FS=\"\\n\"}{print $1}' file.txt` は段落で区切られたテキストを処理します。\n\n#### Q4. awkで正規表現を使用するにはどうすればよいですか？\nA. 正規表現はスラッシュの間に配置します：`awk '/pattern/ {print}' file.txt`\n\n## 参考文献\n\nhttps://www.gnu.org/software/gawk/manual/gawk.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1157,
+    "output_tokens": 1343
+  }
+}

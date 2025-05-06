@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  apt - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>apt コマンド</h1>
+<p>Debian系Linuxディストリビューション用のパッケージ管理ツールです。</p>
+<h2>概要</h2>
+<p><code>apt</code> (Advanced Package Tool) は、UbuntuなどのDebian系Linuxディストリビューションでソフトウェアパッケージのインストール、更新、削除、管理を行うためのコマンドラインユーティリティです。依存関係の処理、設定、インストールプロセスを自動的に処理することで、パッケージ管理を簡素化します。</p>
+<h2>オプション</h2>
+<h3><strong>update</strong></h3>
+<p>リポジトリからパッケージリストを更新します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>update
+<span style="color: #000; font-style: italic">Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease</span>
+<span style="color: #000; font-style: italic">Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]</span>
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">All packages are up to date.</span>
+</pre></div>
+<h3><strong>upgrade</strong></h3>
+<p>インストール済みのパッケージを最新バージョンにアップグレードします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>upgrade
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">Calculating upgrade... Done</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>install</strong></h3>
+<p>新しいパッケージをインストールします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">The following additional packages will be installed:</span>
+<span style="color: #000; font-style: italic">  nginx-common nginx-core</span>
+<span style="color: #000; font-style: italic">Suggested packages:</span>
+<span style="color: #000; font-style: italic">  fcgiwrap nginx-doc</span>
+<span style="color: #000; font-style: italic">The following NEW packages will be installed:</span>
+<span style="color: #000; font-style: italic">  nginx nginx-common nginx-core</span>
+<span style="color: #000; font-style: italic">0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>remove</strong></h3>
+<p>パッケージを削除しますが、設定ファイルは保持します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>remove<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">The following packages will be REMOVED:</span>
+<span style="color: #000; font-style: italic">  nginx nginx-core</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 2 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>purge</strong></h3>
+<p>パッケージとその設定ファイルを削除します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>purge<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">The following packages will be REMOVED:</span>
+<span style="color: #000; font-style: italic">  nginx* nginx-common* nginx-core*</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 3 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>autoremove</strong></h3>
+<p>依存関係を満たすために自動的にインストールされ、もはや必要なくなったパッケージを削除します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>autoremove
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3><strong>search</strong></h3>
+<p>名前や説明でパッケージを検索します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt<span style="color: #F8F8F8"> </span>search<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Sorting... Done</span>
+<span style="color: #000; font-style: italic">Full Text Search... Done</span>
+<span style="color: #000; font-style: italic">nginx/jammy-updates,jammy-security 1.18.0-6ubuntu14.4 all</span>
+<span style="color: #000; font-style: italic">  small, powerful, scalable web/proxy server</span>
+</pre></div>
+<h3><strong>show</strong></h3>
+<p>パッケージに関する詳細情報を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt<span style="color: #F8F8F8"> </span>show<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Package: nginx</span>
+<span style="color: #000; font-style: italic">Version: 1.18.0-6ubuntu14.4</span>
+<span style="color: #000; font-style: italic">Priority: optional</span>
+<span style="color: #000; font-style: italic">Section: web</span>
+<span style="color: #000; font-style: italic">Origin: Ubuntu</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>list --installed</strong></h3>
+<p>インストール済みのすべてのパッケージを一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>apt<span style="color: #F8F8F8"> </span>list<span style="color: #F8F8F8"> </span>--installed
+<span style="color: #000; font-style: italic">Listing... Done</span>
+<span style="color: #000; font-style: italic">accountsservice/jammy,now 22.07.5-2ubuntu1.4 amd64 [installed]</span>
+<span style="color: #000; font-style: italic">acl/jammy,now 2.3.1-1 amd64 [installed]</span>
+<span style="color: #000; font-style: italic">acpi-support/jammy,now 0.144 amd64 [installed]</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>複数のパッケージを一度にインストールする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span>git<span style="color: #F8F8F8"> </span>curl<span style="color: #F8F8F8"> </span>wget
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">curl is already the newest version (7.81.0-1ubuntu1.14).</span>
+<span style="color: #000; font-style: italic">The following NEW packages will be installed:</span>
+<span style="color: #000; font-style: italic">  git wget</span>
+<span style="color: #000; font-style: italic">0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3>システム全体をアップグレードする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>update<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>upgrade<span style="color: #F8F8F8"> </span>-y
+<span style="color: #000; font-style: italic">Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease</span>
+<span style="color: #000; font-style: italic">Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]</span>
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">Calculating upgrade... Done</span>
+<span style="color: #000; font-style: italic">0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h3>パッケージの特定バージョンをインストールする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>apt<span style="color: #F8F8F8"> </span>install<span style="color: #F8F8F8"> </span><span style="color: #000">nginx</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1</span>.18.0-6ubuntu14.3
+<span style="color: #000; font-style: italic">Reading package lists... Done</span>
+<span style="color: #000; font-style: italic">Building dependency tree... Done</span>
+<span style="color: #000; font-style: italic">Reading state information... Done</span>
+<span style="color: #000; font-style: italic">The following additional packages will be installed:</span>
+<span style="color: #000; font-style: italic">  nginx-common nginx-core</span>
+<span style="color: #000; font-style: italic">The following NEW packages will be installed:</span>
+<span style="color: #000; font-style: italic">  nginx nginx-common nginx-core</span>
+<span style="color: #000; font-style: italic">0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>apt-getの代わりにaptを使用する</h3>
+<p><code>apt</code>は、古い<code>apt-get</code>コマンドと比較して、プログレスバーやカラー出力を備えたよりユーザーフレンドリーなインターフェースを提供します。</p>
+<h3>定期的にシステムをクリーンアップする</h3>
+<p>不要なパッケージを削除し、取得したパッケージファイルのローカルリポジトリをクリアすることでディスク容量を解放するために、定期的に<code>sudo apt autoremove</code>と<code>sudo apt clean</code>を実行しましょう。</p>
+<h3>パッケージバージョンを固定する</h3>
+<p>パッケージがアップグレードされないようにするには、<code>sudo apt-mark hold パッケージ名</code>を使用します。再びアップグレードを許可するには、<code>sudo apt-mark unhold パッケージ名</code>を使用します。</p>
+<h3>壊れた依存関係を確認する</h3>
+<p>インストールに失敗した後に発生する可能性のある壊れた依存関係を修正するには、<code>sudo apt --fix-broken install</code>を使用します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. aptとapt-getの違いは何ですか？</h4>
+<p>A. <code>apt</code>は、<code>apt-get</code>と<code>apt-cache</code>の最も一般的に使用される機能を組み合わせた、より使いやすい新しいコマンドで、出力フォーマットとプログレス情報が改善されています。</p>
+<h4>Q2. 「Could not get lock」エラーを修正するにはどうすればよいですか？</h4>
+<p>A. これは通常、別のパッケージマネージャーが実行中であることを意味します。それが終了するのを待つか、<code>ps aux | grep apt</code>で停止したプロセスを確認し、必要に応じて<code>sudo kill &lt;プロセスID&gt;</code>で終了させてください。</p>
+<h4>Q3. プロンプトなしでパッケージをインストールするにはどうすればよいですか？</h4>
+<p>A. <code>-y</code>フラグを使用します：<code>sudo apt install -y パッケージ名</code>でプロンプトに自動的に「はい」と答えます。</p>
+<h4>Q4. セキュリティパッケージのみを更新するにはどうすればよいですか？</h4>
+<p>A. <code>sudo apt update &amp;&amp; sudo apt upgrade -s</code>を使用してアップグレードをシミュレートし、その後、更新したい特定のセキュリティパッケージに対して<code>sudo apt install パッケージ名</code>を使用します。</p>
+<h4>Q5. パッケージをダウングレードするにはどうすればよいですか？</h4>
+<p>A. <code>sudo apt install パッケージ名=バージョン番号</code>を使用して、特定の古いバージョンをインストールします。</p>
+<h2>参考資料</h2>
+<p>https://manpages.ubuntu.com/manpages/jammy/man8/apt.8.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

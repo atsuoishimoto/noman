@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  iotop - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>iotop コマンド</h1>
+<p>システム上のプロセスによるI/O使用状況を監視します。</p>
+<h2>概要</h2>
+<p><code>iotop</code>は、プロセスやスレッドによるI/O使用状況を監視するtopのようなユーティリティです。リアルタイムのディスクI/O統計を表示し、どのプロセスが最もディスクの読み書き帯域幅を使用しているかを示します。このツールは、システムの遅延を引き起こす可能性のあるI/O集約型プロセスを特定するのに特に役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>-o, --only</strong></h3>
+<p>実際にI/Oを実行しているプロセスやスレッドのみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-o
+<span style="color: #000; font-style: italic">Total DISK READ:         0.00 B/s | Total DISK WRITE:         7.63 K/s</span>
+<span style="color: #000; font-style: italic">Current DISK READ:       0.00 B/s | Current DISK WRITE:       0.00 B/s</span>
+<span style="color: #000; font-style: italic">    TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN     IO&gt;    COMMAND</span>
+<span style="color: #000; font-style: italic">   1234 be/4 root        0.00 B/s    7.63 K/s  0.00 %  0.00 % systemd-journald</span>
+</pre></div>
+<h3><strong>-b, --batch</strong></h3>
+<p>非対話モードで実行します。ログ記録に便利です</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">Total DISK READ:         0.00 B/s | Total DISK WRITE:        15.27 K/s</span>
+<span style="color: #000; font-style: italic">Current DISK READ:       0.00 B/s | Current DISK WRITE:       0.00 B/s</span>
+<span style="color: #000; font-style: italic">    TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN     IO&gt;    COMMAND</span>
+<span style="color: #000; font-style: italic">      1 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % systemd</span>
+<span style="color: #000; font-style: italic">   1234 be/4 root        0.00 B/s   15.27 K/s  0.00 %  0.00 % systemd-journald</span>
+<span style="color: #000; font-style: italic">[...]</span>
+</pre></div>
+<h3><strong>-n NUM, --iter=NUM</strong></h3>
+<p>終了前の繰り返し回数を設定します（非対話モード用）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span>
+<span style="color: #000; font-style: italic">Total DISK READ:         0.00 B/s | Total DISK WRITE:        15.27 K/s</span>
+<span style="color: #000; font-style: italic">[...2回分の出力...]</span>
+</pre></div>
+<h3><strong>-d SEC, --delay=SEC</strong></h3>
+<p>繰り返し間の遅延を秒単位で設定します（デフォルトは1.0）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #8F5902"># </span>デフォルトの1秒ではなく5秒ごとに更新されます
+</pre></div>
+<h3><strong>-p PID, --pid=PID</strong></h3>
+<p>指定したPIDのプロセスのみを監視します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+<span style="color: #8F5902"># </span>PID<span style="color: #F8F8F8"> </span>1234のプロセスのI/O統計のみを表示します
+</pre></div>
+<h3><strong>-u USER, --user=USER</strong></h3>
+<p>指定したユーザーのプロセスのみを監視します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>apache
+<span style="color: #8F5902"># </span><span style="color: #4E9A06">&#39;apache&#39;</span>ユーザーが所有するプロセスのI/O統計のみを表示します
+</pre></div>
+<h3><strong>-a, --accumulated</strong></h3>
+<p>帯域幅ではなく累積I/Oを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-a
+<span style="color: #8F5902"># </span>現在のレートではなく、プロセス開始以降の合計I/Oを表示します
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な監視</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop
+<span style="color: #000; font-style: italic">Total DISK READ:         0.00 B/s | Total DISK WRITE:        23.47 K/s</span>
+<span style="color: #000; font-style: italic">Current DISK READ:       0.00 B/s | Current DISK WRITE:       0.00 B/s</span>
+<span style="color: #000; font-style: italic">    TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN     IO&gt;    COMMAND</span>
+<span style="color: #000; font-style: italic">      1 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % systemd</span>
+<span style="color: #000; font-style: italic">   1234 be/4 root        0.00 B/s   15.27 K/s  0.00 %  0.00 % systemd-journald</span>
+<span style="color: #000; font-style: italic">   2345 be/4 mysql       0.00 B/s    8.20 K/s  0.00 %  0.00 % mysqld</span>
+</pre></div>
+<h3>I/Oアクティビティをファイルに記録する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-botq<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>io_log.txt
+<span style="color: #8F5902"># </span>バッチモードで10回分のI/Oアクティビティをログに記録し、I/Oを実行しているプロセスのみを表示し、
+<span style="color: #8F5902"># </span>タイムスタンプを含め、ヘッダー情報なしで出力します
+</pre></div>
+<h3>特定ユーザーのプロセスを監視する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>iotop<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>www-data
+<span style="color: #8F5902"># </span>www-dataユーザーが所有するI/Oアクティブなプロセスのみを表示します
+</pre></div>
+<h2>ヒント:</h2>
+<h3>対話的コマンド</h3>
+<p>iotopを対話的に実行している間、以下のキーボードショートカットを使用できます：</p>
+<ul>
+<li><code>o</code>: --onlyモードの切り替え（I/Oを実行しているプロセスのみを表示）</li>
+<li><code>p</code>: プロセス表示の切り替え（スレッドとの切り替え）</li>
+<li><code>a</code>: 累積I/Oモードの切り替え</li>
+<li><code>q</code>: プログラムの終了</li>
+</ul>
+<h3>sudoで実行</h3>
+<p><code>iotop</code>はI/O統計にアクセスするために管理者権限が必要です。常に<code>sudo</code>を付けるか、rootユーザーとして実行してください。</p>
+<h3>I/Oボトルネックの特定</h3>
+<p><code>iotop -o</code>を使用して、現在I/O負荷を引き起こしているプロセスをすばやく特定できます。これはシステムの遅延のトラブルシューティングに役立ちます。</p>
+<h3>ログ記録と組み合わせる</h3>
+<p>長期的な監視には、<code>iotop -b -o -n [回数] &gt; ログファイル</code>を使用して、時間の経過とともにI/O統計を記録します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. 「iotop: command not found」と表示されるのはなぜですか？</h4>
+<p>A. まずiotopをインストールする必要があります。Debian/Ubuntuでは：<code>sudo apt install iotop</code>、RHEL/CentOSでは：<code>sudo yum install iotop</code>を実行してください。</p>
+<h4>Q2. iotopを実行すると「Permission denied」と表示されるのはなぜですか？</h4>
+<p>A. iotopは管理者権限が必要です。<code>sudo iotop</code>として実行するか、rootユーザーとして実行してください。</p>
+<h4>Q3. ディスクI/Oを積極的に使用しているプロセスだけを見るにはどうすればよいですか？</h4>
+<p>A. <code>sudo iotop -o</code>を使用して、実際にI/O操作を実行しているプロセスのみを表示します。</p>
+<h4>Q4. iotopの出力をファイルに記録できますか？</h4>
+<p>A. はい、バッチモードを使用します：<code>sudo iotop -b -n [繰り返し回数] &gt; ファイル名.log</code></p>
+<h4>Q5. 特定のプロセスのI/Oを監視するにはどうすればよいですか？</h4>
+<p>A. <code>sudo iotop -p PID</code>を使用します。PIDは監視したいプロセスIDです。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man8/iotop.8.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

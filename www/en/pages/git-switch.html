@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-switch - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git switch command</h1>
+<p>Switch branches or restore working tree files.</p>
+<h2>Overview</h2>
+<p>The <code>git switch</code> command is used to switch between branches in a Git repository. It was introduced in Git 2.23 as a more user-friendly alternative to certain uses of <code>git checkout</code>. While <code>git checkout</code> serves multiple purposes, <code>git switch</code> is specifically designed for branch operations, making the command structure more intuitive.</p>
+<h2>Options</h2>
+<h3><strong>-c, --create</strong></h3>
+<p>Create a new branch and switch to it.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>feature-login
+<span style="color: #000; font-style: italic">Switched to a new branch &#39;feature-login&#39;</span>
+</pre></div>
+<h3><strong>-d, --detach</strong></h3>
+<p>Switch to a commit in detached HEAD state.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>1a2b3c4
+<span style="color: #000; font-style: italic">Note: switching to &#39;1a2b3c4&#39;.</span>
+
+<span style="color: #000; font-style: italic">You are in &#39;detached HEAD&#39; state...</span>
+<span style="color: #000; font-style: italic">HEAD is now at 1a2b3c4 Add login functionality</span>
+</pre></div>
+<h3><strong>--discard-changes</strong></h3>
+<p>Throw away local modifications before switching.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>--discard-changes<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Switched to branch &#39;main&#39;</span>
+</pre></div>
+<h3><strong>-f, --force</strong></h3>
+<p>Force switch even if the index or working tree differs from HEAD.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Switched to branch &#39;main&#39;</span>
+</pre></div>
+<h3><strong>-m, --merge</strong></h3>
+<p>Perform a three-way merge between the current branch, your working tree contents, and the new branch.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Switched to branch &#39;feature-branch&#39;</span>
+</pre></div>
+<h3><strong>--orphan</strong></h3>
+<p>Create a new orphan branch (a branch with no history).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>--orphan<span style="color: #F8F8F8"> </span>new-root
+<span style="color: #000; font-style: italic">Switched to a new branch &#39;new-root&#39;</span>
+</pre></div>
+<h3><strong>-t, --track</strong></h3>
+<p>When creating a new branch, set up &quot;upstream&quot; configuration.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>feature-branch<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>origin/feature-branch
+<span style="color: #000; font-style: italic">Branch &#39;feature-branch&#39; set up to track remote branch &#39;feature-branch&#39; from &#39;origin&#39;.</span>
+<span style="color: #000; font-style: italic">Switched to a new branch &#39;feature-branch&#39;</span>
+</pre></div>
+<h3><strong>-</strong></h3>
+<p>Switch to the previous branch.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>-
+<span style="color: #000; font-style: italic">Switched to branch &#39;main&#39;</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Branch Switching</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Switched to branch &#39;main&#39;</span>
+</pre></div>
+<h3>Creating and Switching to a New Branch</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>feature-auth
+<span style="color: #000; font-style: italic">Switched to a new branch &#39;feature-auth&#39;</span>
+</pre></div>
+<h3>Switching to a Remote Branch</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Branch &#39;feature-branch&#39; set up to track remote branch &#39;feature-branch&#39; from &#39;origin&#39;.</span>
+<span style="color: #000; font-style: italic">Switched to a new branch &#39;feature-branch&#39;</span>
+</pre></div>
+<h3>Switching to a Specific Commit</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>switch<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>1a2b3c4
+<span style="color: #000; font-style: italic">Note: switching to &#39;1a2b3c4&#39;.</span>
+
+<span style="color: #000; font-style: italic">You are in &#39;detached HEAD&#39; state...</span>
+<span style="color: #000; font-style: italic">HEAD is now at 1a2b3c4 Add login functionality</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use <code>-</code> to Toggle Between Branches</h3>
+<p>The dash shorthand (<code>git switch -</code>) allows you to quickly toggle between the current and previous branch, similar to <code>cd -</code> in the shell.</p>
+<h3>Combine with <code>git branch</code> for Better Workflow</h3>
+<p>Use <code>git branch</code> to see available branches before switching: <code>git branch</code> followed by <code>git switch branch-name</code>.</p>
+<h3>Prefer <code>switch</code> Over <code>checkout</code> for Branch Operations</h3>
+<p><code>git switch</code> is more intuitive than <code>git checkout</code> for branch operations, as it's specifically designed for this purpose and has clearer semantics.</p>
+<h3>Create Tracking Branches Automatically</h3>
+<p>When switching to a remote branch that doesn't exist locally, Git will automatically create a tracking branch if the branch name exists on a single remote.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>git switch</code> and <code>git checkout</code>?</h4>
+<p>A. <code>git switch</code> is focused solely on branch operations, while <code>git checkout</code> has multiple purposes including branch switching, file restoration, and more. <code>git switch</code> was introduced to provide clearer, more specific commands.</p>
+<h4>Q2. How do I create a new branch and switch to it?</h4>
+<p>A. Use <code>git switch -c new-branch-name</code> to create and switch to a new branch in one command.</p>
+<h4>Q3. How can I discard local changes when switching branches?</h4>
+<p>A. Use <code>git switch --discard-changes branch-name</code> to discard local modifications before switching.</p>
+<h4>Q4. How do I switch back to my previous branch?</h4>
+<p>A. Use <code>git switch -</code> to switch to the previously checked out branch.</p>
+<h4>Q5. What happens if I have uncommitted changes when switching branches?</h4>
+<p>A. Git will prevent you from switching if there are conflicts. You can either commit your changes, stash them with <code>git stash</code>, or use the <code>--discard-changes</code> or <code>--merge</code> options.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-switch</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

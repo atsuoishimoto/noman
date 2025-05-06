@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  egrep - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>egrep command</h1>
+<p>Search for patterns using extended regular expressions.</p>
+<h2>Overview</h2>
+<p><code>egrep</code> is a pattern-matching tool that searches for text patterns in files using extended regular expressions. It's functionally equivalent to <code>grep -E</code> and provides more powerful pattern matching capabilities than standard <code>grep</code>. The command prints lines that match the specified pattern.</p>
+<h2>Options</h2>
+<h3><strong>-i, --ignore-case</strong></h3>
+<p>Ignore case distinctions in patterns and input data</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">Error: Connection refused</span>
+<span style="color: #000; font-style: italic">WARNING: error in line 42</span>
+<span style="color: #000; font-style: italic">System error detected</span>
+</pre></div>
+<h3><strong>-v, --invert-match</strong></h3>
+<p>Select non-matching lines</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">Connection established successfully</span>
+<span style="color: #000; font-style: italic">System started at 10:00 AM</span>
+<span style="color: #000; font-style: italic">All processes running normally</span>
+</pre></div>
+<h3><strong>-c, --count</strong></h3>
+<p>Print only a count of matching lines per file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">3</span>
+</pre></div>
+<h3><strong>-n, --line-number</strong></h3>
+<p>Prefix each line of output with the line number within its input file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">5:error: file not found</span>
+<span style="color: #000; font-style: italic">12:system error occurred</span>
+<span style="color: #000; font-style: italic">27:error code: 404</span>
+</pre></div>
+<h3><strong>-l, --files-with-matches</strong></h3>
+<p>Print only names of files containing matches</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>*.log
+<span style="color: #000; font-style: italic">app.log</span>
+<span style="color: #000; font-style: italic">system.log</span>
+<span style="color: #000; font-style: italic">error.log</span>
+</pre></div>
+<h3><strong>-o, --only-matching</strong></h3>
+<p>Show only the part of a line matching the pattern</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error[0-9]+&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">error404</span>
+<span style="color: #000; font-style: italic">error500</span>
+</pre></div>
+<h3><strong>-r, --recursive</strong></h3>
+<p>Read all files under each directory, recursively</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;password&quot;</span><span style="color: #F8F8F8"> </span>/home/user/
+<span style="color: #000; font-style: italic">/home/user/config.txt:password=123456</span>
+<span style="color: #000; font-style: italic">/home/user/notes/secret.txt:my password is qwerty</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Pattern Matching</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;apple|orange&quot;</span><span style="color: #F8F8F8"> </span>fruits.txt
+<span style="color: #000; font-style: italic">apple</span>
+<span style="color: #000; font-style: italic">orange</span>
+<span style="color: #000; font-style: italic">mixed apple juice</span>
+<span style="color: #000; font-style: italic">fresh orange</span>
+</pre></div>
+<h3>Using Character Classes</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;[0-9]+&quot;</span><span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">42</span>
+<span style="color: #000; font-style: italic">123</span>
+<span style="color: #000; font-style: italic">7890</span>
+</pre></div>
+<h3>Using Quantifiers</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;a{2,}&quot;</span><span style="color: #F8F8F8"> </span>words.txt
+<span style="color: #000; font-style: italic">aardvark</span>
+<span style="color: #000; font-style: italic">baaad</span>
+<span style="color: #000; font-style: italic">shaaa</span>
+</pre></div>
+<h3>Combining Multiple Options</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span>-in<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error|warning&quot;</span><span style="color: #F8F8F8"> </span>--color<span style="color: #CE5C00; font-weight: bold">=</span>auto<span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">3:WARNING: disk space low</span>
+<span style="color: #000; font-style: italic">7:error: connection timeout</span>
+<span style="color: #000; font-style: italic">15:WARNING: memory usage high</span>
+<span style="color: #000; font-style: italic">22:error: invalid input</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Extended Regular Expressions</h3>
+<p><code>egrep</code> supports powerful regex features like <code>+</code>, <code>?</code>, <code>|</code>, <code>()</code>, and <code>{}</code> without escaping, making complex pattern matching easier.</p>
+<h3>Colorize Matches</h3>
+<p>Use <code>--color=auto</code> to highlight matching text in color, making it easier to spot matches in large outputs.</p>
+<h3>Combine with Other Commands</h3>
+<p>Pipe the output of other commands to <code>egrep</code> to filter results:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>aux<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;(firefox|chrome)&quot;</span>
+</pre></div>
+<h3>Use Word Boundaries</h3>
+<p>To match whole words only, use word boundaries <code>\b</code>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>egrep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;\berror\b&quot;</span><span style="color: #F8F8F8"> </span>logfile.txt
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>grep</code> and <code>egrep</code>?</h4>
+<p>A. <code>egrep</code> is equivalent to <code>grep -E</code>, which uses extended regular expressions. Extended regex supports additional metacharacters like <code>+</code>, <code>?</code>, and <code>|</code> without requiring backslashes.</p>
+<h4>Q2. How do I search for multiple patterns?</h4>
+<p>A. Use the pipe symbol (<code>|</code>) to search for alternative patterns: <code>egrep &quot;pattern1|pattern2&quot; file.txt</code></p>
+<h4>Q3. How can I search for a pattern in all files in a directory?</h4>
+<p>A. Use the recursive option: <code>egrep -r &quot;pattern&quot; directory/</code></p>
+<h4>Q4. How do I exclude certain files from the search?</h4>
+<p>A. Use <code>--exclude</code> or <code>--exclude-dir</code> options: <code>egrep -r &quot;pattern&quot; --exclude=&quot;*.log&quot; directory/</code></p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/grep/manual/grep.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 Added -o, --only-matching option</li>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

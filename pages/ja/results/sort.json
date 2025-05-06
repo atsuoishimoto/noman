@@ -1,0 +1,20 @@
+{
+  "id": "msg_01RR9zYBfLbYEU4DtB6fr8YN",
+  "content": [
+    {
+      "text": "# sort コマンド\n\nテキストファイルの行を並べ替えます。\n\n## 概要\n\n`sort` コマンドは、テキストファイルや標準入力の行をアルファベット順、数値順、または逆順に並べ替えます。複数のソート済みファイルを結合したり、重複行を削除したり、各行内の特定のフィールドや文字に基づいてさまざまな並べ替え操作を実行したりすることができます。\n\n## オプション\n\n### **-n, --numeric-sort**\n\nアルファベット順ではなく数値順（数値の大きさ）で並べ替えます\n\n```console\n$ sort -n numbers.txt\n1\n2\n10\n20\n100\n```\n\n### **-r, --reverse**\n\n比較結果を逆順にします\n\n```console\n$ sort -r names.txt\nZack\nVictor\nSusan\nAlice\n```\n\n### **-f, --ignore-case**\n\n並べ替え時に大文字と小文字を区別しません\n\n```console\n$ sort -f mixed_case.txt\nAlice\napple\nBanana\ncat\nDog\n```\n\n### **-k, --key=POS1[,POS2]**\n\nPOS1から始まりPOS2で終わるキーで並べ替えます\n\n```console\n$ sort -k 2 employees.txt\n101 Adams 5000\n103 Brown 4500\n102 Clark 5500\n```\n\n### **-t, --field-separator=SEP**\n\n非空白から空白への遷移の代わりに、SEPをフィールド区切り文字として使用します\n\n```console\n$ sort -t: -k3,3n /etc/passwd\nroot:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\n```\n\n### **-u, --unique**\n\n等しい行の最初のもののみを出力します（重複を削除）\n\n```console\n$ sort -u duplicates.txt\napple\nbanana\norange\n```\n\n### **-M, --month-sort**\n\n月として比較します（JAN < FEB < ... < DEC）\n\n```console\n$ sort -M months.txt\nJan\nFeb\nMar\nApr\nDec\n```\n\n### **-h, --human-numeric-sort**\n\n人間が読みやすい数値（例：2K、1G）を比較します\n\n```console\n$ sort -h sizes.txt\n10K\n1M\n2M\n1G\n```\n\n### **-R, --random-sort**\n\nキーのランダムハッシュで並べ替えます\n\n```console\n$ sort -R names.txt\nVictor\nAlice\nSusan\nZack\n```\n\n## 使用例\n\n### ファイルを数値順に並べ替える\n\n```console\n$ cat numbers.txt\n10\n2\n100\n1\n20\n$ sort -n numbers.txt\n1\n2\n10\n20\n100\n```\n\n### カスタム区切り文字を使用して特定の列で並べ替える\n\n```console\n$ cat data.csv\nJohn,25,Engineer\nAlice,30,Doctor\nBob,22,Student\n$ sort -t, -k2,2n data.csv\nBob,22,Student\nJohn,25,Engineer\nAlice,30,Doctor\n```\n\n### 複数のソート済みファイルを結合する\n\n```console\n$ sort -m file1.txt file2.txt > merged.txt\n```\n\n### 重複を削除して新しいファイルに保存する\n\n```console\n$ sort -u input.txt > output.txt\n```\n\n## ヒント\n\n### 一度に並べ替えと重複削除を行う\n`sort -u` を使用すると、ファイルの並べ替えと重複行の削除を一度の操作で行うことができます。これは `sort | uniq` を使用するよりも効率的です。\n\n### ファイルが既に並べ替えられているかを確認する\n`sort -c filename` を使用すると、実際に何も出力せずにファイルが既に並べ替えられているかを確認できます。ファイルが並べ替えられていない場合はエラーメッセージが返されます。\n\n### 大きなファイルのメモリ考慮事項\n非常に大きなファイルの場合、`sort -T /tmp` を使用して十分な容量のある一時ディレクトリを指定するか、`sort -S 1G` を使用して並べ替えにより多くのメモリを割り当てます。\n\n### 安定ソート\n`sort -s` を使用すると安定ソートが行われ、等しいキーを持つ行の元の順序が保持されます。これは、同等のアイテムの元の順序を維持したい場合に便利です。\n\n## よくある質問\n\n#### Q1. ファイルを逆順に並べ替えるにはどうすればよいですか？\nA. `sort -r filename` を使用して、逆順（降順）で並べ替えます。\n\n#### Q2. CSVファイルを特定の列で並べ替えるにはどうすればよいですか？\nA. `sort -t, -k2,2 filename.csv` を使用して2列目で並べ替えます。ここで `-t,` はカンマをフィールド区切り文字として指定します。\n\n#### Q3. IPアドレスを正しく並べ替えるにはどうすればよいですか？\nA. バージョン並べ替えには `sort -V` を使用します。これはIPアドレスに適しています：`sort -V ip_addresses.txt`\n\n#### Q4. 複数のフィールドで並べ替えるにはどうすればよいですか？\nA. 複数のキーを指定します：`sort -k1,1 -k2,2n filename` は最初にフィールド1をアルファベット順に、次にフィールド2を数値順に並べ替えます。\n\n#### Q5. ヘッダーのあるファイルを並べ替え、ヘッダーを先頭に保持するにはどうすればよいですか？\nA. 次のように使用します：`(head -1 file.txt; tail -n +2 file.txt | sort) > sorted_file.txt`\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1370,
+    "output_tokens": 1793
+  }
+}

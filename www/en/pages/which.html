@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  which - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>which command</h1>
+<p>Locate a command's executable file in the user's PATH.</p>
+<h2>Overview</h2>
+<p>The <code>which</code> command searches through the directories listed in the PATH environment variable to find the location of executable programs. It helps determine which version of a program would be executed if run from the command line.</p>
+<h2>Options</h2>
+<h3><strong>-a, --all</strong></h3>
+<p>Display all matching executables in PATH, not just the first one.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>python
+<span style="color: #000; font-style: italic">/usr/bin/python</span>
+<span style="color: #000; font-style: italic">/usr/local/bin/python</span>
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>Silent mode - return exit status (0 if found, 1 if not found) without output.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>git
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">0</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Finding a command's location</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>ls
+<span style="color: #000; font-style: italic">/bin/ls</span>
+</pre></div>
+<h3>Checking if a command exists</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>nonexistentcommand
+<span style="color: #000; font-style: italic">which: no nonexistentcommand in (/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin)</span>
+</pre></div>
+<h3>Using with multiple commands</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>bash<span style="color: #F8F8F8"> </span>python<span style="color: #F8F8F8"> </span>perl
+<span style="color: #000; font-style: italic">/bin/bash</span>
+<span style="color: #000; font-style: italic">/usr/bin/python</span>
+<span style="color: #000; font-style: italic">/usr/bin/perl</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use with command substitution</h3>
+<p>You can use <code>which</code> with command substitution to execute the full path of a command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">$(</span>which<span style="color: #F8F8F8"> </span>python<span style="color: #204A87; font-weight: bold">)</span><span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">Python 3.9.6</span>
+</pre></div>
+<h3>Check for multiple versions</h3>
+<p>Use <code>which -a</code> to find all instances of a command in your PATH, which is helpful when troubleshooting version conflicts.</p>
+<h3>Combine with other commands</h3>
+<p>Combine with other commands for more information:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>which<span style="color: #F8F8F8"> </span>python<span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 root wheel 31488 Jan 1 2023 /usr/bin/python</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>which</code> and <code>whereis</code>?</h4>
+<p>A. <code>which</code> only shows the executable's location in your PATH, while <code>whereis</code> also finds the command's source code, man pages, and related files.</p>
+<h4>Q2. Why does <code>which</code> sometimes not find a command that exists?</h4>
+<p>A. The command might be a shell builtin (like <code>cd</code>), an alias, or not in your PATH environment variable.</p>
+<h4>Q3. How can I use <code>which</code> to check if a command is installed?</h4>
+<p>A. Use <code>which -s command &amp;&amp; echo &quot;Installed&quot; || echo &quot;Not installed&quot;</code> to check if a command exists in your PATH.</p>
+<h4>Q4. Does <code>which</code> work for shell builtins?</h4>
+<p>A. No, <code>which</code> only finds executable files in your PATH, not shell builtins like <code>cd</code> or <code>echo</code>.</p>
+<h2>References</h2>
+<p>https://pubs.opengroup.org/onlinepubs/9699919799/utilities/which.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

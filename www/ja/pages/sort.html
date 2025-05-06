@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  sort - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>sort コマンド</h1>
+<p>テキストファイルの行を並べ替えます。</p>
+<h2>概要</h2>
+<p><code>sort</code> コマンドは、テキストファイルや標準入力の行をアルファベット順、数値順、または逆順に並べ替えます。複数のソート済みファイルを結合したり、重複行を削除したり、各行内の特定のフィールドや文字に基づいてさまざまな並べ替え操作を実行したりすることができます。</p>
+<h2>オプション</h2>
+<h3><strong>-n, --numeric-sort</strong></h3>
+<p>アルファベット順ではなく数値順（数値の大きさ）で並べ替えます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">1</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">10</span>
+<span style="color: #000; font-style: italic">20</span>
+<span style="color: #000; font-style: italic">100</span>
+</pre></div>
+<h3><strong>-r, --reverse</strong></h3>
+<p>比較結果を逆順にします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>names.txt
+<span style="color: #000; font-style: italic">Zack</span>
+<span style="color: #000; font-style: italic">Victor</span>
+<span style="color: #000; font-style: italic">Susan</span>
+<span style="color: #000; font-style: italic">Alice</span>
+</pre></div>
+<h3><strong>-f, --ignore-case</strong></h3>
+<p>並べ替え時に大文字と小文字を区別しません</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>mixed_case.txt
+<span style="color: #000; font-style: italic">Alice</span>
+<span style="color: #000; font-style: italic">apple</span>
+<span style="color: #000; font-style: italic">Banana</span>
+<span style="color: #000; font-style: italic">cat</span>
+<span style="color: #000; font-style: italic">Dog</span>
+</pre></div>
+<h3><strong>-k, --key=POS1[,POS2]</strong></h3>
+<p>POS1から始まりPOS2で終わるキーで並べ替えます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-k<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span>employees.txt
+<span style="color: #000; font-style: italic">101 Adams 5000</span>
+<span style="color: #000; font-style: italic">103 Brown 4500</span>
+<span style="color: #000; font-style: italic">102 Clark 5500</span>
+</pre></div>
+<h3><strong>-t, --field-separator=SEP</strong></h3>
+<p>非空白から空白への遷移の代わりに、SEPをフィールド区切り文字として使用します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-t:<span style="color: #F8F8F8"> </span>-k3,3n<span style="color: #F8F8F8"> </span>/etc/passwd
+<span style="color: #000; font-style: italic">root:x:0:0:root:/root:/bin/bash</span>
+<span style="color: #000; font-style: italic">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span>
+<span style="color: #000; font-style: italic">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span>
+</pre></div>
+<h3><strong>-u, --unique</strong></h3>
+<p>等しい行の最初のもののみを出力します（重複を削除）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>duplicates.txt
+<span style="color: #000; font-style: italic">apple</span>
+<span style="color: #000; font-style: italic">banana</span>
+<span style="color: #000; font-style: italic">orange</span>
+</pre></div>
+<h3><strong>-M, --month-sort</strong></h3>
+<p>月として比較します（JAN &lt; FEB &lt; ... &lt; DEC）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-M<span style="color: #F8F8F8"> </span>months.txt
+<span style="color: #000; font-style: italic">Jan</span>
+<span style="color: #000; font-style: italic">Feb</span>
+<span style="color: #000; font-style: italic">Mar</span>
+<span style="color: #000; font-style: italic">Apr</span>
+<span style="color: #000; font-style: italic">Dec</span>
+</pre></div>
+<h3><strong>-h, --human-numeric-sort</strong></h3>
+<p>人間が読みやすい数値（例：2K、1G）を比較します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>sizes.txt
+<span style="color: #000; font-style: italic">10K</span>
+<span style="color: #000; font-style: italic">1M</span>
+<span style="color: #000; font-style: italic">2M</span>
+<span style="color: #000; font-style: italic">1G</span>
+</pre></div>
+<h3><strong>-R, --random-sort</strong></h3>
+<p>キーのランダムハッシュで並べ替えます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>names.txt
+<span style="color: #000; font-style: italic">Victor</span>
+<span style="color: #000; font-style: italic">Alice</span>
+<span style="color: #000; font-style: italic">Susan</span>
+<span style="color: #000; font-style: italic">Zack</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ファイルを数値順に並べ替える</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">10</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">100</span>
+<span style="color: #000; font-style: italic">1</span>
+<span style="color: #000; font-style: italic">20</span>
+<span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">1</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">10</span>
+<span style="color: #000; font-style: italic">20</span>
+<span style="color: #000; font-style: italic">100</span>
+</pre></div>
+<h3>カスタム区切り文字を使用して特定の列で並べ替える</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>data.csv
+<span style="color: #000; font-style: italic">John,25,Engineer</span>
+<span style="color: #000; font-style: italic">Alice,30,Doctor</span>
+<span style="color: #000; font-style: italic">Bob,22,Student</span>
+<span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-t,<span style="color: #F8F8F8"> </span>-k2,2n<span style="color: #F8F8F8"> </span>data.csv
+<span style="color: #000; font-style: italic">Bob,22,Student</span>
+<span style="color: #000; font-style: italic">John,25,Engineer</span>
+<span style="color: #000; font-style: italic">Alice,30,Doctor</span>
+</pre></div>
+<h3>複数のソート済みファイルを結合する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>merged.txt
+</pre></div>
+<h3>重複を削除して新しいファイルに保存する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>input.txt<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>output.txt
+</pre></div>
+<h2>ヒント</h2>
+<h3>一度に並べ替えと重複削除を行う</h3>
+<p><code>sort -u</code> を使用すると、ファイルの並べ替えと重複行の削除を一度の操作で行うことができます。これは <code>sort | uniq</code> を使用するよりも効率的です。</p>
+<h3>ファイルが既に並べ替えられているかを確認する</h3>
+<p><code>sort -c filename</code> を使用すると、実際に何も出力せずにファイルが既に並べ替えられているかを確認できます。ファイルが並べ替えられていない場合はエラーメッセージが返されます。</p>
+<h3>大きなファイルのメモリ考慮事項</h3>
+<p>非常に大きなファイルの場合、<code>sort -T /tmp</code> を使用して十分な容量のある一時ディレクトリを指定するか、<code>sort -S 1G</code> を使用して並べ替えにより多くのメモリを割り当てます。</p>
+<h3>安定ソート</h3>
+<p><code>sort -s</code> を使用すると安定ソートが行われ、等しいキーを持つ行の元の順序が保持されます。これは、同等のアイテムの元の順序を維持したい場合に便利です。</p>
+<h2>よくある質問</h2>
+<h4>Q1. ファイルを逆順に並べ替えるにはどうすればよいですか？</h4>
+<p>A. <code>sort -r filename</code> を使用して、逆順（降順）で並べ替えます。</p>
+<h4>Q2. CSVファイルを特定の列で並べ替えるにはどうすればよいですか？</h4>
+<p>A. <code>sort -t, -k2,2 filename.csv</code> を使用して2列目で並べ替えます。ここで <code>-t,</code> はカンマをフィールド区切り文字として指定します。</p>
+<h4>Q3. IPアドレスを正しく並べ替えるにはどうすればよいですか？</h4>
+<p>A. バージョン並べ替えには <code>sort -V</code> を使用します。これはIPアドレスに適しています：<code>sort -V ip_addresses.txt</code></p>
+<h4>Q4. 複数のフィールドで並べ替えるにはどうすればよいですか？</h4>
+<p>A. 複数のキーを指定します：<code>sort -k1,1 -k2,2n filename</code> は最初にフィールド1をアルファベット順に、次にフィールド2を数値順に並べ替えます。</p>
+<h4>Q5. ヘッダーのあるファイルを並べ替え、ヘッダーを先頭に保持するにはどうすればよいですか？</h4>
+<p>A. 次のように使用します：<code>(head -1 file.txt; tail -n +2 file.txt | sort) &gt; sorted_file.txt</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

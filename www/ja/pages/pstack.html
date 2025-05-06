@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  pstack - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>pstackコマンド</h1>
+<p>実行中のプロセスのスタックトレースを表示します。</p>
+<h2>概要</h2>
+<p><code>pstack</code>は実行中のプロセスにアタッチし、そのプロセス内のすべてのスレッドのスタックトレースを表示するユーティリティです。特に、プロセスを再起動したり、事前にデバッガをセットアップしたりすることなく、ハングしたり誤動作しているプロセスをデバッグするのに役立ちます。</p>
+<h2>オプション</h2>
+<p><code>pstack</code>はシンプルなコマンドで、多くのオプションはありません。主に引数としてプロセスID（PID）を取ります。</p>
+<h2>使用例</h2>
+<h3>基本的な使い方</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pstack<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+<span style="color: #000; font-style: italic">Thread 1 (process 1234):</span>
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">0</span><span style="color: #F8F8F8">  </span>0x00007f8e2d72dea3<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>poll<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libc.so.6
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8">  </span>0x00007f8e2c8b11d8<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>??<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libpulse.so.0
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8">  </span>0x00007f8e2c8a9e3c<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>pa_mainloop_poll<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libpulse.so.0
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8">  </span>0x00007f8e2c8aa41c<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>pa_mainloop_iterate<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libpulse.so.0
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">4</span><span style="color: #F8F8F8">  </span>0x00007f8e2c8aa49c<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>pa_mainloop_run<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libpulse.so.0
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8">  </span>0x00007f8e2c8b1228<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>??<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libpulse.so.0
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">6</span><span style="color: #F8F8F8">  </span>0x00007f8e2c8a4259<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>??<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libpulse.so.0
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">7</span><span style="color: #F8F8F8">  </span>0x00007f8e2d6c1609<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>start_thread<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libpthread.so.0
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">8</span><span style="color: #F8F8F8">  </span>0x00007f8e2d7e7163<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>clone<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libc.so.6
+</pre></div>
+<h3>複数のプロセス</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pstack<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5678</span>
+<span style="color: #000; font-style: italic">==&gt; 1234 &lt;==</span>
+<span style="color: #000; font-style: italic">Thread 1 (process 1234):</span>
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">0</span><span style="color: #F8F8F8">  </span>0x00007f8e2d72dea3<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>poll<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libc.so.6
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8">  </span>0x00007f8e2c8b11d8<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>??<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libpulse.so.0
+<span style="color: #000; font-style: italic">...</span>
+
+<span style="color: #000; font-style: italic">==&gt; 5678 &lt;==</span>
+<span style="color: #000; font-style: italic">Thread 1 (process 5678):</span>
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">0</span><span style="color: #F8F8F8">  </span>0x00007f9a3c45ea35<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>nanosleep<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span><span style="color: #F8F8F8"> </span>from<span style="color: #F8F8F8"> </span>/lib64/libc.so.6
+<span style="color: #8F5902">#</span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8">  </span>0x000055d7e44f5b1a<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span>main<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">()</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>プロセスIDの検索</h3>
+<p><code>pstack</code>を使用する前に、プロセスIDを知る必要があります。<code>ps</code>や<code>pidof</code>を使用して見つけることができます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>aux<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>firefox
+<span style="color: #000; font-style: italic">user     1234  2.5  1.8 2589452 298796 ?      Sl   09:15   0:45 /usr/lib/firefox/firefox</span>
+
+<span style="color: #8F5902">$ </span>pidof<span style="color: #F8F8F8"> </span>firefox
+<span style="color: #000; font-style: italic">1234</span>
+</pre></div>
+<h3>ハングしたプロセスのデバッグ</h3>
+<p>プロセスがフリーズしているように見える場合、<code>pstack</code>を使用して何をしているか確認できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pstack<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>pidof<span style="color: #F8F8F8"> </span>frozen_app<span style="color: #204A87; font-weight: bold">)</span>
+</pre></div>
+<h3>root権限</h3>
+<p>自分が所有していないプロセスの場合、<code>sudo</code>を使用する必要があります：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>pstack<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3>代替コマンド</h3>
+<p>一部のシステムでは、<code>pstack</code>が利用できない場合があります。以下の代替手段を使用できます：</p>
+<ul>
+<li><code>gdb -p PID -ex &quot;thread apply all bt&quot; -batch</code></li>
+<li>Javaプロセスの場合は<code>jstack</code></li>
+</ul>
+<h2>よくある質問</h2>
+<h4>Q1. <code>pstack</code>は実際に何をしているのですか？</h4>
+<p>A. <code>pstack</code>はデバッグ機能を使用して実行中のプロセスにアタッチし、そのプロセス内のすべてのスレッドの現在のコールスタックを抽出し、読みやすい形式で表示します。</p>
+<h4>Q2. <code>pstack</code>はすべてのUnixシステムで利用できますか？</h4>
+<p>A. いいえ、<code>pstack</code>は標準的なUnixコマンドではありません。主にRed Hat由来のLinuxシステムで一般的に利用できます。他のシステムでは、<code>gdb</code>などの代替手段を使用する必要があるかもしれません。</p>
+<h4>Q3. <code>pstack</code>は実行中のプロセスに影響を与えますか？</h4>
+<p>A. <code>pstack</code>はスタックトレースを抽出している間、一時的にプロセスを停止しますが、この一時停止は通常非常に短く、通常の操作に影響を与えるべきではありません。</p>
+<h4>Q4. なぜ一部のスタックフレームで関数名の代わりに「??」が表示されるのですか？</h4>
+<p>A. これは通常、その特定のライブラリや実行可能ファイルのデバッグシンボルが利用できない場合に発生します。プロセスは正常に実行されていますが、<code>pstack</code>は正確な関数名を判断できません。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man1/pstack.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

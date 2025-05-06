@@ -1,0 +1,20 @@
+{
+  "id": "msg_01KJQq91Ex6g8rGpGT3nzfFn",
+  "content": [
+    {
+      "text": "# uniqコマンド\n\n隣接する一致する行を入力からフィルタリングしたり、ユニークな行を報告したりします。\n\n## 概要\n\n`uniq`コマンドは、ファイルや入力ストリームから繰り返し行をフィルタリングします。隣接する行を比較し、重複する行を削除または識別することで動作します。デフォルトでは、`uniq`は隣接している場合にのみ重複行を検出するため、通常は`sort`コマンドを使用して入力を最初にソートします。\n\n## オプション\n\n### **-c, --count**\n\n行の前に出現回数を付けます\n\n```console\n$ sort names.txt | uniq -c\n      2 Alice\n      1 Bob\n      3 Charlie\n```\n\n### **-d, --repeated**\n\n重複行のみを表示し、各グループにつき1行を出力する\n\n```console\n$ sort names.txt | uniq -d\nAlice\nCharlie\n```\n\n### **-u, --unique**\n\nユニークな行のみを表示する（入力で重複していない行）\n\n```console\n$ sort names.txt | uniq -u\nBob\n```\n\n### **-i, --ignore-case**\n\n行を比較する際に大文字と小文字を区別しない\n\n```console\n$ sort names.txt | uniq -i\nAlice\nBob\nCharlie\n```\n\n### **-f N, --skip-fields=N**\n\n最初のNフィールドの比較をスキップする\n\n```console\n$ cat data.txt\n1 Alice Engineering\n1 Alice Marketing\n2 Bob Sales\n$ uniq -f 1 data.txt\n1 Alice Engineering\n2 Bob Sales\n```\n\n### **-s N, --skip-chars=N**\n\n最初のN文字の比較をスキップする\n\n```console\n$ cat codes.txt\nABC123\nABC456\nDEF789\n$ uniq -s 3 codes.txt\nABC123\nDEF789\n```\n\n## 使用例\n\n### sortと組み合わせた基本的な使い方\n\n```console\n$ cat names.txt\nAlice\nBob\nAlice\nCharlie\nCharlie\nCharlie\nBob\n$ sort names.txt | uniq\nAlice\nBob\nCharlie\n```\n\n### 各行の出現回数をカウントする\n\n```console\n$ sort names.txt | uniq -c\n      2 Alice\n      2 Bob\n      3 Charlie\n```\n\n### 一度だけ表示される行のみを表示する\n\n```console\n$ sort names.txt | uniq -u\n```\n\n### 重複行のみを表示する\n\n```console\n$ sort names.txt | uniq -d\nAlice\nBob\nCharlie\n```\n\n## ヒント:\n\n### 常に最初にソートする\n\n`uniq`は隣接する重複行のみを削除するため、すべての重複を検出するために常に`sort`の出力を`uniq`にパイプしてください：\n\n```console\n$ sort file.txt | uniq\n```\n\n### 単語の頻度をカウントする\n\nファイル内の単語の頻度をカウントするには、次のようにします：\n\n```console\n$ cat file.txt | tr -s ' ' '\\n' | sort | uniq -c | sort -nr\n```\n\nこれによりテキストを単語に分割し、ソートし、出現回数をカウントし、頻度でソートします。\n\n### 大文字小文字を区別しないマッチング\n\n同じ単語の大文字と小文字のバージョンを同一として扱いたい場合は、`-i`を使用します：\n\n```console\n$ sort words.txt | uniq -i\n```\n\n## よくある質問\n\n#### Q1. なぜ`uniq`がファイル内のすべての重複行を削除しないのですか？\nA. `uniq`は隣接する重複行のみを削除します。最初にファイルをソートする必要があります：`sort file.txt | uniq`\n\n#### Q2. 各行が何回出現するかをカウントするにはどうすればよいですか？\nA. `sort file.txt | uniq -c`を使用してください\n\n#### Q3. 一度だけ表示される行を見つけるにはどうすればよいですか？\nA. `sort file.txt | uniq -u`を使用してください\n\n#### Q4. 重複した行を見つけるにはどうすればよいですか？\nA. `sort file.txt | uniq -d`を使用してください\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/uniq-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1024,
+    "output_tokens": 1265
+  }
+}

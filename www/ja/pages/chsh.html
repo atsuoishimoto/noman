@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  chsh - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>chshコマンド</h1>
+<p>ユーザーのログインシェルを変更します。</p>
+<h2>概要</h2>
+<p><code>chsh</code>コマンドを使用すると、ユーザーはログインシェル（ログイン時に起動するコマンドインタープリタ）を変更できます。このコマンドはパスワードファイル内のユーザーエントリを修正し、システムにログインしたときに実行されるシェルプログラムを設定します。</p>
+<h2>オプション</h2>
+<h3><strong>-s, --shell</strong></h3>
+<p>使用するログインシェルを指定します。実行するユーザーがスーパーユーザーでない限り、シェルは/etc/shellsファイルに記載されている必要があります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/bin/zsh
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #000; font-style: italic">Shell changed.</span>
+</pre></div>
+<h3><strong>-l, --list-shells</strong></h3>
+<p>/etc/shellsファイルに記載されているシェルの一覧を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">/bin/sh</span>
+<span style="color: #000; font-style: italic">/bin/bash</span>
+<span style="color: #000; font-style: italic">/bin/zsh</span>
+<span style="color: #000; font-style: italic">/bin/fish</span>
+</pre></div>
+<h3><strong>-h, --help</strong></h3>
+<p>ヘルプ情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: chsh [options] [LOGIN]</span>
+
+<span style="color: #000; font-style: italic">Options:</span>
+<span style="color: #000; font-style: italic">  -s, --shell SHELL         specify login shell</span>
+<span style="color: #000; font-style: italic">  -l, --list-shells         list shells and exit</span>
+<span style="color: #000; font-style: italic">  -h, --help                display this help and exit</span>
+<span style="color: #000; font-style: italic">  -v, --version             display version information and exit</span>
+</pre></div>
+<h3><strong>-v, --version</strong></h3>
+<p>バージョン情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">chsh from util-linux 2.38.1</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>自分自身のシェルを変更する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chsh<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/bin/zsh
+<span style="color: #000; font-style: italic">Password: </span>
+<span style="color: #000; font-style: italic">Shell changed.</span>
+</pre></div>
+<h3>現在のシェルを確認する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;^</span><span style="color: #204A87; font-weight: bold">$(</span>whoami<span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">:&quot;</span><span style="color: #F8F8F8"> </span>/etc/passwd
+<span style="color: #000; font-style: italic">username:x:1000:1000:User Name:/home/username:/bin/zsh</span>
+</pre></div>
+<h3>他のユーザーのシェルを変更する（root権限が必要）</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>chsh<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/bin/bash<span style="color: #F8F8F8"> </span>otheruser
+<span style="color: #000; font-style: italic">Shell changed.</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>最初に利用可能なシェルを確認する</h3>
+<p>シェルを変更する前に、必ず<code>chsh -l</code>を使用するか、<code>/etc/shells</code>をチェックして、システムで利用可能なシェルを確認しましょう。</p>
+<h3>ログアウトが必要</h3>
+<p>ログインシェルの変更は、ログアウトして再度ログインするまで有効になりません。</p>
+<h3>シェルは/etc/shellsに記載されている必要がある</h3>
+<p>スーパーユーザーでない限り、選択するシェルは<code>/etc/shells</code>ファイルに記載されている必要があります。これはユーザーが任意のプログラムをログインシェルとして設定することを防ぐセキュリティ対策です。</p>
+<h3>変更を元に戻す</h3>
+<p>使いにくいシェルに変更してしまった場合は、同じコマンドを使用して以前のシェルに戻すことができます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. ログインシェルと現在のシェルの違いは何ですか？</h4>
+<p>A. ログインシェルはシステムにログインしたときに起動するシェルです。現在のシェルは現在使用しているシェルであり、ログインシェルから別のシェルを起動している場合は異なる場合があります。</p>
+<h4>Q2. 現在のシェルを確認するにはどうすればよいですか？</h4>
+<p>A. ログインシェルを確認するには<code>echo $SHELL</code>を実行し、現在使用しているシェルを確認するには<code>ps -p $$</code>を実行します。</p>
+<h4>Q3. 任意のプログラムをシェルとして使用できますか？</h4>
+<p>A. いいえ、セキュリティ上の理由から、一般ユーザーは<code>/etc/shells</code>に記載されているシェルのみを使用できます。スーパーユーザーのみが任意のプログラムをシェルとして設定できます。</p>
+<h4>Q4. 無効なシェルを設定するとどうなりますか？</h4>
+<p>A. 存在しないか正常に動作しないシェルを設定すると、通常の方法でログインできなくなる可能性があります。そのような場合は、回復方法を使用するか、システム管理者に修正を依頼する必要があります。</p>
+<h2>参考資料</h2>
+<p>https://man7.org/linux/man-pages/man1/chsh.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

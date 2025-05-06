@@ -1,0 +1,20 @@
+{
+  "id": "msg_01GKJ5sBCC9rgvp7oyybFDhU",
+  "content": [
+    {
+      "text": "# update-locale コマンド\n\nシステムロケール設定を `/etc/default/locale` を更新して構成します。\n\n## 概要\n\n`update-locale` は、Debian ベースの Linux システムでシステム全体のロケール設定を変更するために使用されるコマンドです。このコマンドは `/etc/default/locale` という設定ファイルを更新し、システム全体の言語、文字エンコーディング、地域設定を定義します。このコマンドは通常、システム管理者がすべてのユーザーの言語設定や文字エンコーディングを変更する際に使用されます。\n\n## オプション\n\n### **--reset**\n\nすべてのロケール変数をリセットします（設定ファイルから削除します）\n\n```console\n$ sudo update-locale --reset\n```\n\n### **LANG=**\n\nすべてのカテゴリのデフォルトロケールを設定します\n\n```console\n$ sudo update-locale LANG=en_US.UTF-8\n```\n\n### **LC_ALL=**\n\n他のすべての設定を上書きして、すべてのカテゴリのロケールを設定します\n\n```console\n$ sudo update-locale LC_ALL=en_US.UTF-8\n```\n\n### **--help**\n\nヘルプ情報を表示します\n\n```console\n$ update-locale --help\nUsage: update-locale [OPTIONS] [VARIABLE=VALUE ...]\n  or:  update-locale --reset\nOptions:\n  --help         display this help and exit\n  --reset        reset all locale variables\n  --locale-file=FILE\n                 use FILE as locale file instead of /etc/default/locale\n```\n\n## 使用例\n\n### 複数のロケール変数を一度に設定する\n\n```console\n$ sudo update-locale LANG=en_GB.UTF-8 LC_TIME=en_GB.UTF-8 LC_PAPER=en_GB.UTF-8\n```\n\n### 特定のロケール変数を削除する\n\n特定のロケール変数を削除するには、空の文字列に設定します：\n\n```console\n$ sudo update-locale LC_TIME=\n```\n\n### 現在のロケール設定を確認する\n\nupdate-localeの一部ではありませんが、現在の設定は以下のように確認できます：\n\n```console\n$ locale\nLANG=en_US.UTF-8\nLANGUAGE=\nLC_CTYPE=\"en_US.UTF-8\"\nLC_NUMERIC=\"en_US.UTF-8\"\nLC_TIME=\"en_US.UTF-8\"\nLC_COLLATE=\"en_US.UTF-8\"\nLC_MONETARY=\"en_US.UTF-8\"\nLC_MESSAGES=\"en_US.UTF-8\"\nLC_PAPER=\"en_US.UTF-8\"\nLC_NAME=\"en_US.UTF-8\"\nLC_ADDRESS=\"en_US.UTF-8\"\nLC_TELEPHONE=\"en_US.UTF-8\"\nLC_MEASUREMENT=\"en_US.UTF-8\"\nLC_IDENTIFICATION=\"en_US.UTF-8\"\nLC_ALL=\n```\n\n## ヒント:\n\n### システム全体の設定とユーザー設定の違い\n\n`update-locale` はシステム全体の設定を変更することを覚えておいてください。個々のユーザーは、自分のシェル起動ファイル（`.bashrc` など）で独自のロケール設定を上書きすることができます。\n\n### 変更は次回ログイン時に有効になります\n\n`update-locale` で行った変更は、通常、現在のセッションには影響しません。新しいロケール設定を有効にするには、ユーザーはログアウトして再度ログインする必要があります。\n\n### 一般的なロケール変数\n\n- `LANG`: すべてのカテゴリのデフォルトロケール\n- `LC_CTYPE`: 文字分類と大文字小文字変換\n- `LC_TIME`: 日付と時刻の形式\n- `LC_NUMERIC`: 数値のフォーマット\n- `LC_MONETARY`: 通貨のフォーマット\n- `LC_MESSAGES`: システムメッセージの言語\n\n### 利用可能なロケール\n\nシステムで利用可能なロケールを確認するには：\n\n```console\n$ locale -a\n```\n\n## よくある質問\n\n#### Q1. システム言語を変更するにはどうすればよいですか？\nA. `sudo update-locale LANG=your_language_code.UTF-8` を使用します（例：フランス語の場合は `LANG=fr_FR.UTF-8`）。\n\n#### Q2. ロケールの変更が反映されないのはなぜですか？\nA. 変更を有効にするには、ログアウトして再度ログインする必要があります。現在のシェルですぐに反映させるには、`export LANG=your_language_code.UTF-8` を使用してください。\n\n#### Q3. 追加のロケールを生成するにはどうすればよいですか？\nA. まず `sudo locale-gen your_language_code.UTF-8` でロケールを生成し、その後 `update-locale` で設定します。\n\n#### Q4. LANG と LC_ALL の違いは何ですか？\nA. `LANG` はすべてのロケールカテゴリのデフォルトであるのに対し、`LC_ALL` は他のすべてのロケール設定を上書きします。`LC_ALL` はトラブルシューティング用なので、控えめに使用してください。\n\n## 参考資料\n\nhttps://manpages.debian.org/bullseye/locales/update-locale.8.en.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1217,
+    "output_tokens": 1564
+  }
+}

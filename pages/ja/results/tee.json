@@ -1,0 +1,20 @@
+{
+  "id": "msg_01XHkcoB4R9ia5zHnneBzXaK",
+  "content": [
+    {
+      "text": "# teeコマンド\n\n標準入力から読み取り、標準出力とファイルの両方に書き込みます。\n\n## 概要\n\n`tee`コマンドは標準入力から読み取り、標準出力と1つ以上のファイルに同時に書き込みます。これにより、コマンドの出力をターミナルで表示しながら同時にファイルに保存することができ、ログ記録やデバッグに役立ちます。\n\n## オプション\n\n### **-a, --append**\n\n指定されたファイルに追記し、上書きしません。\n\n```console\n$ echo \"Additional line\" | tee -a logfile.txt\nAdditional line\n```\n\n### **-i, --ignore-interrupts**\n\n割り込み信号（SIGINT）を無視します。\n\n```console\n$ long_running_command | tee -i output.log\n```\n\n### **--help**\n\nヘルプ情報を表示して終了します。\n\n```console\n$ tee --help\nUsage: tee [OPTION]... [FILE]...\nCopy standard input to each FILE, and also to standard output.\n\n  -a, --append              append to the given FILEs, do not overwrite\n  -i, --ignore-interrupts   ignore interrupt signals\n      --help     display this help and exit\n      --version  output version information and exit\n\nIf a FILE is -, copy again to standard output.\n```\n\n### **--version**\n\nバージョン情報を出力して終了します。\n\n```console\n$ tee --version\ntee (GNU coreutils) 8.32\nCopyright (C) 2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Mike Parker, Richard M. Stallman, and David MacKenzie.\n```\n\n## 使用例\n\n### コマンド出力を表示しながら保存する\n\n```console\n$ ls -la | tee directory_listing.txt\ntotal 32\ndrwxr-xr-x  5 user  staff   160 May  5 10:15 .\ndrwxr-xr-x  3 user  staff    96 May  4 09:30 ..\n-rw-r--r--  1 user  staff  2048 May  5 10:10 file1.txt\n-rw-r--r--  1 user  staff  4096 May  5 10:12 file2.txt\n```\n\n### 複数のファイルに一度に書き込む\n\n```console\n$ echo \"Hello, world!\" | tee file1.txt file2.txt file3.txt\nHello, world!\n```\n\n### パイプラインでteeを使用する\n\n```console\n$ cat input.txt | grep \"error\" | tee errors.log | wc -l\n5\n```\n\n### 特権が必要なファイルに書き込む\n\n```console\n$ echo \"127.0.0.1 example.com\" | sudo tee -a /etc/hosts\n127.0.0.1 example.com\n```\n\n## ヒント:\n\n### ファイルに対するsudo操作にteeを使用する\n\nroot権限が必要なファイルに出力をリダイレクトする場合、`sudo command > file`は機能しません。これはリダイレクトがsudoの前に行われるためです。代わりに、`command | sudo tee file`を使用して権限を適切に処理します。\n\n### 出力を監視しながらログを作成する\n\nトラブルシューティング時には、teeを使用してリアルタイムで出力を確認しながらログを作成できます：`command | tee logfile.txt`\n\n### ファイルと別のコマンドの両方に書き込む\n\nteeを使用してパイプラインを分岐できます：`command | tee file.txt | another_command`\n\n### /dev/ttyを使用して強制的に端末に出力する\n\nリダイレクトされている場合でも出力を確実に端末に送信する必要がある場合：`command | tee /dev/tty | another_command`\n\n## よくある質問\n\n#### Q1. \"tee\"という名前の由来は何ですか？\nA. 配管で使用されるT字型分岐器に由来しています。このコマンドは入力を複数の出力に分割し、\"T\"の形に似ているためです。\n\n#### Q2. ファイルを上書きせずに追記するにはどうすればよいですか？\nA. `-a`または`--append`オプションを使用します：`command | tee -a file.txt`\n\n#### Q3. teeは標準出力ではなく標準エラー出力に書き込むことができますか？\nA. いいえ、teeは常に標準出力に書き込みます。標準エラー出力にリダイレクトするには、追加のシェルリダイレクトが必要です：`command | tee file.txt >&2`\n\n#### Q4. root権限が必要なファイルにteeで書き込むにはどうすればよいですか？\nA. sudoとteeを組み合わせて使用します：`command | sudo tee /path/to/restricted/file`\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1261,
+    "output_tokens": 1498
+  }
+}

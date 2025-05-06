@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tcpdump - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tcpdumpコマンド</h1>
+<p>システム上のネットワークトラフィックをキャプチャして分析します。</p>
+<h2>概要</h2>
+<p><code>tcpdump</code>は強力なコマンドラインパケットアナライザで、ネットワーク経由で送受信されるTCP/IPやその他のパケットをキャプチャして表示することができます。ネットワークのトラブルシューティング、セキュリティ分析、ネットワークアクティビティの監視によく使用されます。</p>
+<h2>オプション</h2>
+<h3><strong>-i インターフェース</strong></h3>
+<p>リッスンするネットワークインターフェースを指定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>eth0
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP host1.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3><strong>-n</strong></h3>
+<p>アドレス（ホストアドレス、ポート番号など）を名前に変換しません</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-n
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:46:12.357932 IP 192.168.1.10.22 &gt; 192.168.1.20.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3><strong>-c カウント</strong></h3>
+<p>指定した数のパケットをキャプチャした後に終了します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">5 packets captured</span>
+<span style="color: #000; font-style: italic">5 packets received by filter</span>
+<span style="color: #000; font-style: italic">0 packets dropped by kernel</span>
+</pre></div>
+<h3><strong>-w ファイル</strong></h3>
+<p>パケットを解析して表示する代わりに、生のパケットをファイルに書き込みます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span>capture.pcap
+<span style="color: #000; font-style: italic">tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">^C</span>
+<span style="color: #000; font-style: italic">45 packets captured</span>
+<span style="color: #000; font-style: italic">45 packets received by filter</span>
+<span style="color: #000; font-style: italic">0 packets dropped by kernel</span>
+</pre></div>
+<h3><strong>-r ファイル</strong></h3>
+<p>ファイルからパケットを読み込みます（以前に-wオプションで作成したもの）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>capture.pcap
+<span style="color: #000; font-style: italic">reading from file capture.pcap, link-type EN10MB (Ethernet)</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP host1.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3><strong>-v, -vv, -vvv</strong></h3>
+<p>詳細レベルを上げます（より多くのパケット情報を表示）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP (tos 0x10, ttl 64, id 12345, offset 0, flags [DF], proto TCP (6), length 104) host1.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>特定のインターフェースでパケットをキャプチャする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>eth0
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP host1.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3>ホストでトラフィックをフィルタリングする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>host<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">192</span>.168.1.10
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP 192.168.1.10.ssh &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3>ポートでトラフィックをフィルタリングする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>port<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">80</span>
+<span style="color: #000; font-style: italic">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span>
+<span style="color: #000; font-style: italic">listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">13:45:22.357932 IP host1.http &gt; host2.52986: Flags [P.], seq 1:37, ack 1, win 501, options [nop,nop,TS val 1089067 ecr 1089067], length 36</span>
+</pre></div>
+<h3>パケットをキャプチャしてファイルに保存する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tcpdump<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span>capture.pcap<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>eth0
+<span style="color: #000; font-style: italic">tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes</span>
+<span style="color: #000; font-style: italic">^C</span>
+<span style="color: #000; font-style: italic">45 packets captured</span>
+<span style="color: #000; font-style: italic">45 packets received by filter</span>
+<span style="color: #000; font-style: italic">0 packets dropped by kernel</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>完全なアクセスのためにsudoで実行する</h3>
+<p>ほとんどのシステムではパケットをキャプチャするために管理者権限が必要です。適切な権限を確保するために<code>sudo tcpdump</code>を使用してください。</p>
+<h3>対象を絞ったキャプチャにはフィルタ式を使用する</h3>
+<p>フィルタを組み合わせてトラフィックを絞り込みます：<code>tcpdump 'tcp port 80 and host 192.168.1.10'</code>は特定のホストとの間のHTTPトラフィックのみをキャプチャします。</p>
+<h3>高速なキャプチャのために名前解決を無効にする</h3>
+<p>特に混雑したネットワークでは、DNSルックアップによってパケットキャプチャが遅くなる可能性があるため、<code>-n</code>を使用してください。</p>
+<h3>パケットの内容全体をキャプチャする</h3>
+<p>ヘッダーだけでなくパケット全体をキャプチャするには<code>-s 0</code>を使用します（最新バージョンのデフォルトは262144バイトです）。</p>
+<h3>分析にはWiresharkを使用する</h3>
+<p><code>-w ファイル名.pcap</code>でキャプチャを保存し、詳細なグラフィカル分析のためにWiresharkで開きます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. 特定のインターフェースでパケットをキャプチャするにはどうすればよいですか？</h4>
+<p>A. <code>tcpdump -i インターフェース名</code>を使用します（例：<code>tcpdump -i eth0</code>）。</p>
+<h4>Q2. キャプチャしたパケットをファイルに保存するにはどうすればよいですか？</h4>
+<p>A. <code>tcpdump -w ファイル名.pcap</code>を使用して生のパケットをファイルに保存します。</p>
+<h4>Q3. IPアドレスでトラフィックをフィルタリングするにはどうすればよいですか？</h4>
+<p>A. <code>tcpdump host 192.168.1.10</code>を使用して、そのIPとの間のトラフィックをキャプチャします。</p>
+<h4>Q4. ポート番号でフィルタリングするにはどうすればよいですか？</h4>
+<p>A. <code>tcpdump port 80</code>を使用してHTTPトラフィックまたはポート80上のすべてのトラフィックをキャプチャします。</p>
+<h4>Q5. より詳細なパケット情報を見るにはどうすればよいですか？</h4>
+<p>A. <code>-v</code>、<code>-vv</code>、または<code>-vvv</code>フラグを使用して詳細レベルを上げます。</p>
+<h2>参考文献</h2>
+<p>https://www.tcpdump.org/manpages/tcpdump.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

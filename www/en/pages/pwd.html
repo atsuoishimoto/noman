@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  pwd - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>pwd command</h1>
+<p>Print the full pathname of the current working directory.</p>
+<h2>Overview</h2>
+<p>The <code>pwd</code> command displays the absolute path of the directory you are currently in. This helps you understand your location within the filesystem hierarchy, which is especially useful when navigating between directories or writing scripts that need to reference the current location.</p>
+<h2>Options</h2>
+<h3><strong>-L, --logical</strong></h3>
+<p>Print the logical current working directory, with symbolic links in the path resolved as encountered (default behavior).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span><span style="color: #F8F8F8"> </span>-L
+<span style="color: #000; font-style: italic">/home/user/projects</span>
+</pre></div>
+<h3><strong>-P, --physical</strong></h3>
+<p>Print the physical current working directory, with all symbolic links resolved.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span><span style="color: #F8F8F8"> </span>-P
+<span style="color: #000; font-style: italic">/var/www/html/projects</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span>
+<span style="color: #000; font-style: italic">/home/user/documents</span>
+</pre></div>
+<h3>Using pwd in scripts</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Current directory: </span><span style="color: #204A87; font-weight: bold">$(</span><span style="color: #204A87">pwd</span><span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Current directory: /home/user/documents</span>
+</pre></div>
+<h3>Comparing logical vs physical paths</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">cd</span><span style="color: #F8F8F8"> </span>/home/user/symlink_to_projects
+<span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span><span style="color: #F8F8F8"> </span>-L
+<span style="color: #000; font-style: italic">/home/user/symlink_to_projects</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">pwd</span><span style="color: #F8F8F8"> </span>-P
+<span style="color: #000; font-style: italic">/home/user/actual/projects</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use in Shell Scripts</h3>
+<p>Store the current directory in a variable to reference it later in your script:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #000">CURRENT_DIR</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span><span style="color: #204A87">pwd</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #204A87">cd</span><span style="color: #F8F8F8"> </span>/some/other/directory
+<span style="color: #8F5902; font-style: italic"># Do some work</span>
+<span style="color: #204A87">cd</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$CURRENT_DIR</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Return to original directory</span>
+</pre></div>
+<h3>Avoid Hardcoding Paths</h3>
+<p>Instead of hardcoding paths in scripts, use <code>pwd</code> to make scripts more portable across different systems.</p>
+<h3>Troubleshooting Symbolic Links</h3>
+<p>When working with symbolic links, use <code>pwd -P</code> to see where files are actually stored on disk, which can help troubleshoot permission issues.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What is the difference between <code>pwd</code> and <code>echo $PWD</code>?</h4>
+<p>A. They typically show the same result, but <code>$PWD</code> is an environment variable that stores the current directory path. <code>pwd</code> is a command that actively determines the current directory.</p>
+<h4>Q2. Why might <code>pwd -P</code> and <code>pwd -L</code> show different results?</h4>
+<p>A. They differ when your current directory contains symbolic links. <code>-L</code> shows the path with symbolic links intact, while <code>-P</code> resolves all symbolic links to show the actual physical path.</p>
+<h4>Q3. Does <code>pwd</code> work the same on all Unix-like systems?</h4>
+<p>A. The basic functionality is the same, but there might be slight differences in available options between GNU/Linux, macOS, and other Unix variants.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/pwd-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

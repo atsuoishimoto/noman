@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  rm - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>rm command</h1>
+<p>Remove files or directories from the filesystem.</p>
+<h2>Overview</h2>
+<p>The <code>rm</code> command deletes files and directories from the filesystem. By default, it doesn't remove directories and doesn't prompt for confirmation before removing files. Once files are deleted with <code>rm</code>, they cannot be easily recovered, so use this command with caution.</p>
+<h2>Options</h2>
+<h3><strong>-f, --force</strong></h3>
+<p>Ignore nonexistent files and arguments, never prompt for confirmation</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>nonexistent_file.txt
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3><strong>-i, --interactive</strong></h3>
+<p>Prompt before every removal</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>important.txt
+<span style="color: #000; font-style: italic">rm: remove regular file &#39;important.txt&#39;? y</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3><strong>-r, -R, --recursive</strong></h3>
+<p>Remove directories and their contents recursively</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>project_folder/
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3><strong>-d, --dir</strong></h3>
+<p>Remove empty directories</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>empty_directory/
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Explain what is being done</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">removed &#39;file.txt&#39;</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Removing multiple files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>file3.txt
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>Removing files with confirmation</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>*.txt
+<span style="color: #000; font-style: italic">rm: remove regular file &#39;document.txt&#39;? y</span>
+<span style="color: #000; font-style: italic">rm: remove regular file &#39;notes.txt&#39;? n</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>Removing directories and their contents</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-rf<span style="color: #F8F8F8"> </span>old_project/
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h3>Removing files with verbose output</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rm<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>*.log
+<span style="color: #000; font-style: italic">removed &#39;error.log&#39;</span>
+<span style="color: #000; font-style: italic">removed &#39;access.log&#39;</span>
+<span style="color: #000; font-style: italic">removed &#39;system.log&#39;</span>
+<span style="color: #8F5902">$</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use with Caution</h3>
+<p>The <code>rm</code> command permanently deletes files without moving them to a trash or recycle bin. Always double-check what you're deleting, especially when using wildcards.</p>
+<h3>Safer Deletion with Interactive Mode</h3>
+<p>When deleting multiple files, use <code>rm -i</code> to confirm each deletion. This helps prevent accidental removal of important files.</p>
+<h3>Avoid <code>rm -rf /</code></h3>
+<p>Never run <code>rm -rf /</code> or <code>rm -rf /*</code> as these commands will attempt to delete everything on your system, potentially rendering it unusable.</p>
+<h3>Use Aliases for Safety</h3>
+<p>Consider creating an alias in your shell configuration: <code>alias rm='rm -i'</code> to always use interactive mode by default.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. Can I recover files deleted with <code>rm</code>?</h4>
+<p>A. Generally no. Unlike graphical file managers, <code>rm</code> doesn't move files to a trash folder. Recovery requires specialized tools and isn't guaranteed.</p>
+<h4>Q2. How do I remove files with special characters in their names?</h4>
+<p>A. Use quotes around the filename or escape the special characters with a backslash. For example: <code>rm &quot;file with spaces.txt&quot;</code> or <code>rm file\ with\ spaces.txt</code>.</p>
+<h4>Q3. How can I safely remove a directory and all its contents?</h4>
+<p>A. Use <code>rm -r directory/</code> to recursively remove a directory and its contents. Add <code>-i</code> for confirmation prompts.</p>
+<h4>Q4. What's the difference between <code>rm -r</code> and <code>rmdir</code>?</h4>
+<p>A. <code>rmdir</code> only removes empty directories, while <code>rm -r</code> removes directories and all their contents recursively.</p>
+<h2>macOS Considerations</h2>
+<p>On macOS, the default <code>rm</code> command doesn't support the <code>--one-file-system</code> option available in GNU rm. Also, to completely bypass the macOS Trash when deleting files from external drives, you must use <code>rm</code> rather than the Finder's delete function.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/rm-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

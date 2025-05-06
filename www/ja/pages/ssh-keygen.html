@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ssh-keygen - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ssh-keygen コマンド</h1>
+<p>SSH認証用の鍵を生成、管理、変換するコマンドです。</p>
+<h2>概要</h2>
+<p><code>ssh-keygen</code>はSSH認証のための公開鍵/秘密鍵のペアを作成します。これらの鍵により、リモートシステムへのセキュアなパスワードレスログインが可能になります。このコマンドは既存の鍵の管理もでき、パスフレーズの変更や鍵フォーマット間の変換なども行えます。</p>
+<h2>オプション</h2>
+<h3><strong>-t type</strong></h3>
+<p>作成する鍵のタイプを指定します（rsa、ed25519、dsa、ecdsa）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>ed25519
+<span style="color: #000; font-style: italic">Generating public/private ed25519 key pair.</span>
+<span style="color: #000; font-style: italic">Enter file in which to save the key (/home/user/.ssh/id_ed25519): </span>
+<span style="color: #000; font-style: italic">Enter passphrase (empty for no passphrase): </span>
+<span style="color: #000; font-style: italic">Enter same passphrase again: </span>
+<span style="color: #000; font-style: italic">Your identification has been saved in /home/user/.ssh/id_ed25519</span>
+<span style="color: #000; font-style: italic">Your public key has been saved in /home/user/.ssh/id_ed25519.pub</span>
+</pre></div>
+<h3><strong>-b bits</strong></h3>
+<p>鍵のビット数を指定します（デフォルトは鍵のタイプによって異なる）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>rsa<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4096</span>
+<span style="color: #000; font-style: italic">Generating public/private rsa key pair.</span>
+<span style="color: #000; font-style: italic">Enter file in which to save the key (/home/user/.ssh/id_rsa):</span>
+</pre></div>
+<h3><strong>-f filename</strong></h3>
+<p>鍵ファイルのファイル名を指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>rsa<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>~/.ssh/github_key
+<span style="color: #000; font-style: italic">Generating public/private rsa key pair.</span>
+<span style="color: #000; font-style: italic">Enter passphrase (empty for no passphrase):</span>
+</pre></div>
+<h3><strong>-C comment</strong></h3>
+<p>鍵にコメントを付けます。通常はメールアドレスや説明文を入れます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>ed25519<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;user@example.com&quot;</span>
+<span style="color: #000; font-style: italic">Generating public/private ed25519 key pair.</span>
+</pre></div>
+<h3><strong>-p</strong></h3>
+<p>既存の秘密鍵ファイルのパスフレーズを変更します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa
+<span style="color: #000; font-style: italic">Enter old passphrase: </span>
+<span style="color: #000; font-style: italic">Enter new passphrase (empty for no passphrase): </span>
+<span style="color: #000; font-style: italic">Enter same passphrase again: </span>
+<span style="color: #000; font-style: italic">Your identification has been saved with the new passphrase.</span>
+</pre></div>
+<h3><strong>-l</strong></h3>
+<p>指定された公開鍵または秘密鍵ファイルのフィンガープリントを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>~/.ssh/id_ed25519
+<span style="color: #000; font-style: italic">256 SHA256:AbCdEfGhIjKlMnOpQrStUvWxYz1234567890abcdef user@example.com (ED25519)</span>
+</pre></div>
+<h3><strong>-y</strong></h3>
+<p>秘密鍵ファイルを読み込み、公開鍵を出力します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-y<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa.pub
+<span style="color: #000; font-style: italic">Enter passphrase:</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>デフォルトのRSA鍵ペアを作成する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen
+<span style="color: #000; font-style: italic">Generating public/private rsa key pair.</span>
+<span style="color: #000; font-style: italic">Enter file in which to save the key (/home/user/.ssh/id_rsa): </span>
+<span style="color: #000; font-style: italic">Enter passphrase (empty for no passphrase): </span>
+<span style="color: #000; font-style: italic">Enter same passphrase again: </span>
+<span style="color: #000; font-style: italic">Your identification has been saved in /home/user/.ssh/id_rsa</span>
+<span style="color: #000; font-style: italic">Your public key has been saved in /home/user/.ssh/id_rsa.pub</span>
+</pre></div>
+<h3>カスタム設定で鍵を作成する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>ed25519<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;work laptop&quot;</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>~/.ssh/work_key
+<span style="color: #000; font-style: italic">Generating public/private ed25519 key pair.</span>
+<span style="color: #000; font-style: italic">Enter passphrase (empty for no passphrase): </span>
+<span style="color: #000; font-style: italic">Enter same passphrase again: </span>
+<span style="color: #000; font-style: italic">Your identification has been saved in /home/user/.ssh/work_key</span>
+<span style="color: #000; font-style: italic">Your public key has been saved in /home/user/.ssh/work_key.pub</span>
+</pre></div>
+<h3>鍵を別のフォーマットに変換する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa.pub<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>~/.ssh/id_rsa_openssh.pub
+</pre></div>
+<h2>ヒント</h2>
+<h3>適切な鍵タイプを選ぶ</h3>
+<p>Ed25519鍵は小さいサイズで強力なセキュリティを提供するため、ほとんどのユーザーにおすすめです。RSA鍵も少なくとも3072ビット以上であれば安全ですが、サイズは大きくなります。</p>
+<h3>強力なパスフレーズを使用する</h3>
+<p>鍵にパスフレーズを追加すると、セキュリティの追加層が提供されます。秘密鍵が盗まれた場合でも、パスフレーズがあれば即座に使用されることを防ぎます。</p>
+<h3>鍵をバックアップする</h3>
+<p>秘密鍵は常に安全な場所にバックアップを保管してください。秘密鍵を紛失した場合、新しい鍵ペアを生成し、すべてのサーバーを更新する必要があります。</p>
+<h3>鍵の保存場所は重要</h3>
+<p>デフォルトでは、SSHは~/.sshディレクトリ内の鍵を探します。標準以外の場所を使用する場合は、sshを使用する際に<code>-i</code>オプションで鍵のパスを指定する必要があります。</p>
+<h2>よくある質問</h2>
+<h4>Q1. 公開鍵をサーバーにコピーするにはどうすればよいですか？</h4>
+<p>A. <code>ssh-copy-id user@hostname</code>を使用して、公開鍵をリモートサーバーのauthorized_keysファイルにコピーできます。</p>
+<h4>Q2. RSA鍵とEd25519鍵の違いは何ですか？</h4>
+<p>A. Ed25519鍵は新しく、小さく、一般的にRSA鍵より高速で、同等以上のセキュリティを提供します。</p>
+<h4>Q3. パスフレーズなしで鍵を生成するにはどうすればよいですか？</h4>
+<p>A. 鍵生成時にパスフレーズを求められたら、単にEnterキーを押すだけです。</p>
+<h4>Q4. 鍵のパスフレーズを変更するにはどうすればよいですか？</h4>
+<p>A. <code>ssh-keygen -p -f ~/.ssh/id_rsa</code>を使用して、既存の鍵のパスフレーズを変更できます。</p>
+<h4>Q5. 鍵のパスフレーズを忘れた場合はどうすればよいですか？</h4>
+<p>A. 残念ながら、失われたパスフレーズを回復する方法はありません。新しい鍵ペアを生成する必要があります。</p>
+<h2>参考資料</h2>
+<p>https://man.openbsd.org/ssh-keygen.1</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

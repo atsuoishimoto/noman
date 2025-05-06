@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ln - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ln コマンド</h1>
+<p>ファイル間のリンクを作成します。</p>
+<h2>概要</h2>
+<p><code>ln</code> コマンドはファイル間のリンクを作成します。ハードリンク（デフォルト）またはシンボリックリンク（<code>-s</code> オプション使用時）を作成できます。ハードリンクはディスク上のファイルデータを直接指し示しますが、シンボリックリンクは名前で別のファイルを指し示す特殊なファイルです。</p>
+<h2>オプション</h2>
+<h3><strong>-s, --symbolic</strong></h3>
+<p>ハードリンクではなくシンボリックリンクを作成します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>対象ファイル<span style="color: #F8F8F8"> </span>リンク名
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>リンク名
+<span style="color: #000; font-style: italic">lrwxrwxrwx 1 user user 10 May 5 10:00 リンク名 -&gt; 対象ファイル</span>
+</pre></div>
+<h3><strong>-f, --force</strong></h3>
+<p>既存の宛先ファイルを削除します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sf<span style="color: #F8F8F8"> </span>対象ファイル<span style="color: #F8F8F8"> </span>既存のリンク
+</pre></div>
+<h3><strong>-n, --no-dereference</strong></h3>
+<p>ディレクトリへのシンボリックリンクである宛先を通常のファイルであるかのように扱います。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sfn<span style="color: #F8F8F8"> </span>新しい対象<span style="color: #F8F8F8"> </span>既存のリンク
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>リンクされた各ファイルの名前を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sv<span style="color: #F8F8F8"> </span>対象ファイル<span style="color: #F8F8F8"> </span>リンク名
+<span style="color: #000; font-style: italic">&#39;リンク名&#39; -&gt; &#39;対象ファイル&#39;</span>
+</pre></div>
+<h3><strong>-r, --relative</strong></h3>
+<p>リンクの場所を基準にした相対的なシンボリックリンクを作成します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sr<span style="color: #F8F8F8"> </span>../対象ファイル<span style="color: #F8F8F8"> </span>リンク名
+</pre></div>
+<h2>使用例</h2>
+<h3>ハードリンクの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;オリジナルの内容&quot;</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>original.txt
+<span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>hardlink.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>hardlink.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 2 user user 16 May 5 10:00 hardlink.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r-- 2 user user 16 May 5 10:00 original.txt</span>
+</pre></div>
+<h3>ファイルへのシンボリックリンクの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/path/to/file.txt<span style="color: #F8F8F8"> </span>symlink.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>symlink.txt
+<span style="color: #000; font-style: italic">lrwxrwxrwx 1 user user 14 May 5 10:00 symlink.txt -&gt; /path/to/file.txt</span>
+</pre></div>
+<h3>ディレクトリへのシンボリックリンクの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/path/to/directory<span style="color: #F8F8F8"> </span>dir_link
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>dir_link
+<span style="color: #000; font-style: italic">lrwxrwxrwx 1 user user 17 May 5 10:00 dir_link -&gt; /path/to/directory</span>
+</pre></div>
+<h3>相対的なシンボリックリンクの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ln<span style="color: #F8F8F8"> </span>-sr<span style="color: #F8F8F8"> </span>../../shared/config.txt<span style="color: #F8F8F8"> </span>config_link
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>config_link
+<span style="color: #000; font-style: italic">lrwxrwxrwx 1 user user 22 May 5 10:00 config_link -&gt; ../../shared/config.txt</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>ハードリンクとシンボリックリンクの違いを理解する</h3>
+<ul>
+<li>ハードリンクは元のファイルと同じinodeを共有するため、ディスク上の同じ物理データを指します。どちらのファイルに変更を加えても両方に影響し、すべてのハードリンクが削除されるまでファイルは削除されません。</li>
+<li>シンボリックリンクは名前で別のファイルを指す別個のファイルです。元のファイルが移動または削除されると、シンボリックリンクは壊れます。</li>
+</ul>
+<h3>ハードリンクの制限</h3>
+<p>ハードリンクはディレクトリや異なるファイルシステム上のファイルにリンクできません。これらの場合はシンボリックリンクを使用してください。</p>
+<h3>ファイルがリンクかどうかを確認する</h3>
+<p><code>ls -l</code> を使用して、ファイルがリンクかどうかを確認します。シンボリックリンクは権限の先頭に「l」が表示され、ターゲットを指す矢印が表示されます。</p>
+<h3>壊れたシンボリックリンクを修正する</h3>
+<p>シンボリックリンクのターゲットを移動すると、リンクは壊れます。<code>ln -sf</code> を使用して、新しい場所を指すように更新してください。</p>
+<h2>よくある質問</h2>
+<h4>Q1. ハードリンクとシンボリックリンクの違いは何ですか？</h4>
+<p>A. ハードリンクは元のファイルと同じinode（ディスク上のデータ）を共有しますが、シンボリックリンクは名前で別のファイルを指す別個のファイルです。ハードリンクはファイルシステムをまたいだり、ディレクトリにリンクしたりすることはできません。</p>
+<h4>Q2. ディレクトリへのシンボリックリンクを作成するにはどうすればよいですか？</h4>
+<p>A. <code>ln -s /path/to/directory リンク名</code> を使用して、ディレクトリへのシンボリックリンクを作成します。</p>
+<h4>Q3. 既存のシンボリックリンクを更新するにはどうすればよいですか？</h4>
+<p>A. <code>ln -sf 新しいターゲット 既存のリンク</code> を使用して、既存のリンクを置き換える新しいリンクの作成を強制します。</p>
+<h4>Q4. シンボリックリンクが壊れるのはなぜですか？</h4>
+<p>A. シンボリックリンクは、ターゲットファイルが移動または削除されると壊れます。それらは実際のファイルデータではなく、パスを指しています。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/ln-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  which - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>which コマンド</h1>
+<p>ユーザーのPATH内にあるコマンドの実行ファイルを探します。</p>
+<h2>概要</h2>
+<p><code>which</code>コマンドは、PATH環境変数にリストされているディレクトリを検索して、実行可能プログラムの場所を見つけます。コマンドラインから実行した場合にどのバージョンのプログラムが実行されるかを判断するのに役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --all</strong></h3>
+<p>PATH内の一致する実行ファイルをすべて表示します（最初の1つだけではなく）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>python
+<span style="color: #000; font-style: italic">/usr/bin/python</span>
+<span style="color: #000; font-style: italic">/usr/local/bin/python</span>
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>サイレントモード - 出力なしで終了ステータスを返します（見つかった場合は0、見つからなかった場合は1）。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>git
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">0</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>コマンドの場所を見つける</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>ls
+<span style="color: #000; font-style: italic">/bin/ls</span>
+</pre></div>
+<h3>コマンドが存在するかチェックする</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>nonexistentcommand
+<span style="color: #000; font-style: italic">which: no nonexistentcommand in (/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin)</span>
+</pre></div>
+<h3>複数のコマンドで使用する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>which<span style="color: #F8F8F8"> </span>bash<span style="color: #F8F8F8"> </span>python<span style="color: #F8F8F8"> </span>perl
+<span style="color: #000; font-style: italic">/bin/bash</span>
+<span style="color: #000; font-style: italic">/usr/bin/python</span>
+<span style="color: #000; font-style: italic">/usr/bin/perl</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>コマンド置換で使用する</h3>
+<p><code>which</code>をコマンド置換と一緒に使用して、コマンドのフルパスを実行できます:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">$(</span>which<span style="color: #F8F8F8"> </span>python<span style="color: #204A87; font-weight: bold">)</span><span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">Python 3.9.6</span>
+</pre></div>
+<h3>複数のバージョンを確認する</h3>
+<p><code>which -a</code>を使用してPATH内のコマンドのすべてのインスタンスを見つけることができます。これはバージョンの競合をトラブルシューティングする際に役立ちます。</p>
+<h3>他のコマンドと組み合わせる</h3>
+<p>より多くの情報を得るために他のコマンドと組み合わせます:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">$(</span>which<span style="color: #F8F8F8"> </span>python<span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 root wheel 31488 Jan 1 2023 /usr/bin/python</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>which</code>と<code>whereis</code>の違いは何ですか？</h4>
+<p>A. <code>which</code>はPATH内の実行ファイルの場所のみを表示しますが、<code>whereis</code>はコマンドのソースコード、マニュアルページ、関連ファイルも見つけます。</p>
+<h4>Q2. なぜ<code>which</code>は存在するコマンドを見つけられないことがありますか？</h4>
+<p>A. そのコマンドはシェルビルトイン（<code>cd</code>など）、エイリアス、またはPATH環境変数に含まれていない可能性があります。</p>
+<h4>Q3. コマンドがインストールされているかを確認するために<code>which</code>をどのように使用できますか？</h4>
+<p>A. <code>which -s command &amp;&amp; echo &quot;Installed&quot; || echo &quot;Not installed&quot;</code>を使用して、コマンドがPATHに存在するかを確認できます。</p>
+<h4>Q4. <code>which</code>はシェルビルトインに対して機能しますか？</h4>
+<p>A. いいえ、<code>which</code>はPATH内の実行ファイルのみを見つけ、<code>cd</code>や<code>echo</code>などのシェルビルトインは見つけません。</p>
+<h2>参考文献</h2>
+<p>https://pubs.opengroup.org/onlinepubs/9699919799/utilities/which.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

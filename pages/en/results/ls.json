@@ -1,0 +1,20 @@
+{
+  "id": "msg_01364oYhwCdvoi6WdQs8EBzJ",
+  "content": [
+    {
+      "text": "# ls command\n\nList directory contents.\n\n## Overview\n\nThe `ls` command displays files and directories in the specified location. By default, it shows the contents of the current working directory, sorted alphabetically, excluding hidden files (those starting with a dot). It's one of the most frequently used commands for navigating and exploring the filesystem.\n\n## Options\n\n### **-l**\n\nDisplay detailed information in a long listing format, showing file permissions, number of links, owner, group, size, and modification time.\n\n```console\n$ ls -l\ntotal 16\n-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt\ndrwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects\n```\n\n### **-a, --all**\n\nShow all files, including hidden files (those starting with a dot).\n\n```console\n$ ls -a\n.  ..  .hidden  document.txt  projects\n```\n\n### **-d, --directory**\n\nList directories themselves, not their contents.\n\n```console\n$ ls -d */\nprojects/  documents/  downloads/\n```\n\n### **-s, --size**\n\nPrint the allocated size of each file in blocks.\n\n```console\n$ ls -s\ntotal 16\n8 document.txt  8 projects\n```\n\n### **-t**\n\nSort by modification time, newest first.\n\n```console\n$ ls -lt\ntotal 16\n-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt\ndrwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects\n```\n\n### **-r, --reverse**\n\nReverse the order of the sort.\n\n```console\n$ ls -ltr\ntotal 16\ndrwxr-xr-x  3 user  staff   96  Apr 9  14:22 projects\n-rw-r--r--  1 user  staff  1024 Apr 10 15:30 document.txt\n```\n\n## Usage Examples\n\n### Listing files with human-readable sizes\n\n```console\n$ ls -lh\ntotal 16K\n-rw-r--r--  1 user  staff  1.0K Apr 10 15:30 document.txt\ndrwxr-xr-x  3 user  staff   96B Apr 9  14:22 projects\n```\n\n### Listing only directories\n\n```console\n$ ls -ld */\ndrwxr-xr-x 3 user staff 96 Apr 9 14:22 projects/\ndrwxr-xr-x 5 user staff 160 Apr 8 10:15 documents/\n```\n\n### Listing files by file type\n\n```console\n$ ls -F\ndocument.txt  projects/  script.sh*\n```\n\n### Recursive listing of directories\n\n```console\n$ ls -R\n.:\ndocument.txt  projects\n\n./projects:\nREADME.md  src\n\n./projects/src:\nmain.c  utils.h\n```\n\n## Tips:\n\n### Combine Options for Powerful Listings\n\nCombine options like `ls -lha` to show all files (including hidden ones) with detailed information and human-readable sizes.\n\n### Use Color Coding for Better Visibility\n\nMany systems have `ls` aliased to `ls --color=auto`, which color-codes different file types. If not, you can add this to your shell configuration.\n\n### Sort Files by Size\n\nUse `ls -lS` to sort files by size (largest first), which helps identify space-consuming files.\n\n### Customize the Output Format\n\nUse `ls -l --time-style=long-iso` for a more standardized timestamp format (YYYY-MM-DD HH:MM).\n\n## Frequently Asked Questions\n\n#### Q1. How do I list only directories?\nA. Use `ls -d */` to list only directories in the current location.\n\n#### Q2. How can I see file sizes in KB, MB, etc.?\nA. Use `ls -lh` for human-readable sizes.\n\n#### Q3. How do I sort files by modification time?\nA. Use `ls -lt` to sort by modification time, newest first.\n\n#### Q4. How do I list files recursively?\nA. Use `ls -R` to list all files and subdirectories recursively.\n\n#### Q5. How can I see hidden files?\nA. Use `ls -a` to show all files, including hidden ones.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1721,
+    "output_tokens": 1107
+  }
+}

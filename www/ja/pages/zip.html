@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  zip - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>zip コマンド</h1>
+<p>ファイルやディレクトリを圧縮してZIPアーカイブを作成または更新します。</p>
+<h2>概要</h2>
+<p><code>zip</code>コマンドは、ZIP形式の圧縮アーカイブを作成します。この形式はファイル圧縮やパッケージングに広く使用されています。既存のアーカイブにファイルを追加したり、アーカイブ内のファイルを更新したり、自己解凍型アーカイブを作成したりすることができます。ZIPファイルはファイル属性とディレクトリ構造を維持するため、クロスプラットフォームでのファイル共有に便利です。</p>
+<h2>オプション</h2>
+<h3><strong>-r</strong></h3>
+<p>ディレクトリとそのサブディレクトリ内のファイルを再帰的に含める</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>documents/
+<span style="color: #000; font-style: italic">  adding: documents/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: documents/report.txt (deflated 35%)</span>
+<span style="color: #000; font-style: italic">  adding: documents/images/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: documents/images/photo.jpg (deflated 2%)</span>
+</pre></div>
+<h3><strong>-u</strong></h3>
+<p>アーカイブ内のバージョンよりも新しい場合、zipアーカイブ内の既存エントリを更新する</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>documents/report.txt
+<span style="color: #000; font-style: italic">updating: documents/report.txt (deflated 35%)</span>
+</pre></div>
+<h3><strong>-d</strong></h3>
+<p>zipアーカイブからエントリを削除する</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>documents/report.txt
+<span style="color: #000; font-style: italic">deleting: documents/report.txt</span>
+</pre></div>
+<h3><strong>-e</strong></h3>
+<p>パスワードでzipファイルの内容を暗号化する</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>secure.zip<span style="color: #F8F8F8"> </span>confidential.txt
+<span style="color: #000; font-style: italic">Enter password: </span>
+<span style="color: #000; font-style: italic">Verify password: </span>
+<span style="color: #000; font-style: italic">  adding: confidential.txt (deflated 42%)</span>
+</pre></div>
+<h3><strong>-j</strong></h3>
+<p>ファイル名のみを保存する（パスを破棄する）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-j<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>documents/report.txt<span style="color: #F8F8F8"> </span>documents/images/photo.jpg
+<span style="color: #000; font-style: italic">  adding: report.txt (deflated 35%)</span>
+<span style="color: #000; font-style: italic">  adding: photo.jpg (deflated 2%)</span>
+</pre></div>
+<h3><strong>-m</strong></h3>
+<p>指定したファイルをzipアーカイブに移動する（元のファイルを削除する）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>temp.txt
+<span style="color: #000; font-style: italic">  adding: temp.txt (deflated 30%)</span>
+</pre></div>
+<h3><strong>-9</strong></h3>
+<p>最大圧縮を使用する（最も遅い）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-9<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>largefile.dat
+<span style="color: #000; font-style: italic">  adding: largefile.dat (deflated 65%)</span>
+</pre></div>
+<h3><strong>-0</strong></h3>
+<p>圧縮せずにファイルを保存する</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-0<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>already-compressed.jpg
+<span style="color: #000; font-style: italic">  adding: already-compressed.jpg (stored 0%)</span>
+</pre></div>
+<h3><strong>-v</strong></h3>
+<p>zip操作に関する詳細情報を表示する</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">  adding: document.txt (deflated 35%)</span>
+<span style="color: #000; font-style: italic">zip diagnostic: adding document.txt</span>
+<span style="color: #000; font-style: italic">Total bytes read: 1024 (1.0k)</span>
+<span style="color: #000; font-style: italic">Total bytes written: 665 (665b)</span>
+<span style="color: #000; font-style: italic">Compression ratio: 35.1%</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なzipアーカイブの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>backup.zip<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">  adding: file1.txt (deflated 42%)</span>
+<span style="color: #000; font-style: italic">  adding: file2.txt (deflated 38%)</span>
+</pre></div>
+<h3>サブディレクトリを含むディレクトリ全体をzip化する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>project.zip<span style="color: #F8F8F8"> </span>project/
+<span style="color: #000; font-style: italic">  adding: project/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: project/src/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: project/src/main.c (deflated 45%)</span>
+<span style="color: #000; font-style: italic">  adding: project/docs/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: project/docs/readme.md (deflated 40%)</span>
+</pre></div>
+<h3>パスワード保護されたzipファイルの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>confidential.zip<span style="color: #F8F8F8"> </span>sensitive_data/
+<span style="color: #000; font-style: italic">Enter password: </span>
+<span style="color: #000; font-style: italic">Verify password: </span>
+<span style="color: #000; font-style: italic">  adding: sensitive_data/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: sensitive_data/accounts.xlsx (deflated 52%)</span>
+<span style="color: #000; font-style: italic">  adding: sensitive_data/passwords.txt (deflated 35%)</span>
+</pre></div>
+<h3>既存のアーカイブ内のファイルを更新する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>updated_file.txt
+<span style="color: #000; font-style: italic">updating: updated_file.txt (deflated 40%)</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>異なる圧縮レベルを使用する</h3>
+<p>大きなアーカイブの場合、異なる圧縮レベルの使用を検討してください。すでに圧縮されているファイル（JPEGなど）には<code>-0</code>を、最大圧縮が有益なテキストファイルには<code>-9</code>を使用します。</p>
+<h3>不要なファイルを除外する</h3>
+<p>パターンを使用してファイルを除外できます：<code>zip -r archive.zip directory -x &quot;*.git*&quot; &quot;*.DS_Store&quot;</code>はGitファイルとmacOSシステムファイルを除外します。</p>
+<h3>自己解凍型アーカイブの作成</h3>
+<p>一部のシステムでは、<code>zip -A archive.zip</code>で自己解凍型アーカイブを作成できます。これによりZIPファイルに解凍コードが追加され、実行可能になります。</p>
+<h3>大きなアーカイブの分割</h3>
+<p>制限されたメディアを介して転送する必要がある非常に大きなアーカイブの場合、<code>-s</code>オプションを使用してアーカイブを小さな部分に分割します：<code>zip -s 100m -r archive.zip large_directory/</code></p>
+<h2>よくある質問</h2>
+<h4>Q1. ZIPファイルを解凍するにはどうすればよいですか？</h4>
+<p>A. <code>unzip</code>コマンドを使用します：<code>unzip archive.zip</code>。<code>zip</code>コマンドはアーカイブの作成または変更のみを行います。</p>
+<h4>Q2. ZIPファイルを解凍せずに内容を確認するにはどうすればよいですか？</h4>
+<p>A. <code>unzip -l archive.zip</code>を使用して、解凍せずに内容を一覧表示します。</p>
+<h4>Q3. Unixパーミッションを保持するZIPファイルを作成するにはどうすればよいですか？</h4>
+<p>A. <code>-X</code>オプションを使用します：<code>zip -X archive.zip files</code>でUnixパーミッションを含むファイル属性を保持します。</p>
+<h4>Q4. ZIPファイルにコメントを追加できますか？</h4>
+<p>A. はい、<code>-z</code>オプションを使用します：<code>zip -z archive.zip</code>を実行すると、コメントの入力を求められます。</p>
+<h4>Q5. ファイル名のエンコーディングの問題を処理するにはどうすればよいですか？</h4>
+<p>A. <code>-UN=encoding</code>を使用してファイル名のエンコーディングを指定します。例：<code>zip -UN=UTF8 archive.zip files</code>。</p>
+<h2>macOSに関する考慮事項</h2>
+<p>macOSでは、デフォルトの<code>zip</code>コマンドがアーカイブに<code>.DS_Store</code>や<code>__MACOSX</code>ディレクトリなどの追加の隠しファイルを作成することがあります。これを避けるには、拡張属性を除外する<code>-X</code>オプションを使用するか、<code>-x &quot;*.DS_Store&quot; &quot;__MACOSX/*&quot;</code>のような除外パターンを追加します。</p>
+<h2>参考文献</h2>
+<p>https://linux.die.net/man/1/zip</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

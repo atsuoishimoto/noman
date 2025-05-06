@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  hostname - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>hostname command</h1>
+<p>Display or set the system's hostname.</p>
+<h2>Overview</h2>
+<p>The <code>hostname</code> command displays or sets the current host, domain, or node name of the system. Without arguments, it prints the current hostname. With appropriate privileges, it can be used to set a new hostname.</p>
+<h2>Options</h2>
+<h3><strong>-s, --short</strong></h3>
+<p>Display the short hostname (the portion before the first dot) without the domain information.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hostname<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic">mycomputer</span>
+</pre></div>
+<h3><strong>-f, --fqdn, --long</strong></h3>
+<p>Display the Fully Qualified Domain Name (FQDN).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hostname<span style="color: #F8F8F8"> </span>-f
+<span style="color: #000; font-style: italic">mycomputer.example.com</span>
+</pre></div>
+<h3><strong>-d, --domain</strong></h3>
+<p>Display the domain name the system belongs to.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hostname<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">example.com</span>
+</pre></div>
+<h3><strong>-i, --ip-address</strong></h3>
+<p>Display the IP address(es) of the host.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hostname<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic">192.168.1.100</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Displaying the current hostname</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hostname
+<span style="color: #000; font-style: italic">mycomputer.example.com</span>
+</pre></div>
+<h3>Setting a new hostname (requires root privileges)</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>hostname<span style="color: #F8F8F8"> </span>newname
+<span style="color: #8F5902">$ </span>hostname
+<span style="color: #000; font-style: italic">newname</span>
+</pre></div>
+<h3>Displaying all network addresses of the host</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>hostname<span style="color: #F8F8F8"> </span>--all-ip-addresses
+<span style="color: #000; font-style: italic">192.168.1.100 10.0.0.1 127.0.0.1</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Permanent Hostname Changes</h3>
+<p>The <code>hostname</code> command only changes the hostname temporarily until the next reboot. To make permanent changes:</p>
+<ul>
+<li>On Linux: Edit <code>/etc/hostname</code> or use <code>hostnamectl set-hostname newname</code></li>
+<li>On macOS: Use System Preferences &gt; Sharing &gt; Computer Name or <code>scutil --set HostName newname</code></li>
+</ul>
+<h3>Hostname vs. FQDN</h3>
+<p>The hostname is just the computer name (e.g., &quot;mycomputer&quot;), while the FQDN includes the domain (e.g., &quot;mycomputer.example.com&quot;). Use <code>-f</code> when you need the complete network identity.</p>
+<h3>Hostname Resolution</h3>
+<p>The hostname command doesn't update DNS or <code>/etc/hosts</code>. After changing a hostname, you may need to update these separately for proper network resolution.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between hostname and hostnamectl?</h4>
+<p>A. <code>hostname</code> is a simple utility to display or temporarily set the system hostname, while <code>hostnamectl</code> (on systemd-based Linux systems) can permanently set various hostname parameters and is the preferred method on modern Linux distributions.</p>
+<h4>Q2. Why does hostname -i sometimes return 127.0.1.1 instead of my actual IP?</h4>
+<p>A. This happens when the hostname is mapped to 127.0.1.1 in <code>/etc/hosts</code>, which is common in some distributions. Use <code>hostname --all-ip-addresses</code> or <code>ip addr</code> for more accurate network information.</p>
+<h4>Q3. How can I make hostname changes permanent?</h4>
+<p>A. Edit <code>/etc/hostname</code> on Linux or use <code>hostnamectl set-hostname newname</code>. On macOS, use <code>scutil --set HostName newname</code>.</p>
+<h2>macOS Considerations</h2>
+<p>On macOS, there are three different hostname settings that can be configured:</p>
+<ul>
+<li>HostName: The network hostname (FQDN)</li>
+<li>LocalHostName: The Bonjour hostname (used for local network discovery)</li>
+<li>ComputerName: The user-friendly name shown in the UI</li>
+</ul>
+<p>To set these values, use:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>scutil<span style="color: #F8F8F8"> </span>--set<span style="color: #F8F8F8"> </span>HostName<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;hostname.domain.com&quot;</span>
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>scutil<span style="color: #F8F8F8"> </span>--set<span style="color: #F8F8F8"> </span>LocalHostName<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;hostname&quot;</span>
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>scutil<span style="color: #F8F8F8"> </span>--set<span style="color: #F8F8F8"> </span>ComputerName<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;My Computer&quot;</span>
+</pre></div>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/hostname.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

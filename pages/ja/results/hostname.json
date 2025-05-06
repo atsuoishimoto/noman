@@ -1,0 +1,20 @@
+{
+  "id": "msg_01CAWQXqQio2Zi6AMDbbdKi1",
+  "content": [
+    {
+      "text": "# hostname コマンド\n\nシステムのホスト名を表示または設定します。\n\n## 概要\n\n`hostname` コマンドは、システムの現在のホスト名、ドメイン名、またはノード名を表示または設定します。引数なしで実行すると、現在のホスト名を表示します。適切な権限があれば、新しいホスト名を設定することもできます。\n\n## オプション\n\n### **-s, --short**\n\nドメイン情報なしの短いホスト名（最初のドットより前の部分）を表示します。\n\n```console\n$ hostname -s\nmycomputer\n```\n\n### **-f, --fqdn, --long**\n\n完全修飾ドメイン名（FQDN）を表示します。\n\n```console\n$ hostname -f\nmycomputer.example.com\n```\n\n### **-d, --domain**\n\nシステムが所属するドメイン名を表示します。\n\n```console\n$ hostname -d\nexample.com\n```\n\n### **-i, --ip-address**\n\nホストのIPアドレスを表示します。\n\n```console\n$ hostname -i\n192.168.1.100\n```\n\n## 使用例\n\n### 現在のホスト名を表示する\n\n```console\n$ hostname\nmycomputer.example.com\n```\n\n### 新しいホスト名を設定する（root権限が必要）\n\n```console\n$ sudo hostname newname\n$ hostname\nnewname\n```\n\n### ホストのすべてのネットワークアドレスを表示する\n\n```console\n$ hostname --all-ip-addresses\n192.168.1.100 10.0.0.1 127.0.0.1\n```\n\n## ヒント:\n\n### ホスト名の永続的な変更\n\n`hostname` コマンドは次の再起動までホスト名を一時的に変更するだけです。永続的な変更を行うには：\n- Linux の場合：`/etc/hostname` を編集するか、`hostnamectl set-hostname newname` を使用します\n- macOS の場合：システム環境設定 > 共有 > コンピュータ名を使用するか、`scutil --set HostName newname` を使用します\n\n### ホスト名 vs. FQDN\n\nホスト名はコンピュータ名のみ（例：「mycomputer」）であるのに対し、FQDNはドメインを含みます（例：「mycomputer.example.com」）。完全なネットワーク識別子が必要な場合は `-f` を使用してください。\n\n### ホスト名の解決\n\nhostname コマンドは DNS や `/etc/hosts` を更新しません。ホスト名を変更した後、適切なネットワーク解決のためにこれらを別途更新する必要があるかもしれません。\n\n## よくある質問\n\n#### Q1. hostname と hostnamectl の違いは何ですか？\nA. `hostname` はシステムのホスト名を表示または一時的に設定するシンプルなユーティリティであるのに対し、`hostnamectl`（systemdベースのLinuxシステムで）は様々なホスト名パラメータを永続的に設定でき、最新のLinuxディストリビューションでは推奨される方法です。\n\n#### Q2. なぜ hostname -i が実際のIPではなく 127.0.1.1 を返すことがあるのですか？\nA. これは、ホスト名が `/etc/hosts` で 127.0.1.1 にマッピングされている場合に発生します。これは一部のディストリビューションでは一般的です。より正確なネットワーク情報を得るには、`hostname --all-ip-addresses` または `ip addr` を使用してください。\n\n#### Q3. ホスト名の変更を永続的にするにはどうすればよいですか？\nA. Linux では `/etc/hostname` を編集するか、`hostnamectl set-hostname newname` を使用します。macOS では、`scutil --set HostName newname` を使用します。\n\n## macOSに関する考慮事項\n\nmacOSでは、設定可能な3つの異なるホスト名設定があります：\n\n- HostName：ネットワークホスト名（FQDN）\n- LocalHostName：Bonjourホスト名（ローカルネットワーク検出に使用）\n- ComputerName：UIに表示されるユーザーフレンドリーな名前\n\nこれらの値を設定するには：\n\n```console\n$ sudo scutil --set HostName \"hostname.domain.com\"\n$ sudo scutil --set LocalHostName \"hostname\"\n$ sudo scutil --set ComputerName \"My Computer\"\n```\n\n## 参考文献\n\nhttps://man7.org/linux/man-pages/man1/hostname.1.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1020,
+    "output_tokens": 1344
+  }
+}

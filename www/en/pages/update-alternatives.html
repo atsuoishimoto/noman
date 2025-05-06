@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  update-alternatives - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>update-alternatives command</h1>
+<p>Manages symbolic links determining default commands in the alternatives system.</p>
+<h2>Overview</h2>
+<p><code>update-alternatives</code> creates, removes, maintains, and displays information about symbolic links that determine which commands are run when a user enters a particular command name. It's part of the Debian alternatives system that allows multiple versions of the same program to coexist on a system, with one version designated as the default.</p>
+<h2>Options</h2>
+<h3><strong>--install</strong></h3>
+<p>Creates a new alternative link group</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>update-alternatives<span style="color: #F8F8F8"> </span>--install<span style="color: #F8F8F8"> </span>/usr/bin/editor<span style="color: #F8F8F8"> </span>editor<span style="color: #F8F8F8"> </span>/usr/bin/vim<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">50</span>
+<span style="color: #000; font-style: italic">update-alternatives: using /usr/bin/vim to provide /usr/bin/editor (editor) in auto mode</span>
+</pre></div>
+<h3><strong>--config</strong></h3>
+<p>Configures which alternative to use for a link group</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>update-alternatives<span style="color: #F8F8F8"> </span>--config<span style="color: #F8F8F8"> </span>editor
+<span style="color: #000; font-style: italic">There are 3 choices for the alternative editor (providing /usr/bin/editor).</span>
+
+<span style="color: #000; font-style: italic">  Selection    Path                Priority   Status</span>
+<span style="color: #000; font-style: italic">------------------------------------------------------------</span>
+<span style="color: #000; font-style: italic">* 0            /usr/bin/vim         50        auto mode</span>
+<span style="color: #000; font-style: italic">  1            /usr/bin/emacs       40        manual mode</span>
+<span style="color: #000; font-style: italic">  2            /usr/bin/nano        30        manual mode</span>
+<span style="color: #000; font-style: italic">  3            /usr/bin/vim         50        manual mode</span>
+
+<span style="color: #000; font-style: italic">Press &lt;enter&gt; to keep the current choice[*], or type selection number:</span>
+</pre></div>
+<h3><strong>--display</strong></h3>
+<p>Displays information about a link group</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>update-alternatives<span style="color: #F8F8F8"> </span>--display<span style="color: #F8F8F8"> </span>editor
+<span style="color: #000; font-style: italic">editor - auto mode</span>
+<span style="color: #000; font-style: italic">  link best version is /usr/bin/vim</span>
+<span style="color: #000; font-style: italic">  link currently points to /usr/bin/vim</span>
+<span style="color: #000; font-style: italic">  link editor is /usr/bin/editor</span>
+<span style="color: #000; font-style: italic">  slave editor.1.gz is /usr/share/man/man1/editor.1.gz</span>
+<span style="color: #000; font-style: italic">  slave editor.fr.1.gz is /usr/share/man/fr/man1/editor.1.gz</span>
+<span style="color: #000; font-style: italic">  /usr/bin/emacs - priority 40</span>
+<span style="color: #000; font-style: italic">  /usr/bin/nano - priority 30</span>
+<span style="color: #000; font-style: italic">  /usr/bin/vim - priority 50</span>
+</pre></div>
+<h3><strong>--remove</strong></h3>
+<p>Removes an alternative from a link group</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>update-alternatives<span style="color: #F8F8F8"> </span>--remove<span style="color: #F8F8F8"> </span>editor<span style="color: #F8F8F8"> </span>/usr/bin/emacs
+<span style="color: #000; font-style: italic">update-alternatives: removing editor (/usr/bin/emacs) from auto mode</span>
+</pre></div>
+<h3><strong>--set</strong></h3>
+<p>Sets a specific alternative as the selected one for a link group</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>update-alternatives<span style="color: #F8F8F8"> </span>--set<span style="color: #F8F8F8"> </span>editor<span style="color: #F8F8F8"> </span>/usr/bin/nano
+<span style="color: #000; font-style: italic">update-alternatives: using /usr/bin/nano to provide /usr/bin/editor (editor) in manual mode</span>
+</pre></div>
+<h3><strong>--auto</strong></h3>
+<p>Sets a link group to automatic mode (highest priority alternative is used)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>update-alternatives<span style="color: #F8F8F8"> </span>--auto<span style="color: #F8F8F8"> </span>editor
+<span style="color: #000; font-style: italic">update-alternatives: using /usr/bin/vim to provide /usr/bin/editor (editor) in auto mode</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Setting up Java alternatives</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>update-alternatives<span style="color: #F8F8F8"> </span>--install<span style="color: #F8F8F8"> </span>/usr/bin/java<span style="color: #F8F8F8"> </span>java<span style="color: #F8F8F8"> </span>/usr/lib/jvm/java-11-openjdk/bin/java<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1100</span>
+<span style="color: #000; font-style: italic">update-alternatives: using /usr/lib/jvm/java-11-openjdk/bin/java to provide /usr/bin/java (java) in auto mode</span>
+
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>update-alternatives<span style="color: #F8F8F8"> </span>--install<span style="color: #F8F8F8"> </span>/usr/bin/java<span style="color: #F8F8F8"> </span>java<span style="color: #F8F8F8"> </span>/usr/lib/jvm/java-8-openjdk/bin/java<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1000</span>
+<span style="color: #000; font-style: italic">update-alternatives: using /usr/lib/jvm/java-11-openjdk/bin/java to provide /usr/bin/java (java) in auto mode</span>
+
+<span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>update-alternatives<span style="color: #F8F8F8"> </span>--config<span style="color: #F8F8F8"> </span>java
+<span style="color: #000; font-style: italic">There are 2 choices for the alternative java (providing /usr/bin/java).</span>
+
+<span style="color: #000; font-style: italic">  Selection    Path                                      Priority   Status</span>
+<span style="color: #000; font-style: italic">------------------------------------------------------------</span>
+<span style="color: #000; font-style: italic">* 0            /usr/lib/jvm/java-11-openjdk/bin/java     1100      auto mode</span>
+<span style="color: #000; font-style: italic">  1            /usr/lib/jvm/java-8-openjdk/bin/java      1000      manual mode</span>
+<span style="color: #000; font-style: italic">  2            /usr/lib/jvm/java-11-openjdk/bin/java     1100      manual mode</span>
+
+<span style="color: #000; font-style: italic">Press &lt;enter&gt; to keep the current choice[*], or type selection number:</span>
+</pre></div>
+<h3>Checking which alternatives are available for a command</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>update-alternatives<span style="color: #F8F8F8"> </span>--list<span style="color: #F8F8F8"> </span>editor
+<span style="color: #000; font-style: italic">/usr/bin/emacs</span>
+<span style="color: #000; font-style: italic">/usr/bin/nano</span>
+<span style="color: #000; font-style: italic">/usr/bin/vim</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Understanding Priority Values</h3>
+<p>Higher priority values (like 100 vs 50) make an alternative more likely to be chosen in automatic mode. When setting up alternatives, assign higher numbers to preferred versions.</p>
+<h3>Managing Groups of Related Commands</h3>
+<p>For programs with multiple commands (like Java's java, javac, jar), create alternatives for each command to ensure consistent versioning across all tools.</p>
+<h3>Automatic vs Manual Mode</h3>
+<p>In automatic mode, the system selects the alternative with the highest priority. In manual mode, the system keeps your selected choice even if a higher priority alternative is installed later.</p>
+<h3>Slave Links</h3>
+<p>Use slave links (with <code>--slave</code> option) to manage related files like man pages that should change together with the main alternative.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between automatic and manual mode?</h4>
+<p>A. In automatic mode, the system selects the alternative with the highest priority. In manual mode, your selected choice remains until you explicitly change it.</p>
+<h4>Q2. How do I see all available alternatives for a command?</h4>
+<p>A. Use <code>update-alternatives --list command_name</code> to see all alternatives, or <code>update-alternatives --display command_name</code> for more detailed information.</p>
+<h4>Q3. How do I completely remove an alternative?</h4>
+<p>A. Use <code>update-alternatives --remove link_name path</code> to remove a specific alternative from a group.</p>
+<h4>Q4. What priority number should I use when installing alternatives?</h4>
+<p>A. Priority can be any integer. Higher numbers (like 100) have higher priority than lower numbers (like 10). Choose values that reflect your preference order.</p>
+<h2>References</h2>
+<p>https://manpages.debian.org/bullseye/dpkg/update-alternatives.1.en.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

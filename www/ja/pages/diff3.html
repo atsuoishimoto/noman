@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  diff3 - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>diff3 コマンド</h1>
+<p>3つのファイルを行ごとに比較します。</p>
+<h2>概要</h2>
+<p><code>diff3</code> は3つのファイルを比較し、それらの間の違いを識別します。特に、共通の祖先から派生した2つの異なるバージョンのファイルからの変更をマージするのに役立ち、バージョン管理や共同編集において価値があります。</p>
+<h2>オプション</h2>
+<h3><strong>-A, --show-all</strong></h3>
+<p>特殊なマーカーを使用して、競合を含むすべての変更を出力します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">&lt;&lt;&lt;&lt;&lt;&lt;&lt; file1</span>
+<span style="color: #000; font-style: italic">Line from file1</span>
+<span style="color: #000; font-style: italic">||||||| file2</span>
+<span style="color: #000; font-style: italic">Line from file2</span>
+<span style="color: #000; font-style: italic">======= </span>
+<span style="color: #000; font-style: italic">Line from file3</span>
+<span style="color: #000; font-style: italic">&gt;&gt;&gt;&gt;&gt;&gt;&gt; file3</span>
+</pre></div>
+<h3><strong>-e, --ed</strong></h3>
+<p>最初のファイルから3番目のファイルへの変更を2番目のファイルに組み込むedスクリプトを作成します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">w</span>
+<span style="color: #000; font-style: italic">q</span>
+</pre></div>
+<h3><strong>-m, --merge</strong></h3>
+<p>競合がマークされたマージファイルを出力します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">&lt;&lt;&lt;&lt;&lt;&lt;&lt; file1</span>
+<span style="color: #000; font-style: italic">Line from file1</span>
+<span style="color: #000; font-style: italic">||||||| file2</span>
+<span style="color: #000; font-style: italic">Line from file2</span>
+<span style="color: #000; font-style: italic">=======</span>
+<span style="color: #000; font-style: italic">Line from file3</span>
+<span style="color: #000; font-style: italic">&gt;&gt;&gt;&gt;&gt;&gt;&gt; file3</span>
+</pre></div>
+<h3><strong>-T, --initial-tab</strong></h3>
+<p>出力行の先頭にタブを付けることで、タブを揃えます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-T<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">	&lt;&lt;&lt;&lt;&lt;&lt;&lt; file1</span>
+<span style="color: #000; font-style: italic">	Line from file1</span>
+<span style="color: #000; font-style: italic">	||||||| file2</span>
+<span style="color: #000; font-style: italic">	Line from file2</span>
+<span style="color: #000; font-style: italic">	=======</span>
+<span style="color: #000; font-style: italic">	Line from file3</span>
+<span style="color: #000; font-style: italic">	&gt;&gt;&gt;&gt;&gt;&gt;&gt; file3</span>
+</pre></div>
+<h3><strong>-x, --overlap-only</strong></h3>
+<p>重複する変更のみを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>file1<span style="color: #F8F8F8"> </span>file2<span style="color: #F8F8F8"> </span>file3
+<span style="color: #000; font-style: italic">==== 1:1c 2:1c 3:1c</span>
+<span style="color: #000; font-style: italic">Line from file1</span>
+<span style="color: #000; font-style: italic">Line from file2</span>
+<span style="color: #000; font-style: italic">Line from file3</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な比較</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>yours.txt<span style="color: #F8F8F8"> </span>theirs.txt
+<span style="color: #000; font-style: italic">====</span>
+<span style="color: #000; font-style: italic">1:1c</span>
+<span style="color: #000; font-style: italic">This is the original line.</span>
+<span style="color: #000; font-style: italic">2:1c</span>
+<span style="color: #000; font-style: italic">This is your modified line.</span>
+<span style="color: #000; font-style: italic">3:1c</span>
+<span style="color: #000; font-style: italic">This is their modified line.</span>
+</pre></div>
+<h3>マージファイルの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>yours.txt<span style="color: #F8F8F8"> </span>theirs.txt<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>merged.txt
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>merged.txt
+<span style="color: #000; font-style: italic">&lt;&lt;&lt;&lt;&lt;&lt;&lt; yours.txt</span>
+<span style="color: #000; font-style: italic">This is your modified line.</span>
+<span style="color: #000; font-style: italic">||||||| original.txt</span>
+<span style="color: #000; font-style: italic">This is the original line.</span>
+<span style="color: #000; font-style: italic">=======</span>
+<span style="color: #000; font-style: italic">This is their modified line.</span>
+<span style="color: #000; font-style: italic">&gt;&gt;&gt;&gt;&gt;&gt;&gt; theirs.txt</span>
+</pre></div>
+<h3>マージ用のEdスクリプトの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>diff3<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>original.txt<span style="color: #F8F8F8"> </span>yours.txt<span style="color: #F8F8F8"> </span>theirs.txt<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>merge.ed
+<span style="color: #8F5902">$ </span>ed<span style="color: #F8F8F8"> </span>-<span style="color: #F8F8F8"> </span>yours.txt<span style="color: #F8F8F8"> </span>&lt;<span style="color: #F8F8F8"> </span>merge.ed<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>merged.txt
+</pre></div>
+<h2>ヒント:</h2>
+<h3>出力フォーマットの理解</h3>
+<p>デフォルトの出力では、各変更は <code>====</code> の後に行番号と変更タイプでマークされます。例えば、<code>1:1c 2:1c 3:1c</code> は3つのファイルすべての1行目が変更されていることを意味します。</p>
+<h3>バージョン管理でのdiff3の使用</h3>
+<p>異なるブランチからの変更をマージする場合、最初の引数として元のファイル、2番目に自分の修正バージョン、3番目に相手の修正バージョンを使用します。</p>
+<h3>マージ競合の解決</h3>
+<p><code>-m</code> オプションを使用する場合、出力ファイル内の競合マーカー（<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>、<code>|||||||</code>、<code>=======</code>、<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>）を探し、手動で編集して競合を解決します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. diffとdiff3の違いは何ですか？</h4>
+<p>A. <code>diff</code> は2つのファイルを比較しますが、<code>diff3</code> は3つのファイルを比較します。これにより、共通の祖先から派生した2つの異なるバージョンからの変更をマージするのに役立ちます。</p>
+<h4>Q2. diff3の出力をどのように解釈すればよいですか？</h4>
+<p>A. 出力はファイルが異なる部分を示し、各ファイルからの行番号と内容を表示します。フォーマットは使用するオプションによって異なります。</p>
+<h4>Q3. diff3は自動的に競合を解決できますか？</h4>
+<p>A. いいえ、diff3は競合を識別できますが、自動的に解決することはできません。出力に競合をマークし、手動で解決する必要があります。</p>
+<h4>Q4. マージ出力をファイルに保存するにはどうすればよいですか？</h4>
+<p>A. リダイレクションを使用します：<code>diff3 -m file1 file2 file3 &gt; merged_file</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/diffutils/manual/html_node/Invoking-diff3.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

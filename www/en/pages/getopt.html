@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  getopt - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>getopt command</h1>
+<p>Parse command-line options in shell scripts.</p>
+<h2>Overview</h2>
+<p><code>getopt</code> is a command-line utility that parses command-line arguments according to a specified format, making it easier to handle options in shell scripts. It standardizes option processing by rearranging the arguments into a canonical form that can be processed more easily.</p>
+<h2>Options</h2>
+<h3><strong>-o, --options</strong></h3>
+<p>Specifies the short options to be recognized</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getopt<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>ab:c::<span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>value<span style="color: #F8F8F8"> </span>-c
+<span style="color: #000; font-style: italic"> -a -b &#39;value&#39; -c --</span>
+</pre></div>
+<h3><strong>-l, --longoptions</strong></h3>
+<p>Specifies the long options to be recognized</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getopt<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>a<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>alpha,beta:<span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>--alpha<span style="color: #F8F8F8"> </span>--beta<span style="color: #CE5C00; font-weight: bold">=</span>value
+<span style="color: #000; font-style: italic"> -a --beta &#39;value&#39; --</span>
+</pre></div>
+<h3><strong>-n, --name</strong></h3>
+<p>Sets the name used in error messages</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getopt<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>myscript<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>a<span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>-x
+<span style="color: #000; font-style: italic">myscript: invalid option -- &#39;x&#39;</span>
+</pre></div>
+<h3><strong>-q, --quiet</strong></h3>
+<p>Suppresses error messages</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getopt<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>a<span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>-x
+<span style="color: #000; font-style: italic"> -- &#39;x&#39;</span>
+</pre></div>
+<h3><strong>-Q, --quiet-output</strong></h3>
+<p>Suppresses normal output (useful when checking for valid options)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getopt<span style="color: #F8F8F8"> </span>-Q<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>a<span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>-a
+</pre></div>
+<h3><strong>-u, --unquoted</strong></h3>
+<p>Produces unquoted output (not recommended)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getopt<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>a:b:<span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>foo<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>bar
+<span style="color: #000; font-style: italic"> -a foo -b bar --</span>
+</pre></div>
+<h3><strong>-T, --test</strong></h3>
+<p>Test mode: outputs the parsed parameters and exits</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getopt<span style="color: #F8F8F8"> </span>-T<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>a:b:<span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>foo<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>bar
+<span style="color: #000; font-style: italic">getopt -o &#39;a:b:&#39; -- &#39;-a&#39; &#39;foo&#39; &#39;-b&#39; &#39;bar&#39;</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Option Parsing in a Shell Script</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>example.sh
+<span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #000; font-style: italic">OPTS=$(getopt -o ab:c: --long alpha,beta:,gamma: -n &#39;example.sh&#39; -- &quot;$@&quot;)</span>
+<span style="color: #000; font-style: italic">eval set -- &quot;$OPTS&quot;</span>
+
+<span style="color: #000; font-style: italic">while true; do</span>
+<span style="color: #000; font-style: italic">  case &quot;$1&quot; in</span>
+<span style="color: #000; font-style: italic">    -a | --alpha ) ALPHA=1; shift ;;</span>
+<span style="color: #000; font-style: italic">    -b | --beta ) BETA=&quot;$2&quot;; shift 2 ;;</span>
+<span style="color: #000; font-style: italic">    -c | --gamma ) GAMMA=&quot;$2&quot;; shift 2 ;;</span>
+<span style="color: #000; font-style: italic">    -- ) shift; break ;;</span>
+<span style="color: #000; font-style: italic">    * ) break ;;</span>
+<span style="color: #000; font-style: italic">  esac</span>
+<span style="color: #000; font-style: italic">done</span>
+
+<span style="color: #000; font-style: italic">echo &quot;Alpha: $ALPHA&quot;</span>
+<span style="color: #000; font-style: italic">echo &quot;Beta: $BETA&quot;</span>
+<span style="color: #000; font-style: italic">echo &quot;Gamma: $GAMMA&quot;</span>
+<span style="color: #000; font-style: italic">echo &quot;Remaining arguments: $@&quot;</span>
+
+<span style="color: #8F5902">$ </span>./example.sh<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>--beta<span style="color: #CE5C00; font-weight: bold">=</span>value<span style="color: #F8F8F8"> </span>arg1<span style="color: #F8F8F8"> </span>arg2
+<span style="color: #000; font-style: italic">Alpha: 1</span>
+<span style="color: #000; font-style: italic">Beta: value</span>
+<span style="color: #000; font-style: italic">Gamma: </span>
+<span style="color: #000; font-style: italic">Remaining arguments: arg1 arg2</span>
+</pre></div>
+<h3>Handling Required Options</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>required.sh
+<span style="color: #8F5902">#</span>!/bin/bash
+<span style="color: #000; font-style: italic">OPTS=$(getopt -o f: --long file: -n &#39;required.sh&#39; -- &quot;$@&quot;)</span>
+<span style="color: #000; font-style: italic">eval set -- &quot;$OPTS&quot;</span>
+
+<span style="color: #000; font-style: italic">FILE=&quot;&quot;</span>
+<span style="color: #000; font-style: italic">while true; do</span>
+<span style="color: #000; font-style: italic">  case &quot;$1&quot; in</span>
+<span style="color: #000; font-style: italic">    -f | --file ) FILE=&quot;$2&quot;; shift 2 ;;</span>
+<span style="color: #000; font-style: italic">    -- ) shift; break ;;</span>
+<span style="color: #000; font-style: italic">    * ) break ;;</span>
+<span style="color: #000; font-style: italic">  esac</span>
+<span style="color: #000; font-style: italic">done</span>
+
+<span style="color: #000; font-style: italic">if [ -z &quot;$FILE&quot; ]; then</span>
+<span style="color: #000; font-style: italic">  echo &quot;Error: -f/--file option is required&quot;</span>
+<span style="color: #000; font-style: italic">  exit 1</span>
+<span style="color: #000; font-style: italic">fi</span>
+
+<span style="color: #000; font-style: italic">echo &quot;Processing file: $FILE&quot;</span>
+
+<span style="color: #8F5902">$ </span>./required.sh<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>data.txt
+<span style="color: #000; font-style: italic">Processing file: data.txt</span>
+
+<span style="color: #8F5902">$ </span>./required.sh
+<span style="color: #000; font-style: italic">Error: -f/--file option is required</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Enhanced getopt</h3>
+<p>Modern Linux systems use enhanced getopt which supports long options. The traditional getopt on some systems (like macOS) may not support all features.</p>
+<h3>Always Quote Variables</h3>
+<p>When passing arguments to getopt, always quote the variables to handle spaces correctly:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>getopt<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>a:b:<span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$@</span><span style="color: #4E9A06">&quot;</span>
+</pre></div>
+<h3>Handle Errors Properly</h3>
+<p>Use the <code>-n</code> option to provide a script name for error messages, and check getopt's exit status to handle invalid options:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #000">OPTS</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>getopt<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span>a:b:<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;myscript&#39;</span><span style="color: #F8F8F8"> </span>--<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$@</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">)</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">exit</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span>
+</pre></div>
+<h3>Understand Option Syntax</h3>
+<p>In the option string:</p>
+<ul>
+<li>A single letter means a flag option (e.g., <code>-a</code>)</li>
+<li>A letter followed by a colon means an option with a required argument (e.g., <code>-b value</code>)</li>
+<li>A letter followed by two colons means an option with an optional argument (e.g., <code>-c[value]</code>)</li>
+</ul>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>getopt</code> and <code>getopts</code>?</h4>
+<p>A. <code>getopt</code> is an external command that supports both short and long options, while <code>getopts</code> is a shell builtin that only supports short options but is more portable across different Unix-like systems.</p>
+<h4>Q2. Why does my script fail with &quot;getopt: invalid option&quot; errors?</h4>
+<p>A. You might be using the traditional getopt (common on macOS) which doesn't support long options or other enhanced features. Try using the enhanced getopt available on most Linux distributions.</p>
+<h4>Q3. How do I handle options with optional arguments?</h4>
+<p>A. Use double colons in the option specification: <code>-o a::</code> for short options or <code>--longoptions=alpha::</code> for long options.</p>
+<h4>Q4. How do I separate options from non-option arguments?</h4>
+<p>A. Use <code>--</code> to mark the end of options. Any arguments after <code>--</code> will be treated as non-option arguments.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/getopt.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

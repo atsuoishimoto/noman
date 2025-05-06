@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tar - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tar コマンド</h1>
+<p>テープアーカイブを操作し、アーカイブ形式でファイルの作成、抽出、一覧表示、または更新を行います。</p>
+<h2>概要</h2>
+<p><code>tar</code> コマンドは、tarball として知られるアーカイブファイルの作成、管理、抽出を行います。配布やバックアップのためにファイルをまとめてパッケージ化するのによく使用され、ファイルのパーミッション、所有権、ディレクトリ構造を保持します。元々はテープアーカイブ（名前の由来）用に設計されましたが、現在は主にディスク上のファイルアーカイブに使用されています。</p>
+<h2>オプション</h2>
+<h3><strong>-c, --create</strong></h3>
+<p>新しいアーカイブを作成します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>archive.tar<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+</pre></div>
+<h3><strong>-x, --extract</strong></h3>
+<p>アーカイブからファイルを抽出します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>archive.tar
+</pre></div>
+<h3><strong>-t, --list</strong></h3>
+<p>アーカイブの内容を一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>archive.tar
+<span style="color: #000; font-style: italic">file1.txt</span>
+<span style="color: #000; font-style: italic">file2.txt</span>
+</pre></div>
+<h3><strong>-f, --file=ARCHIVE</strong></h3>
+<p>アーカイブファイルまたはデバイス ARCHIVE を使用します（ほとんどの操作に必要）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>backup.tar<span style="color: #F8F8F8"> </span>documents/
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>処理されたファイルを詳細に一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-cvf<span style="color: #F8F8F8"> </span>archive.tar<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">file1.txt</span>
+<span style="color: #000; font-style: italic">file2.txt</span>
+</pre></div>
+<h3><strong>-z, --gzip</strong></h3>
+<p>アーカイブを gzip でフィルタリングします（.tar.gz ファイルの作成/抽出）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-czf<span style="color: #F8F8F8"> </span>archive.tar.gz<span style="color: #F8F8F8"> </span>directory/
+</pre></div>
+<h3><strong>-j, --bzip2</strong></h3>
+<p>アーカイブを bzip2 でフィルタリングします（.tar.bz2 ファイルの作成/抽出）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-cjf<span style="color: #F8F8F8"> </span>archive.tar.bz2<span style="color: #F8F8F8"> </span>directory/
+</pre></div>
+<h3><strong>-C, --directory=DIR</strong></h3>
+<p>操作を実行する前にディレクトリ DIR に変更します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-xf<span style="color: #F8F8F8"> </span>archive.tar<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span>/tmp/extract/
+</pre></div>
+<h3><strong>--exclude=PATTERN</strong></h3>
+<p>PATTERN に一致するファイルを除外します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-cf<span style="color: #F8F8F8"> </span>backup.tar<span style="color: #F8F8F8"> </span>--exclude<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;*.log&quot;</span><span style="color: #F8F8F8"> </span>directory/
+</pre></div>
+<h2>使用例</h2>
+<h3>圧縮アーカイブの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-czf<span style="color: #F8F8F8"> </span>project-backup.tar.gz<span style="color: #F8F8F8"> </span>project/
+</pre></div>
+<h3>圧縮アーカイブの抽出</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-xzf<span style="color: #F8F8F8"> </span>project-backup.tar.gz
+</pre></div>
+<h3>圧縮アーカイブの内容一覧表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-tzf<span style="color: #F8F8F8"> </span>project-backup.tar.gz
+<span style="color: #000; font-style: italic">project/</span>
+<span style="color: #000; font-style: italic">project/file1.txt</span>
+<span style="color: #000; font-style: italic">project/file2.txt</span>
+<span style="color: #000; font-style: italic">project/subdirectory/</span>
+<span style="color: #000; font-style: italic">project/subdirectory/file3.txt</span>
+</pre></div>
+<h3>アーカイブから特定のファイルを抽出</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-xf<span style="color: #F8F8F8"> </span>archive.tar<span style="color: #F8F8F8"> </span>file1.txt
+</pre></div>
+<h3>詳細出力付きでアーカイブを作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tar<span style="color: #F8F8F8"> </span>-cvf<span style="color: #F8F8F8"> </span>documents.tar<span style="color: #F8F8F8"> </span>Documents/
+<span style="color: #000; font-style: italic">Documents/</span>
+<span style="color: #000; font-style: italic">Documents/report.pdf</span>
+<span style="color: #000; font-style: italic">Documents/presentation.pptx</span>
+<span style="color: #000; font-style: italic">Documents/notes.txt</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>オプションを簡潔に組み合わせる</h3>
+<p>ハイフンなしでオプションを組み合わせることができます。例えば <code>tar -c -z -f</code> の代わりに <code>tar czf</code> のように使えます。これは経験豊富なユーザーがよく使う省略形です。</p>
+<h3>パーミッションと所有権を保持する</h3>
+<p>デフォルトでは、<code>tar</code> はファイルのパーミッションと所有権を保持します。root として抽出する場合は、制限されたパーミッションでファイルが作成される可能性があるため注意してください。</p>
+<h3>大きなアーカイブには進行状況インジケーターを使用する</h3>
+<p>大きなアーカイブの場合、<code>--checkpoint=1000 --checkpoint-action=dot</code> を追加して操作中に進行状況のドットを表示します。</p>
+<h3>アーカイブの整合性を確認する</h3>
+<p><code>tar -tf archive.tar</code> を使用して、アーカイブの内容を抽出せずに確認できます。これはアーカイブが破損していないことを確認するのに役立ちます。</p>
+<h3>抽出時に圧縮タイプを覚えておく</h3>
+<p>アーカイブを作成したときと同じ圧縮オプションを抽出時に指定する必要があります（例：gzip には <code>-z</code>、bzip2 には <code>-j</code>）。</p>
+<h2>よくある質問</h2>
+<h4>Q1. .tar、.tar.gz、.tar.bz2 の違いは何ですか？</h4>
+<p>A. <code>.tar</code> は非圧縮アーカイブ、<code>.tar.gz</code> は gzip で圧縮（速いが圧縮率は低い）、<code>.tar.bz2</code> は bzip2 で圧縮（遅いが圧縮率は高い）です。</p>
+<h4>Q2. tar アーカイブから単一のファイルを抽出するにはどうすればよいですか？</h4>
+<p>A. <code>tar -xf archive.tar path/to/specific/file</code> を使用して、そのファイルだけを抽出します。</p>
+<h4>Q3. 抽出せずに tar ファイルの中身を確認するにはどうすればよいですか？</h4>
+<p>A. <code>tar -tf archive.tar</code> を使用して、抽出せずにすべてのファイルを一覧表示します。</p>
+<h4>Q4. 特定のファイルを除外した tar アーカイブを作成するにはどうすればよいですか？</h4>
+<p>A. <code>--exclude</code> オプションを使用します：<code>tar -cf archive.tar directory/ --exclude=&quot;*.tmp&quot;</code></p>
+<h4>Q5. 既存の tar アーカイブ内のファイルを更新するにはどうすればよいですか？</h4>
+<p>A. <code>-u</code> または <code>--update</code> オプションを使用します：<code>tar -uf archive.tar newfile.txt</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/tar/manual/tar.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

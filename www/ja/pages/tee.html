@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tee - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>teeコマンド</h1>
+<p>標準入力から読み取り、標準出力とファイルの両方に書き込みます。</p>
+<h2>概要</h2>
+<p><code>tee</code>コマンドは標準入力から読み取り、標準出力と1つ以上のファイルに同時に書き込みます。これにより、コマンドの出力をターミナルで表示しながら同時にファイルに保存することができ、ログ記録やデバッグに役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --append</strong></h3>
+<p>指定されたファイルに追記し、上書きしません。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Additional line&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>logfile.txt
+<span style="color: #000; font-style: italic">Additional line</span>
+</pre></div>
+<h3><strong>-i, --ignore-interrupts</strong></h3>
+<p>割り込み信号（SIGINT）を無視します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>long_running_command<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>output.log
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>ヘルプ情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tee<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: tee [OPTION]... [FILE]...</span>
+<span style="color: #000; font-style: italic">Copy standard input to each FILE, and also to standard output.</span>
+
+<span style="color: #000; font-style: italic">  -a, --append              append to the given FILEs, do not overwrite</span>
+<span style="color: #000; font-style: italic">  -i, --ignore-interrupts   ignore interrupt signals</span>
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+
+<span style="color: #000; font-style: italic">If a FILE is -, copy again to standard output.</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>バージョン情報を出力して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tee<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">tee (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2020 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by Mike Parker, Richard M. Stallman, and David MacKenzie.</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>コマンド出力を表示しながら保存する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-la<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>directory_listing.txt
+<span style="color: #000; font-style: italic">total 32</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  5 user  staff   160 May  5 10:15 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 user  staff    96 May  4 09:30 ..</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  2048 May  5 10:10 file1.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  4096 May  5 10:12 file2.txt</span>
+</pre></div>
+<h3>複数のファイルに一度に書き込む</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, world!&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>file3.txt
+<span style="color: #000; font-style: italic">Hello, world!</span>
+</pre></div>
+<h3>パイプラインでteeを使用する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>input.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>errors.log<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>wc<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">5</span>
+</pre></div>
+<h3>特権が必要なファイルに書き込む</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;127.0.0.1 example.com&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>sudo<span style="color: #F8F8F8"> </span>tee<span style="color: #F8F8F8"> </span>-a<span style="color: #F8F8F8"> </span>/etc/hosts
+<span style="color: #000; font-style: italic">127.0.0.1 example.com</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>ファイルに対するsudo操作にteeを使用する</h3>
+<p>root権限が必要なファイルに出力をリダイレクトする場合、<code>sudo command &gt; file</code>は機能しません。これはリダイレクトがsudoの前に行われるためです。代わりに、<code>command | sudo tee file</code>を使用して権限を適切に処理します。</p>
+<h3>出力を監視しながらログを作成する</h3>
+<p>トラブルシューティング時には、teeを使用してリアルタイムで出力を確認しながらログを作成できます：<code>command | tee logfile.txt</code></p>
+<h3>ファイルと別のコマンドの両方に書き込む</h3>
+<p>teeを使用してパイプラインを分岐できます：<code>command | tee file.txt | another_command</code></p>
+<h3>/dev/ttyを使用して強制的に端末に出力する</h3>
+<p>リダイレクトされている場合でも出力を確実に端末に送信する必要がある場合：<code>command | tee /dev/tty | another_command</code></p>
+<h2>よくある質問</h2>
+<h4>Q1. &quot;tee&quot;という名前の由来は何ですか？</h4>
+<p>A. 配管で使用されるT字型分岐器に由来しています。このコマンドは入力を複数の出力に分割し、&quot;T&quot;の形に似ているためです。</p>
+<h4>Q2. ファイルを上書きせずに追記するにはどうすればよいですか？</h4>
+<p>A. <code>-a</code>または<code>--append</code>オプションを使用します：<code>command | tee -a file.txt</code></p>
+<h4>Q3. teeは標準出力ではなく標準エラー出力に書き込むことができますか？</h4>
+<p>A. いいえ、teeは常に標準出力に書き込みます。標準エラー出力にリダイレクトするには、追加のシェルリダイレクトが必要です：<code>command | tee file.txt &gt;&amp;2</code></p>
+<h4>Q4. root権限が必要なファイルにteeで書き込むにはどうすればよいですか？</h4>
+<p>A. sudoとteeを組み合わせて使用します：<code>command | sudo tee /path/to/restricted/file</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

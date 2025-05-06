@@ -1,0 +1,20 @@
+{
+  "id": "msg_0187aFaLBDx6QK1fLjfeGybv",
+  "content": [
+    {
+      "text": "# until コマンド\n\n条件が満たされるまでコマンドを繰り返し実行します。\n\n## 概要\n\n`until` コマンドはシェルの構文で、指定された条件が真になるまでコマンドブロックを繰り返し実行します。条件が真である間実行される `while` とは異なり、`until` は条件が真になるまで実行されます。特定の状態に達するまで継続する必要があるループを作成するのに便利です。\n\n## オプション\n\n`until` コマンドは独立したプログラムではなくシェル組み込みの構文であるため、従来のコマンドラインオプションはありません。\n\n## 使用例\n\n### 基本的な until ループ\n\n```console\n$ until [ $counter -ge 5 ]; do\n>   echo \"Counter: $counter\"\n>   ((counter++))\n> done\nCounter: 0\nCounter: 1\nCounter: 2\nCounter: 3\nCounter: 4\n```\n\n### ファイルが存在するまで待機する\n\n```console\n$ until [ -f /tmp/signal_file ]; do\n>   echo \"Waiting for signal file...\"\n>   sleep 5\n> done\n> echo \"Signal file found!\"\nWaiting for signal file...\nWaiting for signal file...\nSignal file found!\n```\n\n### プロセスが完了するまで待機する\n\n```console\n$ process_id=$!\n$ until ! ps -p $process_id > /dev/null; do\n>   echo \"Process is still running...\"\n>   sleep 2\n> done\n> echo \"Process has completed.\"\nProcess is still running...\nProcess is still running...\nProcess has completed.\n```\n\n### コマンドが成功するまで再試行する\n\n```console\n$ until ping -c 1 example.com > /dev/null; do\n>   echo \"Network not available, retrying in 5 seconds...\"\n>   sleep 5\n> done\n> echo \"Network is up!\"\nNetwork not available, retrying in 5 seconds...\nNetwork is up!\n```\n\n## ヒント:\n\n### 必ず終了条件を含める\n\n`until` ループには、最終的に条件を満たす方法があることを確認してください。そうしないと無限に実行されます。最大試行回数やタイムアウトを追加することを検討してください。\n\n### コマンド終了ステータスとの併用\n\n`until` ループはコマンド終了ステータス（成功は0、失敗は0以外）とうまく連携します。例えば、`until command; do something; done` は `command` が成功するまで実行し続けます。\n\n### ポーリングには sleep と組み合わせる\n\n条件の変化を待つ場合は、ループ内で `sleep` を使用して過剰なCPU使用を防ぎます。これは外部イベントを確認する際に特に役立ちます。\n\n### 必要に応じてループから抜け出す\n\nメインの条件が満たされる前に別の条件が満たされた場合に早期に終了するために、`until` ループ内で `break` コマンドを使用できます。\n\n## よくある質問\n\n#### Q1. `until` と `while` の違いは何ですか？\nA. `while` は条件が真である限りコマンドを実行しますが、`until` は条件が偽である限り（真になるまで）コマンドを実行します。\n\n#### Q2. すべてのシェルで `until` を使用できますか？\nA. `until` は bash、zsh、kshなどの多くの現代的なシェルで利用可能ですが、dashやashのようなよりミニマルなシェルでは利用できない場合があります。\n\n#### Q3. `until` での無限ループを防ぐにはどうすればよいですか？\nA. 条件が最終的に真になることを確認するか、最大値を持つカウンターを含め、カウンターが上限に達したときに `break` を使用してループを終了させます。\n\n#### Q4. `until` ループをネストできますか？\nA. はい、`until` ループを他のループ内にネストできます。これには他の `until` ループ、`while` ループ、または `for` ループが含まれます。\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1003,
+    "output_tokens": 1244
+  }
+}

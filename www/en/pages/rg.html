@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  rg - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>rg command</h1>
+<p>Search for patterns in files using regular expressions, with support for recursive directory traversal.</p>
+<h2>Overview</h2>
+<p><code>rg</code> (ripgrep) is a line-oriented search tool that recursively searches the current directory for a regex pattern. It respects gitignore rules by default and is designed to be faster than other search tools like grep, ag, or ack. Ripgrep automatically skips hidden files, binary files, and files listed in .gitignore unless explicitly told not to.</p>
+<h2>Options</h2>
+<h3><strong>-i, --ignore-case</strong></h3>
+<p>Makes the search case insensitive.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;function&quot;</span>
+<span style="color: #000; font-style: italic">src/main.js:10:function calculateTotal(items) {</span>
+<span style="color: #000; font-style: italic">src/utils.js:5:Function to handle API responses</span>
+</pre></div>
+<h3><strong>-v, --invert-match</strong></h3>
+<p>Show lines that don't match the given pattern.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;TODO&quot;</span><span style="color: #F8F8F8"> </span>todo.txt
+<span style="color: #000; font-style: italic">These items are completed</span>
+<span style="color: #000; font-style: italic">Remember to check email</span>
+</pre></div>
+<h3><strong>-w, --word-regexp</strong></h3>
+<p>Only show matches surrounded by word boundaries.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;log&quot;</span>
+<span style="color: #000; font-style: italic">logger.js:15:  log(&quot;User logged in&quot;);</span>
+<span style="color: #000; font-style: italic">logger.js:20:  log(&quot;Error occurred&quot;);</span>
+</pre></div>
+<h3><strong>-c, --count</strong></h3>
+<p>Only show the count of matching lines per file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>*.log
+<span style="color: #000; font-style: italic">app.log:15</span>
+<span style="color: #000; font-style: italic">system.log:3</span>
+</pre></div>
+<h3><strong>-l, --files-with-matches</strong></h3>
+<p>Only show the paths with at least one match.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;TODO&quot;</span>
+<span style="color: #000; font-style: italic">src/main.js</span>
+<span style="color: #000; font-style: italic">docs/roadmap.md</span>
+</pre></div>
+<h3><strong>-n, --line-number</strong></h3>
+<p>Show line numbers (enabled by default).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;function&quot;</span>
+<span style="color: #000; font-style: italic">src/main.js:10:function calculateTotal(items) {</span>
+<span style="color: #000; font-style: italic">src/utils.js:15:function formatDate(date) {</span>
+</pre></div>
+<h3><strong>--no-ignore</strong></h3>
+<p>Don't respect ignore files (.gitignore, .ignore, etc.). This option tells ripgrep to search in files and directories that would normally be ignored, such as those specified in .gitignore files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>--no-ignore<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;password&quot;</span>
+<span style="color: #000; font-style: italic">node_modules/config.js:5:  password: &quot;dummy_password&quot;,</span>
+<span style="color: #000; font-style: italic">.git/config:10:  password = hunter2</span>
+</pre></div>
+<h3><strong>-A, --after-context NUM</strong></h3>
+<p>Show NUM lines after each match.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;class User&quot;</span>
+<span style="color: #000; font-style: italic">src/models.js:10:class User {</span>
+<span style="color: #000; font-style: italic">src/models.js:11:  constructor(name, email) {</span>
+<span style="color: #000; font-style: italic">src/models.js:12:    this.name = name;</span>
+</pre></div>
+<h3><strong>-B, --before-context NUM</strong></h3>
+<p>Show NUM lines before each match.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-B<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;throw new Error&quot;</span>
+<span style="color: #000; font-style: italic">src/api.js:24:  if (!response.ok) {</span>
+<span style="color: #000; font-style: italic">src/api.js:25:    throw new Error(&#39;API request failed&#39;);</span>
+</pre></div>
+<h3><strong>-C, --context NUM</strong></h3>
+<p>Show NUM lines before and after each match.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-C<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;TODO&quot;</span>
+<span style="color: #000; font-style: italic">src/main.js:19:function processData(data) {</span>
+<span style="color: #000; font-style: italic">src/main.js:20:  // TODO: Implement validation</span>
+<span style="color: #000; font-style: italic">src/main.js:21:  return transform(data);</span>
+</pre></div>
+<h3><strong>-o, --only-matching</strong></h3>
+<p>Print only the matched parts of a line.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;TODO.*&quot;</span>
+<span style="color: #000; font-style: italic">src/main.js:TODO: Implement validation</span>
+<span style="color: #000; font-style: italic">docs/roadmap.md:TODO: Add authentication</span>
+</pre></div>
+<h3><strong>-m, --max-count NUM</strong></h3>
+<p>Only show up to NUM matches for each file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>log.txt
+<span style="color: #000; font-style: italic">log.txt:15:error: connection failed</span>
+<span style="color: #000; font-style: italic">log.txt:23:error: timeout occurred</span>
+</pre></div>
+<h3><strong>--max-depth NUM</strong></h3>
+<p>Limit the depth of directory traversal to NUM levels.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>--max-depth<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;TODO&quot;</span>
+<span style="color: #000; font-style: italic">./main.js:20:  // TODO: Implement validation</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Search in specific file types</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>js<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;useState&quot;</span>
+<span style="color: #000; font-style: italic">src/components/Form.js:3:import { useState } from &#39;react&#39;;</span>
+<span style="color: #000; font-style: italic">src/components/Counter.js:5:  const [count, setCount] = useState(0);</span>
+</pre></div>
+<h3>Search and replace with ripgrep and sed</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;oldFunction&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>sed<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;s/oldFunction/newFunction/g&#39;</span>
+</pre></div>
+<h3>Search with glob patterns</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>--glob<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.{js,ts}&quot;</span>
+<span style="color: #000; font-style: italic">src/utils.js:25:  console.error(&quot;Connection failed&quot;);</span>
+<span style="color: #000; font-style: italic">src/api.ts:42:  throw new Error(&quot;Invalid response&quot;);</span>
+</pre></div>
+<h3>Exclude directories from search</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;TODO&quot;</span><span style="color: #F8F8F8"> </span>--glob<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;!node_modules&quot;</span>
+<span style="color: #000; font-style: italic">src/main.js:20:  // TODO: Implement validation</span>
+<span style="color: #000; font-style: italic">docs/roadmap.md:15:TODO: Add authentication</span>
+</pre></div>
+<h3>Show only filenames with matching patterns</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;password&quot;</span>
+<span style="color: #000; font-style: italic">config.js</span>
+<span style="color: #000; font-style: italic">auth.js</span>
+</pre></div>
+<h3>Search only in current directory (no recursion)</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>--max-depth<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">0</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;function&quot;</span>
+<span style="color: #000; font-style: italic">main.js:10:function calculateTotal(items) {</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Fixed Strings for Faster Searches</h3>
+<p>When searching for literal text rather than regex patterns, use <code>-F</code> or <code>--fixed-strings</code> for better performance:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-F<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;React.useState&quot;</span><span style="color: #F8F8F8"> </span>src/
+</pre></div>
+<h3>Combine with Other Tools</h3>
+<p>Pipe ripgrep results to other commands for additional processing:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;TODO&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>sort<span style="color: #F8F8F8"> </span>-k1,1<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>less
+</pre></div>
+<h3>Search Hidden Files</h3>
+<p>By default, ripgrep ignores hidden files and directories. Use <code>-. or --hidden</code> to include them:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>--hidden<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;password&quot;</span><span style="color: #F8F8F8"> </span>~/
+</pre></div>
+<h3>Use Smart Case</h3>
+<p>The <code>-S</code> or <code>--smart-case</code> option makes searches case-insensitive if the pattern is all lowercase, but case-sensitive otherwise:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-S<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;function&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #8F5902; font-style: italic"># Case-insensitive</span>
+<span style="color: #8F5902">$ </span>rg<span style="color: #F8F8F8"> </span>-S<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Function&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #8F5902; font-style: italic"># Case-sensitive</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How is ripgrep different from grep?</h4>
+<p>A. Ripgrep is generally faster than grep, respects .gitignore files by default, automatically skips binary files, and has better Unicode support.</p>
+<h4>Q2. How do I search for a pattern that includes special regex characters?</h4>
+<p>A. Use <code>-F</code> or <code>--fixed-strings</code> to search for literal text, or escape the special characters with backslashes.</p>
+<h4>Q3. How can I search for files that don't contain a pattern?</h4>
+<p>A. Use <code>-L</code> or <code>--files-without-match</code> to find files that don't contain the pattern.</p>
+<h4>Q4. How do I make ripgrep follow symbolic links?</h4>
+<p>A. Use <code>-L</code> or <code>--follow</code> to follow symbolic links when searching.</p>
+<h4>Q5. What does the --no-ignore option do?</h4>
+<p>A. The <code>--no-ignore</code> option tells ripgrep to search files and directories that would normally be ignored due to .gitignore, .ignore, or similar files. This is useful when you need to search in directories like node_modules or other typically ignored locations.</p>
+<h4>Q6. How can I search only in the current directory without recursing into subdirectories?</h4>
+<p>A. Use <code>--max-depth 0</code> to limit the search to only the current directory without recursing into subdirectories.</p>
+<h4>Q7. How do I show only the matching filenames?</h4>
+<p>A. Use <code>-l</code> or <code>--files-with-matches</code> to show only the paths of files containing matches.</p>
+<h2>References</h2>
+<p>https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 Added --max-depth and -m options, expanded usage examples to include non-recursive search, added new FAQs about limiting directory depth and showing only filenames.</li>
+<li>2025/05/06 Added -o, --only-matching option.</li>
+<li>2025/05/05 Added explanation for --no-ignore option and expanded FAQs.</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

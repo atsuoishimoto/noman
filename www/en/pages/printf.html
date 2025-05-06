@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  printf - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>printf command</h1>
+<p>Format and print data according to a specified format string.</p>
+<h2>Overview</h2>
+<p>The <code>printf</code> command formats and prints data to standard output according to a format specification. It works similarly to the C programming language's printf function, allowing precise control over output formatting including text alignment, number formatting, and string manipulation.</p>
+<h2>Options</h2>
+<h3><strong>-v VAR</strong></h3>
+<p>Assign the output to shell variable VAR rather than displaying it on standard output.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>myvar<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, %s&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;World&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$myvar</span>
+<span style="color: #000; font-style: italic">Hello, World</span>
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>Display a help message and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: printf FORMAT [ARGUMENT]...</span>
+<span style="color: #000; font-style: italic">   or: printf OPTION</span>
+<span style="color: #000; font-style: italic">Print ARGUMENT(s) according to FORMAT, or execute according to OPTION:</span>
+
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>Output version information and exit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">printf (GNU coreutils) 8.32</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2020 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by David MacKenzie.</span>
+</pre></div>
+<h2>Format Specifiers</h2>
+<h3><strong>%s</strong> - String</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, %s!\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;World&quot;</span>
+<span style="color: #000; font-style: italic">Hello, World!</span>
+</pre></div>
+<h3><strong>%d</strong> - Decimal integer</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Number: %d\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">42</span>
+<span style="color: #000; font-style: italic">Number: 42</span>
+</pre></div>
+<h3><strong>%f</strong> - Floating-point number</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Pi is approximately %.2f\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span>.14159
+<span style="color: #000; font-style: italic">Pi is approximately 3.14</span>
+</pre></div>
+<h3><strong>%c</strong> - Character</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;First letter: %c\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;A&quot;</span>
+<span style="color: #000; font-style: italic">First letter: A</span>
+</pre></div>
+<h3><strong>%x</strong> - Hexadecimal</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hex: %x\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">255</span>
+<span style="color: #000; font-style: italic">Hex: ff</span>
+</pre></div>
+<h3><strong>%%</strong> - Literal percent sign</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;100%% complete\n&quot;</span>
+<span style="color: #000; font-style: italic">100% complete</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic text formatting</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Name: %s, Age: %d\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Alice&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">30</span>
+<span style="color: #000; font-style: italic">Name: Alice, Age: 30</span>
+</pre></div>
+<h3>Multiple arguments</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;%s %s %s\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;one&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;two&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;three&quot;</span>
+<span style="color: #000; font-style: italic">one two three</span>
+</pre></div>
+<h3>Width and alignment</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;|%-10s|%10s|\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;left&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;right&quot;</span>
+<span style="color: #000; font-style: italic">|left      |     right|</span>
+</pre></div>
+<h3>Precision for floating-point numbers</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;%.2f %.4f %.0f\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span>.14159<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span>.71828<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>.999
+<span style="color: #000; font-style: italic">3.14 2.7183 6</span>
+</pre></div>
+<h3>Formatting a table</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;%-10s %-8s %s\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Name&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Age&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;City&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;%-10s %-8d %s\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Alice&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">30</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;New York&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;%-10s %-8d %s\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Bob&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">25</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Chicago&quot;</span>
+<span style="color: #000; font-style: italic">Name       Age      City</span>
+<span style="color: #000; font-style: italic">Alice      30       New York</span>
+<span style="color: #000; font-style: italic">Bob        25       Chicago</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Use Escape Sequences</h3>
+<p>Common escape sequences include <code>\n</code> (newline), <code>\t</code> (tab), and <code>\\</code> (backslash).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Line 1\nLine 2\tTabbed\n&quot;</span>
+<span style="color: #000; font-style: italic">Line 1</span>
+<span style="color: #000; font-style: italic">Line 2	Tabbed</span>
+</pre></div>
+<h3>Format Numbers with Leading Zeros</h3>
+<p>Use the format <code>%0Nd</code> where N is the total width:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;ID: %04d\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">42</span>
+<span style="color: #000; font-style: italic">ID: 0042</span>
+</pre></div>
+<h3>Reuse Format Arguments</h3>
+<p>If you provide more output positions than arguments, the last arguments will be reused:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;A: %d, B: %d, C: %d\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span>
+<span style="color: #000; font-style: italic">A: 1, B: 2, C: 2</span>
+</pre></div>
+<h3>Print Without Newline</h3>
+<p>Unlike <code>echo</code>, <code>printf</code> doesn't automatically add a newline:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;No newline&quot;</span>
+<span style="color: #000; font-style: italic">No newline$</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>printf</code> and <code>echo</code>?</h4>
+<p>A. <code>printf</code> offers more precise formatting control but doesn't add a newline by default. <code>echo</code> is simpler but has fewer formatting options and automatically adds a newline.</p>
+<h4>Q2. How do I format a date with <code>printf</code>?</h4>
+<p>A. You can't directly format dates with <code>printf</code>. Use the <code>date</code> command to generate a formatted date string, then pass it to <code>printf</code>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Today is %s\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">$(</span>date<span style="color: #F8F8F8"> </span>+<span style="color: #4E9A06">&quot;%Y-%m-%d&quot;</span><span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Today is 2025-05-05</span>
+</pre></div>
+<h4>Q3. How do I print special characters like tabs or newlines?</h4>
+<p>A. Use escape sequences: <code>\t</code> for tab, <code>\n</code> for newline, <code>\r</code> for carriage return, and <code>\\</code> for a literal backslash.</p>
+<h4>Q4. How do I format decimal places in numbers?</h4>
+<p>A. Use the precision specifier, like <code>%.2f</code> for 2 decimal places:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">printf</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Price: </span>$<span style="color: #4E9A06">%.2f\n&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">9</span>.99
+<span style="color: #000; font-style: italic">Price: $9.99</span>
+</pre></div>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/printf-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "id": "msg_012aqdPACHuJ6n9RSWornfoR",
+  "content": [
+    {
+      "text": "# dig command\n\nQuery DNS name servers for domain information.\n\n## Overview\n\n`dig` (Domain Information Groper) is a flexible DNS lookup utility that queries DNS servers for information about host addresses, mail exchanges, nameservers, and related information. It's commonly used for troubleshooting DNS problems and verifying DNS records.\n\n## Options\n\n### **@server**\n\nSpecify the DNS server to query\n\n```console\n$ dig @8.8.8.8 example.com\n```\n\n### **-t**\n\nSpecify the type of DNS record to query (default is A)\n\n```console\n$ dig -t MX gmail.com\n```\n\n### **+short**\n\nDisplay a terse answer, showing only the answer section's record data\n\n```console\n$ dig +short example.com\n93.184.216.34\n```\n\n### **+noall, +answer**\n\nControl which sections of the response to display\n\n```console\n$ dig +noall +answer example.com\nexample.com.\t\t86400\tIN\tA\t93.184.216.34\n```\n\n### **-x**\n\nPerform a reverse DNS lookup (IP to hostname)\n\n```console\n$ dig -x 8.8.8.8\n```\n\n### **+trace**\n\nTrace the delegation path from the root name servers\n\n```console\n$ dig +trace example.com\n```\n\n## Usage Examples\n\n### Looking up A records (default)\n\n```console\n$ dig example.com\n; <<>> DiG 9.16.1-Ubuntu <<>> example.com\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31892\n;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 65494\n;; QUESTION SECTION:\n;example.com.\t\t\tIN\tA\n\n;; ANSWER SECTION:\nexample.com.\t\t86400\tIN\tA\t93.184.216.34\n\n;; Query time: 28 msec\n;; SERVER: 127.0.0.53#53(127.0.0.53)\n;; WHEN: Mon May 05 12:00:00 UTC 2025\n;; MSG SIZE  rcvd: 56\n```\n\n### Looking up MX records\n\n```console\n$ dig -t MX gmail.com +short\n10 alt1.gmail-smtp-in.l.google.com.\n20 alt2.gmail-smtp-in.l.google.com.\n30 alt3.gmail-smtp-in.l.google.com.\n40 alt4.gmail-smtp-in.l.google.com.\n5 gmail-smtp-in.l.google.com.\n```\n\n### Querying a specific nameserver\n\n```console\n$ dig @1.1.1.1 example.org\n```\n\n### Checking all DNS records for a domain\n\n```console\n$ dig example.com ANY\n```\n\n## Tips:\n\n### Use +short for Quick Results\n\nWhen you just need the IP address or record value without all the extra information, use `dig +short domain.com` to get a clean, minimal output.\n\n### Combine Multiple Options\n\nYou can combine multiple options like `dig +noall +answer +authority example.com` to show only specific sections of the DNS response.\n\n### Check DNS Propagation\n\nTo check if DNS changes have propagated, query multiple DNS servers: `dig @8.8.8.8 example.com` and `dig @1.1.1.1 example.com` to compare results.\n\n### Troubleshoot Email Delivery\n\nUse `dig -t MX domain.com` to verify mail exchanger records when troubleshooting email delivery issues.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between dig and nslookup?\nA. `dig` provides more detailed information and is more flexible for DNS troubleshooting, while `nslookup` is simpler but less powerful. `dig` is generally preferred by network administrators.\n\n#### Q2. How do I check if my DNS changes have propagated?\nA. Query multiple DNS servers using `dig @server domain.com` and compare the results. If they match your expected values, propagation is complete.\n\n#### Q3. How can I find the authoritative nameservers for a domain?\nA. Use `dig -t NS domain.com` to find the nameservers responsible for a domain.\n\n#### Q4. How do I perform a reverse DNS lookup?\nA. Use `dig -x IP_ADDRESS` to find the hostname associated with an IP address.\n\n## References\n\nhttps://linux.die.net/man/1/dig\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 1139
+  }
+}

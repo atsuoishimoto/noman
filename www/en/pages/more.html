@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  more - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>more command</h1>
+<p>Display file contents one screen at a time.</p>
+<h2>Overview</h2>
+<p><code>more</code> is a filter for paging through text one screenful at a time. It's used to view the contents of text files in a controlled manner, allowing users to navigate forward through the file. Unlike its more advanced counterpart <code>less</code>, <code>more</code> primarily allows forward navigation.</p>
+<h2>Options</h2>
+<h3><strong>-d</strong></h3>
+<p>Display helpful prompts and provide more user-friendly error messages.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>large_file.txt
+<span style="color: #000; font-style: italic">--More--(50%) [Press space to continue, &#39;q&#39; to quit.]</span>
+</pre></div>
+<h3><strong>-f</strong></h3>
+<p>Count logical lines rather than screen lines (useful with long lines that wrap).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>wrapped_text.txt
+</pre></div>
+<h3><strong>-p</strong></h3>
+<p>Clear the screen before displaying each page.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>document.txt
+</pre></div>
+<h3><strong>-c</strong></h3>
+<p>Clear screen before displaying, but do so by drawing from the top line down.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>large_file.txt
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>Squeeze multiple blank lines into one.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>file_with_blanks.txt
+</pre></div>
+<h3><strong>-u</strong></h3>
+<p>Suppress underlining (useful for some terminal types).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>formatted_text.txt
+</pre></div>
+<h3><strong>-number</strong></h3>
+<p>Set the number of lines per screenful.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>-10<span style="color: #F8F8F8"> </span>short_file.txt
+</pre></div>
+<h3><strong>+number</strong></h3>
+<p>Start displaying the file at line number.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>+100<span style="color: #F8F8F8"> </span>large_file.txt
+</pre></div>
+<h3><strong>+/pattern</strong></h3>
+<p>Start displaying at the first line containing the pattern.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>+/ERROR<span style="color: #F8F8F8"> </span>log_file.txt
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>/etc/passwd
+<span style="color: #000; font-style: italic">root:x:0:0:root:/root:/bin/bash</span>
+<span style="color: #000; font-style: italic">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span>
+<span style="color: #000; font-style: italic">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span>
+<span style="color: #000; font-style: italic">--More--(28%)</span>
+</pre></div>
+<h3>Viewing Multiple Files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">::::::::::::::</span>
+<span style="color: #000; font-style: italic">file1.txt</span>
+<span style="color: #000; font-style: italic">::::::::::::::</span>
+<span style="color: #000; font-style: italic">Contents of file1...</span>
+<span style="color: #000; font-style: italic">--More--(75%)</span>
+</pre></div>
+<h3>Piping Command Output to more</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-la<span style="color: #F8F8F8"> </span>/usr/bin<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>more
+<span style="color: #000; font-style: italic">total 123456</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  2 root root   69632 Apr 18 09:23 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x 14 root root    4096 Jan 15 12:34 ..</span>
+<span style="color: #000; font-style: italic">-rwxr-xr-x  1 root root   35344 Feb  7  2022 [</span>
+<span style="color: #000; font-style: italic">--More--(2%)</span>
+</pre></div>
+<h3>Starting at a Specific Pattern</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>more<span style="color: #F8F8F8"> </span>+/function<span style="color: #F8F8F8"> </span>script.js
+<span style="color: #000; font-style: italic">function calculateTotal() {</span>
+<span style="color: #000; font-style: italic">  // Function implementation</span>
+<span style="color: #000; font-style: italic">}</span>
+<span style="color: #000; font-style: italic">--More--(45%)</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Navigation Commands</h3>
+<p>While viewing a file with <code>more</code>, you can use these commands:</p>
+<ul>
+<li><code>Space</code> - Move forward one screenful</li>
+<li><code>Enter</code> - Move forward one line</li>
+<li><code>b</code> - Move backward one screenful (may not work in all implementations)</li>
+<li><code>q</code> - Quit</li>
+<li><code>/pattern</code> - Search for pattern</li>
+<li><code>n</code> - Repeat previous search</li>
+</ul>
+<h3>Using more with Large Files</h3>
+<p>For very large files, <code>more</code> loads the file as you read it, making it more memory-efficient than loading the entire file at once.</p>
+<h3>When to Use less Instead</h3>
+<p>If you need to navigate both forward and backward through a file with more flexibility, consider using <code>less</code> instead, which offers more features.</p>
+<h3>Customizing the Prompt</h3>
+<p>Set the <code>MORE</code> environment variable to customize the prompt and behavior:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">export</span><span style="color: #F8F8F8"> </span><span style="color: #000">MORE</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;-d&quot;</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>more</code> and <code>less</code>?</h4>
+<p>A. <code>more</code> is an older utility that primarily allows forward navigation through a file. <code>less</code> is more feature-rich, allowing both forward and backward navigation, and has additional search capabilities.</p>
+<h4>Q2. How do I exit <code>more</code>?</h4>
+<p>A. Press the <code>q</code> key to quit.</p>
+<h4>Q3. Can I search for text in <code>more</code>?</h4>
+<p>A. Yes, press <code>/</code> followed by your search pattern, then press Enter. Use <code>n</code> to find the next occurrence.</p>
+<h4>Q4. How can I display line numbers in <code>more</code>?</h4>
+<p>A. <code>more</code> doesn't have a built-in line numbering feature. For line numbers, consider using <code>less -N</code> or <code>cat -n file.txt | more</code>.</p>
+<h4>Q5. How do I make <code>more</code> display a specific number of lines at a time?</h4>
+<p>A. Use the <code>-number</code> option, e.g., <code>more -20 file.txt</code> to display 20 lines at a time.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/more.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

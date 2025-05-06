@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tree - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tree コマンド</h1>
+<p>ディレクトリの内容を階層的なツリー構造で表示します。</p>
+<h2>概要</h2>
+<p><code>tree</code> コマンドは、ディレクトリの内容を再帰的にツリー状のフォーマットで一覧表示し、ファイルとディレクトリの関係を示します。ディレクトリ構造を視覚的に表現することで、ファイルやサブディレクトリの構成を理解しやすくします。</p>
+<h2>オプション</h2>
+<h3><strong>-a</strong></h3>
+<p>隠しファイル（ドットで始まるファイル）を含むすべてのファイルを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── .git</span>
+<span style="color: #000; font-style: italic">│   ├── HEAD</span>
+<span style="color: #000; font-style: italic">│   ├── config</span>
+<span style="color: #000; font-style: italic">│   └── hooks</span>
+<span style="color: #000; font-style: italic">├── .gitignore</span>
+<span style="color: #000; font-style: italic">├── README.md</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── .env</span>
+<span style="color: #000; font-style: italic">    └── main.js</span>
+
+<span style="color: #000; font-style: italic">3 directories, 6 files</span>
+</pre></div>
+<h3><strong>-d</strong></h3>
+<p>ファイルを除き、ディレクトリのみを一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-d
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">├── node_modules</span>
+<span style="color: #000; font-style: italic">│   ├── express</span>
+<span style="color: #000; font-style: italic">│   └── lodash</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    └── components</span>
+
+<span style="color: #000; font-style: italic">5 directories</span>
+</pre></div>
+<h3><strong>-L, --level</strong></h3>
+<p>ディレクトリの再帰の深さを制限します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span>
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">│   ├── api.md</span>
+<span style="color: #000; font-style: italic">│   └── usage.md</span>
+<span style="color: #000; font-style: italic">├── node_modules</span>
+<span style="color: #000; font-style: italic">│   ├── express</span>
+<span style="color: #000; font-style: italic">│   └── lodash</span>
+<span style="color: #000; font-style: italic">├── package.json</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── components</span>
+<span style="color: #000; font-style: italic">    └── index.js</span>
+
+<span style="color: #000; font-style: italic">5 directories, 4 files</span>
+</pre></div>
+<h3><strong>-C</strong></h3>
+<p>出力に色付けを追加します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-C
+<span style="color: #8F5902"># </span>出力はディレクトリ、ファイル、実行可能ファイルが異なる色で表示される
+</pre></div>
+<h3><strong>-p</strong></h3>
+<p>各ファイルのファイルタイプとパーミッションを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-p
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── [drwxr-xr-x]  docs</span>
+<span style="color: #000; font-style: italic">│   ├── [-rw-r--r--]  api.md</span>
+<span style="color: #000; font-style: italic">│   └── [-rw-r--r--]  usage.md</span>
+<span style="color: #000; font-style: italic">├── [-rw-r--r--]  package.json</span>
+<span style="color: #000; font-style: italic">└── [drwxr-xr-x]  src</span>
+<span style="color: #000; font-style: italic">    └── [-rwxr-xr-x]  index.js</span>
+
+<span style="color: #000; font-style: italic">2 directories, 4 files</span>
+</pre></div>
+<h3><strong>-s</strong></h3>
+<p>各ファイルのサイズを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-s
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── [       4096]  docs</span>
+<span style="color: #000; font-style: italic">│   ├── [        450]  api.md</span>
+<span style="color: #000; font-style: italic">│   └── [        890]  usage.md</span>
+<span style="color: #000; font-style: italic">├── [        1240]  package.json</span>
+<span style="color: #000; font-style: italic">└── [       4096]  src</span>
+<span style="color: #000; font-style: italic">    └── [         320]  index.js</span>
+
+<span style="color: #000; font-style: italic">2 directories, 4 files</span>
+</pre></div>
+<h3><strong>-h</strong></h3>
+<p>サイズをより読みやすい形式で表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-sh
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── [4.0K]  docs</span>
+<span style="color: #000; font-style: italic">│   ├── [450]   api.md</span>
+<span style="color: #000; font-style: italic">│   └── [890]   usage.md</span>
+<span style="color: #000; font-style: italic">├── [1.2K]  package.json</span>
+<span style="color: #000; font-style: italic">└── [4.0K]  src</span>
+<span style="color: #000; font-style: italic">    └── [320]   index.js</span>
+
+<span style="color: #000; font-style: italic">2 directories, 4 files</span>
+</pre></div>
+<h3><strong>--filelimit n</strong></h3>
+<p>n個以上のエントリを含むディレクトリの内容を表示しません</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>--filelimit<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span>
+<span style="color: #8F5902"># </span>10個以上のファイルを持つディレクトリの内容は表示されない
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なディレクトリ一覧</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">│   ├── api.md</span>
+<span style="color: #000; font-style: italic">│   └── usage.md</span>
+<span style="color: #000; font-style: italic">├── package.json</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── components</span>
+<span style="color: #000; font-style: italic">    │   ├── Button.js</span>
+<span style="color: #000; font-style: italic">    │   └── Input.js</span>
+<span style="color: #000; font-style: italic">    └── index.js</span>
+
+<span style="color: #000; font-style: italic">3 directories, 5 files</span>
+</pre></div>
+<h3>深さを制限してファイルサイズを表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>-sh
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── [4.0K]  docs</span>
+<span style="color: #000; font-style: italic">├── [1.2K]  package.json</span>
+<span style="color: #000; font-style: italic">└── [4.0K]  src</span>
+
+<span style="color: #000; font-style: italic">2 directories, 1 file</span>
+</pre></div>
+<h3>パターンによるフィルタリング</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>-P<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;*.js&quot;</span>
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">├── package.json</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── components</span>
+<span style="color: #000; font-style: italic">    │   ├── Button.js</span>
+<span style="color: #000; font-style: italic">    │   └── Input.js</span>
+<span style="color: #000; font-style: italic">    └── index.js</span>
+
+<span style="color: #000; font-style: italic">3 directories, 3 files</span>
+</pre></div>
+<h3>ファイルへの出力</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tree<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>directory_structure.txt
+<span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>directory_structure.txt
+<span style="color: #000; font-style: italic">.</span>
+<span style="color: #000; font-style: italic">├── docs</span>
+<span style="color: #000; font-style: italic">│   ├── api.md</span>
+<span style="color: #000; font-style: italic">│   └── usage.md</span>
+<span style="color: #000; font-style: italic">├── package.json</span>
+<span style="color: #000; font-style: italic">└── src</span>
+<span style="color: #000; font-style: italic">    ├── components</span>
+<span style="color: #000; font-style: italic">    │   ├── Button.js</span>
+<span style="color: #000; font-style: italic">    │   └── Input.js</span>
+<span style="color: #000; font-style: italic">    └── index.js</span>
+
+<span style="color: #000; font-style: italic">3 directories, 5 files</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>バージョン管理ディレクトリを除外する</h3>
+<p><code>tree -I &quot;node_modules|.git&quot;</code> を使用して、node_modulesや.gitなどの特定のディレクトリを出力から除外すると、プロジェクトディレクトリのツリーがより読みやすくなります。</p>
+<h3>ドキュメント用のASCII出力を作成する</h3>
+<p><code>tree -A</code> を使用すると、グラフィック文字の代わりにASCII文字が使用されます。これは、文字サポートが限られた環境で表示する必要があるドキュメントを作成する際に便利です。</p>
+<h3>ファイルとディレクトリをカウントする</h3>
+<p><code>tree --noreport</code> を使用すると、最後のファイル/ディレクトリレポートが抑制され、要約なしでツリー構造だけを表示できます。</p>
+<h3>出力形式をカスタマイズする</h3>
+<p><code>-pugh</code> のようなオプションを組み合わせると、パーミッション、ユーザー名、グループ名、人間が読みやすいサイズをすべて一度に表示して、包括的なディレクトリリストを作成できます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. macOSにtreeをインストールするにはどうすればよいですか？</h4>
+<p>A. Homebrewを使用して <code>brew install tree</code> コマンドでインストールできます。</p>
+<h4>Q2. 特定のディレクトリを出力から除外するにはどうすればよいですか？</h4>
+<p>A. <code>-I</code> オプションの後にパターンを指定します。例えば、<code>tree -I &quot;node_modules|.git&quot;</code> でnode_modulesと.gitディレクトリを除外できます。</p>
+<h4>Q3. 表示されるディレクトリの深さを制限するにはどうすればよいですか？</h4>
+<p>A. <code>-L</code> オプションの後に数字を指定します。例えば、<code>tree -L 2</code> で2レベルのディレクトリのみを表示します。</p>
+<h4>Q4. treeの出力をターミナルではなくファイルに保存できますか？</h4>
+<p>A. はい、リダイレクトを使用します：<code>tree &gt; output.txt</code> で出力をファイルに保存できます。</p>
+<h4>Q5. 隠しファイルを表示するにはどうすればよいですか？</h4>
+<p>A. <code>-a</code> オプションを使用します：<code>tree -a</code> で隠しファイルを含むすべてのファイルを表示します。</p>
+<h2>参考文献</h2>
+<p>https://linux.die.net/man/1/tree</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

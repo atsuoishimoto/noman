@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tail - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tail コマンド</h1>
+<p>ファイルの末尾部分を表示します。</p>
+<h2>概要</h2>
+<p><code>tail</code> コマンドは、1つ以上のファイルの末尾部分（デフォルトでは10行）を出力します。ログファイルの最新エントリの確認、ファイル変更のリアルタイム監視、またはファイル全体を開かずにテキストファイルの末尾を確認するのによく使用されます。</p>
+<h2>オプション</h2>
+<h3><strong>-n, --lines=NUM</strong></h3>
+<p>末尾からNUM行を出力します（デフォルトは10行）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span>/var/log/syslog
+<span style="color: #000; font-style: italic">May  5 10:15:22 hostname service[1234]: Processing request</span>
+<span style="color: #000; font-style: italic">May  5 10:15:23 hostname service[1234]: Request completed</span>
+<span style="color: #000; font-style: italic">May  5 10:15:25 hostname service[1234]: New connection from 192.168.1.5</span>
+<span style="color: #000; font-style: italic">May  5 10:15:26 hostname service[1234]: Processing request</span>
+<span style="color: #000; font-style: italic">May  5 10:15:27 hostname service[1234]: Request completed</span>
+</pre></div>
+<h3><strong>-f, --follow</strong></h3>
+<p>ファイルが成長するにつれて追加されたデータを出力します。ログファイルの監視に便利です</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/var/log/apache2/access.log
+<span style="color: #000; font-style: italic">192.168.1.5 - - [05/May/2025:10:15:22 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 2326</span>
+<span style="color: #000; font-style: italic">192.168.1.6 - - [05/May/2025:10:15:25 +0000] &quot;GET /images/logo.png HTTP/1.1&quot; 200 4589</span>
+<span style="color: #000; font-style: italic">192.168.1.7 - - [05/May/2025:10:15:27 +0000] &quot;POST /login HTTP/1.1&quot; 302 -</span>
+</pre></div>
+<h3><strong>-c, --bytes=NUM</strong></h3>
+<p>末尾からNUMバイトを出力します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">end of the file.</span>
+</pre></div>
+<h3><strong>-q, --quiet, --silent</strong></h3>
+<p>ファイル名を示すヘッダーを出力しません</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">Last line of file1</span>
+<span style="color: #000; font-style: italic">Last line of file2</span>
+</pre></div>
+<h3><strong>--pid=PID</strong></h3>
+<p>-fと共に使用すると、プロセスID（PID）が終了した後に終了します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>--pid<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1234</span><span style="color: #F8F8F8"> </span>logfile.txt
+</pre></div>
+<h2>使用例</h2>
+<h3>複数のログファイルを同時に監視する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/var/log/syslog<span style="color: #F8F8F8"> </span>/var/log/auth.log
+<span style="color: #000; font-style: italic">==&gt; /var/log/syslog &lt;==</span>
+<span style="color: #000; font-style: italic">May  5 10:20:22 hostname service[1234]: Processing request</span>
+
+<span style="color: #000; font-style: italic">==&gt; /var/log/auth.log &lt;==</span>
+<span style="color: #000; font-style: italic">May  5 10:20:25 hostname sshd[5678]: Accepted publickey for user from 192.168.1.10</span>
+</pre></div>
+<h3>行番号付きで末尾20行を表示する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>nl
+<span style="color: #000; font-style: italic">     1  Line content here</span>
+<span style="color: #000; font-style: italic">     2  More content here</span>
+<span style="color: #000; font-style: italic">     ...</span>
+<span style="color: #000; font-style: italic">     20 Last line here</span>
+</pre></div>
+<h3>プロセスが終了したときに停止するログファイルの監視</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>--pid<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>pgrep<span style="color: #F8F8F8"> </span>apache2<span style="color: #204A87; font-weight: bold">)</span><span style="color: #F8F8F8"> </span>/var/log/apache2/access.log
+</pre></div>
+<h2>ヒント:</h2>
+<h3>grepと組み合わせてフィルタリングする</h3>
+<p><code>tail -f logfile.txt | grep ERROR</code> を使用して、ログファイルをリアルタイムで監視しながら「ERROR」を含む行のみを表示します。</p>
+<h3>headと組み合わせて中間部分を取得する</h3>
+<p><code>head -n 20 file.txt | tail -n 10</code> でファイルの中間部分（11〜20行目）を抽出できます。</p>
+<h3>複数ファイルを効率的に監視する</h3>
+<p><code>tail -f</code> で複数のログファイルを監視する場合、<code>--retry</code> を使用するとファイルが一時的にアクセス不能になり、後で再表示された場合も継続して監視できます。</p>
+<h3>フォローモードを適切に終了する</h3>
+<p>監視が終わったら、Ctrl+Cを押してtailのフォローモードを終了します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. ファイルの最後の10行を表示するにはどうすればよいですか？</h4>
+<p>A. 単に <code>tail ファイル名</code> または <code>tail -n 10 ファイル名</code> を使用します。</p>
+<h4>Q2. ログファイルの変更をリアルタイムで監視するにはどうすればよいですか？</h4>
+<p>A. <code>tail -f logfile.txt</code> を使用して、新しいコンテンツが追加されるとリアルタイムでファイルを監視します。</p>
+<h4>Q3. 複数のファイルを一度に監視できますか？</h4>
+<p>A. はい、<code>tail -f file1.txt file2.txt</code> を使用して複数のファイルを同時に監視できます。</p>
+<h4>Q4. 末尾から特定の行数を表示するにはどうすればよいですか？</h4>
+<p>A. <code>tail -n 数字 ファイル名</code> を使用します。「数字」は表示したい行数です。</p>
+<h4>Q5. tailのフォローモードを終了するにはどうすればよいですか？</h4>
+<p>A. フォローモード中にCtrl+Cを押してtailコマンドを終了します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/tail-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

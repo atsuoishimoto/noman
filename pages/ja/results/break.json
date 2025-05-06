@@ -1,0 +1,20 @@
+{
+  "id": "msg_01EuzrzgrdFjaUb7YvUTxgqe",
+  "content": [
+    {
+      "text": "# break コマンド\n\nシェルスクリプト内の for、while、until、または select ループから抜け出すためのコマンドです。\n\n## 概要\n\n`break` コマンドはシェルスクリプト内で、ループが通常の完了を迎える前に抜け出すために使用されます。実行されると、最も内側のループをすぐに終了し、終了したループの次のコマンドから実行を継続します。オプションの数値引数を使用すると、複数のネストされたループから抜け出すことができます。\n\n## オプション\n\n### **n** (数値引数)\n\nn番目の囲まれたループから抜け出します。nが省略された場合、最も内側のループからのみ抜け出します。\n\n```console\n$ break 2  # 2レベルのネストされたループから抜け出す\n```\n\n## 使用例\n\n### 単純なループからの脱出\n\n```console\n$ for i in 1 2 3 4 5; do\n>   echo \"Processing $i\"\n>   if [ $i -eq 3 ]; then\n>     echo \"Found 3, breaking out of loop\"\n>     break\n>   fi\n> done\n> echo \"Loop completed\"\nProcessing 1\nProcessing 2\nProcessing 3\nFound 3, breaking out of loop\nLoop completed\n```\n\n### ネストされたループからの脱出\n\n```console\n$ for i in 1 2 3; do\n>   echo \"Outer loop: $i\"\n>   for j in a b c; do\n>     echo \"  Inner loop: $j\"\n>     if [ $j = \"b\" ] && [ $i -eq 2 ]; then\n>       echo \"  Breaking from inner loop\"\n>       break\n>     fi\n>   done\n> done\nOuter loop: 1\n  Inner loop: a\n  Inner loop: b\n  Inner loop: c\nOuter loop: 2\n  Inner loop: a\n  Inner loop: b\n  Breaking from inner loop\nOuter loop: 3\n  Inner loop: a\n  Inner loop: b\n  Inner loop: c\n```\n\n### 数値引数を使用した複数レベルからの脱出\n\n```console\n$ for i in 1 2 3; do\n>   echo \"Outer loop: $i\"\n>   for j in a b c; do\n>     echo \"  Inner loop: $j\"\n>     if [ $j = \"b\" ] && [ $i -eq 2 ]; then\n>       echo \"  Breaking from both loops\"\n>       break 2\n>     fi\n>   done\n> done\n> echo \"All loops completed\"\nOuter loop: 1\n  Inner loop: a\n  Inner loop: b\n  Inner loop: c\nOuter loop: 2\n  Inner loop: a\n  Inner loop: b\n  Breaking from both loops\nAll loops completed\n```\n\n## ヒント:\n\n### breakは控えめに使用する\n`break`の過度な使用はコードの読みやすさとメンテナンス性を低下させる可能性があります。可能な場合はループロジックの再構築を検討しましょう。\n\n### 条件文と組み合わせる\n`break`は特定の条件に基づいてループを終了するために、`if`文と組み合わせると最も効果的です。\n\n### breakとcontinueの違いを覚えておく\n`break`はループ全体を終了しますが、`continue`は現在の反復の残りをスキップして次の反復に移ります。\n\n### ネストされたループには数値引数を使用する\nネストされたループを扱う場合、複数の`break`文を使用する代わりに`break n`を使用して一度に複数のレベルを終了しましょう。\n\n## よくある質問\n\n#### Q1. `break`と`exit`の違いは何ですか？\nA. `break`は現在のループからのみ抜け出しますが、`exit`はスクリプト全体を終了します。\n\n#### Q2. ループの外で`break`を使用できますか？\nA. いいえ、ループの外で`break`を使用すると「break: only meaningful in a 'for', 'while', or 'until' loop」（breakは'for'、'while'、または'until'ループ内でのみ意味があります）のようなエラーメッセージが表示されます。\n\n#### Q3. 複数のネストされたループから抜け出すにはどうすればよいですか？\nA. `break n`を使用します。nは抜け出したいネストされたループの数です。\n\n#### Q4. `break`はすべてのシェルタイプで動作しますか？\nA. はい、`break`はBash、Zsh、KshなどのすべてのPOSIX準拠シェルの標準機能です。\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html\n\n## 改訂履歴\n\n- 2025/05/06 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1128,
+    "output_tokens": 1375
+  }
+}

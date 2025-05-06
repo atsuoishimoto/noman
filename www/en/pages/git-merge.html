@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-merge - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git merge command</h1>
+<p>Combines changes from different branches into the current branch.</p>
+<h2>Overview</h2>
+<p><code>git merge</code> integrates changes from one or more branches into the current branch. It's commonly used to incorporate completed features from development branches into the main branch or to bring the latest changes from the main branch into a feature branch. The command creates a new commit that represents the merged state, unless it's a fast-forward merge.</p>
+<h2>Options</h2>
+<h3><strong>--ff</strong></h3>
+<p>Perform a fast-forward merge when possible (default behavior).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Updating 5ab1c2d..8ef9a0b</span>
+<span style="color: #000; font-style: italic">Fast-forward</span>
+<span style="color: #000; font-style: italic"> file.txt | 2 ++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h3><strong>--no-ff</strong></h3>
+<p>Creates a merge commit even when a fast-forward merge would be possible.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>--no-ff<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Merge made by the &#39;recursive&#39; strategy.</span>
+<span style="color: #000; font-style: italic"> file.txt | 2 ++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h3><strong>--squash</strong></h3>
+<p>Combines all changes from the specified branch into a single set of changes, which can then be committed separately.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>--squash<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Squash commit -- not updating HEAD</span>
+<span style="color: #000; font-style: italic"> file.txt | 2 ++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h3><strong>-m, --message</strong></h3>
+<p>Sets the commit message for the merge commit.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Merge feature X into main&quot;</span><span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Merge made by the &#39;recursive&#39; strategy.</span>
+<span style="color: #000; font-style: italic"> file.txt | 2 ++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h3><strong>--abort</strong></h3>
+<p>Aborts the current merge and restores the pre-merge state.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Auto-merging file.txt</span>
+<span style="color: #000; font-style: italic">CONFLICT (content): Merge conflict in file.txt</span>
+<span style="color: #000; font-style: italic">Automatic merge failed; fix conflicts and then commit the result.</span>
+
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>--abort
+</pre></div>
+<h3><strong>--continue</strong></h3>
+<p>Continues the merge after conflicts have been resolved.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>--continue
+</pre></div>
+<h3><strong>-s, --strategy</strong></h3>
+<p>Specifies the merge strategy to use.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>recursive<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Merge made by the &#39;recursive&#39; strategy.</span>
+<span style="color: #000; font-style: italic"> file.txt | 2 ++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Branch Merge</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Switched to branch &#39;main&#39;</span>
+
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Updating 5ab1c2d..8ef9a0b</span>
+<span style="color: #000; font-style: italic">Fast-forward</span>
+<span style="color: #000; font-style: italic"> file.txt | 2 ++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h3>Creating a Merge Commit</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Switched to branch &#39;main&#39;</span>
+
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>--no-ff<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Merge made by the &#39;recursive&#39; strategy.</span>
+<span style="color: #000; font-style: italic"> file.txt | 2 ++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h3>Squashing Commits from a Branch</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>main
+<span style="color: #000; font-style: italic">Switched to branch &#39;main&#39;</span>
+
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>--squash<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Squash commit -- not updating HEAD</span>
+<span style="color: #000; font-style: italic"> file.txt | 2 ++</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>commit<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Implemented feature X&quot;</span>
+<span style="color: #000; font-style: italic">[main abc1234] Implemented feature X</span>
+<span style="color: #000; font-style: italic"> 1 file changed, 2 insertions(+)</span>
+</pre></div>
+<h3>Resolving Merge Conflicts</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #000; font-style: italic">Auto-merging file.txt</span>
+<span style="color: #000; font-style: italic">CONFLICT (content): Merge conflict in file.txt</span>
+<span style="color: #000; font-style: italic">Automatic merge failed; fix conflicts and then commit the result.</span>
+
+<span style="color: #8F5902"># </span>Edit<span style="color: #F8F8F8"> </span>the<span style="color: #F8F8F8"> </span>conflicted<span style="color: #F8F8F8"> </span>files<span style="color: #F8F8F8"> </span>to<span style="color: #F8F8F8"> </span>resolve<span style="color: #F8F8F8"> </span>conflicts
+
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>merge<span style="color: #F8F8F8"> </span>--continue
+<span style="color: #8F5902"># </span>Or<span style="color: #F8F8F8"> </span>alternatively:<span style="color: #F8F8F8"> </span>git<span style="color: #F8F8F8"> </span>commit
+</pre></div>
+<h2>Tips</h2>
+<h3>Understanding Fast-Forward Merges</h3>
+<p>A fast-forward merge occurs when the target branch's history is a direct extension of the source branch. Git simply moves the pointer forward without creating a merge commit. Use <code>--no-ff</code> to force a merge commit for better history tracking.</p>
+<h3>Previewing Merges</h3>
+<p>Before performing a merge, use <code>git diff &lt;branch&gt;</code> to preview changes that will be merged, or <code>git merge --no-commit --no-ff &lt;branch&gt;</code> to stage the merge without committing, allowing you to inspect the result.</p>
+<h3>Handling Merge Conflicts</h3>
+<p>When conflicts occur, Git marks them in the affected files. Edit these files to resolve conflicts, then use <code>git add</code> to mark them as resolved, and finally <code>git merge --continue</code> or <code>git commit</code> to complete the merge.</p>
+<h3>Using Merge Strategies</h3>
+<p>For complex merges, consider using different strategies with <code>-s</code>. The default <code>recursive</code> strategy works well for most cases, but <code>ours</code> or <code>theirs</code> can be useful when you want to prefer one side's changes over the other.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between merge and rebase?</h4>
+<p>A. Merge creates a new commit that combines changes from both branches, preserving the branch history. Rebase replays your branch's commits on top of the target branch, creating a linear history but rewriting commit history.</p>
+<h4>Q2. How do I undo a merge?</h4>
+<p>A. If you haven't pushed the merge, use <code>git reset --hard HEAD~1</code> to undo the last commit. If you've already pushed, consider using <code>git revert -m 1 &lt;merge-commit-hash&gt;</code> to create a new commit that undoes the merge.</p>
+<h4>Q3. What is a fast-forward merge?</h4>
+<p>A. A fast-forward merge occurs when the current branch has no new commits since the branch being merged was created. Git simply moves the branch pointer forward to the latest commit of the merged branch.</p>
+<h4>Q4. How do I merge only specific files from another branch?</h4>
+<p>A. Use <code>git checkout &lt;branch-name&gt; -- &lt;file-path&gt;</code> to bring specific files from another branch, then commit those changes.</p>
+<h2>References</h2>
+<p>https://git-scm.com/docs/git-merge</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

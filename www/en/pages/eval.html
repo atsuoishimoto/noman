@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  eval - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>eval command</h1>
+<p>Evaluate and execute arguments as shell commands.</p>
+<h2>Overview</h2>
+<p>The <code>eval</code> command constructs a command by concatenating its arguments, then executes the resulting command in the current shell environment. It's useful for executing commands stored in variables or generated dynamically, allowing for dynamic command construction and execution.</p>
+<h2>Options</h2>
+<p><code>eval</code> does not have specific command-line options. It simply takes a string of arguments and executes them as a shell command.</p>
+<h2>Usage Examples</h2>
+<h3>Basic Usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;echo Hello, World!&quot;</span>
+<span style="color: #000; font-style: italic">Hello, World!</span>
+</pre></div>
+<h3>Using Variables in Commands</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">command</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;ls -la&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #000">$command</span>
+<span style="color: #000; font-style: italic">total 32</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  5 user  staff   160 May  5 10:30 .</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 user  staff    96 May  4 09:15 ..</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  2048 May  5 10:25 file1.txt</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  staff  1024 May  4 15:30 file2.txt</span>
+</pre></div>
+<h3>Dynamic Command Construction</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">action</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;echo&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">target</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;Current date:&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">value</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">$(</span>date<span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$action</span><span style="color: #4E9A06"> </span><span style="color: #000">$target</span><span style="color: #4E9A06"> </span><span style="color: #000">$value</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Current date: Mon May 5 10:35:22 EDT 2025</span>
+</pre></div>
+<h3>Setting Variables Dynamically</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">var_name</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;my_variable&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">var_value</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;Hello from eval&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$var_name</span><span style="color: #4E9A06">=&#39;</span><span style="color: #000">$var_value</span><span style="color: #4E9A06">&#39;&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$my_variable</span>
+<span style="color: #000; font-style: italic">Hello from eval</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Quotes Carefully</h3>
+<p>Always quote the arguments to <code>eval</code> to prevent unexpected word splitting or globbing. This is especially important when the command contains variables or special characters.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">filename</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;my file.txt&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">eval</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;touch \&quot;</span><span style="color: #000">$filename</span><span style="color: #4E9A06">\&quot;&quot;</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Correct: creates a file named &quot;my file.txt&quot;</span>
+</pre></div>
+<h3>Security Considerations</h3>
+<p>Be extremely cautious when using <code>eval</code> with user input or untrusted data, as it can execute arbitrary commands. Always validate and sanitize any input before passing it to <code>eval</code>.</p>
+<h3>Debugging Eval Commands</h3>
+<p>To see what command <code>eval</code> will execute without actually running it, use <code>echo</code> first:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">cmd</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;ls -la /tmp&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$cmd</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Preview what will be executed</span>
+<span style="color: #000; font-style: italic">ls -la /tmp</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. When should I use <code>eval</code>?</h4>
+<p>A. Use <code>eval</code> when you need to construct and execute commands dynamically, such as when the command structure is stored in variables or generated at runtime.</p>
+<h4>Q2. Is <code>eval</code> dangerous to use?</h4>
+<p>A. Yes, <code>eval</code> can be dangerous if used with untrusted input as it executes whatever commands are passed to it. Always validate input before using with <code>eval</code>.</p>
+<h4>Q3. What's the difference between <code>eval</code> and simply executing a command?</h4>
+<p>A. <code>eval</code> performs an additional round of shell expansion before execution, allowing variables within variables to be expanded and complex command structures to be built dynamically.</p>
+<h4>Q4. How can I safely use <code>eval</code> with user input?</h4>
+<p>A. It's generally best to avoid using <code>eval</code> with user input. If necessary, strictly validate and sanitize the input, limiting it to a predefined set of safe operations.</p>
+<h2>References</h2>
+<p>https://pubs.opengroup.org/onlinepubs/9699919799/utilities/eval.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  systemctl - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>systemctl コマンド</h1>
+<p>systemdシステムとサービスマネージャーを制御します。</p>
+<h2>概要</h2>
+<p><code>systemctl</code> は、systemdシステムとサービスマネージャーを制御・管理するためのコマンドラインユーティリティです。システムサービスの起動、停止、再起動、有効化、無効化、状態確認などを行うことができます。これは、ほとんどの最新のLinuxディストリビューションで使用されているinitシステムおよびサービスマネージャーであるsystemdと対話するための主要なツールです。</p>
+<h2>オプション</h2>
+<h3><strong>status</strong></h3>
+<p>1つ以上のユニットの実行時状態を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>status<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">● nginx.service - A high performance web server and a reverse proxy server</span>
+<span style="color: #000; font-style: italic">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span>
+<span style="color: #000; font-style: italic">   Active: active (running) since Mon 2025-05-05 10:15:30 UTC; 2h 30min ago</span>
+<span style="color: #000; font-style: italic">     Docs: man:nginx(8)</span>
+<span style="color: #000; font-style: italic">  Process: 1234 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic">  Process: 1235 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic"> Main PID: 1236 (nginx)</span>
+<span style="color: #000; font-style: italic">    Tasks: 2 (limit: 4915)</span>
+<span style="color: #000; font-style: italic">   Memory: 3.0M</span>
+<span style="color: #000; font-style: italic">   CGroup: /system.slice/nginx.service</span>
+<span style="color: #000; font-style: italic">           ├─1236 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;</span>
+<span style="color: #000; font-style: italic">           └─1237 nginx: worker process</span>
+</pre></div>
+<h3><strong>start</strong></h3>
+<p>1つ以上のユニットを起動（アクティブ化）します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>start<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>stop</strong></h3>
+<p>1つ以上のユニットを停止（非アクティブ化）します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>stop<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>restart</strong></h3>
+<p>1つ以上のユニットを再起動します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>restart<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>reload</strong></h3>
+<p>1つ以上のユニットを再読み込みします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>reload<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>enable</strong></h3>
+<p>1つ以上のユニットをブート時に起動するよう有効化します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span><span style="color: #204A87">enable</span><span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.</span>
+</pre></div>
+<h3><strong>disable</strong></h3>
+<p>1つ以上のユニットがブート時に起動しないよう無効化します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>disable<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">Removed /etc/systemd/system/multi-user.target.wants/nginx.service.</span>
+</pre></div>
+<h3><strong>is-active</strong></h3>
+<p>ユニットがアクティブかどうかを確認します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>is-active<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">active</span>
+</pre></div>
+<h3><strong>is-enabled</strong></h3>
+<p>ユニットが有効かどうかを確認します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>is-enabled<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">enabled</span>
+</pre></div>
+<h3><strong>list-units</strong></h3>
+<p>読み込まれているユニットを一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>list-units
+<span style="color: #000; font-style: italic">UNIT                                      LOAD   ACTIVE SUB     DESCRIPTION</span>
+<span style="color: #000; font-style: italic">proc-sys-fs-binfmt_misc.automount         loaded active waiting Arbitrary Executable File Formats File System</span>
+<span style="color: #000; font-style: italic">sys-devices-pci0000:00-0000:00:02.0-drm-card0-card0\x2dDP\x2d1-intel_backlight.device loaded active plugged /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-DP-1/intel_backlight</span>
+<span style="color: #000; font-style: italic">sys-devices-platform-serial8250-tty-ttyS0.device loaded active plugged /sys/devices/platform/serial8250/tty/ttyS0</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>--type=TYPE</strong></h3>
+<p>特定のタイプのユニットを一覧表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>--type<span style="color: #CE5C00; font-weight: bold">=</span>service
+<span style="color: #000; font-style: italic">UNIT                               LOAD   ACTIVE SUB     DESCRIPTION</span>
+<span style="color: #000; font-style: italic">accounts-daemon.service            loaded active running Accounts Service</span>
+<span style="color: #000; font-style: italic">apparmor.service                   loaded active exited  AppArmor initialization</span>
+<span style="color: #000; font-style: italic">apport.service                     loaded active exited  LSB: automatic crash report generation</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>daemon-reload</strong></h3>
+<p>systemdマネージャーの設定を再読み込みします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>daemon-reload
+</pre></div>
+<h2>使用例</h2>
+<h3>特定のサービスの状態を確認する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>status<span style="color: #F8F8F8"> </span>ssh
+<span style="color: #000; font-style: italic">● ssh.service - OpenBSD Secure Shell server</span>
+<span style="color: #000; font-style: italic">   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)</span>
+<span style="color: #000; font-style: italic">   Active: active (running) since Mon 2025-05-05 09:45:23 UTC; 3h 10min ago</span>
+<span style="color: #000; font-style: italic">  Process: 1122 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic"> Main PID: 1123 (sshd)</span>
+<span style="color: #000; font-style: italic">    Tasks: 1 (limit: 4915)</span>
+<span style="color: #000; font-style: italic">   Memory: 5.6M</span>
+<span style="color: #000; font-style: italic">   CGroup: /system.slice/ssh.service</span>
+<span style="color: #000; font-style: italic">           └─1123 /usr/sbin/sshd -D</span>
+</pre></div>
+<h3>サービスを再起動してその状態を確認する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>restart<span style="color: #F8F8F8"> </span>nginx<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span>systemctl<span style="color: #F8F8F8"> </span>status<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">● nginx.service - A high performance web server and a reverse proxy server</span>
+<span style="color: #000; font-style: italic">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span>
+<span style="color: #000; font-style: italic">   Active: active (running) since Mon 2025-05-05 13:05:45 UTC; 2s ago</span>
+<span style="color: #000; font-style: italic">     Docs: man:nginx(8)</span>
+<span style="color: #000; font-style: italic">  Process: 5678 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic">  Process: 5679 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)</span>
+<span style="color: #000; font-style: italic"> Main PID: 5680 (nginx)</span>
+<span style="color: #000; font-style: italic">    Tasks: 2 (limit: 4915)</span>
+<span style="color: #000; font-style: italic">   Memory: 2.8M</span>
+<span style="color: #000; font-style: italic">   CGroup: /system.slice/nginx.service</span>
+<span style="color: #000; font-style: italic">           ├─5680 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;</span>
+<span style="color: #000; font-style: italic">           └─5681 nginx: worker process</span>
+</pre></div>
+<h3>失敗したすべてのサービスを一覧表示する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>systemctl<span style="color: #F8F8F8"> </span>list-units<span style="color: #F8F8F8"> </span>--state<span style="color: #CE5C00; font-weight: bold">=</span>failed
+<span style="color: #000; font-style: italic">UNIT                  LOAD   ACTIVE SUB    DESCRIPTION</span>
+<span style="color: #000; font-style: italic">mysql.service         loaded failed failed MySQL Database Server</span>
+<span style="color: #000; font-style: italic">openvpn.service       loaded failed failed OpenVPN service</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>タブ補完を使用する</h3>
+<p>Systemctlはサービス名のタブ補完をサポートしており、正確な名前を覚えていなくてもサービスを簡単に管理できます。</p>
+<h3>サービスログを確認する</h3>
+<p>サービスのトラブルシューティングを行う場合は、<code>journalctl -u サービス名</code>を使用して、そのサービスに固有のログを表示します。</p>
+<h3>サービスをマスクする</h3>
+<p>サービスが（手動でも）起動されないようにするには、<code>systemctl mask サービス名</code>を使用します。これにより/dev/nullへのシンボリックリンクが作成され、<code>systemctl unmask サービス名</code>でマスク解除されるまでサービスを起動できなくなります。</p>
+<h3>サービスの依存関係を表示する</h3>
+<p><code>systemctl list-dependencies サービス名</code>を使用して、特定のサービスが依存している他のサービスを確認します。</p>
+<h3>システム状態を管理する</h3>
+<p>サービス以外にも、systemctlはシステムの再起動（<code>systemctl reboot</code>）、電源オフ（<code>systemctl poweroff</code>）、サスペンド（<code>systemctl suspend</code>）などのシステム状態を管理できます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>systemctl stop</code>と<code>systemctl disable</code>の違いは何ですか？</h4>
+<p>A. <code>systemctl stop</code>は実行中のサービスを即座に停止しますが、ブート時の動作は変更しません。<code>systemctl disable</code>はサービスがブート時に自動的に起動しないようにしますが、現在実行中のサービスには影響しません。</p>
+<h4>Q2. サービス設定の変更を反映するにはどうすればよいですか？</h4>
+<p>A. サービスファイルを変更した後、<code>sudo systemctl daemon-reload</code>を実行してsystemdマネージャーの設定を再読み込みし、その後<code>sudo systemctl restart サービス名</code>でサービスを再起動します。</p>
+<h4>Q3. 利用可能なすべてのサービスを確認するにはどうすればよいですか？</h4>
+<p>A. <code>systemctl list-unit-files --type=service</code>を使用して、利用可能なすべてのサービスユニットファイルとその状態を確認できます。</p>
+<h4>Q4. カスタムsystemdサービスを作成するにはどうすればよいですか？</h4>
+<p>A. /etc/systemd/system/に.serviceファイルを作成し、<code>systemctl daemon-reload</code>を実行して登録し、<code>systemctl enable</code>でブート時に有効化します。</p>
+<h4>Q5. サービスの「masked」ステータスとは何ですか？</h4>
+<p>A. マスクされたサービスは、手動でも自動でも完全に起動が防止されています。これは「無効化」よりも強力な形式であり、サービスファイルから/dev/nullへのシンボリックリンクを作成することで実現されます。</p>
+<h2>参考文献</h2>
+<p>https://www.freedesktop.org/software/systemd/man/systemctl.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

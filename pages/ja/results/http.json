@@ -1,0 +1,20 @@
+{
+  "id": "msg_01JCwPEi3zPL7qe68ejzbQj7",
+  "content": [
+    {
+      "text": "# http コマンド\n\n任意のHTTPリクエストを送信し、レスポンスを表示します。\n\n## 概要\n\n`http`コマンドは、HTTPリクエストを行うためのユーザーフレンドリーなコマンドラインHTTPクライアントです。これはHTTPieツールの一部で、カラー出力、JSONサポート、よりシンプルな構文を備え、curlよりも直感的に設計されています。APIのテスト、Webサービスのデバッグ、最小限の入力でのコンテンツのダウンロードが可能です。\n\n## オプション\n\n### **-j, --json**\n\nデータをJSONとして送信します。Content-Typeヘッダーをapplication/jsonに設定します。\n\n```console\n$ http -j POST example.com name=John age:=30\n```\n\n### **-f, --form**\n\nデータをフォームエンコードとして送信します。Content-Typeヘッダーをapplication/x-www-form-urlencodedに設定します。\n\n```console\n$ http -f POST example.com name=John age=30\n```\n\n### **-a, --auth**\n\n認証用のユーザー名とパスワードを指定します。\n\n```console\n$ http -a username:password example.com\n```\n\n### **-h, --headers**\n\nレスポンスヘッダーのみを表示します。\n\n```console\n$ http -h example.com\nHTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\nDate: Mon, 05 May 2025 12:00:00 GMT\nServer: nginx\nContent-Length: 1256\n```\n\n### **-v, --verbose**\n\nHTTP通信全体（リクエストとレスポンス）を表示します。\n\n```console\n$ http -v example.com\n```\n\n### **-d, --download**\n\nレスポンスボディをファイルにダウンロードします。\n\n```console\n$ http -d example.com/file.pdf\n```\n\n### **--offline**\n\nリクエストを構築して表示しますが、送信はしません。\n\n```console\n$ http --offline POST example.com name=John\n```\n\n## 使用例\n\n### 基本的なGETリクエスト\n\n```console\n$ http example.com\nHTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n...\n\n<!doctype html>\n<html>\n...\n</html>\n```\n\n### JSONデータを使用したPOST\n\n```console\n$ http POST api.example.com/users name=John age:=30 is_active:=true\nHTTP/1.1 201 Created\nContent-Type: application/json\n\n{\n    \"id\": 123,\n    \"name\": \"John\",\n    \"age\": 30,\n    \"is_active\": true\n}\n```\n\n### リクエストヘッダーの使用\n\n```console\n$ http example.com User-Agent:MyApp X-API-Token:abc123\n```\n\n### ファイルアップロード\n\n```console\n$ http POST example.com/upload file@/path/to/file.jpg\n```\n\n## ヒント:\n\n### 文字列以外のJSON値には`:=`を使用する\n\nJSONデータを送信する際、数値、ブール値、nullには`:=`を使用します: `count:=42 active:=true data:=null`\n\n### 出力をファイルにリダイレクトする\n\n標準シェルのリダイレクトを使用してレスポンスを保存できます: `http example.com > response.html`\n\n### セッションを使用して永続的なクッキーを維持する\n\n`--session=name`を使用してリクエスト間でクッキーを維持します: `http --session=logged-in -a user:pass example.com`\n\n### JSONは自動的に整形表示される\n\nHTTPieは自動的にJSONレスポンスを読みやすく整形し、ターミナルでの構文ハイライトを提供します。\n\n## よくある質問\n\n#### Q1. `http`と`curl`の違いは何ですか？\nA. `http`（HTTPie）は、より直感的な構文、自動カラー出力、デフォルトのJSONサポートを提供し、一般的な操作に必要な入力が少なくて済みます。\n\n#### Q2. クエリパラメータを送信するにはどうすればよいですか？\nA. URLに`?`と`&`を付けて追加します: `http example.com/search?q=term&page=2` または`==`構文を使用します: `http example.com q==term page==2`\n\n#### Q3. カスタムHTTPメソッドを送信するにはどうすればよいですか？\nA. URLの前にメソッドを指定するだけです: `http PUT example.com`\n\n#### Q4. リダイレクトに従うにはどうすればよいですか？\nA. `--follow`オプションを使用します: `http --follow example.com/redirecting-url`\n\n## 参考文献\n\nhttps://httpie.io/docs/cli\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1119,
+    "output_tokens": 1406
+  }
+}

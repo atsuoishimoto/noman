@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  top - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>topコマンド</h1>
+<p>プロセスに関するソートされた情報を表示および更新します。</p>
+<h2>概要</h2>
+<p><code>top</code>は、実行中のシステムプロセスのリアルタイムな動的ビューを提供します。CPU使用率、メモリ消費量、実行時間、その他のシステム統計情報を表示する、継続的に更新されるプロセスのリストを表示します。表示は一定の間隔で更新され、ユーザーはシステムパフォーマンスを監視し、リソースを大量に消費するプロセスを特定することができます。</p>
+<h2>オプション</h2>
+<h3><strong>-d, --delay</strong></h3>
+<p>画面更新の間隔を秒単位で指定します（小数点を含めることができます）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span>
+<span style="color: #000; font-style: italic">[デフォルトの代わりに5秒ごとに表示を更新する]</span>
+</pre></div>
+<h3><strong>-n, --iterations</strong></h3>
+<p>終了前の最大繰り返し回数を指定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span>
+<span style="color: #000; font-style: italic">[3回更新を表示した後に終了する]</span>
+</pre></div>
+<h3><strong>-p, --pid</strong></h3>
+<p>指定したプロセスIDのプロセスのみを監視します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>,5678
+<span style="color: #000; font-style: italic">[PID 1234と5678のプロセスのみを表示する]</span>
+</pre></div>
+<h3><strong>-u, --user</strong></h3>
+<p>指定したユーザーが所有するプロセスのみを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">[&#39;username&#39;が所有するプロセスのみを表示する]</span>
+</pre></div>
+<h3><strong>-b, --batch</strong></h3>
+<p>バッチモードで実行します（他のプログラムやファイルに出力を送るのに便利）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>top_output.txt
+<span style="color: #000; font-style: italic">[topの出力を1回キャプチャしてファイルに保存する]</span>
+</pre></div>
+<h3><strong>-H, --threads</strong></h3>
+<p>プロセスごとに要約する代わりに個々のスレッドを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-H
+<span style="color: #000; font-style: italic">[プロセスの代わりにスレッドを表示する]</span>
+</pre></div>
+<h2>インタラクティブコマンド</h2>
+<p>topの実行中に、以下のキーボードコマンドを使用できます：</p>
+<h3>プロセス制御</h3>
+<pre><code>k - プロセスを終了（PIDとシグナルの入力を求められます）
+r - プロセスのnice値を変更（優先度の変更）
+q - topコマンドを終了
+</code></pre><h3>表示オプション</h3>
+<pre><code>h または ? - ヘルプ画面
+f - フィールド管理（列の追加/削除）
+o - ソートフィールドの変更
+1 - 個々のCPUコアの表示を切り替え
+m - メモリ表示モードの切り替え
+t - タスク/CPU表示モードの切り替え
+c - コマンドライン/プログラム名の表示切り替え
+</code></pre><h2>使用例</h2>
+<h3>基本的なシステム監視</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top
+<span style="color: #000; font-style: italic">top - 14:23:45 up 3 days, 2:34, 2 users, load average: 0.15, 0.10, 0.09</span>
+<span style="color: #000; font-style: italic">Tasks: 213 total,   1 running, 212 sleeping,   0 stopped,   0 zombie</span>
+<span style="color: #8F5902">%</span>Cpu<span style="color: #CE5C00; font-weight: bold">(</span>s<span style="color: #CE5C00; font-weight: bold">)</span>:<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">2</span>.3<span style="color: #F8F8F8"> </span>us,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.7<span style="color: #F8F8F8"> </span>sy,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.0<span style="color: #F8F8F8"> </span>ni,<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">96</span>.9<span style="color: #F8F8F8"> </span>id,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.1<span style="color: #F8F8F8"> </span>wa,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.0<span style="color: #F8F8F8"> </span>hi,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.0<span style="color: #F8F8F8"> </span>si,<span style="color: #F8F8F8">  </span><span style="color: #0000CF; font-weight: bold">0</span>.0<span style="color: #F8F8F8"> </span>st
+<span style="color: #000; font-style: italic">MiB Mem :  15895.1 total,   7431.0 free,   3820.2 used,   4643.9 buff/cache</span>
+<span style="color: #000; font-style: italic">MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.  11389.0 avail Mem </span>
+
+<span style="color: #000; font-style: italic">  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND</span>
+<span style="color: #000; font-style: italic"> 1234 user      20   0 3256712 198232  89456 S   2.0   1.2   5:23.45 firefox</span>
+<span style="color: #000; font-style: italic"> 5678 user      20   0 2345678 123456  65432 S   1.5   0.8   3:45.67 chrome</span>
+</pre></div>
+<h3>特定ユーザーのプロセスの監視</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">[rootユーザーが所有するプロセスのみを表示する]</span>
+</pre></div>
+<h3>topの出力をファイルに保存</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>top<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>firefox<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>firefox_processes.txt
+<span style="color: #000; font-style: italic">[Firefoxプロセスに関する情報をファイルにキャプチャする]</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>プロセスリストのソート</h3>
+<p><code>P</code>を押してCPU使用率でソート、<code>M</code>を押してメモリ使用率でソート、または<code>T</code>を押して時間でソートします。これにより、リソースを大量に消費するプロセスを素早く特定できます。</p>
+<h3>更新間隔の変更</h3>
+<p>topの実行中に<code>d</code>または<code>s</code>を押して、更新間隔を変更します。急速に変化するシステムの監視やリソースの節約に役立ちます。</p>
+<h3>プロセスのフィルタリング</h3>
+<p><code>o</code>または<code>O</code>を使用して、特定の基準に基づいてプロセスをフィルタリングします。例えば、特定のしきい値を超えるメモリ使用量でフィルタリングできます。</p>
+<h3>メモリ表示単位</h3>
+<p><code>E</code>を押して、異なるメモリ表示単位（KiB、MiB、GiBなど）を切り替えることで、メモリ統計の読み取りが容易になります。</p>
+<h2>よくある質問</h2>
+<h4>Q1. topを終了するにはどうすればよいですか？</h4>
+<p>A. <code>q</code>を押してtopコマンドを終了します。</p>
+<h4>Q2. top内からプロセスを終了するにはどうすればよいですか？</h4>
+<p>A. <code>k</code>を押し、終了したいプロセスのPIDを入力し、シグナル番号（SIGKILLの場合は9）を指定します。</p>
+<h4>Q3. 更新レートを変更するにはどうすればよいですか？</h4>
+<p>A. top起動時に<code>-d</code>オプションを使用するか（例：<code>top -d 5</code>で5秒）、top実行中に<code>d</code>を押します。</p>
+<h4>Q4. topが他のツールと異なるCPU使用率を表示するのはなぜですか？</h4>
+<p>A. topは更新間隔の間の時間に基づいてCPU使用率を計算しますが、他のツールは異なる計算方法や時間間隔を使用する場合があります。</p>
+<h4>Q5. メモリ使用量をより読みやすい形式で表示するにはどうすればよいですか？</h4>
+<p>A. top実行中に<code>E</code>を押して、異なるメモリ表示単位を切り替えます。</p>
+<h2>参考文献</h2>
+<p>https://man7.org/linux/man-pages/man1/top.1.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

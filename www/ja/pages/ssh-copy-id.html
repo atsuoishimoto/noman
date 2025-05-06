@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ssh-copy-id - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ssh-copy-id コマンド</h1>
+<p>リモートマシンの authorized_keys ファイルに公開鍵をインストールし、パスワードなしの SSH 認証を可能にします。</p>
+<h2>概要</h2>
+<p><code>ssh-copy-id</code> は、SSH 公開鍵をリモートサーバーの <code>~/.ssh/authorized_keys</code> ファイルにコピーするユーティリティです。これにより、リモートサーバーへのパスワードなしの SSH ログインが可能になり、接続するたびにパスワードを入力する必要がなくなります。これは鍵ベースの認証を設定する簡単な方法であり、パスワード認証よりも便利で安全です。</p>
+<h2>オプション</h2>
+<h3><strong>-i [identity_file]</strong></h3>
+<p>使用する ID ファイル（秘密鍵）を指定します。デフォルトでは <code>~/.ssh/id_rsa.pub</code> を使用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>~/.ssh/custom_key.pub<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h3><strong>-f</strong></h3>
+<p>鍵がリモートサーバーに既に存在する場合でも、インストールを強制します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h3><strong>-n</strong></h3>
+<p>ドライランモード - 実際にインストールせずに、どの鍵がインストールされるかを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &quot;/home/user/.ssh/id_rsa.pub&quot;</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">Would have added the following key(s):</span>
+<span style="color: #000; font-style: italic">ssh-rsa AAAAB3NzaC1yc2EAAA...truncated...user@local-host</span>
+</pre></div>
+<h3><strong>-p [port]</strong></h3>
+<p>リモートホストに接続するポートを指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2222</span><span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh -p 2222 &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な使用法</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h3>特定の ID ファイルの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>~/.ssh/id_ed25519.pub<span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h3>非標準ポートへの接続</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-copy-id<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2222</span><span style="color: #F8F8F8"> </span>user@remote-host
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span style="color: #000; font-style: italic">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span style="color: #000; font-style: italic">user@remote-host&#39;s password: </span>
+
+<span style="color: #000; font-style: italic">Number of key(s) added: 1</span>
+
+<span style="color: #000; font-style: italic">Now try logging into the machine, with:   &quot;ssh -p 2222 &#39;user@remote-host&#39;&quot;</span>
+<span style="color: #000; font-style: italic">and check to make sure that only the key(s) you wanted were added.</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>最初に SSH 鍵を生成する</h3>
+<p><code>ssh-copy-id</code> を使用する前に、SSH 鍵が生成されていることを確認してください。生成されていない場合は、次のコマンドで作成します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh-keygen<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span>rsa<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4096</span>
+</pre></div>
+<h3>鍵のインストールを確認する</h3>
+<p><code>ssh-copy-id</code> を実行した後、リモートサーバーに SSH 接続を試みて、パスワードなしのログインが機能することを確認します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ssh<span style="color: #F8F8F8"> </span>user@remote-host
+</pre></div>
+<h3>複数の鍵</h3>
+<p>複数の SSH 鍵がある場合は、<code>-i</code> オプションで使用する鍵を指定します。これは、異なるサーバーに異なる鍵を使用する場合に便利です。</p>
+<h3>リモートディレクトリ構造</h3>
+<p><code>ssh-copy-id</code> は、リモートサーバー上に <code>~/.ssh</code> ディレクトリと <code>authorized_keys</code> ファイルが存在しない場合、適切な権限でそれらを作成します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. まだ SSH 鍵がない場合はどうすればよいですか？</h4>
+<p>A. まず <code>ssh-keygen -t rsa -b 4096</code> または <code>ssh-keygen -t ed25519</code> を使用して SSH 鍵ペアを生成し、その後 <code>ssh-copy-id</code> を使用します。</p>
+<h4>Q2. カスタム SSH ポートで <code>ssh-copy-id</code> を使用できますか？</h4>
+<p>A. はい、<code>-p</code> オプションを使用します：<code>ssh-copy-id -p 2222 user@remote-host</code>。</p>
+<h4>Q3. 鍵が正常にインストールされたかどうかを確認するにはどうすればよいですか？</h4>
+<p>A. <code>ssh-copy-id</code> を実行した後、<code>ssh user@remote-host</code> でログインを試みます。パスワードの入力を求められなければ、鍵は正常にインストールされています。</p>
+<h4>Q4. 複数の鍵を一度にコピーできますか？</h4>
+<p>A. はい、<code>ssh-copy-id</code> はデフォルトで <code>~/.ssh</code> ディレクトリにあるすべての公開鍵をコピーします。特定の鍵を指定するには、<code>-i</code> オプションを使用します。</p>
+<h4>Q5. リモートサーバーに <code>.ssh</code> ディレクトリがない場合はどうなりますか？</h4>
+<p>A. <code>ssh-copy-id</code> は自動的にディレクトリを作成し、適切な権限を設定します。</p>
+<h2>参考文献</h2>
+<p>https://man.openbsd.org/ssh-copy-id</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  cmp - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>cmp コマンド</h1>
+<p>2つのファイルをバイト単位で比較します。</p>
+<h2>概要</h2>
+<p><code>cmp</code> コマンドは任意の種類の2つのファイルを比較し、最初の相違点の位置を報告します。テキストファイル間のすべての違いを表示する <code>diff</code> とは異なり、<code>cmp</code> は単にファイルが異なる最初のバイトまたは行を識別するだけなので、バイナリファイルの迅速な比較に役立ちます。</p>
+<h2>オプション</h2>
+<h3><strong>-b, --print-bytes</strong></h3>
+<p>異なるバイトを8進数の値として表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">file1.txt file2.txt differ: byte 5, line 1 is 141 a 142 b</span>
+</pre></div>
+<h3><strong>-i, --ignore-initial=SKIP</strong></h3>
+<p>比較する前に両方の入力ファイルの最初のSKIPバイトをスキップします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span>file1.bin<span style="color: #F8F8F8"> </span>file2.bin
+<span style="color: #000; font-style: italic">file1.bin file2.bin differ: byte 11, line 1</span>
+</pre></div>
+<h3><strong>-l, --verbose</strong></h3>
+<p>各相違点についてバイト番号と異なるバイト値を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">5 141 142</span>
+<span style="color: #000; font-style: italic">8 144 145</span>
+<span style="color: #000; font-style: italic">12 150 151</span>
+</pre></div>
+<h3><strong>-n, --bytes=LIMIT</strong></h3>
+<p>最大でLIMITバイトまで比較します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>largefile1.bin<span style="color: #F8F8F8"> </span>largefile2.bin
+<span style="color: #000; font-style: italic">largefile1.bin largefile2.bin differ: byte 64, line 1</span>
+</pre></div>
+<h3><strong>-s, --quiet, --silent</strong></h3>
+<p>通常の出力をすべて抑制し、終了ステータスのみを返します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">1</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な比較</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">file1.txt file2.txt differ: byte 5, line 1</span>
+</pre></div>
+<h3>ファイルの特定部分の比較</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cmp<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1000</span><span style="color: #F8F8F8"> </span>bigfile1.dat<span style="color: #F8F8F8"> </span>bigfile2.dat
+<span style="color: #000; font-style: italic">bigfile1.dat bigfile2.dat differ: byte 340, line 3</span>
+</pre></div>
+<h3>スクリプトでの無音比較</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span>cmp<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Files are identical&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Files are different&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">Files are different</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>スクリプトで終了ステータスを使用する</h3>
+<p><code>cmp</code> コマンドは、ファイルが同一の場合は0、異なる場合は1、エラーが発生した場合は2を返します。これにより、シェルスクリプトの条件論理に最適です。</p>
+<h3>他のコマンドと組み合わせる</h3>
+<p>プロセス置換を使用してコマンドの出力を <code>cmp</code> にパイプし、コマンド出力を比較します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>cmp<span style="color: #F8F8F8"> </span>&lt;<span style="color: #CE5C00; font-weight: bold">(</span>command1<span style="color: #CE5C00; font-weight: bold">)</span><span style="color: #F8F8F8"> </span>&lt;<span style="color: #CE5C00; font-weight: bold">(</span>command2<span style="color: #CE5C00; font-weight: bold">)</span>
+</pre></div>
+<h3>バイナリファイルの比較</h3>
+<p><code>diff</code> はテキストファイルに適していますが、<code>cmp</code> はファイルが異なるかどうか、どこが異なるかを知る必要があるバイナリファイルの比較に優れています。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>cmp</code> と <code>diff</code> の違いは何ですか？</h4>
+<p>A. <code>cmp</code> はファイル間の最初の違いのみを報告し、バイナリファイルでもうまく機能します。<code>diff</code> はすべての違いを表示し、主にテキストファイル用に設計されています。</p>
+<h4>Q2. 出力を表示せずに2つのファイルが同一かどうかを確認するにはどうすればよいですか？</h4>
+<p>A. <code>cmp -s file1 file2</code> を使用し、<code>echo $?</code> で終了ステータスを確認します。戻り値が0の場合、ファイルは同一です。</p>
+<h4>Q3. <code>cmp</code> はディレクトリを比較できますか？</h4>
+<p>A. いいえ、<code>cmp</code> はファイルのみを比較します。ディレクトリ比較には、代わりに <code>diff -r</code> を使用してください。</p>
+<h4>Q4. 大きなファイルを効率的に比較するにはどうすればよいですか？</h4>
+<p>A. ファイルが異なるかどうかを素早く確認するには <code>-s</code> オプション付きの <code>cmp</code> を使用するか、大きなファイルの特定部分を比較するには <code>-i</code> と <code>-n</code> を使用します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/diffutils/manual/html_node/Invoking-cmp.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

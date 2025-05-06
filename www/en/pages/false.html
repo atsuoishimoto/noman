@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  false - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>false command</h1>
+<p>Return a successful exit status (0) regardless of input.</p>
+<h2>Overview</h2>
+<p>The <code>false</code> command is a simple utility that does nothing except return an unsuccessful exit status (1). It's often used in shell scripts to force a failure condition or as a placeholder in conditional statements.</p>
+<h2>Options</h2>
+<p>The <code>false</code> command typically doesn't accept any options. It simply returns a non-zero exit status.</p>
+<h2>Usage Examples</h2>
+<h3>Basic usage</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">false</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$?</span>
+<span style="color: #000; font-style: italic">1</span>
+</pre></div>
+<h3>Using in conditional statements</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span>false<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This won&#39;t print&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">else</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This will print&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">fi</span>
+<span style="color: #000; font-style: italic">This will print</span>
+</pre></div>
+<h3>Using in a loop</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span>!<span style="color: #F8F8F8"> </span>false<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This won&#39;t execute&quot;</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">done</span>
+</pre></div>
+<h3>Using with logical operators</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">false</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This will execute because false failed&quot;</span>
+<span style="color: #000; font-style: italic">This will execute because false failed</span>
+
+<span style="color: #8F5902">$ </span><span style="color: #204A87">false</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This won&#39;t execute because false failed&quot;</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Testing Error Handling</h3>
+<p>Use <code>false</code> to test error handling in scripts by forcing a command to fail.</p>
+<h3>Creating Infinite Loops</h3>
+<p>The command <code>while true; do ...; done</code> creates an infinite loop, while <code>while false; do ...; done</code> won't execute at all.</p>
+<h3>Logical Negation</h3>
+<p><code>! false</code> evaluates to true, which can be useful in conditional logic.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>false</code> and <code>true</code>?</h4>
+<p>A. <code>false</code> returns an exit status of 1 (failure), while <code>true</code> returns 0 (success).</p>
+<h4>Q2. Does <code>false</code> do anything besides return an exit status?</h4>
+<p>A. No, it's designed to do nothing except return a non-zero exit status.</p>
+<h4>Q3. Why would I use <code>false</code> in a script?</h4>
+<p>A. It's useful for testing error conditions, creating conditional logic, or as a placeholder when you need a command that always fails.</p>
+<h4>Q4. Can I change the exit status of <code>false</code>?</h4>
+<p>A. No, <code>false</code> is designed to always return 1. If you need a different exit status, you can use <code>exit N</code> in a shell script.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/false-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

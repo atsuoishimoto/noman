@@ -1,0 +1,20 @@
+{
+  "id": "msg_0153FzvnsU8LXySyAb8XbyxJ",
+  "content": [
+    {
+      "text": "# pwd コマンド\n\n現在の作業ディレクトリの完全なパス名を表示します。\n\n## 概要\n\n`pwd` コマンドは、現在いるディレクトリの絶対パスを表示します。これにより、ファイルシステム階層内での自分の位置を把握できます。特にディレクトリ間を移動する際や、現在の場所を参照する必要があるスクリプトを作成する際に役立ちます。\n\n## オプション\n\n### **-L, --logical**\n\n論理的な現在の作業ディレクトリを表示します。パス内のシンボリックリンクは遭遇した時点で解決されます（デフォルトの動作）。\n\n```console\n$ pwd -L\n/home/user/projects\n```\n\n### **-P, --physical**\n\n物理的な現在の作業ディレクトリを表示します。すべてのシンボリックリンクが解決されます。\n\n```console\n$ pwd -P\n/var/www/html/projects\n```\n\n## 使用例\n\n### 基本的な使い方\n\n```console\n$ pwd\n/home/user/documents\n```\n\n### スクリプト内での pwd の使用\n\n```console\n$ echo \"Current directory: $(pwd)\"\nCurrent directory: /home/user/documents\n```\n\n### 論理パスと物理パスの比較\n\n```console\n$ cd /home/user/symlink_to_projects\n$ pwd -L\n/home/user/symlink_to_projects\n$ pwd -P\n/home/user/actual/projects\n```\n\n## ヒント:\n\n### シェルスクリプトでの使用\n\n現在のディレクトリを変数に格納して、後でスクリプト内で参照できます:\n```bash\nCURRENT_DIR=$(pwd)\ncd /some/other/directory\n# 何か作業をする\ncd \"$CURRENT_DIR\"  # 元のディレクトリに戻る\n```\n\n### パスのハードコーディングを避ける\n\nスクリプト内でパスをハードコーディングする代わりに、`pwd` を使用することで、異なるシステム間でスクリプトの移植性を高めることができます。\n\n### シンボリックリンクのトラブルシューティング\n\nシンボリックリンクを扱う場合、`pwd -P` を使用してファイルが実際にディスク上のどこに保存されているかを確認できます。これにより、権限の問題のトラブルシューティングに役立ちます。\n\n## よくある質問\n\n#### Q1. `pwd` と `echo $PWD` の違いは何ですか？\nA. 通常は同じ結果を表示しますが、`$PWD` は現在のディレクトリパスを格納する環境変数です。`pwd` は現在のディレクトリを積極的に判断するコマンドです。\n\n#### Q2. なぜ `pwd -P` と `pwd -L` が異なる結果を表示することがありますか？\nA. 現在のディレクトリにシンボリックリンクが含まれている場合に違いが生じます。`-L` はシンボリックリンクをそのままにしたパスを表示し、`-P` はすべてのシンボリックリンクを解決して実際の物理パスを表示します。\n\n#### Q3. `pwd` はすべてのUnix系システムで同じように動作しますか？\nA. 基本的な機能は同じですが、GNU/Linux、macOS、その他のUnixバリアントの間で利用可能なオプションに若干の違いがある場合があります。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/pwd-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 770,
+    "output_tokens": 1071
+  }
+}

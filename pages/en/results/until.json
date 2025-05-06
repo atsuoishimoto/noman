@@ -1,0 +1,20 @@
+{
+  "id": "msg_01Qxg41Bt9dNggwwvwH93FNL",
+  "content": [
+    {
+      "text": "# until command\n\nExecute a command repeatedly until a condition is met.\n\n## Overview\n\nThe `until` command is a shell construct that repeatedly executes a command block until a specified condition becomes true. Unlike `while`, which runs while a condition is true, `until` runs until a condition becomes true. It's useful for creating loops that need to continue until a specific state is reached.\n\n## Options\n\nThe `until` command doesn't have traditional command-line options as it's a shell built-in construct rather than a standalone program.\n\n## Usage Examples\n\n### Basic until loop\n\n```console\n$ until [ $counter -ge 5 ]; do\n>   echo \"Counter: $counter\"\n>   ((counter++))\n> done\nCounter: 0\nCounter: 1\nCounter: 2\nCounter: 3\nCounter: 4\n```\n\n### Waiting for a file to exist\n\n```console\n$ until [ -f /tmp/signal_file ]; do\n>   echo \"Waiting for signal file...\"\n>   sleep 5\n> done\n> echo \"Signal file found!\"\nWaiting for signal file...\nWaiting for signal file...\nSignal file found!\n```\n\n### Waiting for a process to complete\n\n```console\n$ process_id=$!\n$ until ! ps -p $process_id > /dev/null; do\n>   echo \"Process is still running...\"\n>   sleep 2\n> done\n> echo \"Process has completed.\"\nProcess is still running...\nProcess is still running...\nProcess has completed.\n```\n\n### Retrying a command until it succeeds\n\n```console\n$ until ping -c 1 example.com > /dev/null; do\n>   echo \"Network not available, retrying in 5 seconds...\"\n>   sleep 5\n> done\n> echo \"Network is up!\"\nNetwork not available, retrying in 5 seconds...\nNetwork is up!\n```\n\n## Tips:\n\n### Always Include an Exit Condition\n\nMake sure your `until` loop has a way to eventually satisfy its condition, or it will run indefinitely. Consider adding a maximum number of attempts or a timeout.\n\n### Use with Command Exit Status\n\nThe `until` loop works well with command exit statuses (0 for success, non-zero for failure). For example, `until command; do something; done` will keep running until `command` succeeds.\n\n### Combine with Sleep for Polling\n\nWhen waiting for a condition to change, use `sleep` inside the loop to prevent excessive CPU usage. This is especially useful when checking for external events.\n\n### Break Out of Loops When Needed\n\nYou can use the `break` command inside an `until` loop to exit early if a different condition is met before the main condition.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `until` and `while`?\nA. `while` executes commands as long as a condition is true, whereas `until` executes commands as long as a condition is false (until it becomes true).\n\n#### Q2. Can I use `until` in all shells?\nA. `until` is available in most modern shells including bash, zsh, and ksh, but may not be available in more minimal shells like dash or ash.\n\n#### Q3. How do I prevent an infinite loop with `until`?\nA. Ensure your condition will eventually become true, or include a counter with a maximum value and use `break` to exit the loop when the counter is reached.\n\n#### Q4. Can I nest `until` loops?\nA. Yes, you can nest `until` loops inside other loops, including other `until` loops, `while` loops, or `for` loops.\n\n## References\n\nhttps://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1678,
+    "output_tokens": 874
+  }
+}

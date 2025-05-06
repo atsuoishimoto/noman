@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  if - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>if command</h1>
+<p>Evaluates conditional expressions and executes commands based on the result.</p>
+<h2>Overview</h2>
+<p>The <code>if</code> command is a shell construct that allows conditional execution of commands. It tests whether a condition is true and executes a block of code accordingly. It can include optional <code>elif</code> (else if) and <code>else</code> clauses to handle multiple conditions.</p>
+<h2>Options</h2>
+<p>The <code>if</code> command doesn't have traditional command-line options as it's a shell built-in construct rather than a standalone executable.</p>
+<h2>Usage Examples</h2>
+<h3>Basic if statement</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;The passwd file exists.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">The passwd file exists.</span>
+</pre></div>
+<h3>if-else statement</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$USER</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;root&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;You are root.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;You are not root.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">You are not root.</span>
+</pre></div>
+<h3>if-elif-else statement</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">count</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">15</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$count</span><span style="color: #F8F8F8"> </span>-lt<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">10</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Count is less than 10.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; elif [ $count -lt 20 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Count is between 10 and 19.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Count is 20 or greater.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">Count is between 10 and 19.</span>
+</pre></div>
+<h3>Using test operators</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">file</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;example.txt&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$file</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$file</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;File exists and is writable.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;File doesn&#39;t exist or isn&#39;t writable.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">File doesn&#39;t exist or isn&#39;t writable.</span>
+</pre></div>
+<h3>Using command exit status</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;root&quot;</span><span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;User root exists.&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+<span style="color: #000; font-style: italic">User root exists.</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Always Quote Variables</h3>
+<p>Always quote variables in test conditions to prevent word splitting and globbing issues:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">filename</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;my file.txt&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$filename</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Quotes prevent issues with spaces</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;File exists&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+</pre></div>
+<h3>Use Double Brackets in Bash</h3>
+<p>In Bash, <code>[[ ]]</code> provides more features than the traditional <code>[ ]</code> test command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[[</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$string</span><span style="color: #4E9A06">&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">==</span><span style="color: #F8F8F8"> </span>*txt<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Pattern matching works in [[ ]]</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;String ends with txt&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+</pre></div>
+<h3>Check Command Success</h3>
+<p>You can test if a command succeeded without using <code>[ ]</code>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">if</span><span style="color: #F8F8F8"> </span>ping<span style="color: #F8F8F8"> </span>-c1<span style="color: #F8F8F8"> </span>-W1<span style="color: #F8F8F8"> </span>google.com<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">&amp;</span>&gt;/dev/null<span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">then</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Network is up&quot;</span>
+<span style="color: #000; font-style: italic">&gt; else</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Network is down&quot;</span>
+<span style="color: #000; font-style: italic">&gt; fi</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>[ ]</code> and <code>[[ ]]</code>?</h4>
+<p>A. <code>[ ]</code> is the traditional test command available in most shells. <code>[[ ]]</code> is a Bash extension with additional features like pattern matching and logical operators. Use <code>[[ ]]</code> in Bash scripts when possible.</p>
+<h4>Q2. How do I test if a file exists?</h4>
+<p>A. Use <code>if [ -e filename ]</code> to check if a file exists, <code>if [ -f filename ]</code> to check if it's a regular file, or <code>if [ -d filename ]</code> to check if it's a directory.</p>
+<h4>Q3. How do I compare strings?</h4>
+<p>A. Use <code>if [ &quot;$string1&quot; = &quot;$string2&quot; ]</code> for equality or <code>if [ &quot;$string1&quot; != &quot;$string2&quot; ]</code> for inequality. Note the single <code>=</code> for string comparison.</p>
+<h4>Q4. How do I compare numbers?</h4>
+<p>A. Use <code>-eq</code> (equal), <code>-ne</code> (not equal), <code>-lt</code> (less than), <code>-le</code> (less than or equal), <code>-gt</code> (greater than), or <code>-ge</code> (greater than or equal): <code>if [ &quot;$num1&quot; -eq &quot;$num2&quot; ]</code>.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  chmod - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>chmod コマンド</h1>
+<p>ファイルやディレクトリのモードビット（パーミッション）を変更します。</p>
+<h2>概要</h2>
+<p><code>chmod</code> コマンドは、Unix系システムでファイルやディレクトリのパーミッションを変更するコマンドです。アクセスモードを変更することで、誰がファイルを読み取り、書き込み、または実行できるかを制御できます。パーミッションは、シンボリック表記（文字）またはオクタル表記（数字）のいずれかを使用して指定できます。</p>
+<h2>オプション</h2>
+<h3><strong>-R, --recursive</strong></h3>
+<p>パーミッションを再帰的に変更し、指定されたディレクトリ内のすべてのファイルとディレクトリに影響を与えます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">755</span><span style="color: #F8F8F8"> </span>projects/
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>処理されるすべてのファイルについて、変更内容を示す診断メッセージを表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">mode of &#39;file.txt&#39; changed from 0755 (rwxr-xr-x) to 0644 (rw-r--r--)</span>
+</pre></div>
+<h3><strong>-c, --changes</strong></h3>
+<p>verboseと似ていますが、実際に変更が行われた場合のみ報告します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">mode of &#39;file.txt&#39; changed from 0755 (rwxr-xr-x) to 0644 (rw-r--r--)</span>
+</pre></div>
+<h3><strong>-f, --silent, --quiet</strong></h3>
+<p>ほとんどのエラーメッセージを抑制します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">644</span><span style="color: #F8F8F8"> </span>nonexistent.txt
+</pre></div>
+<h2>使用例</h2>
+<h3>オクタル表記の使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">755</span><span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #000; font-style: italic">-rwxr-xr-x 1 user group 1024 May 5 10:00 script.sh</span>
+</pre></div>
+<h3>シンボリック表記の使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>u+x<span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #000; font-style: italic">-rwxr--r-- 1 user group 1024 May 5 10:00 script.sh</span>
+</pre></div>
+<h3>複数のパーミッションの追加</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>u+rwx,g+rx,o+r<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">-rwxr-xr-- 1 user group 1024 May 5 10:00 file.txt</span>
+</pre></div>
+<h3>パーミッションの削除</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chmod<span style="color: #F8F8F8"> </span>go-w<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">-rw-r--r-- 1 user group 1024 May 5 10:00 file.txt</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>オクタル表記の理解</h3>
+<p>オクタル表記の3桁は、所有者、グループ、その他のユーザーのパーミッションを表します：</p>
+<ul>
+<li>4 = 読み取り (r)</li>
+<li>2 = 書き込み (w)</li>
+<li>1 = 実行 (x)</li>
+</ul>
+<p>一般的な組み合わせ：</p>
+<ul>
+<li>755 (rwxr-xr-x)：所有者は読み取り/書き込み/実行可能、他のユーザーは読み取り/実行可能</li>
+<li>644 (rw-r--r--)：所有者は読み取り/書き込み可能、他のユーザーは読み取りのみ可能</li>
+<li>700 (rwx------)：所有者は読み取り/書き込み/実行可能、他のユーザーにはパーミッションなし</li>
+</ul>
+<h3>シンボリック表記の効果的な使用</h3>
+<ul>
+<li><code>u</code> (ユーザー/所有者)、<code>g</code> (グループ)、<code>o</code> (その他)、<code>a</code> (すべて)</li>
+<li><code>+</code> (パーミッション追加)、<code>-</code> (パーミッション削除)、<code>=</code> (正確なパーミッション設定)</li>
+<li><code>r</code> (読み取り)、<code>w</code> (書き込み)、<code>x</code> (実行)</li>
+</ul>
+<h3>デフォルトパーミッションの設定</h3>
+<p>新しく作成されるファイルとディレクトリのデフォルトパーミッションを制御するには <code>umask</code> を使用します。</p>
+<h2>よくある質問</h2>
+<h4>Q1. オクタル表記とシンボリック表記の違いは何ですか？</h4>
+<p>A. オクタル表記（755など）は数字を使用して正確なパーミッションを設定しますが、シンボリック表記（u+xなど）は他のパーミッションを変更せずに特定のパーミッションを追加または削除できます。</p>
+<h4>Q2. ファイルを実行可能にするにはどうすればよいですか？</h4>
+<p>A. <code>chmod +x ファイル名</code> または <code>chmod u+x ファイル名</code> を使用して、所有者が実行できるようにします。</p>
+<h4>Q3. 機密ファイルにはどのようなパーミッションを使用すべきですか？</h4>
+<p>A. 機密ファイルには、600 (rw-------)のような制限的なパーミッションを使用し、所有者のみが読み書きできるようにします。</p>
+<h4>Q4. ディレクトリ内のすべてのファイルのパーミッションを変更するにはどうすればよいですか？</h4>
+<p>A. 再帰オプションを使用します：<code>chmod -R パーミッション ディレクトリ/</code></p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/chmod-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

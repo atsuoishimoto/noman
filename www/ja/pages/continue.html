@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  continue - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>continue コマンド</h1>
+<p>一時停止したジョブをフォアグラウンドに戻して再開します。</p>
+<h2>概要</h2>
+<p><code>continue</code> コマンドはシェル組み込みコマンドで、ループ（for、while、until）の実行を次の繰り返しの先頭から再開し、現在の繰り返しの残りのコマンドをスキップします。シェルスクリプト内で使用され、特定の条件が満たされた場合に即座に次の繰り返しを開始することでループの流れを制御します。</p>
+<h2>オプション</h2>
+<p><code>continue</code> コマンドは従来の意味でのオプションはありませんが、オプションの数値引数を受け付けることができます。</p>
+<h3><strong>n</strong>（数値引数）</h3>
+<p>どの囲まれたループを継続するかを指定します。デフォルト（引数なし）では、<code>continue</code> は最も内側のループに影響します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>i<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   for j in a b c; do</span>
+<span style="color: #000; font-style: italic">&gt;     if [ $j = &quot;b&quot; ]; then</span>
+<span style="color: #000; font-style: italic">&gt;       continue 2  # 外側のループの次の繰り返しにスキップ</span>
+<span style="color: #000; font-style: italic">&gt;     fi</span>
+<span style="color: #000; font-style: italic">&gt;     echo &quot;$i $j&quot;</span>
+<span style="color: #000; font-style: italic">&gt;   done</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">1 a</span>
+<span style="color: #000; font-style: italic">2 a</span>
+<span style="color: #000; font-style: italic">3 a</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>ループでの基本的な使い方</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">for</span><span style="color: #F8F8F8"> </span>i<span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">in</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   if [ $i -eq 3 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;     continue</span>
+<span style="color: #000; font-style: italic">&gt;   fi</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Processing item $i&quot;</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Processing item 1</span>
+<span style="color: #000; font-style: italic">Processing item 2</span>
+<span style="color: #000; font-style: italic">Processing item 4</span>
+<span style="color: #000; font-style: italic">Processing item 5</span>
+</pre></div>
+<h3>条件に基づいた繰り返しのスキップ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">i</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">0</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87; font-weight: bold">while</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">[</span><span style="color: #F8F8F8"> </span><span style="color: #000">$i</span><span style="color: #F8F8F8"> </span>-lt<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">]</span><span style="color: #000; font-weight: bold">;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87; font-weight: bold">do</span>
+<span style="color: #000; font-style: italic">&gt;   i=$((i+1))</span>
+<span style="color: #000; font-style: italic">&gt;   if [ $((i % 2)) -eq 0 ]; then</span>
+<span style="color: #000; font-style: italic">&gt;     continue</span>
+<span style="color: #000; font-style: italic">&gt;   fi</span>
+<span style="color: #000; font-style: italic">&gt;   echo &quot;Odd number: $i&quot;</span>
+<span style="color: #000; font-style: italic">&gt; done</span>
+<span style="color: #000; font-style: italic">Odd number: 1</span>
+<span style="color: #000; font-style: italic">Odd number: 3</span>
+<span style="color: #000; font-style: italic">Odd number: 5</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>複雑なループでは注意して使用する</h3>
+<p>ネストされたループで <code>continue</code> を使用する場合は、どのループに影響するかに注意してください。数値引数がない場合、最も内側のループにのみ影響します。</p>
+<h3>条件論理と組み合わせる</h3>
+<p><code>continue</code> は条件文と組み合わせて特定の条件を満たす繰り返しをスキップするときに最も役立ち、スクリプトの効率を高めます。</p>
+<h3>読みやすさを考慮する</h3>
+<p><code>continue</code> はスクリプトをより効率的にできますが、過度に使用するとコードの理解が難しくなる可能性があります。読みやすさを維持するために慎重に使用しましょう。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>continue</code> と <code>break</code> の違いは何ですか？</h4>
+<p>A. <code>continue</code> はループの次の繰り返しにスキップしますが、<code>break</code> はループを完全に終了します。</p>
+<h4>Q2. ループの外で <code>continue</code> を使用できますか？</h4>
+<p>A. いいえ、ループの外で <code>continue</code> を使用するとエラーになります。これはループ内でのみ意味を持ちます。</p>
+<h4>Q3. ネストされたループで特定の外側のループを継続するにはどうすればよいですか？</h4>
+<p>A. <code>continue n</code> を使用します。ここで n は継続したいループのレベルです（最も内側のループは 1、その外側のレベルは 2、など）。</p>
+<h4>Q4. <code>continue</code> はすべてのシェルタイプで同じように機能しますか？</h4>
+<p>A. 基本的な機能は bash、zsh、その他の一般的なシェルで一貫していますが、複雑なスクリプトでは動作に微妙な違いがある場合があります。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

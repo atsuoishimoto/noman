@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  wc - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>wc command</h1>
+<p>Count lines, words, and bytes in files.</p>
+<h2>Overview</h2>
+<p>The <code>wc</code> (word count) command counts and displays the number of lines, words, bytes, or characters in specified files. It's commonly used in text processing to analyze file content or as part of pipelines to count output from other commands.</p>
+<h2>Options</h2>
+<h3><strong>-l, --lines</strong></h3>
+<p>Count the number of lines in a file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>wc<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">      42 file.txt</span>
+</pre></div>
+<h3><strong>-w, --words</strong></h3>
+<p>Count the number of words in a file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>wc<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">     320 file.txt</span>
+</pre></div>
+<h3><strong>-c, --bytes</strong></h3>
+<p>Count the number of bytes in a file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>wc<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">    1872 file.txt</span>
+</pre></div>
+<h3><strong>-m, --chars</strong></h3>
+<p>Count the number of characters in a file (may differ from bytes in multibyte encodings).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>wc<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">    1850 file.txt</span>
+</pre></div>
+<h3><strong>-L, --max-line-length</strong></h3>
+<p>Display the length of the longest line in a file.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>wc<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">      78 file.txt</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Usage (Default Output)</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>wc<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">      42     320    1872 file.txt</span>
+</pre></div>
+<p>The output shows lines, words, and bytes (in that order).</p>
+<h3>Multiple Files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>wc<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">      42     320    1872 file1.txt</span>
+<span style="color: #000; font-style: italic">      10      85     492 file2.txt</span>
+<span style="color: #000; font-style: italic">      52     405    2364 total</span>
+</pre></div>
+<h3>Using wc in a Pipeline</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>wc<span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic">       5</span>
+</pre></div>
+<p>This counts the number of lines containing &quot;error&quot; in file.txt.</p>
+<h2>Tips:</h2>
+<h3>Counting Words in Multiple Files</h3>
+<p>Use wildcards to count words across multiple files: <code>wc -w *.txt</code> will show word counts for all text files in the current directory.</p>
+<h3>Counting Files in a Directory</h3>
+<p>Combine with <code>ls</code> to count files: <code>ls -1 | wc -l</code> counts the number of entries in the current directory.</p>
+<h3>Memory Usage</h3>
+<p>For very large files, <code>wc</code> is more memory-efficient than loading files into text editors to check size.</p>
+<h3>Ignoring Line Count Headers</h3>
+<p>When using <code>wc -l</code> in scripts, use <code>awk</code> to extract just the number: <code>wc -l file.txt | awk '{print $1}'</code></p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What does wc stand for?</h4>
+<p>A. <code>wc</code> stands for &quot;word count.&quot;</p>
+<h4>Q2. How do I count only the characters in a file?</h4>
+<p>A. Use <code>wc -m</code> to count characters. For bytes, use <code>wc -c</code> (they're the same for ASCII files).</p>
+<h4>Q3. Why are the line counts different from what I see in my text editor?</h4>
+<p>A. <code>wc</code> counts newline characters, so the count may differ if the last line doesn't end with a newline or if your editor displays &quot;virtual lines&quot; for wrapped text.</p>
+<h4>Q4. How can I get just the number without the filename?</h4>
+<p>A. Either pipe the content: <code>cat file.txt | wc -l</code> or use awk: <code>wc -l file.txt | awk '{print $1}'</code></p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/wc-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

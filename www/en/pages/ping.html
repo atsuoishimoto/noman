@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ping - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ping command</h1>
+<p>Send ICMP ECHO_REQUEST packets to network hosts to verify connectivity.</p>
+<h2>Overview</h2>
+<p>The <code>ping</code> command tests network connectivity by sending Internet Control Message Protocol (ICMP) echo request packets to a specified host and waiting for replies. It's commonly used to check if a host is reachable, measure round-trip time, and diagnose network issues.</p>
+<h2>Options</h2>
+<h3><strong>-c count</strong></h3>
+<p>Stop after sending (and receiving) count ECHO_RESPONSE packets.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ping<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">4</span><span style="color: #F8F8F8"> </span>google.com
+<span style="color: #000; font-style: italic">PING google.com (142.250.190.78): 56 data bytes</span>
+<span style="color: #000; font-style: italic">64 bytes from 142.250.190.78: icmp_seq=0 ttl=116 time=14.252 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 142.250.190.78: icmp_seq=1 ttl=116 time=14.618 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 142.250.190.78: icmp_seq=2 ttl=116 time=14.465 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 142.250.190.78: icmp_seq=3 ttl=116 time=14.361 ms</span>
+
+<span style="color: #000; font-style: italic">--- google.com ping statistics ---</span>
+<span style="color: #000; font-style: italic">4 packets transmitted, 4 packets received, 0.0% packet loss</span>
+<span style="color: #000; font-style: italic">round-trip min/avg/max/stddev = 14.252/14.424/14.618/0.135 ms</span>
+</pre></div>
+<h3><strong>-i interval</strong></h3>
+<p>Wait interval seconds between sending each packet. The default is to wait for one second between each packet.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ping<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">PING example.com (93.184.216.34): 56 data bytes</span>
+<span style="color: #000; font-style: italic">64 bytes from 93.184.216.34: icmp_seq=0 ttl=56 time=11.632 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 93.184.216.34: icmp_seq=1 ttl=56 time=11.726 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 93.184.216.34: icmp_seq=2 ttl=56 time=11.978 ms</span>
+
+<span style="color: #000; font-style: italic">--- example.com ping statistics ---</span>
+<span style="color: #000; font-style: italic">3 packets transmitted, 3 packets received, 0.0% packet loss</span>
+<span style="color: #000; font-style: italic">round-trip min/avg/max/stddev = 11.632/11.779/11.978/0.146 ms</span>
+</pre></div>
+<h3><strong>-t ttl</strong></h3>
+<p>Set the IP Time to Live (TTL) for outgoing packets.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ping<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">64</span><span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span>github.com
+<span style="color: #000; font-style: italic">PING github.com (140.82.121.3): 56 data bytes</span>
+<span style="color: #000; font-style: italic">64 bytes from 140.82.121.3: icmp_seq=0 ttl=64 time=15.361 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 140.82.121.3: icmp_seq=1 ttl=64 time=15.244 ms</span>
+
+<span style="color: #000; font-style: italic">--- github.com ping statistics ---</span>
+<span style="color: #000; font-style: italic">2 packets transmitted, 2 packets received, 0.0% packet loss</span>
+<span style="color: #000; font-style: italic">round-trip min/avg/max/stddev = 15.244/15.303/15.361/0.059 ms</span>
+</pre></div>
+<h3><strong>-s packetsize</strong></h3>
+<p>Specify the number of data bytes to be sent. The default is 56, which translates into 64 ICMP data bytes when combined with the 8 bytes of ICMP header data.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ping<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">100</span><span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">PING example.com (93.184.216.34): 100 data bytes</span>
+<span style="color: #000; font-style: italic">108 bytes from 93.184.216.34: icmp_seq=0 ttl=56 time=11.632 ms</span>
+<span style="color: #000; font-style: italic">108 bytes from 93.184.216.34: icmp_seq=1 ttl=56 time=11.726 ms</span>
+
+<span style="color: #000; font-style: italic">--- example.com ping statistics ---</span>
+<span style="color: #000; font-style: italic">2 packets transmitted, 2 packets received, 0.0% packet loss</span>
+<span style="color: #000; font-style: italic">round-trip min/avg/max/stddev = 11.632/11.679/11.726/0.047 ms</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic connectivity test</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ping<span style="color: #F8F8F8"> </span>google.com
+<span style="color: #000; font-style: italic">PING google.com (142.250.190.78): 56 data bytes</span>
+<span style="color: #000; font-style: italic">64 bytes from 142.250.190.78: icmp_seq=0 ttl=116 time=14.252 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 142.250.190.78: icmp_seq=1 ttl=116 time=14.618 ms</span>
+<span style="color: #000; font-style: italic">^C</span>
+<span style="color: #000; font-style: italic">--- google.com ping statistics ---</span>
+<span style="color: #000; font-style: italic">2 packets transmitted, 2 packets received, 0.0% packet loss</span>
+<span style="color: #000; font-style: italic">round-trip min/avg/max/stddev = 14.252/14.435/14.618/0.183 ms</span>
+</pre></div>
+<h3>Pinging with IP address</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ping<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">3</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8</span>.8.8.8
+<span style="color: #000; font-style: italic">PING 8.8.8.8 (8.8.8.8): 56 data bytes</span>
+<span style="color: #000; font-style: italic">64 bytes from 8.8.8.8: icmp_seq=0 ttl=116 time=12.252 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 8.8.8.8: icmp_seq=1 ttl=116 time=12.618 ms</span>
+<span style="color: #000; font-style: italic">64 bytes from 8.8.8.8: icmp_seq=2 ttl=116 time=12.465 ms</span>
+
+<span style="color: #000; font-style: italic">--- 8.8.8.8 ping statistics ---</span>
+<span style="color: #000; font-style: italic">3 packets transmitted, 3 packets received, 0.0% packet loss</span>
+<span style="color: #000; font-style: italic">round-trip min/avg/max/stddev = 12.252/12.445/12.618/0.150 ms</span>
+</pre></div>
+<h3>Continuous ping with timestamp</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ping<span style="color: #F8F8F8"> </span>-D<span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">PING example.com (93.184.216.34): 56 data bytes</span>
+<span style="color: #000; font-style: italic">[1715011234.123456] 64 bytes from 93.184.216.34: icmp_seq=0 ttl=56 time=11.632 ms</span>
+<span style="color: #000; font-style: italic">[1715011235.125678] 64 bytes from 93.184.216.34: icmp_seq=1 ttl=56 time=11.726 ms</span>
+<span style="color: #000; font-style: italic">^C</span>
+<span style="color: #000; font-style: italic">--- example.com ping statistics ---</span>
+<span style="color: #000; font-style: italic">2 packets transmitted, 2 packets received, 0.0% packet loss</span>
+<span style="color: #000; font-style: italic">round-trip min/avg/max/stddev = 11.632/11.679/11.726/0.047 ms</span>
+</pre></div>
+<h2>Tips</h2>
+<h3>Terminate Ping Gracefully</h3>
+<p>Press Ctrl+C to stop a running ping command. This will display a summary of the ping statistics.</p>
+<h3>Check Network Latency</h3>
+<p>Pay attention to the &quot;time&quot; value in ping responses. Higher values indicate greater latency, which can affect real-time applications like video calls or online gaming.</p>
+<h3>Interpret Packet Loss</h3>
+<p>Any packet loss (shown in the statistics) indicates network issues. Occasional packet loss (1-2%) may be normal, but consistent or high packet loss suggests network problems.</p>
+<h3>Use Ping for Troubleshooting</h3>
+<p>If you can't ping a host, try pinging intermediate devices or known working hosts to isolate where the connectivity issue might be occurring.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What does &quot;Request timeout&quot; mean?</h4>
+<p>A. It means the target host didn't respond within the expected time. This could indicate network congestion, firewall blocks, or that the host is offline.</p>
+<h4>Q2. Why does ping sometimes work with IP addresses but not with domain names?</h4>
+<p>A. This usually indicates a DNS resolution problem. Your network can reach the IP address directly, but can't translate the domain name to an IP address.</p>
+<h4>Q3. Can ping tell me if a specific port is open?</h4>
+<p>A. No, ping only tests basic IP connectivity using ICMP. To test if a specific port is open, use tools like <code>telnet</code> or <code>nc</code> (netcat).</p>
+<h4>Q4. Why might ping be blocked?</h4>
+<p>A. Many networks and servers block ICMP packets for security reasons. A failed ping doesn't necessarily mean the host is down.</p>
+<h2>macOS Considerations</h2>
+<p>On macOS, you may need to run ping with sudo to use certain options like changing the interval to less than 1 second. Also, some options available in Linux versions of ping may not be available or may have different syntax in macOS.</p>
+<h2>References</h2>
+<p>https://man.openbsd.org/ping.8</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

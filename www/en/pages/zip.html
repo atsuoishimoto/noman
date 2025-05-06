@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  zip - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>zip command</h1>
+<p>Create or update ZIP archives by compressing files and directories.</p>
+<h2>Overview</h2>
+<p>The <code>zip</code> command creates compressed archives in the ZIP format, which is widely used for file compression and packaging. It can add files to existing archives, update files in archives, and create self-extracting archives. ZIP files maintain file attributes and directory structures, making them useful for cross-platform file sharing.</p>
+<h2>Options</h2>
+<h3><strong>-r</strong></h3>
+<p>Recursively include files in directories and their subdirectories</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>documents/
+<span style="color: #000; font-style: italic">  adding: documents/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: documents/report.txt (deflated 35%)</span>
+<span style="color: #000; font-style: italic">  adding: documents/images/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: documents/images/photo.jpg (deflated 2%)</span>
+</pre></div>
+<h3><strong>-u</strong></h3>
+<p>Update existing entries in the zip archive if they are newer than the version in the archive</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>documents/report.txt
+<span style="color: #000; font-style: italic">updating: documents/report.txt (deflated 35%)</span>
+</pre></div>
+<h3><strong>-d</strong></h3>
+<p>Delete entries from a zip archive</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>documents/report.txt
+<span style="color: #000; font-style: italic">deleting: documents/report.txt</span>
+</pre></div>
+<h3><strong>-e</strong></h3>
+<p>Encrypt the contents of the zip file with a password</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>secure.zip<span style="color: #F8F8F8"> </span>confidential.txt
+<span style="color: #000; font-style: italic">Enter password: </span>
+<span style="color: #000; font-style: italic">Verify password: </span>
+<span style="color: #000; font-style: italic">  adding: confidential.txt (deflated 42%)</span>
+</pre></div>
+<h3><strong>-j</strong></h3>
+<p>Store just the file names (junk the paths)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-j<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>documents/report.txt<span style="color: #F8F8F8"> </span>documents/images/photo.jpg
+<span style="color: #000; font-style: italic">  adding: report.txt (deflated 35%)</span>
+<span style="color: #000; font-style: italic">  adding: photo.jpg (deflated 2%)</span>
+</pre></div>
+<h3><strong>-m</strong></h3>
+<p>Move the specified files into the zip archive (delete the original files)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>temp.txt
+<span style="color: #000; font-style: italic">  adding: temp.txt (deflated 30%)</span>
+</pre></div>
+<h3><strong>-9</strong></h3>
+<p>Use maximum compression (slowest)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-9<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>largefile.dat
+<span style="color: #000; font-style: italic">  adding: largefile.dat (deflated 65%)</span>
+</pre></div>
+<h3><strong>-0</strong></h3>
+<p>Store files without compression</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-0<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>already-compressed.jpg
+<span style="color: #000; font-style: italic">  adding: already-compressed.jpg (stored 0%)</span>
+</pre></div>
+<h3><strong>-v</strong></h3>
+<p>Display verbose information about the zip operation</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">  adding: document.txt (deflated 35%)</span>
+<span style="color: #000; font-style: italic">zip diagnostic: adding document.txt</span>
+<span style="color: #000; font-style: italic">Total bytes read: 1024 (1.0k)</span>
+<span style="color: #000; font-style: italic">Total bytes written: 665 (665b)</span>
+<span style="color: #000; font-style: italic">Compression ratio: 35.1%</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Creating a basic zip archive</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>backup.zip<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">  adding: file1.txt (deflated 42%)</span>
+<span style="color: #000; font-style: italic">  adding: file2.txt (deflated 38%)</span>
+</pre></div>
+<h3>Zipping an entire directory with subdirectories</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>project.zip<span style="color: #F8F8F8"> </span>project/
+<span style="color: #000; font-style: italic">  adding: project/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: project/src/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: project/src/main.c (deflated 45%)</span>
+<span style="color: #000; font-style: italic">  adding: project/docs/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: project/docs/readme.md (deflated 40%)</span>
+</pre></div>
+<h3>Creating a password-protected zip file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>confidential.zip<span style="color: #F8F8F8"> </span>sensitive_data/
+<span style="color: #000; font-style: italic">Enter password: </span>
+<span style="color: #000; font-style: italic">Verify password: </span>
+<span style="color: #000; font-style: italic">  adding: sensitive_data/ (stored 0%)</span>
+<span style="color: #000; font-style: italic">  adding: sensitive_data/accounts.xlsx (deflated 52%)</span>
+<span style="color: #000; font-style: italic">  adding: sensitive_data/passwords.txt (deflated 35%)</span>
+</pre></div>
+<h3>Updating files in an existing archive</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>zip<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>archive.zip<span style="color: #F8F8F8"> </span>updated_file.txt
+<span style="color: #000; font-style: italic">updating: updated_file.txt (deflated 40%)</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Different Compression Levels</h3>
+<p>For large archives, consider using different compression levels. Use <code>-0</code> for already compressed files (like JPEGs) and <code>-9</code> for text files where maximum compression is beneficial.</p>
+<h3>Exclude Unwanted Files</h3>
+<p>Use patterns to exclude files: <code>zip -r archive.zip directory -x &quot;*.git*&quot; &quot;*.DS_Store&quot;</code> excludes Git files and macOS system files.</p>
+<h3>Create Self-Extracting Archives</h3>
+<p>On some systems, you can create self-extracting archives with <code>zip -A archive.zip</code>, which adds extraction code to make the ZIP file executable.</p>
+<h3>Split Large Archives</h3>
+<p>For very large archives that need to be transferred across limited media, use the <code>-s</code> option to split the archive into smaller pieces: <code>zip -s 100m -r archive.zip large_directory/</code></p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I extract a ZIP file?</h4>
+<p>A. Use the <code>unzip</code> command: <code>unzip archive.zip</code>. The <code>zip</code> command only creates or modifies archives.</p>
+<h4>Q2. How can I see the contents of a ZIP file without extracting it?</h4>
+<p>A. Use <code>unzip -l archive.zip</code> to list the contents without extraction.</p>
+<h4>Q3. How do I create a ZIP file that preserves Unix permissions?</h4>
+<p>A. Use the <code>-X</code> option: <code>zip -X archive.zip files</code> to preserve file attributes including Unix permissions.</p>
+<h4>Q4. Can I add comments to a ZIP file?</h4>
+<p>A. Yes, use the <code>-z</code> option: <code>zip -z archive.zip</code> and you'll be prompted to enter a comment.</p>
+<h4>Q5. How do I handle filename encoding issues?</h4>
+<p>A. Use <code>-UN=encoding</code> to specify the encoding for filenames, e.g., <code>zip -UN=UTF8 archive.zip files</code>.</p>
+<h2>macOS Considerations</h2>
+<p>On macOS, the default <code>zip</code> command may create additional hidden files like <code>.DS_Store</code> or <code>__MACOSX</code> directories in your archives. To avoid this, use the <code>-X</code> option to exclude extended attributes, or add exclusion patterns like <code>-x &quot;*.DS_Store&quot; &quot;__MACOSX/*&quot;</code>.</p>
+<h2>References</h2>
+<p>https://linux.die.net/man/1/zip</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

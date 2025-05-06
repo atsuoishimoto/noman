@@ -1,0 +1,20 @@
+{
+  "id": "msg_01DJTtmoKfHxPtKPg4RUm1zT",
+  "content": [
+    {
+      "text": "# continue command\n\nResume a suspended job by bringing it to the foreground.\n\n## Overview\n\nThe `continue` command is a shell built-in that resumes execution of a loop (for, while, until) at the beginning of the next iteration, skipping any remaining commands in the current iteration. It's used within shell scripts to control loop flow by immediately starting the next iteration when certain conditions are met.\n\n## Options\n\nThe `continue` command doesn't have options in the traditional sense, but it can accept an optional numeric argument.\n\n### **n** (numeric argument)\n\nSpecifies which enclosing loop to continue. By default (no argument), `continue` affects the innermost loop.\n\n```console\n$ for i in 1 2 3; do\n>   for j in a b c; do\n>     if [ $j = \"b\" ]; then\n>       continue 2  # Skip to next iteration of outer loop\n>     fi\n>     echo \"$i $j\"\n>   done\n> done\n1 a\n2 a\n3 a\n```\n\n## Usage Examples\n\n### Basic Usage in a Loop\n\n```console\n$ for i in 1 2 3 4 5; do\n>   if [ $i -eq 3 ]; then\n>     continue\n>   fi\n>   echo \"Processing item $i\"\n> done\nProcessing item 1\nProcessing item 2\nProcessing item 4\nProcessing item 5\n```\n\n### Skipping Iterations Based on Conditions\n\n```console\n$ i=0\n$ while [ $i -lt 5 ]; do\n>   i=$((i+1))\n>   if [ $((i % 2)) -eq 0 ]; then\n>     continue\n>   fi\n>   echo \"Odd number: $i\"\n> done\nOdd number: 1\nOdd number: 3\nOdd number: 5\n```\n\n## Tips:\n\n### Use with Caution in Complex Loops\n\nWhen using `continue` in nested loops, be careful about which loop you're affecting. Without a numeric argument, it only affects the innermost loop.\n\n### Combine with Conditional Logic\n\n`continue` is most useful when combined with conditional statements to skip iterations that meet specific criteria, making your scripts more efficient.\n\n### Consider Readability\n\nWhile `continue` can make scripts more efficient, excessive use can make code harder to follow. Use it judiciously to maintain readability.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `continue` and `break`?\nA. `continue` skips to the next iteration of a loop, while `break` exits the loop entirely.\n\n#### Q2. Can I use `continue` outside of a loop?\nA. No, using `continue` outside a loop will result in an error as it only has meaning within loops.\n\n#### Q3. How do I continue a specific outer loop in nested loops?\nA. Use `continue n` where n is the level of the loop you want to continue (1 for the innermost loop, 2 for the next level out, etc.).\n\n#### Q4. Does `continue` work the same in all shell types?\nA. The basic functionality is consistent across bash, zsh, and other common shells, but there might be subtle differences in behavior with complex scripts.\n\n## References\n\nhttps://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1632,
+    "output_tokens": 802
+  }
+}

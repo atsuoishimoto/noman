@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-rebase - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git-rebase コマンド</h1>
+<p>別のベースの先端に対してコミットを再適用し、コミット履歴を書き換えます。</p>
+<h2>概要</h2>
+<p><code>git rebase</code> は、ブランチのベースを一つのコミットから別のコミットに変更するために使用され、あたかも異なるコミットからブランチを作成したかのように見せることができます。元のブランチの各コミットに対して新しいコミットを作成することで履歴を書き換え、より整理された直線的なプロジェクト履歴を実現できます。</p>
+<h2>オプション</h2>
+<h3><strong>-i, --interactive</strong></h3>
+<p>対話的なリベースセッションを開始し、コミットの編集、スカッシュ（統合）、並べ替え、または削除を行うことができます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>HEAD~3
+<span style="color: #8F5902"># </span>最新の3つのコミットを修正するためのエディタが開く
+</pre></div>
+<h3><strong>--onto &lt;newbase&gt;</strong></h3>
+<p>変更を再適用する新しいベースコミットを指定します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--onto<span style="color: #F8F8F8"> </span>main<span style="color: #F8F8F8"> </span>feature-branch
+<span style="color: #8F5902"># </span>現在のブランチからfeature-branchを起点としてmainに対してコミットを再適用する
+</pre></div>
+<h3><strong>--continue</strong></h3>
+<p>コンフリクトを解決した後にリベース操作を続行します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--continue
+<span style="color: #8F5902"># </span>コンフリクトを修正した後にリベースを続行する
+</pre></div>
+<h3><strong>--abort</strong></h3>
+<p>リベース操作をキャンセルし、リベース前の状態に戻します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--abort
+<span style="color: #8F5902"># </span>リベースをキャンセルして元の状態に戻す
+</pre></div>
+<h3><strong>--skip</strong></h3>
+<p>現在のパッチをスキップして次のパッチに進みます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--skip
+<span style="color: #8F5902"># </span>現在のコミットをスキップして次のコミットに進む
+</pre></div>
+<h3><strong>-m, --merge</strong></h3>
+<p>マージ戦略を使用してリベースします。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>main
+<span style="color: #8F5902"># </span>mainにリベースする際にマージ戦略を使用する
+</pre></div>
+<h3><strong>-s, --strategy=&lt;strategy&gt;</strong></h3>
+<p>指定されたマージ戦略を使用します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>recursive<span style="color: #F8F8F8"> </span>main
+<span style="color: #8F5902"># </span>mainにリベースする際に再帰的な戦略を使用する
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的なリベース</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>feature
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>main
+<span style="color: #8F5902"># </span>featureブランチのコミットをmainの先端に再適用する
+</pre></div>
+<h3>コミットをスカッシュするための対話的リベース</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>HEAD~5
+<span style="color: #8F5902"># </span>開いたエディタで:
+<span style="color: #8F5902"># </span>pick<span style="color: #F8F8F8"> </span>01ab234<span style="color: #F8F8F8"> </span>最初のコミットメッセージ
+<span style="color: #8F5902"># </span>squash<span style="color: #F8F8F8"> </span>56cd789<span style="color: #F8F8F8"> </span>2番目のコミットメッセージ
+<span style="color: #8F5902"># </span>squash<span style="color: #F8F8F8"> </span>89ef012<span style="color: #F8F8F8"> </span>3番目のコミットメッセージ
+<span style="color: #8F5902"># </span>pick<span style="color: #F8F8F8"> </span>34gh567<span style="color: #F8F8F8"> </span>4番目のコミットメッセージ
+<span style="color: #8F5902"># </span>pick<span style="color: #F8F8F8"> </span>78ij890<span style="color: #F8F8F8"> </span>5番目のコミットメッセージ
+</pre></div>
+<h3>ブランチを異なるベースに移動する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>rebase<span style="color: #F8F8F8"> </span>--onto<span style="color: #F8F8F8"> </span>main<span style="color: #F8F8F8"> </span>feature-base<span style="color: #F8F8F8"> </span>feature
+<span style="color: #8F5902"># </span>feature-baseからfeatureまでのコミットをmainに再適用する
+</pre></div>
+<h2>ヒント:</h2>
+<h3>公開ブランチを絶対にリベースしない</h3>
+<p>公開リポジトリにプッシュされたコミットのリベースは避けてください。リベースはコミット履歴を変更するため、それらのコミットに基づいて作業している他の人にコンフリクトを引き起こす可能性があります。</p>
+<h3>コンフリクトを慎重に解決する</h3>
+<p>リベース中にコンフリクトが発生すると、Gitは操作を一時停止します。各ファイルのコンフリクトを解決し、<code>git add</code>で解決済みとマークしてから<code>git rebase --continue</code>で続行します。</p>
+<h3>バックアップブランチを作成する</h3>
+<p>複雑なリベースを実行する前に、<code>git branch backup-branch</code>でバックアップブランチを作成しましょう。リベースがうまくいかない場合のセーフティネットになります。</p>
+<h3>クリーンアップには対話的リベースを使用する</h3>
+<p>対話的リベース（<code>-i</code>）は、作業を共有する前にコミット履歴をクリーンアップするのに最適です。関連するコミットを結合したり、不要なコミットを削除したり、コミットメッセージを書き直したりできます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. マージとリベースの違いは何ですか？</h4>
+<p>A. マージは履歴を保持しマージコミットを作成しますが、リベースは新しいコミットを作成して履歴を書き換え、直線的な履歴を実現します。</p>
+<h4>Q2. リベースを元に戻すにはどうすればよいですか？</h4>
+<p>A. 変更をプッシュしていない場合は、<code>git reflog</code>を使用してリベース前のコミットを見つけ、<code>git reset --hard &lt;commit-hash&gt;</code>でその状態に戻ります。</p>
+<h4>Q3. マージではなくリベースを使用すべき場合はいつですか？</h4>
+<p>A. ローカルの未公開コミットをクリーンアップする場合や、直線的な履歴を維持する場合にリベースを使用します。公開ブランチを統合する場合はマージを使用します。</p>
+<h4>Q4. リベース中のコンフリクトを解決するにはどうすればよいですか？</h4>
+<p>A. コンフリクトしたファイルを編集して解決し、<code>git add</code>で解決済みファイルを追加してから<code>git rebase --continue</code>を実行します。</p>
+<h4>Q5. 複数のブランチを一度にリベースできますか？</h4>
+<p>A. いいえ、一度に一つのブランチしかリベースできません。</p>
+<h2>参考文献</h2>
+<p>https://git-scm.com/docs/git-rebase</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

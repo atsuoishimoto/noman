@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  kill - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>kill command</h1>
+<p>Terminate or send signals to processes.</p>
+<h2>Overview</h2>
+<p>The <code>kill</code> command sends signals to processes, most commonly used to terminate running processes. By default, it sends the TERM (terminate) signal, but it can send any specified signal to a process identified by its process ID (PID) or job specification.</p>
+<h2>Options</h2>
+<h3><strong>-s, --signal [signal]</strong></h3>
+<p>Specify the signal to send (by name or number)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>SIGTERM<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3><strong>-l, --list [signal]</strong></h3>
+<p>List available signal names or convert signal names to/from numbers</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span>-l
+<span style="color: #000; font-style: italic"> 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP</span>
+<span style="color: #000; font-style: italic"> 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1</span>
+<span style="color: #000; font-style: italic">11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM</span>
+<span style="color: #000; font-style: italic">...</span>
+</pre></div>
+<h3><strong>-9</strong></h3>
+<p>Send the SIGKILL signal, which forces process termination and cannot be caught or ignored</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span>-9<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3><strong>-15</strong></h3>
+<p>Send the SIGTERM signal (default), which requests graceful termination</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span>-15<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Terminating a process by PID</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3>Forcefully terminating a process</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span>-9<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3>Sending a specific signal by name</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>SIGHUP<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3>Sending a signal to multiple processes</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span>-TERM<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5678</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">9012</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Find Process IDs First</h3>
+<p>Use <code>ps</code> or <code>pgrep</code> to find the PID before using kill:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pgrep<span style="color: #F8F8F8"> </span>firefox
+<span style="color: #000; font-style: italic">1234</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">kill</span><span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1234</span>
+</pre></div>
+<h3>Use pkill for Name-Based Killing</h3>
+<p>Instead of finding PIDs first, use <code>pkill</code> to kill processes by name:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>pkill<span style="color: #F8F8F8"> </span>firefox
+</pre></div>
+<h3>Understand Signal Differences</h3>
+<ul>
+<li>SIGTERM (15): Default signal, allows process to clean up before exiting</li>
+<li>SIGKILL (9): Forceful termination, use only when necessary</li>
+<li>SIGHUP (1): Often used to make processes reload configuration</li>
+</ul>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between kill -9 and kill -15?</h4>
+<p>A. <code>kill -15</code> (SIGTERM) requests graceful termination, allowing the process to clean up. <code>kill -9</code> (SIGKILL) forces immediate termination and cannot be caught or ignored by the process.</p>
+<h4>Q2. How do I kill a process if I don't know its PID?</h4>
+<p>A. Use <code>pkill</code> followed by the process name: <code>pkill firefox</code>. Alternatively, find the PID first with <code>ps aux | grep process_name</code>.</p>
+<h4>Q3. Why doesn't kill -9 work sometimes?</h4>
+<p>A. Processes in uninterruptible sleep states (usually waiting for I/O) or zombie processes cannot be killed even with SIGKILL. Also, only processes you own or root can kill can be terminated.</p>
+<h4>Q4. How do I kill all processes of a specific user?</h4>
+<p>A. Use <code>pkill -u username</code> to kill all processes owned by a specific user.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/kill-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

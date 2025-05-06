@@ -1,0 +1,20 @@
+{
+  "id": "msg_01DQuwmtokdXyatnpuUfEj48",
+  "content": [
+    {
+      "text": "# diff3 command\n\nCompare three files line by line.\n\n## Overview\n\n`diff3` compares three files and identifies the differences between them. It's particularly useful for merging changes from two different versions of a file that both originated from a common ancestor, making it valuable for version control and collaborative editing.\n\n## Options\n\n### **-A, --show-all**\n\nOutput all changes, including conflicts, with special markers.\n\n```console\n$ diff3 -A file1 file2 file3\n<<<<<<< file1\nLine from file1\n||||||| file2\nLine from file2\n======= \nLine from file3\n>>>>>>> file3\n```\n\n### **-e, --ed**\n\nCreate an ed script that incorporates changes from the first to the third file into the second file.\n\n```console\n$ diff3 -e file1 file2 file3\nw\nq\n```\n\n### **-m, --merge**\n\nOutput a merged file with conflicts marked.\n\n```console\n$ diff3 -m file1 file2 file3\n<<<<<<< file1\nLine from file1\n||||||| file2\nLine from file2\n=======\nLine from file3\n>>>>>>> file3\n```\n\n### **-T, --initial-tab**\n\nMake tabs line up by prefixing a tab to output lines.\n\n```console\n$ diff3 -T file1 file2 file3\n\t<<<<<<< file1\n\tLine from file1\n\t||||||| file2\n\tLine from file2\n\t=======\n\tLine from file3\n\t>>>>>>> file3\n```\n\n### **-x, --overlap-only**\n\nShow only overlapping changes.\n\n```console\n$ diff3 -x file1 file2 file3\n==== 1:1c 2:1c 3:1c\nLine from file1\nLine from file2\nLine from file3\n```\n\n## Usage Examples\n\n### Basic Comparison\n\n```console\n$ diff3 original.txt yours.txt theirs.txt\n====\n1:1c\nThis is the original line.\n2:1c\nThis is your modified line.\n3:1c\nThis is their modified line.\n```\n\n### Creating a Merged File\n\n```console\n$ diff3 -m original.txt yours.txt theirs.txt > merged.txt\n$ cat merged.txt\n<<<<<<< yours.txt\nThis is your modified line.\n||||||| original.txt\nThis is the original line.\n=======\nThis is their modified line.\n>>>>>>> theirs.txt\n```\n\n### Creating an Ed Script for Merging\n\n```console\n$ diff3 -e original.txt yours.txt theirs.txt > merge.ed\n$ ed - yours.txt < merge.ed > merged.txt\n```\n\n## Tips:\n\n### Understanding the Output Format\n\nIn the default output, each change is marked with `====` followed by line numbers and change types. For example, `1:1c 2:1c 3:1c` means line 1 in all three files is changed.\n\n### Using diff3 for Version Control\n\nWhen merging changes from different branches, use the original file as the first argument, your modified version as the second, and their modified version as the third.\n\n### Resolving Merge Conflicts\n\nWhen using `-m` option, look for conflict markers (`<<<<<<<`, `|||||||`, `=======`, `>>>>>>>`) in the output file and manually edit them to resolve conflicts.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between diff and diff3?\nA. `diff` compares two files, while `diff3` compares three files, making it useful for merging changes from two different versions that originated from a common ancestor.\n\n#### Q2. How do I interpret the output of diff3?\nA. The output shows sections where the files differ, with line numbers and content from each file. The format varies based on the options used.\n\n#### Q3. Can diff3 automatically resolve conflicts?\nA. No, diff3 can identify conflicts but cannot automatically resolve them. It marks conflicts in the output, which must be manually resolved.\n\n#### Q4. How do I save the merged output to a file?\nA. Use redirection: `diff3 -m file1 file2 file3 > merged_file`\n\n## References\n\nhttps://www.gnu.org/software/diffutils/manual/html_node/Invoking-diff3.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1679,
+    "output_tokens": 1032
+  }
+}

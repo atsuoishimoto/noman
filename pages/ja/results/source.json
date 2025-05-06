@@ -1,0 +1,20 @@
+{
+  "id": "msg_012A1Sqsf2imm5ygvrDGKf9A",
+  "content": [
+    {
+      "text": "# source コマンド\n\n現在のシェル環境でファイルやスクリプトからコマンドを実行します。\n\n## 概要\n\n`source` コマンド（別名 `.` でもアクセス可能）は、指定されたファイルからコマンドを読み込み、現在のシェルコンテキストで実行します。スクリプトを直接実行するとサブシェルで実行されるのに対し、`source` は現在のシェルでコマンドを実行するため、読み込まれたファイルで定義された変数や関数が現在のセッションで持続します。\n\n## オプション\n\n`source` コマンドはシェル組み込みコマンドであるため、オプションは最小限です：\n\n### **-h**\n\nヘルプ情報を表示します（一部のシェルで利用可能）\n\n```console\n$ source -h\n.: usage: . filename [arguments]\n```\n\n## 使用例\n\n### 設定ファイルの読み込み\n\n```console\n$ source ~/.bashrc\n```\n\n### ドット（.）エイリアスの使用\n\n```console\n$ . ~/.bash_profile\n```\n\n### 引数付きでの読み込み\n\n```console\n$ source script.sh arg1 arg2\n```\n\n### 環境変数の読み込み\n\n```console\n$ cat env.sh\nexport PROJECT_ROOT=\"/path/to/project\"\nexport API_KEY=\"abc123\"\n\n$ source env.sh\n$ echo $PROJECT_ROOT\n/path/to/project\n```\n\n## ヒント\n\n### 環境設定には source を使用する\n\nsource は、現在のシェルセッションで利用したい環境変数、関数、エイリアスを読み込むのに最適です。\n\n### スクリプトのデバッグ\n\nbash では `-x` オプションと共に `source` を使用することで、実行される各コマンドを表示してスクリプトをデバッグできます：\n\n```console\n$ source -x script.sh\n```\n\n### ログアウトせずに設定を再読み込み\n\n`.bashrc` や `.zshrc` などのシェル設定ファイルを変更した場合、`source` を使用してターミナルを再起動せずに変更を適用できます。\n\n### スクリプトパスの考慮事項\n\n`source` を使用する場合、スクリプトパスは呼び出し元スクリプトの場所ではなく、現在のディレクトリからの相対パスになります。\n\n## よくある質問\n\n#### Q1. `source` とスクリプトを直接実行することの違いは何ですか？\nA. スクリプトを直接実行する場合（例：`./script.sh`）、サブシェルで実行されます。そのスクリプトで定義された変数や関数は、スクリプトが終了すると失われます。`source` を使用すると、コマンドは現在のシェルで実行されるため、変数や関数はスクリプト完了後も持続します。\n\n#### Q2. `source` はどのような種類のファイルでも使用できますか？\nA. 有効なシェルコマンドを含むテキストファイルであれば、どのようなファイルでも読み込むことができます。通常は、シェルスクリプト（`.sh`）、設定ファイル、環境設定ファイルで使用されます。\n\n#### Q3. `source` とドット（`.`）コマンドに違いはありますか？\nA. 機能的な違いはありません。ドット（`.`）は POSIX 標準コマンドであり、`source` は bash やその他のシェルで利用可能なより読みやすいエイリアスです。どちらも同じことを行います。\n\n#### Q4. 読み込もうとしたファイルが存在しない場合はどうなりますか？\nA. 「No such file or directory」（そのようなファイルやディレクトリはありません）のようなエラーメッセージが表示され、コマンドは非ゼロの終了ステータスを返します。\n\n## 参考文献\n\n- Bash リファレンスマニュアル: https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html\n- POSIX 仕様: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#dot\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 898,
+    "output_tokens": 1271
+  }
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-add - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git add コマンド</h1>
+<p>ファイルの内容をインデックス（ステージングエリア）に追加し、次のコミットに備えます。</p>
+<h2>概要</h2>
+<p><code>git add</code> は、作業ディレクトリ内のファイルの現在の内容で Git インデックス（ステージングエリア）を更新します。変更されたファイルに次のコミットに含めるよう印をつけます。このコマンドは Git ワークフローにとって不可欠であり、どの変更をコミットするか選択的に選ぶことができます。</p>
+<h2>オプション</h2>
+<h3><strong>-A, --all</strong></h3>
+<p>追跡対象および未追跡のすべてのファイルの変更を追加します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-A
+</pre></div>
+<h3><strong>-u, --update</strong></h3>
+<p>すでに追跡対象となっているファイルについてのみインデックスを更新します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-u
+</pre></div>
+<h3><strong>-p, --patch</strong></h3>
+<p>インデックスと作業ツリーの間のパッチの塊（ハンク）を対話的に選択し、それらをインデックスに追加します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-p
+<span style="color: #000; font-style: italic">diff --git a/file.txt b/file.txt</span>
+<span style="color: #000; font-style: italic">index 1234567..abcdefg 100644</span>
+<span style="color: #000; font-style: italic">--- a/file.txt</span>
+<span style="color: #000; font-style: italic">+++ b/file.txt</span>
+<span style="color: #000; font-style: italic">@@ -1,4 +1,5 @@</span>
+<span style="color: #000; font-style: italic"> Line 1</span>
+<span style="color: #000; font-style: italic"> Line 2</span>
+<span style="color: #000; font-style: italic">+New line added</span>
+<span style="color: #000; font-style: italic"> Line 3</span>
+<span style="color: #000; font-style: italic"> Line 4</span>
+<span style="color: #000; font-style: italic">Stage this hunk [y,n,q,a,d,j,J,g,/,e,?]?</span>
+</pre></div>
+<h3><strong>-i, --interactive</strong></h3>
+<p>変更された内容を対話的に追加します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-i
+<span style="color: #000; font-style: italic">           staged     unstaged path</span>
+<span style="color: #000; font-style: italic">  1:    unchanged        +2/-0 file1.txt</span>
+<span style="color: #000; font-style: italic">  2:    unchanged        +1/-1 file2.txt</span>
+
+<span style="color: #000; font-style: italic">*** Commands ***</span>
+<span style="color: #000; font-style: italic">  1: status       2: update       3: revert       4: add untracked</span>
+<span style="color: #000; font-style: italic">  5: patch        6: diff         7: quit         8: help</span>
+<span style="color: #000; font-style: italic">What now&gt;</span>
+</pre></div>
+<h3><strong>-n, --dry-run</strong></h3>
+<p>実際にファイルを追加せず、何が起こるかを表示するだけです。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>*.txt
+<span style="color: #000; font-style: italic">add &#39;document.txt&#39;</span>
+<span style="color: #000; font-style: italic">add &#39;notes.txt&#39;</span>
+</pre></div>
+<h3><strong>-f, --force</strong></h3>
+<p>通常は無視されるファイルの追加を許可します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>build/generated.js
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>詳細な情報を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>*.js
+<span style="color: #000; font-style: italic">add &#39;app.js&#39;</span>
+<span style="color: #000; font-style: italic">add &#39;utils.js&#39;</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>特定のファイルを追加する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+</pre></div>
+<h3>ディレクトリ内のすべてのファイルを追加する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>src/
+</pre></div>
+<h3>特定の拡張子を持つすべてのファイルを追加する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>*.js
+</pre></div>
+<h3>作業ディレクトリ内のすべての変更を追加する</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>add<span style="color: #F8F8F8"> </span>.
+</pre></div>
+<h2>ヒント:</h2>
+<h3>正確な制御のためにパッチモードを使用する</h3>
+<p><code>-p</code>（パッチ）オプションを使用すると、ファイルの一部を確認して選択的にステージングできます。これは、ファイルに複数の変更を加えたが、それらを別々にコミットしたい場合に便利です。</p>
+<h3>追加されるものを確認する</h3>
+<p>コミットする前に、<code>git status</code> を使用してどの変更がステージングされているかを確認しましょう。これにより、意図しない変更を誤ってコミットするのを防ぐことができます。</p>
+<h3>リセットでステージングを取り消す</h3>
+<p>誤ってファイルをステージングした場合は、<code>git reset HEAD &lt;file&gt;</code> でステージングを解除できます。</p>
+<h3>複雑な変更には対話モードを使用する</h3>
+<p>多くの変更ファイルがあるリポジトリでは、<code>-i</code>（対話）モードを使用すると、メニュー駆動のインターフェースで選択的に変更をステージングできます。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>git add .</code> と <code>git add -A</code> の違いは何ですか？</h4>
+<p>A. <code>git add .</code> は現在のディレクトリとそのサブディレクトリのすべての変更を追加しますが、<code>git add -A</code> は現在のディレクトリに関係なく、作業ツリー全体の変更を追加します。</p>
+<h4>Q2. 未追跡のファイルではなく、変更されたファイルと削除されたファイルのみを追加するにはどうすればよいですか？</h4>
+<p>A. <code>git add -u</code> または <code>git add --update</code> を使用します。</p>
+<h4>Q3. 追加しようとしている変更を確認するにはどうすればよいですか？</h4>
+<p>A. <code>git add -n</code>（ドライラン）を使用して実際に追加せずに何が追加されるかを確認するか、<code>git diff</code> を使用して変更の詳細を確認します。</p>
+<h4>Q4. ファイルを追加した後、再び変更した場合はどうなりますか？</h4>
+<p>A. <code>git add</code> を実行した時点で存在していた変更のみがステージングされます。新しい変更は別の <code>git add</code> コマンドで追加する必要があります。</p>
+<h2>参考文献</h2>
+<p>https://git-scm.com/docs/git-add</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

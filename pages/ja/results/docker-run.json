@@ -1,0 +1,20 @@
+{
+  "id": "msg_01USeRgxDAjrCm8SVTbJPmRw",
+  "content": [
+    {
+      "text": "# docker run コマンド\n\nイメージから新しいコンテナを作成して起動します。\n\n## 概要\n\n`docker run` は、指定されたDockerイメージから新しいコンテナを作成して実行します。このコマンドは `docker create` と `docker start` の機能を1つのコマンドに統合したものです。このコマンドは、様々な設定、ネットワーク設定、ボリュームマウント、ランタイムパラメータを持つコンテナを起動するための基本的なコマンドです。\n\n## オプション\n\n### **--name**\n\nコンテナに名前を割り当てます\n\n```console\n$ docker run --name my-nginx nginx\n```\n\n### **-d, --detach**\n\nコンテナをバックグラウンドで実行し、コンテナIDを表示します\n\n```console\n$ docker run -d nginx\n7cb5d2b9a7eab87f07182b5bf58936c9947890995b1b94f412912fa822a9ecb5\n```\n\n### **-p, --publish**\n\nコンテナのポートをホストに公開します\n\n```console\n$ docker run -p 8080:80 nginx\n```\n\n### **-v, --volume**\n\nボリュームをバインドマウントします\n\n```console\n$ docker run -v /host/path:/container/path nginx\n```\n\n### **-e, --env**\n\n環境変数を設定します\n\n```console\n$ docker run -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql\n```\n\n### **--rm**\n\nコンテナが終了したときに自動的に削除します\n\n```console\n$ docker run --rm alpine echo \"Hello, World!\"\nHello, World!\n```\n\n### **-i, --interactive**\n\nアタッチされていなくても標準入力を開いたままにします\n\n```console\n$ docker run -i ubuntu\n```\n\n### **-t, --tty**\n\n疑似TTYを割り当てます\n\n```console\n$ docker run -it ubuntu bash\nroot@7cb5d2b9a7ea:/#\n```\n\n### **--network**\n\nコンテナをネットワークに接続します\n\n```console\n$ docker run --network=my-network nginx\n```\n\n### **--restart**\n\nコンテナが終了したときに適用する再起動ポリシーを設定します\n\n```console\n$ docker run --restart=always nginx\n```\n\n## 使用例\n\n### ポートマッピングを使用したWebサーバーの実行\n\n```console\n$ docker run -d --name my-website -p 8080:80 nginx\n7cb5d2b9a7eab87f07182b5bf58936c9947890995b1b94f412912fa822a9ecb5\n```\n\n### コンテナ内でインタラクティブシェルを実行\n\n```console\n$ docker run -it --rm ubuntu bash\nroot@7cb5d2b9a7ea:/# ls\nbin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var\nroot@7cb5d2b9a7ea:/# exit\n```\n\n### 環境変数とボリュームマウントを使用したコンテナの実行\n\n```console\n$ docker run -d \\\n  --name my-database \\\n  -e POSTGRES_PASSWORD=mysecretpassword \\\n  -v pgdata:/var/lib/postgresql/data \\\n  -p 5432:5432 \\\n  postgres:13\n```\n\n## ヒント:\n\n### 一時的なコンテナには --rm を使用する\n\n一回限りのタスクやテスト用にコンテナを実行する場合は、`--rm` フラグを使用して、終了後に自動的にコンテナをクリーンアップし、コンテナの散らかりを防ぎます。\n\n### インタラクティブセッションには -i と -t を組み合わせる\n\nシェルを実行するなど、コンテナとのインタラクティブなターミナルセッションが必要な場合は、`-it` の組み合わせがよく使用されます。\n\n### 永続データには名前付きボリュームを使用する\n\nホストディレクトリにバインドする代わりに、名前付きボリューム（`-v myvolume:/container/path`）を使用することで、永続データの可搬性と管理が向上します。\n\n### コンテナリソースを制限する\n\n`--memory` と `--cpus` フラグを使用してコンテナが使用できるリソースを制限し、単一のコンテナがホストのすべてのリソースを消費するのを防ぎます。\n\n```console\n$ docker run --memory=512m --cpus=0.5 nginx\n```\n\n## よくある質問\n\n#### Q1. `docker run` と `docker start` の違いは何ですか？\nA. `docker run` はイメージから新しいコンテナを作成して起動しますが、`docker start` は既に存在する停止中のコンテナを再起動します。\n\n#### Q2. コンテナをバックグラウンドで実行するにはどうすればよいですか？\nA. `-d` または `--detach` フラグを使用してコンテナをバックグラウンドで実行します。\n\n#### Q3. コンテナで実行されているサービスにアクセスするにはどうすればよいですか？\nA. `-p` または `--publish` フラグを使用してコンテナポートをホストポートにマッピングします。例えば、`-p 8080:80` はコンテナのポート80をホストのポート8080にマッピングします。\n\n#### Q4. コンテナに環境変数を渡すにはどうすればよいですか？\nA. `-e` または `--env` フラグの後に変数名と値を指定します。例：`-e VARIABLE=value`\n\n#### Q5. ホストとコンテナ間でファイルを共有するにはどうすればよいですか？\nA. `-v` または `--volume` フラグを使用してホストディレクトリやボリュームをコンテナにマウントします。例：`-v /host/path:/container/path`\n\n## 参考資料\n\nhttps://docs.docker.com/engine/reference/commandline/run/\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1350,
+    "output_tokens": 1763
+  }
+}

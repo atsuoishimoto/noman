@@ -1,0 +1,20 @@
+{
+  "id": "msg_01732L2FPGVB4QbTgUyWdJVM",
+  "content": [
+    {
+      "text": "# wcコマンド\n\nファイル内の行数、単語数、バイト数をカウントします。\n\n## 概要\n\n`wc`（word count）コマンドは、指定されたファイル内の行数、単語数、バイト数、または文字数をカウントして表示します。テキスト処理でファイルの内容を分析したり、他のコマンドの出力をカウントするパイプラインの一部として一般的に使用されます。\n\n## オプション\n\n### **-l, --lines**\n\nファイル内の行数をカウントします。\n\n```console\n$ wc -l file.txt\n      42 file.txt\n```\n\n### **-w, --words**\n\nファイル内の単語数をカウントします。\n\n```console\n$ wc -w file.txt\n     320 file.txt\n```\n\n### **-c, --bytes**\n\nファイル内のバイト数をカウントします。\n\n```console\n$ wc -c file.txt\n    1872 file.txt\n```\n\n### **-m, --chars**\n\nファイル内の文字数をカウントします（マルチバイトエンコーディングではバイト数と異なる場合があります）。\n\n```console\n$ wc -m file.txt\n    1850 file.txt\n```\n\n### **-L, --max-line-length**\n\nファイル内の最長行の長さを表示します。\n\n```console\n$ wc -L file.txt\n      78 file.txt\n```\n\n## 使用例\n\n### 基本的な使用法（デフォルト出力）\n\n```console\n$ wc file.txt\n      42     320    1872 file.txt\n```\n\n出力は行数、単語数、バイト数（この順序）を示しています。\n\n### 複数のファイル\n\n```console\n$ wc file1.txt file2.txt\n      42     320    1872 file1.txt\n      10      85     492 file2.txt\n      52     405    2364 total\n```\n\n### パイプラインでwcを使用する\n\n```console\n$ cat file.txt | grep \"error\" | wc -l\n       5\n```\n\nこれはfile.txt内の「error」を含む行数をカウントします。\n\n## ヒント:\n\n### 複数のファイルの単語数をカウントする\n\nワイルドカードを使用して複数のファイルの単語数をカウントできます：`wc -w *.txt`は現在のディレクトリ内のすべてのテキストファイルの単語数を表示します。\n\n### ディレクトリ内のファイル数をカウントする\n\n`ls`と組み合わせてファイル数をカウントします：`ls -1 | wc -l`は現在のディレクトリ内のエントリ数をカウントします。\n\n### メモリ使用量\n\n非常に大きなファイルの場合、`wc`はサイズを確認するためにテキストエディタにファイルを読み込むよりもメモリ効率が良いです。\n\n### 行数ヘッダーを無視する\n\nスクリプトで`wc -l`を使用する場合、`awk`を使用して数字だけを抽出します：`wc -l file.txt | awk '{print $1}'`\n\n## よくある質問\n\n#### Q1. wcは何の略ですか？\nA. `wc`は「word count（単語数）」の略です。\n\n#### Q2. ファイル内の文字だけをカウントするにはどうすればよいですか？\nA. 文字数をカウントするには`wc -m`を使用します。バイト数の場合は`wc -c`を使用します（ASCIIファイルでは同じです）。\n\n#### Q3. なぜ行数がテキストエディタで見るものと異なるのですか？\nA. `wc`は改行文字をカウントするため、最後の行が改行で終わっていない場合や、エディタが折り返されたテキストに対して「仮想行」を表示する場合は、カウントが異なる場合があります。\n\n#### Q4. ファイル名なしで数字だけを取得するにはどうすればよいですか？\nA. 内容をパイプするか：`cat file.txt | wc -l`、またはawkを使用します：`wc -l file.txt | awk '{print $1}'`\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/wc-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 989,
+    "output_tokens": 1284
+  }
+}

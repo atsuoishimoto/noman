@@ -1,0 +1,20 @@
+{
+  "id": "msg_01DuDHGnAKVgRHFfgbwroVZi",
+  "content": [
+    {
+      "text": "# break command\n\nExits from a for, while, until, or select loop in shell scripts.\n\n## Overview\n\nThe `break` command is used within shell scripts to exit from a loop before its normal completion. When executed, it immediately terminates the innermost enclosing loop and continues execution at the command following the terminated loop. When used with an optional numeric argument, it can break out of multiple nested loops.\n\n## Options\n\n### **n** (numeric argument)\n\nExits from the nth enclosing loop. If n is omitted, only the innermost loop is exited.\n\n```console\n$ break 2  # Exits from two levels of nested loops\n```\n\n## Usage Examples\n\n### Breaking from a simple loop\n\n```console\n$ for i in 1 2 3 4 5; do\n>   echo \"Processing $i\"\n>   if [ $i -eq 3 ]; then\n>     echo \"Found 3, breaking out of loop\"\n>     break\n>   fi\n> done\n> echo \"Loop completed\"\nProcessing 1\nProcessing 2\nProcessing 3\nFound 3, breaking out of loop\nLoop completed\n```\n\n### Breaking from nested loops\n\n```console\n$ for i in 1 2 3; do\n>   echo \"Outer loop: $i\"\n>   for j in a b c; do\n>     echo \"  Inner loop: $j\"\n>     if [ $j = \"b\" ] && [ $i -eq 2 ]; then\n>       echo \"  Breaking from inner loop\"\n>       break\n>     fi\n>   done\n> done\nOuter loop: 1\n  Inner loop: a\n  Inner loop: b\n  Inner loop: c\nOuter loop: 2\n  Inner loop: a\n  Inner loop: b\n  Breaking from inner loop\nOuter loop: 3\n  Inner loop: a\n  Inner loop: b\n  Inner loop: c\n```\n\n### Breaking from multiple levels with numeric argument\n\n```console\n$ for i in 1 2 3; do\n>   echo \"Outer loop: $i\"\n>   for j in a b c; do\n>     echo \"  Inner loop: $j\"\n>     if [ $j = \"b\" ] && [ $i -eq 2 ]; then\n>       echo \"  Breaking from both loops\"\n>       break 2\n>     fi\n>   done\n> done\n> echo \"All loops completed\"\nOuter loop: 1\n  Inner loop: a\n  Inner loop: b\n  Inner loop: c\nOuter loop: 2\n  Inner loop: a\n  Inner loop: b\n  Breaking from both loops\nAll loops completed\n```\n\n## Tips:\n\n### Use break sparingly\nExcessive use of `break` can make code harder to read and maintain. Consider restructuring your loop logic when possible.\n\n### Combine with conditional statements\n`break` is most effective when combined with `if` statements to exit loops based on specific conditions.\n\n### Remember the difference between break and continue\nWhile `break` exits the loop entirely, `continue` skips the rest of the current iteration and moves to the next one.\n\n### Use numeric argument for nested loops\nWhen working with nested loops, use `break n` to exit multiple levels at once instead of using multiple `break` statements.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between `break` and `exit`?\nA. `break` exits only from the current loop, while `exit` terminates the entire script.\n\n#### Q2. Can I use `break` outside of a loop?\nA. No, using `break` outside a loop will result in an error message like \"break: only meaningful in a 'for', 'while', or 'until' loop\".\n\n#### Q3. How do I break out of multiple nested loops?\nA. Use `break n` where n is the number of nested loops you want to exit from.\n\n#### Q4. Does `break` work in all shell types?\nA. Yes, `break` is a standard feature in Bash, Zsh, Ksh, and other POSIX-compliant shells.\n\n## References\n\nhttps://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html\n\n## Revisions\n\n- 2025/05/06 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1632,
+    "output_tokens": 999
+  }
+}

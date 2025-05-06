@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  grep - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>grep command</h1>
+<p>Search for patterns in files.</p>
+<h2>Overview</h2>
+<p><code>grep</code> searches for text patterns in files or standard input. It's primarily used to find lines that match a specified pattern and display them. The command is essential for searching through logs, code, and text files, making it one of the most frequently used text-processing tools in Unix/Linux systems.</p>
+<h2>Options</h2>
+<h3><strong>-i, --ignore-case</strong></h3>
+<p>Ignore case distinctions in patterns and input data</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>log.txt
+<span style="color: #000; font-style: italic">ERROR: Connection failed</span>
+<span style="color: #000; font-style: italic">error: file not found</span>
+<span style="color: #000; font-style: italic">Warning: Some errors were detected</span>
+</pre></div>
+<h3><strong>-v, --invert-match</strong></h3>
+<p>Select non-matching lines</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>log.txt
+<span style="color: #000; font-style: italic">Connection established</span>
+<span style="color: #000; font-style: italic">Process completed successfully</span>
+<span style="color: #000; font-style: italic">System started</span>
+</pre></div>
+<h3><strong>-r, --recursive</strong></h3>
+<p>Read all files under each directory, recursively</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;function&quot;</span><span style="color: #F8F8F8"> </span>/path/to/project
+<span style="color: #000; font-style: italic">/path/to/project/file1.js:function calculateTotal() {</span>
+<span style="color: #000; font-style: italic">/path/to/project/lib/utils.js:function formatDate(date) {</span>
+</pre></div>
+<h3><strong>-l, --files-with-matches</strong></h3>
+<p>Print only names of files containing matches</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>*.log
+<span style="color: #000; font-style: italic">app.log</span>
+<span style="color: #000; font-style: italic">system.log</span>
+</pre></div>
+<h3><strong>-n, --line-number</strong></h3>
+<p>Prefix each line of output with the line number within its input file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;import&quot;</span><span style="color: #F8F8F8"> </span>script.py
+<span style="color: #000; font-style: italic">3:import os</span>
+<span style="color: #000; font-style: italic">5:import sys</span>
+<span style="color: #000; font-style: italic">12:import datetime</span>
+</pre></div>
+<h3><strong>-c, --count</strong></h3>
+<p>Print only a count of matching lines per file</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>*.log
+<span style="color: #000; font-style: italic">app.log:15</span>
+<span style="color: #000; font-style: italic">system.log:7</span>
+<span style="color: #000; font-style: italic">debug.log:0</span>
+</pre></div>
+<h3><strong>-o, --only-matching</strong></h3>
+<p>Print only the matched parts of matching lines</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-o<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>log.txt
+<span style="color: #000; font-style: italic">error</span>
+<span style="color: #000; font-style: italic">error</span>
+<span style="color: #000; font-style: italic">error</span>
+</pre></div>
+<h3><strong>-A NUM, --after-context=NUM</strong></h3>
+<p>Print NUM lines of trailing context after matching lines</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-A<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Exception&quot;</span><span style="color: #F8F8F8"> </span>error.log
+<span style="color: #000; font-style: italic">Exception in thread &quot;main&quot; java.lang.NullPointerException</span>
+<span style="color: #000; font-style: italic">    at com.example.Main.process(Main.java:24)</span>
+<span style="color: #000; font-style: italic">    at com.example.Main.main(Main.java:5)</span>
+</pre></div>
+<h3><strong>-B NUM, --before-context=NUM</strong></h3>
+<p>Print NUM lines of leading context before matching lines</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-B<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;fatal&quot;</span><span style="color: #F8F8F8"> </span>system.log
+<span style="color: #000; font-style: italic">May 4 15:30:22 server application[1234]: Critical error detected</span>
+<span style="color: #000; font-style: italic">May 4 15:30:23 server application[1234]: fatal: system halted</span>
+</pre></div>
+<h3><strong>-E, --extended-regexp</strong></h3>
+<p>Interpret pattern as an extended regular expression</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-E<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error|warning&quot;</span><span style="color: #F8F8F8"> </span>log.txt
+<span style="color: #000; font-style: italic">error: file not found</span>
+<span style="color: #000; font-style: italic">warning: disk space low</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Pattern Search</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;function&quot;</span><span style="color: #F8F8F8"> </span>script.js
+<span style="color: #000; font-style: italic">function calculateTotal() {</span>
+<span style="color: #000; font-style: italic">function displayResults() {</span>
+</pre></div>
+<h3>Combining Multiple Options</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-in<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>--color<span style="color: #CE5C00; font-weight: bold">=</span>auto<span style="color: #F8F8F8"> </span>log.txt
+<span style="color: #000; font-style: italic">15:Error: Unable to connect to database</span>
+<span style="color: #000; font-style: italic">42:error: invalid configuration</span>
+<span style="color: #000; font-style: italic">78:ERROR: Service unavailable</span>
+</pre></div>
+<h3>Using Regular Expressions</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;^[0-9]&quot;</span><span style="color: #F8F8F8"> </span>data.txt
+<span style="color: #000; font-style: italic">123 Main St</span>
+<span style="color: #000; font-style: italic">456 Oak Ave</span>
+<span style="color: #000; font-style: italic">789 Pine Rd</span>
+</pre></div>
+<h3>Searching Multiple Files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;TODO&quot;</span><span style="color: #F8F8F8"> </span>*.py
+<span style="color: #000; font-style: italic">main.py:# TODO: Implement error handling</span>
+<span style="color: #000; font-style: italic">utils.py:# TODO: Optimize this algorithm</span>
+<span style="color: #000; font-style: italic">config.py:# TODO: Add configuration validation</span>
+</pre></div>
+<h3>Displaying Only Filenames with Matches</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>logs/*.log
+<span style="color: #000; font-style: italic">logs/app.log</span>
+<span style="color: #000; font-style: italic">logs/system.log</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Color Highlighting</h3>
+<p>The <code>--color=auto</code> option highlights matching text in color, making it easier to spot matches in large outputs.</p>
+<h3>Pipe with Other Commands</h3>
+<p>Combine grep with other commands using pipes for powerful filtering:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ps<span style="color: #F8F8F8"> </span>aux<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;nginx&quot;</span>
+</pre></div>
+<h3>Use Word Boundaries</h3>
+<p>The <code>-w</code> option matches whole words only, preventing partial matches:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-w<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;log&quot;</span><span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># Matches &quot;log&quot; but not &quot;login&quot; or &quot;catalog&quot;</span>
+</pre></div>
+<h3>Quiet Mode for Scripts</h3>
+<p>Use <code>-q</code> for quiet mode when you only need to check if a pattern exists (returns exit status 0 if found):</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>grep<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;error&quot;</span><span style="color: #F8F8F8"> </span>log.txt<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Errors found!&quot;</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I search for a pattern in multiple files?</h4>
+<p>A. Simply list the files after the pattern: <code>grep &quot;pattern&quot; file1 file2 file3</code> or use wildcards: <code>grep &quot;pattern&quot; *.txt</code>.</p>
+<h4>Q2. How can I search for a pattern that contains spaces?</h4>
+<p>A. Enclose the pattern in quotes: <code>grep &quot;hello world&quot; file.txt</code>.</p>
+<h4>Q3. How do I search for lines that don't contain a pattern?</h4>
+<p>A. Use the <code>-v</code> option: <code>grep -v &quot;pattern&quot; file.txt</code>.</p>
+<h4>Q4. Can grep search for multiple patterns at once?</h4>
+<p>A. Yes, use the <code>-E</code> option with the pipe symbol: <code>grep -E &quot;pattern1|pattern2&quot; file.txt</code> or use <code>egrep &quot;pattern1|pattern2&quot; file.txt</code>.</p>
+<h4>Q5. How do I make grep show only the matching part of a line?</h4>
+<p>A. Use the <code>-o</code> option: <code>grep -o &quot;pattern&quot; file.txt</code>.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/grep/manual/grep.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 Added -o option for displaying only matched parts of lines.</li>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

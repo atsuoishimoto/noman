@@ -1,0 +1,20 @@
+{
+  "id": "msg_019H2B7VUkummS9RQsW7cy22",
+  "content": [
+    {
+      "text": "# pstreeコマンド\n\n実行中のプロセスをツリー形式で表示します。\n\n## 概要\n\n`pstree`コマンドは、システム上で実行中のプロセスをツリー状の図で表示し、プロセス間の親子関係を示します。この視覚化によって、プロセスの階層構造や、どのプロセスが他のプロセスを生成したかを簡単に理解できます。\n\n## オプション\n\n### **-a**\n\nコマンドライン引数を表示します。\n\n```console\n$ pstree -a\nsystemd\n  ├─NetworkManager --no-daemon\n  ├─accounts-daemon\n  ├─avahi-daemon\n  │   └─avahi-daemon\n  └─sshd\n      └─sshd\n          └─sshd\n              └─bash\n```\n\n### **-p**\n\nPID（プロセスID）を表示します。\n\n```console\n$ pstree -p\nsystemd(1)\n  ├─NetworkManager(623)\n  ├─accounts-daemon(645)\n  ├─avahi-daemon(647)\n  │   └─avahi-daemon(648)\n  └─sshd(1025)\n      └─sshd(2156)\n          └─sshd(2158)\n              └─bash(2159)\n```\n\n### **-n**\n\nプロセスを名前ではなくPIDでソートします。\n\n```console\n$ pstree -n\nsystemd\n  ├─systemd-journald\n  ├─systemd-udevd\n  ├─systemd-resolved\n  ├─NetworkManager\n  ├─accounts-daemon\n  └─sshd\n```\n\n### **-u**\n\nuid（ユーザーID）の変更を表示します。\n\n```console\n$ pstree -u\nsystemd\n  ├─NetworkManager\n  ├─accounts-daemon(root)\n  ├─avahi-daemon(avahi)\n  │   └─avahi-daemon(avahi)\n  └─sshd\n      └─sshd(john)\n          └─bash(john)\n```\n\n### **-h**\n\n現在のプロセスとその祖先を強調表示します。\n\n```console\n$ pstree -h\nsystemd\n  ├─NetworkManager\n  ├─accounts-daemon\n  └─sshd\n      └─sshd\n          └─sshd\n              └─bash───pstree\n```\n\n### **-g**\n\nPGID（プロセスグループID）を表示します。\n\n```console\n$ pstree -g\nsystemd(1)\n  ├─NetworkManager(623,623)\n  ├─accounts-daemon(645,645)\n  └─sshd(1025,1025)\n      └─sshd(2156,2156)\n          └─bash(2159,2159)\n```\n\n## 使用例\n\n### 特定ユーザーのプロセスを表示する\n\n```console\n$ pstree username\nsshd───bash───vim\n```\n\n### オプションを組み合わせて詳細な出力を得る\n\n```console\n$ pstree -apu\nsystemd(1)\n  ├─NetworkManager(623) --no-daemon\n  ├─accounts-daemon(645)\n  ├─avahi-daemon(647)(avahi)\n  │   └─avahi-daemon(648)(avahi)\n  └─sshd(1025)\n      └─sshd(2156)(john)\n          └─bash(2159)(john)\n```\n\n### 特定のプロセスとその子プロセスを見つける\n\n```console\n$ pstree -p | grep firefox\n        │           ├─firefox(2345)───{firefox}(2346)\n        │           │                 ├─{firefox}(2347)\n        │           │                 ├─{firefox}(2348)\n        │           │                 └─{firefox}(2349)\n```\n\n## ヒント:\n\n### コンパクト表示\nデフォルトでは、同一のツリーブランチはスペースを節約するために圧縮されます。`-c`オプションを使用すると、この動作を無効にして、すべてのプロセスを個別に表示できます。\n\n### ASCII文字\nツリー構造がターミナルで正しく表示されない場合は、`-A`オプションを使用して、デフォルトのUTF-8文字の代わりにASCII文字を使用します。\n\n### プロセスの系統をたどる\nデバッグ時には、`pstree -p`を使用してプロセスの親子関係をすばやく特定できます。これはアプリケーションの構造を理解するのに役立ちます。\n\n### grepと組み合わせる\n出力をgrepにパイプして特定のプロセスを見つけます: `pstree -p | grep firefox`\n\n## よくある質問\n\n#### Q1. pstreeはpsとどう違いますか？\nA. `ps`はプロセスをフラットなリストで表示しますが、`pstree`はプロセスを親子関係を示す階層的なツリー構造で表示します。\n\n#### Q2. pstreeでプロセスIDを見ることはできますか？\nA. はい、`-p`オプションを使用すると、プロセス名と一緒にプロセスIDを表示できます。\n\n#### Q3. コマンドライン引数を表示するにはどうすればよいですか？\nA. `-a`オプションを使用すると、各プロセスのコマンドライン引数を表示できます。\n\n#### Q4. 特定のユーザーのプロセスだけを表示できますか？\nA. はい、ユーザー名を引数として指定します: `pstree username`\n\n#### Q5. テキストのみのターミナルで出力を読みやすくするにはどうすればよいですか？\nA. `-A`オプションを使用して、ツリー構造にUTF-8の代わりにASCII文字を使用します。\n\n## 参考資料\n\nhttps://man7.org/linux/man-pages/man1/pstree.1.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1405,
+    "output_tokens": 1707
+  }
+}

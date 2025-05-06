@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  docker-run - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>docker run コマンド</h1>
+<p>イメージから新しいコンテナを作成して起動します。</p>
+<h2>概要</h2>
+<p><code>docker run</code> は、指定されたDockerイメージから新しいコンテナを作成して実行します。このコマンドは <code>docker create</code> と <code>docker start</code> の機能を1つのコマンドに統合したものです。このコマンドは、様々な設定、ネットワーク設定、ボリュームマウント、ランタイムパラメータを持つコンテナを起動するための基本的なコマンドです。</p>
+<h2>オプション</h2>
+<h3><strong>--name</strong></h3>
+<p>コンテナに名前を割り当てます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--name<span style="color: #F8F8F8"> </span>my-nginx<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>-d, --detach</strong></h3>
+<p>コンテナをバックグラウンドで実行し、コンテナIDを表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">7cb5d2b9a7eab87f07182b5bf58936c9947890995b1b94f412912fa822a9ecb5</span>
+</pre></div>
+<h3><strong>-p, --publish</strong></h3>
+<p>コンテナのポートをホストに公開します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span>:80<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>-v, --volume</strong></h3>
+<p>ボリュームをバインドマウントします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>/host/path:/container/path<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>-e, --env</strong></h3>
+<p>環境変数を設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-e<span style="color: #F8F8F8"> </span><span style="color: #000">MYSQL_ROOT_PASSWORD</span><span style="color: #CE5C00; font-weight: bold">=</span>my-secret-pw<span style="color: #F8F8F8"> </span>mysql
+</pre></div>
+<h3><strong>--rm</strong></h3>
+<p>コンテナが終了したときに自動的に削除します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--rm<span style="color: #F8F8F8"> </span>alpine<span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Hello, World!&quot;</span>
+<span style="color: #000; font-style: italic">Hello, World!</span>
+</pre></div>
+<h3><strong>-i, --interactive</strong></h3>
+<p>アタッチされていなくても標準入力を開いたままにします</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>ubuntu
+</pre></div>
+<h3><strong>-t, --tty</strong></h3>
+<p>疑似TTYを割り当てます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-it<span style="color: #F8F8F8"> </span>ubuntu<span style="color: #F8F8F8"> </span>bash
+<span style="color: #8F5902">root@7cb5d2b9a7ea:/#</span>
+</pre></div>
+<h3><strong>--network</strong></h3>
+<p>コンテナをネットワークに接続します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--network<span style="color: #CE5C00; font-weight: bold">=</span>my-network<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h3><strong>--restart</strong></h3>
+<p>コンテナが終了したときに適用する再起動ポリシーを設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--restart<span style="color: #CE5C00; font-weight: bold">=</span>always<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h2>使用例</h2>
+<h3>ポートマッピングを使用したWebサーバーの実行</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>--name<span style="color: #F8F8F8"> </span>my-website<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">8080</span>:80<span style="color: #F8F8F8"> </span>nginx
+<span style="color: #000; font-style: italic">7cb5d2b9a7eab87f07182b5bf58936c9947890995b1b94f412912fa822a9ecb5</span>
+</pre></div>
+<h3>コンテナ内でインタラクティブシェルを実行</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-it<span style="color: #F8F8F8"> </span>--rm<span style="color: #F8F8F8"> </span>ubuntu<span style="color: #F8F8F8"> </span>bash
+<span style="color: #8F5902">root@7cb5d2b9a7ea:/# </span>ls
+<span style="color: #000; font-style: italic">bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span>
+<span style="color: #8F5902">root@7cb5d2b9a7ea:/# </span><span style="color: #204A87">exit</span>
+</pre></div>
+<h3>環境変数とボリュームマウントを使用したコンテナの実行</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>--name<span style="color: #F8F8F8"> </span>my-database<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>-e<span style="color: #F8F8F8"> </span><span style="color: #000">POSTGRES_PASSWORD</span><span style="color: #CE5C00; font-weight: bold">=</span>mysecretpassword<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>-v<span style="color: #F8F8F8"> </span>pgdata:/var/lib/postgresql/data<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>-p<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5432</span>:5432<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\</span>
+<span style="color: #F8F8F8">  </span>postgres:13
+</pre></div>
+<h2>ヒント:</h2>
+<h3>一時的なコンテナには --rm を使用する</h3>
+<p>一回限りのタスクやテスト用にコンテナを実行する場合は、<code>--rm</code> フラグを使用して、終了後に自動的にコンテナをクリーンアップし、コンテナの散らかりを防ぎます。</p>
+<h3>インタラクティブセッションには -i と -t を組み合わせる</h3>
+<p>シェルを実行するなど、コンテナとのインタラクティブなターミナルセッションが必要な場合は、<code>-it</code> の組み合わせがよく使用されます。</p>
+<h3>永続データには名前付きボリュームを使用する</h3>
+<p>ホストディレクトリにバインドする代わりに、名前付きボリューム（<code>-v myvolume:/container/path</code>）を使用することで、永続データの可搬性と管理が向上します。</p>
+<h3>コンテナリソースを制限する</h3>
+<p><code>--memory</code> と <code>--cpus</code> フラグを使用してコンテナが使用できるリソースを制限し、単一のコンテナがホストのすべてのリソースを消費するのを防ぎます。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>docker<span style="color: #F8F8F8"> </span>run<span style="color: #F8F8F8"> </span>--memory<span style="color: #CE5C00; font-weight: bold">=</span>512m<span style="color: #F8F8F8"> </span>--cpus<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">0</span>.5<span style="color: #F8F8F8"> </span>nginx
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. <code>docker run</code> と <code>docker start</code> の違いは何ですか？</h4>
+<p>A. <code>docker run</code> はイメージから新しいコンテナを作成して起動しますが、<code>docker start</code> は既に存在する停止中のコンテナを再起動します。</p>
+<h4>Q2. コンテナをバックグラウンドで実行するにはどうすればよいですか？</h4>
+<p>A. <code>-d</code> または <code>--detach</code> フラグを使用してコンテナをバックグラウンドで実行します。</p>
+<h4>Q3. コンテナで実行されているサービスにアクセスするにはどうすればよいですか？</h4>
+<p>A. <code>-p</code> または <code>--publish</code> フラグを使用してコンテナポートをホストポートにマッピングします。例えば、<code>-p 8080:80</code> はコンテナのポート80をホストのポート8080にマッピングします。</p>
+<h4>Q4. コンテナに環境変数を渡すにはどうすればよいですか？</h4>
+<p>A. <code>-e</code> または <code>--env</code> フラグの後に変数名と値を指定します。例：<code>-e VARIABLE=value</code></p>
+<h4>Q5. ホストとコンテナ間でファイルを共有するにはどうすればよいですか？</h4>
+<p>A. <code>-v</code> または <code>--volume</code> フラグを使用してホストディレクトリやボリュームをコンテナにマウントします。例：<code>-v /host/path:/container/path</code></p>
+<h2>参考資料</h2>
+<p>https://docs.docker.com/engine/reference/commandline/run/</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

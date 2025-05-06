@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  xdg-open - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>xdg-open command</h1>
+<p>Opens a file or URL in the user's preferred application.</p>
+<h2>Overview</h2>
+<p><code>xdg-open</code> is a desktop-independent tool that opens files or URLs using the default application registered for that file type or URL scheme. It's part of the XDG (X Desktop Group) utilities and works across various Linux desktop environments to provide a consistent way to open files with their associated applications.</p>
+<h2>Options</h2>
+<h3><strong>file</strong></h3>
+<p>The file or URL to open with the default application</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-open<span style="color: #F8F8F8"> </span>document.pdf
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>Display help information</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-open<span style="color: #F8F8F8"> </span>--help
+</pre></div>
+<h3><strong>--manual</strong></h3>
+<p>Display the manual page</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-open<span style="color: #F8F8F8"> </span>--manual
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>Display version information</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-open<span style="color: #F8F8F8"> </span>--version
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Opening a file with its default application</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-open<span style="color: #F8F8F8"> </span>document.pdf
+<span style="color: #000; font-style: italic">[Opens the PDF file with the default PDF viewer]</span>
+</pre></div>
+<h3>Opening a URL in the default web browser</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-open<span style="color: #F8F8F8"> </span>https://www.example.com
+<span style="color: #000; font-style: italic">[Opens the URL in the default web browser]</span>
+</pre></div>
+<h3>Opening a directory in the file manager</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-open<span style="color: #F8F8F8"> </span>~/Documents
+<span style="color: #000; font-style: italic">[Opens the Documents directory in the default file manager]</span>
+</pre></div>
+<h3>Opening an email client with a new message</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>xdg-open<span style="color: #F8F8F8"> </span>mailto:user@example.com
+<span style="color: #000; font-style: italic">[Opens the default email client with a new message to user@example.com]</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use in Scripts for Cross-Desktop Compatibility</h3>
+<p><code>xdg-open</code> is ideal for shell scripts that need to open files or URLs in a desktop-environment-agnostic way. It works across GNOME, KDE, Xfce, and other Linux desktop environments.</p>
+<h3>Silent Operation</h3>
+<p><code>xdg-open</code> runs silently by default. To suppress any potential error messages, redirect stderr: <code>xdg-open file.pdf 2&gt;/dev/null</code>.</p>
+<h3>Check Exit Status</h3>
+<p>The command returns 0 on success, 1 if an error occurred, 2 if the specified command is invalid, 3 if a required tool is missing, and 4 if the action failed.</p>
+<h3>Alternative Commands</h3>
+<p>On macOS, use <code>open</code> instead. On Windows, use <code>start</code>. These commands serve similar purposes on their respective operating systems.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What is the difference between <code>xdg-open</code> and directly using an application?</h4>
+<p>A. <code>xdg-open</code> automatically selects the appropriate application based on the file type or URL, while directly using an application requires you to know which application to use.</p>
+<h4>Q2. How does <code>xdg-open</code> determine which application to use?</h4>
+<p>A. It uses the MIME type of the file and the desktop environment's application associations to determine the default application.</p>
+<h4>Q3. Can I change which application <code>xdg-open</code> uses for a specific file type?</h4>
+<p>A. Yes, you can change the default application for a file type using your desktop environment's settings (e.g., &quot;Default Applications&quot; in GNOME) or using <code>xdg-mime</code>.</p>
+<h4>Q4. Does <code>xdg-open</code> work on all Linux distributions?</h4>
+<p>A. It works on most modern Linux distributions that follow the XDG specifications, particularly those with GNOME, KDE, or Xfce desktop environments.</p>
+<h2>References</h2>
+<p>https://www.freedesktop.org/wiki/Software/xdg-utils/</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

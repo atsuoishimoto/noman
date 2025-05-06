@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  dirname - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>dirname コマンド</h1>
+<p>パス名からディレクトリ部分を出力します。</p>
+<h2>概要</h2>
+<p><code>dirname</code> コマンドはパス名から最後のコンポーネントを削除し、ディレクトリパスのみを残します。シェルスクリプトでファイルパスからディレクトリ部分を抽出するために一般的に使用され、特定のディレクトリへの移動や同じ場所にあるファイルを処理する際に便利です。</p>
+<h2>オプション</h2>
+<h3><strong>--zero, -z</strong></h3>
+<p>各パス名の後に改行ではなくゼロバイト（ASCII NUL）を出力します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dirname<span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span>/usr/bin/zip
+<span style="color: #000; font-style: italic">/usr/bin$</span>
+</pre></div>
+<h3><strong>--help</strong></h3>
+<p>ヘルプ情報を表示して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dirname<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: dirname [OPTION] NAME...</span>
+<span style="color: #000; font-style: italic">Output each NAME with its last non-slash component and trailing slashes</span>
+<span style="color: #000; font-style: italic">removed; if NAME contains no /&#39;s, output &#39;.&#39; (meaning the current directory).</span>
+
+<span style="color: #000; font-style: italic">  -z, --zero     end each output line with NUL, not newline</span>
+<span style="color: #000; font-style: italic">      --help     display this help and exit</span>
+<span style="color: #000; font-style: italic">      --version  output version information and exit</span>
+
+<span style="color: #000; font-style: italic">Examples:</span>
+<span style="color: #000; font-style: italic">  dirname /usr/bin/          -&gt; &quot;/usr&quot;</span>
+<span style="color: #000; font-style: italic">  dirname dir1/str dir2/str  -&gt; &quot;dir1&quot; followed by &quot;dir2&quot;</span>
+<span style="color: #000; font-style: italic">  dirname stdio.h            -&gt; &quot;.&quot;</span>
+</pre></div>
+<h3><strong>--version</strong></h3>
+<p>バージョン情報を出力して終了します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dirname<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">dirname (GNU coreutils) 9.0</span>
+<span style="color: #000; font-style: italic">Copyright (C) 2021 Free Software Foundation, Inc.</span>
+<span style="color: #000; font-style: italic">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span>
+<span style="color: #000; font-style: italic">This is free software: you are free to change and redistribute it.</span>
+<span style="color: #000; font-style: italic">There is NO WARRANTY, to the extent permitted by law.</span>
+
+<span style="color: #000; font-style: italic">Written by David MacKenzie.</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>基本的な使い方</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dirname<span style="color: #F8F8F8"> </span>/usr/bin/zip
+<span style="color: #000; font-style: italic">/usr/bin</span>
+</pre></div>
+<h3>複数の引数</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dirname<span style="color: #F8F8F8"> </span>/usr/bin/zip<span style="color: #F8F8F8"> </span>/etc/passwd<span style="color: #F8F8F8"> </span>/home/user/file.txt
+<span style="color: #000; font-style: italic">/usr/bin</span>
+<span style="color: #000; font-style: italic">/etc</span>
+<span style="color: #000; font-style: italic">/home/user</span>
+</pre></div>
+<h3>カレントディレクトリ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>dirname<span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">.</span>
+</pre></div>
+<h3>シェルスクリプトでの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">script_dir</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>dirname<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$0</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;This script is located in: </span><span style="color: #000">$script_dir</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">This script is located in: /path/to/script/directory</span>
+</pre></div>
+<h2>ヒント:</h2>
+<h3>basename と組み合わせる</h3>
+<p><code>dirname</code> と <code>basename</code> を一緒に使用して、パスをディレクトリとファイル名のコンポーネントに分割できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">path</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;/home/user/documents/report.pdf&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">dir</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>dirname<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$path</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">file</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>basename<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$path</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">)</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;Directory: </span><span style="color: #000">$dir</span><span style="color: #4E9A06">, File: </span><span style="color: #000">$file</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">Directory: /home/user/documents, File: report.pdf</span>
+</pre></div>
+<h3>スペースを含むパスの処理</h3>
+<p>スペースを含むパスを正しく処理するために、<code>dirname</code> を使用する際は常に変数を引用符で囲みます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #000">path</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #4E9A06">&quot;/home/user/my documents/report.pdf&quot;</span>
+<span style="color: #8F5902">$ </span><span style="color: #000">dir</span><span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>dirname<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$path</span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">)</span><span style="color: #F8F8F8">  </span><span style="color: #8F5902; font-style: italic"># 引用符が重要</span>
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #000">$dir</span><span style="color: #4E9A06">&quot;</span>
+<span style="color: #000; font-style: italic">/home/user/my documents</span>
+</pre></div>
+<h3>cd と一緒に使用する</h3>
+<p><code>cd</code> と組み合わせてファイルのディレクトリに移動できます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">cd</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;</span><span style="color: #204A87; font-weight: bold">$(</span>dirname<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;/path/to/file.txt&quot;</span><span style="color: #204A87; font-weight: bold">)</span><span style="color: #4E9A06">&quot;</span>
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. パスなしでファイル名を渡すと、<code>dirname</code> は何を返しますか？</h4>
+<p>A. <code>.</code>（カレントディレクトリ）を返します。</p>
+<h4>Q2. <code>dirname</code> は一度に複数のパスを処理できますか？</h4>
+<p>A. はい、複数の引数を渡すことができ、それぞれを個別に処理します。</p>
+<h4>Q3. <code>dirname</code> は末尾のスラッシュをどのように処理しますか？</h4>
+<p>A. パスを処理する前に末尾のスラッシュを削除します。</p>
+<h4>Q4. <code>dirname</code> と <code>basename</code> の違いは何ですか？</h4>
+<p>A. <code>dirname</code> はパスのディレクトリ部分を返し、<code>basename</code> はファイル名部分を返します。</p>
+<h2>参考文献</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/dirname-invocation.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

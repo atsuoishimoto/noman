@@ -1,0 +1,20 @@
+{
+  "id": "msg_016dAz5KdfXzcRF8PsiLP8Jk",
+  "content": [
+    {
+      "text": "# false コマンド\n\n入力に関係なく失敗の終了ステータス（1）を返します。\n\n## 概要\n\n`false` コマンドは、失敗の終了ステータス（1）を返す以外は何もしないシンプルなユーティリティです。シェルスクリプトで失敗条件を強制したり、条件文のプレースホルダーとして使われることがよくあります。\n\n## オプション\n\n`false` コマンドは通常、オプションを受け付けません。単に非ゼロの終了ステータスを返すだけです。\n\n## 使用例\n\n### 基本的な使い方\n\n```console\n$ false\n$ echo $?\n1\n```\n\n### 条件文での使用\n\n```console\n$ if false; then echo \"これは表示されない\"; else echo \"これは表示される\"; fi\nこれは表示される\n```\n\n### ループでの使用\n\n```console\n$ while ! false; do echo \"これは実行されない\"; done\n```\n\n### 論理演算子との使用\n\n```console\n$ false || echo \"falseが失敗したのでこれは実行される\"\nfalseが失敗したのでこれは実行される\n\n$ false && echo \"falseが失敗したのでこれは実行されない\"\n```\n\n## ヒント:\n\n### エラー処理のテスト\n\nスクリプトでエラー処理をテストするために、`false`を使ってコマンドを強制的に失敗させることができる。\n\n### 無限ループの作成\n\n`while true; do ...; done`は無限ループを作成するが、`while false; do ...; done`は一度も実行されない。\n\n### 論理否定\n\n`! false`は真と評価され、条件論理で役立つことがある。\n\n## よくある質問\n\n#### Q1. `false`と`true`の違いは何ですか？\nA. `false`は終了ステータス1（失敗）を返し、`true`は0（成功）を返します。\n\n#### Q2. `false`は終了ステータスを返す以外に何かしますか？\nA. いいえ、非ゼロの終了ステータスを返す以外は何もしないように設計されています。\n\n#### Q3. なぜスクリプトで`false`を使うのですか？\nA. エラー条件のテスト、条件論理の作成、または常に失敗するコマンドが必要な場合のプレースホルダーとして役立ちます。\n\n#### Q4. `false`の終了ステータスを変更できますか？\nA. いいえ、`false`は常に1を返すように設計されています。異なる終了ステータスが必要な場合は、シェルスクリプトで`exit N`を使用できます。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/false-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 674,
+    "output_tokens": 839
+  }
+}

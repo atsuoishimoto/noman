@@ -1,0 +1,20 @@
+{
+  "id": "msg_01YYDi47u8CRrMTu6B2afbGd",
+  "content": [
+    {
+      "text": "# passwd command\n\nChange user password.\n\n## Overview\n\nThe `passwd` command allows users to change their own password or, for system administrators, to change or administer other users' passwords. It modifies the `/etc/passwd` and `/etc/shadow` files that store user account information and encrypted passwords.\n\n## Options\n\n### **-d**\n\nDelete a user's password (make it empty). This option is restricted to root.\n\n```console\n$ sudo passwd -d username\npasswd: password expiry information changed.\n```\n\n### **-l**\n\nLock the specified account by prefixing the encrypted password with an exclamation mark. This prevents the user from logging in.\n\n```console\n$ sudo passwd -l username\npasswd: password expiry information changed.\n```\n\n### **-u**\n\nUnlock a locked password by removing the exclamation mark prefix.\n\n```console\n$ sudo passwd -u username\npasswd: password expiry information changed.\n```\n\n### **-e**\n\nExpire a user's password, forcing them to change it at next login.\n\n```console\n$ sudo passwd -e username\npasswd: password expiry information changed.\n```\n\n### **-S**\n\nDisplay password status information for an account.\n\n```console\n$ passwd -S username\nusername PS 2025-04-01 0 99999 7 -1\n```\n\n## Usage Examples\n\n### Changing your own password\n\n```console\n$ passwd\nChanging password for user.\nCurrent password: \nNew password: \nRetype new password: \npasswd: all authentication tokens updated successfully.\n```\n\n### Changing another user's password (as root)\n\n```console\n$ sudo passwd username\nNew password: \nRetype new password: \npasswd: all authentication tokens updated successfully.\n```\n\n### Locking and unlocking an account\n\n```console\n$ sudo passwd -l username\npasswd: password expiry information changed.\n$ sudo passwd -u username\npasswd: password expiry information changed.\n```\n\n## Tips:\n\n### Password Complexity Requirements\n\nMost systems enforce password complexity rules. A strong password typically needs to:\n- Be at least 8 characters long\n- Include uppercase and lowercase letters\n- Include numbers and special characters\n- Not be based on dictionary words or personal information\n\n### Check Password Status\n\nUse `passwd -S username` to check if a password is locked, expired, or when it was last changed.\n\n### Password Files\n\nThe actual encrypted passwords are stored in `/etc/shadow`, not in `/etc/passwd`. The shadow file is only readable by root for security reasons.\n\n## Frequently Asked Questions\n\n#### Q1. How do I change my own password?\nA. Simply type `passwd` and follow the prompts to enter your current password and then your new password twice.\n\n#### Q2. How can I force a user to change their password at next login?\nA. Use `sudo passwd -e username` to expire a user's password.\n\n#### Q3. What does \"authentication token manipulation error\" mean?\nA. This usually indicates a system problem with the password files or insufficient permissions. Only root can change other users' passwords.\n\n#### Q4. How do I create a user without a password?\nA. First create the user with a normal password, then use `sudo passwd -d username` to delete the password.\n\n## References\n\nhttps://man7.org/linux/man-pages/man1/passwd.1.html\n\n## Revisions\n\n- 2025/05/05 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1632,
+    "output_tokens": 777
+  }
+}

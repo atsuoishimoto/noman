@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  tail - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>tail command</h1>
+<p>Display the last part of files.</p>
+<h2>Overview</h2>
+<p>The <code>tail</code> command outputs the last part (by default, 10 lines) of one or more files. It's commonly used to view recent entries in log files, monitor file changes in real-time, or check the end of any text file without opening the entire file.</p>
+<h2>Options</h2>
+<h3><strong>-n, --lines=NUM</strong></h3>
+<p>Output the last NUM lines (default is 10)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">5</span><span style="color: #F8F8F8"> </span>/var/log/syslog
+<span style="color: #000; font-style: italic">May  5 10:15:22 hostname service[1234]: Processing request</span>
+<span style="color: #000; font-style: italic">May  5 10:15:23 hostname service[1234]: Request completed</span>
+<span style="color: #000; font-style: italic">May  5 10:15:25 hostname service[1234]: New connection from 192.168.1.5</span>
+<span style="color: #000; font-style: italic">May  5 10:15:26 hostname service[1234]: Processing request</span>
+<span style="color: #000; font-style: italic">May  5 10:15:27 hostname service[1234]: Request completed</span>
+</pre></div>
+<h3><strong>-f, --follow</strong></h3>
+<p>Output appended data as the file grows; useful for monitoring log files</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/var/log/apache2/access.log
+<span style="color: #000; font-style: italic">192.168.1.5 - - [05/May/2025:10:15:22 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 2326</span>
+<span style="color: #000; font-style: italic">192.168.1.6 - - [05/May/2025:10:15:25 +0000] &quot;GET /images/logo.png HTTP/1.1&quot; 200 4589</span>
+<span style="color: #000; font-style: italic">192.168.1.7 - - [05/May/2025:10:15:27 +0000] &quot;POST /login HTTP/1.1&quot; 302 -</span>
+</pre></div>
+<h3><strong>-c, --bytes=NUM</strong></h3>
+<p>Output the last NUM bytes</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>file.txt
+<span style="color: #000; font-style: italic">end of the file.</span>
+</pre></div>
+<h3><strong>-q, --quiet, --silent</strong></h3>
+<p>Never output headers giving file names</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-q<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt
+<span style="color: #000; font-style: italic">Last line of file1</span>
+<span style="color: #000; font-style: italic">Last line of file2</span>
+</pre></div>
+<h3><strong>--pid=PID</strong></h3>
+<p>With -f, terminate after process ID, PID dies</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>--pid<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #0000CF; font-weight: bold">1234</span><span style="color: #F8F8F8"> </span>logfile.txt
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Monitoring multiple log files simultaneously</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>/var/log/syslog<span style="color: #F8F8F8"> </span>/var/log/auth.log
+<span style="color: #000; font-style: italic">==&gt; /var/log/syslog &lt;==</span>
+<span style="color: #000; font-style: italic">May  5 10:20:22 hostname service[1234]: Processing request</span>
+
+<span style="color: #000; font-style: italic">==&gt; /var/log/auth.log &lt;==</span>
+<span style="color: #000; font-style: italic">May  5 10:20:25 hostname sshd[5678]: Accepted publickey for user from 192.168.1.10</span>
+</pre></div>
+<h3>Viewing the last 20 lines with line numbers</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">20</span><span style="color: #F8F8F8"> </span>file.txt<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>nl
+<span style="color: #000; font-style: italic">     1  Line content here</span>
+<span style="color: #000; font-style: italic">     2  More content here</span>
+<span style="color: #000; font-style: italic">     ...</span>
+<span style="color: #000; font-style: italic">     20 Last line here</span>
+</pre></div>
+<h3>Following a log file but stopping when a process ends</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>tail<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>--pid<span style="color: #CE5C00; font-weight: bold">=</span><span style="color: #204A87; font-weight: bold">$(</span>pgrep<span style="color: #F8F8F8"> </span>apache2<span style="color: #204A87; font-weight: bold">)</span><span style="color: #F8F8F8"> </span>/var/log/apache2/access.log
+</pre></div>
+<h2>Tips:</h2>
+<h3>Combine with grep for filtering</h3>
+<p>Use <code>tail -f logfile.txt | grep ERROR</code> to monitor a log file in real-time but only show lines containing &quot;ERROR&quot;.</p>
+<h3>Use with head for middle sections</h3>
+<p>Extract the middle of a file with <code>head -n 20 file.txt | tail -n 10</code> to get lines 11-20.</p>
+<h3>Follow multiple files efficiently</h3>
+<p>When following multiple log files with <code>tail -f</code>, use <code>--retry</code> to keep trying if a file becomes inaccessible and reappears later.</p>
+<h3>Terminate follow mode gracefully</h3>
+<p>Press Ctrl+C to exit from tail's follow mode when you're done monitoring.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I view the last 10 lines of a file?</h4>
+<p>A. Simply use <code>tail filename</code> or <code>tail -n 10 filename</code>.</p>
+<h4>Q2. How can I continuously monitor a log file for changes?</h4>
+<p>A. Use <code>tail -f logfile.txt</code> to follow the file in real-time as new content is added.</p>
+<h4>Q3. Can I monitor multiple files at once?</h4>
+<p>A. Yes, use <code>tail -f file1.txt file2.txt</code> to monitor multiple files simultaneously.</p>
+<h4>Q4. How do I show a specific number of lines from the end?</h4>
+<p>A. Use <code>tail -n NUMBER filename</code> where NUMBER is the count of lines you want to see.</p>
+<h4>Q5. How can I exit from tail's follow mode?</h4>
+<p>A. Press Ctrl+C to terminate the tail command when in follow mode.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/tail-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

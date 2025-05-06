@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  sort - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>sort command</h1>
+<p>Sort lines of text files.</p>
+<h2>Overview</h2>
+<p>The <code>sort</code> command arranges lines of text files or standard input in alphabetical, numerical, or reverse order. It can merge multiple sorted files, remove duplicate lines, and perform various other sorting operations based on specific fields or characters within each line.</p>
+<h2>Options</h2>
+<h3><strong>-n, --numeric-sort</strong></h3>
+<p>Sort numerically (by numeric value) instead of alphabetically</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">1</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">10</span>
+<span style="color: #000; font-style: italic">20</span>
+<span style="color: #000; font-style: italic">100</span>
+</pre></div>
+<h3><strong>-r, --reverse</strong></h3>
+<p>Reverse the result of comparisons</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span>names.txt
+<span style="color: #000; font-style: italic">Zack</span>
+<span style="color: #000; font-style: italic">Victor</span>
+<span style="color: #000; font-style: italic">Susan</span>
+<span style="color: #000; font-style: italic">Alice</span>
+</pre></div>
+<h3><strong>-f, --ignore-case</strong></h3>
+<p>Ignore case when sorting</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>mixed_case.txt
+<span style="color: #000; font-style: italic">Alice</span>
+<span style="color: #000; font-style: italic">apple</span>
+<span style="color: #000; font-style: italic">Banana</span>
+<span style="color: #000; font-style: italic">cat</span>
+<span style="color: #000; font-style: italic">Dog</span>
+</pre></div>
+<h3><strong>-k, --key=POS1[,POS2]</strong></h3>
+<p>Sort via a key starting at POS1 and ending at POS2</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-k<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span>employees.txt
+<span style="color: #000; font-style: italic">101 Adams 5000</span>
+<span style="color: #000; font-style: italic">103 Brown 4500</span>
+<span style="color: #000; font-style: italic">102 Clark 5500</span>
+</pre></div>
+<h3><strong>-t, --field-separator=SEP</strong></h3>
+<p>Use SEP as the field separator instead of non-blank to blank transition</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-t:<span style="color: #F8F8F8"> </span>-k3,3n<span style="color: #F8F8F8"> </span>/etc/passwd
+<span style="color: #000; font-style: italic">root:x:0:0:root:/root:/bin/bash</span>
+<span style="color: #000; font-style: italic">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span>
+<span style="color: #000; font-style: italic">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span>
+</pre></div>
+<h3><strong>-u, --unique</strong></h3>
+<p>Output only the first of an equal run (remove duplicates)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>duplicates.txt
+<span style="color: #000; font-style: italic">apple</span>
+<span style="color: #000; font-style: italic">banana</span>
+<span style="color: #000; font-style: italic">orange</span>
+</pre></div>
+<h3><strong>-M, --month-sort</strong></h3>
+<p>Compare as months (JAN &lt; FEB &lt; ... &lt; DEC)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-M<span style="color: #F8F8F8"> </span>months.txt
+<span style="color: #000; font-style: italic">Jan</span>
+<span style="color: #000; font-style: italic">Feb</span>
+<span style="color: #000; font-style: italic">Mar</span>
+<span style="color: #000; font-style: italic">Apr</span>
+<span style="color: #000; font-style: italic">Dec</span>
+</pre></div>
+<h3><strong>-h, --human-numeric-sort</strong></h3>
+<p>Compare human readable numbers (e.g., 2K, 1G)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>sizes.txt
+<span style="color: #000; font-style: italic">10K</span>
+<span style="color: #000; font-style: italic">1M</span>
+<span style="color: #000; font-style: italic">2M</span>
+<span style="color: #000; font-style: italic">1G</span>
+</pre></div>
+<h3><strong>-R, --random-sort</strong></h3>
+<p>Sort by random hash of keys</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>names.txt
+<span style="color: #000; font-style: italic">Victor</span>
+<span style="color: #000; font-style: italic">Alice</span>
+<span style="color: #000; font-style: italic">Susan</span>
+<span style="color: #000; font-style: italic">Zack</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Sorting a file numerically</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">10</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">100</span>
+<span style="color: #000; font-style: italic">1</span>
+<span style="color: #000; font-style: italic">20</span>
+<span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-n<span style="color: #F8F8F8"> </span>numbers.txt
+<span style="color: #000; font-style: italic">1</span>
+<span style="color: #000; font-style: italic">2</span>
+<span style="color: #000; font-style: italic">10</span>
+<span style="color: #000; font-style: italic">20</span>
+<span style="color: #000; font-style: italic">100</span>
+</pre></div>
+<h3>Sorting by specific column with custom delimiter</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>data.csv
+<span style="color: #000; font-style: italic">John,25,Engineer</span>
+<span style="color: #000; font-style: italic">Alice,30,Doctor</span>
+<span style="color: #000; font-style: italic">Bob,22,Student</span>
+<span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-t,<span style="color: #F8F8F8"> </span>-k2,2n<span style="color: #F8F8F8"> </span>data.csv
+<span style="color: #000; font-style: italic">Bob,22,Student</span>
+<span style="color: #000; font-style: italic">John,25,Engineer</span>
+<span style="color: #000; font-style: italic">Alice,30,Doctor</span>
+</pre></div>
+<h3>Merging multiple sorted files</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>file1.txt<span style="color: #F8F8F8"> </span>file2.txt<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>merged.txt
+</pre></div>
+<h3>Removing duplicates and saving to a new file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sort<span style="color: #F8F8F8"> </span>-u<span style="color: #F8F8F8"> </span>input.txt<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>output.txt
+</pre></div>
+<h2>Tips</h2>
+<h3>Sort and Remove Duplicates in One Step</h3>
+<p>Use <code>sort -u</code> to sort a file and remove duplicate lines in a single operation, which is more efficient than using <code>sort | uniq</code>.</p>
+<h3>Check if a File is Already Sorted</h3>
+<p>Use <code>sort -c filename</code> to check if a file is already sorted without actually outputting anything. It will return an error message if the file is not sorted.</p>
+<h3>Memory Considerations for Large Files</h3>
+<p>For very large files, use <code>sort -T /tmp</code> to specify a temporary directory with sufficient space, or <code>sort -S 1G</code> to allocate more memory for sorting.</p>
+<h3>Stable Sort</h3>
+<p>Use <code>sort -s</code> for a stable sort, which preserves the original order of lines with equal keys. This is useful when you want to maintain the original ordering of equivalent items.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I sort a file in reverse order?</h4>
+<p>A. Use <code>sort -r filename</code> to sort in reverse (descending) order.</p>
+<h4>Q2. How can I sort a CSV file by a specific column?</h4>
+<p>A. Use <code>sort -t, -k2,2 filename.csv</code> to sort by the second column, where <code>-t,</code> specifies the comma as the field separator.</p>
+<h4>Q3. How do I sort IP addresses correctly?</h4>
+<p>A. Use <code>sort -V</code> for version sorting, which works well for IP addresses: <code>sort -V ip_addresses.txt</code>.</p>
+<h4>Q4. How can I sort by multiple fields?</h4>
+<p>A. Specify multiple keys: <code>sort -k1,1 -k2,2n filename</code> sorts first by field 1 alphabetically, then by field 2 numerically.</p>
+<h4>Q5. How do I sort a file with a header and keep the header at the top?</h4>
+<p>A. Use: <code>(head -1 file.txt; tail -n +2 file.txt | sort) &gt; sorted_file.txt</code></p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

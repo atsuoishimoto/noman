@@ -1,0 +1,20 @@
+{
+  "id": "msg_01XMxvChL7MahQ57PwkX1cPu",
+  "content": [
+    {
+      "text": "# whoami コマンド\n\n現在のユーザーの実効ユーザーIDを表示します。\n\n## 概要\n\n`whoami` コマンドは、現在の実効ユーザーIDに関連付けられたユーザー名を表示します。これは、ターミナルセッションで現在使用されているユーザーアカウントを識別するのに役立つシンプルなユーティリティで、スクリプト内や異なるユーザーアカウント間で切り替える際に特に便利です。\n\n## オプション\n\n`whoami` コマンドは単一の明確な機能を実行するため、オプションはほとんどありません。\n\n### **--help**\n\nヘルプ情報を表示して終了します。\n\n```console\n$ whoami --help\nUsage: whoami [OPTION]...\nPrint the user name associated with the current effective user ID.\nSame as id -un.\n\n      --help     display this help and exit\n      --version  output version information and exit\n\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nReport whoami translation bugs to <https://translationproject.org/team/>\n```\n\n### **--version**\n\nバージョン情報を出力して終了します。\n\n```console\n$ whoami --version\nwhoami (GNU coreutils) 8.32\nCopyright (C) 2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Richard Mlynarik.\n```\n\n## 使用例\n\n### 基本的な使い方\n\n```console\n$ whoami\njohn\n```\n\n### スクリプト内で現在のユーザーを確認する\n\n```console\n$ echo \"Current user is $(whoami)\"\nCurrent user is john\n```\n\n### sudoでユーザーを切り替えた後の使用\n\n```console\n$ whoami\njohn\n$ sudo whoami\nroot\n```\n\n## ヒント\n\n### `id` コマンドとの違い\n\n`whoami` コマンドは `id -un` と同等です。`id` コマンドはより包括的なユーザー識別情報を提供しますが、`whoami` はユーザー名のみに焦点を当てています。\n\n### シェルスクリプトでの使用\n\n`whoami` は、スクリプトを実行しているユーザーを確認するためにシェルスクリプトで特に役立ち、ユーザー識別に基づいた条件付き実行を可能にします。\n\n### ルートユーザーの確認\n\n`sudo` や `su` などのコマンドを使用した後、現在ルート権限で操作しているかどうかを確認するために `whoami` を使用します。\n\n## よくある質問\n\n#### Q1. `whoami` と `who am i` の違いは何ですか？\nA. `whoami` は実効ユーザー名（現在実行中のユーザー）を表示しますが、`who am i`（または `who -m`）は元のログイン名を表示します。`su` や `sudo` を使用した場合は異なる場合があります。\n\n#### Q2. `whoami` は他のユーザーに関する情報を表示できますか？\nA. いいえ、`whoami` は現在の実効ユーザーに関する情報のみを表示します。他のユーザーに関する情報を取得するには、`id username` や `finger username` などのコマンドを使用してください。\n\n#### Q3. `whoami` はすべてのUnix/Linuxシステムで同じように動作しますか？\nA. はい、`whoami` はLinuxやmacOSを含むUnixライクなオペレーティングシステム全体で一貫した動作をする標準コマンドです。\n\n#### Q4. なぜ `echo $USER` の代わりに `whoami` を使用するのですか？\nA. `whoami` は実効ユーザー（実行中のユーザー）を表示しますが、`$USER` はログインユーザーを表示します。`sudo` や `su` を使ってユーザーを変更した場合に違いが生じます。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/whoami-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 950,
+    "output_tokens": 1249
+  }
+}

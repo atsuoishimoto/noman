@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  getent - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>getent command</h1>
+<p>Retrieves entries from administrative databases.</p>
+<h2>Overview</h2>
+<p><code>getent</code> is a Unix command that displays entries from administrative databases (like <code>/etc/passwd</code>, <code>/etc/group</code>, etc.) using the same library functions that applications would use. It's useful for querying system databases in a standardized way, regardless of whether the information comes from local files, NIS, LDAP, or other sources.</p>
+<h2>Options</h2>
+<h3><strong>database</strong></h3>
+<p>Specifies which database to query (passwd, group, hosts, services, protocols, networks, etc.)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">root:x:0:0:root:/root:/bin/bash</span>
+</pre></div>
+<h3><strong>-s, --service=CONFIG</strong></h3>
+<p>Specify service configuration to be used</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>files<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>root
+<span style="color: #000; font-style: italic">root:x:0:0:root:/root:/bin/bash</span>
+</pre></div>
+<h3><strong>-h, --help</strong></h3>
+<p>Display help information</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>--help
+<span style="color: #000; font-style: italic">Usage: getent [OPTION...] database [key ...]</span>
+<span style="color: #000; font-style: italic">Get entries from administrative database.</span>
+
+<span style="color: #000; font-style: italic">  -i, --no-idn               disable IDN encoding</span>
+<span style="color: #000; font-style: italic">  -s, --service=CONFIG       Service configuration to be used</span>
+<span style="color: #000; font-style: italic">  -?, --help                 Give this help list</span>
+<span style="color: #000; font-style: italic">      --usage                Give a short usage message</span>
+<span style="color: #000; font-style: italic">  -V, --version              Print program version</span>
+
+<span style="color: #000; font-style: italic">Mandatory or optional arguments to long options are also mandatory or optional</span>
+<span style="color: #000; font-style: italic">for any corresponding short options.</span>
+
+<span style="color: #000; font-style: italic">Supported databases:</span>
+<span style="color: #000; font-style: italic">ahosts ahostsv4 ahostsv6 aliases ethers group gshadow hosts netgroup networks</span>
+<span style="color: #000; font-style: italic">passwd protocols rpc services shadow</span>
+</pre></div>
+<h3><strong>-V, --version</strong></h3>
+<p>Display version information</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>--version
+<span style="color: #000; font-style: italic">getent (GNU libc) 2.31</span>
+</pre></div>
+<h3><strong>-i, --no-idn</strong></h3>
+<p>Disable IDN (Internationalized Domain Names) encoding</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>hosts<span style="color: #F8F8F8"> </span>example.com
+<span style="color: #000; font-style: italic">93.184.216.34   example.com</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Looking up a user by username</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>username
+<span style="color: #000; font-style: italic">username:x:1000:1000:Full Name:/home/username:/bin/bash</span>
+</pre></div>
+<h3>Finding a host by name</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>hosts<span style="color: #F8F8F8"> </span>google.com
+<span style="color: #000; font-style: italic">142.250.190.78  google.com</span>
+</pre></div>
+<h3>Listing all groups</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>group
+<span style="color: #000; font-style: italic">root:x:0:</span>
+<span style="color: #000; font-style: italic">daemon:x:1:</span>
+<span style="color: #000; font-style: italic">bin:x:2:</span>
+<span style="color: #000; font-style: italic">sys:x:3:</span>
+<span style="color: #000; font-style: italic">[additional groups...]</span>
+</pre></div>
+<h3>Looking up a service port</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>services<span style="color: #F8F8F8"> </span>ssh
+<span style="color: #000; font-style: italic">ssh                  22/tcp</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use with grep for filtering</h3>
+<p>Combine <code>getent</code> with <code>grep</code> to filter results from large databases:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>username
+</pre></div>
+<h3>Check if a user exists</h3>
+<p>Use the exit code to check if a user exists in the system:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>passwd<span style="color: #F8F8F8"> </span>username<span style="color: #F8F8F8"> </span>&gt;<span style="color: #F8F8F8"> </span>/dev/null<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">&amp;&amp;</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;User exists&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">||</span><span style="color: #F8F8F8"> </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;User does not exist&quot;</span>
+</pre></div>
+<h3>Find all members of a group</h3>
+<p>Use the group database to see all members of a specific group:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>getent<span style="color: #F8F8F8"> </span>group<span style="color: #F8F8F8"> </span>sudo
+<span style="color: #000; font-style: italic">sudo:x:27:user1,user2,user3</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What databases can I query with getent?</h4>
+<p>A. Common databases include passwd, group, hosts, services, protocols, networks, shadow, and aliases. The available databases may vary by system.</p>
+<h4>Q2. How do I check if a hostname resolves?</h4>
+<p>A. Use <code>getent hosts hostname</code>. If the hostname resolves, it will return the IP address and hostname.</p>
+<h4>Q3. Can getent query LDAP or other directory services?</h4>
+<p>A. Yes, getent uses the Name Service Switch (NSS) configuration, so it can query any source configured in your system's <code>/etc/nsswitch.conf</code> file, including LDAP, NIS, DNS, and local files.</p>
+<h4>Q4. How is getent different from just reading files like /etc/passwd directly?</h4>
+<p>A. getent respects the system's NSS configuration, so it retrieves information from all configured sources (local files, LDAP, NIS, etc.), not just the local files.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/getent.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

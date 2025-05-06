@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  file - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>file command</h1>
+<p>Determine file type by examining file contents.</p>
+<h2>Overview</h2>
+<p>The <code>file</code> command identifies the type of a file by examining its contents, rather than relying on filename extensions. It performs various tests to determine whether files are text, executable binaries, data files, or other types. This is particularly useful when working with files that have missing or misleading extensions.</p>
+<h2>Options</h2>
+<h3><strong>-b, --brief</strong></h3>
+<p>Display the result without the filename prefix.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">ASCII text</span>
+</pre></div>
+<h3><strong>-i, --mime</strong></h3>
+<p>Display MIME type instead of traditional file type description.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">document.txt: text/plain; charset=us-ascii</span>
+</pre></div>
+<h3><strong>-z, --uncompress</strong></h3>
+<p>Try to look inside compressed files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-z<span style="color: #F8F8F8"> </span>archive.gz
+<span style="color: #000; font-style: italic">archive.gz: ASCII text (gzip compressed data, was &quot;notes.txt&quot;, last modified: Wed Apr 28 15:30:45 2021, from Unix)</span>
+</pre></div>
+<h3><strong>-L, --dereference</strong></h3>
+<p>Follow symbolic links.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-L<span style="color: #F8F8F8"> </span>symlink
+<span style="color: #000; font-style: italic">symlink: ASCII text</span>
+</pre></div>
+<h3><strong>-s, --special-files</strong></h3>
+<p>Read block or character special files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/dev/sda1
+<span style="color: #000; font-style: italic">/dev/sda1: Linux rev 1.0 ext4 filesystem data (extents) (large files)</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Checking multiple files at once</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>document.txt<span style="color: #F8F8F8"> </span>image.png<span style="color: #F8F8F8"> </span>script.sh
+<span style="color: #000; font-style: italic">document.txt: ASCII text</span>
+<span style="color: #000; font-style: italic">image.png:    PNG image data, 1920 x 1080, 8-bit/color RGB, non-interlaced</span>
+<span style="color: #000; font-style: italic">script.sh:    Bourne-Again shell script, ASCII text executable</span>
+</pre></div>
+<h3>Examining a binary file</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>/bin/ls
+<span style="color: #000; font-style: italic">/bin/ls: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=2f15ad836be3339dec0e2e6a3c637e08e48aacbd, for GNU/Linux 3.2.0, stripped</span>
+</pre></div>
+<h3>Checking file encoding</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>--mime-encoding<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">document.txt: us-ascii</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use with find command</h3>
+<p>Combine with <code>find</code> to identify file types in a directory structure:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-type<span style="color: #F8F8F8"> </span>f<span style="color: #F8F8F8"> </span>-exec<span style="color: #F8F8F8"> </span>file<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\;</span>
+</pre></div>
+<h3>Examining disk partitions</h3>
+<p>Use <code>file -s</code> to examine disk partitions and filesystems:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>sudo<span style="color: #F8F8F8"> </span>file<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>/dev/sd*
+</pre></div>
+<h3>Checking file encoding</h3>
+<p>When working with international text, use <code>file --mime-encoding</code> to determine character encoding:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>file<span style="color: #F8F8F8"> </span>--mime-encoding<span style="color: #F8F8F8"> </span>international_text.txt
+<span style="color: #000; font-style: italic">international_text.txt: utf-8</span>
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How accurate is the file command?</h4>
+<p>A. The <code>file</code> command is generally accurate but not infallible. It uses &quot;magic&quot; tests that examine file contents for patterns, but some file types may be misidentified, especially custom or obscure formats.</p>
+<h4>Q2. Can file detect encrypted files?</h4>
+<p>A. Yes, <code>file</code> can often detect encrypted files, but it may only identify them as &quot;data&quot; or &quot;encrypted data&quot; without specifying the encryption method.</p>
+<h4>Q3. How does file differ from using file extensions?</h4>
+<p>A. Unlike relying on file extensions (which can be changed or misleading), <code>file</code> examines the actual content of files to determine their type, providing more reliable identification.</p>
+<h4>Q4. Can file identify programming language source code?</h4>
+<p>A. Yes, <code>file</code> can identify many programming language source files, though it may sometimes only identify them generically as &quot;ASCII text&quot; or similar.</p>
+<h2>References</h2>
+<p>https://man7.org/linux/man-pages/man1/file.1.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

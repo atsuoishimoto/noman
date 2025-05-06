@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  git-branch - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>git-branch コマンド</h1>
+<p>Gitリポジトリ内のブランチを一覧表示、作成、または削除します。</p>
+<h2>概要</h2>
+<p><code>git branch</code>コマンドはGitリポジトリ内のブランチを管理します。新しいブランチの作成、既存ブランチの一覧表示、ブランチの名前変更、不要になったブランチの削除が可能です。ブランチはコミットへの軽量なポインタであり、並行開発ワークフローを可能にします。</p>
+<h2>オプション</h2>
+<h3><strong>-a, --all</strong></h3>
+<p>リモート追跡ブランチとローカルブランチの両方を一覧表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-a
+<span style="color: #000; font-style: italic">* main</span>
+<span style="color: #000; font-style: italic">  feature-login</span>
+<span style="color: #000; font-style: italic">  remotes/origin/main</span>
+<span style="color: #000; font-style: italic">  remotes/origin/feature-login</span>
+</pre></div>
+<h3><strong>-d, --delete</strong></h3>
+<p>ブランチを削除します。ブランチは上流ブランチ、または上流が設定されていない場合はHEADに完全にマージされている必要があります。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>feature-done
+<span style="color: #000; font-style: italic">Deleted branch feature-done (was 3e563c4).</span>
+</pre></div>
+<h3><strong>-D</strong></h3>
+<p>マージされていない変更が含まれていても、ブランチを強制的に削除します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-D<span style="color: #F8F8F8"> </span>feature-incomplete
+<span style="color: #000; font-style: italic">Deleted branch feature-incomplete (was 7d9f12a).</span>
+</pre></div>
+<h3><strong>-m, --move</strong></h3>
+<p>ブランチとそのreflogを移動/名前変更します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-m<span style="color: #F8F8F8"> </span>old-name<span style="color: #F8F8F8"> </span>new-name
+</pre></div>
+<h3><strong>-r, --remotes</strong></h3>
+<p>リモート追跡ブランチのみを一覧表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-r
+<span style="color: #000; font-style: italic">  origin/main</span>
+<span style="color: #000; font-style: italic">  origin/feature-login</span>
+<span style="color: #000; font-style: italic">  origin/dev</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>各ブランチのSHA-1とコミットの件名行を表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-v
+<span style="color: #000; font-style: italic">* main       a72f324 Update README.md</span>
+<span style="color: #000; font-style: italic">  feature-ui 8d3e5c1 Add new button component</span>
+</pre></div>
+<h3><strong>--merged</strong></h3>
+<p>現在のブランチにマージされたブランチを一覧表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>--merged
+<span style="color: #000; font-style: italic">* main</span>
+<span style="color: #000; font-style: italic">  feature-complete</span>
+</pre></div>
+<h3><strong>--no-merged</strong></h3>
+<p>現在のブランチにマージされていないブランチを一覧表示します。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>--no-merged
+<span style="color: #000; font-style: italic">  feature-in-progress</span>
+<span style="color: #000; font-style: italic">  experimental</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>新しいブランチの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>new-feature
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch
+<span style="color: #000; font-style: italic">* main</span>
+<span style="color: #000; font-style: italic">  new-feature</span>
+</pre></div>
+<h3>新しいブランチの作成と切り替え</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>feature-login
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>feature-login
+<span style="color: #000; font-style: italic">Switched to branch &#39;feature-login&#39;</span>
+
+<span style="color: #8F5902"># </span>または<span style="color: #F8F8F8"> </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>でより簡潔に
+<span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>checkout<span style="color: #F8F8F8"> </span>-b<span style="color: #F8F8F8"> </span>feature-login
+<span style="color: #000; font-style: italic">Switched to a new branch &#39;feature-login&#39;</span>
+</pre></div>
+<h3>複数のブランチの削除</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-d<span style="color: #F8F8F8"> </span>feature-1<span style="color: #F8F8F8"> </span>feature-2<span style="color: #F8F8F8"> </span>feature-3
+<span style="color: #000; font-style: italic">Deleted branch feature-1 (was 3e563c4).</span>
+<span style="color: #000; font-style: italic">Deleted branch feature-2 (was 7d9f12a).</span>
+<span style="color: #000; font-style: italic">Deleted branch feature-3 (was 2f5e8b9).</span>
+</pre></div>
+<h3>より詳細な情報付きでブランチを一覧表示</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-vv
+<span style="color: #000; font-style: italic">* main            a72f324 [origin/main] Update README.md</span>
+<span style="color: #000; font-style: italic">  feature-ui      8d3e5c1 [origin/feature-ui: ahead 2] Add new button component</span>
+<span style="color: #000; font-style: italic">  feature-api     3f5d9a2 [origin/feature-api: behind 3] Implement API client</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>説明的なブランチ名を使用する</h3>
+<p>ブランチの目的を示す明確で説明的なブランチ名を使用しましょう。例えば、<code>feature/login</code>、<code>bugfix/header</code>、<code>refactor/auth-system</code>などです。</p>
+<h3>マージされたブランチをクリーンアップする</h3>
+<p>リポジトリをきれいに保つために、マージされたブランチを定期的に削除しましょう：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>--merged<span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>grep<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;\*&quot;</span><span style="color: #F8F8F8"> </span><span style="color: #000; font-weight: bold">|</span><span style="color: #F8F8F8"> </span>xargs<span style="color: #F8F8F8"> </span>git<span style="color: #F8F8F8"> </span>branch<span style="color: #F8F8F8"> </span>-d
+</pre></div>
+<h3>リモートブランチを追跡する</h3>
+<p>リモートブランチを操作する場合は、<code>git branch --track branch-name origin/branch-name</code>を使用して追跡を設定するか、より簡単に<code>git checkout --track origin/branch-name</code>を使用します。</p>
+<h3>ブランチの履歴を表示する</h3>
+<p>特定のブランチのコミット履歴を確認するには、以下を使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>git<span style="color: #F8F8F8"> </span>log<span style="color: #F8F8F8"> </span>branch-name
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. 新しいブランチを作成するにはどうすればよいですか？</h4>
+<p>A. <code>git branch ブランチ名</code>でブランチを作成し、<code>git checkout ブランチ名</code>で切り替えます。または、<code>git checkout -b ブランチ名</code>を使用して、一度に作成と切り替えを行うこともできます。</p>
+<h4>Q2. ブランチを削除するにはどうすればよいですか？</h4>
+<p>A. マージされたブランチを削除するには<code>git branch -d ブランチ名</code>を使用し、マージ状態に関係なくブランチを強制的に削除するには<code>git branch -D ブランチ名</code>を使用します。</p>
+<h4>Q3. ブランチの名前を変更するにはどうすればよいですか？</h4>
+<p>A. <code>git branch -m 古い名前 新しい名前</code>を使用してブランチの名前を変更します。名前を変更したいブランチに現在いる場合は、単に<code>git branch -m 新しい名前</code>を使用できます。</p>
+<h4>Q4. マージされたブランチを確認するにはどうすればよいですか？</h4>
+<p>A. 現在のブランチにマージされたブランチを確認するには<code>git branch --merged</code>を使用し、まだマージされていないブランチを確認するには<code>git branch --no-merged</code>を使用します。</p>
+<h4>Q5. 新しいローカルブランチをリモートリポジトリにプッシュするにはどうすればよいですか？</h4>
+<p>A. <code>git push -u origin ブランチ名</code>を使用して、ローカルブランチをリモートリポジトリにプッシュし、追跡を設定します。</p>
+<h2>参考資料</h2>
+<p>https://git-scm.com/docs/git-branch</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

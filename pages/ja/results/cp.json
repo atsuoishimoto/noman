@@ -1,0 +1,20 @@
+{
+  "id": "msg_01G6nfY9MFh3KpMRFeDhyUJK",
+  "content": [
+    {
+      "text": "# cp コマンド\n\nファイルとディレクトリをソースから宛先へコピーします。\n\n## 概要\n\n`cp` コマンドはファイルとディレクトリをコピーします。単一のファイルを別のファイルへ、複数のファイルをディレクトリへ、またはディレクトリ構造全体をコピーすることができます。デフォルトでは、`cp` はオプションで強制されない限り既存のファイルを上書きせず、元のファイルのタイムスタンプと権限を保持します。\n\n## オプション\n\n### **-r, -R, --recursive**\n\nディレクトリを再帰的にコピーし、すべてのサブディレクトリとその内容を含めます。\n\n```console\n$ cp -r Documents/ Backup/\n```\n\n### **-i, --interactive**\n\n既存のファイルを上書きする前に確認を求めます。\n\n```console\n$ cp -i file.txt destination/\ncp: overwrite 'destination/file.txt'? y\n```\n\n### **-f, --force**\n\n必要に応じて宛先ファイルを削除して、確認なしでコピーを強制します。\n\n```console\n$ cp -f important.txt destination/\n```\n\n### **-p, --preserve**\n\nモード、所有権、タイムスタンプなどのファイル属性を保持します。\n\n```console\n$ cp -p config.ini backup/\n```\n\n### **-v, --verbose**\n\nコピーされる各ファイルの名前を表示します。\n\n```console\n$ cp -v *.txt Documents/\n'file1.txt' -> 'Documents/file1.txt'\n'file2.txt' -> 'Documents/file2.txt'\n```\n\n### **-u, --update**\n\nソースファイルが宛先ファイルより新しい場合、または宛先ファイルが存在しない場合にのみコピーします。\n\n```console\n$ cp -u *.log archive/\n```\n\n### **-a, --archive**\n\nすべてのファイル属性を保持し、ディレクトリを再帰的にコピーします（-dR --preserve=all と同等）。\n\n```console\n$ cp -a source_dir/ destination_dir/\n```\n\n## 使用例\n\n### 単一ファイルのコピー\n\n```console\n$ cp report.pdf ~/Documents/\n```\n\n### 複数ファイルをディレクトリにコピー\n\n```console\n$ cp file1.txt file2.txt file3.txt ~/Backup/\n```\n\n### ディレクトリをすべての内容と共にコピー\n\n```console\n$ cp -r Projects/ ~/Backup/Projects/\n```\n\n### 詳細出力と属性保持を伴うコピー\n\n```console\n$ cp -vp important.conf /etc/\n'important.conf' -> '/etc/important.conf'\n```\n\n## ヒント:\n\n### ワイルドカードを使用して複数ファイルをコピー\n\nパターンに一致する複数のファイルをコピーするにはワイルドカードを使用します：\n```console\n$ cp *.jpg ~/Pictures/\n```\n\n### 上書き前にバックアップを作成\n\n`-b` オプションを使用して既存ファイルのバックアップを作成します：\n```console\n$ cp -b config.ini /etc/\n```\nこれにより上書き前に `config.ini~` という名前のバックアップファイルが作成されます。\n\n### 新しい場合のみコピー\n\n`-u` を使用して、ソースが宛先より新しい場合にのみファイルを更新します：\n```console\n$ cp -u -r source_dir/ destination_dir/\n```\nこれはディレクトリの同期に便利です。\n\n### シンボリックリンクを保持\n\n`-d` または `--no-dereference` を使用して、シンボリックリンクが指すファイルをコピーするのではなく、リンクとして保持します：\n```console\n$ cp -d link.txt destination/\n```\n\n## よくある質問\n\n#### Q1. 既存のファイルを上書きせずにファイルをコピーするにはどうすればよいですか？\nA. `cp -n ソース 宛先` を使用します。`-n` オプションは既存ファイルの上書きを防ぎます。\n\n#### Q2. 隠しファイルをコピーするにはどうすればよいですか？\nA. 隠しファイル（`.` で始まるもの）は通常通りコピーされます。隠しファイルを含むすべてのファイルをコピーするには、`cp -r source/. destination/` のようなワイルドカードを使用します。\n\n#### Q3. ファイルをコピーして権限を維持するにはどうすればよいですか？\nA. `cp -p ソース 宛先` を使用して、モード、所有権、タイムスタンプを保持します。\n\n#### Q4. ディレクトリをすべての内容と共にコピーするにはどうすればよいですか？\nA. `cp -r ソースディレクトリ 宛先ディレクトリ` を使用して、ディレクトリとそのすべての内容を再帰的にコピーします。\n\n#### Q5. ディレクトリから特定のファイルタイプのみをコピーするにはどうすればよいですか？\nA. ワイルドカードを使用します：`cp ソースディレクトリ/*.txt 宛先ディレクトリ/` でテキストファイルのみをコピーします。\n\n## 参考資料\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/cp-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1130,
+    "output_tokens": 1628
+  }
+}

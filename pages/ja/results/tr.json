@@ -1,0 +1,20 @@
+{
+  "id": "msg_013qGwVZvXaA3r3PnzzvFiJq",
+  "content": [
+    {
+      "text": "# tr コマンド\n\n標準入力から文字を変換または削除し、標準出力に書き込みます。\n\n## 概要\n\n`tr` コマンドは文字単位で操作するテキスト変換ユーティリティです。標準入力から読み取り、指定されたパラメータに従って文字の置換、削除、または圧縮を実行し、結果を標準出力に書き込みます。大文字小文字の変換、文字の削除、基本的なテキスト変換などのタスクでシェルスクリプトでよく使用されます。\n\n## オプション\n\n### **-d**\n\nSET1の文字を削除し、変換は行いません。\n\n```console\n$ echo \"Hello, World!\" | tr -d 'aeiou'\nHll, Wrld!\n```\n\n### **-s**\n\nSET1内の繰り返し文字のシーケンスを単一の出現に置き換えます。\n\n```console\n$ echo \"Hello    World!\" | tr -s ' '\nHello World!\n```\n\n### **-c, --complement**\n\nSET1の補集合を使用します。\n\n```console\n$ echo \"Hello, World!\" | tr -cd 'a-zA-Z\\n'\nHelloWorld\n```\n\n### **-t, --truncate-set1**\n\nSET1をSET2の長さに切り詰めます。\n\n```console\n$ echo \"Hello, World!\" | tr -t 'a-z' 'A-Z'\nHELLO, WORLD!\n```\n\n## 使用例\n\n### 小文字から大文字への変換\n\n```console\n$ echo \"hello world\" | tr 'a-z' 'A-Z'\nHELLO WORLD\n```\n\n### テキストからすべての数字を削除\n\n```console\n$ echo \"Phone: 123-456-7890\" | tr -d '0-9'\nPhone: --\n```\n\n### スペースを改行に変換\n\n```console\n$ echo \"one two three\" | tr ' ' '\\n'\none\ntwo\nthree\n```\n\n### すべての非印刷文字を削除\n\n```console\n$ cat binary_file | tr -cd '[:print:]\\n' > cleaned_file\n```\n\n### 複数の改行を1つに圧縮\n\n```console\n$ cat file.txt | tr -s '\\n'\n```\n\n## ヒント:\n\n### 文字クラスを使用する\n\n`tr`は`[:alnum:]`、`[:alpha:]`、`[:digit:]`などのPOSIX文字クラスをサポートしており、文字グループの操作が容易になります。\n\n```console\n$ echo \"Hello123\" | tr '[:digit:]' 'x'\nHelloxxx\n```\n\n### 複雑な変換のためにオプションを組み合わせる\n\n`-d`や`-c`などのオプションを組み合わせて、特定の文字だけを保持するなどのより複雑な操作を実行できます。\n\n```console\n$ echo \"user@example.com\" | tr -cd '[:alnum:]@.\\n'\nuser@example.com\n```\n\n### 特殊文字をエスケープする\n\n変換セットで使用する場合、改行（`\\n`）、タブ（`\\t`）、バックスラッシュ（`\\\\`）などの特殊文字をエスケープすることを忘れないでください。\n\n### 他のコマンドとパイプで連結する\n\n`tr`は、より複雑なテキスト処理のために`grep`、`sed`、`awk`などの他のコマンドとパイプラインで使用すると最も効果的です。\n\n## よくある質問\n\n#### Q1. ファイルを大文字に変換するにはどうすればよいですか？\nA. `cat file.txt | tr 'a-z' 'A-Z'`または`tr 'a-z' 'A-Z' < file.txt`を使用します。\n\n#### Q2. ファイルからすべての空白を削除するにはどうすればよいですか？\nA. すべての空白文字を削除するには`tr -d '[:space:]'`を使用します。\n\n#### Q3. trは文字列または単一の文字だけを置き換えることができますか？\nA. `tr`は文字列ではなく、単一の文字に対してのみ機能します。文字列の置換には代わりに`sed`を使用してください。\n\n#### Q4. 複数の文字を単一の文字に変換するにはどうすればよいですか？\nA. `tr 'abc' 'x'`を使用して、a、b、cをすべてxに変換します。\n\n#### Q5. ファイル内のユニークな文字を数えるにはどうすればよいですか？\nA. `tr -d '\\n' < file.txt | fold -w1 | sort | uniq -c`を使用します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/tr-invocation.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1108,
+    "output_tokens": 1389
+  }
+}

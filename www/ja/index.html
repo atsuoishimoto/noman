@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+  
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+  <link rel="stylesheet" href="/css/index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+
+
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ja index.html
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1><span style="font-family: 'Orbitron';">Noman</span>
+    <span style="font-style: italic; font-size: 0.9rem; font-weight:normal;">Man pages without the man</span></h1>
+    <p>AIが人間のために生成したマニュアル表示コマンド</p>
+    <div class="cta-buttons">
+      <a href="#installation" class="cta-button">はじめる</a>
+      <a href="https://github.com/atsuoishimoto/noman" class="cta-button secondary">View on GitHub</a>
+    </div>
+
+    <img src="/images/screenshot.ja.png" width="80%" class="screenshot">
+  </section>
+
+  <!-- Quick Search -->
+  <section class="search-container">
+    <h2>コマンドを検索</h2>
+    <input id="searchbox-2" type="text" placeholder="コマンド名を入力 (e.g., ls, cd, grep)..." />
+  </section>
+
+  <!-- Features Section -->
+  <section>
+    <h2>なぜnoman?</h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>明快な解説</h3>
+        <p>専門用語を最小限に抑え、日常的な言葉で説明するので、長くて難解なドキュメントを読み解く必要がありません。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>すぐに表示</h3>
+        <p>事前に生成されたページが瞬時に読み込まれ、AIの応答を待つことなく即座にヘルプを参照できます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>実用的なサンプル</h3>
+        <p>実際の使用例と、日常業務で実際に使用する一般的なオプションを紹介します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">❓</div>
+        <h3>よくある質問</h3>
+        <p>コマンドの一般的な落とし穴やベストプラクティスに関するよくある質問に回答します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>焦点を絞ったコンテンツ</h3>
+        <p>最も一般的で実用的なユースケースを強調し、過度に技術的な詳細は省略します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>AI生成のヘルプ</h3>
+        <p>Unixコマンドの簡潔な説明と利用例を、明確で信頼性の高いAIが生成します。</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Installation Section -->
+  <section id="installation">
+    <h2>インストール</h2>
+    <p>nomanのインストールには <a href="https://docs.astral.sh/uv/">uv</a> がおすすめです。</p>
+    <ol>
+    <li>uvのインストール:
+<pre>
+curl -LsSf https://astral.sh/uv/install.sh | sh
+</pre>
+    </li>
+    <li>uvでnomanをインストール:
+<pre>
+uv tool install noman
+</pre>
+    </li>
+    </ol>
+  </section>
+
+  <section id="usage">
+    <h2>使い方</h2>
+    <p>manと同じように使用できます：</p>
+    <pre>noman ls</pre>
+  </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

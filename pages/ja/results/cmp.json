@@ -1,0 +1,20 @@
+{
+  "id": "msg_01UegmJ3kGXYAD4he6Xuj657",
+  "content": [
+    {
+      "text": "# cmp コマンド\n\n2つのファイルをバイト単位で比較します。\n\n## 概要\n\n`cmp` コマンドは任意の種類の2つのファイルを比較し、最初の相違点の位置を報告します。テキストファイル間のすべての違いを表示する `diff` とは異なり、`cmp` は単にファイルが異なる最初のバイトまたは行を識別するだけなので、バイナリファイルの迅速な比較に役立ちます。\n\n## オプション\n\n### **-b, --print-bytes**\n\n異なるバイトを8進数の値として表示します。\n\n```console\n$ cmp -b file1.txt file2.txt\nfile1.txt file2.txt differ: byte 5, line 1 is 141 a 142 b\n```\n\n### **-i, --ignore-initial=SKIP**\n\n比較する前に両方の入力ファイルの最初のSKIPバイトをスキップします。\n\n```console\n$ cmp -i 10 file1.bin file2.bin\nfile1.bin file2.bin differ: byte 11, line 1\n```\n\n### **-l, --verbose**\n\n各相違点についてバイト番号と異なるバイト値を表示します。\n\n```console\n$ cmp -l file1.txt file2.txt\n5 141 142\n8 144 145\n12 150 151\n```\n\n### **-n, --bytes=LIMIT**\n\n最大でLIMITバイトまで比較します。\n\n```console\n$ cmp -n 100 largefile1.bin largefile2.bin\nlargefile1.bin largefile2.bin differ: byte 64, line 1\n```\n\n### **-s, --quiet, --silent**\n\n通常の出力をすべて抑制し、終了ステータスのみを返します。\n\n```console\n$ cmp -s file1.txt file2.txt\n$ echo $?\n1\n```\n\n## 使用例\n\n### 基本的な比較\n\n```console\n$ cmp file1.txt file2.txt\nfile1.txt file2.txt differ: byte 5, line 1\n```\n\n### ファイルの特定部分の比較\n\n```console\n$ cmp -i 100 -n 1000 bigfile1.dat bigfile2.dat\nbigfile1.dat bigfile2.dat differ: byte 340, line 3\n```\n\n### スクリプトでの無音比較\n\n```console\n$ if cmp -s file1.txt file2.txt; then\n>   echo \"Files are identical\"\n> else\n>   echo \"Files are different\"\n> fi\nFiles are different\n```\n\n## ヒント:\n\n### スクリプトで終了ステータスを使用する\n\n`cmp` コマンドは、ファイルが同一の場合は0、異なる場合は1、エラーが発生した場合は2を返します。これにより、シェルスクリプトの条件論理に最適です。\n\n### 他のコマンドと組み合わせる\n\nプロセス置換を使用してコマンドの出力を `cmp` にパイプし、コマンド出力を比較します：\n```bash\ncmp <(command1) <(command2)\n```\n\n### バイナリファイルの比較\n\n`diff` はテキストファイルに適していますが、`cmp` はファイルが異なるかどうか、どこが異なるかを知る必要があるバイナリファイルの比較に優れています。\n\n## よくある質問\n\n#### Q1. `cmp` と `diff` の違いは何ですか？\nA. `cmp` はファイル間の最初の違いのみを報告し、バイナリファイルでもうまく機能します。`diff` はすべての違いを表示し、主にテキストファイル用に設計されています。\n\n#### Q2. 出力を表示せずに2つのファイルが同一かどうかを確認するにはどうすればよいですか？\nA. `cmp -s file1 file2` を使用し、`echo $?` で終了ステータスを確認します。戻り値が0の場合、ファイルは同一です。\n\n#### Q3. `cmp` はディレクトリを比較できますか？\nA. いいえ、`cmp` はファイルのみを比較します。ディレクトリ比較には、代わりに `diff -r` を使用してください。\n\n#### Q4. 大きなファイルを効率的に比較するにはどうすればよいですか？\nA. ファイルが異なるかどうかを素早く確認するには `-s` オプション付きの `cmp` を使用するか、大きなファイルの特定部分を比較するには `-i` と `-n` を使用します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/diffutils/manual/html_node/Invoking-cmp.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1075,
+    "output_tokens": 1373
+  }
+}

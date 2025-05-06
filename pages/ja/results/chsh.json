@@ -1,0 +1,20 @@
+{
+  "id": "msg_01MiCff33R7Pp1wUAUqVvaW8",
+  "content": [
+    {
+      "text": "# chshコマンド\n\nユーザーのログインシェルを変更します。\n\n## 概要\n\n`chsh`コマンドを使用すると、ユーザーはログインシェル（ログイン時に起動するコマンドインタープリタ）を変更できます。このコマンドはパスワードファイル内のユーザーエントリを修正し、システムにログインしたときに実行されるシェルプログラムを設定します。\n\n## オプション\n\n### **-s, --shell**\n\n使用するログインシェルを指定します。実行するユーザーがスーパーユーザーでない限り、シェルは/etc/shellsファイルに記載されている必要があります。\n\n```console\n$ chsh -s /bin/zsh\nPassword: \nShell changed.\n```\n\n### **-l, --list-shells**\n\n/etc/shellsファイルに記載されているシェルの一覧を表示します。\n\n```console\n$ chsh -l\n/bin/sh\n/bin/bash\n/bin/zsh\n/bin/fish\n```\n\n### **-h, --help**\n\nヘルプ情報を表示して終了します。\n\n```console\n$ chsh --help\nUsage: chsh [options] [LOGIN]\n\nOptions:\n  -s, --shell SHELL         specify login shell\n  -l, --list-shells         list shells and exit\n  -h, --help                display this help and exit\n  -v, --version             display version information and exit\n```\n\n### **-v, --version**\n\nバージョン情報を表示して終了します。\n\n```console\n$ chsh --version\nchsh from util-linux 2.38.1\n```\n\n## 使用例\n\n### 自分自身のシェルを変更する\n\n```console\n$ chsh -s /bin/zsh\nPassword: \nShell changed.\n```\n\n### 現在のシェルを確認する\n\n```console\n$ grep \"^$(whoami):\" /etc/passwd\nusername:x:1000:1000:User Name:/home/username:/bin/zsh\n```\n\n### 他のユーザーのシェルを変更する（root権限が必要）\n\n```console\n$ sudo chsh -s /bin/bash otheruser\nShell changed.\n```\n\n## ヒント:\n\n### 最初に利用可能なシェルを確認する\n\nシェルを変更する前に、必ず`chsh -l`を使用するか、`/etc/shells`をチェックして、システムで利用可能なシェルを確認しましょう。\n\n### ログアウトが必要\n\nログインシェルの変更は、ログアウトして再度ログインするまで有効になりません。\n\n### シェルは/etc/shellsに記載されている必要がある\n\nスーパーユーザーでない限り、選択するシェルは`/etc/shells`ファイルに記載されている必要があります。これはユーザーが任意のプログラムをログインシェルとして設定することを防ぐセキュリティ対策です。\n\n### 変更を元に戻す\n\n使いにくいシェルに変更してしまった場合は、同じコマンドを使用して以前のシェルに戻すことができます。\n\n## よくある質問\n\n#### Q1. ログインシェルと現在のシェルの違いは何ですか？\nA. ログインシェルはシステムにログインしたときに起動するシェルです。現在のシェルは現在使用しているシェルであり、ログインシェルから別のシェルを起動している場合は異なる場合があります。\n\n#### Q2. 現在のシェルを確認するにはどうすればよいですか？\nA. ログインシェルを確認するには`echo $SHELL`を実行し、現在使用しているシェルを確認するには`ps -p $$`を実行します。\n\n#### Q3. 任意のプログラムをシェルとして使用できますか？\nA. いいえ、セキュリティ上の理由から、一般ユーザーは`/etc/shells`に記載されているシェルのみを使用できます。スーパーユーザーのみが任意のプログラムをシェルとして設定できます。\n\n#### Q4. 無効なシェルを設定するとどうなりますか？\nA. 存在しないか正常に動作しないシェルを設定すると、通常の方法でログインできなくなる可能性があります。そのような場合は、回復方法を使用するか、システム管理者に修正を依頼する必要があります。\n\n## 参考資料\n\nhttps://man7.org/linux/man-pages/man1/chsh.1.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 994,
+    "output_tokens": 1324
+  }
+}

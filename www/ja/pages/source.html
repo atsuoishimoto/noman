@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  source - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>source コマンド</h1>
+<p>現在のシェル環境でファイルやスクリプトからコマンドを実行します。</p>
+<h2>概要</h2>
+<p><code>source</code> コマンド（別名 <code>.</code> でもアクセス可能）は、指定されたファイルからコマンドを読み込み、現在のシェルコンテキストで実行します。スクリプトを直接実行するとサブシェルで実行されるのに対し、<code>source</code> は現在のシェルでコマンドを実行するため、読み込まれたファイルで定義された変数や関数が現在のセッションで持続します。</p>
+<h2>オプション</h2>
+<p><code>source</code> コマンドはシェル組み込みコマンドであるため、オプションは最小限です：</p>
+<h3><strong>-h</strong></h3>
+<p>ヘルプ情報を表示します（一部のシェルで利用可能）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>-h
+<span style="color: #000; font-style: italic">.: usage: . filename [arguments]</span>
+</pre></div>
+<h2>使用例</h2>
+<h3>設定ファイルの読み込み</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>~/.bashrc
+</pre></div>
+<h3>ドット（.）エイリアスの使用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>.<span style="color: #F8F8F8"> </span>~/.bash_profile
+</pre></div>
+<h3>引数付きでの読み込み</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>script.sh<span style="color: #F8F8F8"> </span>arg1<span style="color: #F8F8F8"> </span>arg2
+</pre></div>
+<h3>環境変数の読み込み</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>cat<span style="color: #F8F8F8"> </span>env.sh
+<span style="color: #000; font-style: italic">export PROJECT_ROOT=&quot;/path/to/project&quot;</span>
+<span style="color: #000; font-style: italic">export API_KEY=&quot;abc123&quot;</span>
+
+<span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>env.sh
+<span style="color: #8F5902">$ </span><span style="color: #204A87">echo</span><span style="color: #F8F8F8"> </span><span style="color: #000">$PROJECT_ROOT</span>
+<span style="color: #000; font-style: italic">/path/to/project</span>
+</pre></div>
+<h2>ヒント</h2>
+<h3>環境設定には source を使用する</h3>
+<p>source は、現在のシェルセッションで利用したい環境変数、関数、エイリアスを読み込むのに最適です。</p>
+<h3>スクリプトのデバッグ</h3>
+<p>bash では <code>-x</code> オプションと共に <code>source</code> を使用することで、実行される各コマンドを表示してスクリプトをデバッグできます：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span><span style="color: #204A87">source</span><span style="color: #F8F8F8"> </span>-x<span style="color: #F8F8F8"> </span>script.sh
+</pre></div>
+<h3>ログアウトせずに設定を再読み込み</h3>
+<p><code>.bashrc</code> や <code>.zshrc</code> などのシェル設定ファイルを変更した場合、<code>source</code> を使用してターミナルを再起動せずに変更を適用できます。</p>
+<h3>スクリプトパスの考慮事項</h3>
+<p><code>source</code> を使用する場合、スクリプトパスは呼び出し元スクリプトの場所ではなく、現在のディレクトリからの相対パスになります。</p>
+<h2>よくある質問</h2>
+<h4>Q1. <code>source</code> とスクリプトを直接実行することの違いは何ですか？</h4>
+<p>A. スクリプトを直接実行する場合（例：<code>./script.sh</code>）、サブシェルで実行されます。そのスクリプトで定義された変数や関数は、スクリプトが終了すると失われます。<code>source</code> を使用すると、コマンドは現在のシェルで実行されるため、変数や関数はスクリプト完了後も持続します。</p>
+<h4>Q2. <code>source</code> はどのような種類のファイルでも使用できますか？</h4>
+<p>A. 有効なシェルコマンドを含むテキストファイルであれば、どのようなファイルでも読み込むことができます。通常は、シェルスクリプト（<code>.sh</code>）、設定ファイル、環境設定ファイルで使用されます。</p>
+<h4>Q3. <code>source</code> とドット（<code>.</code>）コマンドに違いはありますか？</h4>
+<p>A. 機能的な違いはありません。ドット（<code>.</code>）は POSIX 標準コマンドであり、<code>source</code> は bash やその他のシェルで利用可能なより読みやすいエイリアスです。どちらも同じことを行います。</p>
+<h4>Q4. 読み込もうとしたファイルが存在しない場合はどうなりますか？</h4>
+<p>A. 「No such file or directory」（そのようなファイルやディレクトリはありません）のようなエラーメッセージが表示され、コマンドは非ゼロの終了ステータスを返します。</p>
+<h2>参考文献</h2>
+<ul>
+<li>Bash リファレンスマニュアル: https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html</li>
+<li>POSIX 仕様: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#dot</li>
+</ul>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/05 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

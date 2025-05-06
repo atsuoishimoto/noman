@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  chgrp - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>chgrp command</h1>
+<p>Change the group ownership of files and directories.</p>
+<h2>Overview</h2>
+<p>The <code>chgrp</code> command changes the group ownership of files and directories. It allows users with appropriate permissions to modify which group has access to specific files or directories, which is useful for managing file permissions and access control in multi-user environments.</p>
+<h2>Options</h2>
+<h3><strong>-c, --changes</strong></h3>
+<p>Display diagnostic messages only when a change is made.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>staff<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">changed group of &#39;document.txt&#39; from &#39;users&#39; to &#39;staff&#39;</span>
+</pre></div>
+<h3><strong>-f, --silent, --quiet</strong></h3>
+<p>Suppress most error messages.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-f<span style="color: #F8F8F8"> </span>nonexistentgroup<span style="color: #F8F8F8"> </span>file.txt
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Output a diagnostic message for every file processed.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>developers<span style="color: #F8F8F8"> </span>scripts/
+<span style="color: #000; font-style: italic">changed group of &#39;scripts/&#39; from &#39;users&#39; to &#39;developers&#39;</span>
+</pre></div>
+<h3><strong>-R, --recursive</strong></h3>
+<p>Operate on files and directories recursively.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>developers<span style="color: #F8F8F8"> </span>project/
+</pre></div>
+<h3><strong>-h, --no-dereference</strong></h3>
+<p>Affect symbolic links instead of referenced files.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-h<span style="color: #F8F8F8"> </span>staff<span style="color: #F8F8F8"> </span>symlink.txt
+</pre></div>
+<h3><strong>--reference=RFILE</strong></h3>
+<p>Use RFILE's group instead of specifying a group name.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>--reference<span style="color: #CE5C00; font-weight: bold">=</span>template.txt<span style="color: #F8F8F8"> </span>newfile.txt
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Basic Group Change</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  users  1024 May 5 10:30 document.txt</span>
+<span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>developers<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>document.txt
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  developers  1024 May 5 10:30 document.txt</span>
+</pre></div>
+<h3>Changing Group Recursively</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span>-R<span style="color: #F8F8F8"> </span>webadmin<span style="color: #F8F8F8"> </span>/var/www/html
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>/var/www/html
+<span style="color: #000; font-style: italic">total 16</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  3 www-data  webadmin  4096 May 4 14:22 css</span>
+<span style="color: #000; font-style: italic">drwxr-xr-x  2 www-data  webadmin  4096 May 4 14:22 js</span>
+<span style="color: #000; font-style: italic">-rw-r--r--  1 www-data  webadmin  8192 May 5 09:15 index.html</span>
+</pre></div>
+<h3>Using Numeric Group ID</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>chgrp<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1001</span><span style="color: #F8F8F8"> </span>config.ini
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span>-l<span style="color: #F8F8F8"> </span>config.ini
+<span style="color: #000; font-style: italic">-rw-r--r--  1 user  1001  512 May 5 11:45 config.ini</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use Numeric Group IDs for Consistency</h3>
+<p>When scripting or working across systems, using numeric group IDs (GIDs) instead of names can be more reliable, as group names might differ between systems while GIDs are consistent.</p>
+<h3>Check Group Membership First</h3>
+<p>Before changing a file's group, ensure the owner is a member of the target group. Use the <code>groups</code> command to check which groups a user belongs to.</p>
+<h3>Combine with chmod for Complete Permission Management</h3>
+<p>Often, you'll want to change both group ownership and permissions. Use <code>chgrp</code> followed by <code>chmod g+rw</code> to give the new group read and write permissions.</p>
+<h3>Preserve Root Directory Permissions</h3>
+<p>When using <code>-R</code> on system directories, be careful not to change the group of critical system files, which could affect system stability.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>chgrp</code> and <code>chown</code>?</h4>
+<p>A. <code>chgrp</code> only changes the group ownership of files, while <code>chown</code> can change both the user and group ownership.</p>
+<h4>Q2. Can any user change the group of a file?</h4>
+<p>A. No. Only the file owner or root can change a file's group, and the owner can only assign groups they belong to.</p>
+<h4>Q3. How do I see which groups I can assign to files?</h4>
+<p>A. Use the <code>groups</code> command to see which groups you belong to.</p>
+<h4>Q4. Does changing a directory's group affect files inside it?</h4>
+<p>A. No, unless you use the <code>-R</code> (recursive) option, changing a directory's group doesn't affect the files inside it.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/chgrp-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "id": "msg_01XWvLF7zWyK6sczMwrbpi6d",
+  "content": [
+    {
+      "text": "# for コマンド\n\nリスト内の各項目に対してコマンドを実行します。\n\n## 概要\n\n`for` コマンドは、値のリストを反復処理し、各項目に対してコマンドまたは一連のコマンドを実行できるシェル構文です。シェルスクリプトでのバッチ処理、自動化、繰り返しタスクによく使用されます。\n\n## オプション\n\n`for` コマンドはシェル組み込みコマンドであり、従来のコマンドラインオプションはありません。代わりに、特定の構文パターンに従います：\n\n### 基本構文\n\n```console\n$ for 変数 in リスト; do コマンド; done\n```\n\n### C言語スタイルの構文（Bash）\n\n```console\n$ for ((初期化; 条件; 増分)); do コマンド; done\n```\n\n## 使用例\n\n### 値のリストを反復処理する\n\n```console\n$ for name in Alice Bob Charlie; do\n>   echo \"Hello, $name!\"\n> done\nHello, Alice!\nHello, Bob!\nHello, Charlie!\n```\n\n### ディレクトリ内のファイルを処理する\n\n```console\n$ for file in *.txt; do\n>   echo \"Processing $file...\"\n>   wc -l \"$file\"\n> done\nProcessing document.txt...\n      45 document.txt\nProcessing notes.txt...\n      12 notes.txt\n```\n\n### C言語スタイルのループを使用する（Bash）\n\n```console\n$ for ((i=1; i<=5; i++)); do\n>   echo \"Number: $i\"\n> done\nNumber: 1\nNumber: 2\nNumber: 3\nNumber: 4\nNumber: 5\n```\n\n### コマンド置換を使用する\n\n```console\n$ for user in $(cat users.txt); do\n>   echo \"Creating home directory for $user\"\n>   mkdir -p /home/$user\n> done\nCreating home directory for john\nCreating home directory for sarah\nCreating home directory for mike\n```\n\n## ヒント:\n\n### 適切な引用符の使用\n\nループ内の変数は常に引用符で囲み、スペースや特殊文字を含むファイル名を適切に処理します：\n\n```console\n$ for file in *.txt; do\n>   cp \"$file\" \"/backup/$(date +%Y%m%d)_$file\"\n> done\n```\n\n### break と continue\n\n`break` を使用してループを早期に終了し、`continue` を使用して次の反復にスキップします：\n\n```console\n$ for i in {1..10}; do\n>   if [ $i -eq 5 ]; then continue; fi\n>   if [ $i -eq 8 ]; then break; fi\n>   echo $i\n> done\n1\n2\n3\n4\n6\n7\n```\n\n### シーケンス生成\n\n数値シーケンスには波括弧展開を使用します：\n\n```console\n$ for i in {1..5}; do echo $i; done\n1\n2\n3\n4\n5\n```\n\n## よくある質問\n\n#### Q1. `for` ループと `while` ループの違いは何ですか？\nA. `for` ループは事前定義されたアイテムのリストを反復処理しますが、`while` ループは条件が真である限り継続します。\n\n#### Q2. 数値範囲をループするにはどうすればよいですか？\nA. 波括弧展開を使用します：`for i in {1..10}; do echo $i; done` または C言語スタイルの構文：`for ((i=1; i<=10; i++)); do echo $i; done`。\n\n#### Q3. ファイル内の行をループするにはどうすればよいですか？\nA. `read` を使った `while` ループを使用します：`while read line; do echo \"$line\"; done < file.txt` または、コマンド置換を使った `for` ループ：`for line in $(cat file.txt); do echo \"$line\"; done`（後者は空白を保持しないことに注意）。\n\n#### Q4. 配列要素を反復処理するにはどうすればよいですか？\nA. `for element in \"${array[@]}\"; do echo \"$element\"; done` を使用します。\n\n## 参考文献\n\nhttps://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html\n\n## 改訂履歴\n\n- 2025/05/05 初版",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1048,
+    "output_tokens": 1222
+  }
+}

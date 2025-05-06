@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  Command list - noman
+
+      </title>
+
+      
+  
+
+      
+  <style>
+    .commands-container {
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+    
+    .commands-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .commands-header h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .commands-header p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .commands-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .command-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .command-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .command-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #1d2439;
+    }
+    
+    .command-summary {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      /* 3行で省略 */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .search-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    
+    .search-container h2 {
+      margin-bottom: 1rem;
+    }
+    
+    .search-container input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-size: 1.1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <section class="commands-container">
+    <div class="commands-header">
+      <h1>コマンド一覧</h1>
+      <p>Linux/Unix コマンドの解説</p>
+    </div>
+
+    <section class="search-container">
+      <h2>コマンドを検索</h2>
+      <input id="searchbox-2" type="text" placeholder="コマンド名を入力 (e.g., ls, cd, grep)..." />
+    </section>
+
+    <div class="commands-list" id="commands-list">
+      
+        <div class="command-card">
+          <a href="/ja/pages/apt.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">apt</div>
+            <div class="command-summary">Debian系Linuxディストリビューション用のパッケージ管理ツールです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/apt-file.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">apt-file</div>
+            <div class="command-summary">APTパッケージ管理システム内のパッケージ内のファイルを検索します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/awk.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">awk</div>
+            <div class="command-summary">構造化されたデータを操作するためのパターンスキャンとテキスト処理言語です。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/basename.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">basename</div>
+            <div class="command-summary">パス名からファイル名またはディレクトリ名を抽出します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/break.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">break</div>
+            <div class="command-summary">シェルスクリプト内の for、while、until、または select ループから抜け出すためのコマンドです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/case.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">case</div>
+            <div class="command-summary">シェルスクリプトでパターンマッチングに基づく条件分岐を実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/cat.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">cat</div>
+            <div class="command-summary">ファイルの内容を連結して標準出力に表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/chgrp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">chgrp</div>
+            <div class="command-summary">ファイルとディレクトリのグループ所有権を変更します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/chmod.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">chmod</div>
+            <div class="command-summary">ファイルやディレクトリのモードビット（パーミッション）を変更します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/chsh.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">chsh</div>
+            <div class="command-summary">ユーザーのログインシェルを変更します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/cmp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">cmp</div>
+            <div class="command-summary">2つのファイルをバイト単位で比較します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/continue.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">continue</div>
+            <div class="command-summary">一時停止したジョブをフォアグラウンドに戻して再開します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/cp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">cp</div>
+            <div class="command-summary">ファイルとディレクトリをソースから宛先へコピーします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/curl.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">curl</div>
+            <div class="command-summary">様々なプロトコルを使用してサーバーとの間でデータを転送するコマンドです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/cut.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">cut</div>
+            <div class="command-summary">各行から選択した部分を抽出するコマンドです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/date.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">date</div>
+            <div class="command-summary">システムの日付と時刻を表示または設定します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/dd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dd</div>
+            <div class="command-summary">ブロックレベルの操作でファイルを変換・コピーします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/df.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">df</div>
+            <div class="command-summary">ファイルシステムのディスク容量使用状況を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/diff.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">diff</div>
+            <div class="command-summary">ファイルを行ごとに比較します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/diff3.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">diff3</div>
+            <div class="command-summary">3つのファイルを行ごとに比較します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/dig.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dig</div>
+            <div class="command-summary">DNSネームサーバーにドメイン情報を問い合わせます。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/dirname.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dirname</div>
+            <div class="command-summary">パス名からディレクトリ部分を出力します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/dmesg.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dmesg</div>
+            <div class="command-summary">カーネルリングバッファを表示または制御し、システムメッセージやハードウェア情報を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/docker.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">docker</div>
+            <div class="command-summary">Dockerコンテナ、イメージ、ネットワーク、ボリュームを管理します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/docker-build.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">docker-build</div>
+            <div class="command-summary">Dockerfileからイメージをビルドします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/docker-compose.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">docker-compose</div>
+            <div class="command-summary">複数コンテナのDockerアプリケーションを定義して実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/docker-run.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">docker-run</div>
+            <div class="command-summary">イメージから新しいコンテナを作成して起動します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/dpkg.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dpkg</div>
+            <div class="command-summary">Debian ベースのシステム向けのパッケージ管理ツールで、.deb パッケージのインストール、削除、情報表示などを扱います。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/du.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">du</div>
+            <div class="command-summary">ディレクトリとファイルのディスク使用量を推定します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/echo.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">echo</div>
+            <div class="command-summary">テキストや変数を標準出力に表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/egrep.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">egrep</div>
+            <div class="command-summary">拡張正規表現を使用してパターンを検索します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/env.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">env</div>
+            <div class="command-summary">現在の環境変数を表示したり、変更された環境で命令を実行したりします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/eval.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">eval</div>
+            <div class="command-summary">引数をシェルコマンドとして評価し実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/expr.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">expr</div>
+            <div class="command-summary">式を評価して結果を出力します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/false.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">false</div>
+            <div class="command-summary">入力に関係なく失敗の終了ステータス（1）を返します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/file.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">file</div>
+            <div class="command-summary">ファイルの内容を調べてファイルタイプを判定します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/find.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">find</div>
+            <div class="command-summary">ディレクトリ階層内でファイルを検索します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/for.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">for</div>
+            <div class="command-summary">リスト内の各項目に対してコマンドを実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/free.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">free</div>
+            <div class="command-summary">システム内の空きメモリと使用中メモリの量を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/function.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">function</div>
+            <div class="command-summary">シェル関数を後で実行するために定義します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/gdb.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">gdb</div>
+            <div class="command-summary">GNUデバッガを使用してプログラムを対話的にデバッグします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/getent.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">getent</div>
+            <div class="command-summary">管理データベースからエントリを取得します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/getopt.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">getopt</div>
+            <div class="command-summary">シェルスクリプトでコマンドラインオプションを解析します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git</div>
+            <div class="command-summary">ソフトウェア開発中のソースコードの変更を追跡するための分散型バージョン管理システムです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-add.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-add</div>
+            <div class="command-summary">ファイルの内容をインデックス（ステージングエリア）に追加し、次のコミットに備えます。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-branch.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-branch</div>
+            <div class="command-summary">Gitリポジトリ内のブランチを一覧表示、作成、または削除します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-commit.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-commit</div>
+            <div class="command-summary">リポジトリに変更を記録し、ステージングされたコンテンツを新しいコミットとして保存します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-merge.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-merge</div>
+            <div class="command-summary">異なるブランチからの変更を現在のブランチに統合します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-pull.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-pull</div>
+            <div class="command-summary">リモートリポジトリやローカルブランチから変更を取得して統合します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-push.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-push</div>
+            <div class="command-summary">リモートレフを関連するオブジェクトと共に更新します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-rebase.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-rebase</div>
+            <div class="command-summary">別のベースの先端に対してコミットを再適用し、コミット履歴を書き換えます。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-reset.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-reset</div>
+            <div class="command-summary">現在のHEADを指定した状態にリセットします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-stash.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-stash</div>
+            <div class="command-summary">変更を一時的に保存し、コミットせずに変更を保存するためのコマンドです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/git-switch.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-switch</div>
+            <div class="command-summary">ブランチの切り替えやワーキングツリーファイルの復元を行います。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/gpasswd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">gpasswd</div>
+            <div class="command-summary">グループのメンバーシップとプロパティを変更することで、/etc/group と /etc/gshadow を管理します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/grep.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">grep</div>
+            <div class="command-summary">ファイル内のパターンを検索します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/groupadd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">groupadd</div>
+            <div class="command-summary">システムに新しいグループを作成します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/groupdel.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">groupdel</div>
+            <div class="command-summary">システムからグループを削除します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/groupmod.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">groupmod</div>
+            <div class="command-summary">システム上のグループ定義を変更します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/groups.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">groups</div>
+            <div class="command-summary">ユーザーが所属するグループを表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/gunzip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">gunzip</div>
+            <div class="command-summary">gzipで圧縮されたファイルを展開します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/gzip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">gzip</div>
+            <div class="command-summary">gzipアルゴリズムを使用してファイルを圧縮または展開します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/hd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">hd</div>
+            <div class="command-summary">ファイルの内容を16進数、10進数、8進数、またはASCII形式で表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/head.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">head</div>
+            <div class="command-summary">ファイルの先頭部分を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/host.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">host</div>
+            <div class="command-summary">DNSサーバーに問い合わせを行うDNS検索ユーティリティです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/hostname.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">hostname</div>
+            <div class="command-summary">システムのホスト名を表示または設定します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/http.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">http</div>
+            <div class="command-summary">任意のHTTPリクエストを送信し、レスポンスを表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/if.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">if</div>
+            <div class="command-summary">条件式を評価し、結果に基づいてコマンドを実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/install.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">install</div>
+            <div class="command-summary">ファイルをコピーして属性を設定します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/iostat.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">iostat</div>
+            <div class="command-summary">CPUとデバイスおよびパーティションのI/O統計情報を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/iotop.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">iotop</div>
+            <div class="command-summary">システム上のプロセスによるI/O使用状況を監視します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ip</div>
+            <div class="command-summary">ネットワークインターフェース、ルーティング、アドレスを管理するためのネットワーク設定ツールです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ipcs.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ipcs</div>
+            <div class="command-summary">アクティブなIPCファシリティ（共有メモリセグメント、メッセージキュー、セマフォ）に関する情報を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/journalctl.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">journalctl</div>
+            <div class="command-summary">systemdジャーナルからメッセージを検索して表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/jq.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">jq</div>
+            <div class="command-summary">軽量なコマンドラインプロセッサでJSONデータを処理・変換します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/kill.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">kill</div>
+            <div class="command-summary">プロセスを終了させるか、シグナルを送信します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/killall.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">killall</div>
+            <div class="command-summary">プロセスIDではなく名前によってプロセスを終了させます。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/leftbracket.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">[</div>
+            <div class="command-summary">条件式を評価し、評価結果に基づいてステータスを返します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/less.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">less</div>
+            <div class="command-summary">テキストファイルを検索機能付きのスクロール可能なインターフェースで表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ln.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ln</div>
+            <div class="command-summary">ファイル間のリンクを作成します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ls.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ls</div>
+            <div class="command-summary">ディレクトリの内容を一覧表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/lsof.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">lsof</div>
+            <div class="command-summary">開いているファイルとそれを開いたプロセスを一覧表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ltrace.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ltrace</div>
+            <div class="command-summary">プログラムのライブラリ呼び出しをトレースします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/mkdir.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">mkdir</div>
+            <div class="command-summary">指定した名前のディレクトリを作成します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/mkfifo.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">mkfifo</div>
+            <div class="command-summary">指定した名前の名前付きパイプ（FIFO）を作成します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/more.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">more</div>
+            <div class="command-summary">ファイルの内容を一度に1画面ずつ表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/mv.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">mv</div>
+            <div class="command-summary">ファイルとディレクトリの移動（名前変更）を行います。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/nc.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">nc</div>
+            <div class="command-summary">ネットワーク接続を作成・管理し、データ転送、ポートスキャン、ネットワークデバッグを行うコマンドです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/od.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">od</div>
+            <div class="command-summary">ファイルの内容を様々な形式で表示します。主に8進数、10進数、16進数形式で表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/openssl.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">openssl</div>
+            <div class="command-summary">暗号化機能の管理（証明書の作成、暗号化、安全な接続など）を行います。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/pandoc.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">pandoc</div>
+            <div class="command-summary">マークアップ形式間でファイルを変換する汎用ドキュメントコンバーター。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/passwd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">passwd</div>
+            <div class="command-summary">ユーザーパスワードを変更します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/patch.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">patch</div>
+            <div class="command-summary">差分ファイルを元のファイルに適用します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/perf.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">perf</div>
+            <div class="command-summary">Linuxのパフォーマンス分析ツールで、ハードウェアカウンタの統計情報やトレース機能を提供します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ping.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ping</div>
+            <div class="command-summary">ネットワーク接続を確認するために、ICMP ECHO_REQUESTパケットをネットワークホストに送信します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/printf.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">printf</div>
+            <div class="command-summary">指定されたフォーマット文字列に従ってデータをフォーマットして表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ps.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ps</div>
+            <div class="command-summary">実行中のプロセスに関する情報を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/pstack.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">pstack</div>
+            <div class="command-summary">実行中のプロセスのスタックトレースを表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/pstree.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">pstree</div>
+            <div class="command-summary">実行中のプロセスをツリー形式で表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/pwd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">pwd</div>
+            <div class="command-summary">現在の作業ディレクトリの完全なパス名を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/readlink.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">readlink</div>
+            <div class="command-summary">シンボリックリンクの解決先やファイルの正規名を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/realpath.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">realpath</div>
+            <div class="command-summary">解決された絶対ファイルパスを表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/rg.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">rg</div>
+            <div class="command-summary">正規表現を使用してファイル内のパターンを検索し、ディレクトリの再帰的な走査をサポートします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/rm.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">rm</div>
+            <div class="command-summary">ファイルシステムからファイルやディレクトリを削除します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/rmdir.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">rmdir</div>
+            <div class="command-summary">ファイルシステムから空のディレクトリを削除します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/rsync.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">rsync</div>
+            <div class="command-summary">ローカルシステムとリモートシステム間、またはローカルディレクトリ間でファイルとディレクトリを同期します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/scp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">scp</div>
+            <div class="command-summary">ネットワーク上のホスト間でSSHを使用してデータ転送を行い、ファイルを安全にコピーします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/script.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">script</div>
+            <div class="command-summary">ターミナルセッションのタイプスクリプトを作成します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/sed.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sed</div>
+            <div class="command-summary">テキストのフィルタリングと変換のためのストリームエディタです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/seq.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">seq</div>
+            <div class="command-summary">数値の連続を出力します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/set.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">set</div>
+            <div class="command-summary">シェルオプションと位置パラメータを表示または設定します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/sftp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sftp</div>
+            <div class="command-summary">ホスト間で暗号化されたSSH接続を介してファイルを安全に転送します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/shift.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">shift</div>
+            <div class="command-summary">シェルスクリプト内の位置パラメータをシフトし、最初のパラメータを削除して残りのパラメータの番号を振り直します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/sleep.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sleep</div>
+            <div class="command-summary">指定された時間だけ実行を一時停止します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/sort.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sort</div>
+            <div class="command-summary">テキストファイルの行を並べ替えます。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/source.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">source</div>
+            <div class="command-summary">現在のシェル環境でファイルやスクリプトからコマンドを実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/split.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">split</div>
+            <div class="command-summary">ファイルを複数の部分に分割します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ss.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ss</div>
+            <div class="command-summary">ソケット統計を表示し、ネットワーク接続に関する情報を提供します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ssh.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh</div>
+            <div class="command-summary">暗号化されたネットワーク接続を介してリモートシステムに安全に接続します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ssh-add.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh-add</div>
+            <div class="command-summary">OpenSSH認証エージェントに秘密鍵の識別情報を追加します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ssh-agent.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh-agent</div>
+            <div class="command-summary">SSH秘密鍵の認証エージェントで、パスフレーズの繰り返し入力を避けるために鍵をメモリに保持します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ssh-copy-id.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh-copy-id</div>
+            <div class="command-summary">リモートマシンの authorized_keys ファイルに公開鍵をインストールし、パスワードなしの SSH 認証を可能にします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/ssh-keygen.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh-keygen</div>
+            <div class="command-summary">SSH認証用の鍵を生成、管理、変換するコマンドです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/stat.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">stat</div>
+            <div class="command-summary">ファイルやファイルシステムのステータス情報を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/strace.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">strace</div>
+            <div class="command-summary">プロセスのシステムコールとシグナルをトレースします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/su.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">su</div>
+            <div class="command-summary">ユーザーIDを切り替えたり、別のユーザーになったりするコマンドです。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/sudo.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sudo</div>
+            <div class="command-summary">別のユーザー（通常は特権を持つユーザー）としてコマンドを実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/sudoedit.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sudoedit</div>
+            <div class="command-summary">別のユーザー（通常はroot）として安全にファイルを編集します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/systemctl.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">systemctl</div>
+            <div class="command-summary">systemdシステムとサービスマネージャーを制御します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/tail.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tail</div>
+            <div class="command-summary">ファイルの末尾部分を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/tar.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tar</div>
+            <div class="command-summary">テープアーカイブを操作し、アーカイブ形式でファイルの作成、抽出、一覧表示、または更新を行います。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/tcpdump.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tcpdump</div>
+            <div class="command-summary">システム上のネットワークトラフィックをキャプチャして分析します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/tee.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tee</div>
+            <div class="command-summary">標準入力から読み取り、標準出力とファイルの両方に書き込みます。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/top.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">top</div>
+            <div class="command-summary">プロセスに関するソートされた情報を表示および更新します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/touch.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">touch</div>
+            <div class="command-summary">ファイルのタイムスタンプを作成または更新します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/tr.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tr</div>
+            <div class="command-summary">標準入力から文字を変換または削除し、標準出力に書き込みます。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/tree.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tree</div>
+            <div class="command-summary">ディレクトリの内容を階層的なツリー構造で表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/true.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">true</div>
+            <div class="command-summary">成功の終了ステータス（0）を返します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/truncate.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">truncate</div>
+            <div class="command-summary">ファイルのサイズを指定したサイズに縮小または拡張します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/uname.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">uname</div>
+            <div class="command-summary">オペレーティングシステムに関するシステム情報を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/uniq.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">uniq</div>
+            <div class="command-summary">隣接する一致する行を入力からフィルタリングしたり、ユニークな行を報告したりします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/unlink.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">unlink</div>
+            <div class="command-summary">単一のファイルを削除します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/until.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">until</div>
+            <div class="command-summary">条件が満たされるまでコマンドを繰り返し実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/unzip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">unzip</div>
+            <div class="command-summary">ZIPアーカイブからファイルを展開します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/update-alternatives.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">update-alternatives</div>
+            <div class="command-summary">alternatives システムでデフォルトコマンドを決定するシンボリックリンクを管理します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/update-locale.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">update-locale</div>
+            <div class="command-summary">システムロケール設定を /etc/default/locale を更新して構成します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/visudo.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">visudo</div>
+            <div class="command-summary">sudoersファイルを構文チェック付きで安全に編集します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/vmstat.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">vmstat</div>
+            <div class="command-summary">仮想メモリの統計情報を報告します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/w.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">w</div>
+            <div class="command-summary">現在ログインしているユーザーとそのプロセスに関する情報を表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/wc.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">wc</div>
+            <div class="command-summary">ファイル内の行数、単語数、バイト数をカウントします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/wget.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">wget</div>
+            <div class="command-summary">HTTPやHTTPS、FTPプロトコルを介してウェブからファイルをダウンロードします。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/which.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">which</div>
+            <div class="command-summary">ユーザーのPATH内にあるコマンドの実行ファイルを探します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/while.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">while</div>
+            <div class="command-summary">条件が真である限り、コマンドを繰り返し実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/whoami.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">whoami</div>
+            <div class="command-summary">現在のユーザーの実効ユーザーIDを表示します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/xargs.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">xargs</div>
+            <div class="command-summary">標準入力から引数を受け取ってコマンドを実行します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/xdg-mime.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">xdg-mime</div>
+            <div class="command-summary">デスクトップ環境でファイルタイプの関連付けを照会または設定します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/xdg-open.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">xdg-open</div>
+            <div class="command-summary">ユーザーの優先アプリケーションでファイルまたはURLを開きます。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/yes.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">yes</div>
+            <div class="command-summary">文字列が終了されるまで繰り返し出力します。</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/ja/pages/zip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">zip</div>
+            <div class="command-summary">ファイルやディレクトリを圧縮してZIPアーカイブを作成または更新します。</div>
+          </a>
+        </div>
+      
+    </div>
+  </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

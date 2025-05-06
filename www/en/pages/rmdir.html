@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  rmdir - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>rmdir command</h1>
+<p>Remove empty directories from the filesystem.</p>
+<h2>Overview</h2>
+<p>The <code>rmdir</code> command removes empty directories from the filesystem. Unlike <code>rm -r</code>, which can remove directories with their contents, <code>rmdir</code> will only succeed if the specified directories are completely empty.</p>
+<h2>Options</h2>
+<h3><strong>-p, --parents</strong></h3>
+<p>Remove directory and its ancestors. For example, <code>rmdir -p a/b/c</code> is similar to <code>rmdir a/b/c a/b a</code>.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>test/nested/dir
+<span style="color: #8F5902">$ </span>rmdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>test/nested/dir
+<span style="color: #8F5902">$ </span>ls<span style="color: #F8F8F8"> </span><span style="color: #204A87">test</span>
+<span style="color: #000; font-style: italic">ls: cannot access &#39;test&#39;: No such file or directory</span>
+</pre></div>
+<h3><strong>-v, --verbose</strong></h3>
+<p>Output a diagnostic message for every directory processed.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>empty_dir
+<span style="color: #8F5902">$ </span>rmdir<span style="color: #F8F8F8"> </span>-v<span style="color: #F8F8F8"> </span>empty_dir
+<span style="color: #000; font-style: italic">rmdir: removing directory, &#39;empty_dir&#39;</span>
+</pre></div>
+<h3><strong>--ignore-fail-on-non-empty</strong></h3>
+<p>Ignore failures that occur solely because a directory is non-empty.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>dir_with_file
+<span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>dir_with_file/file.txt
+<span style="color: #8F5902">$ </span>rmdir<span style="color: #F8F8F8"> </span>--ignore-fail-on-non-empty<span style="color: #F8F8F8"> </span>dir_with_file
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">dir_with_file</span>
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Removing a single empty directory</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>empty_dir
+<span style="color: #8F5902">$ </span>rmdir<span style="color: #F8F8F8"> </span>empty_dir
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">[empty_dir no longer appears in the listing]</span>
+</pre></div>
+<h3>Removing nested empty directories</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>parent/child/grandchild
+<span style="color: #8F5902">$ </span>rmdir<span style="color: #F8F8F8"> </span>-p<span style="color: #F8F8F8"> </span>parent/child/grandchild
+<span style="color: #8F5902">$ </span>ls
+<span style="color: #000; font-style: italic">[parent directory and its subdirectories are removed]</span>
+</pre></div>
+<h3>Attempting to remove a non-empty directory</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mkdir<span style="color: #F8F8F8"> </span>non_empty
+<span style="color: #8F5902">$ </span>touch<span style="color: #F8F8F8"> </span>non_empty/file.txt
+<span style="color: #8F5902">$ </span>rmdir<span style="color: #F8F8F8"> </span>non_empty
+<span style="color: #000; font-style: italic">rmdir: failed to remove &#39;non_empty&#39;: Directory not empty</span>
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use rm -r for Non-Empty Directories</h3>
+<p>When you need to remove directories that contain files, use <code>rm -r directory_name</code> instead of <code>rmdir</code>. Be careful with this command as it will recursively delete everything in the directory.</p>
+<h3>Combine with find to Remove Multiple Empty Directories</h3>
+<p>You can use <code>find</code> with <code>rmdir</code> to remove multiple empty directories at once:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>find<span style="color: #F8F8F8"> </span>.<span style="color: #F8F8F8"> </span>-type<span style="color: #F8F8F8"> </span>d<span style="color: #F8F8F8"> </span>-empty<span style="color: #F8F8F8"> </span>-exec<span style="color: #F8F8F8"> </span>rmdir<span style="color: #F8F8F8"> </span><span style="color: #CE5C00; font-weight: bold">{}</span><span style="color: #F8F8F8"> </span><span style="color: #4E9A06">\;</span>
+</pre></div>
+<h3>Check Before Removing</h3>
+<p>If you're unsure whether a directory is empty, use <code>ls -la directory_name</code> to check its contents before attempting to remove it.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. What's the difference between <code>rmdir</code> and <code>rm -r</code>?</h4>
+<p>A. <code>rmdir</code> only removes empty directories, while <code>rm -r</code> removes directories and all their contents recursively.</p>
+<h4>Q2. How do I remove a directory that contains files?</h4>
+<p>A. You cannot use <code>rmdir</code> for this purpose. Use <code>rm -r directory_name</code> instead.</p>
+<h4>Q3. Can I remove multiple directories at once with <code>rmdir</code>?</h4>
+<p>A. Yes, you can specify multiple directory names as arguments: <code>rmdir dir1 dir2 dir3</code>.</p>
+<h4>Q4. What happens if I try to remove a non-existent directory?</h4>
+<p>A. <code>rmdir</code> will display an error message indicating that the directory does not exist.</p>
+<h2>References</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/rmdir-invocation.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/05 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

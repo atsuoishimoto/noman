@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  Command list - noman
+
+      </title>
+
+      
+  
+
+      
+  <style>
+    .commands-container {
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+    
+    .commands-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .commands-header h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .commands-header p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .commands-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .command-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .command-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .command-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #1d2439;
+    }
+    
+    .command-summary {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      /* 3行で省略 */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .search-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    
+    .search-container h2 {
+      margin-bottom: 1rem;
+    }
+    
+    .search-container input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-size: 1.1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <section class="commands-container">
+    <div class="commands-header">
+      <h1>Command List</h1>
+      <p>Explain Linux/Unix commands</p>
+    </div>
+
+    <section class="search-container">
+      <h2>Search Commands</h2>
+      <input id="searchbox-2" type="text" placeholder="Enter command name (e.g., ls, cd, grep)..." />
+    </section>
+
+    <div class="commands-list" id="commands-list">
+      
+        <div class="command-card">
+          <a href="/en/pages/apt.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">apt</div>
+            <div class="command-summary">Package management tool for Debian-based Linux distributions.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/apt-file.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">apt-file</div>
+            <div class="command-summary">Search for files within packages in the APT package management system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/awk.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">awk</div>
+            <div class="command-summary">Pattern scanning and text processing language for manipulating structured data.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/basename.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">basename</div>
+            <div class="command-summary">Extract the filename or directory name from a pathname.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/break.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">break</div>
+            <div class="command-summary">Exits from a for, while, until, or select loop in shell scripts.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/case.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">case</div>
+            <div class="command-summary">Performs conditional branching based on pattern matching in shell scripts.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/cat.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">cat</div>
+            <div class="command-summary">Concatenate and display file contents to standard output.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/chgrp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">chgrp</div>
+            <div class="command-summary">Change the group ownership of files and directories.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/chmod.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">chmod</div>
+            <div class="command-summary">Change file mode bits (permissions) for files and directories.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/chsh.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">chsh</div>
+            <div class="command-summary">Change the login shell for a user.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/cmp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">cmp</div>
+            <div class="command-summary">Compare two files byte by byte.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/continue.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">continue</div>
+            <div class="command-summary">Resume a suspended job by bringing it to the foreground.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/cp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">cp</div>
+            <div class="command-summary">Copy files and directories from source to destination.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/curl.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">curl</div>
+            <div class="command-summary">Transfer data from or to a server using various protocols.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/cut.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">cut</div>
+            <div class="command-summary">Extract selected portions of each line from files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/date.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">date</div>
+            <div class="command-summary">Display or set the system date and time.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/dd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dd</div>
+            <div class="command-summary">Convert and copy files with block-level operations.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/df.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">df</div>
+            <div class="command-summary">Display disk space usage for file systems.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/diff.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">diff</div>
+            <div class="command-summary">Compare files line by line.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/diff3.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">diff3</div>
+            <div class="command-summary">Compare three files line by line.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/dig.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dig</div>
+            <div class="command-summary">Query DNS name servers for domain information.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/dirname.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dirname</div>
+            <div class="command-summary">Output the directory portion of a pathname.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/dmesg.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dmesg</div>
+            <div class="command-summary">Display or control the kernel ring buffer, showing system messages and hardware information.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/docker.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">docker</div>
+            <div class="command-summary">Manage Docker containers, images, networks, and volumes.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/docker-build.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">docker-build</div>
+            <div class="command-summary">Build an image from a Dockerfile.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/docker-compose.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">docker-compose</div>
+            <div class="command-summary">Define and run multi-container Docker applications.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/docker-run.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">docker-run</div>
+            <div class="command-summary">Creates and starts a new container from an image.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/dpkg.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">dpkg</div>
+            <div class="command-summary">Package management tool for Debian-based systems that handles installation, removal, and information about .deb packages.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/du.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">du</div>
+            <div class="command-summary">Estimate file space usage for directories and files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/echo.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">echo</div>
+            <div class="command-summary">Display a line of text or variables to standard output.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/egrep.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">egrep</div>
+            <div class="command-summary">Search for patterns using extended regular expressions.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/env.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">env</div>
+            <div class="command-summary">Display the current environment variables or run a command in a modified environment.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/eval.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">eval</div>
+            <div class="command-summary">Evaluate and execute arguments as shell commands.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/expr.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">expr</div>
+            <div class="command-summary">Evaluate expressions and output the result.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/false.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">false</div>
+            <div class="command-summary">Return a successful exit status (0) regardless of input.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/file.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">file</div>
+            <div class="command-summary">Determine file type by examining file contents.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/find.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">find</div>
+            <div class="command-summary">Search for files in a directory hierarchy.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/for.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">for</div>
+            <div class="command-summary">Execute a command for each item in a list.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/free.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">free</div>
+            <div class="command-summary">Display amount of free and used memory in the system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/function.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">function</div>
+            <div class="command-summary">Define shell functions for later execution.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/gdb.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">gdb</div>
+            <div class="command-summary">Debug programs interactively with the GNU Debugger.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/getent.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">getent</div>
+            <div class="command-summary">Retrieves entries from administrative databases.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/getopt.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">getopt</div>
+            <div class="command-summary">Parse command-line options in shell scripts.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git</div>
+            <div class="command-summary">Distributed version control system for tracking changes in source code during software development.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-add.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-add</div>
+            <div class="command-summary">Add file contents to the index (staging area) for the next commit.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-branch.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-branch</div>
+            <div class="command-summary">List, create, or delete branches in a Git repository.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-commit.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-commit</div>
+            <div class="command-summary">Record changes to the repository by saving staged content as a new commit.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-merge.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-merge</div>
+            <div class="command-summary">Combines changes from different branches into the current branch.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-pull.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-pull</div>
+            <div class="command-summary">Fetch from and integrate with another repository or a local branch.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-push.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-push</div>
+            <div class="command-summary">Update remote refs along with associated objects.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-rebase.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-rebase</div>
+            <div class="command-summary">Reapply commits on top of another base tip, rewriting the commit history.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-reset.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-reset</div>
+            <div class="command-summary">Reset current HEAD to the specified state.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-stash.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-stash</div>
+            <div class="command-summary">Temporarily stores modified, tracked files to save changes without committing.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/git-switch.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">git-switch</div>
+            <div class="command-summary">Switch branches or restore working tree files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/gpasswd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">gpasswd</div>
+            <div class="command-summary">Administers /etc/group and /etc/gshadow by modifying group memberships and properties.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/grep.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">grep</div>
+            <div class="command-summary">Search for patterns in files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/groupadd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">groupadd</div>
+            <div class="command-summary">Create a new group on the system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/groupdel.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">groupdel</div>
+            <div class="command-summary">Delete a group from the system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/groupmod.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">groupmod</div>
+            <div class="command-summary">Modify a group definition on the system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/groups.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">groups</div>
+            <div class="command-summary">Display the groups a user belongs to.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/gunzip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">gunzip</div>
+            <div class="command-summary">Decompress files compressed with gzip.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/gzip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">gzip</div>
+            <div class="command-summary">Compress or expand files using the gzip algorithm.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/hd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">hd</div>
+            <div class="command-summary">Display file contents in hexadecimal, decimal, octal, or ASCII format.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/head.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">head</div>
+            <div class="command-summary">Display the first part of files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/host.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">host</div>
+            <div class="command-summary">DNS lookup utility for querying domain name servers.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/hostname.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">hostname</div>
+            <div class="command-summary">Display or set the system’s hostname.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/http.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">http</div>
+            <div class="command-summary">Send arbitrary HTTP requests and display responses.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/if.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">if</div>
+            <div class="command-summary">Evaluates conditional expressions and executes commands based on the result.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/install.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">install</div>
+            <div class="command-summary">Copy files and set attributes.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/iostat.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">iostat</div>
+            <div class="command-summary">Display CPU and I/O statistics for devices and partitions.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/iotop.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">iotop</div>
+            <div class="command-summary">Monitor I/O usage by processes on the system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ip</div>
+            <div class="command-summary">Network configuration tool for managing interfaces, routing, and addresses.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ipcs.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ipcs</div>
+            <div class="command-summary">Display information about active IPC facilities (shared memory segments, message queues, and semaphores).</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/journalctl.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">journalctl</div>
+            <div class="command-summary">Query and display messages from the systemd journal.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/jq.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">jq</div>
+            <div class="command-summary">Process and transform JSON data with a lightweight command-line processor.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/kill.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">kill</div>
+            <div class="command-summary">Terminate or send signals to processes.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/killall.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">killall</div>
+            <div class="command-summary">Terminates processes by name rather than by process ID.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/leftbracket.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">[</div>
+            <div class="command-summary">Evaluates conditional expressions and returns a status based on the evaluation.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/less.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">less</div>
+            <div class="command-summary">Display text files in a scrollable interface with search capabilities.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ln.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ln</div>
+            <div class="command-summary">Create links between files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ls.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ls</div>
+            <div class="command-summary">List directory contents.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/lsof.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">lsof</div>
+            <div class="command-summary">Lists open files and the processes that opened them.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ltrace.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ltrace</div>
+            <div class="command-summary">Trace library calls of a program.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/mkdir.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">mkdir</div>
+            <div class="command-summary">Create directories with specified names.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/mkfifo.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">mkfifo</div>
+            <div class="command-summary">Create named pipes (FIFOs) with specified names.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/more.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">more</div>
+            <div class="command-summary">Display file contents one screen at a time.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/mv.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">mv</div>
+            <div class="command-summary">Move (rename) files and directories.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/nc.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">nc</div>
+            <div class="command-summary">Create and manage network connections for data transfer, port scanning, and network debugging.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/od.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">od</div>
+            <div class="command-summary">Display file contents in various formats, primarily octal, decimal, or hexadecimal.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/openssl.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">openssl</div>
+            <div class="command-summary">Manage cryptographic functions including certificate creation, encryption, and secure connections.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/pandoc.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">pandoc</div>
+            <div class="command-summary">Universal document converter that transforms files between markup formats.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/passwd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">passwd</div>
+            <div class="command-summary">Change user password.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/patch.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">patch</div>
+            <div class="command-summary">Apply a diff file to an original file or files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/perf.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">perf</div>
+            <div class="command-summary">Performance analysis tool for Linux, providing hardware counter statistics and tracing capabilities.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ping.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ping</div>
+            <div class="command-summary">Send ICMP ECHO_REQUEST packets to network hosts to verify connectivity.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/printf.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">printf</div>
+            <div class="command-summary">Format and print data according to a specified format string.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ps.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ps</div>
+            <div class="command-summary">Display information about active processes.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/pstack.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">pstack</div>
+            <div class="command-summary">Print a stack trace of running processes.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/pstree.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">pstree</div>
+            <div class="command-summary">Display running processes as a tree.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/pwd.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">pwd</div>
+            <div class="command-summary">Print the full pathname of the current working directory.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/readlink.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">readlink</div>
+            <div class="command-summary">Print the resolved symbolic links or canonical file names.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/realpath.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">realpath</div>
+            <div class="command-summary">Print the resolved absolute file path.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/rg.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">rg</div>
+            <div class="command-summary">Search for patterns in files using regular expressions, with support for recursive directory traversal.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/rm.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">rm</div>
+            <div class="command-summary">Remove files or directories from the filesystem.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/rmdir.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">rmdir</div>
+            <div class="command-summary">Remove empty directories from the filesystem.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/rsync.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">rsync</div>
+            <div class="command-summary">Synchronize files and directories between local and remote systems or between local directories.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/scp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">scp</div>
+            <div class="command-summary">Securely copy files between hosts on a network using SSH for data transfer.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/script.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">script</div>
+            <div class="command-summary">Make a typescript of a terminal session.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/sed.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sed</div>
+            <div class="command-summary">Stream editor for filtering and transforming text.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/seq.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">seq</div>
+            <div class="command-summary">Print a sequence of numbers.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/set.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">set</div>
+            <div class="command-summary">Display or set shell options and positional parameters.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/sftp.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sftp</div>
+            <div class="command-summary">Securely transfer files between hosts over an encrypted SSH connection.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/shift.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">shift</div>
+            <div class="command-summary">Shifts positional parameters in shell scripts, removing the first parameter and renumbering the remaining ones.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/sleep.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sleep</div>
+            <div class="command-summary">Suspends execution for a specified amount of time.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/sort.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sort</div>
+            <div class="command-summary">Sort lines of text files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/source.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">source</div>
+            <div class="command-summary">Execute commands from a file or script in the current shell environment.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/split.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">split</div>
+            <div class="command-summary">Split a file into pieces.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ss.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ss</div>
+            <div class="command-summary">Display socket statistics, providing information about network connections.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ssh.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh</div>
+            <div class="command-summary">Securely connect to remote systems over an encrypted network connection.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ssh-add.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh-add</div>
+            <div class="command-summary">Adds private key identities to the OpenSSH authentication agent.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ssh-agent.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh-agent</div>
+            <div class="command-summary">Authentication agent for SSH private keys that holds keys in memory to avoid repeated passphrase entry.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ssh-copy-id.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh-copy-id</div>
+            <div class="command-summary">Installs your public key in a remote machine’s authorized_keys file to enable passwordless SSH authentication.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/ssh-keygen.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">ssh-keygen</div>
+            <div class="command-summary">Generate, manage, and convert authentication keys for SSH.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/stat.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">stat</div>
+            <div class="command-summary">Display file or file system status information.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/strace.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">strace</div>
+            <div class="command-summary">Trace system calls and signals for a process.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/su.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">su</div>
+            <div class="command-summary">Switch user identity or become another user.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/sudo.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sudo</div>
+            <div class="command-summary">Execute a command as another user, typically with elevated privileges.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/sudoedit.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">sudoedit</div>
+            <div class="command-summary">Edit files securely as another user, typically root.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/systemctl.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">systemctl</div>
+            <div class="command-summary">Control the systemd system and service manager.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/tail.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tail</div>
+            <div class="command-summary">Display the last part of files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/tar.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tar</div>
+            <div class="command-summary">Manipulate tape archives by creating, extracting, listing, or updating files in archive format.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/tcpdump.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tcpdump</div>
+            <div class="command-summary">Capture and analyze network traffic on a system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/tee.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tee</div>
+            <div class="command-summary">Read from standard input and write to both standard output and files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/top.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">top</div>
+            <div class="command-summary">Display and update sorted information about processes.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/touch.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">touch</div>
+            <div class="command-summary">Create or update file timestamps.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/tr.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tr</div>
+            <div class="command-summary">Translate or delete characters from standard input, writing to standard output.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/tree.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">tree</div>
+            <div class="command-summary">Display directory contents in a hierarchical tree structure.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/true.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">true</div>
+            <div class="command-summary">Return a successful exit status (0).</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/truncate.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">truncate</div>
+            <div class="command-summary">Shrink or extend the size of a file to a specified size.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/uname.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">uname</div>
+            <div class="command-summary">Print system information about the operating system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/uniq.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">uniq</div>
+            <div class="command-summary">Filter adjacent matching lines from input, or report unique lines.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/unlink.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">unlink</div>
+            <div class="command-summary">Remove a single file.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/until.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">until</div>
+            <div class="command-summary">Execute a command repeatedly until a condition is met.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/unzip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">unzip</div>
+            <div class="command-summary">Extract files from ZIP archives.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/update-alternatives.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">update-alternatives</div>
+            <div class="command-summary">Manages symbolic links determining default commands in the alternatives system.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/update-locale.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">update-locale</div>
+            <div class="command-summary">Configure system locale settings by updating /etc/default/locale.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/visudo.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">visudo</div>
+            <div class="command-summary">Edit the sudoers file safely with syntax checking.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/vmstat.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">vmstat</div>
+            <div class="command-summary">Report virtual memory statistics.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/w.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">w</div>
+            <div class="command-summary">Display information about users currently logged in and their processes.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/wc.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">wc</div>
+            <div class="command-summary">Count lines, words, and bytes in files.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/wget.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">wget</div>
+            <div class="command-summary">Download files from the web via HTTP, HTTPS, and FTP protocols.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/which.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">which</div>
+            <div class="command-summary">Locate a command’s executable file in the user’s PATH.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/while.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">while</div>
+            <div class="command-summary">Execute commands repeatedly as long as a condition is true.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/whoami.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">whoami</div>
+            <div class="command-summary">Display the effective user ID of the current user.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/xargs.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">xargs</div>
+            <div class="command-summary">Execute commands using arguments from standard input.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/xdg-mime.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">xdg-mime</div>
+            <div class="command-summary">Query or set file type associations in desktop environments.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/xdg-open.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">xdg-open</div>
+            <div class="command-summary">Opens a file or URL in the user’s preferred application.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/yes.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">yes</div>
+            <div class="command-summary">Output a string repeatedly until killed.</div>
+          </a>
+        </div>
+      
+        <div class="command-card">
+          <a href="/en/pages/zip.html" style="text-decoration: none; color: inherit;">
+            <div class="command-name">zip</div>
+            <div class="command-summary">Create or update ZIP archives by compressing files and directories.</div>
+          </a>
+        </div>
+      
+    </div>
+  </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>
