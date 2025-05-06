@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://noman.sh/images/logo.png" />
+  <meta property="og:title" content="ffmpeg command: noman - Man pages without the man" />
+  <meta property="og:url" content="https://noman.sh/en/pages/ffmpeg.html" />
+
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ffmpeg - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ffmpeg command</h1>
+<p>Multimedia file converter and processor for audio, video, and other media files.</p>
+<h2>Overview</h2>
+<p>FFmpeg is a powerful command-line tool for processing multimedia files. It can convert between different file formats, compress, extract, and manipulate audio and video streams. FFmpeg supports nearly all audio and video formats and includes hundreds of encoders, decoders, filters, and other processing capabilities.</p>
+<h2>Options</h2>
+<h3><strong>-i [input]</strong></h3>
+<p>Specifies the input file or stream</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>output.avi
+</pre></div>
+<h3><strong>-c:v [codec]</strong></h3>
+<p>Sets the video codec to use for encoding</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-c:v<span style="color: #F8F8F8"> </span>libx264<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-c:a [codec]</strong></h3>
+<p>Sets the audio codec to use for encoding</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-c:a<span style="color: #F8F8F8"> </span>aac<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-b:v [bitrate]</strong></h3>
+<p>Sets the video bitrate</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-b:v<span style="color: #F8F8F8"> </span>1M<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-b:a [bitrate]</strong></h3>
+<p>Sets the audio bitrate</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-b:a<span style="color: #F8F8F8"> </span>128k<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-r [fps]</strong></h3>
+<p>Sets the frame rate (frames per second)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">30</span><span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-s [size]</strong></h3>
+<p>Sets the frame size (resolution)</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>1280x720<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-t [duration]</strong></h3>
+<p>Limits the duration of the output</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">60</span><span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-ss [time]</strong></h3>
+<p>Sets the start time for processing</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-ss<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">00</span>:01:30<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">60</span><span style="color: #F8F8F8"> </span>clip.mp4
+</pre></div>
+<h3><strong>-vf [filter]</strong></h3>
+<p>Applies video filters</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-vf<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;scale=640:480&quot;</span><span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-af [filter]</strong></h3>
+<p>Applies audio filters</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-af<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;volume=2.0&quot;</span><span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Converting video format</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-c:v<span style="color: #F8F8F8"> </span>libx264<span style="color: #F8F8F8"> </span>-c:a<span style="color: #F8F8F8"> </span>aac<span style="color: #F8F8F8"> </span>output.mkv
+</pre></div>
+<h3>Extracting audio from video</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>video.mp4<span style="color: #F8F8F8"> </span>-vn<span style="color: #F8F8F8"> </span>-c:a<span style="color: #F8F8F8"> </span>mp3<span style="color: #F8F8F8"> </span>audio.mp3
+</pre></div>
+<h3>Compressing video</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-c:v<span style="color: #F8F8F8"> </span>libx264<span style="color: #F8F8F8"> </span>-crf<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">23</span><span style="color: #F8F8F8"> </span>-preset<span style="color: #F8F8F8"> </span>medium<span style="color: #F8F8F8"> </span>-c:a<span style="color: #F8F8F8"> </span>aac<span style="color: #F8F8F8"> </span>-b:a<span style="color: #F8F8F8"> </span>128k<span style="color: #F8F8F8"> </span>compressed.mp4
+</pre></div>
+<h3>Creating a video thumbnail</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-ss<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">00</span>:00:15<span style="color: #F8F8F8"> </span>-frames:v<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>thumbnail.jpg
+</pre></div>
+<h3>Trimming a video</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-ss<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">00</span>:01:00<span style="color: #F8F8F8"> </span>-to<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">00</span>:02:00<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>copy<span style="color: #F8F8F8"> </span>trimmed.mp4
+</pre></div>
+<h3>Concatenating multiple videos</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;concat:input1.mp4|input2.mp4|input3.mp4&quot;</span><span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>copy<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h2>Tips:</h2>
+<h3>Use -c copy for Stream Copying</h3>
+<p>When you just want to extract or trim without re-encoding, use <code>-c copy</code> to copy streams directly without quality loss and process much faster.</p>
+<h3>Understand CRF for Quality Control</h3>
+<p>For H.264 encoding, the Constant Rate Factor (CRF) controls quality. Values range from 0 (lossless) to 51 (worst), with 18-28 being common for good quality. Lower values mean higher quality but larger files.</p>
+<h3>Preview Commands with -t</h3>
+<p>When processing large files, test your command with a short segment first using <code>-t 10</code> to process just 10 seconds before committing to the full conversion.</p>
+<h3>Monitor Progress</h3>
+<p>FFmpeg shows progress by default. Add <code>-v quiet -stats</code> to see only the progress information without other messages.</p>
+<h3>Use Hardware Acceleration</h3>
+<p>On supported systems, hardware acceleration can significantly speed up encoding. Use codecs like <code>-c:v h264_nvenc</code> (NVIDIA) or <code>-c:v h264_qsv</code> (Intel) for faster processing.</p>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I convert a video to a different format?</h4>
+<p>A. Use <code>ffmpeg -i input.video -c:v [video_codec] -c:a [audio_codec] output.format</code>. For example: <code>ffmpeg -i input.mp4 -c:v libx264 -c:a aac output.mkv</code>.</p>
+<h4>Q2. How can I extract audio from a video?</h4>
+<p>A. Use <code>ffmpeg -i video.mp4 -vn -c:a [audio_codec] audio.format</code>. For example: <code>ffmpeg -i video.mp4 -vn -c:a mp3 audio.mp3</code>.</p>
+<h4>Q3. How do I resize a video?</h4>
+<p>A. Use the scale filter: <code>ffmpeg -i input.mp4 -vf &quot;scale=width:height&quot; output.mp4</code>. For example: <code>ffmpeg -i input.mp4 -vf &quot;scale=1280:720&quot; output.mp4</code>.</p>
+<h4>Q4. How can I cut a portion of a video?</h4>
+<p>A. Use <code>-ss</code> for start time and <code>-t</code> for duration: <code>ffmpeg -i input.mp4 -ss 00:01:30 -t 60 output.mp4</code> (cuts from 1:30 for 60 seconds).</p>
+<h4>Q5. How do I check information about a media file?</h4>
+<p>A. Use <code>ffprobe input.mp4</code> to display detailed information about the file.</p>
+<h2>References</h2>
+<p>https://ffmpeg.org/ffmpeg.html</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

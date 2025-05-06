@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://noman.sh/images/logo.png" />
+  <meta property="og:title" content="ffmpeg command: noman - Man pages without the man" />
+  <meta property="og:url" content="https://noman.sh/ja/pages/ffmpeg.html" />
+
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  ffmpeg - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ffmpegコマンド</h1>
+<p>オーディオ、ビデオ、その他のメディアファイルのためのマルチメディアファイルコンバーターおよびプロセッサです。</p>
+<h2>概要</h2>
+<p>FFmpegは、マルチメディアファイルを処理するための強力なコマンドラインツールです。異なるファイル形式間の変換、圧縮、抽出、オーディオやビデオストリームの操作が可能です。FFmpegはほぼすべてのオーディオおよびビデオ形式をサポートし、数百のエンコーダー、デコーダー、フィルター、その他の処理機能を含んでいます。</p>
+<h2>オプション</h2>
+<h3><strong>-i [入力]</strong></h3>
+<p>入力ファイルまたはストリームを指定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>output.avi
+</pre></div>
+<h3><strong>-c:v [コーデック]</strong></h3>
+<p>エンコードに使用するビデオコーデックを設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-c:v<span style="color: #F8F8F8"> </span>libx264<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-c:a [コーデック]</strong></h3>
+<p>エンコードに使用するオーディオコーデックを設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-c:a<span style="color: #F8F8F8"> </span>aac<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-b:v [ビットレート]</strong></h3>
+<p>ビデオのビットレートを設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-b:v<span style="color: #F8F8F8"> </span>1M<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-b:a [ビットレート]</strong></h3>
+<p>オーディオのビットレートを設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-b:a<span style="color: #F8F8F8"> </span>128k<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-r [fps]</strong></h3>
+<p>フレームレート（1秒あたりのフレーム数）を設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-r<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">30</span><span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-s [サイズ]</strong></h3>
+<p>フレームサイズ（解像度）を設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-s<span style="color: #F8F8F8"> </span>1280x720<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-t [時間]</strong></h3>
+<p>出力の時間を制限します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">60</span><span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-ss [時間]</strong></h3>
+<p>処理の開始時間を設定します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-ss<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">00</span>:01:30<span style="color: #F8F8F8"> </span>-t<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">60</span><span style="color: #F8F8F8"> </span>clip.mp4
+</pre></div>
+<h3><strong>-vf [フィルター]</strong></h3>
+<p>ビデオフィルターを適用します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-vf<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;scale=640:480&quot;</span><span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h3><strong>-af [フィルター]</strong></h3>
+<p>オーディオフィルターを適用します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-af<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;volume=2.0&quot;</span><span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h2>使用例</h2>
+<h3>ビデオ形式の変換</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-c:v<span style="color: #F8F8F8"> </span>libx264<span style="color: #F8F8F8"> </span>-c:a<span style="color: #F8F8F8"> </span>aac<span style="color: #F8F8F8"> </span>output.mkv
+</pre></div>
+<h3>ビデオからオーディオを抽出</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>video.mp4<span style="color: #F8F8F8"> </span>-vn<span style="color: #F8F8F8"> </span>-c:a<span style="color: #F8F8F8"> </span>mp3<span style="color: #F8F8F8"> </span>audio.mp3
+</pre></div>
+<h3>ビデオの圧縮</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-c:v<span style="color: #F8F8F8"> </span>libx264<span style="color: #F8F8F8"> </span>-crf<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">23</span><span style="color: #F8F8F8"> </span>-preset<span style="color: #F8F8F8"> </span>medium<span style="color: #F8F8F8"> </span>-c:a<span style="color: #F8F8F8"> </span>aac<span style="color: #F8F8F8"> </span>-b:a<span style="color: #F8F8F8"> </span>128k<span style="color: #F8F8F8"> </span>compressed.mp4
+</pre></div>
+<h3>ビデオのサムネイル作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-ss<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">00</span>:00:15<span style="color: #F8F8F8"> </span>-frames:v<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">1</span><span style="color: #F8F8F8"> </span>thumbnail.jpg
+</pre></div>
+<h3>ビデオのトリミング</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span>input.mp4<span style="color: #F8F8F8"> </span>-ss<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">00</span>:01:00<span style="color: #F8F8F8"> </span>-to<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">00</span>:02:00<span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>copy<span style="color: #F8F8F8"> </span>trimmed.mp4
+</pre></div>
+<h3>複数のビデオの連結</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>ffmpeg<span style="color: #F8F8F8"> </span>-i<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;concat:input1.mp4|input2.mp4|input3.mp4&quot;</span><span style="color: #F8F8F8"> </span>-c<span style="color: #F8F8F8"> </span>copy<span style="color: #F8F8F8"> </span>output.mp4
+</pre></div>
+<h2>ヒント:</h2>
+<h3>ストリームコピーには -c copy を使用する</h3>
+<p>再エンコードせずに抽出やトリミングを行いたい場合は、<code>-c copy</code>を使用してストリームを直接コピーすることで、品質の損失なく処理を大幅に高速化できます。</p>
+<h3>品質制御のためのCRFを理解する</h3>
+<p>H.264エンコーディングでは、固定レート係数（CRF）が品質を制御します。値は0（ロスレス）から51（最悪）の範囲で、18〜28が良好な品質の一般的な値です。値が低いほど品質は高くなりますが、ファイルサイズも大きくなります。</p>
+<h3>-t でコマンドをプレビューする</h3>
+<p>大きなファイルを処理する場合、まず<code>-t 10</code>を使用して10秒間だけ処理するようにコマンドをテストしてから、完全な変換を実行するとよいでしょう。</p>
+<h3>進行状況を監視する</h3>
+<p>FFmpegはデフォルトで進行状況を表示します。<code>-v quiet -stats</code>を追加すると、他のメッセージなしで進行状況情報のみを表示できます。</p>
+<h3>ハードウェアアクセラレーションを使用する</h3>
+<p>サポートされているシステムでは、ハードウェアアクセラレーションによりエンコーディングを大幅に高速化できます。<code>-c:v h264_nvenc</code>（NVIDIA）や<code>-c:v h264_qsv</code>（Intel）などのコーデックを使用して、処理を高速化しましょう。</p>
+<h2>よくある質問</h2>
+<h4>Q1. ビデオを別の形式に変換するにはどうすればよいですか？</h4>
+<p>A. <code>ffmpeg -i 入力.ビデオ -c:v [ビデオコーデック] -c:a [オーディオコーデック] 出力.形式</code>を使用します。例：<code>ffmpeg -i input.mp4 -c:v libx264 -c:a aac output.mkv</code></p>
+<h4>Q2. ビデオからオーディオを抽出するにはどうすればよいですか？</h4>
+<p>A. <code>ffmpeg -i ビデオ.mp4 -vn -c:a [オーディオコーデック] オーディオ.形式</code>を使用します。例：<code>ffmpeg -i video.mp4 -vn -c:a mp3 audio.mp3</code></p>
+<h4>Q3. ビデオのサイズを変更するにはどうすればよいですか？</h4>
+<p>A. スケールフィルターを使用します：<code>ffmpeg -i input.mp4 -vf &quot;scale=幅:高さ&quot; output.mp4</code>。例：<code>ffmpeg -i input.mp4 -vf &quot;scale=1280:720&quot; output.mp4</code></p>
+<h4>Q4. ビデオの一部を切り取るにはどうすればよいですか？</h4>
+<p>A. 開始時間には<code>-ss</code>、時間には<code>-t</code>を使用します：<code>ffmpeg -i input.mp4 -ss 00:01:30 -t 60 output.mp4</code>（1分30秒から60秒間切り取ります）</p>
+<h4>Q5. メディアファイルの情報を確認するにはどうすればよいですか？</h4>
+<p>A. <code>ffprobe input.mp4</code>を使用して、ファイルに関する詳細情報を表示します。</p>
+<h2>参考文献</h2>
+<p>https://ffmpeg.org/ffmpeg.html</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/06 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://noman.sh/images/logo.png" />
+  <meta property="og:title" content="imagemagick command: noman - Man pages without the man" />
+  <meta property="og:url" content="https://noman.sh/ja/pages/imagemagick.html" />
+
+
+      
+        <script src="/ja/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  imagemagick - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="コマンドを検索" />
+      </div>
+      <div class="nav-links">
+        <a href="/ja/commandlist.html">コマンド一覧</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ImageMagick</h1>
+<p>デジタル画像を作成、編集、合成、変換するための包括的なコマンドラインツール群です。</p>
+<h2>概要</h2>
+<p>ImageMagickは、様々な形式の画像を操作するための強力なソフトウェアスイートです。PNG、JPEG、GIF、HEIC、TIFF、DPX、EXR、WebP、PDFなど200以上の形式で画像の読み込み、変換、書き込みが可能です。ImageMagickでは、画像のリサイズ、反転、ミラーリング、回転、歪み、せん断、変形、色調整、特殊効果の適用、テキスト・線・多角形の描画などができます。</p>
+<h2>オプション</h2>
+<p>ImageMagickはいくつかのコマンドラインユーティリティで構成されており、主なものは以下の通りです：</p>
+<h3><strong>convert</strong></h3>
+<p>画像形式間の変換や画像操作を行います</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>input.jpg<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">50</span>%<span style="color: #F8F8F8"> </span>output.png
+</pre></div>
+<h3><strong>identify</strong></h3>
+<p>画像ファイルの形式や特性を説明します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>identify<span style="color: #F8F8F8"> </span>image.jpg
+<span style="color: #000; font-style: italic">image.jpg JPEG 1920x1080 1920x1080+0+0 8-bit sRGB 2.5MB 0.000u 0:00.000</span>
+</pre></div>
+<h3><strong>mogrify</strong></h3>
+<p>画像をその場で変換します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mogrify<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span>800x600<span style="color: #F8F8F8"> </span>*.jpg
+</pre></div>
+<h3><strong>composite</strong></h3>
+<p>ある画像を別の画像の上に重ねます</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>composite<span style="color: #F8F8F8"> </span>overlay.png<span style="color: #F8F8F8"> </span>background.jpg<span style="color: #F8F8F8"> </span>output.jpg
+</pre></div>
+<h3><strong>montage</strong></h3>
+<p>複数の個別画像を組み合わせて合成画像を作成します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>montage<span style="color: #F8F8F8"> </span>image1.jpg<span style="color: #F8F8F8"> </span>image2.jpg<span style="color: #F8F8F8"> </span>image3.jpg<span style="color: #F8F8F8"> </span>-geometry<span style="color: #F8F8F8"> </span>+5+5<span style="color: #F8F8F8"> </span>montage.jpg
+</pre></div>
+<h3><strong>display</strong></h3>
+<p>任意のXサーバー上で画像を表示します</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>display<span style="color: #F8F8F8"> </span>image.jpg
+</pre></div>
+<h2>使用例</h2>
+<h3>画像のリサイズ</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>large_image.jpg<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span>800x600<span style="color: #F8F8F8"> </span>resized_image.jpg
+</pre></div>
+<h3>形式間の変換</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>document.pdf<span style="color: #F8F8F8"> </span>document.jpg
+</pre></div>
+<h3>画像へのテキスト追加</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>image.jpg<span style="color: #F8F8F8"> </span>-fill<span style="color: #F8F8F8"> </span>white<span style="color: #F8F8F8"> </span>-pointsize<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">24</span><span style="color: #F8F8F8"> </span>-annotate<span style="color: #F8F8F8"> </span>+50+50<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;Hello World!&#39;</span><span style="color: #F8F8F8"> </span>text_image.jpg
+</pre></div>
+<h3>サムネイルの作成</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>image.jpg<span style="color: #F8F8F8"> </span>-thumbnail<span style="color: #F8F8F8"> </span>100x100<span style="color: #F8F8F8"> </span>thumbnail.jpg
+</pre></div>
+<h3>エフェクトの適用</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>photo.jpg<span style="color: #F8F8F8"> </span>-charcoal<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span>charcoal_effect.jpg
+</pre></div>
+<h3>複数画像の一括処理</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mogrify<span style="color: #F8F8F8"> </span>-format<span style="color: #F8F8F8"> </span>png<span style="color: #F8F8F8"> </span>-quality<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">90</span><span style="color: #F8F8F8"> </span>*.jpg
+</pre></div>
+<h2>ヒント</h2>
+<h3>複雑なコマンドには適切な引用符を使用する</h3>
+<p>複数のオプションを持つ複雑なコマンドを使用する場合は、シェルの解釈問題を防ぐために引用符を使用しましょう：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>input.jpg<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;800x600&gt;&quot;</span><span style="color: #F8F8F8"> </span>-quality<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">85</span><span style="color: #F8F8F8"> </span>output.jpg
+</pre></div>
+<h3>メモリ管理</h3>
+<p>ImageMagickはメモリを大量に消費することがあります。大きな画像の場合は、<code>-limit memory</code>と<code>-limit map</code>オプションの使用を検討してください：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>-limit<span style="color: #F8F8F8"> </span>memory<span style="color: #F8F8F8"> </span>256MB<span style="color: #F8F8F8"> </span>-limit<span style="color: #F8F8F8"> </span>map<span style="color: #F8F8F8"> </span>512MB<span style="color: #F8F8F8"> </span>large_image.tif<span style="color: #F8F8F8"> </span>output.jpg
+</pre></div>
+<h3>メタデータの保持</h3>
+<p>処理時にファイルのタイムスタンプを維持するには、<code>-preserve-timestamp</code>オプションを使用します：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mogrify<span style="color: #F8F8F8"> </span>-preserve-timestamp<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">50</span>%<span style="color: #F8F8F8"> </span>image.jpg
+</pre></div>
+<h3>操作の適切な順序を使用する</h3>
+<p>ImageMagickでは操作の順序が重要です。例えば、パフォーマンス向上のためにエフェクトを適用する前にリサイズを行います：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>input.jpg<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span>800x600<span style="color: #F8F8F8"> </span>-sharpen<span style="color: #F8F8F8"> </span>0x1.0<span style="color: #F8F8F8"> </span>output.jpg
+</pre></div>
+<h2>よくある質問</h2>
+<h4>Q1. ImageMagickをインストールするにはどうすればよいですか？</h4>
+<p>A. Ubuntu/Debianでは：<code>sudo apt-get install imagemagick</code>。macOSでHomebrewを使用する場合：<code>brew install imagemagick</code>。Windowsでは、公式ウェブサイトからインストーラーをダウンロードしてください。</p>
+<h4>Q2. 複数の画像を一度に変換するにはどうすればよいですか？</h4>
+<p>A. <code>mogrify</code>コマンドを使用します：<code>mogrify -format png *.jpg</code>はすべてのJPGファイルをPNGに変換します。</p>
+<h4>Q3. アスペクト比を維持しながら画像をリサイズするにはどうすればよいですか？</h4>
+<p>A. パーセンテージでリサイズオプションを使用します：<code>convert image.jpg -resize 50% resized.jpg</code>または一方の寸法のみを指定します：<code>convert image.jpg -resize 800x output.jpg</code>。</p>
+<h4>Q4. 画像ファイルサイズを縮小するにはどうすればよいですか？</h4>
+<p>A. 品質オプションを使用します：<code>convert input.jpg -quality 80 output.jpg</code>（品質値が低いほど、ファイルサイズが小さくなります）。</p>
+<h4>Q5. 複数の画像からアニメーションGIFを作成するにはどうすればよいですか？</h4>
+<p>A. 次のように使用します：<code>convert -delay 100 frame*.jpg animated.gif</code>（delayは100分の1秒単位です）。</p>
+<h2>macOSに関する考慮事項</h2>
+<p>macOSでは、デフォルトのImageMagickインストールはセキュリティ上の理由から一部の機能が無効になっている場合があります。完全な機能を有効にするには、特定のオプションで再コンパイルするか、より完全なビルドを提供するHomebrewなどのパッケージマネージャーを使用する必要があるかもしれません。</p>
+<p>また、macOSはImageMagickのバージョンではなく、組み込みの<code>convert</code>ユーティリティを使用する場合があります。ImageMagickのコマンドを確実に使用するには、フルパスを使用するか、シェル設定でエイリアスを作成してください。</p>
+<h2>参考文献</h2>
+<p>https://imagemagick.org/script/command-line-processing.php</p>
+<h2>改訂履歴</h2>
+<ul>
+<li>2025/05/06 初版</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>

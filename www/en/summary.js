@@ -104,6 +104,9 @@ pages = {
   "false": {
     "summary": "Return a successful exit status (0) regardless of input."
   },
+  "ffmpeg": {
+    "summary": "Multimedia file converter and processor for audio, video, and other media files."
+  },
   "file": {
     "summary": "Determine file type by examining file contents."
   },
@@ -219,6 +222,9 @@ pages = {
   },
   "if": {
     "summary": "Evaluates conditional expressions and executes commands based on the result."
+  },
+  "imagemagick": {
+    "summary": "Create, edit, compose, or convert digital images with a comprehensive suite of command-line tools."
   },
   "install": {
     "summary": "Copy files and set attributes."

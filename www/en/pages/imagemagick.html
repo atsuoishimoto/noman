@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/search.css" />
+      
+
+      
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://noman.sh/images/logo.png" />
+  <meta property="og:title" content="imagemagick command: noman - Man pages without the man" />
+  <meta property="og:url" content="https://noman.sh/en/pages/imagemagick.html" />
+
+
+      
+        <script src="/en/summary.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/language-switcher.js"></script>
+      
+      <title>
+        
+  imagemagick - noman
+
+      </title>
+
+      
+
+      
+    
+  </head>
+  <body>
+    
+  <nav>
+    <div class="nav-logo">
+      <a href="/"><img src="../../../images/white.png" height="50px" /></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="nav-searchbox" type="text" placeholder="Search command..." />
+      </div>
+      <div class="nav-links">
+        <a href="/en/commandlist.html">Commands</a>
+        <span id="language-switcher"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <main>
+      
+  <h1>ImageMagick</h1>
+<p>Create, edit, compose, or convert digital images with a comprehensive suite of command-line tools.</p>
+<h2>Overview</h2>
+<p>ImageMagick is a powerful software suite for manipulating images in various formats. It can read, convert, and write images in over 200 formats including PNG, JPEG, GIF, HEIC, TIFF, DPX, EXR, WebP, and PDF. ImageMagick can resize, flip, mirror, rotate, distort, shear, and transform images, adjust image colors, apply special effects, draw text, lines, polygons, and more.</p>
+<h2>Options</h2>
+<p>ImageMagick consists of several command-line utilities, with the main ones being:</p>
+<h3><strong>convert</strong></h3>
+<p>Converts between image formats and performs image operations</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>input.jpg<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">50</span>%<span style="color: #F8F8F8"> </span>output.png
+</pre></div>
+<h3><strong>identify</strong></h3>
+<p>Describes the format and characteristics of image files</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>identify<span style="color: #F8F8F8"> </span>image.jpg
+<span style="color: #000; font-style: italic">image.jpg JPEG 1920x1080 1920x1080+0+0 8-bit sRGB 2.5MB 0.000u 0:00.000</span>
+</pre></div>
+<h3><strong>mogrify</strong></h3>
+<p>Transforms images in-place</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mogrify<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span>800x600<span style="color: #F8F8F8"> </span>*.jpg
+</pre></div>
+<h3><strong>composite</strong></h3>
+<p>Overlays one image on top of another</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>composite<span style="color: #F8F8F8"> </span>overlay.png<span style="color: #F8F8F8"> </span>background.jpg<span style="color: #F8F8F8"> </span>output.jpg
+</pre></div>
+<h3><strong>montage</strong></h3>
+<p>Creates a composite image by combining several separate images</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>montage<span style="color: #F8F8F8"> </span>image1.jpg<span style="color: #F8F8F8"> </span>image2.jpg<span style="color: #F8F8F8"> </span>image3.jpg<span style="color: #F8F8F8"> </span>-geometry<span style="color: #F8F8F8"> </span>+5+5<span style="color: #F8F8F8"> </span>montage.jpg
+</pre></div>
+<h3><strong>display</strong></h3>
+<p>Displays images on any X server</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>display<span style="color: #F8F8F8"> </span>image.jpg
+</pre></div>
+<h2>Usage Examples</h2>
+<h3>Resizing an Image</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>large_image.jpg<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span>800x600<span style="color: #F8F8F8"> </span>resized_image.jpg
+</pre></div>
+<h3>Converting Between Formats</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>document.pdf<span style="color: #F8F8F8"> </span>document.jpg
+</pre></div>
+<h3>Adding Text to an Image</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>image.jpg<span style="color: #F8F8F8"> </span>-fill<span style="color: #F8F8F8"> </span>white<span style="color: #F8F8F8"> </span>-pointsize<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">24</span><span style="color: #F8F8F8"> </span>-annotate<span style="color: #F8F8F8"> </span>+50+50<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&#39;Hello World!&#39;</span><span style="color: #F8F8F8"> </span>text_image.jpg
+</pre></div>
+<h3>Creating a Thumbnail</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>image.jpg<span style="color: #F8F8F8"> </span>-thumbnail<span style="color: #F8F8F8"> </span>100x100<span style="color: #F8F8F8"> </span>thumbnail.jpg
+</pre></div>
+<h3>Applying Effects</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>photo.jpg<span style="color: #F8F8F8"> </span>-charcoal<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">2</span><span style="color: #F8F8F8"> </span>charcoal_effect.jpg
+</pre></div>
+<h3>Batch Processing Multiple Images</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mogrify<span style="color: #F8F8F8"> </span>-format<span style="color: #F8F8F8"> </span>png<span style="color: #F8F8F8"> </span>-quality<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">90</span><span style="color: #F8F8F8"> </span>*.jpg
+</pre></div>
+<h2>Tips</h2>
+<h3>Use Proper Quoting for Complex Commands</h3>
+<p>When using complex commands with multiple options, use quotes to prevent shell interpretation issues:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>input.jpg<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span><span style="color: #4E9A06">&quot;800x600&gt;&quot;</span><span style="color: #F8F8F8"> </span>-quality<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">85</span><span style="color: #F8F8F8"> </span>output.jpg
+</pre></div>
+<h3>Memory Management</h3>
+<p>ImageMagick can be memory-intensive. For large images, consider using the <code>-limit memory</code> and <code>-limit map</code> options:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>-limit<span style="color: #F8F8F8"> </span>memory<span style="color: #F8F8F8"> </span>256MB<span style="color: #F8F8F8"> </span>-limit<span style="color: #F8F8F8"> </span>map<span style="color: #F8F8F8"> </span>512MB<span style="color: #F8F8F8"> </span>large_image.tif<span style="color: #F8F8F8"> </span>output.jpg
+</pre></div>
+<h3>Preserve Metadata</h3>
+<p>Use the <code>-preserve-timestamp</code> option to maintain file timestamps when processing:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>mogrify<span style="color: #F8F8F8"> </span>-preserve-timestamp<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span><span style="color: #0000CF; font-weight: bold">50</span>%<span style="color: #F8F8F8"> </span>image.jpg
+</pre></div>
+<h3>Use Proper Sequence for Operations</h3>
+<p>The order of operations matters in ImageMagick. For example, resize before applying effects for better performance:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #8F5902">$ </span>convert<span style="color: #F8F8F8"> </span>input.jpg<span style="color: #F8F8F8"> </span>-resize<span style="color: #F8F8F8"> </span>800x600<span style="color: #F8F8F8"> </span>-sharpen<span style="color: #F8F8F8"> </span>0x1.0<span style="color: #F8F8F8"> </span>output.jpg
+</pre></div>
+<h2>Frequently Asked Questions</h2>
+<h4>Q1. How do I install ImageMagick?</h4>
+<p>A. On Ubuntu/Debian: <code>sudo apt-get install imagemagick</code>. On macOS with Homebrew: <code>brew install imagemagick</code>. On Windows, download the installer from the official website.</p>
+<h4>Q2. How can I convert multiple images at once?</h4>
+<p>A. Use the <code>mogrify</code> command: <code>mogrify -format png *.jpg</code> converts all JPG files to PNG.</p>
+<h4>Q3. How do I resize an image while maintaining its aspect ratio?</h4>
+<p>A. Use the resize option with a percentage: <code>convert image.jpg -resize 50% resized.jpg</code> or specify only one dimension: <code>convert image.jpg -resize 800x output.jpg</code>.</p>
+<h4>Q4. How can I reduce image file size?</h4>
+<p>A. Use the quality option: <code>convert input.jpg -quality 80 output.jpg</code> where lower quality values produce smaller files.</p>
+<h4>Q5. How do I create an animated GIF from multiple images?</h4>
+<p>A. Use: <code>convert -delay 100 frame*.jpg animated.gif</code> where delay is in 1/100ths of a second.</p>
+<h2>macOS Considerations</h2>
+<p>On macOS, the default ImageMagick installation may have some features disabled for security reasons. To enable full functionality, you might need to recompile with specific options or use package managers like Homebrew that provide more complete builds.</p>
+<p>Additionally, macOS may use the built-in <code>convert</code> utility instead of ImageMagick's version. To ensure you're using ImageMagick's commands, use the full path or create aliases in your shell configuration.</p>
+<h2>References</h2>
+<p>https://imagemagick.org/script/command-line-processing.php</p>
+<h2>Revisions</h2>
+<ul>
+<li>2025/05/06 First revision</li>
+</ul>
+
+
+    </main>
+  </div>
+
+  <footer>
+    <p>
+      Copyright © 2025 noman project | <a href="https://github.com/atsuoishimoto/noman">GitHub</a> | MIT License
+    </p>
+  </footer>
+
+  </body>
+</html>
