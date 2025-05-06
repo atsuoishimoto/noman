@@ -76,7 +76,7 @@ code {
   border-radius: 6px;
 }
 
-a {
+a.external-link {
   text-decoration: none;
   color: inherit;
   font-weight: bold;
@@ -89,7 +89,6 @@ nav {
 
   background-color: var(--nav-background-color);
   color: var(--nav-color);
-  font-weight: bold;
   border-bottom: 1px solid #333;
   padding: 0.5rem;
   margin: 0rem;
@@ -207,7 +206,6 @@ pre {
 }
 
 .lang-dropdown-btn {
-  font-weight: bold;
   text-decoration: none;
   color: var(--nav-color);
   margin-left: 0.5rem;
