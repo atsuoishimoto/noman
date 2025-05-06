@@ -9,6 +9,9 @@ description = "Man pages without the man"
 readme = "README.md"
 requires-python = ">=3.10"
 
+[project.urls]
+Homepage = "https://github.com/atsuoishimoto/noman"
+Documentation = "https://noman.sh"
 
 [project.scripts]
 noman = "noman:viewer.main"
