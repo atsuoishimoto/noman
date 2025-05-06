@@ -1,0 +1,20 @@
+{
+  "id": "msg_01MsnA8DpK229ygoS3NVtqDp",
+  "content": [
+    {
+      "text": "# stdbuf command\n\nModify buffering operations for standard streams.\n\n## Overview\n\n`stdbuf` runs a command with modified buffering operations for its standard input, output, and error streams. It allows you to control how data is buffered when a program writes to stdout or stderr, which is particularly useful when piping output between programs or when you need real-time output from a command that would otherwise buffer its output.\n\n## Options\n\n### **-i, --input=MODE**\n\nAdjust the input stream buffering.\n\n```console\n$ stdbuf -i0 command\n```\n\n### **-o, --output=MODE**\n\nAdjust the output stream buffering.\n\n```console\n$ stdbuf -o0 tail -f log.txt | grep \"error\"\n```\n\n### **-e, --error=MODE**\n\nAdjust the error stream buffering.\n\n```console\n$ stdbuf -e0 command 2> errors.log\n```\n\n### **MODE values**\n\n- **L**: Line buffered (output sent after each newline)\n- **0**: Unbuffered (output sent immediately)\n- **SIZE**: Fully buffered with specified buffer size (e.g., 4K, 8K)\n\n## Usage Examples\n\n### Unbuffered Output for Real-time Logs\n\n```console\n$ stdbuf -oL grep \"error\" large_log.txt | tee error_log.txt\n[output appears line by line as matches are found]\n```\n\n### Combining Multiple Buffer Modifications\n\n```console\n$ stdbuf -o0 -e0 long_running_process | another_process\n[output and error streams appear immediately without buffering]\n```\n\n### Monitoring Log Files in Real-time\n\n```console\n$ stdbuf -oL tail -f logfile.txt | grep --line-buffered \"ERROR\"\n[ERROR] Connection failed at 14:32:15\n[ERROR] Database timeout at 14:35:22\n```\n\n## Tips:\n\n### When to Use Unbuffered Output\n\nUse `-o0` when you need immediate output from a program, especially when piping to another command or when monitoring logs in real-time. This ensures that output appears as soon as it's generated rather than being held in a buffer.\n\n### Line Buffering for Log Processing\n\nUse `-oL` for commands that process logs line by line. This ensures each complete line is output immediately after processing, which is useful for real-time monitoring while maintaining line integrity.\n\n### Performance Considerations\n\nBe aware that unbuffered operation can reduce performance for commands that produce large amounts of output. Only use unbuffered mode when real-time output is necessary.\n\n## Frequently Asked Questions\n\n#### Q1. What's the difference between the different buffering modes?\nA. Unbuffered (0) sends output immediately, line-buffered (L) sends output after each newline, and fully buffered sends output when the buffer fills up to a specified size.\n\n#### Q2. Why doesn't stdbuf work with all commands?\nA. `stdbuf` works by using the LD_PRELOAD mechanism to replace standard I/O functions, which doesn't work with statically linked programs or those that don't use standard I/O functions.\n\n#### Q3. How can I tell if a command is buffering its output?\nA. If output appears in chunks rather than continuously, it's likely being buffered. Try running the command with `stdbuf -o0` to see if the behavior changes.\n\n#### Q4. What's the default buffering behavior for most commands?\nA. By default, most commands use line buffering when output goes to a terminal, and full buffering when output is redirected to a file or pipe.\n\n## References\n\nhttps://www.gnu.org/software/coreutils/manual/html_node/stdbuf-invocation.html\n\n## Revisions\n\n- 2025/05/06 First revision",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-7-sonnet-20250219",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "input_tokens": 1634,
+    "output_tokens": 888
+  }
+}

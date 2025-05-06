@@ -395,6 +395,9 @@ pages = {
   "stat": {
     "summary": "Display file or file system status information."
   },
+  "stdbuf": {
+    "summary": "Modify buffering operations for standard streams."
+  },
   "strace": {
     "summary": "Trace system calls and signals for a process."
   },
