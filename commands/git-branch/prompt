@@ -1,0 +1,1 @@
+--sortの解説を簡単に。ブランチを --sort=committerdate で最新ブランチを一番下に表示する方法も解説して。git config --global branch.sort -committerdateでデフォルト設定も変えられることも書いて。

@@ -210,6 +210,12 @@
     }
   ],
   [
+    "ffmpeg",
+    {
+      "summary": "Multimedia file converter and processor for audio, video, and other media files."
+    }
+  ],
+  [
     "file",
     {
       "summary": "Determine file type by examining file contents."
@@ -422,6 +428,12 @@
     "if",
     {
       "summary": "Evaluates conditional expressions and executes commands based on the result."
+    }
+  ],
+  [
+    "imagemagick",
+    {
+      "summary": "Create, edit, compose, or convert digital images with a comprehensive suite of command-line tools."
     }
   ],
   [
@@ -765,6 +777,12 @@
     "stat",
     {
       "summary": "Display file or file system status information."
+    }
+  ],
+  [
+    "stdbuf",
+    {
+      "summary": "Modify buffering operations for standard streams."
     }
   ],
   [
