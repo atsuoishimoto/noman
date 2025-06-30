@@ -108,8 +108,8 @@ Rule deleted (v6)
 ```console
 $ sudo ufw reset
 Resetting all rules to installed defaults. This may disrupt existing ssh connections. Proceed with operation (y|n)? y
-Backing up 'user.rules' to '/etc/ufw/user.rules.20250508_123456'
-Backing up 'user6.rules' to '/etc/ufw/user6.rules.20250508_123456'
+Backing up 'user.rules' to '/etc/ufw/user.rules.20250630_123456'
+Backing up 'user6.rules' to '/etc/ufw/user6.rules.20250630_123456'
 ```
 
 ## 使用例
@@ -192,4 +192,5 @@ https://manpages.ubuntu.com/manpages/jammy/man8/ufw.8.html
 
 ## 改訂履歴
 
+- 2025/06/30 リセット例を現在の日付で更新
 - 2025/05/08 初版

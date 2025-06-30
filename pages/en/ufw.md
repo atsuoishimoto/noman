@@ -108,8 +108,8 @@ Disables and resets the firewall to default settings, removing all rules
 ```console
 $ sudo ufw reset
 Resetting all rules to installed defaults. This may disrupt existing ssh connections. Proceed with operation (y|n)? y
-Backing up 'user.rules' to '/etc/ufw/user.rules.20250508_123456'
-Backing up 'user6.rules' to '/etc/ufw/user6.rules.20250508_123456'
+Backing up 'user.rules' to '/etc/ufw/user.rules.20250630_123456'
+Backing up 'user6.rules' to '/etc/ufw/user6.rules.20250630_123456'
 ```
 
 ## Usage Examples
@@ -192,4 +192,5 @@ https://manpages.ubuntu.com/manpages/jammy/man8/ufw.8.html
 
 ## Revisions
 
+- 2025/06/30 Updated reset example with current date
 - 2025/05/08 First revision

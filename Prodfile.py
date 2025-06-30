@@ -122,7 +122,7 @@ TODAY is {TODAY}.
 @rule(
     "pages/*/%.md",
     uses="commands/%/.empty",
-    depends=("pages/en/%.md", lang_prompt),
+    depends=("pages/en/%.md", PROMPT, command_prompt, FORMAT, lang_prompt),
 )
 def build_noman(target, en, *deps):
     print("building:", target)
